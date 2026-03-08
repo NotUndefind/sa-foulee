@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Event extends Model
@@ -39,6 +40,11 @@ class Event extends Model
         return $this->belongsToMany(User::class, 'event_registrations')
             ->withTimestamps()
             ->withPivot('registered_at');
+    }
+
+    public function photos(): HasMany
+    {
+        return $this->hasMany(EventPhoto::class)->orderBy('created_at');
     }
 
     public function isRegistered(int $userId): bool

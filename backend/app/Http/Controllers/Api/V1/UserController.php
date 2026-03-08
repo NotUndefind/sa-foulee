@@ -120,14 +120,16 @@ class UserController extends Controller
     private function formatUser(User $user): array
     {
         return [
-            'id'            => $user->id,
-            'first_name'    => $user->first_name,
-            'last_name'     => $user->last_name,
-            'email'         => $user->email,
-            'avatar'        => $user->avatar,
-            'roles'         => $user->getRoleNames(),
-            'email_verified_at' => $user->email_verified_at,
-            'created_at'    => $user->created_at,
+            'id'                     => $user->id,
+            'first_name'             => $user->first_name,
+            'last_name'              => $user->last_name,
+            'email'                  => $user->email,
+            'avatar'                 => $user->avatar,
+            'roles'                  => $user->getRoleNames(),
+            'has_complete_documents' => $user->hasCompleteDocuments(),
+            'document_completion'    => $user->documentCompletion(),
+            'email_verified_at'      => $user->email_verified_at,
+            'created_at'             => $user->created_at,
         ];
     }
 }

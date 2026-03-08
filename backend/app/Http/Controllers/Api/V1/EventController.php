@@ -18,17 +18,25 @@ class EventController extends Controller
     {
         $user  = $request->user(); // null si non authentifié (route publique)
         $query = Event::query()
-            ->withCount('participants')
-            ->orderBy('event_date');
+            ->withCount('participants');
 
         // Filtre type
         if ($request->filled('type')) {
             $query->where('type', $request->type);
         }
 
-        // Filtre à venir (par défaut : true)
-        if ($request->boolean('upcoming', true)) {
-            $query->where('event_date', '>=', now());
+        // Filtre événements passés (past=1) ou à venir (upcoming=1, défaut)
+        if ($request->boolean('past')) {
+            // Événements passés, du plus récent au plus ancien
+            $query->where('event_date', '<', now())
+                  ->orderByDesc('event_date');
+        } elseif ($request->boolean('upcoming', true)) {
+            // Événements à venir, du plus proche au plus lointain
+            $query->where('event_date', '>=', now())
+                  ->orderBy('event_date');
+        } else {
+            // Tous les événements (ex: vue calendrier)
+            $query->orderBy('event_date');
         }
 
         // Sans auth ou membre simple : uniquement événements publics

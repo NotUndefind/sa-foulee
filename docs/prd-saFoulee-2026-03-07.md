@@ -206,6 +206,46 @@ Le système doit permettre la connexion avec Strava pour importer automatiquemen
 
 ---
 
+### FR-013: Navigation & Design System cohérent
+
+**Priority:** Must Have (Post-MVP)
+
+**Description:**
+L'application doit disposer d'une navigation cohérente, moderne et identitaire sur toutes les pages du dashboard, avec une charte graphique unifiée utilisant la palette de marque sa Foulée.
+
+**Acceptance Criteria:**
+- [ ] Sidebar desktop avec icônes SVG cohérentes, active state visible, section utilisateur en bas
+- [ ] Navigation mobile bottom avec indicateurs visuels clairs
+- [ ] Font Baloo 2 utilisée sur tous les composants de navigation
+- [ ] Couleur brand #FF383E appliquée sur tous les éléments actifs/CTA
+- [ ] Accent #7EAA99 utilisé en couleur secondaire cohérente
+- [ ] Animations d'entrée (fadeUp) sur toutes les pages
+- [ ] Logo "sF" avec design premium dans la sidebar
+
+**Dependencies:** Aucune
+
+---
+
+### FR-014: Redesign des pages dashboard
+
+**Priority:** Must Have (Post-MVP)
+
+**Description:**
+Chaque page du dashboard doit être redesignée pour offrir une expérience utilisateur riche, vivante et cohérente avec la charte graphique du club.
+
+**Acceptance Criteria:**
+- [ ] Page Accueil : hero greeting personnalisé, quick actions colorées, cards vivantes, skeleton loaders
+- [ ] Page Événements : header impactant, filter pills par type, EventCard avec date badge coloré
+- [ ] Page Sessions : filter pills type, header contextuel, form intégré élégant
+- [ ] Page Blog : style éditorial, gradient décoratif, PostCard enrichie
+- [ ] Page Classement : podium visuel top 3, stat cards colorées, allure/km en badge
+- [ ] Page Profil : avatar ring gradient, progress bar documents animée, role badges colorés
+- [ ] Page Administration : KPI cards, tableau membres propre, slide-over dossier
+
+**Dependencies:** FR-013
+
+---
+
 ### FR-009: Chat entre membres
 
 **Priority:** Should Have
@@ -481,6 +521,24 @@ Cohésion communautaire et visibilité publique de l'association.
 
 ---
 
+### EPIC-005: UX / Navigation Refactor
+
+**Description:**
+Refonte complète de l'interface utilisateur du dashboard — navigation, charte graphique, animations, et cohérence visuelle sur toutes les pages membres. L'objectif est d'aligner l'expérience utilisateur sur le niveau de qualité attendu pour un club sportif moderne, en utilisant la palette de marque (brand #FF383E, accent #7EAA99, police Baloo 2).
+
+**Functional Requirements:**
+- FR-013 (Navigation & Design System cohérent)
+- FR-014 (Redesign des pages dashboard)
+
+**Story Count Estimate:** 6-8
+
+**Priority:** Must Have (Post-MVP)
+
+**Business Value:**
+L'adoption de l'app dépend directement de la qualité de l'expérience utilisateur. Un design vivant et cohérent renforce l'identité du club et encourage l'utilisation quotidienne.
+
+---
+
 ### EPIC-004: Performances & intégrations
 
 **Description:**
@@ -647,6 +705,7 @@ Motivation des membres par la gamification et la connexion avec leurs outils spo
 | Version | Date | Author | Changes |
 |---------|------|--------|---------|
 | 1.0 | 2026-03-07 | julesbourin | Initial PRD |
+| 1.1 | 2026-03-08 | julesbourin | Added EPIC-005 UX Refactor, FR-013, FR-014 (Sprint 5) |
 
 ---
 

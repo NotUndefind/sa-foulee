@@ -76,6 +76,10 @@ class User extends Authenticatable
 
     public function hasCompleteDocuments(): bool
     {
+        if ($this->hasAnyRole(['admin', 'founder'])) {
+            return true;
+        }
+
         $required = ['license', 'registration', 'medical_certificate'];
         $uploaded = $this->documents()->whereIn('type', $required)->pluck('type')->toArray();
 
@@ -84,6 +88,10 @@ class User extends Authenticatable
 
     public function documentCompletion(): int
     {
+        if ($this->hasAnyRole(['admin', 'founder'])) {
+            return 100;
+        }
+
         $required = ['license', 'registration', 'medical_certificate'];
         $uploaded = $this->documents()->whereIn('type', $required)->count();
 

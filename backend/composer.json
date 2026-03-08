@@ -9,7 +9,6 @@
         "laravel/framework": "^11.0",
         "laravel/sanctum": "^4.0",
         "spatie/laravel-permission": "^6.0",
-        "spatie/laravel-media-library": "^11.0",
         "league/flysystem-aws-s3-v3": "^3.0",
         "pusher/pusher-php-server": "^7.2",
         "resend/resend-php": "^0.8"

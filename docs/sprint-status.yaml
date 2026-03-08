@@ -1,8 +1,8 @@
 version: "6.0.0"
 project_name: "saFoulee"
 project_level: 2
-current_sprint: 4
-sprint_plan_path: "docs/sprint-plan-saFoulee-2026-03-07.md"
+current_sprint: 6
+sprint_plan_path: "docs/sprint-plan-saFoulee-2026-03-08-refonte-graphique.md"
 
 team:
   size: 1
@@ -11,11 +11,12 @@ team:
   capacity_per_sprint: 10  # points
 
 velocity:
-  sprint_1: null
-  sprint_2: null
-  sprint_3: null
-  sprint_4: null
-  rolling_average: null
+  sprint_1: 10
+  sprint_2: 11
+  sprint_3: 11
+  sprint_4: 12
+  sprint_5: 14
+  rolling_average: 11.6
 
 sprints:
   - sprint_number: 1
@@ -25,7 +26,6 @@ sprints:
     committed_points: 10
     completed_points: 10
     status: "completed"
-    status: "in_progress"
     goal: "Fondations — projet configuré, BDD prête, inscription et authentification fonctionnelles"
     stories:
       - story_id: "STORY-000"
@@ -171,7 +171,199 @@ sprints:
         assigned_to: "julesbourin"
         completed_date: "2026-03-08"
 
-post_launch:
+  - sprint_number: 5
+    start_date: "2026-03-08"
+    end_date: "2026-03-08"
+    capacity_points: 14
+    committed_points: 14
+    completed_points: 14
+    status: "completed"
+    goal: "Refonte complète UX/Navigation — dashboard moderne, vivant, cohérent avec la charte sa Foulée"
+    stories:
+      - story_id: "STORY-UX-01"
+        title: "Layout & sidebar redesign"
+        points: 2
+        status: "completed"
+        epic: "EPIC-005"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-08"
+      - story_id: "STORY-UX-02"
+        title: "Dashboard Accueil redesign"
+        points: 2
+        status: "completed"
+        epic: "EPIC-005"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-08"
+      - story_id: "STORY-UX-03"
+        title: "Sessions page redesign"
+        points: 1
+        status: "completed"
+        epic: "EPIC-005"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-08"
+      - story_id: "STORY-UX-04"
+        title: "Classement redesign (avec podium)"
+        points: 2
+        status: "completed"
+        epic: "EPIC-005"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-08"
+      - story_id: "STORY-UX-05"
+        title: "Événements page redesign (EventCard + EventsPage)"
+        points: 2
+        status: "completed"
+        epic: "EPIC-005"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-08"
+      - story_id: "STORY-UX-06"
+        title: "Blog page redesign"
+        points: 2
+        status: "completed"
+        epic: "EPIC-005"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-08"
+      - story_id: "STORY-UX-07"
+        title: "Mon profil redesign"
+        points: 2
+        status: "completed"
+        epic: "EPIC-005"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-08"
+      - story_id: "STORY-UX-08"
+        title: "Administration redesign"
+        points: 1
+        status: "completed"
+        epic: "EPIC-005"
+        priority: "should_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-08"
+
+  - sprint_number: 6
+    start_date: "2026-03-09"
+    end_date: "2026-03-15"
+    capacity_points: 10
+    committed_points: 10
+    completed_points: 10
+    status: "completed"
+    goal: "Landing page enrichie et vivante + page publique /activites avec inscription aux événements"
+    stories:
+      - story_id: "STORY-GFX-01"
+        title: "CSS design tokens palette crème/forêt/terra + fond dashboard"
+        points: 2
+        status: "completed"
+        epic: "EPIC-006"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-08"
+      - story_id: "STORY-GFX-02"
+        title: "Landing — section Comment rejoindre + témoignages membres"
+        points: 3
+        status: "completed"
+        epic: "EPIC-006"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-08"
+      - story_id: "STORY-GFX-03"
+        title: "Landing — teaser 3 prochains événements (feed live API)"
+        points: 2
+        status: "completed"
+        epic: "EPIC-006"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-09"
+      - story_id: "STORY-GFX-04"
+        title: "Page publique /activites — événements futurs + bouton inscription"
+        points: 3
+        status: "completed"
+        epic: "EPIC-006"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-08"
+
+  - sprint_number: 7
+    start_date: "2026-03-16"
+    end_date: "2026-03-22"
+    capacity_points: 10
+    committed_points: 10
+    completed_points: 10
+    status: "completed"
+    goal: "Page /activites complète (passé + galeries photos) + Dashboard Accueil/Sessions/Événements palette chaude"
+    stories:
+      - story_id: "STORY-GFX-05"
+        title: "Page /activites — événements passés + upload photos créateurs"
+        points: 5
+        status: "completed"
+        epic: "EPIC-006"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-08"
+      - story_id: "STORY-GFX-06"
+        title: "Dashboard Accueil + Sessions — palette crème/terra/forest"
+        points: 3
+        status: "completed"
+        epic: "EPIC-006"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-08"
+      - story_id: "STORY-GFX-07"
+        title: "EventCard + EventsPage dashboard — palette harmonisée"
+        points: 2
+        status: "completed"
+        epic: "EPIC-006"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-08"
+
+  - sprint_number: 8
+    start_date: "2026-03-23"
+    end_date: "2026-03-29"
+    capacity_points: 10
+    committed_points: 8
+    completed_points: 8
+    status: "in_progress"
+    goal: "100% des pages dashboard en palette chaude — Blog, Classement, Profil, Admin, composants unifiés"
+    stories:
+      - story_id: "STORY-GFX-08"
+        title: "Blog & Classement dashboard — palette harmonisée"
+        points: 2
+        status: "completed"
+        epic: "EPIC-006"
+        priority: "should_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-08"
+      - story_id: "STORY-GFX-09"
+        title: "Profil & Admin — palette crème/terra/forest"
+        points: 3
+        status: "completed"
+        epic: "EPIC-006"
+        priority: "should_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-08"
+      - story_id: "STORY-GFX-10"
+        title: "Inputs, buttons, forms — composants unifiés"
+        points: 2
+        status: "completed"
+        epic: "EPIC-006"
+        priority: "should_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-08"
+      - story_id: "STORY-GFX-11"
+        title: "Empty states, loaders, micro-textes humains"
+        points: 1
+        status: "completed"
+        epic: "EPIC-006"
+        priority: "could_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-08"
+
+post_sprint:
   stories:
     - story_id: "STORY-013"
       title: "Chat temps réel (Pusher)"
@@ -179,7 +371,7 @@ post_launch:
       epic: "EPIC-003"
       priority: "should_have"
     - story_id: "STORY-014"
-      title: "Système de notifications"
+      title: "Système de notifications in-app"
       points: 3
       epic: "EPIC-003"
       priority: "should_have"

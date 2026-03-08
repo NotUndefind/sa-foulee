@@ -24,6 +24,7 @@ Route::prefix('v1')->group(function () {
     // ---- Routes publiques ----
     Route::get('events',                    [\App\Http\Controllers\Api\V1\EventController::class, 'index']);
     Route::get('events/{event}',            [\App\Http\Controllers\Api\V1\EventController::class, 'show']);
+    Route::get('events/{event}/photos',     [\App\Http\Controllers\Api\V1\EventPhotoController::class, 'index']);
     Route::get('posts',                     [\App\Http\Controllers\Api\V1\PostController::class, 'index']);
     Route::get('posts/{post}',              [\App\Http\Controllers\Api\V1\PostController::class, 'show']);
     Route::get('posts/{post}/comments',     [\App\Http\Controllers\Api\V1\CommentController::class, 'index']);
@@ -51,14 +52,24 @@ Route::prefix('v1')->group(function () {
         // ---- Documents (membre sur ses propres docs, admin sur tous) ----
         Route::get('users/{user}/documents',          [\App\Http\Controllers\Api\V1\DocumentController::class, 'index']);
         Route::post('users/{user}/documents',         [\App\Http\Controllers\Api\V1\DocumentController::class, 'store']);
-        Route::get('documents/{document}/download',   [\App\Http\Controllers\Api\V1\DocumentController::class, 'download']);
-        Route::delete('documents/{document}',         [\App\Http\Controllers\Api\V1\DocumentController::class, 'destroy']);
+        Route::get('documents/{document}/download',    [\App\Http\Controllers\Api\V1\DocumentController::class, 'download']);
+        Route::delete('documents/{document}',          [\App\Http\Controllers\Api\V1\DocumentController::class, 'destroy']);
+
+        // ---- Admin & Fondateur — gestion des documents ----
+        Route::middleware('role:admin|founder')->group(function () {
+            Route::get('documents/pending',              [\App\Http\Controllers\Api\V1\DocumentController::class, 'pendingAll']);
+            Route::patch('documents/{document}/status',  [\App\Http\Controllers\Api\V1\DocumentController::class, 'updateStatus']);
+        });
 
         // ---- Événements ----
         // Lecture : tous les membres
         Route::get('events/{event}/participants', [\App\Http\Controllers\Api\V1\EventController::class, 'participants']);
         Route::post('events/{event}/register',    [\App\Http\Controllers\Api\V1\EventController::class, 'register']);
         Route::delete('events/{event}/register',  [\App\Http\Controllers\Api\V1\EventController::class, 'unregister']);
+
+        // ---- Photos d'événements ----
+        Route::post('events/{event}/photos',      [\App\Http\Controllers\Api\V1\EventPhotoController::class, 'store']);
+        Route::delete('event-photos/{photo}',     [\App\Http\Controllers\Api\V1\EventPhotoController::class, 'destroy']);
 
         // Création/édition : admin, founder, bureau
         Route::middleware('role:admin|founder|bureau')->group(function () {

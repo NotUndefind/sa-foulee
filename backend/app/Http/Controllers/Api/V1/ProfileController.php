@@ -28,16 +28,18 @@ class ProfileController extends Controller
         $user = $request->user();
         $data = $request->validated();
 
-        // Upload avatar vers R2 si présent
+        // Upload avatar vers le disque configuré si présent
         if ($request->hasFile('avatar')) {
+            $storageDisk = config('filesystems.default');
+
             // Supprimer l'ancien avatar si existant
             if ($user->avatar) {
-                Storage::disk('r2')->delete($user->avatar);
+                Storage::disk($storageDisk)->delete($user->avatar);
             }
 
             $path = $request->file('avatar')->store(
                 "avatars/{$user->id}",
-                'r2'
+                $storageDisk
             );
             $data['avatar'] = $path;
         }
@@ -63,7 +65,18 @@ class ProfileController extends Controller
         return response()->json(['message' => 'Compte supprimé avec succès.']);
     }
 
-    // ---- Helper ----
+    // ---- Helpers ----
+
+    private function avatarUrl(string $path): string
+    {
+        $disk = Storage::disk(config('filesystems.default'));
+
+        try {
+            return $disk->temporaryUrl($path, now()->addHour());
+        } catch (\RuntimeException) {
+            return $disk->url($path);
+        }
+    }
 
     private function formatUser($user): array
     {
@@ -73,7 +86,7 @@ class ProfileController extends Controller
             'last_name'              => $user->last_name,
             'email'                  => $user->email,
             'avatar'                 => $user->avatar
-                ? Storage::disk('r2')->temporaryUrl($user->avatar, now()->addHour())
+                ? $this->avatarUrl($user->avatar)
                 : null,
             'bio'                    => $user->bio,
             'roles'                  => $user->getRoleNames(),

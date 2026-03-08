@@ -29,13 +29,17 @@ class UserDocument extends Model
         return $this->belongsTo(User::class);
     }
 
-    /** Génère une URL signée R2 valable 15 minutes */
+    /** Génère une URL d'accès valable 15 minutes (signée sur R2, directe en local) */
     public function getSignedUrl(): string
     {
-        return Storage::disk('r2')->temporaryUrl(
-            $this->r2_path,
-            now()->addMinutes(15)
-        );
+        $disk = Storage::disk(config('filesystems.default'));
+
+        try {
+            return $disk->temporaryUrl($this->r2_path, now()->addMinutes(15));
+        } catch (\RuntimeException) {
+            // Le disque local ne supporte pas temporaryUrl — URL directe
+            return $disk->url($this->r2_path);
+        }
     }
 
     public function isExpired(): bool

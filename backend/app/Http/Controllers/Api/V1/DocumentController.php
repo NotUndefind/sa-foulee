@@ -40,8 +40,8 @@ class DocumentController extends Controller
         $filename  = $request->type . '_' . Str::uuid() . '.' . $extension;
         $path      = "documents/{$user->id}/{$filename}";
 
-        // Upload vers R2
-        Storage::disk('r2')->putFileAs(
+        // Upload vers le disque configuré (R2 en prod, local/public en dev)
+        Storage::disk(config('filesystems.default'))->putFileAs(
             "documents/{$user->id}",
             $file,
             $filename
@@ -73,6 +73,54 @@ class DocumentController extends Controller
     }
 
     /**
+     * GET /documents/pending
+     * Retourne tous les documents en attente avec les infos de leur propriétaire.
+     * Accessible aux admins et fondateurs.
+     */
+    public function pendingAll(Request $request): JsonResponse
+    {
+        if (! $request->user()->hasAnyRole(['admin', 'founder'])) {
+            abort(403, 'Accès refusé.');
+        }
+
+        $documents = \App\Models\UserDocument::with('user')
+            ->where('status', 'pending')
+            ->orderBy('created_at', 'asc') // les plus anciens d'abord
+            ->get();
+
+        return response()->json($documents->map(fn($doc) => array_merge(
+            $this->formatDocument($doc),
+            [
+                'user' => [
+                    'id'         => $doc->user->id,
+                    'first_name' => $doc->user->first_name,
+                    'last_name'  => $doc->user->last_name,
+                    'email'      => $doc->user->email,
+                ],
+            ]
+        )));
+    }
+
+    /**
+     * PATCH /documents/{document}/status
+     * Permet à un admin de valider ou rejeter un document (pending ↔ valid).
+     */
+    public function updateStatus(Request $request, UserDocument $document): JsonResponse
+    {
+        if (! $request->user()->hasAnyRole(['admin', 'founder'])) {
+            abort(403, 'Seuls les administrateurs et fondateurs peuvent valider des documents.');
+        }
+
+        $request->validate([
+            'status' => ['required', 'in:pending,valid'],
+        ]);
+
+        $document->update(['status' => $request->status]);
+
+        return response()->json($this->formatDocument($document->fresh()));
+    }
+
+    /**
      * DELETE /documents/{document}
      * Supprime le fichier dans R2 et l'enregistrement en BDD.
      */
@@ -80,7 +128,7 @@ class DocumentController extends Controller
     {
         $this->authorizeAccess($request, $document->user);
 
-        Storage::disk('r2')->delete($document->r2_path);
+        Storage::disk(config('filesystems.default'))->delete($document->r2_path);
         $document->delete();
 
         return response()->json(null, 204);
