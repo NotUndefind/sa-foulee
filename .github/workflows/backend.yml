@@ -1,0 +1,95 @@
+name: Backend CI/CD
+
+on:
+  push:
+    branches: [main]
+    paths: ['backend/**']
+  pull_request:
+    branches: [main]
+    paths: ['backend/**']
+
+defaults:
+  run:
+    working-directory: backend
+
+jobs:
+  lint-and-test:
+    name: Lint & Test
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: safoulee_test
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, pdo, pdo_mysql, xml, bcmath
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: composer install --no-ansi --no-interaction --no-progress --prefer-dist
+
+      - name: Copy .env
+        run: cp .env.example .env
+
+      - name: Generate application key
+        run: php artisan key:generate
+
+      - name: Format check (Laravel Pint)
+        run: ./vendor/bin/pint --test
+
+      - name: Run migrations
+        run: php artisan migrate --force
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: safoulee_test
+          DB_USERNAME: root
+          DB_PASSWORD: password
+
+      - name: Run tests (Pest)
+        run: php artisan test
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: safoulee_test
+          DB_USERNAME: root
+          DB_PASSWORD: password
+
+  deploy:
+    name: Deploy to Production
+    needs: lint-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy via SSH (rsync)
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ${{ secrets.DEPLOY_PATH }}
+            git pull origin main
+            composer install --no-dev --optimize-autoloader
+            php artisan migrate --force
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+            echo "✓ Deployed successfully"

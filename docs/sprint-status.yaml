@@ -1,0 +1,190 @@
+version: "6.0.0"
+project_name: "saFoulee"
+project_level: 2
+current_sprint: 4
+sprint_plan_path: "docs/sprint-plan-saFoulee-2026-03-07.md"
+
+team:
+  size: 1
+  sprint_length_weeks: 1
+  hours_per_day: 4
+  capacity_per_sprint: 10  # points
+
+velocity:
+  sprint_1: null
+  sprint_2: null
+  sprint_3: null
+  sprint_4: null
+  rolling_average: null
+
+sprints:
+  - sprint_number: 1
+    start_date: "2026-03-09"
+    end_date: "2026-03-13"
+    capacity_points: 10
+    committed_points: 10
+    completed_points: 10
+    status: "completed"
+    status: "in_progress"
+    goal: "Fondations — projet configuré, BDD prête, inscription et authentification fonctionnelles"
+    stories:
+      - story_id: "STORY-000"
+        title: "Setup du projet"
+        points: 2
+        status: "completed"
+        epic: "Infrastructure"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-07"
+      - story_id: "STORY-001"
+        title: "Schéma BDD & migrations"
+        points: 2
+        status: "completed"
+        epic: "Infrastructure"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-07"
+      - story_id: "STORY-002"
+        title: "Inscription membre"
+        points: 3
+        status: "completed"
+        epic: "EPIC-001"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-07"
+      - story_id: "STORY-003"
+        title: "Authentification (login, logout, reset password)"
+        points: 3
+        status: "completed"
+        epic: "EPIC-001"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-07"
+
+  - sprint_number: 2
+    start_date: "2026-03-16"
+    end_date: "2026-03-20"
+    capacity_points: 10
+    committed_points: 11
+    completed_points: 11
+    status: "completed"
+    goal: "Gestion des membres — rôles, profils, documents, tableau de bord Admin"
+    stories:
+      - story_id: "STORY-004"
+        title: "Système de rôles & permissions (RBAC)"
+        points: 3
+        status: "completed"
+        epic: "EPIC-001"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-07"
+      - story_id: "STORY-005"
+        title: "Profil membre & gestion des documents"
+        points: 5
+        status: "completed"
+        epic: "EPIC-001"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-07"
+      - story_id: "STORY-006"
+        title: "Tableau de bord Admin"
+        points: 3
+        status: "completed"
+        epic: "EPIC-001"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-07"
+
+  - sprint_number: 3
+    start_date: "2026-03-23"
+    end_date: "2026-03-27"
+    capacity_points: 10
+    committed_points: 11
+    completed_points: 11
+    status: "completed"
+    goal: "Activités — événements, calendrier inscriptions, sessions d'entraînement guidées"
+    stories:
+      - story_id: "STORY-007"
+        title: "Gestion des événements"
+        points: 3
+        status: "completed"
+        epic: "EPIC-002"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-07"
+      - story_id: "STORY-008"
+        title: "Calendrier événements & inscriptions"
+        points: 3
+        status: "completed"
+        epic: "EPIC-002"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-07"
+      - story_id: "STORY-009"
+        title: "Création assistée de sessions d'entraînement"
+        points: 5
+        status: "completed"
+        epic: "EPIC-002"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-07"
+
+  - sprint_number: 4
+    start_date: "2026-03-30"
+    end_date: "2026-04-04"
+    capacity_points: 10
+    committed_points: 12
+    completed_points: 12
+    status: "completed"
+    goal: "Lancement — page publique, blog, leaderboard, templates sessions"
+    stories:
+      - story_id: "STORY-011"
+        title: "Page publique de l'association"
+        points: 2
+        status: "completed"
+        epic: "EPIC-003"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-07"
+      - story_id: "STORY-012"
+        title: "Blog / fil d'actualité"
+        points: 5
+        status: "completed"
+        epic: "EPIC-003"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-08"
+      - story_id: "STORY-010"
+        title: "Templates de sessions"
+        points: 2
+        status: "completed"
+        epic: "EPIC-002"
+        priority: "should_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-07"
+      - story_id: "STORY-015"
+        title: "Leaderboard & suivi des performances"
+        points: 3
+        status: "completed"
+        epic: "EPIC-004"
+        priority: "should_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-08"
+
+post_launch:
+  stories:
+    - story_id: "STORY-013"
+      title: "Chat temps réel (Pusher)"
+      points: 5
+      epic: "EPIC-003"
+      priority: "should_have"
+    - story_id: "STORY-014"
+      title: "Système de notifications"
+      points: 3
+      epic: "EPIC-003"
+      priority: "should_have"
+    - story_id: "STORY-016"
+      title: "Intégration Strava (conditionnel)"
+      points: 5
+      epic: "EPIC-004"
+      priority: "could_have"
