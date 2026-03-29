@@ -33,11 +33,11 @@ const ROLE_LABELS: Record<string, string> = {
 }
 
 const ROLE_COLORS: Record<string, { bg: string; color: string; border: string }> = {
-  admin:   { bg: 'rgba(208,89,24,0.12)',   color: '#D05918', border: 'rgba(208,89,24,0.25)'  },
-  founder: { bg: 'rgba(176,74,16,0.10)',   color: '#B04A10', border: 'rgba(176,74,16,0.2)'   },
-  coach:   { bg: 'rgba(58,107,42,0.10)',   color: '#3A6B2A', border: 'rgba(58,107,42,0.2)'   },
+  admin:   { bg: 'rgba(192,57,43,0.12)',   color: '#C0392B', border: 'rgba(192,57,43,0.25)'  },
+  founder: { bg: 'rgba(176,74,16,0.10)',   color: '#922B21', border: 'rgba(176,74,16,0.2)'   },
+  coach:   { bg: 'rgba(169,50,38,0.10)',   color: '#A93226', border: 'rgba(169,50,38,0.2)'   },
   bureau:  { bg: 'rgba(245,158,11,0.12)',  color: '#d97706', border: 'rgba(245,158,11,0.25)' },
-  member:  { bg: 'rgba(122,158,110,0.12)', color: '#5a8050', border: 'rgba(122,158,110,0.2)' },
+  member:  { bg: 'rgba(176,137,138,0.12)', color: '#5a8050', border: 'rgba(176,137,138,0.2)' },
 }
 
 const DOC_TYPE_LABELS: Record<string, string> = {
@@ -103,10 +103,10 @@ function ProgressRing({ pct, size = 28 }: { pct: number; size?: number }) {
   const r   = (size - 4) / 2
   const circ = 2 * Math.PI * r
   const offset = circ * (1 - pct / 100)
-  const color  = pct === 100 ? '#3A6B2A' : pct >= 50 ? '#f97316' : '#D05918'
+  const color  = pct === 100 ? '#A93226' : pct >= 50 ? '#f97316' : '#C0392B'
   return (
     <svg width={size} height={size} className="-rotate-90" viewBox={`0 0 ${size} ${size}`}>
-      <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="rgba(30,58,20,0.1)" strokeWidth="3" />
+      <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="rgba(123,36,28,0.1)" strokeWidth="3" />
       <circle
         cx={size/2} cy={size/2} r={r}
         fill="none"
@@ -125,10 +125,10 @@ function ProgressRing({ pct, size = 28 }: { pct: number; size?: number }) {
 
 function SkeletonRow() {
   return (
-    <tr style={{ borderBottom: '1px solid rgba(30,58,20,0.05)' }}>
+    <tr style={{ borderBottom: '1px solid rgba(123,36,28,0.05)' }}>
       {[1,2,3,4,5].map((i) => (
         <td key={i} className="px-4 py-3">
-          <div className="h-4 rounded animate-pulse" style={{ width: `${60 + i * 10}%`, background: 'rgba(30,58,20,0.06)' }} />
+          <div className="h-4 rounded animate-pulse" style={{ width: `${60 + i * 10}%`, background: 'rgba(123,36,28,0.06)' }} />
         </td>
       ))}
     </tr>
@@ -137,17 +137,17 @@ function SkeletonRow() {
 
 function SkeletonPendingRow() {
   return (
-    <div className="flex items-center gap-4 rounded-xl bg-white px-5 py-4 animate-pulse" style={{ border: '1px solid rgba(30,58,20,0.07)' }}>
-      <div className="h-10 w-10 rounded-full shrink-0" style={{ background: 'rgba(30,58,20,0.06)' }} />
+    <div className="flex items-center gap-4 rounded-xl bg-white px-5 py-4 animate-pulse" style={{ border: '1px solid rgba(123,36,28,0.07)' }}>
+      <div className="h-10 w-10 rounded-full shrink-0" style={{ background: 'rgba(123,36,28,0.06)' }} />
       <div className="flex-1 space-y-2">
-        <div className="h-3.5 w-40 rounded" style={{ background: 'rgba(30,58,20,0.06)' }} />
-        <div className="h-3 w-28 rounded" style={{ background: 'rgba(30,58,20,0.06)' }} />
+        <div className="h-3.5 w-40 rounded" style={{ background: 'rgba(123,36,28,0.06)' }} />
+        <div className="h-3 w-28 rounded" style={{ background: 'rgba(123,36,28,0.06)' }} />
       </div>
-      <div className="h-5 w-24 rounded-full" style={{ background: 'rgba(30,58,20,0.06)' }} />
-      <div className="h-3.5 w-16 rounded" style={{ background: 'rgba(30,58,20,0.06)' }} />
+      <div className="h-5 w-24 rounded-full" style={{ background: 'rgba(123,36,28,0.06)' }} />
+      <div className="h-3.5 w-16 rounded" style={{ background: 'rgba(123,36,28,0.06)' }} />
       <div className="flex gap-2">
-        <div className="h-7 w-16 rounded-lg" style={{ background: 'rgba(30,58,20,0.06)' }} />
-        <div className="h-7 w-16 rounded-lg" style={{ background: 'rgba(30,58,20,0.06)' }} />
+        <div className="h-7 w-16 rounded-lg" style={{ background: 'rgba(123,36,28,0.06)' }} />
+        <div className="h-7 w-16 rounded-lg" style={{ background: 'rgba(123,36,28,0.06)' }} />
       </div>
     </div>
   )
@@ -238,22 +238,22 @@ function SlideOverPanel({
         `}</style>
 
         {/* Header */}
-        <div className="flex items-start justify-between px-6 py-5" style={{ borderBottom: '1px solid rgba(30,58,20,0.07)' }}>
+        <div className="flex items-start justify-between px-6 py-5" style={{ borderBottom: '1px solid rgba(123,36,28,0.07)' }}>
           <div className="flex items-center gap-3">
             <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold ${avatarColor(user.id)}`}>
               {getInitials(user.first_name, user.last_name)}
             </div>
             <div>
-              <h2 className="font-semibold leading-tight" style={{ color: '#1E3A14' }}>
+              <h2 className="font-semibold leading-tight" style={{ color: '#7B241C' }}>
                 {user.first_name} {user.last_name}
               </h2>
-              <p className="text-xs mt-0.5" style={{ color: '#7A9E6E' }}>{user.email}</p>
+              <p className="text-xs mt-0.5" style={{ color: '#B0898A' }}>{user.email}</p>
             </div>
           </div>
           <button
             onClick={onClose}
             className="mt-0.5 flex h-7 w-7 items-center justify-center rounded-md transition-colors"
-            style={{ color: '#7A9E6E' }}
+            style={{ color: '#B0898A' }}
           >
             <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M3 3l10 10M13 3L3 13" />
@@ -262,19 +262,19 @@ function SlideOverPanel({
         </div>
 
         {/* Completion progress */}
-        <div className="px-6 py-4" style={{ borderBottom: '1px solid rgba(30,58,20,0.07)' }}>
+        <div className="px-6 py-4" style={{ borderBottom: '1px solid rgba(123,36,28,0.07)' }}>
           <div className="flex items-center justify-between mb-2.5">
-            <span className="text-xs font-medium uppercase tracking-wide" style={{ color: '#7A9E6E' }}>Complétion du dossier</span>
-            <span className="text-sm font-bold tabular-nums" style={{ color: completion === 100 ? '#3A6B2A' : '#f97316' }}>
+            <span className="text-xs font-medium uppercase tracking-wide" style={{ color: '#B0898A' }}>Complétion du dossier</span>
+            <span className="text-sm font-bold tabular-nums" style={{ color: completion === 100 ? '#A93226' : '#f97316' }}>
               {completion}%
             </span>
           </div>
-          <div className="h-1.5 w-full rounded-full overflow-hidden" style={{ background: 'rgba(30,58,20,0.08)' }}>
+          <div className="h-1.5 w-full rounded-full overflow-hidden" style={{ background: 'rgba(123,36,28,0.08)' }}>
             <div
               className="h-1.5 rounded-full transition-all duration-700"
               style={{
                 width: `${completion}%`,
-                background: completion === 100 ? '#3A6B2A' : '#f97316',
+                background: completion === 100 ? '#A93226' : '#f97316',
               }}
             />
           </div>
@@ -288,8 +288,8 @@ function SlideOverPanel({
                   <div
                     className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] font-bold"
                     style={present
-                      ? { background: 'rgba(58,107,42,0.12)', color: '#3A6B2A' }
-                      : { background: 'rgba(30,58,20,0.06)', color: '#7A9E6E' }
+                      ? { background: 'rgba(169,50,38,0.12)', color: '#A93226' }
+                      : { background: 'rgba(123,36,28,0.06)', color: '#B0898A' }
                     }
                   >
                     {present ? (
@@ -302,7 +302,7 @@ function SlideOverPanel({
                       </svg>
                     )}
                   </div>
-                  <span className="text-sm" style={{ color: present ? '#3A6B2A' : '#7A9E6E' }}>
+                  <span className="text-sm" style={{ color: present ? '#A93226' : '#B0898A' }}>
                     {DOC_TYPE_LABELS[type]}
                   </span>
                 </div>
@@ -313,22 +313,22 @@ function SlideOverPanel({
 
         {/* Document list */}
         <div className="flex-1 overflow-y-auto px-6 py-4">
-          <p className="mb-3 text-xs font-medium uppercase tracking-wide" style={{ color: '#7A9E6E' }}>Documents déposés</p>
+          <p className="mb-3 text-xs font-medium uppercase tracking-wide" style={{ color: '#B0898A' }}>Documents déposés</p>
           {loading ? (
             <div className="space-y-2.5">
               {[1,2,3].map((i) => (
-                <div key={i} className="h-16 rounded-xl animate-pulse" style={{ background: 'rgba(30,58,20,0.05)' }} />
+                <div key={i} className="h-16 rounded-xl animate-pulse" style={{ background: 'rgba(123,36,28,0.05)' }} />
               ))}
             </div>
           ) : docs.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-12 text-center">
-              <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full" style={{ background: 'rgba(30,58,20,0.06)' }}>
-                <svg viewBox="0 0 24 24" className="h-5 w-5" style={{ color: '#7A9E6E' }} fill="none" stroke="currentColor" strokeWidth="1.5">
+              <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full" style={{ background: 'rgba(123,36,28,0.06)' }}>
+                <svg viewBox="0 0 24 24" className="h-5 w-5" style={{ color: '#B0898A' }} fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2z" />
                 </svg>
               </div>
-              <p className="text-sm font-medium" style={{ color: '#1E3A14' }}>Aucun document</p>
-              <p className="mt-1 text-xs" style={{ color: '#7A9E6E' }}>Ce membre n'a encore uploadé aucun fichier.</p>
+              <p className="text-sm font-medium" style={{ color: '#7B241C' }}>Aucun document</p>
+              <p className="mt-1 text-xs" style={{ color: '#B0898A' }}>Ce membre n'a encore uploadé aucun fichier.</p>
             </div>
           ) : (
             <div className="space-y-2">
@@ -336,11 +336,11 @@ function SlideOverPanel({
                 <div
                   key={doc.id}
                   className="group rounded-xl px-4 py-3 transition-all"
-                  style={{ border: '1px solid rgba(30,58,20,0.08)', background: '#F9F6F1' }}
+                  style={{ border: '1px solid rgba(123,36,28,0.08)', background: '#F8F8F8' }}
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0 flex-1">
-                      <p className="text-sm font-medium truncate leading-snug" style={{ color: '#1E3A14' }}>{doc.filename}</p>
+                      <p className="text-sm font-medium truncate leading-snug" style={{ color: '#7B241C' }}>{doc.filename}</p>
                       <div className="mt-1.5 flex flex-wrap items-center gap-1.5">
                         <span className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${DOC_TYPE_BADGE[doc.type] ?? DOC_TYPE_BADGE.other}`}>
                           {DOC_TYPE_LABELS[doc.type] ?? doc.type}
@@ -363,7 +363,7 @@ function SlideOverPanel({
                         onClick={() => handleStatusChange(doc, 'valid')}
                         disabled={actioning === doc.id}
                         className="flex items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-medium transition-colors disabled:opacity-50"
-                        style={{ background: 'rgba(58,107,42,0.1)', color: '#3A6B2A' }}
+                        style={{ background: 'rgba(169,50,38,0.1)', color: '#A93226' }}
                       >
                         <svg viewBox="0 0 14 14" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2.5">
                           <path d="M2 7l3.5 3.5L12 3" />
@@ -376,7 +376,7 @@ function SlideOverPanel({
                         onClick={() => handleStatusChange(doc, 'pending')}
                         disabled={actioning === doc.id}
                         className="flex items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-medium transition-colors disabled:opacity-50"
-                        style={{ border: '1px solid rgba(208,89,24,0.2)', color: '#B04A10' }}
+                        style={{ border: '1px solid rgba(192,57,43,0.2)', color: '#922B21' }}
                       >
                         Rejeter
                       </button>
@@ -385,7 +385,7 @@ function SlideOverPanel({
                       onClick={() => handleDownload(doc)}
                       disabled={downloading === doc.id}
                       className="ml-auto flex items-center gap-1 rounded-lg px-2.5 py-1 text-xs font-medium transition-colors disabled:opacity-50"
-                      style={{ border: '1px solid rgba(30,58,20,0.12)', color: '#3A6B2A' }}
+                      style={{ border: '1px solid rgba(123,36,28,0.12)', color: '#A93226' }}
                       title="Télécharger"
                     >
                       <svg viewBox="0 0 14 14" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2">
@@ -548,12 +548,12 @@ export default function AdminUsersPage() {
 
       {/* ── Page header ── */}
       <div>
-        <h1 className="text-2xl font-bold tracking-tight" style={{ color: '#1E3A14' }}>Administration</h1>
-        <p className="mt-1 text-sm" style={{ color: '#7A9E6E' }}>Gestion des membres et des dossiers de l'association</p>
+        <h1 className="text-2xl font-bold tracking-tight" style={{ color: '#7B241C' }}>Administration</h1>
+        <p className="mt-1 text-sm" style={{ color: '#B0898A' }}>Gestion des membres et des dossiers de l'association</p>
       </div>
 
       {/* ── Tabs ── */}
-      <div className="flex items-center gap-1 rounded-xl p-1 w-fit" style={{ border: '1px solid rgba(30,58,20,0.1)', background: 'rgba(30,58,20,0.04)' }}>
+      <div className="flex items-center gap-1 rounded-xl p-1 w-fit" style={{ border: '1px solid rgba(123,36,28,0.1)', background: 'rgba(123,36,28,0.04)' }}>
         {([
           { key: 'pending', label: 'Documents en attente', count: pendingCount },
           { key: 'members', label: 'Membres', count: null },
@@ -563,8 +563,8 @@ export default function AdminUsersPage() {
             onClick={() => setActiveTab(key)}
             className="relative flex items-center gap-2 rounded-lg px-4 py-1.5 text-sm font-medium transition-all duration-150"
             style={activeTab === key
-              ? { background: 'white', color: '#1E3A14', boxShadow: '0 1px 4px rgba(30,58,20,0.1)' }
-              : { color: '#7A9E6E' }
+              ? { background: 'white', color: '#7B241C', boxShadow: '0 1px 4px rgba(123,36,28,0.1)' }
+              : { color: '#B0898A' }
             }
           >
             {label}
@@ -572,8 +572,8 @@ export default function AdminUsersPage() {
               <span
                 className="inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[10px] font-bold tabular-nums"
                 style={activeTab === key
-                  ? { background: 'rgba(208,89,24,0.12)', color: '#D05918' }
-                  : { background: 'rgba(30,58,20,0.08)', color: '#7A9E6E' }
+                  ? { background: 'rgba(192,57,43,0.12)', color: '#C0392B' }
+                  : { background: 'rgba(123,36,28,0.08)', color: '#B0898A' }
                 }
               >
                 {count}
@@ -592,42 +592,42 @@ export default function AdminUsersPage() {
           {/* KPI cards */}
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
             {/* En attente */}
-            <div className="flex items-center gap-4 rounded-xl bg-white px-5 py-4" style={{ border: '1px solid rgba(30,58,20,0.1)' }}>
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl" style={{ background: 'rgba(208,89,24,0.08)' }}>
-                <svg viewBox="0 0 20 20" className="h-5 w-5" style={{ color: '#D05918' }} fill="none" stroke="currentColor" strokeWidth="1.5">
+            <div className="flex items-center gap-4 rounded-xl bg-white px-5 py-4" style={{ border: '1px solid rgba(123,36,28,0.1)' }}>
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl" style={{ background: 'rgba(192,57,43,0.08)' }}>
+                <svg viewBox="0 0 20 20" className="h-5 w-5" style={{ color: '#C0392B' }} fill="none" stroke="currentColor" strokeWidth="1.5">
                   <circle cx="10" cy="10" r="8" />
                   <path d="M10 6v4l2.5 2.5" strokeLinecap="round" />
                 </svg>
               </div>
               <div>
-                <p className="text-xs leading-none mb-1" style={{ color: '#7A9E6E' }}>En attente</p>
-                <p className="text-2xl font-bold tabular-nums" style={{ color: '#1E3A14' }}>{pendingLoading ? '—' : pendingCount}</p>
+                <p className="text-xs leading-none mb-1" style={{ color: '#B0898A' }}>En attente</p>
+                <p className="text-2xl font-bold tabular-nums" style={{ color: '#7B241C' }}>{pendingLoading ? '—' : pendingCount}</p>
               </div>
             </div>
 
             {/* Validés ce mois — static placeholder */}
-            <div className="flex items-center gap-4 rounded-xl bg-white px-5 py-4" style={{ border: '1px solid rgba(30,58,20,0.1)' }}>
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl" style={{ background: 'rgba(58,107,42,0.08)' }}>
-                <svg viewBox="0 0 20 20" className="h-5 w-5" style={{ color: '#3A6B2A' }} fill="none" stroke="currentColor" strokeWidth="1.5">
+            <div className="flex items-center gap-4 rounded-xl bg-white px-5 py-4" style={{ border: '1px solid rgba(123,36,28,0.1)' }}>
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl" style={{ background: 'rgba(169,50,38,0.08)' }}>
+                <svg viewBox="0 0 20 20" className="h-5 w-5" style={{ color: '#A93226' }} fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M4 10l4.5 4.5L16 6" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
               <div>
-                <p className="text-xs leading-none mb-1" style={{ color: '#7A9E6E' }}>Validés ce mois</p>
-                <p className="text-2xl font-bold tabular-nums" style={{ color: '#1E3A14' }}>—</p>
+                <p className="text-xs leading-none mb-1" style={{ color: '#B0898A' }}>Validés ce mois</p>
+                <p className="text-2xl font-bold tabular-nums" style={{ color: '#7B241C' }}>—</p>
               </div>
             </div>
 
             {/* Dossiers complets */}
-            <div className="flex items-center gap-4 rounded-xl bg-white px-5 py-4" style={{ border: '1px solid rgba(30,58,20,0.1)' }}>
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl" style={{ background: 'rgba(30,58,20,0.06)' }}>
-                <svg viewBox="0 0 20 20" className="h-5 w-5" style={{ color: '#3A6B2A' }} fill="none" stroke="currentColor" strokeWidth="1.5">
+            <div className="flex items-center gap-4 rounded-xl bg-white px-5 py-4" style={{ border: '1px solid rgba(123,36,28,0.1)' }}>
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl" style={{ background: 'rgba(123,36,28,0.06)' }}>
+                <svg viewBox="0 0 20 20" className="h-5 w-5" style={{ color: '#A93226' }} fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M3 7l4 2 3-4 3 6 2-2 3 3" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </div>
               <div>
-                <p className="text-xs leading-none mb-1" style={{ color: '#7A9E6E' }}>Dossiers complets</p>
-                <p className="text-2xl font-bold tabular-nums" style={{ color: '#1E3A14' }}>
+                <p className="text-xs leading-none mb-1" style={{ color: '#B0898A' }}>Dossiers complets</p>
+                <p className="text-2xl font-bold tabular-nums" style={{ color: '#7B241C' }}>
                   {usersLoading ? '—' : `${completeMembers}/${totalMembers}`}
                 </p>
               </div>
@@ -636,13 +636,13 @@ export default function AdminUsersPage() {
 
           {/* Error */}
           {pendingError && (
-            <div className="rounded-lg px-4 py-3 text-sm" style={{ background: 'rgba(208,89,24,0.06)', border: '1px solid rgba(208,89,24,0.2)', color: '#B04A10' }}>
+            <div className="rounded-lg px-4 py-3 text-sm" style={{ background: 'rgba(192,57,43,0.06)', border: '1px solid rgba(192,57,43,0.2)', color: '#922B21' }}>
               {pendingError}
             </div>
           )}
 
           {/* Document list */}
-          <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(30,58,20,0.1)', background: 'rgba(30,58,20,0.02)' }}>
+          <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(123,36,28,0.1)', background: 'rgba(123,36,28,0.02)' }}>
             {pendingLoading ? (
               <div className="divide-y divide-zinc-100 p-3 space-y-0">
                 {[1,2,3].map((i) => <SkeletonPendingRow key={i} />)}
@@ -655,8 +655,8 @@ export default function AdminUsersPage() {
                     <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
-                <p className="text-base font-semibold" style={{ color: '#1E3A14' }}>Tous les dossiers sont à jour</p>
-                <p className="mt-1.5 text-sm" style={{ color: '#7A9E6E' }}>Aucun document en attente de validation.</p>
+                <p className="text-base font-semibold" style={{ color: '#7B241C' }}>Tous les dossiers sont à jour</p>
+                <p className="mt-1.5 text-sm" style={{ color: '#B0898A' }}>Aucun document en attente de validation.</p>
               </div>
             ) : (
               <div style={{ divide: 'y' }}>
@@ -664,7 +664,7 @@ export default function AdminUsersPage() {
                   <div
                     key={doc.id}
                     className="flex flex-wrap items-center gap-4 bg-white px-5 py-4 transition-colors"
-                    style={{ borderBottom: '1px solid rgba(30,58,20,0.05)' }}
+                    style={{ borderBottom: '1px solid rgba(123,36,28,0.05)' }}
                   >
                     {/* Avatar */}
                     <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold ${avatarColor(doc.user.id)}`}>
@@ -673,10 +673,10 @@ export default function AdminUsersPage() {
 
                     {/* Member info */}
                     <div className="min-w-0 flex-1">
-                      <p className="text-sm font-semibold leading-snug" style={{ color: '#1E3A14' }}>
+                      <p className="text-sm font-semibold leading-snug" style={{ color: '#7B241C' }}>
                         {doc.user.first_name} {doc.user.last_name}
                       </p>
-                      <p className="text-xs truncate" style={{ color: '#7A9E6E' }}>{doc.user.email}</p>
+                      <p className="text-xs truncate" style={{ color: '#B0898A' }}>{doc.user.email}</p>
                     </div>
 
                     {/* Doc type badge */}
@@ -685,7 +685,7 @@ export default function AdminUsersPage() {
                     </span>
 
                     {/* Relative time */}
-                    <span className="text-xs whitespace-nowrap" style={{ color: '#7A9E6E' }}>
+                    <span className="text-xs whitespace-nowrap" style={{ color: '#B0898A' }}>
                       {timeAgo(doc.created_at)}
                     </span>
 
@@ -695,7 +695,7 @@ export default function AdminUsersPage() {
                         onClick={() => handleValidateDoc(doc)}
                         disabled={actioningDoc === doc.id}
                         className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold text-white transition-colors disabled:opacity-50"
-                        style={{ background: '#3A6B2A' }}
+                        style={{ background: '#A93226' }}
                       >
                         <svg viewBox="0 0 12 12" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2.5">
                           <path d="M2 6l2.5 2.5L10 3" />
@@ -706,7 +706,7 @@ export default function AdminUsersPage() {
                         onClick={() => handleRejectDoc(doc)}
                         disabled={actioningDoc === doc.id}
                         className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors disabled:opacity-50"
-                        style={{ border: '1px solid rgba(208,89,24,0.25)', color: '#B04A10' }}
+                        style={{ border: '1px solid rgba(192,57,43,0.25)', color: '#922B21' }}
                       >
                         Rejeter
                       </button>
@@ -728,7 +728,7 @@ export default function AdminUsersPage() {
           {/* Filters bar */}
           <div className="flex flex-col gap-3 sm:flex-row">
             <div className="relative flex-1">
-              <svg viewBox="0 0 16 16" className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4" style={{ color: '#7A9E6E' }} fill="none" stroke="currentColor" strokeWidth="2">
+              <svg viewBox="0 0 16 16" className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4" style={{ color: '#B0898A' }} fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="6.5" cy="6.5" r="4.5" />
                 <path d="M10.5 10.5L14 14" strokeLinecap="round" />
               </svg>
@@ -738,14 +738,14 @@ export default function AdminUsersPage() {
                 onChange={(e) => setSearchInput(e.target.value)}
                 placeholder="Rechercher par nom ou e-mail…"
                 className="w-full rounded-lg bg-white pl-9 pr-3 py-2 text-sm outline-none transition"
-                style={{ border: '1px solid rgba(30,58,20,0.15)', color: '#1E3A14' }}
+                style={{ border: '1px solid rgba(123,36,28,0.15)', color: '#7B241C' }}
               />
             </div>
             <select
               value={filters.role ?? ''}
               onChange={(e) => setFilters((f) => ({ ...f, role: e.target.value as Role | '', page: 1 }))}
               className="rounded-lg bg-white px-3 py-2 text-sm outline-none transition"
-              style={{ border: '1px solid rgba(30,58,20,0.15)', color: '#3A6B2A' }}
+              style={{ border: '1px solid rgba(123,36,28,0.15)', color: '#A93226' }}
             >
               {ROLES_OPTIONS.map((r) => (
                 <option key={r.value} value={r.value}>{r.label}</option>
@@ -755,22 +755,22 @@ export default function AdminUsersPage() {
 
           {/* Error */}
           {usersError && (
-            <div className="rounded-lg px-4 py-3 text-sm" style={{ background: 'rgba(208,89,24,0.06)', border: '1px solid rgba(208,89,24,0.2)', color: '#B04A10' }}>
+            <div className="rounded-lg px-4 py-3 text-sm" style={{ background: 'rgba(192,57,43,0.06)', border: '1px solid rgba(192,57,43,0.2)', color: '#922B21' }}>
               {usersError}
             </div>
           )}
 
           {/* Table */}
-          <div className="overflow-hidden rounded-2xl bg-white" style={{ border: '1px solid rgba(30,58,20,0.1)' }}>
+          <div className="overflow-hidden rounded-2xl bg-white" style={{ border: '1px solid rgba(123,36,28,0.1)' }}>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr style={{ borderBottom: '1px solid rgba(30,58,20,0.08)', background: '#F9F6F1' }}>
-                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide" style={{ color: '#7A9E6E' }}>Membre</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide" style={{ color: '#7A9E6E' }}>Rôle</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide" style={{ color: '#7A9E6E' }}>Dossier</th>
-                    <th className="hidden px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide sm:table-cell" style={{ color: '#7A9E6E' }}>Inscrit le</th>
-                    <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide" style={{ color: '#7A9E6E' }}>Actions</th>
+                  <tr style={{ borderBottom: '1px solid rgba(123,36,28,0.08)', background: '#F8F8F8' }}>
+                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide" style={{ color: '#B0898A' }}>Membre</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide" style={{ color: '#B0898A' }}>Rôle</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide" style={{ color: '#B0898A' }}>Dossier</th>
+                    <th className="hidden px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide sm:table-cell" style={{ color: '#B0898A' }}>Inscrit le</th>
+                    <th className="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide" style={{ color: '#B0898A' }}>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -787,8 +787,8 @@ export default function AdminUsersPage() {
                       <tr
                         key={user.id}
                         className="transition-colors"
-                        style={{ borderBottom: '1px solid rgba(30,58,20,0.05)' }}
-                        onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(30,58,20,0.02)')}
+                        style={{ borderBottom: '1px solid rgba(123,36,28,0.05)' }}
+                        onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(123,36,28,0.02)')}
                         onMouseLeave={(e) => (e.currentTarget.style.background = '')}
                       >
                         {/* Member cell */}
@@ -798,10 +798,10 @@ export default function AdminUsersPage() {
                               {getInitials(user.first_name, user.last_name)}
                             </div>
                             <div className="min-w-0">
-                              <p className="font-medium leading-snug" style={{ color: '#1E3A14' }}>
+                              <p className="font-medium leading-snug" style={{ color: '#7B241C' }}>
                                 {user.first_name} {user.last_name}
                               </p>
-                              <p className="text-xs truncate max-w-[180px]" style={{ color: '#7A9E6E' }}>{user.email}</p>
+                              <p className="text-xs truncate max-w-[180px]" style={{ color: '#B0898A' }}>{user.email}</p>
                             </div>
                           </div>
                         </td>
@@ -833,7 +833,7 @@ export default function AdminUsersPage() {
                             <ProgressRing pct={user.document_completion} size={26} />
                             <span
                               className="text-xs font-medium group-hover:underline underline-offset-2"
-                              style={{ color: user.has_complete_documents ? '#3A6B2A' : '#D05918' }}
+                              style={{ color: user.has_complete_documents ? '#A93226' : '#C0392B' }}
                             >
                               {user.has_complete_documents ? 'Complet' : 'Incomplet'}
                             </span>
@@ -841,7 +841,7 @@ export default function AdminUsersPage() {
                         </td>
 
                         {/* Date cell */}
-                        <td className="hidden px-4 py-3 text-xs sm:table-cell" style={{ color: '#7A9E6E' }}>
+                        <td className="hidden px-4 py-3 text-xs sm:table-cell" style={{ color: '#B0898A' }}>
                           {new Date(user.created_at).toLocaleDateString('fr-FR')}
                         </td>
 
@@ -852,7 +852,7 @@ export default function AdminUsersPage() {
                             <button
                               onClick={() => setSelectedUser(user)}
                               className="rounded-lg px-2.5 py-1 text-xs font-medium transition-colors"
-                              style={{ border: '1px solid rgba(30,58,20,0.15)', color: '#3A6B2A' }}
+                              style={{ border: '1px solid rgba(123,36,28,0.15)', color: '#A93226' }}
                             >
                               Dossier
                             </button>
@@ -863,7 +863,7 @@ export default function AdminUsersPage() {
                               onChange={(e) => handleRoleChange(user, e.target.value as Role)}
                               disabled={roleSaving === user.id}
                               className="rounded-lg px-1.5 py-1 text-xs focus:outline-none disabled:opacity-50 transition-colors"
-                              style={{ border: '1px solid rgba(30,58,20,0.15)', color: '#3A6B2A' }}
+                              style={{ border: '1px solid rgba(123,36,28,0.15)', color: '#A93226' }}
                             >
                               {ROLES_OPTIONS.filter((r) => r.value !== '').map((r) => (
                                 <option key={r.value} value={r.value}>{r.label}</option>
@@ -892,10 +892,10 @@ export default function AdminUsersPage() {
 
             {/* Pagination */}
             {!usersLoading && meta.last_page > 1 && (
-              <div className="flex items-center justify-between px-4 py-3" style={{ borderTop: '1px solid rgba(30,58,20,0.06)' }}>
-                <p className="text-xs" style={{ color: '#7A9E6E' }}>
-                  Page <span className="font-medium" style={{ color: '#1E3A14' }}>{meta.current_page}</span> sur{' '}
-                  <span className="font-medium" style={{ color: '#1E3A14' }}>{meta.last_page}</span>
+              <div className="flex items-center justify-between px-4 py-3" style={{ borderTop: '1px solid rgba(123,36,28,0.06)' }}>
+                <p className="text-xs" style={{ color: '#B0898A' }}>
+                  Page <span className="font-medium" style={{ color: '#7B241C' }}>{meta.current_page}</span> sur{' '}
+                  <span className="font-medium" style={{ color: '#7B241C' }}>{meta.last_page}</span>
                   {' '}· {meta.total} membre{meta.total > 1 ? 's' : ''}
                 </p>
                 <div className="flex items-center gap-1.5">
@@ -903,7 +903,7 @@ export default function AdminUsersPage() {
                     disabled={meta.current_page <= 1}
                     onClick={() => setFilters((f) => ({ ...f, page: (f.page ?? 1) - 1 }))}
                     className="flex items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-medium disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-                    style={{ border: '1px solid rgba(30,58,20,0.15)', color: '#3A6B2A' }}
+                    style={{ border: '1px solid rgba(123,36,28,0.15)', color: '#A93226' }}
                   >
                     <svg viewBox="0 0 12 12" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M8 2L4 6l4 4" strokeLinecap="round" strokeLinejoin="round" />
@@ -914,7 +914,7 @@ export default function AdminUsersPage() {
                     disabled={meta.current_page >= meta.last_page}
                     onClick={() => setFilters((f) => ({ ...f, page: (f.page ?? 1) + 1 }))}
                     className="flex items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-medium disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-                    style={{ border: '1px solid rgba(30,58,20,0.15)', color: '#3A6B2A' }}
+                    style={{ border: '1px solid rgba(123,36,28,0.15)', color: '#A93226' }}
                   >
                     Suivant
                     <svg viewBox="0 0 12 12" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2">

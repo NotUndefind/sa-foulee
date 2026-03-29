@@ -18,18 +18,18 @@ const TYPE_LABELS: Record<EventType | 'all', string> = {
 }
 
 const TYPE_BADGE: Record<EventType, { bg: string; color: string }> = {
-  race:        { bg: 'rgba(208,89,24,0.12)', color: '#B04A10' },
-  outing:      { bg: 'rgba(30,58,20,0.10)',  color: '#1E3A14' },
-  competition: { bg: 'rgba(122,158,110,0.2)', color: '#3A6B2A' },
-  other:       { bg: 'rgba(46,26,14,0.08)',   color: '#5A3A28' },
+  race:        { bg: 'rgba(192,57,43,0.12)', color: '#922B21' },
+  outing:      { bg: 'rgba(123,36,28,0.08)',  color: '#7B241C' },
+  competition: { bg: 'rgba(176,137,138,0.2)', color: '#A93226' },
+  other:       { bg: 'rgba(26,26,26,0.06)',   color: '#555' },
 }
 
 // Gradient backgrounds for past event cards (no cover photo)
 const PAST_CARD_GRADIENTS: Record<EventType, string> = {
-  race:        'linear-gradient(135deg, #D05918 0%, #B04A10 100%)',
-  outing:      'linear-gradient(135deg, #1E3A14 0%, #3A6B2A 100%)',
-  competition: 'linear-gradient(135deg, #7A9E6E 0%, #3A6B2A 100%)',
-  other:       'linear-gradient(135deg, #5A3A28 0%, #2E1A0E 100%)',
+  race:        'linear-gradient(135deg, #C0392B 0%, #922B21 100%)',
+  outing:      'linear-gradient(135deg, #7B241C 0%, #A93226 100%)',
+  competition: 'linear-gradient(135deg, #B0898A 0%, #A93226 100%)',
+  other:       'linear-gradient(135deg, #2C2C2C 0%, #1A1A1A 100%)',
 }
 
 const MONTHS_FR = ['jan', 'fév', 'mar', 'avr', 'mai', 'jun', 'jul', 'aoû', 'sep', 'oct', 'nov', 'déc']
@@ -139,7 +139,7 @@ function GalleryModal({ event, photos, loading, onClose }: GalleryModalProps) {
           position: 'fixed',
           inset: 0,
           zIndex: 200,
-          background: 'rgba(30,26,14,0.7)',
+          background: 'rgba(26,26,26,0.7)',
           backdropFilter: 'blur(8px)',
           display: 'flex',
           alignItems: 'center',
@@ -148,7 +148,7 @@ function GalleryModal({ event, photos, loading, onClose }: GalleryModalProps) {
         }}
       >
         <div style={{
-          background: '#FAF7F2',
+          background: '#FFFFFF',
           borderRadius: '20px',
           width: '100%',
           maxWidth: '800px',
@@ -156,22 +156,22 @@ function GalleryModal({ event, photos, loading, onClose }: GalleryModalProps) {
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
-          boxShadow: '0 24px 80px rgba(30,26,14,0.4)',
+          boxShadow: '0 24px 80px rgba(26,26,26,0.4)',
         }}>
           {/* Modal header */}
           <div style={{
             padding: '1.25rem 1.5rem',
-            borderBottom: '1px solid rgba(30,58,20,0.08)',
+            borderBottom: '1px solid rgba(123,36,28,0.08)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             flexShrink: 0,
           }}>
             <div>
-              <p style={{ fontSize: '0.75rem', color: '#7A9E6E', fontWeight: 600, margin: 0 }}>
+              <p style={{ fontSize: '0.75rem', color: '#B0898A', fontWeight: 600, margin: 0 }}>
                 {dateStr}
               </p>
-              <h3 style={{ fontSize: '1.125rem', fontWeight: 800, color: '#1E3A14', margin: '0.125rem 0 0' }}>
+              <h3 style={{ fontSize: '1.125rem', fontWeight: 800, color: '#7B241C', margin: '0.125rem 0 0' }}>
                 {event.title}
               </h3>
             </div>
@@ -181,9 +181,9 @@ function GalleryModal({ event, photos, loading, onClose }: GalleryModalProps) {
                 width: '36px',
                 height: '36px',
                 borderRadius: '50%',
-                border: '1.5px solid rgba(30,58,20,0.15)',
+                border: '1.5px solid rgba(123,36,28,0.15)',
                 background: 'transparent',
-                color: '#1E3A14',
+                color: '#7B241C',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
@@ -203,20 +203,20 @@ function GalleryModal({ event, photos, loading, onClose }: GalleryModalProps) {
                   <div key={i} style={{
                     aspectRatio: '1',
                     borderRadius: '12px',
-                    background: 'rgba(30,58,20,0.06)',
+                    background: 'rgba(123,36,28,0.06)',
                     animation: 'pulse 1.6s ease-in-out infinite',
                   }} />
                 ))}
               </div>
             ) : photos.length === 0 ? (
               <div style={{ textAlign: 'center', padding: '3rem 1rem' }}>
-                <div style={{ color: 'rgba(30,58,20,0.2)', marginBottom: '1rem', display: 'flex', justifyContent: 'center' }}>
+                <div style={{ color: 'rgba(123,36,28,0.2)', marginBottom: '1rem', display: 'flex', justifyContent: 'center' }}>
                   <IconCamera />
                 </div>
-                <p style={{ fontWeight: 600, color: '#1E3A14', margin: '0 0 0.5rem' }}>
+                <p style={{ fontWeight: 600, color: '#7B241C', margin: '0 0 0.5rem' }}>
                   Aucune photo pour l&apos;instant
                 </p>
-                <p style={{ fontSize: '0.875rem', color: '#5A3A28', opacity: 0.7, margin: 0 }}>
+                <p style={{ fontSize: '0.875rem', color: '#2C2C2C', opacity: 0.7, margin: 0 }}>
                   Les créateurs et organisateurs peuvent ajouter des photos depuis leur espace.
                 </p>
               </div>
@@ -491,20 +491,20 @@ export default function ActivitesPage() {
               width: '4px',
               height: '32px',
               borderRadius: '2px',
-              background: 'linear-gradient(to bottom, #D05918, #1E3A14)',
+              background: 'linear-gradient(to bottom, #C0392B, #7B241C)',
               flexShrink: 0,
             }} />
             <h1 style={{
               fontSize: '2rem',
               fontWeight: 800,
-              color: '#1E3A14',
+              color: '#7B241C',
               margin: 0,
               letterSpacing: '-0.02em',
             }}>
               Nos activités
             </h1>
           </div>
-          <p style={{ fontSize: '1rem', color: '#5A3A28', opacity: 0.8, margin: 0, paddingLeft: '1.25rem' }}>
+          <p style={{ fontSize: '1rem', color: '#2C2C2C', opacity: 0.8, margin: 0, paddingLeft: '1.25rem' }}>
             Rejoignez les prochaines sorties et événements de sa Foulée.
           </p>
         </div>
@@ -520,9 +520,9 @@ export default function ActivitesPage() {
                 style={{
                   padding: '0.375rem 1rem',
                   borderRadius: '999px',
-                  border: `1.5px solid ${isActive ? '#D05918' : 'rgba(30,58,20,0.15)'}`,
-                  background: isActive ? '#D05918' : 'transparent',
-                  color: isActive ? '#fff' : '#3A6B2A',
+                  border: `1.5px solid ${isActive ? '#C0392B' : 'rgba(123,36,28,0.15)'}`,
+                  background: isActive ? '#C0392B' : 'transparent',
+                  color: isActive ? '#fff' : '#A93226',
                   fontSize: '0.8125rem',
                   fontWeight: 600,
                   cursor: 'pointer',
@@ -542,7 +542,7 @@ export default function ActivitesPage() {
               <div key={i} style={{
                 height: '100px',
                 borderRadius: '16px',
-                background: 'rgba(30,58,20,0.05)',
+                background: 'rgba(123,36,28,0.05)',
                 animation: 'pulse 1.6s ease-in-out infinite',
               }} />
             ))}
@@ -550,18 +550,18 @@ export default function ActivitesPage() {
         ) : events.length === 0 ? (
           <div style={{
             borderRadius: '20px',
-            background: 'rgba(244,239,230,0.8)',
-            border: '1px solid rgba(30,58,20,0.08)',
+            background: 'rgba(255,255,255,0.8)',
+            border: '1px solid rgba(123,36,28,0.08)',
             padding: '4rem 2rem',
             textAlign: 'center',
           }}>
-            <div style={{ color: 'rgba(30,58,20,0.25)', marginBottom: '1rem', display: 'flex', justifyContent: 'center' }}>
+            <div style={{ color: 'rgba(123,36,28,0.25)', marginBottom: '1rem', display: 'flex', justifyContent: 'center' }}>
               <IconEmptyState />
             </div>
-            <p style={{ fontWeight: 700, color: '#1E3A14', margin: '0 0 0.5rem' }}>
+            <p style={{ fontWeight: 700, color: '#7B241C', margin: '0 0 0.5rem' }}>
               Aucune activité à venir
             </p>
-            <p style={{ fontSize: '0.875rem', color: '#5A3A28', opacity: 0.7, margin: 0 }}>
+            <p style={{ fontSize: '0.875rem', color: '#2C2C2C', opacity: 0.7, margin: 0 }}>
               Revenez bientôt — de nouvelles sorties sont en préparation !
             </p>
           </div>
@@ -579,8 +579,8 @@ export default function ActivitesPage() {
                   alignItems: 'center',
                   borderRadius: '16px',
                   background: '#fff',
-                  border: '1px solid rgba(30,58,20,0.07)',
-                  boxShadow: '0 2px 8px rgba(30,58,20,0.06)',
+                  border: '1px solid rgba(123,36,28,0.07)',
+                  boxShadow: '0 2px 8px rgba(123,36,28,0.06)',
                   padding: '1.25rem 1.5rem',
                 }}>
 
@@ -590,7 +590,7 @@ export default function ActivitesPage() {
                     width: '56px',
                     height: '64px',
                     borderRadius: '12px',
-                    background: 'linear-gradient(135deg, #D05918 0%, #B04A10 100%)',
+                    background: 'linear-gradient(135deg, #C0392B 0%, #922B21 100%)',
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
@@ -620,10 +620,10 @@ export default function ActivitesPage() {
                         {TYPE_LABELS[event.type]}
                       </span>
                     </div>
-                    <p style={{ fontWeight: 700, color: '#1E3A14', margin: '0 0 0.375rem', fontSize: '1rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    <p style={{ fontWeight: 700, color: '#7B241C', margin: '0 0 0.375rem', fontSize: '1rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                       {event.title}
                     </p>
-                    <div style={{ display: 'flex', gap: '1rem', fontSize: '0.8125rem', color: '#5A3A28', opacity: 0.75, flexWrap: 'wrap' }}>
+                    <div style={{ display: 'flex', gap: '1rem', fontSize: '0.8125rem', color: '#2C2C2C', opacity: 0.75, flexWrap: 'wrap' }}>
                       {event.location && (
                         <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
                           <IconMapPin /> {event.location}
@@ -644,7 +644,7 @@ export default function ActivitesPage() {
                           display: 'inline-block',
                           padding: '0.5rem 1.25rem',
                           borderRadius: '10px',
-                          background: '#1E3A14',
+                          background: '#7B241C',
                           color: '#fff',
                           fontSize: '0.875rem',
                           fontWeight: 600,
@@ -658,8 +658,8 @@ export default function ActivitesPage() {
                         display: 'inline-block',
                         padding: '0.5rem 1.25rem',
                         borderRadius: '10px',
-                        background: 'rgba(30,58,20,0.08)',
-                        color: '#3A6B2A',
+                        background: 'rgba(123,36,28,0.08)',
+                        color: '#A93226',
                         fontSize: '0.875rem',
                         fontWeight: 600,
                       }}>
@@ -672,13 +672,13 @@ export default function ActivitesPage() {
                         style={{
                           padding: '0.5rem 1.25rem',
                           borderRadius: '10px',
-                          background: isRegistering ? 'rgba(208,89,24,0.55)' : '#D05918',
+                          background: isRegistering ? 'rgba(192,57,43,0.55)' : '#C0392B',
                           color: '#fff',
                           fontSize: '0.875rem',
                           fontWeight: 600,
                           border: 'none',
                           cursor: isRegistering ? 'not-allowed' : 'pointer',
-                          boxShadow: '0 2px 8px rgba(208,89,24,0.25)',
+                          boxShadow: '0 2px 8px rgba(192,57,43,0.25)',
                           transition: 'all 0.15s ease',
                         }}
                       >
@@ -701,9 +701,9 @@ export default function ActivitesPage() {
               style={{
                 padding: '0.5rem 1.25rem',
                 borderRadius: '10px',
-                border: '1.5px solid rgba(30,58,20,0.15)',
+                border: '1.5px solid rgba(123,36,28,0.15)',
                 background: currentPage === 1 ? 'transparent' : '#fff',
-                color: currentPage === 1 ? 'rgba(30,58,20,0.3)' : '#1E3A14',
+                color: currentPage === 1 ? 'rgba(123,36,28,0.3)' : '#7B241C',
                 fontWeight: 600,
                 fontSize: '0.875rem',
                 cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
@@ -711,7 +711,7 @@ export default function ActivitesPage() {
             >
               Précédent
             </button>
-            <span style={{ fontSize: '0.875rem', color: '#5A3A28' }}>
+            <span style={{ fontSize: '0.875rem', color: '#2C2C2C' }}>
               Page {currentPage} / {lastPage}
             </span>
             <button
@@ -720,9 +720,9 @@ export default function ActivitesPage() {
               style={{
                 padding: '0.5rem 1.25rem',
                 borderRadius: '10px',
-                border: '1.5px solid rgba(30,58,20,0.15)',
+                border: '1.5px solid rgba(123,36,28,0.15)',
                 background: currentPage === lastPage ? 'transparent' : '#fff',
-                color: currentPage === lastPage ? 'rgba(30,58,20,0.3)' : '#1E3A14',
+                color: currentPage === lastPage ? 'rgba(123,36,28,0.3)' : '#7B241C',
                 fontWeight: 600,
                 fontSize: '0.875rem',
                 cursor: currentPage === lastPage ? 'not-allowed' : 'pointer',
@@ -735,8 +735,8 @@ export default function ActivitesPage() {
 
         {/* ── Bottom note for visitors ──────────────────────────── */}
         {!user && !loading && events.length > 0 && (
-          <p style={{ textAlign: 'center', fontSize: '0.875rem', color: '#5A3A28', opacity: 0.7, marginTop: '2.5rem' }}>
-            <Link href="/connexion" style={{ color: '#D05918', fontWeight: 600, textDecoration: 'none' }}>
+          <p style={{ textAlign: 'center', fontSize: '0.875rem', color: '#2C2C2C', opacity: 0.7, marginTop: '2.5rem' }}>
+            <Link href="/connexion" style={{ color: '#C0392B', fontWeight: 600, textDecoration: 'none' }}>
               Connectez-vous
             </Link>{' '}
             pour vous inscrire aux activités.
@@ -751,10 +751,10 @@ export default function ActivitesPage() {
                 width: '4px',
                 height: '28px',
                 borderRadius: '2px',
-                background: 'linear-gradient(to bottom, #7A9E6E, #1E3A14)',
+                background: 'linear-gradient(to bottom, #B0898A, #7B241C)',
                 flexShrink: 0,
               }} />
-              <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#1E3A14', margin: 0, letterSpacing: '-0.01em' }}>
+              <h2 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#7B241C', margin: 0, letterSpacing: '-0.01em' }}>
                 Nos dernières sorties
               </h2>
             </div>
@@ -767,7 +767,7 @@ export default function ActivitesPage() {
               <style>{`
                 @media (max-width: 700px) { .past-grid { grid-template-columns: repeat(2, 1fr) !important; } }
                 @media (max-width: 480px) { .past-grid { grid-template-columns: 1fr !important; } }
-                .past-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,58,20,0.14) !important; }
+                .past-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(123,36,28,0.14) !important; }
                 .past-card:hover .past-card-overlay { opacity: 0.55 !important; }
               `}</style>
               {pastEvents.map((event) => {
@@ -789,7 +789,7 @@ export default function ActivitesPage() {
                       position: 'relative',
                       height: '180px',
                       background: gradient,
-                      boxShadow: '0 4px 16px rgba(30,58,20,0.12)',
+                      boxShadow: '0 4px 16px rgba(123,36,28,0.12)',
                       transition: 'transform 0.2s ease, box-shadow 0.2s ease',
                       textAlign: 'left',
                     }}

@@ -50,18 +50,18 @@ export default function LoginForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5">
       <div>
-        <h1 className="text-2xl font-bold" style={{ color: '#1E3A14' }}>Se connecter</h1>
-        <p className="mt-1 text-sm" style={{ color: '#7A9E6E' }}>Bon retour parmi nous !</p>
+        <h1 className="text-2xl font-bold" style={{ color: '#7B241C' }}>Se connecter</h1>
+        <p className="mt-1 text-sm" style={{ color: '#B0898A' }}>Bon retour parmi nous !</p>
       </div>
 
       {globalError && (
-        <div className="rounded-lg px-4 py-3 text-sm" style={{ background: 'rgba(208,89,24,0.06)', border: '1px solid rgba(208,89,24,0.2)', color: '#B04A10' }}>
+        <div className="rounded-lg px-4 py-3 text-sm" style={{ background: 'rgba(192,57,43,0.06)', border: '1px solid rgba(192,57,43,0.2)', color: '#922B21' }}>
           {globalError}
         </div>
       )}
 
       <div>
-        <label htmlFor="email" className="mb-1 block text-sm font-medium" style={{ color: '#3A6B2A' }}>
+        <label htmlFor="email" className="mb-1 block text-sm font-medium" style={{ color: '#A93226' }}>
           Adresse e-mail
         </label>
         <input
@@ -77,13 +77,13 @@ export default function LoginForm() {
 
       <div>
         <div className="mb-1 flex items-center justify-between">
-          <label htmlFor="password" className="text-sm font-medium" style={{ color: '#3A6B2A' }}>
+          <label htmlFor="password" className="text-sm font-medium" style={{ color: '#A93226' }}>
             Mot de passe
           </label>
           <Link
             href="/mot-de-passe-oublie"
             className="text-xs transition-colors"
-            style={{ color: '#D05918' }}
+            style={{ color: '#C0392B' }}
           >
             Mot de passe oublié ?
           </Link>
@@ -104,14 +104,14 @@ export default function LoginForm() {
         type="submit"
         disabled={isSubmitting}
         className="w-full rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
-        style={{ background: 'linear-gradient(135deg, #D05918 0%, #B04A10 100%)', boxShadow: '0 2px 8px rgba(208,89,24,0.25)' }}
+        style={{ background: 'linear-gradient(135deg, #C0392B 0%, #922B21 100%)', boxShadow: '0 2px 8px rgba(192,57,43,0.25)' }}
       >
         {isSubmitting ? 'Connexion…' : 'Se connecter'}
       </button>
 
-      <p className="text-center text-sm" style={{ color: '#7A9E6E' }}>
+      <p className="text-center text-sm" style={{ color: '#B0898A' }}>
         Pas encore membre ?{' '}
-        <Link href="/inscription" className="font-medium transition-colors" style={{ color: '#D05918' }}>
+        <Link href="/inscription" className="font-medium transition-colors" style={{ color: '#C0392B' }}>
           Créer un compte
         </Link>
       </p>

@@ -11,35 +11,35 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
-  /* ── Palette sa Foulée — couleurs primaires (brand = terra) ── */
-  --color-brand:        #D05918;
-  --color-brand-dark:   #B04A10;
-  --color-accent:       #7A9E6E;
-  --color-accent-light: #3A6B2A;
+  /* ── Palette sa Foulée — couleurs primaires (brand = rouge) ── */
+  --color-brand:        #C0392B;
+  --color-brand-dark:   #922B21;
+  --color-accent:       #B0898A;
+  --color-accent-light: #A93226;
 
-  /* ── Palette sa Foulée — charte unifiée ── */
+  /* ── Palette sa Foulée — charte rouge & blanc ── */
 
-  /* Crème — fonds de page */
-  --color-sf-cream:      #F4EFE6;   /* fond landing page */
-  --color-sf-cream-soft: #F9F6F1;   /* fond dashboard (légèrement plus clair) */
-  --color-sf-cream-dark: #EAE3D5;   /* sections alternées */
-  --color-sf-parchment:  #DED7C8;   /* bordures, séparateurs */
+  /* Blanc — fonds de page */
+  --color-sf-cream:      #FAFAFA;   /* fond pages principales */
+  --color-sf-cream-soft: #F8F8F8;   /* fond dashboard */
+  --color-sf-cream-dark: #F0EDED;   /* sections alternées */
+  --color-sf-parchment:  #E5E0E0;   /* bordures, séparateurs */
 
-  /* Forêt — couleur principale */
-  --color-sf-forest:     #1E3A14;   /* sidebar, titres forts, CTA ghost */
-  --color-sf-forest-mid: #3A6B2A;   /* accents, labels */
-  --color-sf-forest-light: #4A8038; /* hover états */
-  --color-sf-sage:       #7A9E6E;   /* accents secondaires, badges */
+  /* Rouge foncé — couleur principale */
+  --color-sf-forest:     #7B241C;   /* sidebar, titres forts, CTA ghost */
+  --color-sf-forest-mid: #A93226;   /* accents, labels */
+  --color-sf-forest-light: #C0392B; /* hover états */
+  --color-sf-sage:       #B0898A;   /* accents secondaires, badges */
 
-  /* Terra — CTA principal, highlights */
-  --color-sf-terra:      #D05918;   /* boutons primaires, active states */
-  --color-sf-terra-dark: #BB4E14;   /* hover boutons */
-  --color-sf-terra-soft: rgba(208,89,24,0.12); /* fond badges, banners */
+  /* Rouge — CTA principal, highlights */
+  --color-sf-terra:      #C0392B;   /* boutons primaires, active states */
+  --color-sf-terra-dark: #922B21;   /* hover boutons */
+  --color-sf-terra-soft: rgba(192,57,43,0.12); /* fond badges, banners */
 
   /* Texte */
-  --color-sf-bark:       #2E1A0E;   /* texte très foncé */
-  --color-sf-text:       #3A3028;   /* texte principal */
-  --color-sf-muted:      #6B5D52;   /* texte secondaire */
+  --color-sf-bark:       #1A1A1A;   /* texte très foncé */
+  --color-sf-text:       #2C2C2C;   /* texte principal */
+  --color-sf-muted:      #7F7F7F;   /* texte secondaire */
 }
 
 body {
@@ -48,28 +48,28 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* ── Checkboxes & radios — accent terra ── */
+/* ── Checkboxes & radios — accent rouge ── */
 input[type="checkbox"],
 input[type="radio"] {
-  accent-color: #D05918;
+  accent-color: #C0392B;
 }
 
-/* ── Auth forms — inputs avec charte forest/terra ── */
+/* ── Auth forms — inputs avec charte rouge ── */
 .auth-input {
   width: 100%;
   border-radius: 0.5rem;
-  border: 1px solid rgba(30,58,20,0.2);
+  border: 1px solid rgba(123,36,28,0.2);
   padding: 0.5rem 0.75rem;
   font-size: 0.875rem;
-  color: #1E3A14;
+  color: #7B241C;
   outline: none;
   transition: border-color 0.15s, box-shadow 0.15s;
   background: white;
 }
 .auth-input::placeholder {
-  color: rgba(30,58,20,0.35);
+  color: rgba(123,36,28,0.35);
 }
 .auth-input:focus {
-  border-color: #D05918;
-  box-shadow: 0 0 0 3px rgba(208,89,24,0.15);
+  border-color: #C0392B;
+  box-shadow: 0 0 0 3px rgba(192,57,43,0.15);
 }

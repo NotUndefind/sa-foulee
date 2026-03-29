@@ -151,16 +151,16 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           font-weight: 500;
           text-decoration: none;
           transition: background 0.15s ease, color 0.15s ease;
-          color: rgba(244,239,230,0.55);
+          color: rgba(255,255,255,0.55);
           position: relative;
         }
         .sf-nav-link:hover {
-          background: rgba(244,239,230,0.07);
-          color: rgba(244,239,230,0.9);
+          background: rgba(255,255,255,0.07);
+          color: rgba(255,255,255,0.9);
         }
         .sf-nav-link.active {
-          background: rgba(208,89,24,0.18);
-          color: #F4EFE6;
+          background: rgba(192,57,43,0.25);
+          color: #ffffff;
           font-weight: 600;
         }
         .sf-nav-link.active::before {
@@ -171,7 +171,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           transform: translateY(-50%);
           width: 3px;
           height: 55%;
-          background: #D05918;
+          background: #C0392B;
           border-radius: 0 3px 3px 0;
         }
 
@@ -192,7 +192,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           position: relative;
         }
         .sf-mobile-link.active {
-          color: #1E3A14;
+          color: #C0392B;
           font-weight: 700;
         }
         .sf-mobile-dot {
@@ -203,7 +203,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           width: 4px;
           height: 4px;
           border-radius: 50%;
-          background: #D05918;
+          background: #C0392B;
         }
 
         /* Avatar ring */
@@ -211,14 +211,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           width: 28px;
           height: 28px;
           border-radius: 50%;
-          background: rgba(208,89,24,0.25);
-          border: 1.5px solid rgba(208,89,24,0.4);
+          background: rgba(192,57,43,0.25);
+          border: 1.5px solid rgba(192,57,43,0.4);
           display: flex;
           align-items: center;
           justify-content: center;
           font-size: 10px;
           font-weight: 700;
-          color: #D05918;
+          color: #F4C4C0;
           flex-shrink: 0;
         }
       `}</style>
@@ -229,8 +229,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <aside
           className="hidden lg:flex w-56 shrink-0 flex-col"
           style={{
-            background: '#1E3A14',
-            borderRight: '1px solid rgba(244,239,230,0.06)',
+            background: '#7B241C',
+            borderRight: '1px solid rgba(123,36,28,0.06)',
           }}
         >
           {/* Logo */}
@@ -242,11 +242,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               gap: '0.1em',
               padding: '20px 18px 18px',
               textDecoration: 'none',
-              borderBottom: '1px solid rgba(244,239,230,0.07)',
+              borderBottom: '1px solid rgba(255,255,255,0.07)',
             }}
           >
-            <span style={{ fontSize: '1rem', fontWeight: 400, color: 'rgba(244,239,230,0.5)', letterSpacing: '0.04em' }}>sa </span>
-            <span style={{ fontSize: '1.15rem', fontWeight: 800, color: '#D05918', letterSpacing: '-0.01em' }}>Foulée</span>
+            <span style={{ fontSize: '1rem', fontWeight: 400, color: 'rgba(255,255,255,0.5)', letterSpacing: '0.04em' }}>sa </span>
+            <span style={{ fontSize: '1.15rem', fontWeight: 800, color: '#F4C4C0', letterSpacing: '-0.01em' }}>Foulée</span>
           </Link>
 
           {/* Navigation */}
@@ -256,7 +256,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               fontWeight: 700,
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
-              color: 'rgba(244,239,230,0.25)',
+              color: 'rgba(255,255,255,0.25)',
               padding: '0 6px',
               marginBottom: '6px',
             }}>
@@ -286,7 +286,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                       fontWeight: 700,
                       letterSpacing: '0.12em',
                       textTransform: 'uppercase',
-                      color: 'rgba(244,239,230,0.25)',
+                      color: 'rgba(255,255,255,0.25)',
                       padding: '0 6px',
                       marginBottom: '6px',
                     }}>
@@ -312,7 +312,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           {/* User section */}
           <div style={{
             padding: '12px 10px',
-            borderTop: '1px solid rgba(244,239,230,0.07)',
+            borderTop: '1px solid rgba(255,255,255,0.07)',
           }}>
             <div style={{
               display: 'flex',
@@ -326,7 +326,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 <p style={{
                   fontSize: '12.5px',
                   fontWeight: 600,
-                  color: 'rgba(244,239,230,0.9)',
+                  color: 'rgba(255,255,255,0.9)',
                   whiteSpace: 'nowrap',
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
@@ -335,7 +335,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 }}>
                   {user?.first_name} {user?.last_name}
                 </p>
-                <p style={{ fontSize: '10px', color: 'rgba(244,239,230,0.35)', margin: 0, marginTop: '1px' }}>
+                <p style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)', margin: 0, marginTop: '1px' }}>
                   {getRoleLabel(user?.roles)}
                 </p>
               </div>
@@ -348,14 +348,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   cursor: 'pointer',
                   padding: '6px',
                   borderRadius: '7px',
-                  color: 'rgba(244,239,230,0.25)',
+                  color: 'rgba(255,255,255,0.25)',
                   display: 'flex',
                   alignItems: 'center',
                   transition: 'background 0.15s ease, color 0.15s ease',
                   flexShrink: 0,
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(208,89,24,0.15)'; e.currentTarget.style.color = '#D05918' }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = 'none'; e.currentTarget.style.color = 'rgba(244,239,230,0.25)' }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(192,57,43,0.2)'; e.currentTarget.style.color = '#F4C4C0' }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = 'none'; e.currentTarget.style.color = 'rgba(255,255,255,0.25)' }}
               >
                 <IconLogout />
               </button>

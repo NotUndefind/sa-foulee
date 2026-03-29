@@ -116,31 +116,31 @@ export default function SessionsPage() {
           font-weight: 600; transition: all 0.2s ease; cursor: pointer;
           border: none; background: transparent;
         }
-        .ss-tab.active { background: white; color: #1E3A14; box-shadow: 0 1px 4px rgba(30,58,20,0.1); }
-        .ss-tab:not(.active) { color: #7A9E6E; }
+        .ss-tab.active { background: white; color: #7B241C; box-shadow: 0 1px 4px rgba(123,36,28,0.1); }
+        .ss-tab:not(.active) { color: #B0898A; }
         .ss-type-pill {
           padding: 5px 14px; border-radius: 20px; font-size: 12px;
           font-weight: 600; transition: all 0.2s ease; cursor: pointer;
           white-space: nowrap;
         }
-        .ss-type-pill.active { background: #D05918; color: white; box-shadow: 0 2px 8px rgba(208,89,24,0.3); border: 1px solid transparent; }
-        .ss-type-pill:not(.active) { background: white; color: #7A9E6E; border: 1px solid rgba(30,58,20,0.1); }
-        .ss-type-pill:not(.active):hover { background: #F4EFE6; color: #1E3A14; }
+        .ss-type-pill.active { background: #C0392B; color: white; box-shadow: 0 2px 8px rgba(192,57,43,0.3); border: 1px solid transparent; }
+        .ss-type-pill:not(.active) { background: white; color: #B0898A; border: 1px solid rgba(123,36,28,0.1); }
+        .ss-type-pill:not(.active):hover { background: #FAFAFA; color: #7B241C; }
       `}</style>
 
-      <div className="ss-page min-h-screen pb-24 lg:pb-8" style={{ background: '#F9F6F1' }}>
+      <div className="ss-page min-h-screen pb-24 lg:pb-8" style={{ background: '#F8F8F8' }}>
         <div className="mx-auto max-w-5xl px-5 py-8">
 
           {/* ── Header ─────────────────────────────────────────────────── */}
           <div className="ss-fade mb-8 flex items-start justify-between" style={{ animationDelay: '0ms' }}>
             <div>
-              <div className="mb-1 flex items-center gap-2" style={{ color: '#3A6B2A' }}>
+              <div className="mb-1 flex items-center gap-2" style={{ color: '#A93226' }}>
                 <IconRun size={26} />
-                <h1 className="text-3xl font-extrabold" style={{ letterSpacing: '-0.02em', color: '#1E3A14' }}>
+                <h1 className="text-3xl font-extrabold" style={{ letterSpacing: '-0.02em', color: '#7B241C' }}>
                   Sessions
                 </h1>
               </div>
-              <p className="text-sm" style={{ color: '#7A9E6E' }}>
+              <p className="text-sm" style={{ color: '#B0898A' }}>
                 {meta.total} session{meta.total > 1 ? 's' : ''} d'entraînement planifiée{meta.total > 1 ? 's' : ''}
               </p>
             </div>
@@ -148,7 +148,7 @@ export default function SessionsPage() {
               <button
                 onClick={() => { setEditSession(undefined); setTemplateSrc(undefined); setShowForm(true) }}
                 className="shrink-0 rounded-xl px-4 py-2.5 text-sm font-bold text-white transition"
-                style={{ background: 'linear-gradient(135deg, #D05918 0%, #B04A10 100%)', boxShadow: '0 2px 8px rgba(208,89,24,0.3)' }}
+                style={{ background: 'linear-gradient(135deg, #C0392B 0%, #922B21 100%)', boxShadow: '0 2px 8px rgba(192,57,43,0.3)' }}
               >
                 + Nouvelle session
               </button>
@@ -159,10 +159,10 @@ export default function SessionsPage() {
           {showForm && (
             <div
               className="ss-fade mb-6 overflow-hidden rounded-2xl bg-white"
-              style={{ animationDelay: '40ms', boxShadow: '0 4px 20px rgba(30,58,20,0.08)', border: '1px solid rgba(30,58,20,0.08)' }}
+              style={{ animationDelay: '40ms', boxShadow: '0 4px 20px rgba(123,36,28,0.08)', border: '1px solid rgba(123,36,28,0.08)' }}
             >
-              <div className="px-6 py-4" style={{ background: 'linear-gradient(135deg, rgba(122,158,110,0.08) 0%, rgba(208,89,24,0.04) 100%)', borderBottom: '1px solid rgba(30,58,20,0.06)' }}>
-                <h2 className="font-bold" style={{ color: '#1E3A14' }}>
+              <div className="px-6 py-4" style={{ background: 'linear-gradient(135deg, rgba(176,137,138,0.08) 0%, rgba(192,57,43,0.04) 100%)', borderBottom: '1px solid rgba(123,36,28,0.06)' }}>
+                <h2 className="font-bold" style={{ color: '#7B241C' }}>
                   {editSession ? 'Modifier la session' : templateSrc ? `Depuis "${templateSrc.title}"` : 'Nouvelle session'}
                 </h2>
               </div>
@@ -180,7 +180,7 @@ export default function SessionsPage() {
           {/* ── Tabs ───────────────────────────────────────────────────── */}
           <div
             className="ss-fade mb-5 flex w-fit gap-1 rounded-xl p-1"
-            style={{ animationDelay: '80ms', background: 'rgba(30,58,20,0.05)' }}
+            style={{ animationDelay: '80ms', background: 'rgba(123,36,28,0.05)' }}
           >
             <button onClick={() => setTab('sessions')} className={`ss-tab ${tab === 'sessions' ? 'active' : ''}`}>
               Sessions publiées
@@ -189,7 +189,7 @@ export default function SessionsPage() {
               <button onClick={() => setTab('templates')} className={`ss-tab ${tab === 'templates' ? 'active' : ''}`}>
                 Templates
                 {templates.length > 0 && (
-                  <span className="ml-1.5 rounded-full px-1.5 py-0.5 text-[10px]" style={{ background: 'rgba(122,158,110,0.12)', color: '#3A6B2A' }}>
+                  <span className="ml-1.5 rounded-full px-1.5 py-0.5 text-[10px]" style={{ background: 'rgba(176,137,138,0.12)', color: '#A93226' }}>
                     {templates.length}
                   </span>
                 )}
@@ -218,7 +218,7 @@ export default function SessionsPage() {
 
           {/* ── Error ──────────────────────────────────────────────────── */}
           {error && (
-            <div className="mb-4 rounded-xl px-4 py-3 text-sm" style={{ background: 'rgba(208,89,24,0.06)', border: '1px solid rgba(208,89,24,0.2)', color: '#B04A10' }}>
+            <div className="mb-4 rounded-xl px-4 py-3 text-sm" style={{ background: 'rgba(192,57,43,0.06)', border: '1px solid rgba(192,57,43,0.2)', color: '#922B21' }}>
               {error}
             </div>
           )}
@@ -227,20 +227,20 @@ export default function SessionsPage() {
           {loading && tab === 'sessions' ? (
             <div className="flex h-48 items-center justify-center">
               <div className="flex flex-col items-center gap-3">
-                <div className="h-8 w-8 animate-spin rounded-full border-2" style={{ borderColor: 'rgba(30,58,20,0.1)', borderTopColor: '#D05918' }} />
-                <p className="text-sm" style={{ color: '#7A9E6E' }}>Chargement des sessions…</p>
+                <div className="h-8 w-8 animate-spin rounded-full border-2" style={{ borderColor: 'rgba(123,36,28,0.1)', borderTopColor: '#C0392B' }} />
+                <p className="text-sm" style={{ color: '#B0898A' }}>Chargement des sessions…</p>
               </div>
             </div>
           ) : displayed.length === 0 ? (
-            <div className="ss-fade flex flex-col items-center justify-center gap-3 rounded-2xl bg-white" style={{ border: '1px solid rgba(30,58,20,0.07)', boxShadow: '0 1px 4px rgba(30,58,20,0.04)', padding: '3rem 2rem', textAlign: 'center' }}>
-              <div style={{ opacity: 0.3, color: '#3A6B2A' }}>
+            <div className="ss-fade flex flex-col items-center justify-center gap-3 rounded-2xl bg-white" style={{ border: '1px solid rgba(123,36,28,0.07)', boxShadow: '0 1px 4px rgba(123,36,28,0.04)', padding: '3rem 2rem', textAlign: 'center' }}>
+              <div style={{ opacity: 0.3, color: '#A93226' }}>
                 {tab === 'templates' ? <IconTemplate /> : <IconRun size={40} />}
               </div>
               <div>
-                <p className="text-sm font-semibold" style={{ color: '#1E3A14', marginBottom: '0.25rem' }}>
+                <p className="text-sm font-semibold" style={{ color: '#7B241C', marginBottom: '0.25rem' }}>
                   {tab === 'templates' ? 'Aucun template sauvegardé.' : 'Aucune session pour ce filtre.'}
                 </p>
-                <p className="text-xs" style={{ color: '#7A9E6E' }}>
+                <p className="text-xs" style={{ color: '#B0898A' }}>
                   {tab === 'templates'
                     ? 'Créez une session et sauvegardez-la comme template pour la réutiliser.'
                     : 'Essayez un autre filtre, ou soyez le premier à partager une séance d\'entraînement !'}
@@ -250,7 +250,7 @@ export default function SessionsPage() {
                 <button
                   onClick={() => setShowForm(true)}
                   className="text-xs font-semibold hover:underline"
-                  style={{ color: '#D05918' }}
+                  style={{ color: '#C0392B' }}
                 >
                   {tab === 'templates' ? 'Créer un template →' : 'Publier une session →'}
                 </button>
@@ -263,7 +263,7 @@ export default function SessionsPage() {
                   <div
                     key={session.id}
                     className="flex flex-col overflow-hidden rounded-2xl bg-white"
-                    style={{ boxShadow: '0 2px 8px rgba(30,58,20,0.07)', border: '1px solid rgba(30,58,20,0.07)' }}
+                    style={{ boxShadow: '0 2px 8px rgba(123,36,28,0.07)', border: '1px solid rgba(123,36,28,0.07)' }}
                   >
                     <SessionCard
                       session={session}
@@ -275,7 +275,7 @@ export default function SessionsPage() {
                       <button
                         onClick={() => handleUseTemplate(session)}
                         className="w-full rounded-xl py-2 text-xs font-bold transition"
-                        style={{ background: 'rgba(58,107,42,0.08)', color: '#3A6B2A', border: '1px solid rgba(58,107,42,0.15)' }}
+                        style={{ background: 'rgba(169,50,38,0.08)', color: '#A93226', border: '1px solid rgba(169,50,38,0.15)' }}
                       >
                         ↗ Utiliser ce template
                       </button>
@@ -297,13 +297,13 @@ export default function SessionsPage() {
           {/* ── Pagination ─────────────────────────────────────────────── */}
           {tab === 'sessions' && meta.last_page > 1 && (
             <div className="mt-6 flex items-center justify-between">
-              <p className="text-xs" style={{ color: '#7A9E6E' }}>Page {meta.current_page} sur {meta.last_page}</p>
+              <p className="text-xs" style={{ color: '#B0898A' }}>Page {meta.current_page} sur {meta.last_page}</p>
               <div className="flex gap-2">
                 <button
                   disabled={meta.current_page <= 1}
                   onClick={() => setFilters((f) => ({ ...f, page: (f.page ?? 1) - 1 }))}
                   className="rounded-xl px-4 py-2 text-xs font-medium transition disabled:opacity-30"
-                  style={{ border: '1px solid rgba(30,58,20,0.12)', color: '#3A6B2A', background: 'white' }}
+                  style={{ border: '1px solid rgba(123,36,28,0.12)', color: '#A93226', background: 'white' }}
                 >
                   ← Précédent
                 </button>
@@ -311,7 +311,7 @@ export default function SessionsPage() {
                   disabled={meta.current_page >= meta.last_page}
                   onClick={() => setFilters((f) => ({ ...f, page: (f.page ?? 1) + 1 }))}
                   className="rounded-xl px-4 py-2 text-xs font-medium transition disabled:opacity-30"
-                  style={{ border: '1px solid rgba(30,58,20,0.12)', color: '#3A6B2A', background: 'white' }}
+                  style={{ border: '1px solid rgba(123,36,28,0.12)', color: '#A93226', background: 'white' }}
                 >
                   Suivant →
                 </button>

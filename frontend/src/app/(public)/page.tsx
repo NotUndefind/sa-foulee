@@ -39,19 +39,19 @@ export default async function PublicHomePage() {
   }
 
   return (
-    <div className={baloo.className} style={{ background: '#F4EFE6', minHeight: '100vh' }}>
+    <div className={baloo.className} style={{ background: '#FAFAFA', minHeight: '100vh' }}>
 
       {/* ─────────────────────────────────────────── STYLES ── */}
       <style>{`
         /* ── Variables ── */
         :root {
-          --cream:  #F4EFE6;
-          --parchm: #EAE3D5;
-          --forest: #1E3A14;
-          --leaf:   #3A6B2A;
-          --sage:   #7A9E6E;
-          --terra:  #D05918;
-          --bark:   #2E1A0E;
+          --cream:  #FAFAFA;
+          --parchm: #F0EDED;
+          --forest: #7B241C;
+          --leaf:   #A93226;
+          --sage:   #B0898A;
+          --terra:  #C0392B;
+          --bark:   #1A1A1A;
         }
 
         /* ── Keyframes ── */
@@ -110,28 +110,28 @@ export default async function PublicHomePage() {
           background: white;
           border-radius: 20px;
           padding: 2rem 1.75rem;
-          border: 1.5px solid rgba(30,58,20,0.08);
+          border: 1.5px solid rgba(123,36,28,0.08);
           transition: transform 0.35s cubic-bezier(.22,1,.36,1),
                       box-shadow 0.35s ease,
                       border-color 0.3s ease;
         }
         .sF-card:hover {
           transform: translateY(-7px);
-          box-shadow: 0 24px 56px rgba(30,58,20,0.11);
-          border-color: rgba(30,58,20,0.18);
+          box-shadow: 0 24px 56px rgba(123,36,28,0.11);
+          border-color: rgba(123,36,28,0.18);
         }
 
         /* ── Activity blocks ── */
         .sF-act {
           padding: 1.75rem;
           border-radius: 18px;
-          background: rgba(30,58,20,0.04);
-          border: 1.5px solid rgba(30,58,20,0.09);
+          background: rgba(123,36,28,0.04);
+          border: 1.5px solid rgba(123,36,28,0.09);
           transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
         }
         .sF-act:hover {
-          background: rgba(30,58,20,0.07);
-          border-color: rgba(30,58,20,0.18);
+          background: rgba(123,36,28,0.07);
+          border-color: rgba(123,36,28,0.18);
           transform: translateY(-3px);
         }
 
@@ -140,7 +140,7 @@ export default async function PublicHomePage() {
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;
-          background: #D05918;
+          background: #C0392B;
           color: #fff;
           padding: 0.9rem 2rem;
           border-radius: 100px;
@@ -148,35 +148,35 @@ export default async function PublicHomePage() {
           font-size: 1rem;
           text-decoration: none;
           transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-          box-shadow: 0 4px 22px rgba(208,89,24,0.38);
+          box-shadow: 0 4px 22px rgba(192,57,43,0.38);
         }
         .sF-btn:hover {
           transform: translateY(-2px);
-          box-shadow: 0 10px 36px rgba(208,89,24,0.46);
-          background: #BB4E14;
+          box-shadow: 0 10px 36px rgba(192,57,43,0.46);
+          background: #922B21;
         }
         .sF-btn-ghost {
           display: inline-flex;
           align-items: center;
           gap: 0.5rem;
-          color: #1E3A14;
+          color: #7B241C;
           padding: 0.9rem 2rem;
           border-radius: 100px;
           font-weight: 600;
           font-size: 1rem;
           text-decoration: none;
-          border: 2px solid rgba(30,58,20,0.22);
+          border: 2px solid rgba(123,36,28,0.22);
           transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
         }
         .sF-btn-ghost:hover {
-          border-color: #1E3A14;
-          background: rgba(30,58,20,0.05);
+          border-color: #7B241C;
+          background: rgba(123,36,28,0.05);
           transform: translateY(-2px);
         }
 
         /* ── Footer links ── */
         .sF-flink {
-          color: rgba(244,239,230,0.45);
+          color: rgba(255,255,255,0.45);
           text-decoration: none;
           font-size: 0.875rem;
           transition: color 0.2s;
@@ -189,10 +189,10 @@ export default async function PublicHomePage() {
           left: 0;
           width: 0;
           height: 1.5px;
-          background: #D05918;
+          background: #C0392B;
           transition: width 0.25s ease;
         }
-        .sF-flink:hover { color: rgba(244,239,230,0.9); }
+        .sF-flink:hover { color: rgba(255,255,255,0.9); }
         .sF-flink:hover::after { width: 100%; }
 
         /* ── Section label ── */
@@ -200,7 +200,7 @@ export default async function PublicHomePage() {
           display: inline-flex;
           align-items: center;
           gap: 0.4rem;
-          color: #D05918;
+          color: #C0392B;
           font-weight: 700;
           font-size: 0.8rem;
           letter-spacing: 0.13em;
@@ -218,7 +218,7 @@ export default async function PublicHomePage() {
         position: 'relative',
         overflow: 'hidden',
         padding: '5rem 1.5rem 8rem',
-        background: 'linear-gradient(150deg, #F4EFE6 0%, #EBE4D6 55%, #DDE8D4 100%)',
+        background: 'linear-gradient(150deg, #FAFAFA 0%, #EBE4D6 55%, #DDE8D4 100%)',
       }}>
 
         {/* Background circles */}
@@ -226,14 +226,14 @@ export default async function PublicHomePage() {
           position: 'absolute', right: '-8%', top: '8%',
           width: '55vw', height: '55vw', maxWidth: '640px', maxHeight: '640px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(58,107,42,0.08) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(169,50,38,0.08) 0%, transparent 70%)',
           pointerEvents: 'none',
         }} />
         <div style={{
           position: 'absolute', left: '-6%', bottom: '10%',
           width: '35vw', height: '35vw', maxWidth: '420px', maxHeight: '420px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(208,89,24,0.07) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(192,57,43,0.07) 0%, transparent 70%)',
           pointerEvents: 'none',
         }} />
 
@@ -246,14 +246,14 @@ export default async function PublicHomePage() {
         }}>
           <svg width="280" height="320" viewBox="0 0 140 160" fill="none">
             {/* Running figure stylized */}
-            <circle cx="78" cy="18" r="9" fill="#1E3A14"/>
+            <circle cx="78" cy="18" r="9" fill="#7B241C"/>
             <path d="M78 27 L73 52 M73 52 L56 72 M73 52 L82 48 M82 48 L98 62 M73 52 L67 75 L72 98 M82 48 L88 68 L80 90"
-              stroke="#1E3A14" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
+              stroke="#7B241C" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round"/>
             {/* Ground line */}
-            <path d="M30 118 Q85 108 120 118" stroke="#1E3A14" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+            <path d="M30 118 Q85 108 120 118" stroke="#7B241C" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
             {/* Leaves */}
-            <ellipse cx="28" cy="85" rx="8" ry="14" fill="#3A6B2A" transform="rotate(-20 28 85)" opacity="0.6"/>
-            <ellipse cx="18" cy="70" rx="6" ry="10" fill="#3A6B2A" transform="rotate(15 18 70)" opacity="0.45"/>
+            <ellipse cx="28" cy="85" rx="8" ry="14" fill="#A93226" transform="rotate(-20 28 85)" opacity="0.6"/>
+            <ellipse cx="18" cy="70" rx="6" ry="10" fill="#A93226" transform="rotate(15 18 70)" opacity="0.45"/>
           </svg>
         </div>
 
@@ -262,7 +262,7 @@ export default async function PublicHomePage() {
           viewBox="0 0 1440 90" preserveAspectRatio="none">
           <path className="sF-line"
             d="M0 65 C180 20 360 80 540 45 C720 10 900 75 1080 38 C1260 8 1380 60 1440 40"
-            stroke="#1E3A14" strokeWidth="2.5" fill="none"/>
+            stroke="#7B241C" strokeWidth="2.5" fill="none"/>
         </svg>
 
         {/* Dot grid decoration */}
@@ -272,7 +272,7 @@ export default async function PublicHomePage() {
             Array.from({ length: 5 }, (_, col) => (
               <circle key={`${row}-${col}`}
                 cx={12 + col * 24} cy={12 + row * 24} r="2.5"
-                fill="#1E3A14" />
+                fill="#7B241C" />
             ))
           )}
         </svg>
@@ -283,14 +283,14 @@ export default async function PublicHomePage() {
           {/* Badge */}
           <div className="sF-tag" style={{
             display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-            background: 'rgba(30,58,20,0.07)', color: '#2A5020',
+            background: 'rgba(123,36,28,0.07)', color: '#2A5020',
             padding: '0.4rem 1.1rem', borderRadius: '100px',
             fontSize: '0.85rem', fontWeight: 700,
-            marginBottom: '2rem', border: '1px solid rgba(30,58,20,0.1)',
+            marginBottom: '2rem', border: '1px solid rgba(123,36,28,0.1)',
           }}>
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M7 1C4 1 1 4 2 7.5C3 11 7 13 7 13C7 13 11 11 12 7.5C13 4 10 1 7 1Z"
-                fill="#3A6B2A" opacity="0.7"/>
+                fill="#A93226" opacity="0.7"/>
               <path d="M7 4L7 7.5M7 7.5L9 9M7 7.5L5 9"
                 stroke="white" strokeWidth="1.2" strokeLinecap="round"/>
             </svg>
@@ -303,7 +303,7 @@ export default async function PublicHomePage() {
               display: 'block',
               fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
               fontWeight: 400,
-              color: '#3A6B2A',
+              color: '#A93226',
               letterSpacing: '0.06em',
               marginBottom: '0.1em',
             }}>
@@ -313,7 +313,7 @@ export default async function PublicHomePage() {
               display: 'block',
               fontSize: 'clamp(4.5rem, 14vw, 10rem)',
               fontWeight: 800,
-              color: '#D05918',
+              color: '#C0392B',
               letterSpacing: '-0.02em',
               lineHeight: 0.88,
             }}>
@@ -353,15 +353,15 @@ export default async function PublicHomePage() {
       </section>
 
       {/* ─────────────────────────────────────────── VALEURS ── */}
-      <section id="decouvrir" style={{ padding: '7rem 1.5rem', background: '#F4EFE6' }}>
+      <section id="decouvrir" style={{ padding: '7rem 1.5rem', background: '#FAFAFA' }}>
         <div style={{ maxWidth: '1040px', margin: '0 auto' }}>
 
           {/* Header */}
           <div className="sF-reveal" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
             <p className="sF-label">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <circle cx="6" cy="6" r="5" stroke="#D05918" strokeWidth="1.5"/>
-                <circle cx="6" cy="6" r="2" fill="#D05918"/>
+                <circle cx="6" cy="6" r="5" stroke="#C0392B" strokeWidth="1.5"/>
+                <circle cx="6" cy="6" r="2" fill="#C0392B"/>
               </svg>
               Nos valeurs
             </p>
@@ -378,7 +378,7 @@ export default async function PublicHomePage() {
             {[
               {
                 emoji: '🤝',
-                accent: '#D05918',
+                accent: '#C0392B',
                 title: 'Convivialité',
                 punch: 'Courir ensemble, progresser ensemble.',
                 desc: 'Une communauté soudée où chaque coureur, du débutant au compétiteur, trouve sa place et son rythme.',
@@ -386,7 +386,7 @@ export default async function PublicHomePage() {
               },
               {
                 emoji: '🌲',
-                accent: '#1E3A14',
+                accent: '#7B241C',
                 title: 'Nature',
                 punch: 'Des sentiers qui nous ressemblent.',
                 desc: 'Forêts, prairies et chemins de campagne — nos parcours invitent à sortir des sentiers battus.',
@@ -394,7 +394,7 @@ export default async function PublicHomePage() {
               },
               {
                 emoji: '⬆️',
-                accent: '#3A6B2A',
+                accent: '#A93226',
                 title: 'Dépassement',
                 punch: 'Chaque foulée compte.',
                 desc: 'Se fixer des objectifs, les atteindre, et célébrer chaque progrès dans la bonne humeur.',
@@ -441,8 +441,8 @@ export default async function PublicHomePage() {
             <div>
               <p className="sF-label">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <rect x="1" y="1" width="10" height="10" rx="3" stroke="#D05918" strokeWidth="1.5"/>
-                  <path d="M4 6h4M6 4v4" stroke="#D05918" strokeWidth="1.5" strokeLinecap="round"/>
+                  <rect x="1" y="1" width="10" height="10" rx="3" stroke="#C0392B" strokeWidth="1.5"/>
+                  <path d="M4 6h4M6 4v4" stroke="#C0392B" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
                 Nos activités
               </p>
@@ -452,9 +452,9 @@ export default async function PublicHomePage() {
             </div>
             <Link href="/evenements" style={{
               display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
-              color: '#1E3A14', fontWeight: 600, fontSize: '0.9rem',
+              color: '#7B241C', fontWeight: 600, fontSize: '0.9rem',
               textDecoration: 'none',
-              borderBottom: '1.5px solid rgba(30,58,20,0.25)',
+              borderBottom: '1.5px solid rgba(123,36,28,0.25)',
               paddingBottom: '2px',
               transition: 'border-color 0.2s ease, color 0.2s ease',
             }}>
@@ -490,12 +490,12 @@ export default async function PublicHomePage() {
               <div key={a.num} className={`sF-act sF-reveal ${a.d}`}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}>
                   <span style={{
-                    fontWeight: 800, fontSize: '0.75rem', color: '#D05918',
+                    fontWeight: 800, fontSize: '0.75rem', color: '#C0392B',
                     letterSpacing: '0.08em',
                   }}>
                     {a.num}
                   </span>
-                  <div style={{ height: '1px', flex: 1, background: 'rgba(30,58,20,0.15)' }} />
+                  <div style={{ height: '1px', flex: 1, background: 'rgba(123,36,28,0.15)' }} />
                   <span style={{ fontSize: '1.25rem' }}>{a.emoji}</span>
                 </div>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#1A2E10', marginBottom: '0.7rem' }}>
@@ -513,7 +513,7 @@ export default async function PublicHomePage() {
       {/* ─────────────────────────────────────────── STATS ── */}
       <section style={{
         padding: '6rem 1.5rem',
-        background: '#1E3A14',
+        background: '#7B241C',
         position: 'relative',
         overflow: 'hidden',
       }}>
@@ -522,14 +522,14 @@ export default async function PublicHomePage() {
           position: 'absolute', right: '-5%', top: '-20%',
           width: '45vw', height: '45vw', maxWidth: '500px', maxHeight: '500px',
           borderRadius: '50%',
-          border: '1px solid rgba(244,239,230,0.05)',
+          border: '1px solid rgba(255,255,255,0.05)',
           pointerEvents: 'none',
         }} />
         <div style={{
           position: 'absolute', right: '5%', top: '-10%',
           width: '30vw', height: '30vw', maxWidth: '340px', maxHeight: '340px',
           borderRadius: '50%',
-          border: '1px solid rgba(244,239,230,0.04)',
+          border: '1px solid rgba(255,255,255,0.04)',
           pointerEvents: 'none',
         }} />
 
@@ -537,14 +537,14 @@ export default async function PublicHomePage() {
 
           {/* Header */}
           <div className="sF-reveal" style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <p className="sF-label" style={{ color: 'rgba(208,89,24,0.9)' }}>
+            <p className="sF-label" style={{ color: 'rgba(192,57,43,0.9)' }}>
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <path d="M6 1L7.5 4.5H11L8.3 6.7 9.3 10.2 6 8 2.7 10.2 3.7 6.7 1 4.5H4.5Z"
-                  fill="rgba(208,89,24,0.9)"/>
+                  fill="rgba(192,57,43,0.9)"/>
               </svg>
               En chiffres
             </p>
-            <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 2.75rem)', fontWeight: 800, color: '#F4EFE6', lineHeight: 1.15 }}>
+            <h2 style={{ fontSize: 'clamp(1.75rem, 4vw, 2.75rem)', fontWeight: 800, color: '#FAFAFA', lineHeight: 1.15 }}>
               sa Foulée, c'est
             </h2>
           </div>
@@ -564,22 +564,22 @@ export default async function PublicHomePage() {
                 textAlign: 'center',
                 padding: '2.5rem 1.5rem',
                 borderRadius: '18px',
-                background: 'rgba(244,239,230,0.04)',
-                border: '1px solid rgba(244,239,230,0.07)',
+                background: 'rgba(255,255,255,0.04)',
+                border: '1px solid rgba(255,255,255,0.07)',
               }}>
                 <div style={{
                   fontSize: 'clamp(3.5rem, 9vw, 5.5rem)',
                   fontWeight: 800,
-                  color: '#D05918',
+                  color: '#C0392B',
                   lineHeight: 1,
                   marginBottom: '0.6rem',
                 }}>
                   {s.num}
                 </div>
-                <div style={{ color: '#F4EFE6', fontWeight: 700, fontSize: '1.05rem', marginBottom: '0.3rem' }}>
+                <div style={{ color: '#FAFAFA', fontWeight: 700, fontSize: '1.05rem', marginBottom: '0.3rem' }}>
                   {s.label}
                 </div>
-                <div style={{ color: 'rgba(244,239,230,0.45)', fontSize: '0.85rem' }}>
+                <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.85rem' }}>
                   {s.sub}
                 </div>
               </div>
@@ -590,13 +590,13 @@ export default async function PublicHomePage() {
 
       {/* ──────────────────────────────────── NOS PROCHAINES SORTIES ── */}
       {upcomingEvents.length > 0 && (
-        <section style={{ padding: '7rem 1.5rem', background: '#F4EFE6' }}>
+        <section style={{ padding: '7rem 1.5rem', background: '#FAFAFA' }}>
           <div style={{ maxWidth: '1040px', margin: '0 auto' }}>
 
             {/* Header */}
             <div className="sF-reveal" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
               <p className="sF-label">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#D05918" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C0392B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="12" cy="12" r="10"/>
                   <polyline points="12 6 12 12 16 14"/>
                 </svg>
@@ -622,9 +622,9 @@ export default async function PublicHomePage() {
                   race: 'Course', outing: 'Sortie', competition: 'Compétition', other: 'Événement',
                 }
                 const typeColor: Record<string, string> = {
-                  race: '#D05918', outing: '#3A6B2A', competition: '#1E3A14', other: '#6B5D52',
+                  race: '#C0392B', outing: '#A93226', competition: '#7B241C', other: '#7F7F7F',
                 }
-                const color = typeColor[ev.type] ?? '#6B5D52'
+                const color = typeColor[ev.type] ?? '#7F7F7F'
                 const stagger = i === 0 ? 'sF-d1' : i === 1 ? 'sF-d2' : 'sF-d3'
                 return (
                   <div key={ev.id} className={`sF-card sF-reveal ${stagger}`} style={{ overflow: 'hidden' }}>
@@ -632,11 +632,11 @@ export default async function PublicHomePage() {
                     <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', marginBottom: '1.25rem' }}>
                       <div style={{
                         flexShrink: 0, width: '52px', textAlign: 'center',
-                        background: 'rgba(208,89,24,0.07)', borderRadius: '12px', padding: '0.5rem 0.25rem',
-                        border: '1.5px solid rgba(208,89,24,0.14)',
+                        background: 'rgba(192,57,43,0.07)', borderRadius: '12px', padding: '0.5rem 0.25rem',
+                        border: '1.5px solid rgba(192,57,43,0.14)',
                       }}>
-                        <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#D05918', lineHeight: 1 }}>{day}</div>
-                        <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#D05918', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{month}</div>
+                        <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#C0392B', lineHeight: 1 }}>{day}</div>
+                        <div style={{ fontSize: '0.65rem', fontWeight: 700, color: '#C0392B', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{month}</div>
                       </div>
                       <div style={{ flex: 1 }}>
                         <span style={{
@@ -656,14 +656,14 @@ export default async function PublicHomePage() {
                     {/* Meta */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#506040', fontSize: '0.82rem' }}>
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7A9E6E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#B0898A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
                         </svg>
                         <span style={{ textTransform: 'capitalize' }}>{weekday} à {time}</span>
                       </div>
                       {ev.location && (
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#506040', fontSize: '0.82rem' }}>
-                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7A9E6E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#B0898A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
                           </svg>
                           <span>{ev.location}</span>
@@ -679,8 +679,8 @@ export default async function PublicHomePage() {
             <div className="sF-reveal sF-d3" style={{ textAlign: 'center' }}>
               <Link href="/activites" style={{
                 display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                color: '#D05918', fontWeight: 700, fontSize: '0.95rem',
-                textDecoration: 'none', borderBottom: '2px solid rgba(208,89,24,0.3)',
+                color: '#C0392B', fontWeight: 700, fontSize: '0.95rem',
+                textDecoration: 'none', borderBottom: '2px solid rgba(192,57,43,0.3)',
                 paddingBottom: '2px', transition: 'border-color 0.2s',
               }}>
                 Voir toutes les activités
@@ -695,14 +695,14 @@ export default async function PublicHomePage() {
       )}
 
       {/* ──────────────────────────────────────── COMMENT REJOINDRE ── */}
-      <section style={{ padding: '7rem 1.5rem', background: '#F4EFE6' }}>
+      <section style={{ padding: '7rem 1.5rem', background: '#FAFAFA' }}>
         <div style={{ maxWidth: '1040px', margin: '0 auto' }}>
 
           {/* Header */}
           <div className="sF-reveal" style={{ textAlign: 'center', marginBottom: '4rem' }}>
             <p className="sF-label">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M6 1l1.5 3.5H11L8.3 6.7l1 3.5L6 8l-3.3 2.2 1-3.5L1 4.5h3.5Z" fill="#D05918"/>
+                <path d="M6 1l1.5 3.5H11L8.3 6.7l1 3.5L6 8l-3.3 2.2 1-3.5L1 4.5h3.5Z" fill="#C0392B"/>
               </svg>
               Rejoindre le club
             </p>
@@ -722,10 +722,10 @@ export default async function PublicHomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
                 <div style={{
                   width: '44px', height: '44px', borderRadius: '12px', flexShrink: 0,
-                  background: 'rgba(208,89,24,0.1)', border: '1.5px solid rgba(208,89,24,0.18)',
+                  background: 'rgba(192,57,43,0.1)', border: '1.5px solid rgba(192,57,43,0.18)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D05918" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C0392B" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                     <polyline points="14 2 14 8 20 8"/>
                     <line x1="16" y1="13" x2="8" y2="13"/>
@@ -733,7 +733,7 @@ export default async function PublicHomePage() {
                     <polyline points="10 9 9 9 8 9"/>
                   </svg>
                 </div>
-                <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#D05918', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#C0392B', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
                   Étape 01
                 </span>
               </div>
@@ -750,16 +750,16 @@ export default async function PublicHomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
                 <div style={{
                   width: '44px', height: '44px', borderRadius: '12px', flexShrink: 0,
-                  background: 'rgba(30,58,20,0.07)', border: '1.5px solid rgba(30,58,20,0.12)',
+                  background: 'rgba(123,36,28,0.07)', border: '1.5px solid rgba(123,36,28,0.12)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E3A14" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7B241C" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                     <circle cx="12" cy="7" r="4"/>
                     <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
                   </svg>
                 </div>
-                <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#1E3A14', letterSpacing: '0.1em', textTransform: 'uppercase', opacity: 0.65 }}>
+                <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#7B241C', letterSpacing: '0.1em', textTransform: 'uppercase', opacity: 0.65 }}>
                   Étape 02
                 </span>
               </div>
@@ -776,17 +776,17 @@ export default async function PublicHomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
                 <div style={{
                   width: '44px', height: '44px', borderRadius: '12px', flexShrink: 0,
-                  background: 'rgba(58,107,42,0.1)', border: '1.5px solid rgba(58,107,42,0.15)',
+                  background: 'rgba(169,50,38,0.1)', border: '1.5px solid rgba(169,50,38,0.15)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                 }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3A6B2A" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A93226" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="15" cy="4" r="2"/>
                     <path d="M10.5 8.5L8 17l4-2 3 4 2-8"/>
                     <path d="M16 8l-2.5.5-3 5"/>
                     <path d="M5 12l3.5 1"/>
                   </svg>
                 </div>
-                <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#3A6B2A', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                <span style={{ fontSize: '0.7rem', fontWeight: 800, color: '#A93226', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
                   Étape 03
                 </span>
               </div>
@@ -821,8 +821,8 @@ export default async function PublicHomePage() {
           <div className="sF-reveal" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
             <p className="sF-label">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <circle cx="6" cy="6" r="5" stroke="#D05918" strokeWidth="1.5"/>
-                <path d="M4 5c0-.55.45-1 1-1h2c.55 0 1 .45 1 1v1.5c0 .55-.45 1-1 1H6l-1 1.5V7.5H5c-.55 0-1-.45-1-1V5z" fill="#D05918" opacity=".7"/>
+                <circle cx="6" cy="6" r="5" stroke="#C0392B" strokeWidth="1.5"/>
+                <path d="M4 5c0-.55.45-1 1-1h2c.55 0 1 .45 1 1v1.5c0 .55-.45 1-1 1H6l-1 1.5V7.5H5c-.55 0-1-.45-1-1V5z" fill="#C0392B" opacity=".7"/>
               </svg>
               Ils courent avec nous
             </p>
@@ -862,24 +862,24 @@ export default async function PublicHomePage() {
                 <div style={{ marginBottom: '1.25rem' }}>
                   <svg width="28" height="22" viewBox="0 0 28 22" fill="none">
                     <path d="M0 22V13.2C0 5.73 4.2 1.4 12.6 0l1.4 2.52C9.8 3.36 7.56 5.18 6.86 8H12V22H0zm16 0V13.2C16 5.73 20.2 1.4 28.6 0L30 2.52C25.8 3.36 23.56 5.18 22.86 8H28V22H16z"
-                      fill="#1E3A14" fillOpacity="0.12"/>
+                      fill="#7B241C" fillOpacity="0.12"/>
                   </svg>
                 </div>
                 <p style={{ color: '#3A4A2E', fontSize: '0.925rem', lineHeight: 1.8, marginBottom: '1.5rem', fontStyle: 'italic' }}>
                   &ldquo;{t.quote}&rdquo;
                 </p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', borderTop: '1px solid rgba(30,58,20,0.08)', paddingTop: '1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', borderTop: '1px solid rgba(123,36,28,0.08)', paddingTop: '1rem' }}>
                   <div style={{
                     width: '36px', height: '36px', borderRadius: '50%', flexShrink: 0,
-                    background: 'rgba(208,89,24,0.12)',
+                    background: 'rgba(192,57,43,0.12)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: '0.85rem', fontWeight: 700, color: '#D05918',
+                    fontSize: '0.85rem', fontWeight: 700, color: '#C0392B',
                   }}>
                     {t.initial}
                   </div>
                   <div>
                     <p style={{ fontWeight: 700, color: '#1A2E10', fontSize: '0.875rem' }}>{t.name}</p>
-                    <p style={{ fontSize: '0.75rem', color: '#7A9E6E' }}>{t.role}</p>
+                    <p style={{ fontSize: '0.75rem', color: '#B0898A' }}>{t.role}</p>
                   </div>
                 </div>
               </div>
@@ -890,7 +890,7 @@ export default async function PublicHomePage() {
       </section>
 
       {/* ─────────────────────────────────────────── CTA FINAL ── */}
-      <section style={{ padding: '7rem 1.5rem', background: '#F4EFE6' }}>
+      <section style={{ padding: '7rem 1.5rem', background: '#FAFAFA' }}>
         <div className="sF-reveal" style={{ maxWidth: '640px', margin: '0 auto', textAlign: 'center' }}>
 
           {/* Decorative three dots */}
@@ -900,7 +900,7 @@ export default async function PublicHomePage() {
                 width: i === 1 ? '32px' : '8px',
                 height: '8px',
                 borderRadius: '100px',
-                background: i === 1 ? '#D05918' : '#1E3A14',
+                background: i === 1 ? '#C0392B' : '#7B241C',
                 opacity: i === 1 ? 1 : 0.2,
                 transition: 'all 0.3s ease',
               }} />
@@ -915,7 +915,7 @@ export default async function PublicHomePage() {
             marginBottom: '1.25rem',
           }}>
             Prêt à courir{' '}
-            <span style={{ color: '#D05918' }}>avec nous ?</span>
+            <span style={{ color: '#C0392B' }}>avec nous ?</span>
           </h2>
 
           <p style={{
@@ -940,7 +940,7 @@ export default async function PublicHomePage() {
       </section>
 
       {/* ─────────────────────────────────────────── FOOTER ── */}
-      <footer style={{ background: '#141F0C', padding: '3.5rem 1.5rem 2rem', color: 'rgba(244,239,230,0.45)' }}>
+      <footer style={{ background: '#141F0C', padding: '3.5rem 1.5rem 2rem', color: 'rgba(255,255,255,0.45)' }}>
         <div style={{ maxWidth: '1040px', margin: '0 auto' }}>
 
           <div style={{
@@ -949,9 +949,9 @@ export default async function PublicHomePage() {
           }}>
             {/* Brand */}
             <div>
-              <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#F4EFE6', marginBottom: '0.3rem' }}>
+              <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#FAFAFA', marginBottom: '0.3rem' }}>
                 <span style={{ fontWeight: 400, opacity: 0.55 }}>sa </span>
-                <span style={{ color: '#D05918' }}>Foulée</span>
+                <span style={{ color: '#C0392B' }}>Foulée</span>
               </div>
               <p style={{ fontSize: '0.8rem' }}>Association de course à pied</p>
             </div>
@@ -972,7 +972,7 @@ export default async function PublicHomePage() {
           </div>
 
           <div style={{
-            borderTop: '1px solid rgba(244,239,230,0.07)',
+            borderTop: '1px solid rgba(255,255,255,0.07)',
             paddingTop: '1.75rem',
             textAlign: 'center',
             fontSize: '0.78rem',

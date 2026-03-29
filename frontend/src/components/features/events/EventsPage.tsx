@@ -12,11 +12,11 @@ import CalendarView from './CalendarView'
 type ViewMode = 'list' | 'calendar'
 
 const TYPE_OPTIONS: { value: EventType | ''; label: string; color: string }[] = [
-  { value: '',            label: 'Tous',        color: '#7A9E6E' },
-  { value: 'race',        label: 'Course',      color: '#D05918' },
-  { value: 'outing',      label: 'Sortie',      color: '#3A6B2A' },
+  { value: '',            label: 'Tous',        color: '#B0898A' },
+  { value: 'race',        label: 'Course',      color: '#C0392B' },
+  { value: 'outing',      label: 'Sortie',      color: '#A93226' },
   { value: 'competition', label: 'Compétition', color: '#d97706' },
-  { value: 'other',       label: 'Autre',       color: '#7A9E6E' },
+  { value: 'other',       label: 'Autre',       color: '#B0898A' },
 ]
 
 function IconCalendar() {
@@ -126,32 +126,32 @@ export default function EventsPage() {
           padding: 6px 14px; font-size: 13px; font-weight: 600;
           transition: all 0.2s ease; cursor: pointer; border: none;
         }
-        .ev-view-btn.active { background: white; color: #1E3A14; box-shadow: 0 1px 4px rgba(30,58,20,0.1); border-radius: 10px; }
-        .ev-view-btn:not(.active) { background: transparent; color: #7A9E6E; border-radius: 10px; }
+        .ev-view-btn.active { background: white; color: #7B241C; box-shadow: 0 1px 4px rgba(123,36,28,0.1); border-radius: 10px; }
+        .ev-view-btn:not(.active) { background: transparent; color: #B0898A; border-radius: 10px; }
         .ev-type-pill {
           padding: 5px 14px; border-radius: 20px; font-size: 12px;
           font-weight: 600; transition: all 0.2s ease; cursor: pointer; white-space: nowrap;
         }
-        .ev-type-pill.active { background: #D05918; color: white; box-shadow: 0 2px 8px rgba(208,89,24,0.3); border: 1px solid transparent; }
-        .ev-type-pill:not(.active) { background: white; color: #7A9E6E; border: 1px solid rgba(30,58,20,0.1); }
-        .ev-type-pill:not(.active):hover { background: #F4EFE6; color: #1E3A14; }
+        .ev-type-pill.active { background: #C0392B; color: white; box-shadow: 0 2px 8px rgba(192,57,43,0.3); border: 1px solid transparent; }
+        .ev-type-pill:not(.active) { background: white; color: #B0898A; border: 1px solid rgba(123,36,28,0.1); }
+        .ev-type-pill:not(.active):hover { background: #FAFAFA; color: #7B241C; }
         .ev-upcoming-toggle { display: flex; align-items: center; gap: 8px; cursor: pointer; }
-        .ev-upcoming-toggle input[type=checkbox] { accent-color: #D05918; width: 15px; height: 15px; }
+        .ev-upcoming-toggle input[type=checkbox] { accent-color: #C0392B; width: 15px; height: 15px; }
       `}</style>
 
-      <div className="ev-page min-h-screen pb-24 lg:pb-8" style={{ background: '#F9F6F1' }}>
+      <div className="ev-page min-h-screen pb-24 lg:pb-8" style={{ background: '#F8F8F8' }}>
         <div className="mx-auto max-w-5xl px-5 py-8">
 
           {/* ── Header ─────────────────────────────────────────────────── */}
           <div className="ev-fade mb-8 flex items-start justify-between" style={{ animationDelay: '0ms' }}>
             <div>
-              <div className="mb-1 flex items-center gap-2" style={{ color: '#3A6B2A' }}>
+              <div className="mb-1 flex items-center gap-2" style={{ color: '#A93226' }}>
                 <IconCalendar />
-                <h1 className="text-3xl font-extrabold" style={{ letterSpacing: '-0.02em', color: '#1E3A14' }}>
+                <h1 className="text-3xl font-extrabold" style={{ letterSpacing: '-0.02em', color: '#7B241C' }}>
                   Événements
                 </h1>
               </div>
-              <p className="text-sm" style={{ color: '#7A9E6E' }}>
+              <p className="text-sm" style={{ color: '#B0898A' }}>
                 {meta.total} événement{meta.total > 1 ? 's' : ''} au programme
               </p>
             </div>
@@ -160,7 +160,7 @@ export default function EventsPage() {
               {/* View toggle */}
               <div
                 className="flex gap-0.5 rounded-xl p-1"
-                style={{ background: 'rgba(30,58,20,0.05)' }}
+                style={{ background: 'rgba(123,36,28,0.05)' }}
               >
                 <button onClick={() => setView('list')}     className={`ev-view-btn ${view === 'list'     ? 'active' : ''}`}>
                   <IconList /> Liste
@@ -174,7 +174,7 @@ export default function EventsPage() {
                 <button
                   onClick={() => { setEditEvent(undefined); setShowForm(true) }}
                   className="rounded-xl px-4 py-2.5 text-sm font-bold text-white transition"
-                  style={{ background: 'linear-gradient(135deg, #D05918 0%, #B04A10 100%)', boxShadow: '0 2px 8px rgba(208,89,24,0.3)' }}
+                  style={{ background: 'linear-gradient(135deg, #C0392B 0%, #922B21 100%)', boxShadow: '0 2px 8px rgba(192,57,43,0.3)' }}
                 >
                   + Nouveau
                 </button>
@@ -186,10 +186,10 @@ export default function EventsPage() {
           {showForm && (
             <div
               className="ev-fade mb-6 overflow-hidden rounded-2xl bg-white"
-              style={{ animationDelay: '40ms', boxShadow: '0 4px 20px rgba(30,58,20,0.08)', border: '1px solid rgba(30,58,20,0.08)' }}
+              style={{ animationDelay: '40ms', boxShadow: '0 4px 20px rgba(123,36,28,0.08)', border: '1px solid rgba(123,36,28,0.08)' }}
             >
-              <div className="px-6 py-4" style={{ background: 'linear-gradient(135deg, rgba(122,158,110,0.08) 0%, rgba(208,89,24,0.04) 100%)', borderBottom: '1px solid rgba(30,58,20,0.06)' }}>
-                <h2 className="font-bold" style={{ color: '#1E3A14' }}>
+              <div className="px-6 py-4" style={{ background: 'linear-gradient(135deg, rgba(176,137,138,0.08) 0%, rgba(192,57,43,0.04) 100%)', borderBottom: '1px solid rgba(123,36,28,0.06)' }}>
+                <h2 className="font-bold" style={{ color: '#7B241C' }}>
                   {editEvent ? "Modifier l'événement" : 'Nouvel événement'}
                 </h2>
               </div>
@@ -236,13 +236,13 @@ export default function EventsPage() {
                     checked={!!filters.upcoming}
                     onChange={(e) => setFilters((f) => ({ ...f, upcoming: e.target.checked, page: 1 }))}
                   />
-                  <span className="text-xs font-semibold" style={{ color: '#7A9E6E' }}>À venir uniquement</span>
+                  <span className="text-xs font-semibold" style={{ color: '#B0898A' }}>À venir uniquement</span>
                 </label>
               </div>
 
               {/* Error */}
               {error && (
-                <div className="mb-4 rounded-xl px-4 py-3 text-sm" style={{ background: 'rgba(208,89,24,0.06)', border: '1px solid rgba(208,89,24,0.2)', color: '#B04A10' }}>
+                <div className="mb-4 rounded-xl px-4 py-3 text-sm" style={{ background: 'rgba(192,57,43,0.06)', border: '1px solid rgba(192,57,43,0.2)', color: '#922B21' }}>
                   {error}
                 </div>
               )}
@@ -251,19 +251,19 @@ export default function EventsPage() {
               {loading ? (
                 <div className="flex h-48 items-center justify-center">
                   <div className="flex flex-col items-center gap-3">
-                    <div className="h-8 w-8 animate-spin rounded-full border-2" style={{ borderColor: 'rgba(30,58,20,0.1)', borderTopColor: '#D05918' }} />
-                    <p className="text-sm" style={{ color: '#7A9E6E' }}>Chargement des événements…</p>
+                    <div className="h-8 w-8 animate-spin rounded-full border-2" style={{ borderColor: 'rgba(123,36,28,0.1)', borderTopColor: '#C0392B' }} />
+                    <p className="text-sm" style={{ color: '#B0898A' }}>Chargement des événements…</p>
                   </div>
                 </div>
               ) : events.length === 0 ? (
-                <div className="flex flex-col items-center justify-center gap-3 rounded-2xl bg-white" style={{ border: '1px solid rgba(30,58,20,0.07)', padding: '3rem 2rem', textAlign: 'center' }}>
-                  <div style={{ opacity: 0.3, color: '#3A6B2A' }}><IconEmptyCalendar /></div>
+                <div className="flex flex-col items-center justify-center gap-3 rounded-2xl bg-white" style={{ border: '1px solid rgba(123,36,28,0.07)', padding: '3rem 2rem', textAlign: 'center' }}>
+                  <div style={{ opacity: 0.3, color: '#A93226' }}><IconEmptyCalendar /></div>
                   <div>
-                    <p className="text-sm font-semibold" style={{ color: '#1E3A14', marginBottom: '0.25rem' }}>Aucun événement pour ce filtre.</p>
-                    <p className="text-xs" style={{ color: '#7A9E6E' }}>Essayez un autre type ou créez la prochaine sortie du club !</p>
+                    <p className="text-sm font-semibold" style={{ color: '#7B241C', marginBottom: '0.25rem' }}>Aucun événement pour ce filtre.</p>
+                    <p className="text-xs" style={{ color: '#B0898A' }}>Essayez un autre type ou créez la prochaine sortie du club !</p>
                   </div>
                   {canManageEvents && (
-                    <button onClick={() => setShowForm(true)} className="text-xs font-semibold hover:underline" style={{ color: '#D05918' }}>
+                    <button onClick={() => setShowForm(true)} className="text-xs font-semibold hover:underline" style={{ color: '#C0392B' }}>
                       Créer un événement →
                     </button>
                   )}
@@ -285,13 +285,13 @@ export default function EventsPage() {
               {/* Pagination */}
               {meta.last_page > 1 && (
                 <div className="mt-6 flex items-center justify-between">
-                  <p className="text-xs" style={{ color: '#7A9E6E' }}>Page {meta.current_page} sur {meta.last_page}</p>
+                  <p className="text-xs" style={{ color: '#B0898A' }}>Page {meta.current_page} sur {meta.last_page}</p>
                   <div className="flex gap-2">
                     <button
                       disabled={meta.current_page <= 1}
                       onClick={() => setFilters((f) => ({ ...f, page: (f.page ?? 1) - 1 }))}
                       className="rounded-xl px-4 py-2 text-xs font-medium transition disabled:opacity-30"
-                      style={{ border: '1px solid rgba(30,58,20,0.12)', color: '#3A6B2A', background: 'white' }}
+                      style={{ border: '1px solid rgba(123,36,28,0.12)', color: '#A93226', background: 'white' }}
                     >
                       ← Précédent
                     </button>
@@ -299,7 +299,7 @@ export default function EventsPage() {
                       disabled={meta.current_page >= meta.last_page}
                       onClick={() => setFilters((f) => ({ ...f, page: (f.page ?? 1) + 1 }))}
                       className="rounded-xl px-4 py-2 text-xs font-medium transition disabled:opacity-30"
-                      style={{ border: '1px solid rgba(30,58,20,0.12)', color: '#3A6B2A', background: 'white' }}
+                      style={{ border: '1px solid rgba(123,36,28,0.12)', color: '#A93226', background: 'white' }}
                     >
                       Suivant →
                     </button>
