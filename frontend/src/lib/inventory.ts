@@ -1,5 +1,5 @@
 import { api } from './api'
-import type { Equipment, EquipmentCategory, EquipmentStatus } from '@/types'
+import type { Equipment, EquipmentDetail, EquipmentCategory, EquipmentStatus } from '@/types'
 
 export interface EquipmentPayload {
   name: string
@@ -27,6 +27,18 @@ export function updateEquipment(id: number, data: Partial<EquipmentPayload>): Pr
 
 export function deleteEquipment(id: number): Promise<void> {
   return api.delete<void>(`/inventory/${id}`)
+}
+
+export function getEquipmentDetail(id: number): Promise<EquipmentDetail> {
+  return api.get<EquipmentDetail>(`/inventory/${id}`)
+}
+
+export function assignEquipment(id: number, data: { user_id: number; notes?: string }): Promise<unknown> {
+  return api.post(`/inventory/${id}/assign`, data)
+}
+
+export function returnEquipment(assignmentId: number): Promise<unknown> {
+  return api.patch(`/inventory/assignments/${assignmentId}/return`)
 }
 
 export async function exportInventoryCSV(): Promise<void> {

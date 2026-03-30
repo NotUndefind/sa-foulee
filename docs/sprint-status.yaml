@@ -700,7 +700,7 @@ post_sprint:
     end_date: "2026-05-10"
     capacity_points: 10
     committed_points: 8
-    completed_points: 3
+    completed_points: 6
     status: "in_progress"
     goal: "Inventaire frontend complet — liste, attributions, export CSV"
     stories:
@@ -721,10 +721,19 @@ post_sprint:
       - story_id: "STORY-V2-I04"
         title: "Frontend attributions et historique"
         points: 3
-        status: "not_started"
+        status: "completed"
         epic: "EPIC-I"
         priority: "should_have"
         assigned_to: "julesbourin"
+        completed_date: "2026-03-30"
+        files_modified:
+          - "frontend/src/types/index.ts"
+          - "frontend/src/lib/inventory.ts"
+          - "frontend/src/components/features/inventory/EquipmentDetailPage.tsx"
+          - "frontend/src/components/features/inventory/AssignmentModal.tsx"
+          - "frontend/src/app/(dashboard)/tableau-de-bord/inventaire/[id]/page.tsx"
+          - "frontend/src/components/features/inventory/InventoryPage.tsx"
+          - "backend/routes/api.php"
       - story_id: "STORY-V2-I05"
         title: "Export CSV inventaire"
         points: 2

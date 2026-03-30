@@ -305,7 +305,7 @@ export default function InventoryPage() {
                     {filtered.map(item => {
                       const sc = STATUS_CONFIG[item.status]
                       return (
-                        <tr key={item.id} className="inv-tr">
+                        <tr key={item.id} className="inv-tr" style={{ cursor: 'pointer' }} onClick={() => router.push(`/tableau-de-bord/inventaire/${item.id}`)}>
                           <td className="inv-td font-semibold">{item.name}</td>
                           <td className="inv-td" style={{ color: '#7F7F7F' }}>{CATEGORY_LABELS[item.category]}</td>
                           <td className="inv-td">{item.quantity}</td>
@@ -322,7 +322,7 @@ export default function InventoryPage() {
                           <td className="inv-td">
                             <div className="flex items-center gap-1">
                               <button className="inv-icon-btn" title="Modifier"
-                                onClick={() => { setEditing(item); setShowForm(true) }}
+                                onClick={(e) => { e.stopPropagation(); setEditing(item); setShowForm(true) }}
                                 style={{ color: '#7F7F7F' }}
                                 onMouseEnter={e => (e.currentTarget.style.background = 'rgba(192,48,46,0.08)')}
                                 onMouseLeave={e => (e.currentTarget.style.background = 'none')}>
@@ -330,7 +330,7 @@ export default function InventoryPage() {
                               </button>
                               {canDelete && (
                                 <button className="inv-icon-btn" title="Supprimer"
-                                  onClick={() => setDeleting(item)}
+                                  onClick={(e) => { e.stopPropagation(); setDeleting(item) }}
                                   style={{ color: '#7F7F7F' }}
                                   onMouseEnter={e => (e.currentTarget.style.background = 'rgba(251,57,54,0.08)')}
                                   onMouseLeave={e => (e.currentTarget.style.background = 'none')}>

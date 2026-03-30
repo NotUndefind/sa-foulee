@@ -51,6 +51,16 @@ Route::prefix('v1')->group(function () {
         // Newsletter — toggle abonnement (tous les membres)
         Route::patch('me/newsletter', [\App\Http\Controllers\Api\V1\NewsletterController::class, 'toggle']);
 
+        // ---- Membres (liste légère pour bureau+) ----
+        Route::middleware('role:admin|founder|bureau')->group(function () {
+            Route::get('members', function () {
+                return response()->json(
+                    \App\Models\User::orderBy('last_name')
+                        ->get(['id', 'first_name', 'last_name', 'email'])
+                );
+            });
+        });
+
         // ---- Inventaire [Bureau+] ----
         Route::middleware('role:admin|founder|bureau')->group(function () {
             Route::get('inventory',             [\App\Http\Controllers\Api\V1\EquipmentController::class, 'index']);

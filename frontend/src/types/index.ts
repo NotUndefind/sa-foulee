@@ -159,6 +159,20 @@ export interface Equipment {
   created_at: string
 }
 
+export interface EquipmentAssignment {
+  id: number
+  user: { id: number; first_name: string; last_name: string; email: string } | null
+  assigned_at: string
+  returned_at: string | null
+  notes: string | null
+  assigned_by: { id: number; first_name: string; last_name: string } | null
+}
+
+export interface EquipmentDetail extends Equipment {
+  active_assignments: EquipmentAssignment[]
+  assignment_history: EquipmentAssignment[]
+}
+
 // ---- Chat ----
 
 export interface ChatMessage {
