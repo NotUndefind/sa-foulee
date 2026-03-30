@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Baloo_2 } from 'next/font/google'
+import ScrollReveal from '@/components/ui/ScrollReveal'
 
 export const metadata: Metadata = {
   title: 'La Neuville TAF sa Foulée — Association de course à pied',
@@ -1083,16 +1084,7 @@ export default async function PublicHomePage() {
       </footer>
 
       {/* ── Scroll-reveal observer ── */}
-      <script dangerouslySetInnerHTML={{ __html: `
-        (function () {
-          var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (e) {
-              if (e.isIntersecting) { e.target.classList.add('on'); }
-            });
-          }, { threshold: 0.1 });
-          document.querySelectorAll('.sF-reveal').forEach(function (el) { io.observe(el); });
-        })();
-      `}} />
+      <ScrollReveal />
     </div>
   )
 }

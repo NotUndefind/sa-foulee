@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 
@@ -19,7 +19,7 @@ async function postUnsubscribe(token: string): Promise<void> {
   if (!res.ok)            throw new Error('error')
 }
 
-export default function DesabonnementPage() {
+function DesabonnementContent() {
   const searchParams = useSearchParams()
   const [status, setStatus] = useState<Status>('loading')
 
@@ -148,5 +148,13 @@ export default function DesabonnementPage() {
         </div>
       </div>
     </>
+  )
+}
+
+export default function DesabonnementPage() {
+  return (
+    <Suspense>
+      <DesabonnementContent />
+    </Suspense>
   )
 }
