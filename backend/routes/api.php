@@ -28,6 +28,8 @@ Route::prefix('v1')->group(function () {
     });
 
     // ---- Routes publiques ----
+    Route::post('newsletter/unsubscribe', [\App\Http\Controllers\Api\V1\NewsletterController::class, 'unsubscribe']);
+
     Route::get('events',                    [\App\Http\Controllers\Api\V1\EventController::class, 'index']);
     Route::get('events/{event}',            [\App\Http\Controllers\Api\V1\EventController::class, 'show']);
     Route::get('events/{event}/photos',     [\App\Http\Controllers\Api\V1\EventPhotoController::class, 'index']);
@@ -53,6 +55,11 @@ Route::prefix('v1')->group(function () {
         Route::middleware('role:admin|founder')->group(function () {
             Route::get('admin/newsletter/subscribers',        [\App\Http\Controllers\Api\V1\NewsletterController::class, 'subscribers']);
             Route::get('admin/newsletter/subscribers/export', [\App\Http\Controllers\Api\V1\NewsletterController::class, 'exportSubscribers']);
+            // Campagnes
+            Route::get('admin/newsletter/campaigns',                    [\App\Http\Controllers\Api\V1\CampaignController::class, 'index']);
+            Route::post('admin/newsletter/campaigns',                   [\App\Http\Controllers\Api\V1\CampaignController::class, 'store']);
+            Route::patch('admin/newsletter/campaigns/{campaign}',       [\App\Http\Controllers\Api\V1\CampaignController::class, 'update']);
+            Route::post('admin/newsletter/campaigns/{campaign}/send',   [\App\Http\Controllers\Api\V1\CampaignController::class, 'send']);
         });
 
         // ---- Admin uniquement ----

@@ -58,6 +58,34 @@ class NewsletterController extends Controller
     }
 
     /**
+     * POST /api/v1/newsletter/unsubscribe (public, sans auth)
+     * Désabonnement via token HMAC depuis le lien email.
+     */
+    public function unsubscribe(Request $request): JsonResponse
+    {
+        $request->validate([
+            'token' => ['required', 'string', 'size:64'],
+        ]);
+
+        $token = $request->string('token');
+
+        $user = User::whereNotNull('newsletter_unsubscribe_token')
+            ->where('newsletter_unsubscribe_token', $token)
+            ->first();
+
+        if (! $user) {
+            return response()->json(['message' => 'Ce lien n\'est plus valide.'], 404);
+        }
+
+        $user->update([
+            'newsletter_subscribed_at'    => null,
+            'newsletter_unsubscribe_token' => null,
+        ]);
+
+        return response()->json(['message' => 'Vous avez été désabonné(e) avec succès.']);
+    }
+
+    /**
      * GET /api/v1/admin/newsletter/subscribers/export
      * Export CSV des abonnés [Admin|Founder].
      */

@@ -70,6 +70,15 @@ function IconUser({ active }: { active?: boolean }) {
   )
 }
 
+function IconMail({ active }: { active?: boolean }) {
+  return (
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.6} strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="4" width="20" height="16" rx="2"/>
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+    </svg>
+  )
+}
+
 function IconSettings({ active }: { active?: boolean }) {
   return (
     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.6} strokeLinecap="round" strokeLinejoin="round">
@@ -302,6 +311,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                         <IconSettings active={pathname.startsWith('/tableau-de-bord/admin')} />
                       </span>
                       Administration
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/tableau-de-bord/newsletter"
+                      className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/newsletter') ? ' active' : ''}`}
+                    >
+                      <span style={{ opacity: pathname.startsWith('/tableau-de-bord/newsletter') ? 1 : 0.7, flexShrink: 0 }}>
+                        <IconMail active={pathname.startsWith('/tableau-de-bord/newsletter')} />
+                      </span>
+                      Newsletter
                     </Link>
                   </li>
                 </>

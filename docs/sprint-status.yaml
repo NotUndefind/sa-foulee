@@ -603,31 +603,49 @@ post_sprint:
     end_date: "2026-04-26"
     capacity_points: 10
     committed_points: 11
-    completed_points: 0
-    status: "not_started"
+    completed_points: 11
+    status: "completed"
     goal: "Newsletter admin complète — abonnés, envoi campagnes, désabonnement RGPD"
     stories:
       - story_id: "STORY-V2-N03"
         title: "Page admin liste abonnés + export CSV"
         points: 3
-        status: "not_started"
+        status: "completed"
         epic: "EPIC-N"
         priority: "must_have"
         assigned_to: "julesbourin"
+        completed_date: "2026-03-30"
+        files_modified:
+          - "frontend/src/app/(dashboard)/tableau-de-bord/newsletter/page.tsx"
+          - "frontend/src/components/features/newsletter/NewsletterAdminPage.tsx"
+          - "frontend/src/app/(dashboard)/layout.tsx"
       - story_id: "STORY-V2-N04"
         title: "Backend création et envoi de campagne newsletter"
         points: 5
-        status: "not_started"
+        status: "completed"
         epic: "EPIC-N"
         priority: "should_have"
         assigned_to: "julesbourin"
+        completed_date: "2026-03-30"
+        files_modified:
+          - "backend/app/Models/NewsletterCampaign.php"
+          - "backend/app/Http/Controllers/Api/V1/CampaignController.php"
+          - "backend/app/Jobs/SendNewsletterEmail.php"
+          - "backend/resources/views/emails/newsletter.blade.php"
+          - "backend/config/newsletter.php"
+          - "backend/routes/api.php"
       - story_id: "STORY-V2-N06"
         title: "Désabonnement par lien email (RGPD)"
         points: 3
-        status: "not_started"
+        status: "completed"
         epic: "EPIC-N"
         priority: "must_have"
         assigned_to: "julesbourin"
+        completed_date: "2026-03-30"
+        files_modified:
+          - "backend/app/Http/Controllers/Api/V1/NewsletterController.php"
+          - "backend/routes/api.php"
+          - "frontend/src/app/(public)/desabonnement/page.tsx"
 
   - sprint_number: 13
     start_date: "2026-04-27"
