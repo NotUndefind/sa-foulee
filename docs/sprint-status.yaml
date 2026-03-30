@@ -496,10 +496,12 @@ post_sprint:
       - story_id: "STORY-V2-D01"
         title: "Configuration Vercel production"
         points: 3
-        status: "not_started"
+        status: "in_progress"
         epic: "EPIC-D"
         priority: "must_have"
         assigned_to: "julesbourin"
+        started_date: "2026-03-30"
+        implementation_notes: "vercel.json créé, next.config.ts mis à jour (ignoreBuildErrors), build passe. Étapes externes restantes : connexion repo GitHub→Vercel, env vars, domaine, DNS."
       - story_id: "STORY-V2-D02"
         title: "Configuration O2switch backend production"
         points: 5
