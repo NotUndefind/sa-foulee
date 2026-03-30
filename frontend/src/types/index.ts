@@ -28,6 +28,7 @@ export interface User {
   roles: Role[]             // tableau car Spatie supporte plusieurs rôles
   has_complete_documents: boolean
   document_completion: number
+  membership_paid_at: string | null
   email_verified_at: string | null
   created_at: string
 }

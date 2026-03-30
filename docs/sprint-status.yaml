@@ -489,8 +489,8 @@ post_sprint:
     end_date: "2026-04-12"
     capacity_points: 10
     committed_points: 10
-    completed_points: 0
-    status: "not_started"
+    completed_points: 2
+    status: "in_progress"
     goal: "Site en production — Vercel + O2switch opérationnels + page adhésion HelloAsso"
     stories:
       - story_id: "STORY-V2-D01"
@@ -521,10 +521,17 @@ post_sprint:
       - story_id: "STORY-V2-P01"
         title: "Page /adhesion et bouton HelloAsso"
         points: 2
-        status: "not_started"
+        status: "completed"
         epic: "EPIC-P"
         priority: "must_have"
         assigned_to: "julesbourin"
+        completed_date: "2026-03-30"
+        files_modified:
+          - "frontend/src/app/(public)/adhesion/page.tsx"
+          - "frontend/src/app/(public)/layout.tsx"
+          - "frontend/src/components/features/profile/ProfilePage.tsx"
+          - "frontend/src/types/index.ts"
+          - "frontend/.env"
 
   - sprint_number: 11
     start_date: "2026-04-13"
