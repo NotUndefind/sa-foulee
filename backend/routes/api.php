@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
 
+    // ---- Webhooks (public, hors auth Sanctum) ----
+    Route::prefix('webhooks')->group(function () {
+        Route::post('helloasso', [\App\Http\Controllers\Api\V1\HelloAssoWebhookController::class, 'handle'])
+            ->middleware('helloasso.signature');
+    });
+
     // ---- Auth (public) ----
     Route::prefix('auth')->group(function () {
         Route::post('register',        [\App\Http\Controllers\Api\V1\AuthController::class, 'register']);

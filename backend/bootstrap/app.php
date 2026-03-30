@@ -18,11 +18,12 @@ return Application::configure(basePath: dirname(__DIR__))
         // CORS — doit être en premier pour répondre aux preflight OPTIONS
         $middleware->prepend(\Illuminate\Http\Middleware\HandleCors::class);
 
-        // Enregistrement des alias middleware Spatie Permission
+        // Enregistrement des alias middleware
         $middleware->alias([
-            'role'       => \Spatie\Permission\Middleware\RoleMiddleware::class,
-            'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
-            'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
+            'role'              => \Spatie\Permission\Middleware\RoleMiddleware::class,
+            'permission'        => \Spatie\Permission\Middleware\PermissionMiddleware::class,
+            'role_or_permission'=> \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
+            'helloasso.signature' => \App\Http\Middleware\VerifyHelloAssoSignature::class,
         ]);
 
         $middleware->validateCsrfTokens(except: ['api/*']);

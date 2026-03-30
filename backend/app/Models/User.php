@@ -22,6 +22,8 @@ class User extends Authenticatable
         'avatar',
         'bio',
         'consent_given_at',
+        'membership_paid_at',
+        'membership_paid_amount',
     ];
 
     protected $hidden = [
@@ -32,9 +34,11 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
-            'consent_given_at' => 'datetime',
-            'strava_token' => 'encrypted', // Chiffrement AES-256 via APP_KEY
+            'email_verified_at'      => 'datetime',
+            'consent_given_at'       => 'datetime',
+            'membership_paid_at'     => 'datetime',
+            'membership_paid_amount' => 'decimal:2',
+            'strava_token'           => 'encrypted', // Chiffrement AES-256 via APP_KEY
         ];
     }
 

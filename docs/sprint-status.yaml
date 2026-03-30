@@ -538,17 +538,37 @@ post_sprint:
     end_date: "2026-04-19"
     capacity_points: 10
     committed_points: 10
-    completed_points: 0
-    status: "not_started"
+    completed_points: 5
+    status: "in_progress"
     goal: "Webhook HelloAsso fonctionnel + Newsletter — abonnement membres"
     stories:
       - story_id: "STORY-V2-P02"
         title: "Webhook HelloAsso — mise à jour cotisation"
         points: 5
-        status: "not_started"
+        status: "completed"
         epic: "EPIC-P"
         priority: "should_have"
         assigned_to: "julesbourin"
+        completed_date: "2026-03-30"
+        implementation_notes: >
+          Table budget_entries créée en anticipation de STORY-V2-B01 (Sprint 15)
+          avec colonnes minimales. HelloAsso envoie amount en centimes — division
+          par 100 effectuée dans le controller. Signature HMAC-SHA256 optionnelle
+          en local (secret vide = bypass). Idempotence sur (email, année civile).
+        files_modified:
+          - "backend/database/migrations/2026_03_29_000002_add_membership_paid_at_to_users_table.php"
+          - "backend/database/migrations/2026_03_29_000006_create_budget_entries_table.php"
+          - "backend/database/migrations/2026_03_29_000007_create_helloasso_webhooks_table.php"
+          - "backend/app/Http/Middleware/VerifyHelloAssoSignature.php"
+          - "backend/app/Models/HelloAssoWebhook.php"
+          - "backend/app/Models/BudgetEntry.php"
+          - "backend/app/Models/User.php"
+          - "backend/app/Http/Controllers/Api/V1/HelloAssoWebhookController.php"
+          - "backend/app/Http/Controllers/Api/V1/ProfileController.php"
+          - "backend/bootstrap/app.php"
+          - "backend/config/services.php"
+          - "backend/routes/api.php"
+          - "backend/.env"
       - story_id: "STORY-V2-N01"
         title: "Backend newsletter — migrations et API"
         points: 3
