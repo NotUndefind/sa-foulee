@@ -15,10 +15,10 @@ const TYPE_LABELS: Record<EventType, string> = {
 }
 
 const TYPE_CONFIG: Record<EventType, { bg: string; border: string; color: string; headerBg: string }> = {
-  race:        { bg: 'rgba(192,57,43,0.08)',    border: 'rgba(192,57,43,0.2)',    color: '#C0392B',  headerBg: 'rgba(192,57,43,0.05)'    },
-  outing:      { bg: 'rgba(123,36,28,0.08)',    border: 'rgba(123,36,28,0.2)',    color: '#7B241C',  headerBg: 'rgba(123,36,28,0.05)'    },
+  race:        { bg: 'rgba(251,57,54,0.08)',    border: 'rgba(251,57,54,0.2)',    color: '#FB3936',  headerBg: 'rgba(251,57,54,0.05)'    },
+  outing:      { bg: 'rgba(192,48,46,0.08)',    border: 'rgba(192,48,46,0.2)',    color: '#C0302E',  headerBg: 'rgba(192,48,46,0.05)'    },
   competition: { bg: 'rgba(245,158,11,0.10)',   border: 'rgba(245,158,11,0.25)', color: '#d97706',  headerBg: 'rgba(245,158,11,0.06)'   },
-  other:       { bg: 'rgba(176,137,138,0.10)',  border: 'rgba(176,137,138,0.2)', color: '#B0898A',  headerBg: 'rgba(176,137,138,0.05)'  },
+  other:       { bg: 'rgba(176,137,138,0.10)',  border: 'rgba(176,137,138,0.2)', color: '#7F7F7F',  headerBg: 'rgba(176,137,138,0.05)'  },
 }
 
 function IconPin() {
@@ -105,7 +105,7 @@ export default function EventCard({ event, onUpdate, onDelete, onEdit }: Props) 
       className="flex flex-col overflow-hidden rounded-2xl bg-white transition-all"
       style={{
         opacity: isPast ? 0.65 : 1,
-        boxShadow: '0 2px 8px rgba(123,36,28,0.07)',
+        boxShadow: '0 2px 8px rgba(192,48,46,0.07)',
         border: `1px solid ${cfg.border}`,
       }}
     >
@@ -139,38 +139,38 @@ export default function EventCard({ event, onUpdate, onDelete, onEdit }: Props) 
               {TYPE_LABELS[event.type]}
             </span>
             {!event.is_public && (
-              <span className="rounded-full px-2 py-0.5 text-[10px] font-medium" style={{ background: 'rgba(123,36,28,0.06)', color: '#B0898A' }}>
+              <span className="rounded-full px-2 py-0.5 text-[10px] font-medium" style={{ background: 'rgba(192,48,46,0.06)', color: '#7F7F7F' }}>
                 Privé
               </span>
             )}
             {isPast && (
-              <span className="rounded-full px-2 py-0.5 text-[10px] font-medium" style={{ background: 'rgba(123,36,28,0.05)', color: '#B0898A' }}>
+              <span className="rounded-full px-2 py-0.5 text-[10px] font-medium" style={{ background: 'rgba(192,48,46,0.05)', color: '#7F7F7F' }}>
                 Terminé
               </span>
             )}
           </div>
-          <h3 className="truncate font-bold leading-tight" style={{ color: '#7B241C' }}>{event.title}</h3>
+          <h3 className="truncate font-bold leading-tight" style={{ color: '#C0302E' }}>{event.title}</h3>
         </div>
       </div>
 
       {/* Corps */}
       <div className="flex flex-1 flex-col gap-3 px-4 py-4">
         {event.description && (
-          <p className="line-clamp-2 text-sm leading-relaxed" style={{ color: '#B0898A' }}>{event.description}</p>
+          <p className="line-clamp-2 text-sm leading-relaxed" style={{ color: '#7F7F7F' }}>{event.description}</p>
         )}
 
         <div className="mt-auto space-y-1.5">
           {event.location && (
-            <div className="flex items-center gap-2 text-xs" style={{ color: '#B0898A' }}>
+            <div className="flex items-center gap-2 text-xs" style={{ color: '#7F7F7F' }}>
               <span className="shrink-0"><IconPin /></span>
               <span className="truncate">{event.location}</span>
             </div>
           )}
-          <div className="flex items-center gap-2 text-xs" style={{ color: '#B0898A' }}>
+          <div className="flex items-center gap-2 text-xs" style={{ color: '#7F7F7F' }}>
             <span className="shrink-0"><IconClock /></span>
             <span>{weekday} {day} {month} à {time}</span>
           </div>
-          <div className="flex items-center gap-2 text-xs" style={{ color: '#B0898A' }}>
+          <div className="flex items-center gap-2 text-xs" style={{ color: '#7F7F7F' }}>
             <span className="shrink-0"><IconUsers /></span>
             <span>{event.registrations_count} inscrit{event.registrations_count > 1 ? 's' : ''}</span>
           </div>
@@ -180,13 +180,13 @@ export default function EventCard({ event, onUpdate, onDelete, onEdit }: Props) 
       {/* Footer actions */}
       <div
         className="flex items-center justify-between gap-2 px-4 py-2.5"
-        style={{ borderTop: '1px solid rgba(123,36,28,0.06)' }}
+        style={{ borderTop: '1px solid rgba(192,48,46,0.06)' }}
       >
         <div className="flex gap-0.5">
           <Link
             href={`/tableau-de-bord/evenements/${event.id}`}
             className="rounded-lg px-2.5 py-1.5 text-xs font-medium transition"
-            style={{ color: '#A93226' }}
+            style={{ color: '#D42F2D' }}
           >
             Détails
           </Link>
@@ -194,7 +194,7 @@ export default function EventCard({ event, onUpdate, onDelete, onEdit }: Props) 
             <button
               onClick={() => onEdit(event)}
               className="rounded-lg px-2.5 py-1.5 text-xs font-medium transition"
-              style={{ color: '#A93226' }}
+              style={{ color: '#D42F2D' }}
             >
               Modifier
             </button>
@@ -203,7 +203,7 @@ export default function EventCard({ event, onUpdate, onDelete, onEdit }: Props) 
             <button
               onClick={handleDelete}
               className="rounded-lg px-2.5 py-1.5 text-xs font-medium transition"
-              style={{ color: '#922B21' }}
+              style={{ color: '#D42F2D' }}
             >
               Supprimer
             </button>
@@ -217,7 +217,7 @@ export default function EventCard({ event, onUpdate, onDelete, onEdit }: Props) 
             className="rounded-xl px-3.5 py-1.5 text-xs font-bold text-white transition disabled:opacity-50"
             style={{
               background: event.is_registered
-                ? '#B0898A'
+                ? '#7F7F7F'
                 : `linear-gradient(135deg, ${cfg.color} 0%, ${cfg.color}dd 100%)`,
               boxShadow: event.is_registered ? 'none' : `0 2px 6px ${cfg.color}40`,
             }}

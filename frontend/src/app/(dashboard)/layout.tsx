@@ -159,7 +159,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           color: rgba(255,255,255,0.9);
         }
         .sf-nav-link.active {
-          background: rgba(192,57,43,0.25);
+          background: rgba(251,57,54,0.25);
           color: #ffffff;
           font-weight: 600;
         }
@@ -171,7 +171,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           transform: translateY(-50%);
           width: 3px;
           height: 55%;
-          background: #C0392B;
+          background: #FB3936;
           border-radius: 0 3px 3px 0;
         }
 
@@ -192,7 +192,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           position: relative;
         }
         .sf-mobile-link.active {
-          color: #C0392B;
+          color: #FB3936;
           font-weight: 700;
         }
         .sf-mobile-dot {
@@ -203,7 +203,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           width: 4px;
           height: 4px;
           border-radius: 50%;
-          background: #C0392B;
+          background: #FB3936;
         }
 
         /* Avatar ring */
@@ -211,8 +211,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           width: 28px;
           height: 28px;
           border-radius: 50%;
-          background: rgba(192,57,43,0.25);
-          border: 1.5px solid rgba(192,57,43,0.4);
+          background: rgba(251,57,54,0.25);
+          border: 1.5px solid rgba(251,57,54,0.4);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -229,8 +229,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <aside
           className="hidden lg:flex w-56 shrink-0 flex-col"
           style={{
-            background: '#7B241C',
-            borderRight: '1px solid rgba(123,36,28,0.06)',
+            background: '#C0302E',
+            borderRight: '1px solid rgba(192,48,46,0.06)',
           }}
         >
           {/* Logo */}
@@ -354,7 +354,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   transition: 'background 0.15s ease, color 0.15s ease',
                   flexShrink: 0,
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(192,57,43,0.2)'; e.currentTarget.style.color = '#F4C4C0' }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(251,57,54,0.2)'; e.currentTarget.style.color = '#F4C4C0' }}
                 onMouseLeave={(e) => { e.currentTarget.style.background = 'none'; e.currentTarget.style.color = 'rgba(255,255,255,0.25)' }}
               >
                 <IconLogout />

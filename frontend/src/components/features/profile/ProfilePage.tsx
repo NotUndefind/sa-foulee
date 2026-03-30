@@ -19,9 +19,9 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>
 
 const ROLE_CONFIG: Record<string, { label: string; bg: string; color: string }> = {
-  admin:   { label: 'Administrateur', bg: 'rgba(192,57,43,0.12)',   color: '#C0392B'  },
-  founder: { label: 'Fondateur',      bg: 'rgba(146,43,33,0.12)',   color: '#922B21'  },
-  coach:   { label: 'Entraîneur',     bg: 'rgba(169,50,38,0.12)',   color: '#A93226'  },
+  admin:   { label: 'Administrateur', bg: 'rgba(251,57,54,0.12)',   color: '#FB3936'  },
+  founder: { label: 'Fondateur',      bg: 'rgba(146,43,33,0.12)',   color: '#D42F2D'  },
+  coach:   { label: 'Entraîneur',     bg: 'rgba(169,50,38,0.12)',   color: '#D42F2D'  },
   bureau:  { label: 'Bureau',         bg: 'rgba(245,158,11,0.12)',  color: '#d97706'  },
   member:  { label: 'Membre',         bg: 'rgba(176,137,138,0.12)', color: '#5a8050'  },
 }
@@ -96,7 +96,7 @@ export default function ProfilePage() {
   if (!user) {
     return (
       <div className="flex h-48 items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-2" style={{ borderColor: 'rgba(123,36,28,0.1)', borderTopColor: '#C0392B' }} />
+        <div className="h-8 w-8 animate-spin rounded-full border-2" style={{ borderColor: 'rgba(192,48,46,0.1)', borderTopColor: '#FB3936' }} />
       </div>
     )
   }
@@ -114,28 +114,28 @@ export default function ProfilePage() {
         .pf-fade { animation: fadeUp 0.4s ease both; }
         .pf-card {
           background: white; border-radius: 20px;
-          box-shadow: 0 2px 12px rgba(123,36,28,0.07);
-          border: 1px solid rgba(123,36,28,0.08);
+          box-shadow: 0 2px 12px rgba(192,48,46,0.07);
+          border: 1px solid rgba(192,48,46,0.08);
           overflow: hidden;
         }
         .pf-section-header {
           padding: 16px 24px;
-          border-bottom: 1px solid rgba(123,36,28,0.07);
-          background: linear-gradient(135deg, rgba(123,36,28,0.03) 0%, rgba(192,57,43,0.02) 100%);
+          border-bottom: 1px solid rgba(192,48,46,0.07);
+          background: linear-gradient(135deg, rgba(192,48,46,0.03) 0%, rgba(251,57,54,0.02) 100%);
         }
         .pf-input {
-          width: 100%; border-radius: 12px; border: 1px solid rgba(123,36,28,0.15);
+          width: 100%; border-radius: 12px; border: 1px solid rgba(192,48,46,0.15);
           padding: 10px 14px; font-size: 14px; transition: all 0.2s ease;
-          outline: none; font-family: inherit; color: #7B241C;
+          outline: none; font-family: inherit; color: #C0302E;
         }
-        .pf-input:focus { border-color: #C0392B; box-shadow: 0 0 0 3px rgba(192,57,43,0.1); }
+        .pf-input:focus { border-color: #FB3936; box-shadow: 0 0 0 3px rgba(251,57,54,0.1); }
         .pf-avatar-ring {
-          background: linear-gradient(135deg, #7B241C 0%, #C0392B 100%);
+          background: linear-gradient(135deg, #C0302E 0%, #FB3936 100%);
           padding: 3px; border-radius: 50%; display: inline-block;
         }
         .pf-progress-bar {
           height: 6px; border-radius: 4px; overflow: hidden;
-          background: rgba(123,36,28,0.06);
+          background: rgba(192,48,46,0.06);
         }
       `}</style>
 
@@ -144,19 +144,19 @@ export default function ProfilePage() {
 
           {/* ── Header ─────────────────────────────────────────────────── */}
           <div className="pf-fade" style={{ animationDelay: '0ms' }}>
-            <div className="flex items-center gap-2 mb-1" style={{ color: '#A93226' }}>
+            <div className="flex items-center gap-2 mb-1" style={{ color: '#D42F2D' }}>
               <IconUser />
-              <h1 className="text-3xl font-extrabold" style={{ letterSpacing: '-0.02em', color: '#7B241C' }}>
+              <h1 className="text-3xl font-extrabold" style={{ letterSpacing: '-0.02em', color: '#C0302E' }}>
                 Mon profil
               </h1>
             </div>
-            <p className="text-sm" style={{ color: '#B0898A' }}>Gérez vos informations personnelles et vos documents</p>
+            <p className="text-sm" style={{ color: '#7F7F7F' }}>Gérez vos informations personnelles et vos documents</p>
           </div>
 
           {/* ── Profile Hero Card ───────────────────────────────────────── */}
           <div className="pf-fade pf-card" style={{ animationDelay: '60ms' }}>
             {/* Avatar + identity */}
-            <div className="flex items-center gap-5 px-6 py-6" style={{ background: 'linear-gradient(135deg, rgba(169,50,38,0.04) 0%, rgba(192,57,43,0.04) 100%)' }}>
+            <div className="flex items-center gap-5 px-6 py-6" style={{ background: 'linear-gradient(135deg, rgba(169,50,38,0.04) 0%, rgba(251,57,54,0.04) 100%)' }}>
               {/* Avatar */}
               <button
                 type="button"
@@ -170,7 +170,7 @@ export default function ProfilePage() {
                       // eslint-disable-next-line @next/next/no-img-element
                       <img src={avatarSrc} alt="Avatar" className="h-full w-full object-cover" />
                     ) : (
-                      <span className="text-xl font-bold" style={{ color: '#C0392B' }}>{initials}</span>
+                      <span className="text-xl font-bold" style={{ color: '#FB3936' }}>{initials}</span>
                     )}
                   </div>
                 </div>
@@ -182,10 +182,10 @@ export default function ProfilePage() {
 
               {/* Name + roles */}
               <div className="min-w-0 flex-1">
-                <p className="text-xl font-extrabold leading-tight" style={{ color: '#7B241C' }}>
+                <p className="text-xl font-extrabold leading-tight" style={{ color: '#C0302E' }}>
                   {user.first_name} {user.last_name}
                 </p>
-                <p className="mb-2 text-sm" style={{ color: '#B0898A' }}>{user.email}</p>
+                <p className="mb-2 text-sm" style={{ color: '#7F7F7F' }}>{user.email}</p>
                 <div className="flex flex-wrap gap-1.5">
                   {user.roles.map((r) => {
                     const cfg = ROLE_CONFIG[r] ?? ROLE_CONFIG.member
@@ -206,31 +206,31 @@ export default function ProfilePage() {
             {/* Form */}
             <form onSubmit={handleSubmit(onSubmit)} className="px-6 py-5 space-y-4">
               {globalError && (
-                <div className="rounded-xl px-4 py-3 text-sm font-medium" style={{ background: 'rgba(192,57,43,0.06)', border: '1px solid rgba(192,57,43,0.2)', color: '#922B21' }}>
+                <div className="rounded-xl px-4 py-3 text-sm font-medium" style={{ background: 'rgba(251,57,54,0.06)', border: '1px solid rgba(251,57,54,0.2)', color: '#D42F2D' }}>
                   {globalError}
                 </div>
               )}
               {saveSuccess && (
-                <div className="rounded-xl px-4 py-3 text-sm font-medium" style={{ background: 'rgba(169,50,38,0.06)', border: '1px solid rgba(169,50,38,0.25)', color: '#A93226' }}>
+                <div className="rounded-xl px-4 py-3 text-sm font-medium" style={{ background: 'rgba(169,50,38,0.06)', border: '1px solid rgba(169,50,38,0.25)', color: '#D42F2D' }}>
                   Profil mis à jour avec succès.
                 </div>
               )}
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider" style={{ color: '#B0898A' }}>Prénom</label>
+                  <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider" style={{ color: '#7F7F7F' }}>Prénom</label>
                   <input {...register('first_name')} className="pf-input" />
-                  {errors.first_name && <p className="mt-1 text-xs" style={{ color: '#922B21' }}>{errors.first_name.message}</p>}
+                  {errors.first_name && <p className="mt-1 text-xs" style={{ color: '#D42F2D' }}>{errors.first_name.message}</p>}
                 </div>
                 <div>
-                  <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider" style={{ color: '#B0898A' }}>Nom</label>
+                  <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider" style={{ color: '#7F7F7F' }}>Nom</label>
                   <input {...register('last_name')} className="pf-input" />
-                  {errors.last_name && <p className="mt-1 text-xs" style={{ color: '#922B21' }}>{errors.last_name.message}</p>}
+                  {errors.last_name && <p className="mt-1 text-xs" style={{ color: '#D42F2D' }}>{errors.last_name.message}</p>}
                 </div>
               </div>
 
               <div>
-                <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider" style={{ color: '#B0898A' }}>
+                <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider" style={{ color: '#7F7F7F' }}>
                   Bio <span className="normal-case font-normal">— optionnel</span>
                 </label>
                 <textarea
@@ -239,7 +239,7 @@ export default function ProfilePage() {
                   placeholder="Parle-nous un peu de toi…"
                   className="pf-input resize-none"
                 />
-                {errors.bio && <p className="mt-1 text-xs" style={{ color: '#922B21' }}>{errors.bio.message}</p>}
+                {errors.bio && <p className="mt-1 text-xs" style={{ color: '#D42F2D' }}>{errors.bio.message}</p>}
               </div>
 
               <div className="flex justify-end pt-1">
@@ -247,7 +247,7 @@ export default function ProfilePage() {
                   type="submit"
                   disabled={isSubmitting || (!isDirty && !avatarFile)}
                   className="rounded-xl px-6 py-2.5 text-sm font-bold text-white transition disabled:opacity-40"
-                  style={{ background: 'linear-gradient(135deg, #C0392B 0%, #922B21 100%)', boxShadow: '0 2px 8px rgba(192,57,43,0.3)' }}
+                  style={{ background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)', boxShadow: '0 2px 8px rgba(251,57,54,0.3)' }}
                 >
                   {isSubmitting ? 'Enregistrement…' : 'Enregistrer les modifications'}
                 </button>
@@ -260,15 +260,15 @@ export default function ProfilePage() {
             <div className="pf-fade pf-card" style={{ animationDelay: '100ms' }}>
               <div className="pf-section-header flex items-center justify-between">
                 <div>
-                  <h2 className="font-bold" style={{ color: '#7B241C' }}>Documents du dossier</h2>
-                  <p className="mt-0.5 text-xs" style={{ color: '#B0898A' }}>
+                  <h2 className="font-bold" style={{ color: '#C0302E' }}>Documents du dossier</h2>
+                  <p className="mt-0.5 text-xs" style={{ color: '#7F7F7F' }}>
                     Dossier complété à {documentCompletion}%
                   </p>
                 </div>
                 <button
                   onClick={() => setShowUpload(true)}
                   className="rounded-xl px-4 py-2 text-xs font-bold text-white transition"
-                  style={{ background: 'linear-gradient(135deg, #A93226 0%, #7B241C 100%)', boxShadow: '0 2px 6px rgba(123,36,28,0.25)' }}
+                  style={{ background: 'linear-gradient(135deg, #D42F2D 0%, #C0302E 100%)', boxShadow: '0 2px 6px rgba(192,48,46,0.25)' }}
                 >
                   + Ajouter
                 </button>
@@ -278,8 +278,8 @@ export default function ProfilePage() {
                 {/* Progress bar */}
                 <div className="mb-5">
                   <div className="mb-1.5 flex items-center justify-between text-xs">
-                    <span className="font-semibold" style={{ color: '#A93226' }}>Progression du dossier</span>
-                    <span className="font-bold" style={{ color: documentCompletion === 100 ? '#A93226' : '#d97706' }}>
+                    <span className="font-semibold" style={{ color: '#D42F2D' }}>Progression du dossier</span>
+                    <span className="font-bold" style={{ color: documentCompletion === 100 ? '#D42F2D' : '#d97706' }}>
                       {documentCompletion}%
                     </span>
                   </div>
@@ -289,18 +289,18 @@ export default function ProfilePage() {
                         height: '100%', borderRadius: '4px', transition: 'width 0.8s ease',
                         width: `${documentCompletion}%`,
                         background: documentCompletion === 100
-                          ? 'linear-gradient(90deg, #C0392B, #7B241C)'
+                          ? 'linear-gradient(90deg, #FB3936, #C0302E)'
                           : 'linear-gradient(90deg, #f59e0b, #d97706)',
                       }}
                     />
                   </div>
                   {documentCompletion < 100 && (
-                    <p className="mt-1.5 text-[11px]" style={{ color: '#B0898A' }}>
-                      Complétez votre dossier pour participer aux événements du club.
+                    <p className="mt-1.5 text-[11px]" style={{ color: '#7F7F7F' }}>
+                      Complétez votre dossier pour participer aux événements de l&apos;association.
                     </p>
                   )}
                   {documentCompletion === 100 && (
-                    <p className="mt-1.5 text-[11px]" style={{ color: '#A93226' }}>
+                    <p className="mt-1.5 text-[11px]" style={{ color: '#D42F2D' }}>
                       Dossier complet — vous pouvez participer à tous les événements.
                     </p>
                   )}
@@ -308,12 +308,12 @@ export default function ProfilePage() {
 
                 {documents.length === 0 ? (
                   <div className="flex flex-col items-center gap-2 py-6 text-center">
-                    <div style={{ opacity: 0.25, color: '#A93226' }}><IconDocument /></div>
-                    <p className="text-sm" style={{ color: '#B0898A' }}>Aucun document ajouté pour l&apos;instant.</p>
+                    <div style={{ opacity: 0.25, color: '#D42F2D' }}><IconDocument /></div>
+                    <p className="text-sm" style={{ color: '#7F7F7F' }}>Aucun document ajouté pour l&apos;instant.</p>
                     <button
                       onClick={() => setShowUpload(true)}
                       className="text-xs font-semibold hover:underline"
-                      style={{ color: '#C0392B' }}
+                      style={{ color: '#FB3936' }}
                     >
                       Ajouter mon premier document →
                     </button>

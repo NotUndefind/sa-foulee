@@ -38,7 +38,7 @@ export default function PublicBlogPage() {
     <div className="mx-auto max-w-3xl space-y-6 px-4 py-10">
       <div>
         <h1 className="text-2xl font-bold text-zinc-900">Actualités</h1>
-        <p className="mt-1 text-sm text-zinc-500">Les dernières nouvelles de sa Foulée</p>
+        <p className="mt-1 text-sm text-zinc-500">Les dernières nouvelles de La Neuville TAF sa Foulée</p>
       </div>
 
       {loading ? (
