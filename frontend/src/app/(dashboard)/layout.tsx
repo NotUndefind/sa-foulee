@@ -70,6 +70,16 @@ function IconUser({ active }: { active?: boolean }) {
   )
 }
 
+function IconBox({ active }: { active?: boolean }) {
+  return (
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.6} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+      <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+      <line x1="12" y1="22.08" x2="12" y2="12"/>
+    </svg>
+  )
+}
+
 function IconMail({ active }: { active?: boolean }) {
   return (
     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.6} strokeLinecap="round" strokeLinejoin="round">
@@ -132,7 +142,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const pathname           = usePathname()
   const router             = useRouter()
   const { user }           = useAuthStore()
-  const { canManageUsers } = useRole()
+  const { canManageUsers, canManageEvents } = useRole()
 
   const handleLogout = async () => {
     await logout()
@@ -287,7 +297,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 )
               })}
 
-              {canManageUsers && (
+              {(canManageUsers || canManageEvents) && (
                 <>
                   <li style={{ paddingTop: '14px' }}>
                     <p style={{
@@ -302,6 +312,19 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                       Gestion
                     </p>
                   </li>
+                  {canManageEvents && (
+                    <li>
+                      <Link
+                        href="/tableau-de-bord/inventaire"
+                        className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/inventaire') ? ' active' : ''}`}
+                      >
+                        <span style={{ opacity: pathname.startsWith('/tableau-de-bord/inventaire') ? 1 : 0.7, flexShrink: 0 }}>
+                          <IconBox active={pathname.startsWith('/tableau-de-bord/inventaire')} />
+                        </span>
+                        Inventaire
+                      </Link>
+                    </li>
+                  )}
                   <li>
                     <Link
                       href="/tableau-de-bord/admin"

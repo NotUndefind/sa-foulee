@@ -142,6 +142,23 @@ export interface LeaderboardEntry {
   total_sessions: number
 }
 
+// ---- Inventaire ----
+
+export type EquipmentCategory = 'dossard' | 'maillot' | 'matériel' | 'autre'
+export type EquipmentStatus   = 'good' | 'worn' | 'broken'
+
+export interface Equipment {
+  id: number
+  name: string
+  category: EquipmentCategory
+  quantity: number
+  status: EquipmentStatus
+  notes: string | null
+  assigned_count: number
+  available_count: number
+  created_at: string
+}
+
 // ---- Chat ----
 
 export interface ChatMessage {
