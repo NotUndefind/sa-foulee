@@ -538,8 +538,8 @@ post_sprint:
     end_date: "2026-04-19"
     capacity_points: 10
     committed_points: 10
-    completed_points: 5
-    status: "in_progress"
+    completed_points: 10
+    status: "completed"
     goal: "Webhook HelloAsso fonctionnel + Newsletter — abonnement membres"
     stories:
       - story_id: "STORY-V2-P02"
@@ -572,17 +572,31 @@ post_sprint:
       - story_id: "STORY-V2-N01"
         title: "Backend newsletter — migrations et API"
         points: 3
-        status: "not_started"
+        status: "completed"
         epic: "EPIC-N"
         priority: "must_have"
         assigned_to: "julesbourin"
+        completed_date: "2026-03-30"
+        files_modified:
+          - "backend/database/migrations/2026_03_30_000001_add_newsletter_fields_to_users_table.php"
+          - "backend/database/migrations/2026_03_30_000002_create_newsletter_campaigns_table.php"
+          - "backend/app/Http/Controllers/Api/V1/NewsletterController.php"
+          - "backend/app/Models/User.php"
+          - "backend/app/Http/Controllers/Api/V1/ProfileController.php"
+          - "backend/routes/api.php"
       - story_id: "STORY-V2-N02"
         title: "Frontend opt-in newsletter dans profil"
         points: 2
-        status: "not_started"
+        status: "completed"
         epic: "EPIC-N"
         priority: "must_have"
         assigned_to: "julesbourin"
+        completed_date: "2026-03-30"
+        files_modified:
+          - "frontend/src/types/index.ts"
+          - "frontend/src/lib/newsletter.ts"
+          - "frontend/src/components/features/newsletter/NewsletterToggle.tsx"
+          - "frontend/src/components/features/profile/ProfilePage.tsx"
 
   - sprint_number: 12
     start_date: "2026-04-20"

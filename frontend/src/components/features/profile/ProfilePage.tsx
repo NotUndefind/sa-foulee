@@ -10,6 +10,7 @@ import { updateProfile, getDocuments } from '@/lib/profile'
 import type { UserDocument } from '@/types'
 import DocumentCard from '@/components/features/documents/DocumentCard'
 import DocumentUploadModal from '@/components/features/documents/DocumentUploadModal'
+import NewsletterToggle from '@/components/features/newsletter/NewsletterToggle'
 
 const schema = z.object({
   first_name: z.string().min(1, 'Le prénom est obligatoire.').max(50),
@@ -304,6 +305,18 @@ export default function ProfilePage() {
                 </div>
               )}
             </div>
+          </div>
+
+          {/* ── Newsletter ──────────────────────────────────────────────── */}
+          <div className="pf-fade pf-card" style={{ animationDelay: '100ms' }}>
+            <div className="pf-section-header flex items-center gap-2">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C0302E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+              <h2 className="font-bold" style={{ color: '#C0302E' }}>Préférences de communication</h2>
+            </div>
+            <NewsletterToggle initialSubscribed={user.newsletter_subscribed_at !== null} />
           </div>
 
           {/* ── Documents section (masqué pour admin/founder) ────────────── */}

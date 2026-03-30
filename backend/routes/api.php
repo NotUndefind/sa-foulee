@@ -46,6 +46,15 @@ Route::prefix('v1')->group(function () {
         Route::patch('me',  [\App\Http\Controllers\Api\V1\ProfileController::class, 'update']);
         Route::delete('me', [\App\Http\Controllers\Api\V1\ProfileController::class, 'destroy']);
 
+        // Newsletter — toggle abonnement (tous les membres)
+        Route::patch('me/newsletter', [\App\Http\Controllers\Api\V1\NewsletterController::class, 'toggle']);
+
+        // ---- Newsletter admin [Admin|Founder] ----
+        Route::middleware('role:admin|founder')->group(function () {
+            Route::get('admin/newsletter/subscribers',        [\App\Http\Controllers\Api\V1\NewsletterController::class, 'subscribers']);
+            Route::get('admin/newsletter/subscribers/export', [\App\Http\Controllers\Api\V1\NewsletterController::class, 'exportSubscribers']);
+        });
+
         // ---- Admin uniquement ----
         Route::middleware('role:admin')->group(function () {
             Route::get('users',              [\App\Http\Controllers\Api\V1\UserController::class, 'index']);

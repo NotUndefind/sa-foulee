@@ -24,6 +24,8 @@ class User extends Authenticatable
         'consent_given_at',
         'membership_paid_at',
         'membership_paid_amount',
+        'newsletter_subscribed_at',
+        'newsletter_unsubscribe_token',
     ];
 
     protected $hidden = [
@@ -36,8 +38,9 @@ class User extends Authenticatable
         return [
             'email_verified_at'      => 'datetime',
             'consent_given_at'       => 'datetime',
-            'membership_paid_at'     => 'datetime',
-            'membership_paid_amount' => 'decimal:2',
+            'membership_paid_at'          => 'datetime',
+            'membership_paid_amount'      => 'decimal:2',
+            'newsletter_subscribed_at'    => 'datetime',
             'strava_token'           => 'encrypted', // Chiffrement AES-256 via APP_KEY
         ];
     }

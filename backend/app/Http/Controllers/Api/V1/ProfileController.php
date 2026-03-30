@@ -92,10 +92,11 @@ class ProfileController extends Controller
             'roles'                  => $user->getRoleNames(),
             'has_complete_documents'  => $user->hasCompleteDocuments(),
             'document_completion'     => $user->documentCompletion(),
-            'membership_paid_at'      => $user->membership_paid_at,
-            'membership_paid_amount'  => $user->membership_paid_amount,
-            'email_verified_at'       => $user->email_verified_at,
-            'created_at'              => $user->created_at,
+            'membership_paid_at'        => $user->membership_paid_at,
+            'membership_paid_amount'   => $user->membership_paid_amount,
+            'newsletter_subscribed_at' => $user->newsletter_subscribed_at,
+            'email_verified_at'        => $user->email_verified_at,
+            'created_at'               => $user->created_at,
         ];
     }
 }

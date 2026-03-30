@@ -29,6 +29,7 @@ export interface User {
   has_complete_documents: boolean
   document_completion: number
   membership_paid_at: string | null
+  newsletter_subscribed_at: string | null
   email_verified_at: string | null
   created_at: string
 }
