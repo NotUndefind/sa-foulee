@@ -7,7 +7,7 @@ project_type: "web-app"
 project_level: 2
 communication_language: "English"
 output_language: "English"
-last_updated: "2026-03-29T12:00:00Z"
+last_updated: "2026-03-30T00:00:00Z"
 
 # Workflow Status Tracking
 # Status values:
@@ -38,8 +38,8 @@ workflow_status:
   # Phase 2: Planning (Required - choose one based on project level)
   - name: prd
     phase: 2
-    status: "docs/prd-saFoulee-2026-03-29.md"
-    description: "Product Requirements Document v2 (refonte graphique, newsletter, inventaire, budget, HelloAsso)"
+    status: "docs/prd-saFoulee-2026-03-30.md"
+    description: "Product Requirements Document v3 (bugs bloquants, refonte accueil, blog média, toggle classement, nom asso, green purge)"
 
   - name: tech-spec
     phase: 2
@@ -64,3 +64,7 @@ workflow_status:
 
   # Phase 4: Implementation (Required)
   # Note: Implementation tracked in sprint-status.yaml
+  - name: sprint-planning
+    phase: 4
+    status: "docs/sprint-plan-saFoulee-2026-03-30-v3.md"
+    description: "Sprint plan v3 — 16 stories, 5 sprints (Sprint 16-20), correctifs + homepage + blog + admin settings"
