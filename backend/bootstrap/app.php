@@ -15,6 +15,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        // CORS — doit être en premier pour répondre aux preflight OPTIONS
+        $middleware->prepend(\Illuminate\Http\Middleware\HandleCors::class);
+
         // Enregistrement des alias middleware Spatie Permission
         $middleware->alias([
             'role'       => \Spatie\Permission\Middleware\RoleMiddleware::class,
@@ -22,7 +25,6 @@ return Application::configure(basePath: dirname(__DIR__))
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
         ]);
 
-        // CORS — accepter les requêtes depuis le frontend
         $middleware->validateCsrfTokens(except: ['api/*']);
     })
     ->withExceptions(function (Exceptions $exceptions) {

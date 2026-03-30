@@ -505,10 +505,19 @@ post_sprint:
       - story_id: "STORY-V2-D02"
         title: "Configuration O2switch backend production"
         points: 5
-        status: "not_started"
+        status: "completed"
         epic: "EPIC-D"
         priority: "must_have"
         assigned_to: "julesbourin"
+        completed_date: "2026-03-30"
+        files_modified:
+          - "backend/.env.example"
+          - "backend/config/cors.php"
+          - "backend/bootstrap/app.php"
+          - "backend/scripts/deploy.sh"
+          - ".github/workflows/deploy-backend.yml"
+          - ".github/workflows/backend.yml"
+          - "docs/deployment-o2switch.md"
       - story_id: "STORY-V2-P01"
         title: "Page /adhesion et bouton HelloAsso"
         points: 2
