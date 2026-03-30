@@ -17,6 +17,7 @@ class BudgetEntry extends Model
         'created_by',
         'source',
         'external_ref',
+        'receipt_url',
     ];
 
     protected function casts(): array

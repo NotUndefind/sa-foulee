@@ -753,17 +753,28 @@ post_sprint:
     end_date: "2026-05-17"
     capacity_points: 10
     committed_points: 12
-    completed_points: 0
-    status: "not_started"
+    completed_points: 3
+    status: "in_progress"
     goal: "Gestion budgétaire complète — dashboard financier, saisie dépenses/recettes, export AG"
     stories:
       - story_id: "STORY-V2-B01"
         title: "Backend budget — migrations et API"
         points: 3
-        status: "not_started"
+        status: "completed"
         epic: "EPIC-B"
         priority: "must_have"
         assigned_to: "julesbourin"
+        completed_date: "2026-03-30"
+        implementation_notes: >
+          Table budget_entries déjà créée (Sprint 11 HelloAsso) avec toutes les colonnes
+          requises. Ajout de receipt_url dans fillable du modèle. BudgetEntryController
+          créé : index (filtres type/category/from/to/per_page, pagination), store, update,
+          destroy, summary (solde + agrégats 12 mois + top 5 catégories), export CSV BOM UTF-8.
+          Routes bureau+ pour lecture/création/édition, admin|founder pour suppression.
+        files_modified:
+          - "backend/app/Models/BudgetEntry.php"
+          - "backend/app/Http/Controllers/Api/V1/BudgetEntryController.php"
+          - "backend/routes/api.php"
       - story_id: "STORY-V2-B02"
         title: "Frontend dashboard financier"
         points: 5

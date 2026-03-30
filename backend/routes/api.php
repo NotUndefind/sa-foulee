@@ -77,6 +77,19 @@ Route::prefix('v1')->group(function () {
             Route::delete('inventory/{equipment}', [\App\Http\Controllers\Api\V1\EquipmentController::class, 'destroy']);
         });
 
+        // ---- Budget [Bureau+] ----
+        Route::middleware('role:admin|founder|bureau')->group(function () {
+            Route::get('budget',         [\App\Http\Controllers\Api\V1\BudgetEntryController::class, 'index']);
+            Route::get('budget/summary', [\App\Http\Controllers\Api\V1\BudgetEntryController::class, 'summary']);
+            Route::get('budget/export',  [\App\Http\Controllers\Api\V1\BudgetEntryController::class, 'export']);
+            Route::post('budget',        [\App\Http\Controllers\Api\V1\BudgetEntryController::class, 'store']);
+            Route::patch('budget/{entry}',[\App\Http\Controllers\Api\V1\BudgetEntryController::class, 'update']);
+        });
+
+        Route::middleware('role:admin|founder')->group(function () {
+            Route::delete('budget/{entry}', [\App\Http\Controllers\Api\V1\BudgetEntryController::class, 'destroy']);
+        });
+
         // ---- Newsletter admin [Admin|Founder] ----
         Route::middleware('role:admin|founder')->group(function () {
             Route::get('admin/newsletter/subscribers',        [\App\Http\Controllers\Api\V1\NewsletterController::class, 'subscribers']);
