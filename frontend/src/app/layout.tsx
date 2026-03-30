@@ -10,12 +10,19 @@ const geist = Geist({
 
 export const metadata: Metadata = {
   title: {
-    default: 'sa Foulée — Association de running de La Neuville',
-    template: '%s | sa Foulée',
+    default: 'La Neuville TAF sa Foulée — Association de running',
+    template: '%s | La Neuville TAF sa Foulée',
   },
   description:
-    "L'application de l'association de running sa Foulée — La Neuville. Événements, sessions d'entraînement, performances et communauté.",
+    "L'application de La Neuville TAF sa Foulée, l'association de running de La Neuville. Événements, sessions d'entraînement, performances et communauté.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'),
+  openGraph: {
+    title: 'La Neuville TAF sa Foulée',
+    description: "L'association de running de La Neuville — Événements, sessions d'entraînement, performances et communauté.",
+    siteName: 'La Neuville TAF sa Foulée',
+    locale: 'fr_FR',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import PublicNavUser from '@/components/features/public/PublicNavUser'
 
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
@@ -24,7 +25,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
         backdropFilter: 'blur(20px)',
         WebkitBackdropFilter: 'blur(20px)',
         background: 'rgba(250,250,250,0.9)',
-        borderBottom: '1px solid rgba(192,57,43,0.1)',
+        borderBottom: '1px solid rgba(251,57,54,0.1)',
       }}>
         <div style={{
           maxWidth: '1040px',
@@ -37,12 +38,18 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
           fontFamily: "'Baloo 2', sans-serif",
         }}>
           {/* Logo */}
-          <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'baseline', gap: '0.15em' }}>
-            <span style={{ fontSize: '1.25rem', fontWeight: 400, color: '#A93226', letterSpacing: '0.04em' }}>
-              sa{' '}
-            </span>
-            <span style={{ fontSize: '1.4rem', fontWeight: 800, color: '#C0392B', letterSpacing: '-0.01em' }}>
-              Foulée
+          <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+            <Image
+              src="/logo-removebg-preview.png"
+              alt="La Neuville TAF sa Foulée"
+              width={40}
+              height={40}
+              priority
+              style={{ objectFit: 'contain' }}
+            />
+            <span style={{ fontSize: '1rem', fontWeight: 700, color: '#FB3936', letterSpacing: '-0.01em', lineHeight: 1.2 }}>
+              La Neuville TAF<br />
+              <span style={{ fontWeight: 800 }}>sa Foulée</span>
             </span>
           </Link>
 

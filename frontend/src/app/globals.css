@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #FAFAFA;
   --foreground: #171717;
 }
 
@@ -11,11 +11,12 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
-  /* ── Palette sa Foulée — couleurs primaires (brand = rouge) ── */
-  --color-brand:        #C0392B;
-  --color-brand-dark:   #922B21;
-  --color-accent:       #B0898A;
-  --color-accent-light: #A93226;
+  /* ── Palette sa Foulée — couleurs primaires (brand = rouge officiel) ── */
+  --color-primary:       #FB3936;   /* CTA principal, highlights */
+  --color-primary-dark:  #D42F2D;   /* hover boutons, états actifs */
+  --color-primary-light: #FD6563;   /* accents légers */
+  --color-bg:            #FAFAFA;   /* fond pages principales */
+  --color-sidebar:       #C0302E;   /* sidebar dashboard */
 
   /* ── Palette sa Foulée — charte rouge & blanc ── */
 
@@ -25,16 +26,14 @@
   --color-sf-cream-dark: #F0EDED;   /* sections alternées */
   --color-sf-parchment:  #E5E0E0;   /* bordures, séparateurs */
 
-  /* Rouge foncé — couleur principale */
-  --color-sf-forest:     #7B241C;   /* sidebar, titres forts, CTA ghost */
-  --color-sf-forest-mid: #A93226;   /* accents, labels */
-  --color-sf-forest-light: #C0392B; /* hover états */
-  --color-sf-sage:       #B0898A;   /* accents secondaires, badges */
+  /* Rouge — dégradé principal */
+  --color-sf-terra:      #FB3936;   /* boutons primaires, active states */
+  --color-sf-terra-dark: #D42F2D;   /* hover boutons */
+  --color-sf-terra-soft: rgba(251,57,54,0.12); /* fond badges, banners */
+  --color-sf-terra-mid:  #FD6563;   /* accents, labels */
 
-  /* Rouge — CTA principal, highlights */
-  --color-sf-terra:      #C0392B;   /* boutons primaires, active states */
-  --color-sf-terra-dark: #922B21;   /* hover boutons */
-  --color-sf-terra-soft: rgba(192,57,43,0.12); /* fond badges, banners */
+  /* Rouge foncé — sidebar & titres */
+  --color-sf-bark-red:   #C0302E;   /* sidebar, titres forts */
 
   /* Texte */
   --color-sf-bark:       #1A1A1A;   /* texte très foncé */
@@ -51,25 +50,25 @@ body {
 /* ── Checkboxes & radios — accent rouge ── */
 input[type="checkbox"],
 input[type="radio"] {
-  accent-color: #C0392B;
+  accent-color: #FB3936;
 }
 
 /* ── Auth forms — inputs avec charte rouge ── */
 .auth-input {
   width: 100%;
   border-radius: 0.5rem;
-  border: 1px solid rgba(123,36,28,0.2);
+  border: 1px solid rgba(192,48,46,0.2);
   padding: 0.5rem 0.75rem;
   font-size: 0.875rem;
-  color: #7B241C;
+  color: #C0302E;
   outline: none;
   transition: border-color 0.15s, box-shadow 0.15s;
   background: white;
 }
 .auth-input::placeholder {
-  color: rgba(123,36,28,0.35);
+  color: rgba(192,48,46,0.35);
 }
 .auth-input:focus {
-  border-color: #C0392B;
-  box-shadow: 0 0 0 3px rgba(192,57,43,0.15);
+  border-color: #FB3936;
+  box-shadow: 0 0 0 3px rgba(251,57,54,0.15);
 }

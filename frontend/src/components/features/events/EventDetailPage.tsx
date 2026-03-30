@@ -290,7 +290,7 @@ export default function EventDetailPage({ eventId }: Props) {
                   onClick={() => fileInputRef.current?.click()}
                   disabled={uploading}
                   className="flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold text-white transition disabled:opacity-50"
-                  style={{ background: '#C0392B', boxShadow: '0 2px 8px rgba(192,57,43,0.25)' }}
+                  style={{ background: '#FB3936', boxShadow: '0 2px 8px rgba(251,57,54,0.25)' }}
                 >
                   {uploading ? (
                     'Envoi…'
@@ -312,20 +312,20 @@ export default function EventDetailPage({ eventId }: Props) {
             {photosLoading ? (
               <div className="grid grid-cols-3 gap-3 sm:grid-cols-3">
                 {[1, 2, 3].map(i => (
-                  <div key={i} className="aspect-square rounded-xl animate-pulse" style={{ background: 'rgba(123,36,28,0.06)' }} />
+                  <div key={i} className="aspect-square rounded-xl animate-pulse" style={{ background: 'rgba(192,48,46,0.06)' }} />
                 ))}
               </div>
             ) : photos.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-10 text-center">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'rgba(123,36,28,0.25)', marginBottom: '0.75rem' }}>
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'rgba(192,48,46,0.25)', marginBottom: '0.75rem' }}>
                   <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
                   <circle cx="12" cy="13" r="4" />
                 </svg>
-                <p className="text-sm font-semibold" style={{ color: '#7B241C', marginBottom: '0.25rem' }}>Aucune photo pour l&apos;instant</p>
+                <p className="text-sm font-semibold" style={{ color: '#C0302E', marginBottom: '0.25rem' }}>Aucune photo pour l&apos;instant</p>
                 {user && (canManageEvents || user.id === event.created_by) ? (
-                  <p className="text-xs" style={{ color: '#B0898A' }}>Partagez les souvenirs de cette sortie — les photos sont pour toujours !</p>
+                  <p className="text-xs" style={{ color: '#7F7F7F' }}>Partagez les souvenirs de cette sortie — les photos sont pour toujours !</p>
                 ) : (
-                  <p className="text-xs" style={{ color: '#B0898A' }}>Les organisateurs peuvent ajouter des souvenirs de cette sortie.</p>
+                  <p className="text-xs" style={{ color: '#7F7F7F' }}>Les organisateurs peuvent ajouter des souvenirs de cette sortie.</p>
                 )}
               </div>
             ) : (

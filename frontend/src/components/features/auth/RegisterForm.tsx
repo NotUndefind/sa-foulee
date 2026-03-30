@@ -69,18 +69,18 @@ export default function RegisterForm() {
     }
   }
 
-  const labelStyle = { color: '#A93226' }
-  const errorStyle = { color: '#c0392b' }
+  const labelStyle = { color: '#2C2C2C' }
+  const errorStyle = { color: '#FB3936' }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5">
       <div>
-        <h1 className="text-2xl font-bold" style={{ color: '#7B241C' }}>Créer un compte</h1>
-        <p className="mt-1 text-sm" style={{ color: '#B0898A' }}>Rejoins sa Foulée !</p>
+        <h1 className="text-2xl font-bold" style={{ color: '#C0302E' }}>Créer un compte</h1>
+        <p className="mt-1 text-sm" style={{ color: '#7F7F7F' }}>Rejoins La Neuville TAF sa Foulée !</p>
       </div>
 
       {globalError && (
-        <div className="rounded-lg px-4 py-3 text-sm" style={{ background: 'rgba(192,57,43,0.06)', border: '1px solid rgba(192,57,43,0.2)', color: '#922B21' }}>
+        <div className="rounded-lg px-4 py-3 text-sm" style={{ background: 'rgba(251,57,54,0.06)', border: '1px solid rgba(251,57,54,0.2)', color: '#D42F2D' }}>
           {globalError}
         </div>
       )}
@@ -180,12 +180,12 @@ export default function RegisterForm() {
           type="checkbox"
           {...field('consent')}
           className="mt-0.5 h-4 w-4 rounded"
-          style={{ accentColor: '#C0392B' }}
+          style={{ accentColor: '#FB3936' }}
         />
-        <label htmlFor="consent" className="text-sm" style={{ color: '#A93226' }}>
-          J&apos;accepte que mes données personnelles soient traitées par sa Foulée dans le cadre de
+        <label htmlFor="consent" className="text-sm" style={{ color: '#2C2C2C' }}>
+          J&apos;accepte que mes données personnelles soient traitées par La Neuville TAF sa Foulée dans le cadre de
           ma participation à l&apos;association.{' '}
-          <Link href="/confidentialite" className="underline underline-offset-2" style={{ color: '#C0392B' }}>
+          <Link href="/confidentialite" className="underline underline-offset-2" style={{ color: '#FB3936' }}>
             Politique de confidentialité
           </Link>
         </label>
@@ -197,15 +197,15 @@ export default function RegisterForm() {
         type="submit"
         disabled={isSubmitting}
         className="w-full rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
-        style={{ background: 'linear-gradient(135deg, #C0392B 0%, #922B21 100%)', boxShadow: '0 2px 8px rgba(192,57,43,0.25)' }}
+        style={{ background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)', boxShadow: '0 2px 8px rgba(251,57,54,0.25)' }}
       >
         {isSubmitting ? 'Inscription en cours…' : 'Créer mon compte'}
       </button>
 
       {/* Lien vers connexion */}
-      <p className="text-center text-sm" style={{ color: '#B0898A' }}>
+      <p className="text-center text-sm" style={{ color: '#7F7F7F' }}>
         Déjà membre ?{' '}
-        <Link href="/connexion" className="font-medium transition-colors" style={{ color: '#C0392B' }}>
+        <Link href="/connexion" className="font-medium transition-colors" style={{ color: '#FB3936' }}>
           Se connecter
         </Link>
       </p>

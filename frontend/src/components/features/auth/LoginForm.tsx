@@ -50,18 +50,18 @@ export default function LoginForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5">
       <div>
-        <h1 className="text-2xl font-bold" style={{ color: '#7B241C' }}>Se connecter</h1>
-        <p className="mt-1 text-sm" style={{ color: '#B0898A' }}>Bon retour parmi nous !</p>
+        <h1 className="text-2xl font-bold" style={{ color: '#C0302E' }}>Se connecter</h1>
+        <p className="mt-1 text-sm" style={{ color: '#7F7F7F' }}>Bon retour parmi nous !</p>
       </div>
 
       {globalError && (
-        <div className="rounded-lg px-4 py-3 text-sm" style={{ background: 'rgba(192,57,43,0.06)', border: '1px solid rgba(192,57,43,0.2)', color: '#922B21' }}>
+        <div className="rounded-lg px-4 py-3 text-sm" style={{ background: 'rgba(251,57,54,0.06)', border: '1px solid rgba(251,57,54,0.2)', color: '#D42F2D' }}>
           {globalError}
         </div>
       )}
 
       <div>
-        <label htmlFor="email" className="mb-1 block text-sm font-medium" style={{ color: '#A93226' }}>
+        <label htmlFor="email" className="mb-1 block text-sm font-medium" style={{ color: '#2C2C2C' }}>
           Adresse e-mail
         </label>
         <input
@@ -72,18 +72,18 @@ export default function LoginForm() {
           className="auth-input"
           placeholder="marie.dupont@example.fr"
         />
-        {errors.email && <p className="mt-1 text-xs" style={{ color: '#c0392b' }}>{errors.email.message}</p>}
+        {errors.email && <p className="mt-1 text-xs" style={{ color: '#FB3936' }}>{errors.email.message}</p>}
       </div>
 
       <div>
         <div className="mb-1 flex items-center justify-between">
-          <label htmlFor="password" className="text-sm font-medium" style={{ color: '#A93226' }}>
+          <label htmlFor="password" className="text-sm font-medium" style={{ color: '#2C2C2C' }}>
             Mot de passe
           </label>
           <Link
             href="/mot-de-passe-oublie"
             className="text-xs transition-colors"
-            style={{ color: '#C0392B' }}
+            style={{ color: '#FB3936' }}
           >
             Mot de passe oublié ?
           </Link>
@@ -96,7 +96,7 @@ export default function LoginForm() {
           className="auth-input"
         />
         {errors.password && (
-          <p className="mt-1 text-xs" style={{ color: '#c0392b' }}>{errors.password.message}</p>
+          <p className="mt-1 text-xs" style={{ color: '#FB3936' }}>{errors.password.message}</p>
         )}
       </div>
 
@@ -104,14 +104,14 @@ export default function LoginForm() {
         type="submit"
         disabled={isSubmitting}
         className="w-full rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
-        style={{ background: 'linear-gradient(135deg, #C0392B 0%, #922B21 100%)', boxShadow: '0 2px 8px rgba(192,57,43,0.25)' }}
+        style={{ background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)', boxShadow: '0 2px 8px rgba(251,57,54,0.25)' }}
       >
         {isSubmitting ? 'Connexion…' : 'Se connecter'}
       </button>
 
-      <p className="text-center text-sm" style={{ color: '#B0898A' }}>
+      <p className="text-center text-sm" style={{ color: '#7F7F7F' }}>
         Pas encore membre ?{' '}
-        <Link href="/inscription" className="font-medium transition-colors" style={{ color: '#C0392B' }}>
+        <Link href="/inscription" className="font-medium transition-colors" style={{ color: '#FB3936' }}>
           Créer un compte
         </Link>
       </p>

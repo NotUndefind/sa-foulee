@@ -7,7 +7,7 @@ project_type: "web-app"
 project_level: 2
 communication_language: "English"
 output_language: "English"
-last_updated: "2026-03-07T14:00:00Z"
+last_updated: "2026-03-29T12:00:00Z"
 
 # Workflow Status Tracking
 # Status values:
@@ -38,8 +38,8 @@ workflow_status:
   # Phase 2: Planning (Required - choose one based on project level)
   - name: prd
     phase: 2
-    status: "docs/prd-saFoulee-2026-03-07.md"
-    description: "Product Requirements Document"
+    status: "docs/prd-saFoulee-2026-03-29.md"
+    description: "Product Requirements Document v2 (refonte graphique, newsletter, inventaire, budget, HelloAsso)"
 
   - name: tech-spec
     phase: 2
@@ -54,8 +54,8 @@ workflow_status:
   # Phase 3: Solutioning (Conditional on project level)
   - name: architecture
     phase: 3
-    status: "docs/architecture-saFoulee-2026-03-07.md"
-    description: "System architecture design"
+    status: "docs/architecture-saFoulee-2026-03-29.md"
+    description: "System architecture design v2 (newsletter, inventaire, budget, HelloAsso, infrastructure production)"
 
   - name: solutioning-gate-check
     phase: 3

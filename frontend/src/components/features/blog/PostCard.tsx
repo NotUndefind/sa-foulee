@@ -123,7 +123,7 @@ export default function PostCard({ post, onUpdate, onDelete, onEdit, canPin }: P
   return (
     <article
       className="overflow-hidden rounded-2xl bg-white"
-      style={{ boxShadow: '0 2px 10px rgba(123,36,28,0.07)', border: '1px solid rgba(123,36,28,0.08)' }}
+      style={{ boxShadow: '0 2px 10px rgba(192,48,46,0.07)', border: '1px solid rgba(192,48,46,0.08)' }}
     >
       {/* Image */}
       {post.image && (
@@ -139,33 +139,33 @@ export default function PostCard({ post, onUpdate, onDelete, onEdit, canPin }: P
           {post.is_pinned && (
             <span
               className="flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium"
-              style={{ background: 'rgba(192,57,43,0.1)', color: '#C0392B', border: '1px solid rgba(192,57,43,0.2)' }}
+              style={{ background: 'rgba(251,57,54,0.1)', color: '#FB3936', border: '1px solid rgba(251,57,54,0.2)' }}
             >
               <IconPin /> Épinglé
             </span>
           )}
           {post.published_at && (
-            <span className="text-xs" style={{ color: '#B0898A' }}>{formatDate(post.published_at)}</span>
+            <span className="text-xs" style={{ color: '#7F7F7F' }}>{formatDate(post.published_at)}</span>
           )}
-          {post.author && <span className="text-xs" style={{ color: '#B0898A' }}>par {post.author.name}</span>}
+          {post.author && <span className="text-xs" style={{ color: '#7F7F7F' }}>par {post.author.name}</span>}
         </div>
 
         {/* Titre */}
-        <h2 className="text-lg font-bold" style={{ color: '#7B241C' }}>{post.title}</h2>
+        <h2 className="text-lg font-bold" style={{ color: '#C0302E' }}>{post.title}</h2>
 
         {/* Contenu HTML (Tiptap output) */}
         <div
           className="prose prose-sm mt-3 max-w-none"
-          style={{ color: '#A93226' }}
+          style={{ color: '#D42F2D' }}
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
 
         {/* Actions */}
-        <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t pt-4" style={{ borderColor: 'rgba(123,36,28,0.06)' }}>
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t pt-4" style={{ borderColor: 'rgba(192,48,46,0.06)' }}>
           <button
             onClick={handleToggleComments}
             className="flex items-center gap-1.5 text-sm transition"
-            style={{ color: '#B0898A' }}
+            style={{ color: '#7F7F7F' }}
           >
             <IconComment />
             {post.comments_count} commentaire{post.comments_count !== 1 ? 's' : ''}
@@ -177,8 +177,8 @@ export default function PostCard({ post, onUpdate, onDelete, onEdit, canPin }: P
                 onClick={handlePin}
                 className="flex items-center gap-1 rounded-lg px-2 py-1 text-xs transition"
                 style={post.is_pinned
-                  ? { color: '#C0392B', background: 'rgba(192,57,43,0.06)' }
-                  : { color: '#B0898A' }
+                  ? { color: '#FB3936', background: 'rgba(251,57,54,0.06)' }
+                  : { color: '#7F7F7F' }
                 }
               >
                 <IconPin /> {post.is_pinned ? 'Désépingler' : 'Épingler'}
@@ -188,7 +188,7 @@ export default function PostCard({ post, onUpdate, onDelete, onEdit, canPin }: P
               <button
                 onClick={() => onEdit(post)}
                 className="rounded-lg px-2 py-1 text-xs transition"
-                style={{ color: '#A93226' }}
+                style={{ color: '#D42F2D' }}
               >
                 Modifier
               </button>
@@ -197,7 +197,7 @@ export default function PostCard({ post, onUpdate, onDelete, onEdit, canPin }: P
               <button
                 onClick={handleDelete}
                 className="rounded-lg px-2 py-1 text-xs transition"
-                style={{ color: '#922B21' }}
+                style={{ color: '#D42F2D' }}
               >
                 Supprimer
               </button>
@@ -207,11 +207,11 @@ export default function PostCard({ post, onUpdate, onDelete, onEdit, canPin }: P
 
         {/* Section commentaires */}
         {showComments && (
-          <div className="mt-4 space-y-3 border-t pt-4" style={{ borderColor: 'rgba(123,36,28,0.06)' }}>
+          <div className="mt-4 space-y-3 border-t pt-4" style={{ borderColor: 'rgba(192,48,46,0.06)' }}>
             {commentsLoading ? (
-              <p className="text-center text-xs" style={{ color: '#B0898A' }}>Chargement…</p>
+              <p className="text-center text-xs" style={{ color: '#7F7F7F' }}>Chargement…</p>
             ) : comments.length === 0 ? (
-              <p className="text-center text-xs" style={{ color: '#B0898A' }}>
+              <p className="text-center text-xs" style={{ color: '#7F7F7F' }}>
                 Aucun commentaire. Soyez le premier !
               </p>
             ) : (
@@ -219,24 +219,24 @@ export default function PostCard({ post, onUpdate, onDelete, onEdit, canPin }: P
                 <div key={c.id} className="flex items-start gap-3">
                   <div
                     className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold"
-                    style={{ background: 'rgba(169,50,38,0.1)', color: '#A93226' }}
+                    style={{ background: 'rgba(169,50,38,0.1)', color: '#D42F2D' }}
                   >
                     {c.user?.name?.charAt(0) ?? '?'}
                   </div>
                   <div className="flex-1 rounded-xl px-3 py-2" style={{ background: '#F8F8F8' }}>
                     <div className="flex items-center justify-between gap-2">
-                      <span className="text-xs font-medium" style={{ color: '#7B241C' }}>
+                      <span className="text-xs font-medium" style={{ color: '#C0302E' }}>
                         {c.user?.name ?? 'Membre'}
                       </span>
-                      <span className="text-xs" style={{ color: '#B0898A' }}>{formatDate(c.created_at)}</span>
+                      <span className="text-xs" style={{ color: '#7F7F7F' }}>{formatDate(c.created_at)}</span>
                     </div>
-                    <p className="mt-0.5 text-sm" style={{ color: '#A93226' }}>{c.content}</p>
+                    <p className="mt-0.5 text-sm" style={{ color: '#D42F2D' }}>{c.content}</p>
                   </div>
                   {(isAdmin || true) && (
                     <button
                       onClick={() => handleDeleteComment(c.id)}
                       className="mt-1 text-xs transition"
-                      style={{ color: 'rgba(123,36,28,0.2)' }}
+                      style={{ color: 'rgba(192,48,46,0.2)' }}
                     >
                       ✕
                     </button>
@@ -249,7 +249,7 @@ export default function PostCard({ post, onUpdate, onDelete, onEdit, canPin }: P
               <button
                 onClick={() => loadComments(commentsMeta.current_page + 1)}
                 className="w-full text-center text-xs transition hover:underline"
-                style={{ color: '#B0898A' }}
+                style={{ color: '#7F7F7F' }}
               >
                 Charger plus
               </button>
@@ -263,13 +263,13 @@ export default function PostCard({ post, onUpdate, onDelete, onEdit, canPin }: P
                 onChange={(e) => setNewComment(e.target.value)}
                 placeholder="Ajouter un commentaire…"
                 className="flex-1 rounded-lg px-3 py-2 text-sm outline-none transition"
-                style={{ border: '1px solid rgba(123,36,28,0.15)', color: '#7B241C' }}
+                style={{ border: '1px solid rgba(192,48,46,0.15)', color: '#C0302E' }}
               />
               <button
                 type="submit"
                 disabled={submitting || !newComment.trim()}
                 className="rounded-lg px-4 py-2 text-sm font-medium text-white transition disabled:opacity-50"
-                style={{ background: 'linear-gradient(135deg, #C0392B 0%, #922B21 100%)' }}
+                style={{ background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)' }}
               >
                 {submitting ? '…' : 'Envoyer'}
               </button>

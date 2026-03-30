@@ -21,16 +21,16 @@ export default function PublicNavUser() {
         <Link href="/tableau-de-bord" style={{
           fontSize: '0.875rem',
           fontWeight: 600,
-          color: '#7B241C',
+          color: '#C0302E',
           textDecoration: 'none',
           padding: '0.45rem 1.1rem',
           borderRadius: '100px',
-          border: '1.5px solid rgba(123,36,28,0.22)',
+          border: '1.5px solid rgba(192,48,46,0.22)',
           transition: 'all 0.15s ease',
           whiteSpace: 'nowrap',
         }}
-          onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(123,36,28,0.06)'; e.currentTarget.style.borderColor = 'rgba(123,36,28,0.4)' }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'rgba(123,36,28,0.22)' }}
+          onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(192,48,46,0.06)'; e.currentTarget.style.borderColor = 'rgba(192,48,46,0.4)' }}
+          onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'rgba(192,48,46,0.22)' }}
         >
           Tableau de bord
         </Link>
@@ -43,13 +43,13 @@ export default function PublicNavUser() {
             width: '30px',
             height: '30px',
             borderRadius: '50%',
-            background: 'rgba(123,36,28,0.1)',
+            background: 'rgba(192,48,46,0.1)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             fontSize: '0.7rem',
             fontWeight: 700,
-            color: '#7B241C',
+            color: '#C0302E',
           }}>
             {user.first_name?.[0]}{user.last_name?.[0]}
           </div>
@@ -62,13 +62,13 @@ export default function PublicNavUser() {
             border: 'none',
             cursor: 'pointer',
             padding: '0.25rem',
-            color: 'rgba(123,36,28,0.35)',
+            color: 'rgba(192,48,46,0.35)',
             display: 'flex',
             alignItems: 'center',
             transition: 'color 0.15s ease',
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = '#C0392B')}
-          onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(123,36,28,0.35)')}
+          onMouseEnter={(e) => (e.currentTarget.style.color = '#FB3936')}
+          onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(192,48,46,0.35)')}
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
@@ -100,15 +100,15 @@ export default function PublicNavUser() {
         fontWeight: 700,
         color: 'white',
         textDecoration: 'none',
-        background: '#C0392B',
+        background: '#FB3936',
         padding: '0.45rem 1.25rem',
         borderRadius: '100px',
         transition: 'all 0.15s ease',
-        boxShadow: '0 2px 12px rgba(192,57,43,0.3)',
+        boxShadow: '0 2px 12px rgba(251,57,54,0.3)',
         whiteSpace: 'nowrap',
       }}
-        onMouseEnter={(e) => { e.currentTarget.style.background = '#922B21'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(192,57,43,0.4)'; e.currentTarget.style.transform = 'translateY(-1px)' }}
-        onMouseLeave={(e) => { e.currentTarget.style.background = '#C0392B'; e.currentTarget.style.boxShadow = '0 2px 12px rgba(192,57,43,0.3)'; e.currentTarget.style.transform = 'translateY(0)' }}
+        onMouseEnter={(e) => { e.currentTarget.style.background = '#D42F2D'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(251,57,54,0.4)'; e.currentTarget.style.transform = 'translateY(-1px)' }}
+        onMouseLeave={(e) => { e.currentTarget.style.background = '#FB3936'; e.currentTarget.style.boxShadow = '0 2px 12px rgba(251,57,54,0.3)'; e.currentTarget.style.transform = 'translateY(0)' }}
       >
         Connexion
       </Link>

@@ -1,6 +1,6 @@
-# saFoulee
+# La Neuville TAF sa Foulée
 
-Application web mobile-first pour l'association de running "sa Foulée" (La Neuville).
+Application web mobile-first pour l'association de running **La Neuville TAF sa Foulée**.
 
 ## Stack technique
 
@@ -143,8 +143,8 @@ Voir le dossier `docs/` pour la documentation complète :
 
 | Élément | Valeur |
 |---------|--------|
-| Couleur principale | `#FF383E` (rouge/orange) |
-| Couleur d'accent | `#7EAA99` (vert sauge) |
+| Couleur principale | `#FB3936` (rouge officiel) |
+| Couleur d'accent | `#FD6563` (rouge clair) |
 | Fond | `#FFFFFF` (blanc) |
 | Police | Inter (Google Fonts) |
 | Style | Mobile-first, ludique et dynamique |

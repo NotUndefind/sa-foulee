@@ -41,7 +41,7 @@ const EVENT_TYPE_LABEL: Record<string, string> = {
   race: 'Course', outing: 'Sortie', competition: 'Compétition', other: 'Autre',
 }
 const EVENT_TYPE_COLOR: Record<string, string> = {
-  race: '#C0392B', outing: '#B0898A', competition: '#f59e0b', other: '#A93226',
+  race: '#FB3936', outing: '#7F7F7F', competition: '#f59e0b', other: '#D42F2D',
 }
 
 const SESSION_TYPE_LABEL: Record<string, string> = {
@@ -50,9 +50,9 @@ const SESSION_TYPE_LABEL: Record<string, string> = {
 }
 
 const INTENSITY_CONFIG: Record<string, { label: string; bg: string; color: string }> = {
-  low:    { label: 'Facile',  bg: 'rgba(176,137,138,0.15)', color: '#A93226' },
+  low:    { label: 'Facile',  bg: 'rgba(176,137,138,0.15)', color: '#D42F2D' },
   medium: { label: 'Modéré', bg: 'rgba(245,158,11,0.12)',  color: '#d97706' },
-  high:   { label: 'Intense', bg: 'rgba(192,57,43,0.12)',  color: '#C0392B' },
+  high:   { label: 'Intense', bg: 'rgba(251,57,54,0.12)',  color: '#FB3936' },
 }
 
 // ── SVG Icons ──────────────────────────────────────────────────────────────────
@@ -148,9 +148,9 @@ function Skeleton({ className }: { className?: string }) {
 
 function EmptyState({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
-    <div className="flex flex-col items-center gap-2 py-8 text-center" style={{ color: 'rgba(123,36,28,0.2)' }}>
+    <div className="flex flex-col items-center gap-2 py-8 text-center" style={{ color: 'rgba(192,48,46,0.2)' }}>
       {icon}
-      <p className="text-sm" style={{ color: 'rgba(123,36,28,0.45)' }}>{label}</p>
+      <p className="text-sm" style={{ color: 'rgba(192,48,46,0.45)' }}>{label}</p>
     </div>
   )
 }
@@ -162,7 +162,7 @@ function SectionHeader({ title, href, accent }: { title: string; href: string; a
     <div className="mb-4 flex items-center justify-between">
       <div className="flex items-center gap-2">
         <div className="h-4 w-1 rounded-full" style={{ background: accent }} />
-        <h2 className="text-base font-bold" style={{ color: '#7B241C', fontFamily: "'Baloo 2', sans-serif" }}>
+        <h2 className="text-base font-bold" style={{ color: '#C0302E', fontFamily: "'Baloo 2', sans-serif" }}>
           {title}
         </h2>
       </div>
@@ -180,10 +180,10 @@ function SectionHeader({ title, href, accent }: { title: string; href: string; a
 // ── Quick Action ──────────────────────────────────────────────────────────────
 
 const QUICK_ACTIONS = [
-  { Icon: IconCalendar, label: 'Événements',  href: '/tableau-de-bord/evenements',  desc: 'Courses & sorties',   accent: '#C0392B', bg: 'rgba(192,57,43,0.08)'  },
-  { Icon: IconRun,      label: 'Sessions',    href: '/tableau-de-bord/sessions',    desc: 'Entraînements',       accent: '#A93226', bg: 'rgba(123,36,28,0.07)'   },
+  { Icon: IconCalendar, label: 'Événements',  href: '/tableau-de-bord/evenements',  desc: 'Courses & sorties',   accent: '#FB3936', bg: 'rgba(251,57,54,0.08)'  },
+  { Icon: IconRun,      label: 'Sessions',    href: '/tableau-de-bord/sessions',    desc: 'Entraînements',       accent: '#D42F2D', bg: 'rgba(192,48,46,0.07)'   },
   { Icon: IconTrophy,   label: 'Classement',  href: '/tableau-de-bord/leaderboard', desc: 'Mes performances',    accent: '#d97706', bg: 'rgba(245,158,11,0.07)' },
-  { Icon: IconPen,      label: 'Blog',        href: '/tableau-de-bord/blog',        desc: 'Actualités du club',  accent: '#B0898A', bg: 'rgba(176,137,138,0.09)'},
+  { Icon: IconPen,      label: 'Blog',        href: '/tableau-de-bord/blog',        desc: 'Actualités',  accent: '#7F7F7F', bg: 'rgba(176,137,138,0.09)'},
 ]
 
 // ── Page ───────────────────────────────────────────────────────────────────────
@@ -241,21 +241,21 @@ export default function DashboardHomePage() {
         .sf-card {
           background: white;
           border-radius: 16px;
-          box-shadow: 0 2px 8px rgba(123,36,28,0.07);
-          border: 1px solid rgba(123,36,28,0.08);
+          box-shadow: 0 2px 8px rgba(192,48,46,0.07);
+          border: 1px solid rgba(192,48,46,0.08);
           overflow: hidden;
           transition: box-shadow 0.2s ease, transform 0.2s ease;
         }
         .sf-card:hover {
-          box-shadow: 0 6px 20px rgba(123,36,28,0.12);
+          box-shadow: 0 6px 20px rgba(192,48,46,0.12);
           transform: translateY(-1px);
         }
 
         .sf-quick-card {
           background: white;
           border-radius: 14px;
-          border: 1px solid rgba(123,36,28,0.07);
-          box-shadow: 0 1px 4px rgba(123,36,28,0.05);
+          border: 1px solid rgba(192,48,46,0.07);
+          box-shadow: 0 1px 4px rgba(192,48,46,0.05);
           padding: 16px;
           transition: all 0.2s ease;
           text-decoration: none;
@@ -263,16 +263,16 @@ export default function DashboardHomePage() {
         }
         .sf-quick-card:hover {
           transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(123,36,28,0.12);
+          box-shadow: 0 8px 24px rgba(192,48,46,0.12);
         }
 
         .sf-progress-bar { animation: progressFill 0.8s ease 0.3s both; }
         .sf-event-row { transition: background 0.15s ease; }
-        .sf-event-row:hover { background: rgba(123,36,28,0.02); }
+        .sf-event-row:hover { background: rgba(192,48,46,0.02); }
         .sf-blog-card { transition: all 0.2s ease; }
         .sf-blog-card:hover {
           transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(123,36,28,0.1);
+          box-shadow: 0 8px 24px rgba(192,48,46,0.1);
         }
       `}</style>
 
@@ -281,18 +281,18 @@ export default function DashboardHomePage() {
 
           {/* ── Hero Header ────────────────────────────────────────────── */}
           <div className="sf-fade mb-8" style={{ animationDelay: '0ms' }}>
-            <p className="mb-1 text-xs font-semibold uppercase tracking-widest capitalize" style={{ color: 'rgba(123,36,28,0.4)' }}>
+            <p className="mb-1 text-xs font-semibold uppercase tracking-widest capitalize" style={{ color: 'rgba(192,48,46,0.4)' }}>
               {today}
             </p>
-            <h1 className="text-3xl font-extrabold leading-tight" style={{ letterSpacing: '-0.02em', color: '#7B241C' }}>
+            <h1 className="text-3xl font-extrabold leading-tight" style={{ letterSpacing: '-0.02em', color: '#C0302E' }}>
               {greeting()}{user?.first_name ? (
                 <>
                   {', '}
-                  <span style={{ color: '#C0392B' }}>{user.first_name}</span>
+                  <span style={{ color: '#FB3936' }}>{user.first_name}</span>
                 </>
               ) : ''} !
             </h1>
-            <p className="mt-1.5 text-sm italic" style={{ color: 'rgba(123,36,28,0.5)' }}>
+            <p className="mt-1.5 text-sm italic" style={{ color: 'rgba(192,48,46,0.5)' }}>
               « {quote()} »
             </p>
           </div>
@@ -319,7 +319,7 @@ export default function DashboardHomePage() {
                   Dossier incomplet — {completionPct}% complété
                 </p>
                 <p className="mt-0.5 text-xs text-amber-600">
-                  Complétez votre dossier pour participer aux événements du club.
+                  Complétez votre dossier pour participer aux événements de l&apos;association.
                 </p>
                 <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-amber-200">
                   <div
@@ -347,7 +347,7 @@ export default function DashboardHomePage() {
                 >
                   <Icon />
                 </div>
-                <p className="text-sm font-bold" style={{ color: '#7B241C' }}>{label}</p>
+                <p className="text-sm font-bold" style={{ color: '#C0302E' }}>{label}</p>
                 <p className="mt-0.5 text-xs" style={{ color: accent }}>{desc}</p>
               </Link>
             ))}
@@ -358,10 +358,10 @@ export default function DashboardHomePage() {
 
             {/* Événements */}
             <div className="sf-fade" style={{ animationDelay: '220ms' }}>
-              <SectionHeader title="Prochains événements" href="/tableau-de-bord/evenements" accent="#C0392B" />
+              <SectionHeader title="Prochains événements" href="/tableau-de-bord/evenements" accent="#FB3936" />
               <div className="sf-card">
                 {loading ? (
-                  <div className="space-y-0 divide-y" style={{ borderColor: 'rgba(123,36,28,0.04)' }}>
+                  <div className="space-y-0 divide-y" style={{ borderColor: 'rgba(192,48,46,0.04)' }}>
                     {[1, 2, 3].map((i) => (
                       <div key={i} className="flex items-center gap-3 px-5 py-4">
                         <Skeleton className="h-12 w-10 shrink-0" />
@@ -375,10 +375,10 @@ export default function DashboardHomePage() {
                 ) : events.length === 0 ? (
                   <EmptyState icon={<IconEmptyCalendar />} label="Aucun événement à venir" />
                 ) : (
-                  <div className="divide-y" style={{ borderColor: 'rgba(123,36,28,0.05)' }}>
+                  <div className="divide-y" style={{ borderColor: 'rgba(192,48,46,0.05)' }}>
                     {events.map((ev, i) => {
                       const { day, month, weekday } = formatDateShort(ev.event_date)
-                      const typeColor = EVENT_TYPE_COLOR[ev.type] ?? '#A93226'
+                      const typeColor = EVENT_TYPE_COLOR[ev.type] ?? '#D42F2D'
                       return (
                         <Link
                           key={ev.id}
@@ -402,8 +402,8 @@ export default function DashboardHomePage() {
                             </span>
                           </div>
                           <div className="min-w-0 flex-1">
-                            <p className="truncate text-sm font-semibold" style={{ color: '#7B241C' }}>{ev.title}</p>
-                            <p className="mt-0.5 flex items-center gap-1.5 text-xs" style={{ color: 'rgba(123,36,28,0.45)' }}>
+                            <p className="truncate text-sm font-semibold" style={{ color: '#C0302E' }}>{ev.title}</p>
+                            <p className="mt-0.5 flex items-center gap-1.5 text-xs" style={{ color: 'rgba(192,48,46,0.45)' }}>
                               <span
                                 className="rounded-full px-2 py-0.5 text-[10px] font-semibold"
                                 style={{ background: `${typeColor}15`, color: typeColor }}
@@ -420,7 +420,7 @@ export default function DashboardHomePage() {
                           {ev.is_registered && (
                             <span
                               className="shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold"
-                              style={{ background: 'rgba(123,36,28,0.08)', color: '#A93226' }}
+                              style={{ background: 'rgba(192,48,46,0.08)', color: '#D42F2D' }}
                             >
                               Inscrit
                             </span>
@@ -435,10 +435,10 @@ export default function DashboardHomePage() {
 
             {/* Sessions */}
             <div className="sf-fade" style={{ animationDelay: '260ms' }}>
-              <SectionHeader title="Prochaines sessions" href="/tableau-de-bord/sessions" accent="#A93226" />
+              <SectionHeader title="Prochaines sessions" href="/tableau-de-bord/sessions" accent="#D42F2D" />
               <div className="sf-card">
                 {loading ? (
-                  <div className="divide-y" style={{ borderColor: 'rgba(123,36,28,0.04)' }}>
+                  <div className="divide-y" style={{ borderColor: 'rgba(192,48,46,0.04)' }}>
                     {[1, 2, 3].map((i) => (
                       <div key={i} className="flex items-center gap-3 px-5 py-4">
                         <Skeleton className="h-10 w-10 shrink-0 rounded-xl" />
@@ -453,9 +453,9 @@ export default function DashboardHomePage() {
                 ) : sessions.length === 0 ? (
                   <EmptyState icon={<IconEmptyRun />} label="Aucune session planifiée" />
                 ) : (
-                  <div className="divide-y" style={{ borderColor: 'rgba(123,36,28,0.05)' }}>
+                  <div className="divide-y" style={{ borderColor: 'rgba(192,48,46,0.05)' }}>
                     {sessions.map((s, i) => {
-                      const intensity = INTENSITY_CONFIG[s.intensity] ?? { label: s.intensity, bg: 'rgba(123,36,28,0.05)', color: '#A93226' }
+                      const intensity = INTENSITY_CONFIG[s.intensity] ?? { label: s.intensity, bg: 'rgba(192,48,46,0.05)', color: '#D42F2D' }
                       return (
                         <Link
                           key={s.id}
@@ -465,13 +465,13 @@ export default function DashboardHomePage() {
                         >
                           <div
                             className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl"
-                            style={{ background: 'rgba(123,36,28,0.07)', color: '#A93226' }}
+                            style={{ background: 'rgba(192,48,46,0.07)', color: '#D42F2D' }}
                           >
                             <IconRun />
                           </div>
                           <div className="min-w-0 flex-1">
-                            <p className="truncate text-sm font-semibold" style={{ color: '#7B241C' }}>{s.title}</p>
-                            <p className="mt-0.5 flex flex-wrap items-center gap-1.5 text-xs" style={{ color: 'rgba(123,36,28,0.45)' }}>
+                            <p className="truncate text-sm font-semibold" style={{ color: '#C0302E' }}>{s.title}</p>
+                            <p className="mt-0.5 flex flex-wrap items-center gap-1.5 text-xs" style={{ color: 'rgba(192,48,46,0.45)' }}>
                               <span>{SESSION_TYPE_LABEL[s.type] ?? s.type}</span>
                               {s.distance_km && <><span>·</span><span>{s.distance_km} km</span></>}
                               {s.duration_min && <><span>·</span><span>{s.duration_min} min</span></>}
@@ -494,7 +494,7 @@ export default function DashboardHomePage() {
 
           {/* ── Blog récent ─────────────────────────────────────────────── */}
           <div className="sf-fade" style={{ animationDelay: '320ms' }}>
-            <SectionHeader title="Articles récents" href="/tableau-de-bord/blog" accent="#B0898A" />
+            <SectionHeader title="Articles récents" href="/tableau-de-bord/blog" accent="#7F7F7F" />
 
             {loading ? (
               <div className="grid gap-4 sm:grid-cols-3">
@@ -522,22 +522,22 @@ export default function DashboardHomePage() {
                     {post.is_pinned && (
                       <span
                         className="inline-flex w-fit items-center gap-1 rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider"
-                        style={{ background: 'rgba(192,57,43,0.1)', color: '#C0392B' }}
+                        style={{ background: 'rgba(251,57,54,0.1)', color: '#FB3936' }}
                       >
                         <IconPin /> Épinglé
                       </span>
                     )}
-                    <p className="line-clamp-2 text-sm font-bold leading-snug" style={{ color: '#7B241C' }}>
+                    <p className="line-clamp-2 text-sm font-bold leading-snug" style={{ color: '#C0302E' }}>
                       {post.title}
                     </p>
-                    <div className="mt-auto flex items-center gap-1.5 text-xs" style={{ color: 'rgba(123,36,28,0.4)' }}>
+                    <div className="mt-auto flex items-center gap-1.5 text-xs" style={{ color: 'rgba(192,48,46,0.4)' }}>
                       {post.author && (
-                        <span className="font-medium" style={{ color: 'rgba(123,36,28,0.65)' }}>{post.author.name}</span>
+                        <span className="font-medium" style={{ color: 'rgba(192,48,46,0.65)' }}>{post.author.name}</span>
                       )}
                       {post.author && <span>·</span>}
                       <span>{formatDate(post.published_at ?? post.created_at)}</span>
                       {post.comments_count > 0 && (
-                        <span className="ml-auto font-medium" style={{ color: '#B0898A' }}>
+                        <span className="ml-auto font-medium" style={{ color: '#7F7F7F' }}>
                           {post.comments_count} comm.
                         </span>
                       )}

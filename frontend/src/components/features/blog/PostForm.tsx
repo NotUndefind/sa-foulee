@@ -66,6 +66,7 @@ export default function PostForm({ post, onSuccess, onCancel }: Props) {
   const editor = useEditor({
     extensions: [StarterKit],
     content: post?.content ?? '',
+    immediatelyRender: false,
     editorProps: {
       attributes: {
         class: 'prose prose-sm max-w-none min-h-[200px] focus:outline-none px-4 py-3',

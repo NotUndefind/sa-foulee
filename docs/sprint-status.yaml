@@ -1,8 +1,8 @@
 version: "6.0.0"
-project_name: "saFoulee"
+project_name: "La Neuville TAF sa Foulée"
 project_level: 2
-current_sprint: 6
-sprint_plan_path: "docs/sprint-plan-saFoulee-2026-03-08-refonte-graphique.md"
+current_sprint: 9
+sprint_plan_path: "docs/sprint-plan-saFoulee-2026-03-29-v2.md"
 
 team:
   size: 1
@@ -16,7 +16,13 @@ velocity:
   sprint_3: 11
   sprint_4: 12
   sprint_5: 14
+  sprint_6: 10
+  sprint_7: 10
+  sprint_8: 8
   rolling_average: 11.6
+
+# --- v2 sprints (sprints 9-15) ---
+# Sprint 8 terminé (toutes stories completed). Hors-sprint 2026-03-29: FR-UX01 et FR-UX02 livrés.
 
 sprints:
   - sprint_number: 1
@@ -380,3 +386,293 @@ post_sprint:
       points: 5
       epic: "EPIC-004"
       priority: "could_have"
+
+  # --- Hors-sprint 2026-03-29 (livrés immédiatement) ---
+  delivered_out_of_sprint:
+    - story_id: "STORY-V2-UX01"
+      title: "Auth layout — logo cliquable retour accueil"
+      points: 1
+      epic: "EPIC-R"
+      priority: "must_have"
+      status: "completed"
+      completed_date: "2026-03-29"
+      files_modified:
+        - "frontend/src/app/(auth)/layout.tsx"
+    - story_id: "STORY-V2-UX02"
+      title: "Bug SSR Tiptap — immediatelyRender: false"
+      points: 1
+      epic: "EPIC-R"
+      priority: "must_have"
+      status: "completed"
+      completed_date: "2026-03-29"
+      files_modified:
+        - "frontend/src/components/features/blog/PostForm.tsx"
+
+# --- Sprint 9 (v2 commence) ---
+  - sprint_number: 9
+    start_date: "2026-03-30"
+    end_date: "2026-04-05"
+    capacity_points: 10
+    committed_points: 10
+    completed_points: 10
+    status: "completed"
+    goal: "Refonte graphique v2 — palette #FB3936, images officielles, nom association"
+    stories:
+      - story_id: "STORY-V2-R01"
+        title: "Nouvelle palette de couleurs #FB3936"
+        points: 5
+        status: "completed"
+        completed_date: "2026-03-30"
+        epic: "EPIC-R"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        files_modified:
+          - "frontend/src/app/globals.css"
+          - "frontend/src/app/(public)/page.tsx"
+          - "frontend/src/app/(public)/layout.tsx"
+          - "frontend/src/app/(dashboard)/layout.tsx"
+          - "frontend/src/app/(dashboard)/tableau-de-bord/page.tsx"
+          - "frontend/src/components/features/auth/LoginForm.tsx"
+          - "frontend/src/components/features/auth/RegisterForm.tsx"
+          - "frontend/src/components/features/auth/ForgotPasswordForm.tsx"
+          - "frontend/src/components/features/auth/ResetPasswordForm.tsx"
+          - "frontend/src/components/features/public/PublicNavUser.tsx"
+          - "frontend/src/components/features/events/EventCard.tsx"
+          - "frontend/src/components/features/events/EventDetailPage.tsx"
+          - "frontend/src/components/features/events/ActivitesPage.tsx"
+          - "frontend/src/components/features/events/EventsPage.tsx"
+          - "frontend/src/components/features/profile/ProfilePage.tsx"
+          - "frontend/src/components/features/leaderboard/LeaderboardPage.tsx"
+          - "frontend/src/components/features/sessions/SessionsPage.tsx"
+          - "frontend/src/components/features/blog/PostCard.tsx"
+          - "frontend/src/components/features/blog/PostsPage.tsx"
+          - "frontend/src/components/features/admin/AdminUsersPage.tsx"
+      - story_id: "STORY-V2-R02"
+        title: "Intégration des images officielles (logo, mascotte, bureau)"
+        points: 3
+        status: "completed"
+        epic: "EPIC-R"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-03-29"
+        files_modified:
+          - "frontend/src/app/(public)/layout.tsx"
+          - "frontend/src/app/(public)/page.tsx"
+          - "frontend/src/app/not-found.tsx"
+      - story_id: "STORY-V2-R03"
+        title: "Correction nom La Neuville TAF sa Foulée"
+        points: 2
+        status: "completed"
+        completed_date: "2026-03-30"
+        epic: "EPIC-R"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        files_modified:
+          - "frontend/src/app/layout.tsx"
+          - "frontend/src/app/(public)/page.tsx"
+          - "frontend/src/app/(public)/activites/page.tsx"
+          - "frontend/src/app/(public)/blog/page.tsx"
+          - "frontend/src/app/(public)/evenements/page.tsx"
+          - "frontend/src/app/(dashboard)/tableau-de-bord/page.tsx"
+          - "frontend/src/app/(dashboard)/tableau-de-bord/blog/page.tsx"
+          - "frontend/src/app/(dashboard)/tableau-de-bord/leaderboard/page.tsx"
+          - "frontend/src/components/features/auth/RegisterForm.tsx"
+          - "frontend/src/components/features/blog/PostsPage.tsx"
+          - "frontend/src/components/features/blog/PublicBlogPage.tsx"
+          - "frontend/src/components/features/events/EventsPage.tsx"
+          - "frontend/src/components/features/leaderboard/LeaderboardPage.tsx"
+          - "frontend/src/components/features/profile/ProfilePage.tsx"
+          - "README.md"
+
+  - sprint_number: 10
+    start_date: "2026-04-06"
+    end_date: "2026-04-12"
+    capacity_points: 10
+    committed_points: 10
+    completed_points: 0
+    status: "not_started"
+    goal: "Site en production — Vercel + O2switch opérationnels + page adhésion HelloAsso"
+    stories:
+      - story_id: "STORY-V2-D01"
+        title: "Configuration Vercel production"
+        points: 3
+        status: "not_started"
+        epic: "EPIC-D"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+      - story_id: "STORY-V2-D02"
+        title: "Configuration O2switch backend production"
+        points: 5
+        status: "not_started"
+        epic: "EPIC-D"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+      - story_id: "STORY-V2-P01"
+        title: "Page /adhesion et bouton HelloAsso"
+        points: 2
+        status: "not_started"
+        epic: "EPIC-P"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+
+  - sprint_number: 11
+    start_date: "2026-04-13"
+    end_date: "2026-04-19"
+    capacity_points: 10
+    committed_points: 10
+    completed_points: 0
+    status: "not_started"
+    goal: "Webhook HelloAsso fonctionnel + Newsletter — abonnement membres"
+    stories:
+      - story_id: "STORY-V2-P02"
+        title: "Webhook HelloAsso — mise à jour cotisation"
+        points: 5
+        status: "not_started"
+        epic: "EPIC-P"
+        priority: "should_have"
+        assigned_to: "julesbourin"
+      - story_id: "STORY-V2-N01"
+        title: "Backend newsletter — migrations et API"
+        points: 3
+        status: "not_started"
+        epic: "EPIC-N"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+      - story_id: "STORY-V2-N02"
+        title: "Frontend opt-in newsletter dans profil"
+        points: 2
+        status: "not_started"
+        epic: "EPIC-N"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+
+  - sprint_number: 12
+    start_date: "2026-04-20"
+    end_date: "2026-04-26"
+    capacity_points: 10
+    committed_points: 11
+    completed_points: 0
+    status: "not_started"
+    goal: "Newsletter admin complète — abonnés, envoi campagnes, désabonnement RGPD"
+    stories:
+      - story_id: "STORY-V2-N03"
+        title: "Page admin liste abonnés + export CSV"
+        points: 3
+        status: "not_started"
+        epic: "EPIC-N"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+      - story_id: "STORY-V2-N04"
+        title: "Backend création et envoi de campagne newsletter"
+        points: 5
+        status: "not_started"
+        epic: "EPIC-N"
+        priority: "should_have"
+        assigned_to: "julesbourin"
+      - story_id: "STORY-V2-N06"
+        title: "Désabonnement par lien email (RGPD)"
+        points: 3
+        status: "not_started"
+        epic: "EPIC-N"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+
+  - sprint_number: 13
+    start_date: "2026-04-27"
+    end_date: "2026-05-03"
+    capacity_points: 10
+    committed_points: 9
+    completed_points: 0
+    status: "not_started"
+    goal: "Newsletter frontend (interface campagnes) + Inventaire backend"
+    stories:
+      - story_id: "STORY-V2-N05"
+        title: "Frontend interface création et envoi campagne"
+        points: 3
+        status: "not_started"
+        epic: "EPIC-N"
+        priority: "should_have"
+        assigned_to: "julesbourin"
+      - story_id: "STORY-V2-I01"
+        title: "Backend inventaire — migrations et API CRUD"
+        points: 3
+        status: "not_started"
+        epic: "EPIC-I"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+      - story_id: "STORY-V2-I03"
+        title: "Backend attributions équipements"
+        points: 3
+        status: "not_started"
+        epic: "EPIC-I"
+        priority: "should_have"
+        assigned_to: "julesbourin"
+
+  - sprint_number: 14
+    start_date: "2026-05-04"
+    end_date: "2026-05-10"
+    capacity_points: 10
+    committed_points: 8
+    completed_points: 0
+    status: "not_started"
+    goal: "Inventaire frontend complet — liste, attributions, export CSV"
+    stories:
+      - story_id: "STORY-V2-I02"
+        title: "Frontend page inventaire"
+        points: 3
+        status: "not_started"
+        epic: "EPIC-I"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+      - story_id: "STORY-V2-I04"
+        title: "Frontend attributions et historique"
+        points: 3
+        status: "not_started"
+        epic: "EPIC-I"
+        priority: "should_have"
+        assigned_to: "julesbourin"
+      - story_id: "STORY-V2-I05"
+        title: "Export CSV inventaire"
+        points: 2
+        status: "not_started"
+        epic: "EPIC-I"
+        priority: "could_have"
+        assigned_to: "julesbourin"
+
+  - sprint_number: 15
+    start_date: "2026-05-11"
+    end_date: "2026-05-17"
+    capacity_points: 10
+    committed_points: 12
+    completed_points: 0
+    status: "not_started"
+    goal: "Gestion budgétaire complète — dashboard financier, saisie dépenses/recettes, export AG"
+    stories:
+      - story_id: "STORY-V2-B01"
+        title: "Backend budget — migrations et API"
+        points: 3
+        status: "not_started"
+        epic: "EPIC-B"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+      - story_id: "STORY-V2-B02"
+        title: "Frontend dashboard financier"
+        points: 5
+        status: "not_started"
+        epic: "EPIC-B"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+      - story_id: "STORY-V2-B03"
+        title: "Formulaire saisie dépense/recette"
+        points: 2
+        status: "not_started"
+        epic: "EPIC-B"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+      - story_id: "STORY-V2-B04"
+        title: "Export CSV budget"
+        points: 2
+        status: "not_started"
+        epic: "EPIC-B"
+        priority: "should_have"
+        assigned_to: "julesbourin"
