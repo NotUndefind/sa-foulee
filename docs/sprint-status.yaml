@@ -753,7 +753,7 @@ post_sprint:
     end_date: "2026-05-17"
     capacity_points: 10
     committed_points: 12
-    completed_points: 3
+    completed_points: 8
     status: "in_progress"
     goal: "Gestion budgétaire complète — dashboard financier, saisie dépenses/recettes, export AG"
     stories:
@@ -778,10 +778,24 @@ post_sprint:
       - story_id: "STORY-V2-B02"
         title: "Frontend dashboard financier"
         points: 5
-        status: "not_started"
+        status: "completed"
         epic: "EPIC-B"
         priority: "must_have"
         assigned_to: "julesbourin"
+        completed_date: "2026-03-30"
+        implementation_notes: >
+          BudgetPage avec solde coloré (vert/rouge), graphique Recharts (lazy SSR-disabled),
+          top 5 catégories avec barres de progression, liste 10 derniers mouvements,
+          mode "Voir tout" avec filtres type/catégorie/dates, pagination, export CSV.
+          Lien Budget ajouté dans la sidebar (section Gestion, visible bureau+).
+        files_modified:
+          - "frontend/src/types/index.ts"
+          - "frontend/src/lib/budget.ts"
+          - "frontend/src/components/features/budget/BudgetChart.tsx"
+          - "frontend/src/components/features/budget/BudgetPage.tsx"
+          - "frontend/src/app/(dashboard)/tableau-de-bord/budget/page.tsx"
+          - "frontend/src/app/(dashboard)/layout.tsx"
+          - "frontend/package.json"
       - story_id: "STORY-V2-B03"
         title: "Formulaire saisie dépense/recette"
         points: 2

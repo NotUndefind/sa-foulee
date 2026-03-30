@@ -173,6 +173,55 @@ export interface EquipmentDetail extends Equipment {
   assignment_history: EquipmentAssignment[]
 }
 
+// ---- Budget ----
+
+export type BudgetEntryType = 'recette' | 'depense'
+
+export interface BudgetEntry {
+  id: number
+  type: BudgetEntryType
+  category: string
+  amount: number
+  description: string | null
+  entry_date: string
+  receipt_url: string | null
+  source: string
+  created_by: { id: number; first_name: string; last_name: string } | null
+  created_at: string
+}
+
+export interface BudgetMonthlyStat {
+  month: string   // "YYYY-MM"
+  recettes: number
+  depenses: number
+  solde: number
+}
+
+export interface BudgetCategoryStat {
+  category: string
+  total: number
+}
+
+export interface BudgetSummary {
+  solde: number
+  total_recettes: number
+  total_depenses: number
+  monthly: BudgetMonthlyStat[]
+  top_categories: BudgetCategoryStat[]
+}
+
+export interface BudgetListMeta {
+  total: number
+  per_page: number
+  current_page: number
+  last_page: number
+}
+
+export interface BudgetListResponse {
+  data: BudgetEntry[]
+  meta: BudgetListMeta
+}
+
 // ---- Chat ----
 
 export interface ChatMessage {

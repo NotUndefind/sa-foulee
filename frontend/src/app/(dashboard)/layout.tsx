@@ -70,6 +70,16 @@ function IconUser({ active }: { active?: boolean }) {
   )
 }
 
+function IconEuro({ active }: { active?: boolean }) {
+  return (
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.6} strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M14.8 9A4.5 4.5 0 0 0 7.5 12a4.5 4.5 0 0 0 7.3 3.5"/>
+      <path d="M7 11h5M7 13h5"/>
+    </svg>
+  )
+}
+
 function IconBox({ active }: { active?: boolean }) {
   return (
     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.6} strokeLinecap="round" strokeLinejoin="round">
@@ -313,17 +323,30 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                     </p>
                   </li>
                   {canManageEvents && (
-                    <li>
-                      <Link
-                        href="/tableau-de-bord/inventaire"
-                        className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/inventaire') ? ' active' : ''}`}
-                      >
-                        <span style={{ opacity: pathname.startsWith('/tableau-de-bord/inventaire') ? 1 : 0.7, flexShrink: 0 }}>
-                          <IconBox active={pathname.startsWith('/tableau-de-bord/inventaire')} />
-                        </span>
-                        Inventaire
-                      </Link>
-                    </li>
+                    <>
+                      <li>
+                        <Link
+                          href="/tableau-de-bord/inventaire"
+                          className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/inventaire') ? ' active' : ''}`}
+                        >
+                          <span style={{ opacity: pathname.startsWith('/tableau-de-bord/inventaire') ? 1 : 0.7, flexShrink: 0 }}>
+                            <IconBox active={pathname.startsWith('/tableau-de-bord/inventaire')} />
+                          </span>
+                          Inventaire
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          href="/tableau-de-bord/budget"
+                          className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/budget') ? ' active' : ''}`}
+                        >
+                          <span style={{ opacity: pathname.startsWith('/tableau-de-bord/budget') ? 1 : 0.7, flexShrink: 0 }}>
+                            <IconEuro active={pathname.startsWith('/tableau-de-bord/budget')} />
+                          </span>
+                          Budget
+                        </Link>
+                      </li>
+                    </>
                   )}
                   <li>
                     <Link
