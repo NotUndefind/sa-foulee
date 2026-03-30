@@ -51,6 +51,22 @@ Route::prefix('v1')->group(function () {
         // Newsletter — toggle abonnement (tous les membres)
         Route::patch('me/newsletter', [\App\Http\Controllers\Api\V1\NewsletterController::class, 'toggle']);
 
+        // ---- Inventaire [Bureau+] ----
+        Route::middleware('role:admin|founder|bureau')->group(function () {
+            Route::get('inventory',             [\App\Http\Controllers\Api\V1\EquipmentController::class, 'index']);
+            Route::get('inventory/export',      [\App\Http\Controllers\Api\V1\EquipmentController::class, 'export']);
+            Route::get('inventory/{equipment}', [\App\Http\Controllers\Api\V1\EquipmentController::class, 'show']);
+            Route::post('inventory',            [\App\Http\Controllers\Api\V1\EquipmentController::class, 'store']);
+            Route::patch('inventory/{equipment}',[\App\Http\Controllers\Api\V1\EquipmentController::class, 'update']);
+            // Attributions
+            Route::post('inventory/{equipment}/assign',             [\App\Http\Controllers\Api\V1\EquipmentAssignmentController::class, 'assign']);
+            Route::patch('inventory/assignments/{assignment}/return',[\App\Http\Controllers\Api\V1\EquipmentAssignmentController::class, 'return']);
+        });
+
+        Route::middleware('role:admin|founder')->group(function () {
+            Route::delete('inventory/{equipment}', [\App\Http\Controllers\Api\V1\EquipmentController::class, 'destroy']);
+        });
+
         // ---- Newsletter admin [Admin|Founder] ----
         Route::middleware('role:admin|founder')->group(function () {
             Route::get('admin/newsletter/subscribers',        [\App\Http\Controllers\Api\V1\NewsletterController::class, 'subscribers']);

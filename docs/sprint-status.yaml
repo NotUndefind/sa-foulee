@@ -652,31 +652,48 @@ post_sprint:
     end_date: "2026-05-03"
     capacity_points: 10
     committed_points: 9
-    completed_points: 0
-    status: "not_started"
+    completed_points: 9
+    status: "completed"
     goal: "Newsletter frontend (interface campagnes) + Inventaire backend"
     stories:
       - story_id: "STORY-V2-N05"
         title: "Frontend interface création et envoi campagne"
         points: 3
-        status: "not_started"
+        status: "completed"
         epic: "EPIC-N"
         priority: "should_have"
         assigned_to: "julesbourin"
+        completed_date: "2026-03-30"
+        files_modified:
+          - "frontend/src/lib/newsletter.ts"
+          - "frontend/src/components/features/newsletter/CampaignForm.tsx"
+          - "frontend/src/components/features/newsletter/NewsletterAdminPage.tsx"
       - story_id: "STORY-V2-I01"
         title: "Backend inventaire — migrations et API CRUD"
         points: 3
-        status: "not_started"
+        status: "completed"
         epic: "EPIC-I"
         priority: "must_have"
         assigned_to: "julesbourin"
+        completed_date: "2026-03-30"
+        files_modified:
+          - "backend/database/migrations/2026_03_30_000003_create_equipment_table.php"
+          - "backend/app/Models/Equipment.php"
+          - "backend/app/Http/Controllers/Api/V1/EquipmentController.php"
+          - "backend/routes/api.php"
       - story_id: "STORY-V2-I03"
         title: "Backend attributions équipements"
         points: 3
-        status: "not_started"
+        status: "completed"
         epic: "EPIC-I"
         priority: "should_have"
         assigned_to: "julesbourin"
+        completed_date: "2026-03-30"
+        files_modified:
+          - "backend/database/migrations/2026_03_30_000004_create_equipment_assignments_table.php"
+          - "backend/app/Models/EquipmentAssignment.php"
+          - "backend/app/Http/Controllers/Api/V1/EquipmentAssignmentController.php"
+          - "backend/routes/api.php"
 
   - sprint_number: 14
     start_date: "2026-05-04"
