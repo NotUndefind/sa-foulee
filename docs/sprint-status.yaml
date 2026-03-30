@@ -700,8 +700,8 @@ post_sprint:
     end_date: "2026-05-10"
     capacity_points: 10
     committed_points: 8
-    completed_points: 6
-    status: "in_progress"
+    completed_points: 8
+    status: "completed"
     goal: "Inventaire frontend complet — liste, attributions, export CSV"
     stories:
       - story_id: "STORY-V2-I02"
@@ -737,10 +737,16 @@ post_sprint:
       - story_id: "STORY-V2-I05"
         title: "Export CSV inventaire"
         points: 2
-        status: "not_started"
+        status: "completed"
         epic: "EPIC-I"
         priority: "could_have"
         assigned_to: "julesbourin"
+        completed_date: "2026-03-30"
+        implementation_notes: >
+          Backend (EquipmentController::export) livré avec I01 : BOM UTF-8 (\xEF\xBB\xBF),
+          nom inventaire-safoulee-{date}.csv, colonnes Nom/Catégorie/Quantité/État/Notes/Date.
+          Frontend (exportInventoryCSV dans lib/inventory.ts + bouton InventoryPage) livré avec I02.
+          Aucun fichier supplémentaire nécessaire.
 
   - sprint_number: 15
     start_date: "2026-05-11"
