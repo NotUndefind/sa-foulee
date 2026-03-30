@@ -755,6 +755,7 @@ post_sprint:
     committed_points: 12
     completed_points: 8
     status: "in_progress"
+    completed_points: 10
     goal: "Gestion budgétaire complète — dashboard financier, saisie dépenses/recettes, export AG"
     stories:
       - story_id: "STORY-V2-B01"
@@ -799,10 +800,20 @@ post_sprint:
       - story_id: "STORY-V2-B03"
         title: "Formulaire saisie dépense/recette"
         points: 2
-        status: "not_started"
+        status: "completed"
         epic: "EPIC-B"
         priority: "must_have"
         assigned_to: "julesbourin"
+        completed_date: "2026-03-30"
+        implementation_notes: >
+          BudgetEntryForm modal (react-hook-form + zod v4, valueAsNumber pattern).
+          Boutons + Dépense / + Recette dans le header de BudgetPage.
+          Boutons Modifier/Supprimer sur chaque ligne du tableau.
+          Confirmation suppression via modal. Refetch summary + entries après mutation.
+          Catégories suggérées selon le type (recette/dépense).
+        files_modified:
+          - "frontend/src/components/features/budget/BudgetEntryForm.tsx"
+          - "frontend/src/components/features/budget/BudgetPage.tsx"
       - story_id: "STORY-V2-B04"
         title: "Export CSV budget"
         points: 2

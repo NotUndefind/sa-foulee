@@ -4,8 +4,9 @@ import { useEffect, useState, useMemo } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
 import { useRole } from '@/hooks/useRole'
-import { getBudgetEntries, getBudgetSummary, exportBudgetCSV } from '@/lib/budget'
+import { getBudgetEntries, getBudgetSummary, deleteBudgetEntry, exportBudgetCSV } from '@/lib/budget'
 import type { BudgetEntry, BudgetSummary, BudgetListMeta } from '@/types'
+import BudgetEntryForm from './BudgetEntryForm'
 
 const BudgetChart = dynamic(() => import('./BudgetChart'), { ssr: false })
 
@@ -19,6 +20,14 @@ function IconTrend({ up }: { up: boolean }) {
 
 function IconDownload() {
   return <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+}
+
+function IconEdit() {
+  return <svg width={13} height={13} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+}
+
+function IconTrash() {
+  return <svg width={13} height={13} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -56,6 +65,12 @@ export default function BudgetPage() {
   const [toast,    setToast]    = useState<string | null>(null)
   const [showAll,  setShowAll]  = useState(false)
   const [page,     setPage]     = useState(1)
+
+  // Form state
+  type FormMode = { open: false } | { open: true; type: 'recette' | 'depense'; entry?: BudgetEntry }
+  const [formMode,    setFormMode]    = useState<FormMode>({ open: false })
+  const [deleteConfirm, setDeleteConfirm] = useState<BudgetEntry | null>(null)
+  const [deleting,    setDeleting]    = useState(false)
 
   const [filters, setFilters] = useState<Filters>({
     type: '', category: '', from: '', to: '',
@@ -102,6 +117,36 @@ export default function BudgetPage() {
       .catch(() => {})
       .finally(() => setLoading(false))
   }, [canManageEvents, showAll, filters, yearFilter, page])
+
+  const handleSaved = (saved: BudgetEntry) => {
+    setFormMode({ open: false })
+    // Refetch entries + summary
+    getBudgetSummary().then(setSummary).catch(() => {})
+    getBudgetEntries(showAll
+      ? { type: filters.type || undefined, category: filters.category || undefined, from: filters.from || `${yearFilter}-01-01`, to: filters.to || `${yearFilter}-12-31`, per_page: 50, page }
+      : { per_page: 10, page: 1 }
+    ).then(res => { setEntries(res.data); setMeta(res.meta) }).catch(() => {})
+    showToast(saved.id && formMode.open && (formMode as { entry?: BudgetEntry }).entry ? 'Mouvement modifié.' : 'Mouvement enregistré.')
+  }
+
+  const handleDelete = async () => {
+    if (!deleteConfirm) return
+    setDeleting(true)
+    try {
+      await deleteBudgetEntry(deleteConfirm.id)
+      setDeleteConfirm(null)
+      getBudgetSummary().then(setSummary).catch(() => {})
+      getBudgetEntries(showAll
+        ? { type: filters.type || undefined, category: filters.category || undefined, from: filters.from || `${yearFilter}-01-01`, to: filters.to || `${yearFilter}-12-31`, per_page: 50, page }
+        : { per_page: 10, page: 1 }
+      ).then(res => { setEntries(res.data); setMeta(res.meta) }).catch(() => {})
+      showToast('Mouvement supprimé.')
+    } catch {
+      showToast('Erreur lors de la suppression.')
+    } finally {
+      setDeleting(false)
+    }
+  }
 
   const handleExport = async () => {
     setExporting(true)
@@ -167,6 +212,20 @@ export default function BudgetPage() {
               >
                 <IconDownload />
                 {exporting ? 'Export…' : 'Exporter CSV'}
+              </button>
+              <button
+                onClick={() => setFormMode({ open: true, type: 'depense' })}
+                className="flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-bold text-white"
+                style={{ background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)', boxShadow: '0 2px 8px rgba(251,57,54,0.3)', border: 'none', cursor: 'pointer' }}
+              >
+                + Dépense
+              </button>
+              <button
+                onClick={() => setFormMode({ open: true, type: 'recette' })}
+                className="flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-bold"
+                style={{ background: 'rgba(5,150,105,0.1)', color: '#059669', border: '1px solid rgba(5,150,105,0.2)', cursor: 'pointer' }}
+              >
+                + Recette
               </button>
             </div>
           </div>
@@ -298,6 +357,7 @@ export default function BudgetPage() {
                       <th className="bgt-th">Catégorie</th>
                       <th className="bgt-th">Description</th>
                       <th className="bgt-th" style={{ textAlign: 'right' }}>Montant</th>
+                      <th className="bgt-th" style={{ width: '80px' }} />
                     </tr>
                   </thead>
                   <tbody>
@@ -315,6 +375,24 @@ export default function BudgetPage() {
                         </td>
                         <td className="bgt-td font-bold" style={{ textAlign: 'right', color: e.type === 'recette' ? '#059669' : '#D42F2D' }}>
                           {e.type === 'depense' ? '-' : '+'}{fmtEuro(e.amount)}
+                        </td>
+                        <td className="bgt-td">
+                          <div style={{ display: 'flex', gap: '4px', justifyContent: 'flex-end' }}>
+                            <button
+                              onClick={ev => { ev.stopPropagation(); setFormMode({ open: true, type: e.type, entry: e }) }}
+                              title="Modifier"
+                              style={{ borderRadius: '7px', padding: '5px 7px', border: '1px solid rgba(192,48,46,0.15)', background: 'white', color: '#C0302E', cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+                            >
+                              <IconEdit />
+                            </button>
+                            <button
+                              onClick={ev => { ev.stopPropagation(); setDeleteConfirm(e) }}
+                              title="Supprimer"
+                              style={{ borderRadius: '7px', padding: '5px 7px', border: '1px solid rgba(251,57,54,0.15)', background: 'rgba(251,57,54,0.05)', color: '#D42F2D', cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+                            >
+                              <IconTrash />
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}
@@ -361,6 +439,44 @@ export default function BudgetPage() {
 
         </div>
       </div>
+
+      {/* Form modal */}
+      {formMode.open && (
+        <BudgetEntryForm
+          entry={formMode.entry}
+          defaultType={formMode.type}
+          onSaved={handleSaved}
+          onCancel={() => setFormMode({ open: false })}
+        />
+      )}
+
+      {/* Delete confirmation modal */}
+      {deleteConfirm && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 50, background: 'rgba(0,0,0,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}>
+          <div style={{ background: 'white', borderRadius: '20px', padding: '28px 32px', maxWidth: '400px', width: '100%', fontFamily: "'Baloo 2', sans-serif", boxShadow: '0 8px 40px rgba(0,0,0,0.16)' }}>
+            <h3 style={{ fontSize: '17px', fontWeight: 800, color: '#1A1A1A', marginBottom: '8px' }}>Supprimer ce mouvement ?</h3>
+            <p style={{ fontSize: '13.5px', color: '#7F7F7F', marginBottom: '4px' }}>
+              <strong style={{ color: '#2C2C2C' }}>{deleteConfirm.type === 'recette' ? '+' : '-'}{fmtEuro(deleteConfirm.amount)}</strong> — {deleteConfirm.category}
+            </p>
+            <p style={{ fontSize: '12px', color: '#7F7F7F', marginBottom: '20px' }}>{deleteConfirm.description ?? ''}</p>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px' }}>
+              <button
+                onClick={() => setDeleteConfirm(null)}
+                style={{ borderRadius: '12px', padding: '9px 20px', fontSize: '13.5px', fontWeight: 700, color: '#2C2C2C', background: 'rgba(0,0,0,0.06)', border: 'none', cursor: 'pointer', fontFamily: 'inherit' }}
+              >
+                Annuler
+              </button>
+              <button
+                onClick={handleDelete}
+                disabled={deleting}
+                style={{ borderRadius: '12px', padding: '9px 20px', fontSize: '13.5px', fontWeight: 700, color: 'white', background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)', border: 'none', cursor: 'pointer', fontFamily: 'inherit', opacity: deleting ? 0.5 : 1 }}
+              >
+                {deleting ? 'Suppression…' : 'Supprimer'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {toast && (
         <div style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 999, padding: '12px 18px', borderRadius: '12px', background: 'white', border: '1px solid rgba(251,57,54,0.2)', fontSize: '14px', fontWeight: 500, fontFamily: "'Baloo 2', sans-serif", boxShadow: '0 4px 16px rgba(0,0,0,0.1)', color: '#1A1A1A' }}>
