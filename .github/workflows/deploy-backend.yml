@@ -1,0 +1,82 @@
+name: Deploy Backend — O2switch
+
+# Déclenché manuellement ou après CI sur main
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Backend CI/CD"]
+    branches: [main]
+    types: [completed]
+
+jobs:
+  deploy:
+    name: Deploy to O2switch
+    runs-on: ubuntu-latest
+    # Ne déploie que si le CI a réussi (ou si déclenché manuellement)
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.O2SWITCH_SSH_HOST }}
+          username: ${{ secrets.O2SWITCH_SSH_USERNAME }}
+          key: ${{ secrets.O2SWITCH_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.O2SWITCH_SSH_PORT || 22 }}
+          script: |
+            set -e
+
+            echo "==> Déploiement backend saFoulee sur O2switch"
+            cd ${{ secrets.O2SWITCH_DEPLOY_PATH }}
+
+            echo "==> Récupération du code (branche main)"
+            git fetch origin main
+            git checkout main
+            git pull origin main
+
+            echo "==> Installation des dépendances PHP (production)"
+            php8.2 $(which composer) install \
+              --no-dev \
+              --optimize-autoloader \
+              --no-interaction \
+              --no-ansi
+
+            echo "==> Mise en maintenance"
+            php8.2 artisan down --retry=60 --render="errors::503" || true
+
+            echo "==> Migrations base de données"
+            php8.2 artisan migrate --force
+
+            echo "==> Mise en cache de la configuration"
+            php8.2 artisan config:cache
+            php8.2 artisan route:cache
+            php8.2 artisan view:cache
+            php8.2 artisan event:cache
+
+            echo "==> Redémarrage de la queue"
+            php8.2 artisan queue:restart
+
+            echo "==> Retour en ligne"
+            php8.2 artisan up
+
+            echo "==> Déploiement terminé avec succès"
+
+      - name: Verify deployment
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.O2SWITCH_SSH_HOST }}
+          username: ${{ secrets.O2SWITCH_SSH_USERNAME }}
+          key: ${{ secrets.O2SWITCH_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.O2SWITCH_SSH_PORT || 22 }}
+          script: |
+            # Vérification que l'API répond
+            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
+              "https://${{ secrets.API_DOMAIN }}/up" \
+              --max-time 10)
+            if [ "$HTTP_CODE" != "200" ]; then
+              echo "ERREUR : /up a répondu HTTP $HTTP_CODE"
+              exit 1
+            fi
+            echo "==> Health check OK (HTTP $HTTP_CODE)"
