@@ -754,8 +754,8 @@ post_sprint:
     capacity_points: 10
     committed_points: 12
     completed_points: 8
-    status: "in_progress"
-    completed_points: 10
+    status: "completed"
+    completed_points: 12
     goal: "Gestion budgétaire complète — dashboard financier, saisie dépenses/recettes, export AG"
     stories:
       - story_id: "STORY-V2-B01"
@@ -817,7 +817,17 @@ post_sprint:
       - story_id: "STORY-V2-B04"
         title: "Export CSV budget"
         points: 2
-        status: "not_started"
+        status: "completed"
         epic: "EPIC-B"
         priority: "should_have"
         assigned_to: "julesbourin"
+        completed_date: "2026-03-30"
+        implementation_notes: >
+          Backend export() refactorisé : colonnes recette/dépense séparées,
+          nombre formaté FR (virgule décimale), ligne TOTAUX + ligne SOLDE en bas.
+          Nom de fichier budget-safoulee-{from}-{to}.csv.
+          Frontend : sélecteur De/À dédié dans le header (indépendant des filtres liste),
+          exportFrom/exportTo initialisés à l'année courante. BOM UTF-8 conservé.
+        files_modified:
+          - "backend/app/Http/Controllers/Api/V1/BudgetEntryController.php"
+          - "frontend/src/components/features/budget/BudgetPage.tsx"

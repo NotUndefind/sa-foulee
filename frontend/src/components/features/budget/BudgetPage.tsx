@@ -62,6 +62,10 @@ export default function BudgetPage() {
   const [meta,     setMeta]     = useState<BudgetListMeta | null>(null)
   const [loading,  setLoading]  = useState(true)
   const [exporting,setExporting]= useState(false)
+
+  // Export date range (indépendant des filtres de liste)
+  const [exportFrom, setExportFrom] = useState(`${CURRENT_YEAR}-01-01`)
+  const [exportTo,   setExportTo]   = useState(`${CURRENT_YEAR}-12-31`)
   const [toast,    setToast]    = useState<string | null>(null)
   const [showAll,  setShowAll]  = useState(false)
   const [page,     setPage]     = useState(1)
@@ -151,9 +155,7 @@ export default function BudgetPage() {
   const handleExport = async () => {
     setExporting(true)
     try {
-      const from = filters.from || `${yearFilter}-01-01`
-      const to   = filters.to   || `${yearFilter}-12-31`
-      await exportBudgetCSV(from, to)
+      await exportBudgetCSV(exportFrom || undefined, exportTo || undefined)
     } catch {
       showToast('Erreur lors de l\'export.')
     } finally {
@@ -191,42 +193,70 @@ export default function BudgetPage() {
         <div className="mx-auto max-w-4xl px-5 py-8 space-y-5">
 
           {/* Header */}
-          <div className="flex items-center justify-between flex-wrap gap-3">
+          <div className="flex items-start justify-between flex-wrap gap-4">
             <div>
               <h1 className="text-2xl font-extrabold" style={{ color: '#C0302E', letterSpacing: '-0.02em' }}>Budget</h1>
               <p className="text-sm mt-0.5" style={{ color: '#7F7F7F' }}>Suivi financier de l&apos;association</p>
             </div>
-            <div className="flex items-center gap-2 flex-wrap">
-              <select
-                className="bgt-select"
-                value={yearFilter}
-                onChange={e => { setYearFilter(parseInt(e.target.value)); setPage(1) }}
-              >
-                {years.map(y => <option key={y} value={y}>{y}</option>)}
-              </select>
-              <button
-                onClick={handleExport}
-                disabled={exporting}
-                className="flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-bold"
-                style={{ background: 'rgba(192,48,46,0.08)', color: '#C0302E', border: '1px solid rgba(192,48,46,0.15)', cursor: 'pointer', opacity: exporting ? 0.5 : 1 }}
-              >
-                <IconDownload />
-                {exporting ? 'Export…' : 'Exporter CSV'}
-              </button>
-              <button
-                onClick={() => setFormMode({ open: true, type: 'depense' })}
-                className="flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-bold text-white"
-                style={{ background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)', boxShadow: '0 2px 8px rgba(251,57,54,0.3)', border: 'none', cursor: 'pointer' }}
-              >
-                + Dépense
-              </button>
-              <button
-                onClick={() => setFormMode({ open: true, type: 'recette' })}
-                className="flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-bold"
-                style={{ background: 'rgba(5,150,105,0.1)', color: '#059669', border: '1px solid rgba(5,150,105,0.2)', cursor: 'pointer' }}
-              >
-                + Recette
-              </button>
+            <div className="flex flex-col items-end gap-2">
+              {/* Saisie */}
+              <div className="flex items-center gap-2 flex-wrap">
+                <button
+                  onClick={() => setFormMode({ open: true, type: 'depense' })}
+                  className="flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-bold text-white"
+                  style={{ background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)', boxShadow: '0 2px 8px rgba(251,57,54,0.3)', border: 'none', cursor: 'pointer' }}
+                >
+                  + Dépense
+                </button>
+                <button
+                  onClick={() => setFormMode({ open: true, type: 'recette' })}
+                  className="flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-bold"
+                  style={{ background: 'rgba(5,150,105,0.1)', color: '#059669', border: '1px solid rgba(5,150,105,0.2)', cursor: 'pointer' }}
+                >
+                  + Recette
+                </button>
+              </div>
+              {/* Export CSV avec sélecteur De/À */}
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-xs font-semibold" style={{ color: '#7F7F7F' }}>Export :</span>
+                <span className="text-xs" style={{ color: '#7F7F7F' }}>De</span>
+                <input
+                  type="date"
+                  className="bgt-input"
+                  value={exportFrom}
+                  onChange={e => setExportFrom(e.target.value)}
+                  style={{ padding: '5px 10px', fontSize: '12px' }}
+                />
+                <span className="text-xs" style={{ color: '#7F7F7F' }}>À</span>
+                <input
+                  type="date"
+                  className="bgt-input"
+                  value={exportTo}
+                  onChange={e => setExportTo(e.target.value)}
+                  style={{ padding: '5px 10px', fontSize: '12px' }}
+                />
+                <button
+                  onClick={handleExport}
+                  disabled={exporting}
+                  className="flex items-center gap-1.5 rounded-xl px-3 py-2 text-sm font-bold"
+                  style={{ background: 'rgba(192,48,46,0.08)', color: '#C0302E', border: '1px solid rgba(192,48,46,0.15)', cursor: 'pointer', opacity: exporting ? 0.5 : 1 }}
+                >
+                  <IconDownload />
+                  {exporting ? 'Export…' : 'CSV'}
+                </button>
+              </div>
+              {/* Filtre année graphique */}
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-semibold" style={{ color: '#7F7F7F' }}>Graphique :</span>
+                <select
+                  className="bgt-select"
+                  value={yearFilter}
+                  onChange={e => { setYearFilter(parseInt(e.target.value)); setPage(1) }}
+                  style={{ padding: '5px 10px', fontSize: '12px' }}
+                >
+                  {years.map(y => <option key={y} value={y}>{y}</option>)}
+                </select>
+              </div>
             </div>
           </div>
 

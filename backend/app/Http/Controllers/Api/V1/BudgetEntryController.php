@@ -187,23 +187,63 @@ class BudgetEntryController extends Controller
         if ($request->filled('to'))       { $query->whereDate('entry_date', '<=', $request->input('to')); }
 
         $entries  = $query->get();
-        $date     = now()->format('Y-m-d');
-        $filename = "budget-safoulee-{$date}.csv";
+
+        // Nom du fichier avec les dates de la période
+        $fromLabel = $request->filled('from') ? $request->input('from') : 'debut';
+        $toLabel   = $request->filled('to')   ? $request->input('to')   : now()->format('Y-m-d');
+        $filename  = "budget-safoulee-{$fromLabel}-{$toLabel}.csv";
 
         $bom   = "\xEF\xBB\xBF";
-        $lines = [$bom . 'Date,Type,Catégorie,Montant (€),Description,Justificatif,Saisi par'];
+        $lines = [$bom . 'Date,Type,Catégorie,Description,Recette (€),Dépense (€),Justificatif,Saisi par'];
+
+        $totalRecettes = 0.0;
+        $totalDepenses = 0.0;
 
         foreach ($entries as $e) {
+            $amount    = (float) $e->amount;
+            $isRecette = $e->type === 'recette';
+
+            if ($isRecette) {
+                $totalRecettes += $amount;
+            } else {
+                $totalDepenses += $amount;
+            }
+
             $lines[] = implode(',', [
                 '"' . $e->entry_date->format('d/m/Y') . '"',
                 '"' . $e->type . '"',
                 '"' . str_replace('"', '""', $e->category) . '"',
-                number_format((float) $e->amount, 2, '.', ''),
                 '"' . str_replace('"', '""', $e->description ?? '') . '"',
+                $isRecette ? number_format($amount, 2, ',', ' ') : '',
+                $isRecette ? '' : number_format($amount, 2, ',', ' '),
                 '"' . str_replace('"', '""', $e->receipt_url ?? '') . '"',
                 '"' . ($e->creator ? "{$e->creator->first_name} {$e->creator->last_name}" : '') . '"',
             ]);
         }
+
+        // Ligne de totaux
+        $solde = $totalRecettes - $totalDepenses;
+        $lines[] = '';
+        $lines[] = implode(',', [
+            '"TOTAUX"',
+            '""',
+            '""',
+            '""',
+            number_format($totalRecettes, 2, ',', ' '),
+            number_format($totalDepenses, 2, ',', ' '),
+            '""',
+            '""',
+        ]);
+        $lines[] = implode(',', [
+            '"SOLDE"',
+            '""',
+            '""',
+            '""',
+            $solde >= 0 ? number_format($solde, 2, ',', ' ') : '',
+            $solde <  0 ? number_format(abs($solde), 2, ',', ' ') : '',
+            '""',
+            '""',
+        ]);
 
         return response(implode("\n", $lines), 200, [
             'Content-Type'        => 'text/csv; charset=UTF-8',
