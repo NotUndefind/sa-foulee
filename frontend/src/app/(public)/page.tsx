@@ -451,7 +451,7 @@ export default async function PublicHomePage() {
               fontWeight: 400,
             }}
           >
-            L'association de course à pied de votre village — ouverte à tous, portée par la passion
+            L&apos;association de course à pied de votre village — ouverte à tous, portée par la passion
             du trail et la convivialité.
           </p>
 
