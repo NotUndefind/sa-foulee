@@ -840,35 +840,43 @@ post_sprint:
     end_date: "2026-04-05"
     capacity_points: 11
     committed_points: 11
-    completed_points: 9
+    completed_points: 17
     status: "in_progress"
     goal: "Corriger tous les bugs bloquants — budget, leaderboard, inventaire, newsletter, empty states"
     stories:
       - story_id: "STORY-V3-FX01"
         title: "Budget : migration receipt_url manquante"
         points: 1
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
+        branch: "feature/V3-FX01-FX04-bug-fixes"
         epic: "EPIC-FX"
         priority: "must_have"
         assigned_to: "julesbourin"
       - story_id: "STORY-V3-FX02"
         title: "Leaderboard : retirer performances.deleted_at"
         points: 1
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
+        branch: "feature/V3-FX01-FX04-bug-fixes"
         epic: "EPIC-FX"
         priority: "must_have"
         assigned_to: "julesbourin"
       - story_id: "STORY-V3-FX03"
         title: "Newsletter CSV export : ajouter BOM UTF-8"
         points: 1
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
+        branch: "feature/V3-FX01-FX04-bug-fixes"
         epic: "EPIC-FX"
         priority: "must_have"
         assigned_to: "julesbourin"
       - story_id: "STORY-V3-FX04"
         title: "Empty state cards : distinguer no-data vs filtre vide"
         points: 3
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
+        branch: "feature/V3-FX01-FX04-bug-fixes"
         epic: "EPIC-FX"
         priority: "must_have"
         assigned_to: "julesbourin"
@@ -884,10 +892,13 @@ post_sprint:
       - story_id: "STORY-V3-FX06"
         title: "Newsletter toggle profil : corriger erreur"
         points: 2
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
+        branch: "feature/V3-FX01-FX04-bug-fixes"
         epic: "EPIC-FX"
         priority: "should_have"
         assigned_to: "julesbourin"
+        notes: "Résolu par la migration add_newsletter_fields_to_users_table (FX01). Code backend/frontend était déjà correct."
 
   - sprint_number: 17
     start_date: "2026-04-06"
