@@ -84,7 +84,7 @@ export default function PostsPage() {
                 </h1>
               </div>
               <p className="mt-1 text-sm" style={{ color: '#7F7F7F' }}>
-                {meta.total} article{meta.total > 1 ? 's' : ''} · Actualités et annonces de sa Foulée
+                {meta.total} article{meta.total > 1 ? 's' : ''} · Actualités de La Neuville TAF sa Foulée
               </p>
             </div>
 

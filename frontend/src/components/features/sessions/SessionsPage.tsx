@@ -138,11 +138,11 @@ export default function SessionsPage() {
               <div className="mb-1 flex items-center gap-2" style={{ color: '#D42F2D' }}>
                 <IconRun size={26} />
                 <h1 className="text-3xl font-extrabold" style={{ letterSpacing: '-0.02em', color: '#C0302E' }}>
-                  Sessions
+                  Entraînements
                 </h1>
               </div>
               <p className="text-sm" style={{ color: '#7F7F7F' }}>
-                {meta.total} session{meta.total > 1 ? 's' : ''} d'entraînement planifiée{meta.total > 1 ? 's' : ''}
+                Séances structurées créées par les coachs — exercices, intensités et suivi de participation.
               </p>
             </div>
             {canManageSessions && !showForm && (

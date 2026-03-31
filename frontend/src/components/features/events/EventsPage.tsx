@@ -153,7 +153,7 @@ export default function EventsPage() {
                 </h1>
               </div>
               <p className="text-sm" style={{ color: '#7F7F7F' }}>
-                {meta.total} événement{meta.total > 1 ? 's' : ''} au programme
+                Sorties, courses et compétitions — inscrivez-vous et partagez des photos.
               </p>
             </div>
 

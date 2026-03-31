@@ -28,6 +28,7 @@ Route::prefix('v1')->group(function () {
     });
 
     // ---- Routes publiques ----
+    Route::get('stats/homepage',          [\App\Http\Controllers\Api\V1\StatsController::class, 'homepage']);
     Route::post('newsletter/unsubscribe', [\App\Http\Controllers\Api\V1\NewsletterController::class, 'unsubscribe']);
 
     Route::get('events',                    [\App\Http\Controllers\Api\V1\EventController::class, 'index']);

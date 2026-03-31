@@ -41,6 +41,18 @@ function IconRun({ active }: { active?: boolean }) {
   )
 }
 
+function IconStopwatch({ active }: { active?: boolean }) {
+  return (
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.6} strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="13" r="8" />
+      <path d="M12 9v4l2.5 2.5" />
+      <path d="M9.5 2.5h5" />
+      <path d="M12 2.5v2" />
+      <path d="M19.5 5.5l-1.5 1.5" />
+    </svg>
+  )
+}
+
 function IconPen({ active }: { active?: boolean }) {
   return (
     <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.6} strokeLinecap="round" strokeLinejoin="round">
@@ -129,7 +141,7 @@ type NavItem = {
 const NAV_LINKS: NavItem[] = [
   { href: '/tableau-de-bord',             label: 'Accueil',     Icon: IconHome },
   { href: '/tableau-de-bord/evenements',  label: 'Événements',  Icon: IconCalendar },
-  { href: '/tableau-de-bord/sessions',    label: 'Sessions',    Icon: IconRun },
+  { href: '/tableau-de-bord/sessions',    label: 'Entraînements', Icon: IconStopwatch },
   { href: '/tableau-de-bord/blog',        label: 'Blog',        Icon: IconPen },
   { href: '/tableau-de-bord/leaderboard', label: 'Classement',  Icon: IconTrophy },
   { href: '/tableau-de-bord/profil',      label: 'Mon profil',  Icon: IconUser },
