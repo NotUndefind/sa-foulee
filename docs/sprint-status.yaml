@@ -1015,14 +1015,16 @@ post_sprint:
     end_date: "2026-05-03"
     capacity_points: 11
     committed_points: 5
-    completed_points: 0
-    status: "not_started"
+    completed_points: 5
+    status: "completed"
+    completion_date: "2026-03-31"
     goal: "Hero header redesign — illustration dynamique, formes animées, mascotte intégrée"
     stories:
       - story_id: "STORY-V3-H02"
         title: "Redesign hero header — illustration dynamique"
         points: 5
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
         epic: "EPIC-H"
         priority: "should_have"
         assigned_to: "julesbourin"

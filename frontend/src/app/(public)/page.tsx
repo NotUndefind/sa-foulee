@@ -93,6 +93,11 @@ export default async function PublicHomePage() {
           0%   { transform: scale(1);   opacity: 0.4; }
           100% { transform: scale(1.6); opacity: 0; }
         }
+        @keyframes sF-blob {
+          0%,100% { transform: scale(1)    translate(0px, 0px); }
+          33%     { transform: scale(1.06) translate(10px, -14px); }
+          66%     { transform: scale(0.96) translate(-8px, 10px); }
+        }
 
         /* ── Hero entrance ── */
         .sF-tag   { animation: sF-fadeUp 0.65s cubic-bezier(.22,1,.36,1) both; animation-delay: 0.05s; }
@@ -235,19 +240,40 @@ export default async function PublicHomePage() {
         background: 'linear-gradient(150deg, #FAFAFA 0%, #F5F0EB 60%, #FAF0EE 100%)',
       }}>
 
-        {/* Background circles */}
+        {/* Formes décoratives animées */}
         <div style={{
-          position: 'absolute', right: '-8%', top: '8%',
-          width: '55vw', height: '55vw', maxWidth: '640px', maxHeight: '640px',
+          position: 'absolute', right: '-10%', top: '5%',
+          width: '55vw', height: '55vw', maxWidth: '680px', maxHeight: '680px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(169,50,38,0.08) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(251,57,54,0.06) 0%, transparent 70%)',
+          animation: 'sF-blob 9s ease-in-out infinite',
           pointerEvents: 'none',
         }} />
         <div style={{
-          position: 'absolute', left: '-6%', bottom: '10%',
-          width: '35vw', height: '35vw', maxWidth: '420px', maxHeight: '420px',
+          position: 'absolute', left: '-8%', bottom: '5%',
+          width: '38vw', height: '38vw', maxWidth: '440px', maxHeight: '440px',
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(251,57,54,0.07) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(251,57,54,0.05) 0%, transparent 70%)',
+          animation: 'sF-blob 12s ease-in-out infinite reverse',
+          animationDelay: '2s',
+          pointerEvents: 'none',
+        }} />
+        <div style={{
+          position: 'absolute', left: '30%', top: '-12%',
+          width: '28vw', height: '28vw', maxWidth: '320px', maxHeight: '320px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(192,48,46,0.04) 0%, transparent 70%)',
+          animation: 'sF-blob 15s ease-in-out infinite',
+          animationDelay: '4s',
+          pointerEvents: 'none',
+        }} />
+        <div style={{
+          position: 'absolute', right: '25%', bottom: '-8%',
+          width: '20vw', height: '20vw', maxWidth: '240px', maxHeight: '240px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(251,57,54,0.05) 0%, transparent 70%)',
+          animation: 'sF-blob 10s ease-in-out infinite reverse',
+          animationDelay: '1s',
           pointerEvents: 'none',
         }} />
 
@@ -260,10 +286,10 @@ export default async function PublicHomePage() {
           <Image
             src="/mascotte-removebg-preview.png"
             alt="Mascotte de La Neuville TAF sa Foulée"
-            width={260}
-            height={300}
+            width={320}
+            height={370}
             priority
-            style={{ objectFit: 'contain', maxWidth: '22vw', minWidth: '140px' }}
+            style={{ objectFit: 'contain', maxWidth: '26vw', minWidth: '150px' }}
           />
         </div>
 
@@ -308,26 +334,27 @@ export default async function PublicHomePage() {
           </div>
 
           {/* Main title */}
-          <h1 className="sF-h1" style={{ margin: '0 0 1.75rem', lineHeight: 0.9 }}>
+          <h1 className="sF-h1" style={{ margin: '0 0 1.75rem', lineHeight: 1 }}>
             <span style={{
               display: 'block',
-              fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
+              fontSize: 'clamp(1.1rem, 3vw, 1.8rem)',
               fontWeight: 400,
-              color: '#D42F2D',
-              letterSpacing: '0.06em',
-              marginBottom: '0.1em',
+              color: '#7F7F7F',
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              marginBottom: '0.2em',
             }}>
-              sa
+              La Neuville TAF
             </span>
             <span style={{
               display: 'block',
               fontSize: 'clamp(4.5rem, 14vw, 10rem)',
               fontWeight: 800,
               color: '#FB3936',
-              letterSpacing: '-0.02em',
+              letterSpacing: '-0.03em',
               lineHeight: 0.88,
             }}>
-              Foulée
+              sa Foulée
             </span>
           </h1>
 
