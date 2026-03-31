@@ -448,7 +448,7 @@ export default async function PublicHomePage() {
             className="sF-sub"
             style={{
               fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
-              color: '#3A5430',
+              color: '#C0302E',
               maxWidth: '500px',
               margin: '0 auto 3rem',
               lineHeight: 1.7,
@@ -508,7 +508,7 @@ export default async function PublicHomePage() {
               style={{
                 fontSize: 'clamp(2rem, 5vw, 3.25rem)',
                 fontWeight: 800,
-                color: '#1A2E10',
+                color: '#1A1A1A',
                 lineHeight: 1.1,
               }}
             >
@@ -573,7 +573,7 @@ export default async function PublicHomePage() {
                   style={{
                     fontSize: '1.25rem',
                     fontWeight: 800,
-                    color: '#1A2E10',
+                    color: '#1A1A1A',
                     marginBottom: '0.4rem',
                   }}
                 >
@@ -590,7 +590,7 @@ export default async function PublicHomePage() {
                 >
                   {v.punch}
                 </p>
-                <p style={{ color: '#506040', fontSize: '0.875rem', lineHeight: 1.75 }}>{v.desc}</p>
+                <p style={{ color: '#7F7F7F', fontSize: '0.875rem', lineHeight: 1.75 }}>{v.desc}</p>
               </div>
             ))}
           </div>
@@ -632,7 +632,7 @@ export default async function PublicHomePage() {
                 style={{
                   fontSize: 'clamp(2rem, 5vw, 3.25rem)',
                   fontWeight: 800,
-                  color: '#1A2E10',
+                  color: '#1A1A1A',
                   lineHeight: 1.1,
                 }}
               >
@@ -724,13 +724,13 @@ export default async function PublicHomePage() {
                   style={{
                     fontSize: '1.1rem',
                     fontWeight: 800,
-                    color: '#1A2E10',
+                    color: '#1A1A1A',
                     marginBottom: '0.7rem',
                   }}
                 >
                   {a.title}
                 </h3>
-                <p style={{ color: '#4A6038', fontSize: '0.875rem', lineHeight: 1.75 }}>{a.desc}</p>
+                <p style={{ color: '#7F7F7F', fontSize: '0.875rem', lineHeight: 1.75 }}>{a.desc}</p>
               </div>
             ))}
           </div>
@@ -741,7 +741,7 @@ export default async function PublicHomePage() {
       <section
         style={{
           padding: '6rem 1.5rem',
-          background: '#C0302E',
+          background: '#F5F0EB',
           position: 'relative',
           overflow: 'hidden',
         }}
@@ -757,7 +757,7 @@ export default async function PublicHomePage() {
             maxWidth: '500px',
             maxHeight: '500px',
             borderRadius: '50%',
-            border: '1px solid rgba(255,255,255,0.05)',
+            border: '1px solid rgba(192,48,46,0.06)',
             pointerEvents: 'none',
           }}
         />
@@ -771,7 +771,7 @@ export default async function PublicHomePage() {
             maxWidth: '340px',
             maxHeight: '340px',
             borderRadius: '50%',
-            border: '1px solid rgba(255,255,255,0.04)',
+            border: '1px solid rgba(192,48,46,0.04)',
             pointerEvents: 'none',
           }}
         />
@@ -783,7 +783,7 @@ export default async function PublicHomePage() {
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <path
                   d="M6 1L7.5 4.5H11L8.3 6.7 9.3 10.2 6 8 2.7 10.2 3.7 6.7 1 4.5H4.5Z"
-                  fill="rgba(251,57,54,0.9)"
+                  fill="#C0302E"
                 />
               </svg>
               En chiffres
@@ -792,11 +792,11 @@ export default async function PublicHomePage() {
               style={{
                 fontSize: 'clamp(1.75rem, 4vw, 2.75rem)',
                 fontWeight: 800,
-                color: '#FAFAFA',
+                color: '#1A1A1A',
                 lineHeight: 1.15,
               }}
             >
-              sa Foulée, c&apos;est
+              La Neuville TAF sa Foulée, c&apos;est
             </h2>
           </div>
 
@@ -809,9 +809,19 @@ export default async function PublicHomePage() {
             }}
           >
             {[
-              { num: '50+', label: 'coureurs', sub: 'membres actifs', d: 'sF-d1' },
-              { num: '3', label: 'sorties / semaine', sub: "toute l'année", d: 'sF-d2' },
-              { num: '12', label: 'événements / an', sub: 'locaux & régionaux', d: 'sF-d3' },
+              { num: '1', label: 'sortie / mois', sub: 'minimum garanti', d: 'sF-d1' },
+              {
+                num: String(homepageStats.member_count),
+                label: 'coureurs actifs',
+                sub: 'membres du club',
+                d: 'sF-d2',
+              },
+              {
+                num: String(homepageStats.total_km) + ' km',
+                label: 'parcourus',
+                sub: 'performances totales',
+                d: 'sF-d3',
+              },
             ].map((s) => (
               <div
                 key={s.label}
@@ -820,15 +830,15 @@ export default async function PublicHomePage() {
                   textAlign: 'center',
                   padding: '2.5rem 1.5rem',
                   borderRadius: '18px',
-                  background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255,255,255,0.07)',
+                  background: 'rgba(255,255,255,0.7)',
+                  border: '1px solid rgba(192,48,46,0.08)',
                 }}
               >
                 <div
                   style={{
                     fontSize: 'clamp(3.5rem, 9vw, 5.5rem)',
                     fontWeight: 800,
-                    color: '#FB3936',
+                    color: '#C0302E',
                     lineHeight: 1,
                     marginBottom: '0.6rem',
                   }}
@@ -837,7 +847,7 @@ export default async function PublicHomePage() {
                 </div>
                 <div
                   style={{
-                    color: '#FAFAFA',
+                    color: '#1A1A1A',
                     fontWeight: 700,
                     fontSize: '1.05rem',
                     marginBottom: '0.3rem',
@@ -845,7 +855,7 @@ export default async function PublicHomePage() {
                 >
                   {s.label}
                 </div>
-                <div style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.85rem' }}>{s.sub}</div>
+                <div style={{ color: '#7F7F7F', fontSize: '0.85rem' }}>{s.sub}</div>
               </div>
             ))}
           </div>
@@ -878,7 +888,7 @@ export default async function PublicHomePage() {
                 style={{
                   fontSize: 'clamp(2rem, 5vw, 3.25rem)',
                   fontWeight: 800,
-                  color: '#1A2E10',
+                  color: '#1A1A1A',
                   lineHeight: 1.1,
                 }}
               >
@@ -887,7 +897,7 @@ export default async function PublicHomePage() {
               <p
                 style={{
                   marginTop: '0.875rem',
-                  color: '#506040',
+                  color: '#7F7F7F',
                   fontSize: '1rem',
                   maxWidth: '480px',
                   margin: '0.875rem auto 0',
@@ -997,7 +1007,7 @@ export default async function PublicHomePage() {
                           style={{
                             fontSize: '1.05rem',
                             fontWeight: 800,
-                            color: '#1A2E10',
+                            color: '#1A1A1A',
                             lineHeight: 1.3,
                           }}
                         >
@@ -1013,7 +1023,7 @@ export default async function PublicHomePage() {
                           display: 'flex',
                           alignItems: 'center',
                           gap: '0.5rem',
-                          color: '#506040',
+                          color: '#7F7F7F',
                           fontSize: '0.82rem',
                         }}
                       >
@@ -1040,7 +1050,7 @@ export default async function PublicHomePage() {
                             display: 'flex',
                             alignItems: 'center',
                             gap: '0.5rem',
-                            color: '#506040',
+                            color: '#7F7F7F',
                             fontSize: '0.82rem',
                           }}
                         >
@@ -1121,7 +1131,7 @@ export default async function PublicHomePage() {
               style={{
                 fontSize: 'clamp(2rem, 5vw, 3.25rem)',
                 fontWeight: 800,
-                color: '#1A2E10',
+                color: '#1A1A1A',
                 lineHeight: 1.1,
               }}
             >
@@ -1130,15 +1140,15 @@ export default async function PublicHomePage() {
             <p
               style={{
                 marginTop: '0.875rem',
-                color: '#506040',
+                color: '#7F7F7F',
                 fontSize: '1rem',
                 maxWidth: '480px',
                 margin: '0.875rem auto 0',
                 lineHeight: 1.7,
               }}
             >
-              Rejoindre sa Foulée est simple et rapide. Du formulaire à votre première sortie, voici
-              comment ça se passe.
+              Rejoindre La Neuville TAF sa Foulée est simple et rapide. Du formulaire à votre
+              première sortie, voici comment ça se passe.
             </p>
           </div>
 
@@ -1206,13 +1216,13 @@ export default async function PublicHomePage() {
                 style={{
                   fontSize: '1.2rem',
                   fontWeight: 800,
-                  color: '#1A2E10',
+                  color: '#1A1A1A',
                   marginBottom: '0.6rem',
                 }}
               >
                 Formulaire & documents
               </h3>
-              <p style={{ color: '#506040', fontSize: '0.875rem', lineHeight: 1.75 }}>
+              <p style={{ color: '#7F7F7F', fontSize: '0.875rem', lineHeight: 1.75 }}>
                 Remplissez le formulaire d&apos;inscription en ligne, déposez les documents requis
                 (certificat médical, justificatif) et réglez la cotisation annuelle directement sur
                 la plateforme.
@@ -1274,13 +1284,13 @@ export default async function PublicHomePage() {
                 style={{
                   fontSize: '1.2rem',
                   fontWeight: 800,
-                  color: '#1A2E10',
+                  color: '#1A1A1A',
                   marginBottom: '0.6rem',
                 }}
               >
                 Validation par le bureau
               </h3>
-              <p style={{ color: '#506040', fontSize: '0.875rem', lineHeight: 1.75 }}>
+              <p style={{ color: '#7F7F7F', fontSize: '0.875rem', lineHeight: 1.75 }}>
                 Un administrateur ou un fondateur de l&apos;association examine votre dossier. La
                 validation est rapide — comptez généralement 24 à 48 heures. Vous recevez une
                 confirmation par email.
@@ -1342,13 +1352,13 @@ export default async function PublicHomePage() {
                 style={{
                   fontSize: '1.2rem',
                   fontWeight: 800,
-                  color: '#1A2E10',
+                  color: '#1A1A1A',
                   marginBottom: '0.6rem',
                 }}
               >
                 Accès à toutes les activités
               </h3>
-              <p style={{ color: '#506040', fontSize: '0.875rem', lineHeight: 1.75 }}>
+              <p style={{ color: '#7F7F7F', fontSize: '0.875rem', lineHeight: 1.75 }}>
                 Dossier validé — vous pouvez dès à présent vous inscrire à n&apos;importe quelle
                 sortie ou événement de l&apos;association depuis votre tableau de bord.
               </p>
@@ -1393,7 +1403,7 @@ export default async function PublicHomePage() {
               style={{
                 fontSize: 'clamp(2rem, 5vw, 3.25rem)',
                 fontWeight: 800,
-                color: '#1A2E10',
+                color: '#1A1A1A',
                 lineHeight: 1.1,
               }}
             >
@@ -1484,7 +1494,7 @@ export default async function PublicHomePage() {
                     {t.initial}
                   </div>
                   <div>
-                    <p style={{ fontWeight: 700, color: '#1A2E10', fontSize: '0.875rem' }}>
+                    <p style={{ fontWeight: 700, color: '#1A1A1A', fontSize: '0.875rem' }}>
                       {t.name}
                     </p>
                     <p style={{ fontSize: '0.75rem', color: '#7F7F7F' }}>{t.role}</p>
@@ -1560,7 +1570,7 @@ export default async function PublicHomePage() {
                 style={{
                   fontSize: 'clamp(2rem, 5vw, 3rem)',
                   fontWeight: 800,
-                  color: '#1A2E10',
+                  color: '#1A1A1A',
                   lineHeight: 1.1,
                   marginBottom: '1.25rem',
                 }}
@@ -1571,7 +1581,7 @@ export default async function PublicHomePage() {
               </h2>
               <p
                 style={{
-                  color: '#506040',
+                  color: '#7F7F7F',
                   fontSize: '0.95rem',
                   lineHeight: 1.8,
                   marginBottom: '1.25rem',
@@ -1584,7 +1594,7 @@ export default async function PublicHomePage() {
               </p>
               <p
                 style={{
-                  color: '#506040',
+                  color: '#7F7F7F',
                   fontSize: '0.95rem',
                   lineHeight: 1.8,
                   marginBottom: '2rem',
@@ -1648,7 +1658,13 @@ export default async function PublicHomePage() {
               alt="Mascotte de La Neuville TAF sa Foulée"
               width={120}
               height={120}
-              style={{ objectFit: 'contain', margin: '0 auto', display: 'block' }}
+              style={{
+                objectFit: 'contain',
+                margin: '0 auto',
+                display: 'block',
+                width: 'auto',
+                height: 'auto',
+              }}
             />
           </div>
 
@@ -1656,7 +1672,7 @@ export default async function PublicHomePage() {
             style={{
               fontSize: 'clamp(2.25rem, 6vw, 4rem)',
               fontWeight: 800,
-              color: '#1A2E10',
+              color: '#1A1A1A',
               lineHeight: 1.05,
               marginBottom: '1.25rem',
             }}
@@ -1666,7 +1682,7 @@ export default async function PublicHomePage() {
 
           <p
             style={{
-              color: '#4A6038',
+              color: '#7F7F7F',
               fontSize: '1.05rem',
               lineHeight: 1.75,
               maxWidth: '460px',
@@ -1700,7 +1716,7 @@ export default async function PublicHomePage() {
       {/* ─────────────────────────────────────────── FOOTER ── */}
       <footer
         style={{
-          background: '#141F0C',
+          background: '#1A1A1A',
           padding: '3.5rem 1.5rem 2rem',
           color: 'rgba(255,255,255,0.45)',
         }}
@@ -1723,7 +1739,13 @@ export default async function PublicHomePage() {
                 alt="La Neuville TAF sa Foulée"
                 width={44}
                 height={44}
-                style={{ objectFit: 'contain', filter: 'brightness(0) invert(1)', opacity: 0.9 }}
+                style={{
+                  objectFit: 'contain',
+                  filter: 'brightness(0) invert(1)',
+                  opacity: 0.9,
+                  width: 'auto',
+                  height: 'auto',
+                }}
               />
               <div>
                 <div
