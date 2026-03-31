@@ -16,9 +16,8 @@ class StorePostRequest extends FormRequest
         return [
             'title'        => ['required', 'string', 'max:255'],
             'content'      => ['required', 'string'],
-            'image'        => ['nullable', 'url', 'max:500'],
-            'published_at' => ['nullable', 'date'],
-            'is_pinned'    => ['nullable', 'boolean'],
+            'image'     => ['nullable', 'url', 'max:500'],
+            'is_pinned' => ['nullable', 'boolean'],
         ];
     }
 }

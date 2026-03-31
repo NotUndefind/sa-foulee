@@ -58,7 +58,6 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
             <nav style={{ display: 'flex', alignItems: 'center', gap: '1.75rem' }}>
               <Link href="/activites" className="sF-nav-link">Activités</Link>
               <Link href="/blog" className="sF-nav-link">Blog</Link>
-              <Link href="/adhesion" className="sF-nav-link" style={{ color: '#FB3936', fontWeight: 700, opacity: 1 }}>Adhérer</Link>
             </nav>
             <PublicNavUser />
           </div>

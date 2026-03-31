@@ -98,7 +98,8 @@ class NewsletterController extends Controller
         $date     = now()->format('Y-m-d');
         $filename = "newsletter-abonnes-{$date}.csv";
 
-        $lines = ["Prénom,Nom,Email,Date d'abonnement"];
+        $bom   = "\xEF\xBB\xBF";
+        $lines = [$bom . "Prénom,Nom,Email,Date d'abonnement"];
         foreach ($subscribers as $user) {
             $lines[] = implode(',', [
                 '"' . $user->first_name . '"',
