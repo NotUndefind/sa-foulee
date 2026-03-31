@@ -228,53 +228,82 @@ export default async function PublicHomePage() {
       `}</style>
 
       {/* ─────────────────────────────────────────── HERO ── */}
-      <section style={{
-        minHeight: 'calc(100vh - 68px)',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        position: 'relative',
-        overflow: 'hidden',
-        padding: '5rem 1.5rem 8rem',
-        background: 'linear-gradient(150deg, #FAFAFA 0%, #F5F0EB 60%, #FAF0EE 100%)',
-      }}>
-
+      <section
+        style={{
+          minHeight: 'calc(100vh - 68px)',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          position: 'relative',
+          overflow: 'hidden',
+          padding: '5rem 1.5rem 8rem',
+          background: 'linear-gradient(150deg, #FAFAFA 0%, #F5F0EB 60%, #FAF0EE 100%)',
+        }}
+      >
         {/* Formes décoratives animées */}
-        <div style={{
-          position: 'absolute', right: '-10%', top: '5%',
-          width: '55vw', height: '55vw', maxWidth: '680px', maxHeight: '680px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(251,57,54,0.06) 0%, transparent 70%)',
-          animation: 'sF-blob 9s ease-in-out infinite',
-          pointerEvents: 'none',
-        }} />
-        <div style={{
-          position: 'absolute', left: '-8%', bottom: '5%',
-          width: '38vw', height: '38vw', maxWidth: '440px', maxHeight: '440px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(251,57,54,0.05) 0%, transparent 70%)',
-          animation: 'sF-blob 12s ease-in-out infinite reverse',
-          animationDelay: '2s',
-          pointerEvents: 'none',
-        }} />
-        <div style={{
-          position: 'absolute', left: '30%', top: '-12%',
-          width: '28vw', height: '28vw', maxWidth: '320px', maxHeight: '320px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(192,48,46,0.04) 0%, transparent 70%)',
-          animation: 'sF-blob 15s ease-in-out infinite',
-          animationDelay: '4s',
-          pointerEvents: 'none',
-        }} />
-        <div style={{
-          position: 'absolute', right: '25%', bottom: '-8%',
-          width: '20vw', height: '20vw', maxWidth: '240px', maxHeight: '240px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(251,57,54,0.05) 0%, transparent 70%)',
-          animation: 'sF-blob 10s ease-in-out infinite reverse',
-          animationDelay: '1s',
-          pointerEvents: 'none',
-        }} />
+        <div
+          style={{
+            position: 'absolute',
+            right: '-10%',
+            top: '5%',
+            width: '55vw',
+            height: '55vw',
+            maxWidth: '680px',
+            maxHeight: '680px',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(251,57,54,0.06) 0%, transparent 70%)',
+            animation: 'sF-blob 9s ease-in-out infinite',
+            pointerEvents: 'none',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            left: '-8%',
+            bottom: '5%',
+            width: '38vw',
+            height: '38vw',
+            maxWidth: '440px',
+            maxHeight: '440px',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(251,57,54,0.05) 0%, transparent 70%)',
+            animation: 'sF-blob 12s ease-in-out infinite reverse',
+            animationDelay: '2s',
+            pointerEvents: 'none',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            left: '30%',
+            top: '-12%',
+            width: '28vw',
+            height: '28vw',
+            maxWidth: '320px',
+            maxHeight: '320px',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(192,48,46,0.04) 0%, transparent 70%)',
+            animation: 'sF-blob 15s ease-in-out infinite',
+            animationDelay: '4s',
+            pointerEvents: 'none',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            right: '25%',
+            bottom: '-8%',
+            width: '20vw',
+            height: '20vw',
+            maxWidth: '240px',
+            maxHeight: '240px',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(251,57,54,0.05) 0%, transparent 70%)',
+            animation: 'sF-blob 10s ease-in-out infinite reverse',
+            animationDelay: '1s',
+            pointerEvents: 'none',
+          }}
+        />
 
         {/* Mascotte flottante */}
         <div
@@ -383,25 +412,29 @@ export default async function PublicHomePage() {
 
           {/* Main title */}
           <h1 className="sF-h1" style={{ margin: '0 0 1.75rem', lineHeight: 1 }}>
-            <span style={{
-              display: 'block',
-              fontSize: 'clamp(1.1rem, 3vw, 1.8rem)',
-              fontWeight: 400,
-              color: '#7F7F7F',
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-              marginBottom: '0.2em',
-            }}>
+            <span
+              style={{
+                display: 'block',
+                fontSize: 'clamp(1.1rem, 3vw, 1.8rem)',
+                fontWeight: 400,
+                color: '#7F7F7F',
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                marginBottom: '0.2em',
+              }}
+            >
               La Neuville TAF
             </span>
-            <span style={{
-              display: 'block',
-              fontSize: 'clamp(4.5rem, 14vw, 10rem)',
-              fontWeight: 800,
-              color: '#FB3936',
-              letterSpacing: '-0.03em',
-              lineHeight: 0.88,
-            }}>
+            <span
+              style={{
+                display: 'block',
+                fontSize: 'clamp(4.5rem, 14vw, 10rem)',
+                fontWeight: 800,
+                color: '#FB3936',
+                letterSpacing: '-0.03em',
+                lineHeight: 0.88,
+              }}
+            >
               sa Foulée
             </span>
           </h1>
@@ -1374,7 +1407,8 @@ export default async function PublicHomePage() {
           >
             {[
               {
-                quote: "J'ai rejoint La Neuville TAF sa Foulée sans vraiment courir. Aujourd'hui je fais 15 km le dimanche matin et je ne raterais ça pour rien au monde.",
+                quote:
+                  "J'ai rejoint La Neuville TAF sa Foulée sans vraiment courir. Aujourd'hui je fais 15 km le dimanche matin et je ne raterais ça pour rien au monde.",
                 name: 'Camille B.',
                 role: 'Membre depuis 2 ans',
                 initial: 'C',
@@ -1660,7 +1694,7 @@ export default async function PublicHomePage() {
       </section>
 
       {/* ─────────────────────────────────────────── FOOTER ── */}
-  <footer
+      <footer
         style={{
           background: '#141F0C',
           padding: '3.5rem 1.5rem 2rem',

@@ -49,7 +49,7 @@ const TEMPLATES: { label: string; title: string; content: string }[] = [
   },
 ]
 
-const MAX_IMAGE_SIZE = 5 * 1024 * 1024  // 5 Mo
+const MAX_IMAGE_SIZE = 5 * 1024 * 1024 // 5 Mo
 const MAX_VIDEO_SIZE = 50 * 1024 * 1024 // 50 Mo
 
 interface Props {
@@ -61,13 +61,13 @@ interface Props {
 export default function PostForm({ post, onSuccess, onCancel }: Props) {
   const { toast } = useToast()
 
-  const [title,        setTitle]        = useState(post?.title ?? '')
-  const [imageUrl,     setImageUrl]     = useState(post?.image ?? '')
+  const [title, setTitle] = useState(post?.title ?? '')
+  const [imageUrl, setImageUrl] = useState(post?.image ?? '')
   const [showUrlField, setShowUrlField] = useState(false)
-  const [imageFile,    setImageFile]    = useState<File | null>(null)
+  const [imageFile, setImageFile] = useState<File | null>(null)
   const [imagePreview, setImagePreview] = useState<string | null>(null)
-  const [videoFile,    setVideoFile]    = useState<File | null>(null)
-  const [loading,      setLoading]      = useState(false)
+  const [videoFile, setVideoFile] = useState<File | null>(null)
+  const [loading, setLoading] = useState(false)
 
   const imageInputRef = useRef<HTMLInputElement>(null)
   const videoInputRef = useRef<HTMLInputElement>(null)
@@ -100,7 +100,7 @@ export default function PostForm({ post, onSuccess, onCancel }: Props) {
     const file = e.target.files?.[0]
     if (!file) return
     if (file.size > MAX_IMAGE_SIZE) {
-      toast('L\'image ne peut pas dépasser 5 Mo.', 'error')
+      toast("L'image ne peut pas dépasser 5 Mo.", 'error')
       e.target.value = ''
       return
     }
@@ -151,7 +151,7 @@ export default function PostForm({ post, onSuccess, onCancel }: Props) {
         try {
           finalImageUrl = await uploadMedia(imageFile)
         } catch (err) {
-          toast(err instanceof Error ? err.message : 'Erreur lors de l\'upload de l\'image.', 'error')
+          toast(err instanceof Error ? err.message : "Erreur lors de l'upload de l'image.", 'error')
           setLoading(false)
           return
         }
@@ -159,7 +159,10 @@ export default function PostForm({ post, onSuccess, onCancel }: Props) {
         try {
           finalImageUrl = await uploadMedia(videoFile)
         } catch (err) {
-          toast(err instanceof Error ? err.message : 'Erreur lors de l\'upload de la vidéo.', 'error')
+          toast(
+            err instanceof Error ? err.message : "Erreur lors de l'upload de la vidéo.",
+            'error'
+          )
           setLoading(false)
           return
         }
@@ -312,7 +315,9 @@ export default function PostForm({ post, onSuccess, onCancel }: Props) {
 
       {/* Médias — upload ou URL */}
       <div>
-        <label className="mb-2 block text-xs font-medium text-zinc-700">Image / Vidéo (optionnel)</label>
+        <label className="mb-2 block text-xs font-medium text-zinc-700">
+          Image / Vidéo (optionnel)
+        </label>
 
         <div className="flex flex-wrap gap-2">
           {/* Bouton image */}
@@ -321,8 +326,19 @@ export default function PostForm({ post, onSuccess, onCancel }: Props) {
             onClick={() => imageInputRef.current?.click()}
             className="flex items-center gap-1.5 rounded-lg border border-zinc-300 px-3 py-1.5 text-xs text-zinc-600 transition hover:bg-zinc-50"
           >
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <path d="m21 15-5-5L5 21" />
             </svg>
             Ajouter une image
           </button>
@@ -333,8 +349,18 @@ export default function PostForm({ post, onSuccess, onCancel }: Props) {
             onClick={() => videoInputRef.current?.click()}
             className="flex items-center gap-1.5 rounded-lg border border-zinc-300 px-3 py-1.5 text-xs text-zinc-600 transition hover:bg-zinc-50"
           >
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="2" y="6" width="20" height="12" rx="2"/><path d="m22 8-6 4 6 4V8z" fill="currentColor" stroke="none"/>
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect x="2" y="6" width="20" height="12" rx="2" />
+              <path d="m22 8-6 4 6 4V8z" fill="currentColor" stroke="none" />
             </svg>
             Ajouter une vidéo
           </button>
@@ -343,7 +369,7 @@ export default function PostForm({ post, onSuccess, onCancel }: Props) {
           <button
             type="button"
             onClick={() => setShowUrlField((v) => !v)}
-            className="text-xs text-zinc-400 hover:text-zinc-600 transition"
+            className="text-xs text-zinc-400 transition hover:text-zinc-600"
           >
             {showUrlField ? 'Masquer URL' : 'ou entrer une URL'}
           </button>
@@ -369,8 +395,16 @@ export default function PostForm({ post, onSuccess, onCancel }: Props) {
         {imagePreview && (
           <div className="mt-3 flex items-start gap-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={imagePreview} alt="Preview" className="h-20 w-20 rounded-lg object-cover border border-zinc-200" />
-            <button type="button" onClick={clearMedia} className="text-xs text-zinc-400 hover:text-red-500 transition">
+            <img
+              src={imagePreview}
+              alt="Preview"
+              className="h-20 w-20 rounded-lg border border-zinc-200 object-cover"
+            />
+            <button
+              type="button"
+              onClick={clearMedia}
+              className="text-xs text-zinc-400 transition hover:text-red-500"
+            >
               Supprimer
             </button>
           </div>
@@ -379,11 +413,26 @@ export default function PostForm({ post, onSuccess, onCancel }: Props) {
         {/* Nom de la vidéo sélectionnée */}
         {videoFile && (
           <div className="mt-2 flex items-center gap-2 text-xs text-zinc-600">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="2" y="6" width="20" height="12" rx="2"/>
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect x="2" y="6" width="20" height="12" rx="2" />
             </svg>
             <span>{videoFile.name}</span>
-            <button type="button" onClick={clearMedia} className="text-zinc-400 hover:text-red-500 transition">✕</button>
+            <button
+              type="button"
+              onClick={clearMedia}
+              className="text-zinc-400 transition hover:text-red-500"
+            >
+              ✕
+            </button>
           </div>
         )}
 
@@ -393,7 +442,10 @@ export default function PostForm({ post, onSuccess, onCancel }: Props) {
             <input
               type="url"
               value={imageUrl}
-              onChange={(e) => { setImageUrl(e.target.value); clearMedia() }}
+              onChange={(e) => {
+                setImageUrl(e.target.value)
+                clearMedia()
+              }}
               placeholder="https://..."
               className="focus:border-brand focus:ring-brand/20 w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:ring-2 focus:outline-none"
             />
@@ -417,8 +469,17 @@ export default function PostForm({ post, onSuccess, onCancel }: Props) {
           style={{ background: loading ? '#D42F2D' : '#FB3936' }}
         >
           {loading && (
-            <svg className="animate-spin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <circle cx="12" cy="12" r="10" strokeOpacity=".25"/><path d="M12 2a10 10 0 0 1 10 10" strokeLinecap="round"/>
+            <svg
+              className="animate-spin"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+            >
+              <circle cx="12" cy="12" r="10" strokeOpacity=".25" />
+              <path d="M12 2a10 10 0 0 1 10 10" strokeLinecap="round" />
             </svg>
           )}
           {loading ? 'Enregistrement…' : post ? 'Enregistrer' : 'Publier'}

@@ -7,8 +7,8 @@ import { useToast } from '@/components/ui/Toast'
 export default function AdminSettingsPage() {
   const { toast } = useToast()
   const [settings, setSettings] = useState<AdminSetting[]>([])
-  const [loading,  setLoading]  = useState(true)
-  const [saving,   setSaving]   = useState<string | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState<string | null>(null)
 
   useEffect(() => {
     getAdminSettings()
@@ -22,9 +22,9 @@ export default function AdminSettingsPage() {
     setSaving(key)
     try {
       const updated = await updateSetting(key, newValue)
-      setSettings((s) => s.map((setting) =>
-        setting.key === key ? { ...setting, value: updated.value } : setting
-      ))
+      setSettings((s) =>
+        s.map((setting) => (setting.key === key ? { ...setting, value: updated.value } : setting))
+      )
       toast('Paramètre mis à jour.', 'success')
     } catch {
       toast('Erreur lors de la mise à jour.', 'error')
@@ -41,11 +41,16 @@ export default function AdminSettingsPage() {
   }
 
   return (
-    <div className="min-h-screen pb-24 lg:pb-8" style={{ background: '#F8F8F8', fontFamily: "'Baloo 2', sans-serif" }}>
+    <div
+      className="min-h-screen pb-24 lg:pb-8"
+      style={{ background: '#F8F8F8', fontFamily: "'Baloo 2', sans-serif" }}
+    >
       <div className="mx-auto max-w-2xl px-5 py-8">
-
         <div className="mb-8">
-          <h1 className="text-3xl font-extrabold" style={{ color: '#C0302E', letterSpacing: '-0.02em' }}>
+          <h1
+            className="text-3xl font-extrabold"
+            style={{ color: '#C0302E', letterSpacing: '-0.02em' }}
+          >
             Paramètres
           </h1>
           <p className="mt-1 text-sm" style={{ color: '#7F7F7F' }}>
@@ -55,7 +60,10 @@ export default function AdminSettingsPage() {
 
         {loading ? (
           <div className="flex h-40 items-center justify-center">
-            <div className="h-7 w-7 animate-spin rounded-full border-2" style={{ borderColor: 'rgba(192,48,46,0.1)', borderTopColor: '#FB3936' }} />
+            <div
+              className="h-7 w-7 animate-spin rounded-full border-2"
+              style={{ borderColor: 'rgba(192,48,46,0.1)', borderTopColor: '#FB3936' }}
+            />
           </div>
         ) : (
           <div className="space-y-4">
@@ -68,7 +76,10 @@ export default function AdminSettingsPage() {
                 <div
                   key={setting.key}
                   className="rounded-2xl bg-white p-5"
-                  style={{ border: '1px solid rgba(192,48,46,0.08)', boxShadow: '0 2px 8px rgba(251,57,54,0.04)' }}
+                  style={{
+                    border: '1px solid rgba(192,48,46,0.08)',
+                    boxShadow: '0 2px 8px rgba(251,57,54,0.04)',
+                  }}
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1">
@@ -90,7 +101,8 @@ export default function AdminSettingsPage() {
                       onClick={() => handleToggle(setting.key, setting.value)}
                       className="relative flex-shrink-0 rounded-full transition disabled:opacity-50"
                       style={{
-                        width: 48, height: 26,
+                        width: 48,
+                        height: 26,
                         background: isOn ? '#FB3936' : 'rgba(0,0,0,0.12)',
                         border: 'none',
                         cursor: isSaving ? 'not-allowed' : 'pointer',
@@ -123,7 +135,9 @@ export default function AdminSettingsPage() {
             })}
 
             {settings.length === 0 && (
-              <p className="text-sm" style={{ color: '#7F7F7F' }}>Aucun paramètre configuré.</p>
+              <p className="text-sm" style={{ color: '#7F7F7F' }}>
+                Aucun paramètre configuré.
+              </p>
             )}
           </div>
         )}

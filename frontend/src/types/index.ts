@@ -25,7 +25,7 @@ export interface User {
   last_name: string
   avatar: string | null
   bio: string | null
-  roles: Role[]             // tableau car Spatie supporte plusieurs rôles
+  roles: Role[] // tableau car Spatie supporte plusieurs rôles
   has_complete_documents: boolean
   document_completion: number
   membership_paid_at: string | null
@@ -145,7 +145,7 @@ export interface LeaderboardEntry {
 // ---- Inventaire ----
 
 export type EquipmentCategory = 'dossard' | 'maillot' | 'materiel' | 'autre'
-export type EquipmentStatus   = 'good' | 'worn' | 'broken'
+export type EquipmentStatus = 'good' | 'worn' | 'broken'
 
 export interface Equipment {
   id: number
@@ -191,7 +191,7 @@ export interface BudgetEntry {
 }
 
 export interface BudgetMonthlyStat {
-  month: string   // "YYYY-MM"
+  month: string // "YYYY-MM"
   recettes: number
   depenses: number
   solde: number

@@ -16,7 +16,7 @@ async function postUnsubscribe(token: string): Promise<void> {
     }
   )
   if (res.status === 404) throw new Error('invalid')
-  if (!res.ok)            throw new Error('error')
+  if (!res.ok) throw new Error('error')
 }
 
 function DesabonnementContent() {
@@ -44,7 +44,10 @@ function DesabonnementContent() {
         .unsub-page { font-family: 'Baloo 2', sans-serif; }
       `}</style>
 
-      <div className="unsub-page flex min-h-screen items-center justify-center px-5" style={{ background: '#F8F8F8' }}>
+      <div
+        className="unsub-page flex min-h-screen items-center justify-center px-5"
+        style={{ background: '#F8F8F8' }}
+      >
         <div
           style={{
             background: 'white',
@@ -60,7 +63,7 @@ function DesabonnementContent() {
           {status === 'loading' && (
             <>
               <div
-                className="h-10 w-10 animate-spin rounded-full border-2 mx-auto mb-6"
+                className="mx-auto mb-6 h-10 w-10 animate-spin rounded-full border-2"
                 style={{ borderColor: 'rgba(192,48,46,0.1)', borderTopColor: '#FB3936' }}
               />
               <p style={{ color: '#7F7F7F', fontSize: '15px' }}>Traitement en cours…</p>
@@ -71,23 +74,44 @@ function DesabonnementContent() {
             <>
               <div
                 style={{
-                  width: 56, height: 56,
+                  width: 56,
+                  height: 56,
                   borderRadius: '50%',
                   background: 'rgba(251,57,54,0.08)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                   margin: '0 auto 20px',
                 }}
               >
-                <svg width={28} height={28} viewBox="0 0 24 24" fill="none" stroke="#FB3936" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 6 9 17l-5-5"/>
+                <svg
+                  width={28}
+                  height={28}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#FB3936"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M20 6 9 17l-5-5" />
                 </svg>
               </div>
-              <h1 style={{ fontSize: '22px', fontWeight: 800, color: '#1A1A1A', marginBottom: '8px' }}>
+              <h1
+                style={{ fontSize: '22px', fontWeight: 800, color: '#1A1A1A', marginBottom: '8px' }}
+              >
                 Désabonnement confirmé
               </h1>
-              <p style={{ fontSize: '14px', color: '#7F7F7F', lineHeight: 1.6, marginBottom: '28px' }}>
-                Vous avez bien été désabonné(e) de la newsletter de La Neuville TAF sa Foulée.
-                Vous ne recevrez plus nos emails.
+              <p
+                style={{
+                  fontSize: '14px',
+                  color: '#7F7F7F',
+                  lineHeight: 1.6,
+                  marginBottom: '28px',
+                }}
+              >
+                Vous avez bien été désabonné(e) de la newsletter de La Neuville TAF sa Foulée. Vous
+                ne recevrez plus nos emails.
               </p>
               <Link
                 href="/"
@@ -112,21 +136,44 @@ function DesabonnementContent() {
             <>
               <div
                 style={{
-                  width: 56, height: 56,
+                  width: 56,
+                  height: 56,
                   borderRadius: '50%',
                   background: 'rgba(251,57,54,0.06)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                   margin: '0 auto 20px',
                 }}
               >
-                <svg width={28} height={28} viewBox="0 0 24 24" fill="none" stroke="#D42F2D" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                <svg
+                  width={28}
+                  height={28}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#D42F2D"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
                 </svg>
               </div>
-              <h1 style={{ fontSize: '22px', fontWeight: 800, color: '#1A1A1A', marginBottom: '8px' }}>
-                {status === 'invalid' ? 'Ce lien n\'est plus valide.' : 'Une erreur est survenue.'}
+              <h1
+                style={{ fontSize: '22px', fontWeight: 800, color: '#1A1A1A', marginBottom: '8px' }}
+              >
+                {status === 'invalid' ? "Ce lien n'est plus valide." : 'Une erreur est survenue.'}
               </h1>
-              <p style={{ fontSize: '14px', color: '#7F7F7F', lineHeight: 1.6, marginBottom: '28px' }}>
+              <p
+                style={{
+                  fontSize: '14px',
+                  color: '#7F7F7F',
+                  lineHeight: 1.6,
+                  marginBottom: '28px',
+                }}
+              >
                 {status === 'invalid'
                   ? 'Ce lien de désabonnement a peut-être déjà été utilisé ou est expiré.'
                   : 'Impossible de traiter votre demande. Réessayez dans quelques instants.'}

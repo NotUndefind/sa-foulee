@@ -29,8 +29,8 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
 
   const COLORS: Record<ToastType, string> = {
     success: 'bg-accent text-white',
-    error:   'bg-red-500 text-white',
-    info:    'bg-zinc-700 text-white',
+    error: 'bg-red-500 text-white',
+    info: 'bg-zinc-700 text-white',
   }
 
   return (
@@ -41,10 +41,10 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
         {toasts.map((t) => (
           <div
             key={t.id}
-            className={`flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium shadow-lg animate-in slide-in-from-bottom-2 duration-200 ${COLORS[t.type]}`}
+            className={`animate-in slide-in-from-bottom-2 flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium shadow-lg duration-200 ${COLORS[t.type]}`}
           >
             {t.type === 'success' && <span>✓</span>}
-            {t.type === 'error'   && <span>✕</span>}
+            {t.type === 'error' && <span>✕</span>}
             {t.message}
           </div>
         ))}

@@ -8,7 +8,6 @@ import {
   type LeaderboardPeriod,
   type UserPerformancesMeta,
 } from '@/lib/performances'
-import { ApiError } from '@/lib/api'
 import { useAuthStore } from '@/store/auth.store'
 import type { LeaderboardEntry, Performance } from '@/types'
 import { useCallback, useEffect, useState } from 'react'
@@ -356,6 +355,7 @@ export default function LeaderboardPage() {
   const [perfPage, setPerfPage] = useState(1)
   const [perfLoading, setPerfLoading] = useState(true)
 
+  const [isDisabled] = useState(false)
   const [showForm, setShowForm] = useState(false)
   const [tab, setTab] = useState<'leaderboard' | 'my-perfs'>('leaderboard')
 
@@ -443,501 +443,517 @@ export default function LeaderboardPage() {
 
       <div className="lb-page min-h-screen pb-24 lg:pb-8" style={{ background: '#F8F8F8' }}>
         <div className="mx-auto max-w-4xl px-5 py-8">
-
           {/* ── Disabled state ──────────────────────────────────────────── */}
           {isDisabled && (
-            <div className="flex flex-col items-center justify-center gap-4 rounded-2xl bg-white py-20 text-center" style={{ border: '1px solid rgba(192,48,46,0.08)', boxShadow: '0 2px 8px rgba(192,48,46,0.04)' }}>
-              <div style={{ opacity: 0.3, color: '#C0302E' }}><IconTrophy /></div>
-              <p className="text-lg font-bold" style={{ color: '#1A1A1A' }}>Classement désactivé</p>
-              <p className="text-sm" style={{ color: '#7F7F7F' }}>Fonctionnalité désactivée par l&apos;administrateur.</p>
-            </div>
-          )}
-
-          {!isDisabled && (<>
-
-          {/* ── Header ─────────────────────────────────────────────────── */}
-          <div
-            className="lb-fade mb-8 flex items-start justify-between"
-            style={{ animationDelay: '0ms' }}
-          >
-            <div>
-              <div className="mb-1 flex items-center gap-2" style={{ color: '#D42F2D' }}>
+            <div
+              className="flex flex-col items-center justify-center gap-4 rounded-2xl bg-white py-20 text-center"
+              style={{
+                border: '1px solid rgba(192,48,46,0.08)',
+                boxShadow: '0 2px 8px rgba(192,48,46,0.04)',
+              }}
+            >
+              <div style={{ opacity: 0.3, color: '#C0302E' }}>
                 <IconTrophy />
-                <h1
-                  className="text-3xl font-extrabold"
-                  style={{ letterSpacing: '-0.02em', color: '#C0302E' }}
-                >
-                  Classement
-                </h1>
               </div>
+              <p className="text-lg font-bold" style={{ color: '#1A1A1A' }}>
+                Classement désactivé
+              </p>
               <p className="text-sm" style={{ color: '#7F7F7F' }}>
-                Distance totale parcourue par les membres de l&apos;association
+                Fonctionnalité désactivée par l&apos;administrateur.
               </p>
             </div>
-            <button
-              onClick={() => setShowForm((v) => !v)}
-              className="shrink-0 rounded-xl px-4 py-2.5 text-sm font-bold text-white transition"
-              style={{
-                background: showForm
-                  ? '#7F7F7F'
-                  : 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)',
-                boxShadow: showForm ? 'none' : '0 2px 8px rgba(251,57,54,0.3)',
-              }}
-            >
-              {showForm ? '✕ Annuler' : '+ Ma performance'}
-            </button>
-          </div>
-
-          {/* ── Form ───────────────────────────────────────────────────── */}
-          {showForm && user && (
-            <div className="lb-fade mb-6" style={{ animationDelay: '50ms' }}>
-              <PerformanceForm onAdded={handlePerfAdded} />
-            </div>
           )}
 
-          {/* ── My rank banner ──────────────────────────────────────────── */}
-          {myRank && (
-            <div
-              className="lb-fade mb-6 flex items-center gap-4 rounded-2xl px-5 py-4"
-              style={{
-                animationDelay: '80ms',
-                background:
-                  'linear-gradient(135deg, rgba(251,57,54,0.08) 0%, rgba(146,43,33,0.04) 100%)',
-                border: '1px solid rgba(251,57,54,0.2)',
-              }}
-            >
+          {!isDisabled && (
+            <>
+              {/* ── Header ─────────────────────────────────────────────────── */}
               <div
-                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-xl font-extrabold"
-                style={{ background: 'rgba(251,57,54,0.12)', color: '#FB3936' }}
+                className="lb-fade mb-8 flex items-start justify-between"
+                style={{ animationDelay: '0ms' }}
               >
-                #{myRank.rank}
-              </div>
-              <div>
-                <p className="font-bold" style={{ color: '#C0302E' }}>
-                  Votre position — {PERIOD_LABELS[period]}
-                </p>
-                <p className="text-sm" style={{ color: '#7F7F7F' }}>
-                  <span className="font-semibold" style={{ color: '#D42F2D' }}>
-                    {myRank.total_distance_km.toFixed(2)} km
-                  </span>
-                  {' · '}
-                  {myRank.total_sessions} sortie{myRank.total_sessions > 1 ? 's' : ''}
-                </p>
-              </div>
-              <div className="ml-auto text-right">
-                <p className="text-xs" style={{ color: '#7F7F7F' }}>
-                  sur {entries.length} coureur{entries.length > 1 ? 's' : ''}
-                </p>
-              </div>
-            </div>
-          )}
-
-          {/* ── Tabs ───────────────────────────────────────────────────── */}
-          <div
-            className="lb-fade mb-6 flex w-fit gap-1 rounded-xl p-1"
-            style={{ animationDelay: '100ms', background: 'rgba(192,48,46,0.05)' }}
-          >
-            <button
-              onClick={() => setTab('leaderboard')}
-              className={`lb-tab ${tab === 'leaderboard' ? 'active' : ''}`}
-            >
-              Classement
-            </button>
-            <button
-              onClick={() => setTab('my-perfs')}
-              className={`lb-tab ${tab === 'my-perfs' ? 'active' : ''}`}
-            >
-              Mes performances
-              {perfMeta && (
-                <span
-                  className="ml-1.5 rounded-full px-1.5 py-0.5 text-[10px]"
-                  style={{ background: 'rgba(176,137,138,0.12)', color: '#D42F2D' }}
-                >
-                  {perfMeta.total}
-                </span>
-              )}
-            </button>
-          </div>
-
-          {/* ── LEADERBOARD TAB ────────────────────────────────────────── */}
-          {tab === 'leaderboard' && (
-            <div className="lb-fade space-y-5" style={{ animationDelay: '140ms' }}>
-              {/* Period filter */}
-              <div className="flex gap-2">
-                {(Object.keys(PERIOD_LABELS) as LeaderboardPeriod[]).map((p) => (
-                  <button
-                    key={p}
-                    onClick={() => setPeriod(p)}
-                    className={`lb-btn-period ${period === p ? 'active' : ''}`}
-                  >
-                    {PERIOD_LABELS[p]}
-                  </button>
-                ))}
-              </div>
-
-              {lbLoading ? (
-                <div className="flex h-48 items-center justify-center">
-                  <div className="flex flex-col items-center gap-3">
-                    <div
-                      className="h-8 w-8 animate-spin rounded-full border-2"
-                      style={{ borderColor: 'rgba(192,48,46,0.1)', borderTopColor: '#FB3936' }}
-                    />
-                    <p className="text-sm" style={{ color: '#7F7F7F' }}>
-                      Chargement du classement…
-                    </p>
-                  </div>
-                </div>
-              ) : entries.length === 0 ? (
-                <div
-                  className="flex h-48 flex-col items-center justify-center gap-3 rounded-2xl bg-white"
-                  style={{ border: '1px solid rgba(192,48,46,0.07)' }}
-                >
-                  <div style={{ opacity: 0.3, color: '#D42F2D' }}>
-                    <IconEmptyFlag />
-                  </div>
-                  <p className="text-sm" style={{ color: '#7F7F7F' }}>
-                    Aucune performance pour cette période.
-                  </p>
-                </div>
-              ) : (
-                <>
-                  {entries.length >= 3 && <Podium entries={entries} />}
-
-                  <div
-                    className="overflow-hidden rounded-2xl bg-white"
-                    style={{
-                      boxShadow: '0 2px 12px rgba(192,48,46,0.07)',
-                      border: '1px solid rgba(192,48,46,0.07)',
-                    }}
-                  >
-                    <div
-                      className="grid grid-cols-12 border-b px-5 py-3"
-                      style={{ borderColor: 'rgba(192,48,46,0.06)', background: '#F8F8F8' }}
+                <div>
+                  <div className="mb-1 flex items-center gap-2" style={{ color: '#D42F2D' }}>
+                    <IconTrophy />
+                    <h1
+                      className="text-3xl font-extrabold"
+                      style={{ letterSpacing: '-0.02em', color: '#C0302E' }}
                     >
-                      <div
-                        className="col-span-1 text-[11px] font-bold tracking-wider uppercase"
-                        style={{ color: '#7F7F7F' }}
-                      >
-                        #
-                      </div>
-                      <div
-                        className="col-span-6 text-[11px] font-bold tracking-wider uppercase"
-                        style={{ color: '#7F7F7F' }}
-                      >
-                        Coureur
-                      </div>
-                      <div
-                        className="col-span-3 text-right text-[11px] font-bold tracking-wider uppercase"
-                        style={{ color: '#7F7F7F' }}
-                      >
-                        Distance
-                      </div>
-                      <div
-                        className="col-span-2 hidden text-right text-[11px] font-bold tracking-wider uppercase sm:block"
-                        style={{ color: '#7F7F7F' }}
-                      >
-                        Sorties
-                      </div>
-                    </div>
-                    {entries.map((entry, i) => {
-                      const isMe = user?.id === entry.user.id
-                      return (
-                        <div
-                          key={entry.user.id}
-                          className="lb-row grid grid-cols-12 items-center px-5 py-3.5"
-                          style={{
-                            borderBottom:
-                              i < entries.length - 1 ? '1px solid rgba(192,48,46,0.04)' : 'none',
-                            background: isMe ? 'rgba(251,57,54,0.04)' : 'transparent',
-                          }}
-                        >
-                          <div className="col-span-1">
-                            {entry.rank <= 3 ? (
-                              <span
-                                className="flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold"
-                                style={{
-                                  background:
-                                    entry.rank === 1
-                                      ? 'rgba(251,57,54,0.15)'
-                                      : entry.rank === 2
-                                        ? 'rgba(148,163,184,0.2)'
-                                        : 'rgba(180,110,50,0.15)',
-                                  color:
-                                    entry.rank === 1
-                                      ? '#FB3936'
-                                      : entry.rank === 2
-                                        ? '#64748b'
-                                        : '#9a5a1e',
-                                  border: `1px solid ${entry.rank === 1 ? 'rgba(251,57,54,0.3)' : entry.rank === 2 ? '#94a3b8' : 'rgba(180,110,50,0.3)'}`,
-                                }}
-                              >
-                                {entry.rank}
-                              </span>
-                            ) : (
-                              <span
-                                className="text-sm font-bold"
-                                style={{ color: 'rgba(192,48,46,0.2)' }}
-                              >
-                                {entry.rank}
-                              </span>
-                            )}
-                          </div>
-                          <div className="col-span-6 flex items-center gap-2.5">
-                            <div
-                              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold"
-                              style={{
-                                background: isMe ? 'rgba(251,57,54,0.12)' : 'rgba(192,48,46,0.06)',
-                                color: isMe ? '#FB3936' : '#7F7F7F',
-                              }}
-                            >
-                              {entry.user.name.charAt(0).toUpperCase()}
-                            </div>
-                            <span
-                              className="text-sm font-semibold"
-                              style={{ color: isMe ? '#FB3936' : '#C0302E' }}
-                            >
-                              {entry.user.name}
-                              {isMe && (
-                                <span
-                                  className="ml-1 text-[10px] font-normal"
-                                  style={{ color: '#7F7F7F' }}
-                                >
-                                  (vous)
-                                </span>
-                              )}
-                            </span>
-                          </div>
-                          <div className="col-span-3 text-right">
-                            <span className="text-sm font-bold" style={{ color: '#C0302E' }}>
-                              {entry.total_distance_km.toFixed(2)}
-                            </span>
-                            <span className="ml-1 text-xs" style={{ color: '#7F7F7F' }}>
-                              km
-                            </span>
-                          </div>
-                          <div
-                            className="col-span-2 hidden text-right text-sm sm:block"
-                            style={{ color: '#7F7F7F' }}
-                          >
-                            {entry.total_sessions}
-                          </div>
-                        </div>
-                      )
-                    })}
-                  </div>
-                </>
-              )}
-            </div>
-          )}
-
-          {/* ── MY PERFORMANCES TAB ────────────────────────────────────── */}
-          {tab === 'my-perfs' && (
-            <div className="lb-fade space-y-5" style={{ animationDelay: '140ms' }}>
-              {/* Stats cards */}
-              {perfMeta && (
-                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-                  {[
-                    {
-                      icon: <IconRoute />,
-                      label: 'Distance totale',
-                      value: `${perfMeta.total_distance.toFixed(1)} km`,
-                      color: '#FB3936',
-                    },
-                    {
-                      icon: <IconRun />,
-                      label: 'Sorties',
-                      value: String(perfMeta.total_sessions),
-                      color: '#D42F2D',
-                    },
-                    {
-                      icon: <IconAvg />,
-                      label: 'Moy. / sortie',
-                      value:
-                        perfMeta.total_sessions > 0
-                          ? `${(perfMeta.total_distance / perfMeta.total_sessions).toFixed(1)} km`
-                          : '—',
-                      color: '#d97706',
-                    },
-                  ].map((stat) => (
-                    <div key={stat.label} className="lb-stat-card">
-                      <div className="flex justify-center" style={{ color: stat.color }}>
-                        {stat.icon}
-                      </div>
-                      <p
-                        className="mt-1 text-2xl font-extrabold"
-                        style={{ color: stat.color, letterSpacing: '-0.02em' }}
-                      >
-                        {stat.value}
-                      </p>
-                      <p className="mt-0.5 text-xs" style={{ color: '#7F7F7F' }}>
-                        {stat.label}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {perfLoading ? (
-                <div className="flex h-48 items-center justify-center">
-                  <div className="flex flex-col items-center gap-3">
-                    <div
-                      className="h-8 w-8 animate-spin rounded-full border-2"
-                      style={{ borderColor: 'rgba(192,48,46,0.1)', borderTopColor: '#FB3936' }}
-                    />
-                    <p className="text-sm" style={{ color: '#7F7F7F' }}>
-                      Chargement…
-                    </p>
-                  </div>
-                </div>
-              ) : performances.length === 0 ? (
-                <div
-                  className="flex h-48 flex-col items-center justify-center gap-3 rounded-2xl bg-white"
-                  style={{ border: '1px solid rgba(192,48,46,0.07)' }}
-                >
-                  <div style={{ opacity: 0.3, color: '#D42F2D' }}>
-                    <IconEmptyFlag />
+                      Classement
+                    </h1>
                   </div>
                   <p className="text-sm" style={{ color: '#7F7F7F' }}>
-                    Aucune performance enregistrée.
+                    Distance totale parcourue par les membres de l&apos;association
                   </p>
-                  <button
-                    onClick={() => {
-                      setShowForm(true)
-                      setTab('leaderboard')
-                    }}
-                    className="text-xs font-semibold hover:underline"
-                    style={{ color: '#FB3936' }}
-                  >
-                    Saisir ma première performance →
-                  </button>
                 </div>
-              ) : (
-                <div
-                  className="overflow-hidden rounded-2xl bg-white"
+                <button
+                  onClick={() => setShowForm((v) => !v)}
+                  className="shrink-0 rounded-xl px-4 py-2.5 text-sm font-bold text-white transition"
                   style={{
-                    boxShadow: '0 2px 12px rgba(192,48,46,0.07)',
-                    border: '1px solid rgba(192,48,46,0.07)',
+                    background: showForm
+                      ? '#7F7F7F'
+                      : 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)',
+                    boxShadow: showForm ? 'none' : '0 2px 8px rgba(251,57,54,0.3)',
+                  }}
+                >
+                  {showForm ? '✕ Annuler' : '+ Ma performance'}
+                </button>
+              </div>
+
+              {/* ── Form ───────────────────────────────────────────────────── */}
+              {showForm && user && (
+                <div className="lb-fade mb-6" style={{ animationDelay: '50ms' }}>
+                  <PerformanceForm onAdded={handlePerfAdded} />
+                </div>
+              )}
+
+              {/* ── My rank banner ──────────────────────────────────────────── */}
+              {myRank && (
+                <div
+                  className="lb-fade mb-6 flex items-center gap-4 rounded-2xl px-5 py-4"
+                  style={{
+                    animationDelay: '80ms',
+                    background:
+                      'linear-gradient(135deg, rgba(251,57,54,0.08) 0%, rgba(146,43,33,0.04) 100%)',
+                    border: '1px solid rgba(251,57,54,0.2)',
                   }}
                 >
                   <div
-                    className="grid grid-cols-12 border-b px-5 py-3"
-                    style={{ borderColor: 'rgba(192,48,46,0.06)', background: '#F8F8F8' }}
+                    className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl text-xl font-extrabold"
+                    style={{ background: 'rgba(251,57,54,0.12)', color: '#FB3936' }}
                   >
-                    <div
-                      className="col-span-4 text-[11px] font-bold tracking-wider uppercase"
-                      style={{ color: '#7F7F7F' }}
-                    >
-                      Date
-                    </div>
-                    <div
-                      className="col-span-3 text-right text-[11px] font-bold tracking-wider uppercase"
-                      style={{ color: '#7F7F7F' }}
-                    >
-                      Distance
-                    </div>
-                    <div
-                      className="col-span-2 hidden text-right text-[11px] font-bold tracking-wider uppercase sm:block"
-                      style={{ color: '#7F7F7F' }}
-                    >
-                      Durée
-                    </div>
-                    <div
-                      className="col-span-3 hidden text-right text-[11px] font-bold tracking-wider uppercase sm:block"
-                      style={{ color: '#7F7F7F' }}
-                    >
-                      Allure
-                    </div>
+                    #{myRank.rank}
                   </div>
-                  {performances.map((p, i) => {
-                    const pace =
-                      p.duration_sec > 0 && p.distance_km > 0
-                        ? Math.round(p.duration_sec / p.distance_km)
-                        : null
-                    return (
+                  <div>
+                    <p className="font-bold" style={{ color: '#C0302E' }}>
+                      Votre position — {PERIOD_LABELS[period]}
+                    </p>
+                    <p className="text-sm" style={{ color: '#7F7F7F' }}>
+                      <span className="font-semibold" style={{ color: '#D42F2D' }}>
+                        {myRank.total_distance_km.toFixed(2)} km
+                      </span>
+                      {' · '}
+                      {myRank.total_sessions} sortie{myRank.total_sessions > 1 ? 's' : ''}
+                    </p>
+                  </div>
+                  <div className="ml-auto text-right">
+                    <p className="text-xs" style={{ color: '#7F7F7F' }}>
+                      sur {entries.length} coureur{entries.length > 1 ? 's' : ''}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* ── Tabs ───────────────────────────────────────────────────── */}
+              <div
+                className="lb-fade mb-6 flex w-fit gap-1 rounded-xl p-1"
+                style={{ animationDelay: '100ms', background: 'rgba(192,48,46,0.05)' }}
+              >
+                <button
+                  onClick={() => setTab('leaderboard')}
+                  className={`lb-tab ${tab === 'leaderboard' ? 'active' : ''}`}
+                >
+                  Classement
+                </button>
+                <button
+                  onClick={() => setTab('my-perfs')}
+                  className={`lb-tab ${tab === 'my-perfs' ? 'active' : ''}`}
+                >
+                  Mes performances
+                  {perfMeta && (
+                    <span
+                      className="ml-1.5 rounded-full px-1.5 py-0.5 text-[10px]"
+                      style={{ background: 'rgba(176,137,138,0.12)', color: '#D42F2D' }}
+                    >
+                      {perfMeta.total}
+                    </span>
+                  )}
+                </button>
+              </div>
+
+              {/* ── LEADERBOARD TAB ────────────────────────────────────────── */}
+              {tab === 'leaderboard' && (
+                <div className="lb-fade space-y-5" style={{ animationDelay: '140ms' }}>
+                  {/* Period filter */}
+                  <div className="flex gap-2">
+                    {(Object.keys(PERIOD_LABELS) as LeaderboardPeriod[]).map((p) => (
+                      <button
+                        key={p}
+                        onClick={() => setPeriod(p)}
+                        className={`lb-btn-period ${period === p ? 'active' : ''}`}
+                      >
+                        {PERIOD_LABELS[p]}
+                      </button>
+                    ))}
+                  </div>
+
+                  {lbLoading ? (
+                    <div className="flex h-48 items-center justify-center">
+                      <div className="flex flex-col items-center gap-3">
+                        <div
+                          className="h-8 w-8 animate-spin rounded-full border-2"
+                          style={{ borderColor: 'rgba(192,48,46,0.1)', borderTopColor: '#FB3936' }}
+                        />
+                        <p className="text-sm" style={{ color: '#7F7F7F' }}>
+                          Chargement du classement…
+                        </p>
+                      </div>
+                    </div>
+                  ) : entries.length === 0 ? (
+                    <div
+                      className="flex h-48 flex-col items-center justify-center gap-3 rounded-2xl bg-white"
+                      style={{ border: '1px solid rgba(192,48,46,0.07)' }}
+                    >
+                      <div style={{ opacity: 0.3, color: '#D42F2D' }}>
+                        <IconEmptyFlag />
+                      </div>
+                      <p className="text-sm" style={{ color: '#7F7F7F' }}>
+                        Aucune performance pour cette période.
+                      </p>
+                    </div>
+                  ) : (
+                    <>
+                      {entries.length >= 3 && <Podium entries={entries} />}
+
                       <div
-                        key={p.id}
-                        className="lb-row grid grid-cols-12 items-center px-5 py-3.5"
+                        className="overflow-hidden rounded-2xl bg-white"
                         style={{
-                          borderBottom:
-                            i < performances.length - 1 ? '1px solid rgba(192,48,46,0.04)' : 'none',
+                          boxShadow: '0 2px 12px rgba(192,48,46,0.07)',
+                          border: '1px solid rgba(192,48,46,0.07)',
                         }}
                       >
-                        <div className="col-span-4 text-sm" style={{ color: '#D42F2D' }}>
-                          {formatDate(p.date)}
-                        </div>
-                        <div className="col-span-3 text-right">
-                          <span className="text-sm font-bold" style={{ color: '#C0302E' }}>
-                            {p.distance_km.toFixed(2)}
-                          </span>
-                          <span className="ml-1 text-xs" style={{ color: '#7F7F7F' }}>
-                            km
-                          </span>
-                        </div>
                         <div
-                          className="col-span-2 hidden text-right text-sm sm:block"
+                          className="grid grid-cols-12 border-b px-5 py-3"
+                          style={{ borderColor: 'rgba(192,48,46,0.06)', background: '#F8F8F8' }}
+                        >
+                          <div
+                            className="col-span-1 text-[11px] font-bold tracking-wider uppercase"
+                            style={{ color: '#7F7F7F' }}
+                          >
+                            #
+                          </div>
+                          <div
+                            className="col-span-6 text-[11px] font-bold tracking-wider uppercase"
+                            style={{ color: '#7F7F7F' }}
+                          >
+                            Coureur
+                          </div>
+                          <div
+                            className="col-span-3 text-right text-[11px] font-bold tracking-wider uppercase"
+                            style={{ color: '#7F7F7F' }}
+                          >
+                            Distance
+                          </div>
+                          <div
+                            className="col-span-2 hidden text-right text-[11px] font-bold tracking-wider uppercase sm:block"
+                            style={{ color: '#7F7F7F' }}
+                          >
+                            Sorties
+                          </div>
+                        </div>
+                        {entries.map((entry, i) => {
+                          const isMe = user?.id === entry.user.id
+                          return (
+                            <div
+                              key={entry.user.id}
+                              className="lb-row grid grid-cols-12 items-center px-5 py-3.5"
+                              style={{
+                                borderBottom:
+                                  i < entries.length - 1
+                                    ? '1px solid rgba(192,48,46,0.04)'
+                                    : 'none',
+                                background: isMe ? 'rgba(251,57,54,0.04)' : 'transparent',
+                              }}
+                            >
+                              <div className="col-span-1">
+                                {entry.rank <= 3 ? (
+                                  <span
+                                    className="flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold"
+                                    style={{
+                                      background:
+                                        entry.rank === 1
+                                          ? 'rgba(251,57,54,0.15)'
+                                          : entry.rank === 2
+                                            ? 'rgba(148,163,184,0.2)'
+                                            : 'rgba(180,110,50,0.15)',
+                                      color:
+                                        entry.rank === 1
+                                          ? '#FB3936'
+                                          : entry.rank === 2
+                                            ? '#64748b'
+                                            : '#9a5a1e',
+                                      border: `1px solid ${entry.rank === 1 ? 'rgba(251,57,54,0.3)' : entry.rank === 2 ? '#94a3b8' : 'rgba(180,110,50,0.3)'}`,
+                                    }}
+                                  >
+                                    {entry.rank}
+                                  </span>
+                                ) : (
+                                  <span
+                                    className="text-sm font-bold"
+                                    style={{ color: 'rgba(192,48,46,0.2)' }}
+                                  >
+                                    {entry.rank}
+                                  </span>
+                                )}
+                              </div>
+                              <div className="col-span-6 flex items-center gap-2.5">
+                                <div
+                                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold"
+                                  style={{
+                                    background: isMe
+                                      ? 'rgba(251,57,54,0.12)'
+                                      : 'rgba(192,48,46,0.06)',
+                                    color: isMe ? '#FB3936' : '#7F7F7F',
+                                  }}
+                                >
+                                  {entry.user.name.charAt(0).toUpperCase()}
+                                </div>
+                                <span
+                                  className="text-sm font-semibold"
+                                  style={{ color: isMe ? '#FB3936' : '#C0302E' }}
+                                >
+                                  {entry.user.name}
+                                  {isMe && (
+                                    <span
+                                      className="ml-1 text-[10px] font-normal"
+                                      style={{ color: '#7F7F7F' }}
+                                    >
+                                      (vous)
+                                    </span>
+                                  )}
+                                </span>
+                              </div>
+                              <div className="col-span-3 text-right">
+                                <span className="text-sm font-bold" style={{ color: '#C0302E' }}>
+                                  {entry.total_distance_km.toFixed(2)}
+                                </span>
+                                <span className="ml-1 text-xs" style={{ color: '#7F7F7F' }}>
+                                  km
+                                </span>
+                              </div>
+                              <div
+                                className="col-span-2 hidden text-right text-sm sm:block"
+                                style={{ color: '#7F7F7F' }}
+                              >
+                                {entry.total_sessions}
+                              </div>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    </>
+                  )}
+                </div>
+              )}
+
+              {/* ── MY PERFORMANCES TAB ────────────────────────────────────── */}
+              {tab === 'my-perfs' && (
+                <div className="lb-fade space-y-5" style={{ animationDelay: '140ms' }}>
+                  {/* Stats cards */}
+                  {perfMeta && (
+                    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+                      {[
+                        {
+                          icon: <IconRoute />,
+                          label: 'Distance totale',
+                          value: `${perfMeta.total_distance.toFixed(1)} km`,
+                          color: '#FB3936',
+                        },
+                        {
+                          icon: <IconRun />,
+                          label: 'Sorties',
+                          value: String(perfMeta.total_sessions),
+                          color: '#D42F2D',
+                        },
+                        {
+                          icon: <IconAvg />,
+                          label: 'Moy. / sortie',
+                          value:
+                            perfMeta.total_sessions > 0
+                              ? `${(perfMeta.total_distance / perfMeta.total_sessions).toFixed(1)} km`
+                              : '—',
+                          color: '#d97706',
+                        },
+                      ].map((stat) => (
+                        <div key={stat.label} className="lb-stat-card">
+                          <div className="flex justify-center" style={{ color: stat.color }}>
+                            {stat.icon}
+                          </div>
+                          <p
+                            className="mt-1 text-2xl font-extrabold"
+                            style={{ color: stat.color, letterSpacing: '-0.02em' }}
+                          >
+                            {stat.value}
+                          </p>
+                          <p className="mt-0.5 text-xs" style={{ color: '#7F7F7F' }}>
+                            {stat.label}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {perfLoading ? (
+                    <div className="flex h-48 items-center justify-center">
+                      <div className="flex flex-col items-center gap-3">
+                        <div
+                          className="h-8 w-8 animate-spin rounded-full border-2"
+                          style={{ borderColor: 'rgba(192,48,46,0.1)', borderTopColor: '#FB3936' }}
+                        />
+                        <p className="text-sm" style={{ color: '#7F7F7F' }}>
+                          Chargement…
+                        </p>
+                      </div>
+                    </div>
+                  ) : performances.length === 0 ? (
+                    <div
+                      className="flex h-48 flex-col items-center justify-center gap-3 rounded-2xl bg-white"
+                      style={{ border: '1px solid rgba(192,48,46,0.07)' }}
+                    >
+                      <div style={{ opacity: 0.3, color: '#D42F2D' }}>
+                        <IconEmptyFlag />
+                      </div>
+                      <p className="text-sm" style={{ color: '#7F7F7F' }}>
+                        Aucune performance enregistrée.
+                      </p>
+                      <button
+                        onClick={() => {
+                          setShowForm(true)
+                          setTab('leaderboard')
+                        }}
+                        className="text-xs font-semibold hover:underline"
+                        style={{ color: '#FB3936' }}
+                      >
+                        Saisir ma première performance →
+                      </button>
+                    </div>
+                  ) : (
+                    <div
+                      className="overflow-hidden rounded-2xl bg-white"
+                      style={{
+                        boxShadow: '0 2px 12px rgba(192,48,46,0.07)',
+                        border: '1px solid rgba(192,48,46,0.07)',
+                      }}
+                    >
+                      <div
+                        className="grid grid-cols-12 border-b px-5 py-3"
+                        style={{ borderColor: 'rgba(192,48,46,0.06)', background: '#F8F8F8' }}
+                      >
+                        <div
+                          className="col-span-4 text-[11px] font-bold tracking-wider uppercase"
                           style={{ color: '#7F7F7F' }}
                         >
-                          {formatDuration(p.duration_sec)}
+                          Date
                         </div>
-                        <div className="col-span-3 hidden text-right sm:block">
-                          {pace ? (
-                            <span
-                              className="rounded-full px-2 py-0.5 text-[11px] font-semibold"
-                              style={{ background: 'rgba(169,50,38,0.08)', color: '#D42F2D' }}
+                        <div
+                          className="col-span-3 text-right text-[11px] font-bold tracking-wider uppercase"
+                          style={{ color: '#7F7F7F' }}
+                        >
+                          Distance
+                        </div>
+                        <div
+                          className="col-span-2 hidden text-right text-[11px] font-bold tracking-wider uppercase sm:block"
+                          style={{ color: '#7F7F7F' }}
+                        >
+                          Durée
+                        </div>
+                        <div
+                          className="col-span-3 hidden text-right text-[11px] font-bold tracking-wider uppercase sm:block"
+                          style={{ color: '#7F7F7F' }}
+                        >
+                          Allure
+                        </div>
+                      </div>
+                      {performances.map((p, i) => {
+                        const pace =
+                          p.duration_sec > 0 && p.distance_km > 0
+                            ? Math.round(p.duration_sec / p.distance_km)
+                            : null
+                        return (
+                          <div
+                            key={p.id}
+                            className="lb-row grid grid-cols-12 items-center px-5 py-3.5"
+                            style={{
+                              borderBottom:
+                                i < performances.length - 1
+                                  ? '1px solid rgba(192,48,46,0.04)'
+                                  : 'none',
+                            }}
+                          >
+                            <div className="col-span-4 text-sm" style={{ color: '#D42F2D' }}>
+                              {formatDate(p.date)}
+                            </div>
+                            <div className="col-span-3 text-right">
+                              <span className="text-sm font-bold" style={{ color: '#C0302E' }}>
+                                {p.distance_km.toFixed(2)}
+                              </span>
+                              <span className="ml-1 text-xs" style={{ color: '#7F7F7F' }}>
+                                km
+                              </span>
+                            </div>
+                            <div
+                              className="col-span-2 hidden text-right text-sm sm:block"
+                              style={{ color: '#7F7F7F' }}
                             >
-                              {formatDuration(pace)}/km
-                            </span>
-                          ) : (
-                            '—'
-                          )}
-                        </div>
-                      </div>
-                    )
-                  })}
+                              {formatDuration(p.duration_sec)}
+                            </div>
+                            <div className="col-span-3 hidden text-right sm:block">
+                              {pace ? (
+                                <span
+                                  className="rounded-full px-2 py-0.5 text-[11px] font-semibold"
+                                  style={{ background: 'rgba(169,50,38,0.08)', color: '#D42F2D' }}
+                                >
+                                  {formatDuration(pace)}/km
+                                </span>
+                              ) : (
+                                '—'
+                              )}
+                            </div>
+                          </div>
+                        )
+                      })}
 
-                  {perfMeta && perfMeta.last_page > 1 && (
-                    <div
-                      className="flex items-center justify-between px-5 py-3"
-                      style={{ borderTop: '1px solid rgba(192,48,46,0.06)' }}
-                    >
-                      <p className="text-xs" style={{ color: '#7F7F7F' }}>
-                        Page {perfMeta.current_page} sur {perfMeta.last_page}
-                      </p>
-                      <div className="flex gap-2">
-                        <button
-                          disabled={perfPage <= 1}
-                          onClick={() => setPerfPage((p) => p - 1)}
-                          className="rounded-xl px-3 py-1.5 text-xs font-medium transition disabled:opacity-30"
-                          style={{
-                            border: '1px solid rgba(192,48,46,0.12)',
-                            color: '#D42F2D',
-                            background: 'white',
-                          }}
+                      {perfMeta && perfMeta.last_page > 1 && (
+                        <div
+                          className="flex items-center justify-between px-5 py-3"
+                          style={{ borderTop: '1px solid rgba(192,48,46,0.06)' }}
                         >
-                          ← Préc.
-                        </button>
-                        <button
-                          disabled={perfPage >= perfMeta.last_page}
-                          onClick={() => setPerfPage((p) => p + 1)}
-                          className="rounded-xl px-3 py-1.5 text-xs font-medium transition disabled:opacity-30"
-                          style={{
-                            border: '1px solid rgba(192,48,46,0.12)',
-                            color: '#D42F2D',
-                            background: 'white',
-                          }}
-                        >
-                          Suiv. →
-                        </button>
-                      </div>
+                          <p className="text-xs" style={{ color: '#7F7F7F' }}>
+                            Page {perfMeta.current_page} sur {perfMeta.last_page}
+                          </p>
+                          <div className="flex gap-2">
+                            <button
+                              disabled={perfPage <= 1}
+                              onClick={() => setPerfPage((p) => p - 1)}
+                              className="rounded-xl px-3 py-1.5 text-xs font-medium transition disabled:opacity-30"
+                              style={{
+                                border: '1px solid rgba(192,48,46,0.12)',
+                                color: '#D42F2D',
+                                background: 'white',
+                              }}
+                            >
+                              ← Préc.
+                            </button>
+                            <button
+                              disabled={perfPage >= perfMeta.last_page}
+                              onClick={() => setPerfPage((p) => p + 1)}
+                              className="rounded-xl px-3 py-1.5 text-xs font-medium transition disabled:opacity-30"
+                              style={{
+                                border: '1px solid rgba(192,48,46,0.12)',
+                                color: '#D42F2D',
+                                background: 'white',
+                              }}
+                            >
+                              Suiv. →
+                            </button>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
               )}
-            </div>
+            </>
           )}
-
-          </>)}
-
         </div>
       </div>
     </>

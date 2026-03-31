@@ -25,18 +25,18 @@ export interface EventPayload {
   title: string
   description: string
   type: EventType
-  event_date: string   // ISO string
+  event_date: string // ISO string
   location: string
   is_public: boolean
 }
 
 export async function getEvents(filters: EventFilters = {}): Promise<PaginatedEvents> {
   const params = new URLSearchParams()
-  if (filters.type)                   params.set('type', filters.type)
-  if (filters.upcoming !== undefined)  params.set('upcoming', filters.upcoming ? '1' : '0')
-  if (filters.past)                   params.set('past', '1')
-  if (filters.page)                   params.set('page', String(filters.page))
-  if (filters.per_page)               params.set('per_page', String(filters.per_page))
+  if (filters.type) params.set('type', filters.type)
+  if (filters.upcoming !== undefined) params.set('upcoming', filters.upcoming ? '1' : '0')
+  if (filters.past) params.set('past', '1')
+  if (filters.page) params.set('page', String(filters.page))
+  if (filters.per_page) params.set('per_page', String(filters.per_page))
 
   const qs = params.toString()
   return api.get<PaginatedEvents>(`/events${qs ? `?${qs}` : ''}`)
@@ -58,11 +58,15 @@ export async function deleteEvent(id: number): Promise<void> {
   await api.delete(`/events/${id}`)
 }
 
-export async function registerToEvent(id: number): Promise<{ message: string; registrations_count: number }> {
+export async function registerToEvent(
+  id: number
+): Promise<{ message: string; registrations_count: number }> {
   return api.post(`/events/${id}/register`, {})
 }
 
-export async function unregisterFromEvent(id: number): Promise<{ message: string; registrations_count: number }> {
+export async function unregisterFromEvent(
+  id: number
+): Promise<{ message: string; registrations_count: number }> {
   return api.delete(`/events/${id}/register`)
 }
 
@@ -88,7 +92,7 @@ export async function uploadEventPhoto(eventId: number, file: File): Promise<Eve
 
   if (!res.ok) {
     const data = await res.json().catch(() => ({}))
-    throw new Error(data.message ?? 'Erreur lors de l\'upload')
+    throw new Error(data.message ?? "Erreur lors de l'upload")
   }
 
   return res.json()

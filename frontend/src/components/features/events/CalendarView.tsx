@@ -4,16 +4,26 @@ import { useMemo, useState } from 'react'
 import type { Event, EventType } from '@/types'
 
 const TYPE_COLORS: Record<EventType, string> = {
-  race:        'bg-red-400',
-  outing:      'bg-accent',
+  race: 'bg-red-400',
+  outing: 'bg-accent',
   competition: 'bg-purple-400',
-  other:       'bg-zinc-400',
+  other: 'bg-zinc-400',
 }
 
 const WEEKDAYS = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim']
 const MONTHS = [
-  'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-  'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre',
+  'Janvier',
+  'Février',
+  'Mars',
+  'Avril',
+  'Mai',
+  'Juin',
+  'Juillet',
+  'Août',
+  'Septembre',
+  'Octobre',
+  'Novembre',
+  'Décembre',
 ]
 
 interface Props {
@@ -23,7 +33,7 @@ interface Props {
 
 export default function CalendarView({ events, onEventClick }: Props) {
   const today = new Date()
-  const [year,  setYear]  = useState(today.getFullYear())
+  const [year, setYear] = useState(today.getFullYear())
   const [month, setMonth] = useState(today.getMonth()) // 0-11
 
   // Détermine les jours du mois affiché
@@ -50,23 +60,24 @@ export default function CalendarView({ events, onEventClick }: Props) {
   }, [events, year, month])
 
   const prevMonth = () => {
-    if (month === 0) { setMonth(11); setYear((y) => y - 1) }
-    else setMonth((m) => m - 1)
+    if (month === 0) {
+      setMonth(11)
+      setYear((y) => y - 1)
+    } else setMonth((m) => m - 1)
   }
 
   const nextMonth = () => {
-    if (month === 11) { setMonth(0); setYear((y) => y + 1) }
-    else setMonth((m) => m + 1)
+    if (month === 11) {
+      setMonth(0)
+      setYear((y) => y + 1)
+    } else setMonth((m) => m + 1)
   }
 
   // Grille : cellules vides + jours réels
-  const cells = [
-    ...Array(startOffset).fill(null),
-    ...Array.from({ length: days }, (_, i) => i + 1),
-  ]
+  const cells = [...Array(startOffset).fill(null), ...Array.from({ length: days }, (_, i) => i + 1)]
 
   return (
-    <div className="rounded-2xl bg-white shadow-sm ring-1 ring-zinc-200 overflow-hidden">
+    <div className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-zinc-200">
       {/* Navigation mois */}
       <div className="flex items-center justify-between border-b border-zinc-100 px-5 py-4">
         <button
@@ -101,27 +112,30 @@ export default function CalendarView({ events, onEventClick }: Props) {
       <div className="grid grid-cols-7">
         {cells.map((day, idx) => {
           if (day === null) {
-            return <div key={`empty-${idx}`} className="h-20 border-b border-r border-zinc-100 bg-zinc-50/50" />
+            return (
+              <div
+                key={`empty-${idx}`}
+                className="h-20 border-r border-b border-zinc-100 bg-zinc-50/50"
+              />
+            )
           }
 
           const isToday =
-            day === today.getDate() &&
-            month === today.getMonth() &&
-            year === today.getFullYear()
+            day === today.getDate() && month === today.getMonth() && year === today.getFullYear()
 
           const dayEvents = eventsByDay[day.toString()] ?? []
 
           return (
             <div
               key={day}
-              className={`h-20 border-b border-r border-zinc-100 p-1.5 ${dayEvents.length > 0 ? 'cursor-pointer hover:bg-zinc-50' : ''}`}
+              className={`h-20 border-r border-b border-zinc-100 p-1.5 ${dayEvents.length > 0 ? 'cursor-pointer hover:bg-zinc-50' : ''}`}
             >
               {/* Numéro du jour */}
-              <div className={`mb-1 flex h-6 w-6 items-center justify-center rounded-full text-xs font-medium ${
-                isToday
-                  ? 'bg-brand text-white'
-                  : 'text-zinc-500'
-              }`}>
+              <div
+                className={`mb-1 flex h-6 w-6 items-center justify-center rounded-full text-xs font-medium ${
+                  isToday ? 'bg-brand text-white' : 'text-zinc-500'
+                }`}
+              >
                 {day}
               </div>
 
@@ -134,11 +148,13 @@ export default function CalendarView({ events, onEventClick }: Props) {
                     className="flex w-full items-center gap-1 rounded px-1 py-0.5 text-left hover:bg-zinc-100"
                   >
                     <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${TYPE_COLORS[ev.type]}`} />
-                    <span className="truncate text-xs text-zinc-700 leading-tight">{ev.title}</span>
+                    <span className="truncate text-xs leading-tight text-zinc-700">{ev.title}</span>
                   </button>
                 ))}
                 {dayEvents.length > 2 && (
-                  <p className="px-1 text-xs text-zinc-400">+{dayEvents.length - 2} autre{dayEvents.length > 3 ? 's' : ''}</p>
+                  <p className="px-1 text-xs text-zinc-400">
+                    +{dayEvents.length - 2} autre{dayEvents.length > 3 ? 's' : ''}
+                  </p>
                 )}
               </div>
             </div>

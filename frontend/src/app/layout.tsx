@@ -18,7 +18,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'),
   openGraph: {
     title: 'La Neuville TAF sa Foulée',
-    description: "L'association de running de La Neuville — Événements, sessions d'entraînement, performances et communauté.",
+    description:
+      "L'association de running de La Neuville — Événements, sessions d'entraînement, performances et communauté.",
     siteName: 'La Neuville TAF sa Foulée',
     locale: 'fr_FR',
     type: 'website',

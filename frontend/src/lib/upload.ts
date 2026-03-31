@@ -17,7 +17,7 @@ export async function uploadMedia(file: File): Promise<string> {
 
   if (!res.ok) {
     const data = await res.json().catch(() => ({}))
-    throw new Error(data.message ?? 'Erreur lors de l\'upload.')
+    throw new Error(data.message ?? "Erreur lors de l'upload.")
   }
 
   const { url } = await res.json()

@@ -7,7 +7,13 @@ interface Props {
   onChange: (exercises: Exercise[]) => void
 }
 
-const EMPTY_EXERCISE: Exercise = { name: '', sets: undefined, reps: undefined, duration: undefined, rest: undefined }
+const EMPTY_EXERCISE: Exercise = {
+  name: '',
+  sets: undefined,
+  reps: undefined,
+  duration: undefined,
+  rest: undefined,
+}
 
 export default function ExerciseBuilder({ exercises, onChange }: Props) {
   const add = () => onChange([...exercises, { ...EMPTY_EXERCISE }])
@@ -23,8 +29,9 @@ export default function ExerciseBuilder({ exercises, onChange }: Props) {
     onChange(updated)
   }
 
-  const inputCls = 'rounded-lg border border-zinc-200 px-2 py-1 text-sm focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand/20 w-full'
-  const numCls   = `${inputCls} text-center`
+  const inputCls =
+    'rounded-lg border border-zinc-200 px-2 py-1 text-sm focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand/20 w-full'
+  const numCls = `${inputCls} text-center`
 
   return (
     <div className="space-y-3">
@@ -43,7 +50,10 @@ export default function ExerciseBuilder({ exercises, onChange }: Props) {
           </div>
 
           {exercises.map((ex, idx) => (
-            <div key={idx} className="grid grid-cols-[1fr_60px_60px_70px_60px_32px] gap-1.5 items-center">
+            <div
+              key={idx}
+              className="grid grid-cols-[1fr_60px_60px_70px_60px_32px] items-center gap-1.5"
+            >
               <input
                 value={ex.name}
                 onChange={(e) => update(idx, 'name', e.target.value)}
@@ -85,7 +95,7 @@ export default function ExerciseBuilder({ exercises, onChange }: Props) {
               <button
                 type="button"
                 onClick={() => remove(idx)}
-                className="flex h-7 w-7 items-center justify-center rounded-lg text-zinc-400 hover:bg-red-50 hover:text-red-500 transition"
+                className="flex h-7 w-7 items-center justify-center rounded-lg text-zinc-400 transition hover:bg-red-50 hover:text-red-500"
                 title="Supprimer"
               >
                 ✕
@@ -98,7 +108,7 @@ export default function ExerciseBuilder({ exercises, onChange }: Props) {
       <button
         type="button"
         onClick={add}
-        className="flex items-center gap-1.5 rounded-lg border border-dashed border-zinc-300 px-3 py-2 text-sm text-zinc-500 hover:border-brand hover:text-brand transition w-full justify-center"
+        className="hover:border-brand hover:text-brand flex w-full items-center justify-center gap-1.5 rounded-lg border border-dashed border-zinc-300 px-3 py-2 text-sm text-zinc-500 transition"
       >
         + Ajouter un exercice
       </button>

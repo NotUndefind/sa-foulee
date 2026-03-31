@@ -18,27 +18,34 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
       `}</style>
 
       {/* ── Navbar ────────────────────────────────────────────────── */}
-      <header style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 50,
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        background: 'rgba(250,250,250,0.9)',
-        borderBottom: '1px solid rgba(251,57,54,0.1)',
-      }}>
-        <div style={{
-          maxWidth: '1040px',
-          margin: '0 auto',
-          padding: '0 1.5rem',
-          height: '64px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          fontFamily: "'Baloo 2', sans-serif",
-        }}>
+      <header
+        style={{
+          position: 'sticky',
+          top: 0,
+          zIndex: 50,
+          backdropFilter: 'blur(20px)',
+          WebkitBackdropFilter: 'blur(20px)',
+          background: 'rgba(250,250,250,0.9)',
+          borderBottom: '1px solid rgba(251,57,54,0.1)',
+        }}
+      >
+        <div
+          style={{
+            maxWidth: '1040px',
+            margin: '0 auto',
+            padding: '0 1.5rem',
+            height: '64px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            fontFamily: "'Baloo 2', sans-serif",
+          }}
+        >
           {/* Logo */}
-          <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+          <Link
+            href="/"
+            style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.6rem' }}
+          >
             <Image
               src="/logo-removebg-preview.png"
               alt="La Neuville TAF sa Foulée"
@@ -47,8 +54,17 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
               priority
               style={{ objectFit: 'contain' }}
             />
-            <span style={{ fontSize: '1rem', fontWeight: 700, color: '#FB3936', letterSpacing: '-0.01em', lineHeight: 1.2 }}>
-              La Neuville TAF<br />
+            <span
+              style={{
+                fontSize: '1rem',
+                fontWeight: 700,
+                color: '#FB3936',
+                letterSpacing: '-0.01em',
+                lineHeight: 1.2,
+              }}
+            >
+              La Neuville TAF
+              <br />
               <span style={{ fontWeight: 800 }}>sa Foulée</span>
             </span>
           </Link>
@@ -56,8 +72,12 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
           {/* Right side */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
             <nav style={{ display: 'flex', alignItems: 'center', gap: '1.75rem' }}>
-              <Link href="/activites" className="sF-nav-link">Activités</Link>
-              <Link href="/blog" className="sF-nav-link">Blog</Link>
+              <Link href="/activites" className="sF-nav-link">
+                Activités
+              </Link>
+              <Link href="/blog" className="sF-nav-link">
+                Blog
+              </Link>
             </nav>
             <PublicNavUser />
           </div>

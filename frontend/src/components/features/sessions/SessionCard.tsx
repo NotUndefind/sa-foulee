@@ -7,33 +7,33 @@ import { useRole } from '@/hooks/useRole'
 import { useToast } from '@/components/ui/Toast'
 
 const TYPE_LABELS: Record<SessionType, string> = {
-  running:  'Course',
+  running: 'Course',
   interval: 'Interval',
-  fartlek:  'Fartlek',
+  fartlek: 'Fartlek',
   recovery: 'Récupération',
   strength: 'Renforcement',
-  other:    'Autre',
+  other: 'Autre',
 }
 
 const TYPE_ICONS: Record<SessionType, string> = {
-  running:  '🏃',
+  running: '🏃',
   interval: '⚡',
-  fartlek:  '🌀',
+  fartlek: '🌀',
   recovery: '🧘',
   strength: '💪',
-  other:    '📋',
+  other: '📋',
 }
 
 const INTENSITY_LABELS: Record<Intensity, string> = {
-  low:    'Faible',
+  low: 'Faible',
   medium: 'Moyenne',
-  high:   'Élevée',
+  high: 'Élevée',
 }
 
 const INTENSITY_COLORS: Record<Intensity, string> = {
-  low:    'bg-green-100 text-green-700',
+  low: 'bg-green-100 text-green-700',
   medium: 'bg-amber-100 text-amber-700',
-  high:   'bg-red-100 text-red-700',
+  high: 'bg-red-100 text-red-700',
 }
 
 interface Props {
@@ -54,10 +54,13 @@ export default function SessionCard({ session, onUpdate, onDelete, onEdit }: Pro
       const res = await toggleParticipation(session.id)
       onUpdate({
         ...session,
-        has_participated:   res.has_participated,
+        has_participated: res.has_participated,
         participants_count: res.participants_count,
       })
-      toast(res.has_participated ? 'Participation enregistrée !' : 'Participation retirée.', res.has_participated ? 'success' : 'info')
+      toast(
+        res.has_participated ? 'Participation enregistrée !' : 'Participation retirée.',
+        res.has_participated ? 'success' : 'info'
+      )
     } catch {
       toast('Une erreur est survenue.', 'error')
     } finally {
@@ -79,20 +82,22 @@ export default function SessionCard({ session, onUpdate, onDelete, onEdit }: Pro
   const exerciseCount = session.exercises?.length ?? 0
 
   return (
-    <div className="flex flex-col rounded-2xl bg-white shadow-sm ring-1 ring-zinc-200 overflow-hidden">
+    <div className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-zinc-200">
       {/* Header */}
-      <div className="flex items-start gap-3 bg-zinc-50 border-b border-zinc-100 px-5 py-4">
-        <span className="text-2xl mt-0.5">{TYPE_ICONS[session.type]}</span>
-        <div className="flex-1 min-w-0">
-          <div className="flex flex-wrap gap-1.5 mb-1">
+      <div className="flex items-start gap-3 border-b border-zinc-100 bg-zinc-50 px-5 py-4">
+        <span className="mt-0.5 text-2xl">{TYPE_ICONS[session.type]}</span>
+        <div className="min-w-0 flex-1">
+          <div className="mb-1 flex flex-wrap gap-1.5">
             <span className="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-medium text-zinc-600">
               {TYPE_LABELS[session.type]}
             </span>
-            <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${INTENSITY_COLORS[session.intensity]}`}>
+            <span
+              className={`rounded-full px-2 py-0.5 text-xs font-medium ${INTENSITY_COLORS[session.intensity]}`}
+            >
               {INTENSITY_LABELS[session.intensity]}
             </span>
           </div>
-          <h3 className="font-semibold text-zinc-900 truncate">{session.title}</h3>
+          <h3 className="truncate font-semibold text-zinc-900">{session.title}</h3>
         </div>
       </div>
 
@@ -118,45 +123,53 @@ export default function SessionCard({ session, onUpdate, onDelete, onEdit }: Pro
         )}
         <div className="flex-1 px-4 py-2 text-center">
           <p className="text-lg font-bold text-zinc-800">{session.participants_count ?? 0}</p>
-          <p className="text-xs text-zinc-400">participant{(session.participants_count ?? 0) > 1 ? 's' : ''}</p>
+          <p className="text-xs text-zinc-400">
+            participant{(session.participants_count ?? 0) > 1 ? 's' : ''}
+          </p>
         </div>
       </div>
 
       {/* Description */}
       {session.description && (
         <div className="px-5 py-3">
-          <p className="text-sm text-zinc-600 line-clamp-2">{session.description}</p>
+          <p className="line-clamp-2 text-sm text-zinc-600">{session.description}</p>
         </div>
       )}
 
       {/* Exercices preview */}
       {exerciseCount > 0 && (
         <div className="px-5 pb-3">
-          <p className="text-xs font-medium text-zinc-400 mb-1.5">Exercices</p>
+          <p className="mb-1.5 text-xs font-medium text-zinc-400">Exercices</p>
           <div className="space-y-1">
             {session.exercises.slice(0, 3).map((ex, i) => (
               <div key={i} className="flex items-center gap-2 text-xs text-zinc-600">
-                <span className="h-1 w-1 rounded-full bg-zinc-300 shrink-0" />
+                <span className="h-1 w-1 shrink-0 rounded-full bg-zinc-300" />
                 <span className="font-medium">{ex.name}</span>
-                {ex.sets && ex.reps && <span className="text-zinc-400">{ex.sets}×{ex.reps}</span>}
+                {ex.sets && ex.reps && (
+                  <span className="text-zinc-400">
+                    {ex.sets}×{ex.reps}
+                  </span>
+                )}
                 {ex.duration && <span className="text-zinc-400">{ex.duration}s</span>}
                 {ex.rest && <span className="text-zinc-400">repos {ex.rest}s</span>}
               </div>
             ))}
             {exerciseCount > 3 && (
-              <p className="text-xs text-zinc-400">+{exerciseCount - 3} autre{exerciseCount > 4 ? 's' : ''}</p>
+              <p className="text-xs text-zinc-400">
+                +{exerciseCount - 3} autre{exerciseCount > 4 ? 's' : ''}
+              </p>
             )}
           </div>
         </div>
       )}
 
       {/* Actions */}
-      <div className="mt-auto flex items-center justify-between border-t border-zinc-100 px-5 py-3 gap-2">
+      <div className="mt-auto flex items-center justify-between gap-2 border-t border-zinc-100 px-5 py-3">
         <div className="flex gap-1">
           {canManageSessions && onEdit && (
             <button
               onClick={() => onEdit(session)}
-              className="rounded-lg px-2 py-1 text-xs text-zinc-500 hover:bg-zinc-100 transition"
+              className="rounded-lg px-2 py-1 text-xs text-zinc-500 transition hover:bg-zinc-100"
             >
               Modifier
             </button>
@@ -164,7 +177,7 @@ export default function SessionCard({ session, onUpdate, onDelete, onEdit }: Pro
           {canManageSessions && (
             <button
               onClick={handleDelete}
-              className="rounded-lg px-2 py-1 text-xs text-red-500 hover:bg-red-50 transition"
+              className="rounded-lg px-2 py-1 text-xs text-red-500 transition hover:bg-red-50"
             >
               Supprimer
             </button>
@@ -177,7 +190,7 @@ export default function SessionCard({ session, onUpdate, onDelete, onEdit }: Pro
           className={`rounded-lg px-4 py-1.5 text-sm font-medium transition disabled:opacity-50 ${
             session.has_participated
               ? 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200'
-              : 'bg-brand text-white hover:bg-brand-dark'
+              : 'bg-brand hover:bg-brand-dark text-white'
           }`}
         >
           {loading ? '…' : session.has_participated ? '✓ Participé' : 'Je participe'}

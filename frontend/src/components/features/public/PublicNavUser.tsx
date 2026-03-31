@@ -17,41 +17,61 @@ export default function PublicNavUser() {
 
   if (user) {
     return (
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontFamily: "'Baloo 2', sans-serif" }}>
-        <Link href="/tableau-de-bord" style={{
-          fontSize: '0.875rem',
-          fontWeight: 600,
-          color: '#C0302E',
-          textDecoration: 'none',
-          padding: '0.45rem 1.1rem',
-          borderRadius: '100px',
-          border: '1.5px solid rgba(192,48,46,0.22)',
-          transition: 'all 0.15s ease',
-          whiteSpace: 'nowrap',
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '1rem',
+          fontFamily: "'Baloo 2', sans-serif",
         }}
-          onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(192,48,46,0.06)'; e.currentTarget.style.borderColor = 'rgba(192,48,46,0.4)' }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'rgba(192,48,46,0.22)' }}
+      >
+        <Link
+          href="/tableau-de-bord"
+          style={{
+            fontSize: '0.875rem',
+            fontWeight: 600,
+            color: '#C0302E',
+            textDecoration: 'none',
+            padding: '0.45rem 1.1rem',
+            borderRadius: '100px',
+            border: '1.5px solid rgba(192,48,46,0.22)',
+            transition: 'all 0.15s ease',
+            whiteSpace: 'nowrap',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = 'rgba(192,48,46,0.06)'
+            e.currentTarget.style.borderColor = 'rgba(192,48,46,0.4)'
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = 'transparent'
+            e.currentTarget.style.borderColor = 'rgba(192,48,46,0.22)'
+          }}
         >
           Tableau de bord
         </Link>
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-        }}>
-          <div style={{
-            width: '30px',
-            height: '30px',
-            borderRadius: '50%',
-            background: 'rgba(192,48,46,0.1)',
+        <div
+          style={{
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '0.7rem',
-            fontWeight: 700,
-            color: '#C0302E',
-          }}>
-            {user.first_name?.[0]}{user.last_name?.[0]}
+            gap: '0.5rem',
+          }}
+        >
+          <div
+            style={{
+              width: '30px',
+              height: '30px',
+              borderRadius: '50%',
+              background: 'rgba(192,48,46,0.1)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '0.7rem',
+              fontWeight: 700,
+              color: '#C0302E',
+            }}
+          >
+            {user.first_name?.[0]}
+            {user.last_name?.[0]}
           </div>
         </div>
         <button
@@ -70,7 +90,16 @@ export default function PublicNavUser() {
           onMouseEnter={(e) => (e.currentTarget.style.color = '#FB3936')}
           onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(192,48,46,0.35)')}
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
             <polyline points="16 17 21 12 16 7" />
             <line x1="21" y1="12" x2="9" y2="12" />
@@ -81,34 +110,53 @@ export default function PublicNavUser() {
   }
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontFamily: "'Baloo 2', sans-serif" }}>
-      <Link href="/inscription" style={{
-        fontSize: '0.875rem',
-        fontWeight: 500,
-        color: '#5A1510',
-        textDecoration: 'none',
-        opacity: 0.75,
-        transition: 'opacity 0.15s ease',
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '1rem',
+        fontFamily: "'Baloo 2', sans-serif",
       }}
+    >
+      <Link
+        href="/inscription"
+        style={{
+          fontSize: '0.875rem',
+          fontWeight: 500,
+          color: '#5A1510',
+          textDecoration: 'none',
+          opacity: 0.75,
+          transition: 'opacity 0.15s ease',
+        }}
         onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
         onMouseLeave={(e) => (e.currentTarget.style.opacity = '0.75')}
       >
         Rejoindre
       </Link>
-      <Link href="/connexion" style={{
-        fontSize: '0.875rem',
-        fontWeight: 700,
-        color: 'white',
-        textDecoration: 'none',
-        background: '#FB3936',
-        padding: '0.45rem 1.25rem',
-        borderRadius: '100px',
-        transition: 'all 0.15s ease',
-        boxShadow: '0 2px 12px rgba(251,57,54,0.3)',
-        whiteSpace: 'nowrap',
-      }}
-        onMouseEnter={(e) => { e.currentTarget.style.background = '#D42F2D'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(251,57,54,0.4)'; e.currentTarget.style.transform = 'translateY(-1px)' }}
-        onMouseLeave={(e) => { e.currentTarget.style.background = '#FB3936'; e.currentTarget.style.boxShadow = '0 2px 12px rgba(251,57,54,0.3)'; e.currentTarget.style.transform = 'translateY(0)' }}
+      <Link
+        href="/connexion"
+        style={{
+          fontSize: '0.875rem',
+          fontWeight: 700,
+          color: 'white',
+          textDecoration: 'none',
+          background: '#FB3936',
+          padding: '0.45rem 1.25rem',
+          borderRadius: '100px',
+          transition: 'all 0.15s ease',
+          boxShadow: '0 2px 12px rgba(251,57,54,0.3)',
+          whiteSpace: 'nowrap',
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.background = '#D42F2D'
+          e.currentTarget.style.boxShadow = '0 4px 16px rgba(251,57,54,0.4)'
+          e.currentTarget.style.transform = 'translateY(-1px)'
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.background = '#FB3936'
+          e.currentTarget.style.boxShadow = '0 2px 12px rgba(251,57,54,0.3)'
+          e.currentTarget.style.transform = 'translateY(0)'
+        }}
       >
         Connexion
       </Link>

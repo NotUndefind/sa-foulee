@@ -13,7 +13,16 @@ import { getPublicSettings } from '@/lib/settings'
 
 function IconHome({ active }: { active?: boolean }) {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.6} strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="17"
+      height="17"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={active ? 2.2 : 1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9.5z" />
       <path d="M9 21V12h6v9" />
     </svg>
@@ -22,7 +31,16 @@ function IconHome({ active }: { active?: boolean }) {
 
 function IconCalendar({ active }: { active?: boolean }) {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.6} strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="17"
+      height="17"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={active ? 2.2 : 1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <rect x="3" y="4" width="18" height="18" rx="2" />
       <path d="M16 2v4M8 2v4M3 10h18" />
       <circle cx="8" cy="15" r="1" fill="currentColor" />
@@ -34,7 +52,16 @@ function IconCalendar({ active }: { active?: boolean }) {
 
 function IconRun({ active }: { active?: boolean }) {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.6} strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="17"
+      height="17"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={active ? 2.2 : 1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <circle cx="15" cy="4" r="2" />
       <path d="M10.5 8.5L8 17l4-2 3 4 2-8" />
       <path d="M16 8l-2.5.5-3 5" />
@@ -45,7 +72,16 @@ function IconRun({ active }: { active?: boolean }) {
 
 function IconStopwatch({ active }: { active?: boolean }) {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.6} strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="17"
+      height="17"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={active ? 2.2 : 1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <circle cx="12" cy="13" r="8" />
       <path d="M12 9v4l2.5 2.5" />
       <path d="M9.5 2.5h5" />
@@ -57,7 +93,16 @@ function IconStopwatch({ active }: { active?: boolean }) {
 
 function IconPen({ active }: { active?: boolean }) {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.6} strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="17"
+      height="17"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={active ? 2.2 : 1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <path d="M12 20h9" />
       <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z" />
     </svg>
@@ -66,7 +111,16 @@ function IconPen({ active }: { active?: boolean }) {
 
 function IconTrophy({ active }: { active?: boolean }) {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.6} strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="17"
+      height="17"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={active ? 2.2 : 1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <path d="M8 21h8M12 17v4" />
       <path d="M7 4H4v3a5 5 0 0 0 5 5h6a5 5 0 0 0 5-5V4h-3" />
       <path d="M7 4h10" />
@@ -77,7 +131,16 @@ function IconTrophy({ active }: { active?: boolean }) {
 
 function IconUser({ active }: { active?: boolean }) {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.6} strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="17"
+      height="17"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={active ? 2.2 : 1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <circle cx="12" cy="8" r="4" />
       <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
     </svg>
@@ -86,36 +149,72 @@ function IconUser({ active }: { active?: boolean }) {
 
 function IconEuro({ active }: { active?: boolean }) {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.6} strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="9"/>
-      <path d="M14.8 9A4.5 4.5 0 0 0 7.5 12a4.5 4.5 0 0 0 7.3 3.5"/>
-      <path d="M7 11h5M7 13h5"/>
+    <svg
+      width="17"
+      height="17"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={active ? 2.2 : 1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="9" />
+      <path d="M14.8 9A4.5 4.5 0 0 0 7.5 12a4.5 4.5 0 0 0 7.3 3.5" />
+      <path d="M7 11h5M7 13h5" />
     </svg>
   )
 }
 
 function IconBox({ active }: { active?: boolean }) {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.6} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-      <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-      <line x1="12" y1="22.08" x2="12" y2="12"/>
+    <svg
+      width="17"
+      height="17"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={active ? 2.2 : 1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+      <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+      <line x1="12" y1="22.08" x2="12" y2="12" />
     </svg>
   )
 }
 
 function IconMail({ active }: { active?: boolean }) {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.6} strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2" y="4" width="20" height="16" rx="2"/>
-      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+    <svg
+      width="17"
+      height="17"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={active ? 2.2 : 1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="2" y="4" width="20" height="16" rx="2" />
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
     </svg>
   )
 }
 
 function IconSettings({ active }: { active?: boolean }) {
   return (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={active ? 2.2 : 1.6} strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="17"
+      height="17"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={active ? 2.2 : 1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <circle cx="12" cy="12" r="3" />
       <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
     </svg>
@@ -124,7 +223,16 @@ function IconSettings({ active }: { active?: boolean }) {
 
 function IconLogout() {
   return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
       <polyline points="16 17 21 12 16 7" />
       <line x1="21" y1="12" x2="9" y2="12" />
@@ -141,38 +249,40 @@ type NavItem = {
 }
 
 const NAV_LINKS: NavItem[] = [
-  { href: '/tableau-de-bord',             label: 'Accueil',     Icon: IconHome },
-  { href: '/tableau-de-bord/evenements',  label: 'Événements',  Icon: IconCalendar },
-  { href: '/tableau-de-bord/sessions',    label: 'Entraînements', Icon: IconStopwatch },
-  { href: '/tableau-de-bord/blog',        label: 'Blog',        Icon: IconPen },
-  { href: '/tableau-de-bord/leaderboard', label: 'Classement',  Icon: IconTrophy },
-  { href: '/tableau-de-bord/profil',      label: 'Mon profil',  Icon: IconUser },
+  { href: '/tableau-de-bord', label: 'Accueil', Icon: IconHome },
+  { href: '/tableau-de-bord/evenements', label: 'Événements', Icon: IconCalendar },
+  { href: '/tableau-de-bord/sessions', label: 'Entraînements', Icon: IconStopwatch },
+  { href: '/tableau-de-bord/blog', label: 'Blog', Icon: IconPen },
+  { href: '/tableau-de-bord/leaderboard', label: 'Classement', Icon: IconTrophy },
+  { href: '/tableau-de-bord/profil', label: 'Mon profil', Icon: IconUser },
 ]
 
 // ─── Role helper ──────────────────────────────────────────────────────────────
 
 function getRoleLabel(roles?: string[]): string {
   if (!roles?.length) return 'Membre'
-  if (roles.includes('admin'))   return 'Administrateur'
+  if (roles.includes('admin')) return 'Administrateur'
   if (roles.includes('founder')) return 'Fondateur'
-  if (roles.includes('coach'))   return 'Coach'
-  if (roles.includes('bureau'))  return 'Bureau'
+  if (roles.includes('coach')) return 'Coach'
+  if (roles.includes('bureau')) return 'Bureau'
   return 'Membre'
 }
 
 // ─── Layout ───────────────────────────────────────────────────────────────────
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const pathname           = usePathname()
-  const router             = useRouter()
-  const { user }           = useAuthStore()
+  const pathname = usePathname()
+  const router = useRouter()
+  const { user } = useAuthStore()
   const { canManageUsers, canManageEvents } = useRole()
   const [leaderboardEnabled, setLeaderboardEnabled] = useState(true)
 
   useEffect(() => {
     getPublicSettings()
       .then((s) => setLeaderboardEnabled(s.leaderboard_enabled !== 'false'))
-      .catch(() => { /* silencieux */ })
+      .catch(() => {
+        /* silencieux */
+      })
   }, [])
 
   const handleLogout = async () => {
@@ -181,7 +291,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     router.push('/connexion')
   }
 
-  const initials = [user?.first_name?.[0], user?.last_name?.[0]].filter(Boolean).join('').toUpperCase()
+  const initials = [user?.first_name?.[0], user?.last_name?.[0]]
+    .filter(Boolean)
+    .join('')
+    .toUpperCase()
 
   return (
     <ToastProvider>
@@ -273,11 +386,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         }
       `}</style>
 
-      <div className="sf-layout flex min-h-screen bg-sf-cream-soft">
-
+      <div className="sf-layout bg-sf-cream-soft flex min-h-screen">
         {/* ── Desktop Sidebar ──────────────────────────────────────── */}
         <aside
-          className="hidden lg:flex w-56 shrink-0 flex-col"
+          className="hidden w-56 shrink-0 flex-col lg:flex"
           style={{
             background: '#C0302E',
             borderRight: '1px solid rgba(192,48,46,0.06)',
@@ -295,40 +407,87 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               borderBottom: '1px solid rgba(255,255,255,0.07)',
             }}
           >
-            <span style={{ fontSize: '1rem', fontWeight: 400, color: 'rgba(255,255,255,0.5)', letterSpacing: '0.04em' }}>sa </span>
-            <span style={{ fontSize: '1.15rem', fontWeight: 800, color: '#F4C4C0', letterSpacing: '-0.01em' }}>Foulée</span>
+            <span
+              style={{
+                fontSize: '1rem',
+                fontWeight: 400,
+                color: 'rgba(255,255,255,0.5)',
+                letterSpacing: '0.04em',
+              }}
+            >
+              sa{' '}
+            </span>
+            <span
+              style={{
+                fontSize: '1.15rem',
+                fontWeight: 800,
+                color: '#F4C4C0',
+                letterSpacing: '-0.01em',
+              }}
+            >
+              Foulée
+            </span>
           </Link>
 
           {/* Navigation */}
           <nav style={{ flex: 1, overflowY: 'auto', padding: '16px 10px' }}>
-            <p style={{
-              fontSize: '9.5px',
-              fontWeight: 700,
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: 'rgba(255,255,255,0.25)',
-              padding: '0 6px',
-              marginBottom: '6px',
-            }}>
+            <p
+              style={{
+                fontSize: '9.5px',
+                fontWeight: 700,
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: 'rgba(255,255,255,0.25)',
+                padding: '0 6px',
+                marginBottom: '6px',
+              }}
+            >
               Menu
             </p>
 
-            <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '2px' }}>
+            <ul
+              style={{
+                listStyle: 'none',
+                margin: 0,
+                padding: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '2px',
+              }}
+            >
               {NAV_LINKS.filter(({ href }) => {
-                if (href === '/tableau-de-bord/leaderboard' && !leaderboardEnabled && !canManageUsers) return false
+                if (
+                  href === '/tableau-de-bord/leaderboard' &&
+                  !leaderboardEnabled &&
+                  !canManageUsers
+                )
+                  return false
                 return true
               }).map(({ href, label, Icon }) => {
-                const active = pathname === href || (href !== '/tableau-de-bord' && pathname.startsWith(href))
-                const isLeaderboardOff = href === '/tableau-de-bord/leaderboard' && !leaderboardEnabled
+                const active =
+                  pathname === href || (href !== '/tableau-de-bord' && pathname.startsWith(href))
+                const isLeaderboardOff =
+                  href === '/tableau-de-bord/leaderboard' && !leaderboardEnabled
                 return (
                   <li key={href}>
-                    <Link href={href} className={`sf-nav-link${active ? ' active' : ''}`}>
+                    <Link href={href} className={`sf-nav-link${active ? 'active' : ''}`}>
                       <span style={{ opacity: active ? 1 : 0.7, flexShrink: 0 }}>
                         <Icon active={active} />
                       </span>
                       {label}
                       {isLeaderboardOff && (
-                        <span style={{ marginLeft: 'auto', fontSize: '9px', fontWeight: 700, letterSpacing: '0.06em', background: 'rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.4)', borderRadius: '4px', padding: '1px 5px' }}>
+                        <span
+                          style={{
+                            marginLeft: 'auto',
+                            fontSize: '9px',
+                            fontWeight: 700,
+                            letterSpacing: '0.06em',
+                            background: 'rgba(255,255,255,0.1)',
+                            color: 'rgba(255,255,255,0.4)',
+                            borderRadius: '4px',
+                            padding: '1px 5px',
+                          }}
+                        >
                           OFF
                         </span>
                       )}
@@ -340,15 +499,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               {(canManageUsers || canManageEvents) && (
                 <>
                   <li style={{ paddingTop: '14px' }}>
-                    <p style={{
-                      fontSize: '9.5px',
-                      fontWeight: 700,
-                      letterSpacing: '0.12em',
-                      textTransform: 'uppercase',
-                      color: 'rgba(255,255,255,0.25)',
-                      padding: '0 6px',
-                      marginBottom: '6px',
-                    }}>
+                    <p
+                      style={{
+                        fontSize: '9.5px',
+                        fontWeight: 700,
+                        letterSpacing: '0.12em',
+                        textTransform: 'uppercase',
+                        color: 'rgba(255,255,255,0.25)',
+                        padding: '0 6px',
+                        marginBottom: '6px',
+                      }}
+                    >
                       Gestion
                     </p>
                   </li>
@@ -357,9 +518,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                       <li>
                         <Link
                           href="/tableau-de-bord/inventaire"
-                          className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/inventaire') ? ' active' : ''}`}
+                          className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/inventaire') ? 'active' : ''}`}
                         >
-                          <span style={{ opacity: pathname.startsWith('/tableau-de-bord/inventaire') ? 1 : 0.7, flexShrink: 0 }}>
+                          <span
+                            style={{
+                              opacity: pathname.startsWith('/tableau-de-bord/inventaire') ? 1 : 0.7,
+                              flexShrink: 0,
+                            }}
+                          >
                             <IconBox active={pathname.startsWith('/tableau-de-bord/inventaire')} />
                           </span>
                           Inventaire
@@ -368,9 +534,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                       <li>
                         <Link
                           href="/tableau-de-bord/budget"
-                          className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/budget') ? ' active' : ''}`}
+                          className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/budget') ? 'active' : ''}`}
                         >
-                          <span style={{ opacity: pathname.startsWith('/tableau-de-bord/budget') ? 1 : 0.7, flexShrink: 0 }}>
+                          <span
+                            style={{
+                              opacity: pathname.startsWith('/tableau-de-bord/budget') ? 1 : 0.7,
+                              flexShrink: 0,
+                            }}
+                          >
                             <IconEuro active={pathname.startsWith('/tableau-de-bord/budget')} />
                           </span>
                           Budget
@@ -381,9 +552,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   <li>
                     <Link
                       href="/tableau-de-bord/admin"
-                      className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/admin') ? ' active' : ''}`}
+                      className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/admin') ? 'active' : ''}`}
                     >
-                      <span style={{ opacity: pathname.startsWith('/tableau-de-bord/admin') ? 1 : 0.7, flexShrink: 0 }}>
+                      <span
+                        style={{
+                          opacity: pathname.startsWith('/tableau-de-bord/admin') ? 1 : 0.7,
+                          flexShrink: 0,
+                        }}
+                      >
                         <IconSettings active={pathname.startsWith('/tableau-de-bord/admin')} />
                       </span>
                       Administration
@@ -392,9 +568,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   <li>
                     <Link
                       href="/tableau-de-bord/newsletter"
-                      className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/newsletter') ? ' active' : ''}`}
+                      className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/newsletter') ? 'active' : ''}`}
                     >
-                      <span style={{ opacity: pathname.startsWith('/tableau-de-bord/newsletter') ? 1 : 0.7, flexShrink: 0 }}>
+                      <span
+                        style={{
+                          opacity: pathname.startsWith('/tableau-de-bord/newsletter') ? 1 : 0.7,
+                          flexShrink: 0,
+                        }}
+                      >
                         <IconMail active={pathname.startsWith('/tableau-de-bord/newsletter')} />
                       </span>
                       Newsletter
@@ -403,10 +584,19 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   <li>
                     <Link
                       href="/tableau-de-bord/admin/parametres"
-                      className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/admin/parametres') ? ' active' : ''}`}
+                      className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/admin/parametres') ? 'active' : ''}`}
                     >
-                      <span style={{ opacity: pathname.startsWith('/tableau-de-bord/admin/parametres') ? 1 : 0.7, flexShrink: 0 }}>
-                        <IconSettings active={pathname.startsWith('/tableau-de-bord/admin/parametres')} />
+                      <span
+                        style={{
+                          opacity: pathname.startsWith('/tableau-de-bord/admin/parametres')
+                            ? 1
+                            : 0.7,
+                          flexShrink: 0,
+                        }}
+                      >
+                        <IconSettings
+                          active={pathname.startsWith('/tableau-de-bord/admin/parametres')}
+                        />
                       </span>
                       Paramètres
                     </Link>
@@ -417,32 +607,45 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </nav>
 
           {/* User section */}
-          <div style={{
-            padding: '12px 10px',
-            borderTop: '1px solid rgba(255,255,255,0.07)',
-          }}>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '10px',
-              padding: '8px 10px',
-              borderRadius: '10px',
-            }}>
+          <div
+            style={{
+              padding: '12px 10px',
+              borderTop: '1px solid rgba(255,255,255,0.07)',
+            }}
+          >
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
+                padding: '8px 10px',
+                borderRadius: '10px',
+              }}
+            >
               <div className="sf-avatar">{initials || '?'}</div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <p style={{
-                  fontSize: '12.5px',
-                  fontWeight: 600,
-                  color: 'rgba(255,255,255,0.9)',
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  lineHeight: 1.2,
-                  margin: 0,
-                }}>
+                <p
+                  style={{
+                    fontSize: '12.5px',
+                    fontWeight: 600,
+                    color: 'rgba(255,255,255,0.9)',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    lineHeight: 1.2,
+                    margin: 0,
+                  }}
+                >
                   {user?.first_name} {user?.last_name}
                 </p>
-                <p style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)', margin: 0, marginTop: '1px' }}>
+                <p
+                  style={{
+                    fontSize: '10px',
+                    color: 'rgba(255,255,255,0.35)',
+                    margin: 0,
+                    marginTop: '1px',
+                  }}
+                >
                   {getRoleLabel(user?.roles)}
                 </p>
               </div>
@@ -461,8 +664,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   transition: 'background 0.15s ease, color 0.15s ease',
                   flexShrink: 0,
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(251,57,54,0.2)'; e.currentTarget.style.color = '#F4C4C0' }}
-                onMouseLeave={(e) => { e.currentTarget.style.background = 'none'; e.currentTarget.style.color = 'rgba(255,255,255,0.25)' }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(251,57,54,0.2)'
+                  e.currentTarget.style.color = '#F4C4C0'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = 'none'
+                  e.currentTarget.style.color = 'rgba(255,255,255,0.25)'
+                }}
               >
                 <IconLogout />
               </button>
@@ -475,7 +684,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
         {/* ── Mobile Bottom Nav ─────────────────────────────────────── */}
         <nav
-          className="sf-mobile-nav fixed bottom-0 left-0 right-0 z-40 flex lg:hidden bg-white"
+          className="sf-mobile-nav fixed right-0 bottom-0 left-0 z-40 flex bg-white lg:hidden"
           style={{
             borderTop: '1px solid #ececec',
             boxShadow: '0 -1px 16px rgba(0,0,0,0.05)',
@@ -483,20 +692,24 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           }}
         >
           {NAV_LINKS.filter(({ href }) => {
-            if (href === '/tableau-de-bord/leaderboard' && !leaderboardEnabled && !canManageUsers) return false
+            if (href === '/tableau-de-bord/leaderboard' && !leaderboardEnabled && !canManageUsers)
+              return false
             return true
-          }).slice(0, 5).map(({ href, label, Icon }) => {
-            const active = pathname === href || (href !== '/tableau-de-bord' && pathname.startsWith(href))
-            return (
-              <Link key={href} href={href} className={`sf-mobile-link${active ? ' active' : ''}`}>
-                {active && <span className="sf-mobile-dot" />}
-                <span style={{ marginTop: active ? '4px' : '0' }}>
-                  <Icon active={active} />
-                </span>
-                <span>{label.split(' ')[0]}</span>
-              </Link>
-            )
-          })}
+          })
+            .slice(0, 5)
+            .map(({ href, label, Icon }) => {
+              const active =
+                pathname === href || (href !== '/tableau-de-bord' && pathname.startsWith(href))
+              return (
+                <Link key={href} href={href} className={`sf-mobile-link${active ? 'active' : ''}`}>
+                  {active && <span className="sf-mobile-dot" />}
+                  <span style={{ marginTop: active ? '4px' : '0' }}>
+                    <Icon active={active} />
+                  </span>
+                  <span>{label.split(' ')[0]}</span>
+                </Link>
+              )
+            })}
         </nav>
       </div>
     </ToastProvider>

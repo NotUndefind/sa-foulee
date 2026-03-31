@@ -9,10 +9,13 @@ export interface EquipmentPayload {
   notes?: string | null
 }
 
-export function getInventory(params?: { category?: string; status?: string }): Promise<Equipment[]> {
+export function getInventory(params?: {
+  category?: string
+  status?: string
+}): Promise<Equipment[]> {
   const qs = new URLSearchParams()
   if (params?.category) qs.set('category', params.category)
-  if (params?.status)   qs.set('status',   params.status)
+  if (params?.status) qs.set('status', params.status)
   const query = qs.toString() ? `?${qs}` : ''
   return api.get<Equipment[]>(`/inventory${query}`)
 }
@@ -33,7 +36,10 @@ export function getEquipmentDetail(id: number): Promise<EquipmentDetail> {
   return api.get<EquipmentDetail>(`/inventory/${id}`)
 }
 
-export function assignEquipment(id: number, data: { user_id: number; notes?: string }): Promise<unknown> {
+export function assignEquipment(
+  id: number,
+  data: { user_id: number; notes?: string }
+): Promise<unknown> {
   return api.post(`/inventory/${id}/assign`, data)
 }
 
@@ -43,16 +49,16 @@ export function returnEquipment(assignmentId: number): Promise<unknown> {
 
 export async function exportInventoryCSV(): Promise<void> {
   const token = typeof window !== 'undefined' ? localStorage.getItem('auth_token') : null
-  const res   = await fetch(
+  const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000/api/v1'}/inventory/export`,
     { headers: { Authorization: `Bearer ${token}`, Accept: 'text/csv' } }
   )
   if (!res.ok) throw new Error('Export failed')
-  const blob     = await res.blob()
-  const url      = URL.createObjectURL(blob)
-  const a        = document.createElement('a')
-  a.href         = url
-  a.download     = `inventaire-safoulee-${new Date().toISOString().slice(0, 10)}.csv`
+  const blob = await res.blob()
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `inventaire-safoulee-${new Date().toISOString().slice(0, 10)}.csv`
   a.click()
   URL.revokeObjectURL(url)
 }

@@ -5,10 +5,10 @@ import { uploadDocument } from '@/lib/profile'
 import type { UserDocument } from '@/types'
 
 const DOCUMENT_TYPES = [
-  { value: 'license',             label: 'Licence FFA' },
-  { value: 'registration',        label: "Certificat d'inscription" },
+  { value: 'license', label: 'Licence FFA' },
+  { value: 'registration', label: "Certificat d'inscription" },
   { value: 'medical_certificate', label: 'Certificat médical' },
-  { value: 'other',               label: 'Autre document' },
+  { value: 'other', label: 'Autre document' },
 ]
 
 interface Props {
@@ -19,15 +19,18 @@ interface Props {
 
 export default function DocumentUploadModal({ userId, onUploaded, onClose }: Props) {
   const fileRef = useRef<HTMLInputElement>(null)
-  const [type, setType]       = useState('license')
+  const [type, setType] = useState('license')
   const [expiresAt, setExpiry] = useState('')
-  const [file, setFile]       = useState<File | null>(null)
-  const [error, setError]     = useState<string | null>(null)
+  const [file, setFile] = useState<File | null>(null)
+  const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!file) { setError('Sélectionne un fichier.'); return }
+    if (!file) {
+      setError('Sélectionne un fichier.')
+      return
+    }
     setError(null)
     setLoading(true)
 
@@ -35,7 +38,7 @@ export default function DocumentUploadModal({ userId, onUploaded, onClose }: Pro
       const doc = await uploadDocument(userId, type, file, expiresAt || undefined)
       onUploaded(doc)
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Erreur lors de l\'upload.'
+      const msg = err instanceof Error ? err.message : "Erreur lors de l'upload."
       setError(msg)
     } finally {
       setLoading(false)
@@ -48,7 +51,9 @@ export default function DocumentUploadModal({ userId, onUploaded, onClose }: Pro
       <div className="w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
         <div className="mb-5 flex items-center justify-between">
           <h2 className="text-lg font-semibold text-zinc-900">Ajouter un document</h2>
-          <button onClick={onClose} className="rounded-lg p-1 text-zinc-400 hover:bg-zinc-100">✕</button>
+          <button onClick={onClose} className="rounded-lg p-1 text-zinc-400 hover:bg-zinc-100">
+            ✕
+          </button>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -64,10 +69,12 @@ export default function DocumentUploadModal({ userId, onUploaded, onClose }: Pro
             <select
               value={type}
               onChange={(e) => setType(e.target.value)}
-              className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm text-zinc-900 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+              className="focus:border-brand focus:ring-brand/20 w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm text-zinc-900 focus:ring-2 focus:outline-none"
             >
               {DOCUMENT_TYPES.map((t) => (
-                <option key={t.value} value={t.value}>{t.label}</option>
+                <option key={t.value} value={t.value}>
+                  {t.label}
+                </option>
               ))}
             </select>
           </div>
@@ -77,7 +84,7 @@ export default function DocumentUploadModal({ userId, onUploaded, onClose }: Pro
             <label className="mb-1 block text-sm font-medium text-zinc-700">Fichier</label>
             <div
               onClick={() => fileRef.current?.click()}
-              className="flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-zinc-300 px-4 py-6 transition hover:border-brand hover:bg-zinc-50"
+              className="hover:border-brand flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-zinc-300 px-4 py-6 transition hover:bg-zinc-50"
             >
               {file ? (
                 <p className="text-sm font-medium text-zinc-800">{file.name}</p>
@@ -108,7 +115,7 @@ export default function DocumentUploadModal({ userId, onUploaded, onClose }: Pro
               value={expiresAt}
               onChange={(e) => setExpiry(e.target.value)}
               min={new Date().toISOString().split('T')[0]}
-              className="w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm text-zinc-900 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20"
+              className="focus:border-brand focus:ring-brand/20 w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm text-zinc-900 focus:ring-2 focus:outline-none"
             />
           </div>
 
@@ -123,7 +130,7 @@ export default function DocumentUploadModal({ userId, onUploaded, onClose }: Pro
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark disabled:opacity-60"
+              className="bg-brand hover:bg-brand-dark flex-1 rounded-lg px-4 py-2 text-sm font-semibold text-white transition disabled:opacity-60"
             >
               {loading ? 'Upload…' : 'Ajouter'}
             </button>

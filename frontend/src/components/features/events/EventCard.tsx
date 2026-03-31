@@ -8,44 +8,94 @@ import { useRole } from '@/hooks/useRole'
 import { useToast } from '@/components/ui/Toast'
 
 const TYPE_LABELS: Record<EventType, string> = {
-  race:        'Course',
-  outing:      'Sortie',
+  race: 'Course',
+  outing: 'Sortie',
   competition: 'Compétition',
-  other:       'Autre',
+  other: 'Autre',
 }
 
-const TYPE_CONFIG: Record<EventType, { bg: string; border: string; color: string; headerBg: string }> = {
-  race:        { bg: 'rgba(251,57,54,0.08)',    border: 'rgba(251,57,54,0.2)',    color: '#FB3936',  headerBg: 'rgba(251,57,54,0.05)'    },
-  outing:      { bg: 'rgba(192,48,46,0.08)',    border: 'rgba(192,48,46,0.2)',    color: '#C0302E',  headerBg: 'rgba(192,48,46,0.05)'    },
-  competition: { bg: 'rgba(245,158,11,0.10)',   border: 'rgba(245,158,11,0.25)', color: '#d97706',  headerBg: 'rgba(245,158,11,0.06)'   },
-  other:       { bg: 'rgba(176,137,138,0.10)',  border: 'rgba(176,137,138,0.2)', color: '#7F7F7F',  headerBg: 'rgba(176,137,138,0.05)'  },
+const TYPE_CONFIG: Record<
+  EventType,
+  { bg: string; border: string; color: string; headerBg: string }
+> = {
+  race: {
+    bg: 'rgba(251,57,54,0.08)',
+    border: 'rgba(251,57,54,0.2)',
+    color: '#FB3936',
+    headerBg: 'rgba(251,57,54,0.05)',
+  },
+  outing: {
+    bg: 'rgba(192,48,46,0.08)',
+    border: 'rgba(192,48,46,0.2)',
+    color: '#C0302E',
+    headerBg: 'rgba(192,48,46,0.05)',
+  },
+  competition: {
+    bg: 'rgba(245,158,11,0.10)',
+    border: 'rgba(245,158,11,0.25)',
+    color: '#d97706',
+    headerBg: 'rgba(245,158,11,0.06)',
+  },
+  other: {
+    bg: 'rgba(176,137,138,0.10)',
+    border: 'rgba(176,137,138,0.2)',
+    color: '#7F7F7F',
+    headerBg: 'rgba(176,137,138,0.05)',
+  },
 }
 
 function IconPin() {
   return (
-    <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-      <circle cx="12" cy="9" r="2.5"/>
+    <svg
+      width={12}
+      height={12}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+      <circle cx="12" cy="9" r="2.5" />
     </svg>
   )
 }
 
 function IconClock() {
   return (
-    <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10"/>
-      <path d="M12 6v6l4 2"/>
+    <svg
+      width={12}
+      height={12}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="10" />
+      <path d="M12 6v6l4 2" />
     </svg>
   )
 }
 
 function IconUsers() {
   return (
-    <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-      <circle cx="9" cy="7" r="4"/>
-      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+    <svg
+      width={12}
+      height={12}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
     </svg>
   )
 }
@@ -62,11 +112,11 @@ export default function EventCard({ event, onUpdate, onDelete, onEdit }: Props) 
   const { toast } = useToast()
   const [loading, setLoading] = useState(false)
 
-  const date  = new Date(event.event_date)
-  const day   = date.getDate()
+  const date = new Date(event.event_date)
+  const day = date.getDate()
   const month = date.toLocaleDateString('fr-FR', { month: 'short' })
   const weekday = date.toLocaleDateString('fr-FR', { weekday: 'short' })
-  const time  = date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
+  const time = date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
   const isPast = date < new Date()
   const cfg = TYPE_CONFIG[event.type] ?? TYPE_CONFIG.other
 
@@ -119,13 +169,19 @@ export default function EventCard({ event, onUpdate, onDelete, onEdit }: Props) 
           className="flex h-13 w-11 shrink-0 flex-col items-center justify-center rounded-xl text-center"
           style={{ background: cfg.bg, border: `1px solid ${cfg.border}` }}
         >
-          <span className="text-[9px] font-bold uppercase leading-none" style={{ color: cfg.color, opacity: 0.8 }}>
+          <span
+            className="text-[9px] leading-none font-bold uppercase"
+            style={{ color: cfg.color, opacity: 0.8 }}
+          >
             {weekday}
           </span>
-          <span className="text-xl font-extrabold leading-tight" style={{ color: cfg.color }}>
+          <span className="text-xl leading-tight font-extrabold" style={{ color: cfg.color }}>
             {day}
           </span>
-          <span className="text-[9px] uppercase leading-none" style={{ color: cfg.color, opacity: 0.7 }}>
+          <span
+            className="text-[9px] leading-none uppercase"
+            style={{ color: cfg.color, opacity: 0.7 }}
+          >
             {month}
           </span>
         </div>
@@ -139,40 +195,60 @@ export default function EventCard({ event, onUpdate, onDelete, onEdit }: Props) 
               {TYPE_LABELS[event.type]}
             </span>
             {!event.is_public && (
-              <span className="rounded-full px-2 py-0.5 text-[10px] font-medium" style={{ background: 'rgba(192,48,46,0.06)', color: '#7F7F7F' }}>
+              <span
+                className="rounded-full px-2 py-0.5 text-[10px] font-medium"
+                style={{ background: 'rgba(192,48,46,0.06)', color: '#7F7F7F' }}
+              >
                 Privé
               </span>
             )}
             {isPast && (
-              <span className="rounded-full px-2 py-0.5 text-[10px] font-medium" style={{ background: 'rgba(192,48,46,0.05)', color: '#7F7F7F' }}>
+              <span
+                className="rounded-full px-2 py-0.5 text-[10px] font-medium"
+                style={{ background: 'rgba(192,48,46,0.05)', color: '#7F7F7F' }}
+              >
                 Terminé
               </span>
             )}
           </div>
-          <h3 className="truncate font-bold leading-tight" style={{ color: '#C0302E' }}>{event.title}</h3>
+          <h3 className="truncate leading-tight font-bold" style={{ color: '#C0302E' }}>
+            {event.title}
+          </h3>
         </div>
       </div>
 
       {/* Corps */}
       <div className="flex flex-1 flex-col gap-3 px-4 py-4">
         {event.description && (
-          <p className="line-clamp-2 text-sm leading-relaxed" style={{ color: '#7F7F7F' }}>{event.description}</p>
+          <p className="line-clamp-2 text-sm leading-relaxed" style={{ color: '#7F7F7F' }}>
+            {event.description}
+          </p>
         )}
 
         <div className="mt-auto space-y-1.5">
           {event.location && (
             <div className="flex items-center gap-2 text-xs" style={{ color: '#7F7F7F' }}>
-              <span className="shrink-0"><IconPin /></span>
+              <span className="shrink-0">
+                <IconPin />
+              </span>
               <span className="truncate">{event.location}</span>
             </div>
           )}
           <div className="flex items-center gap-2 text-xs" style={{ color: '#7F7F7F' }}>
-            <span className="shrink-0"><IconClock /></span>
-            <span>{weekday} {day} {month} à {time}</span>
+            <span className="shrink-0">
+              <IconClock />
+            </span>
+            <span>
+              {weekday} {day} {month} à {time}
+            </span>
           </div>
           <div className="flex items-center gap-2 text-xs" style={{ color: '#7F7F7F' }}>
-            <span className="shrink-0"><IconUsers /></span>
-            <span>{event.registrations_count} inscrit{event.registrations_count > 1 ? 's' : ''}</span>
+            <span className="shrink-0">
+              <IconUsers />
+            </span>
+            <span>
+              {event.registrations_count} inscrit{event.registrations_count > 1 ? 's' : ''}
+            </span>
           </div>
         </div>
       </div>
