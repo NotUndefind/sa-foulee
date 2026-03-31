@@ -120,7 +120,7 @@ export default function PostForm({ post, onSuccess, onCancel }: Props) {
       {/* Templates (nouveau post uniquement) */}
       {!post && (
         <div>
-          <p className="mb-2 text-xs font-medium text-zinc-500">Partir d'un template</p>
+          <p className="mb-2 text-xs font-medium text-zinc-500">Partir d&apos;un template</p>
           <div className="flex flex-wrap gap-2">
             {TEMPLATES.map((tpl) => (
               <button
@@ -233,7 +233,7 @@ export default function PostForm({ post, onSuccess, onCancel }: Props) {
             onClick={() => editor?.chain().focus().toggleBlockquote().run()}
             className={`rounded px-2 py-0.5 text-xs font-medium transition ${editor?.isActive('blockquote') ? 'bg-zinc-200 text-zinc-900' : 'text-zinc-500 hover:bg-zinc-100'}`}
           >
-            " Citation
+            &quot; Citation
           </button>
         </div>
 

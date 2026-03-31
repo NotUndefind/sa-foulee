@@ -25,9 +25,12 @@ function DesabonnementContent() {
 
   useEffect(() => {
     const token = searchParams.get('token')
-    if (!token) { setStatus('invalid'); return }
 
-    postUnsubscribe(token)
+    Promise.resolve(token)
+      .then((t) => {
+        if (!t) return Promise.reject(new Error('invalid'))
+        return postUnsubscribe(t)
+      })
       .then(() => setStatus('success'))
       .catch((err: Error) => {
         setStatus(err.message === 'invalid' ? 'invalid' : 'error')

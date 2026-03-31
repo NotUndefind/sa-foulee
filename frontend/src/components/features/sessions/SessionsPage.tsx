@@ -141,7 +141,7 @@ export default function SessionsPage() {
                 </h1>
               </div>
               <p className="text-sm" style={{ color: '#7F7F7F' }}>
-                {meta.total} session{meta.total > 1 ? 's' : ''} d'entraînement planifiée{meta.total > 1 ? 's' : ''}
+                {meta.total} session{meta.total > 1 ? 's' : ''} d&apos;entraînement planifiée{meta.total > 1 ? 's' : ''}
               </p>
             </div>
             {canManageSessions && !showForm && (

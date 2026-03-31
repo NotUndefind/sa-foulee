@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { createBudgetEntry, updateBudgetEntry } from '@/lib/budget'
@@ -44,7 +44,7 @@ export default function BudgetEntryForm({ entry, defaultType = 'depense', onSave
   const {
     register,
     handleSubmit,
-    watch,
+    control,
     setValue,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
@@ -59,7 +59,7 @@ export default function BudgetEntryForm({ entry, defaultType = 'depense', onSave
     },
   })
 
-  const typeValue = watch('type')
+  const typeValue = useWatch({ control, name: 'type' })
   const categories = typeValue === 'recette' ? CATEGORIES_RECETTE : CATEGORIES_DEPENSE
 
   // Reset category when type changes (only in create mode)
