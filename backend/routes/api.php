@@ -29,6 +29,7 @@ Route::prefix('v1')->group(function () {
 
     // ---- Routes publiques ----
     Route::get('stats/homepage',          [\App\Http\Controllers\Api\V1\StatsController::class, 'homepage']);
+    Route::get('settings/public',         [\App\Http\Controllers\Api\V1\SettingsController::class, 'public']);
     Route::post('newsletter/unsubscribe', [\App\Http\Controllers\Api\V1\NewsletterController::class, 'unsubscribe']);
 
     Route::get('events',                    [\App\Http\Controllers\Api\V1\EventController::class, 'index']);
@@ -89,6 +90,12 @@ Route::prefix('v1')->group(function () {
 
         Route::middleware('role:admin|founder')->group(function () {
             Route::delete('budget/{entry}', [\App\Http\Controllers\Api\V1\BudgetEntryController::class, 'destroy']);
+        });
+
+        // ---- Settings admin [Admin|Founder] ----
+        Route::middleware('role:admin|founder')->group(function () {
+            Route::get('admin/settings',               [\App\Http\Controllers\Api\V1\SettingsController::class, 'index']);
+            Route::patch('admin/settings/{key}',       [\App\Http\Controllers\Api\V1\SettingsController::class, 'update']);
         });
 
         // ---- Newsletter admin [Admin|Founder] ----

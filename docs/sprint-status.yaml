@@ -988,21 +988,24 @@ post_sprint:
     end_date: "2026-04-26"
     capacity_points: 11
     committed_points: 10
-    completed_points: 0
-    status: "not_started"
+    completed_points: 10
+    status: "completed"
+    completion_date: "2026-03-31"
     goal: "Paramètres admin — toggle classement on/off par les admins"
     stories:
       - story_id: "STORY-V3-A01"
         title: "Backend infrastructure table settings + modèle Setting"
         points: 5
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
         epic: "EPIC-A"
         priority: "must_have"
         assigned_to: "julesbourin"
       - story_id: "STORY-V3-A02"
         title: "Toggle activation/désactivation classement (admin + frontend)"
         points: 5
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
         epic: "EPIC-A"
         priority: "must_have"
         assigned_to: "julesbourin"

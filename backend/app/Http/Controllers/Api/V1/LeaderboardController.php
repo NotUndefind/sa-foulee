@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Models\Performance;
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -19,6 +20,10 @@ class LeaderboardController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
+        if (! Setting::getBool('leaderboard_enabled', true)) {
+            return response()->json(['message' => 'Fonctionnalité désactivée par l\'administrateur.'], 403);
+        }
+
         $period = $request->input('period', 'month');
 
         // Clé de cache par période (5 min)

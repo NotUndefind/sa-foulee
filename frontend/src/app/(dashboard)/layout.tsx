@@ -1,11 +1,13 @@
 'use client'
 
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { useAuthStore } from '@/store/auth.store'
 import { useRole } from '@/hooks/useRole'
 import { logout } from '@/lib/auth'
 import { ToastProvider } from '@/components/ui/Toast'
+import { getPublicSettings } from '@/lib/settings'
 
 // ─── SVG Icons ────────────────────────────────────────────────────────────────
 
@@ -165,6 +167,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const router             = useRouter()
   const { user }           = useAuthStore()
   const { canManageUsers, canManageEvents } = useRole()
+  const [leaderboardEnabled, setLeaderboardEnabled] = useState(true)
+
+  useEffect(() => {
+    getPublicSettings()
+      .then((s) => setLeaderboardEnabled(s.leaderboard_enabled !== 'false'))
+      .catch(() => { /* silencieux */ })
+  }, [])
 
   const handleLogout = async () => {
     await logout()
@@ -305,8 +314,12 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             </p>
 
             <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '2px' }}>
-              {NAV_LINKS.map(({ href, label, Icon }) => {
+              {NAV_LINKS.filter(({ href }) => {
+                if (href === '/tableau-de-bord/leaderboard' && !leaderboardEnabled && !canManageUsers) return false
+                return true
+              }).map(({ href, label, Icon }) => {
                 const active = pathname === href || (href !== '/tableau-de-bord' && pathname.startsWith(href))
+                const isLeaderboardOff = href === '/tableau-de-bord/leaderboard' && !leaderboardEnabled
                 return (
                   <li key={href}>
                     <Link href={href} className={`sf-nav-link${active ? ' active' : ''}`}>
@@ -314,6 +327,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                         <Icon active={active} />
                       </span>
                       {label}
+                      {isLeaderboardOff && (
+                        <span style={{ marginLeft: 'auto', fontSize: '9px', fontWeight: 700, letterSpacing: '0.06em', background: 'rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.4)', borderRadius: '4px', padding: '1px 5px' }}>
+                          OFF
+                        </span>
+                      )}
                     </Link>
                   </li>
                 )
@@ -380,6 +398,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                         <IconMail active={pathname.startsWith('/tableau-de-bord/newsletter')} />
                       </span>
                       Newsletter
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/tableau-de-bord/admin/parametres"
+                      className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/admin/parametres') ? ' active' : ''}`}
+                    >
+                      <span style={{ opacity: pathname.startsWith('/tableau-de-bord/admin/parametres') ? 1 : 0.7, flexShrink: 0 }}>
+                        <IconSettings active={pathname.startsWith('/tableau-de-bord/admin/parametres')} />
+                      </span>
+                      Paramètres
                     </Link>
                   </li>
                 </>
@@ -453,7 +482,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             paddingBottom: 'env(safe-area-inset-bottom)',
           }}
         >
-          {NAV_LINKS.slice(0, 5).map(({ href, label, Icon }) => {
+          {NAV_LINKS.filter(({ href }) => {
+            if (href === '/tableau-de-bord/leaderboard' && !leaderboardEnabled && !canManageUsers) return false
+            return true
+          }).slice(0, 5).map(({ href, label, Icon }) => {
             const active = pathname === href || (href !== '/tableau-de-bord' && pathname.startsWith(href))
             return (
               <Link key={href} href={href} className={`sf-mobile-link${active ? ' active' : ''}`}>
