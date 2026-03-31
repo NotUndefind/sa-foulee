@@ -52,9 +52,10 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request): JsonResponse
     {
-        $data                = $request->validated();
-        $data['author_id']   = $request->user()->id;
-        $data['is_pinned']   = $request->boolean('is_pinned', false);
+        $data                  = $request->validated();
+        $data['author_id']     = $request->user()->id;
+        $data['is_pinned']     = $request->boolean('is_pinned', false);
+        $data['published_at']  = now();
 
         $post = Post::create($data);
         $post->loadCount('comments')->load('author:id,first_name,last_name');

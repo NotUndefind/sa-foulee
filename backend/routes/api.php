@@ -161,6 +161,7 @@ Route::prefix('v1')->group(function () {
             Route::patch('posts/{post}',    [\App\Http\Controllers\Api\V1\PostController::class, 'update']);
             Route::delete('posts/{post}',   [\App\Http\Controllers\Api\V1\PostController::class, 'destroy']);
             Route::patch('posts/{post}/pin',[\App\Http\Controllers\Api\V1\PostController::class, 'pin']);
+            Route::post('uploads/media',    [\App\Http\Controllers\Api\V1\MediaUploadController::class, 'store']);
         });
 
         // Commentaires : tous les membres
