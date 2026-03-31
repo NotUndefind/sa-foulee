@@ -24,7 +24,9 @@ function formatDuration(sec: number): string {
 
 function formatDate(dateStr: string): string {
   return new Date(dateStr).toLocaleDateString('fr-FR', {
-    day: 'numeric', month: 'short', year: 'numeric',
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
   })
 }
 
@@ -32,127 +34,226 @@ function formatDate(dateStr: string): string {
 
 function IconTrophy() {
   return (
-    <svg width={26} height={26} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M6 9H4a2 2 0 0 1-2-2V5h4M18 9h2a2 2 0 0 0 2-2V5h-4"/><path d="M12 17c-3.87 0-7-3.13-7-7V5h14v5c0 3.87-3.13 7-7 7z"/>
-      <path d="M12 17v4M8 21h8"/>
+    <svg
+      width={26}
+      height={26}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M6 9H4a2 2 0 0 1-2-2V5h4M18 9h2a2 2 0 0 0 2-2V5h-4" />
+      <path d="M12 17c-3.87 0-7-3.13-7-7V5h14v5c0 3.87-3.13 7-7 7z" />
+      <path d="M12 17v4M8 21h8" />
     </svg>
   )
 }
 
 function IconRoute() {
   return (
-    <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 17c3-3 6-3 9 0s6 3 9 0"/><path d="M3 7c3-3 6-3 9 0s6 3 9 0"/>
+    <svg
+      width={22}
+      height={22}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M3 17c3-3 6-3 9 0s6 3 9 0" />
+      <path d="M3 7c3-3 6-3 9 0s6 3 9 0" />
     </svg>
   )
 }
 
 function IconRun() {
   return (
-    <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="13" cy="4" r="1.5"/>
-      <path d="M7 20l3-6 3 3 2-4 3 2"/><path d="M9 10l1-3 4 1 2 3-4 1"/>
+    <svg
+      width={22}
+      height={22}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="13" cy="4" r="1.5" />
+      <path d="M7 20l3-6 3 3 2-4 3 2" />
+      <path d="M9 10l1-3 4 1 2 3-4 1" />
     </svg>
   )
 }
 
 function IconAvg() {
   return (
-    <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M18 20V10M12 20V4M6 20v-6"/>
+    <svg
+      width={22}
+      height={22}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M18 20V10M12 20V4M6 20v-6" />
     </svg>
   )
 }
 
 function IconEmptyFlag() {
   return (
-    <svg width={48} height={48} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/>
+    <svg
+      width={48}
+      height={48}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+      <line x1="4" y1="22" x2="4" y2="15" />
     </svg>
   )
 }
 
 // ── PerformanceForm ────────────────────────────────────────────────────────────
 
-function PerformanceForm({ userId, onAdded }: { userId: number; onAdded: (p: Performance) => void }) {
+function PerformanceForm({ onAdded }: { onAdded: (p: Performance) => void }) {
   const { toast } = useToast()
   const [distanceKm, setDistanceKm] = useState('')
-  const [durationH,  setDurationH]  = useState('')
-  const [durationMin,setDurationMin]= useState('')
-  const [durationSec,setDurationSec]= useState('')
-  const [date,       setDate]       = useState(new Date().toISOString().slice(0, 10))
-  const [loading,    setLoading]    = useState(false)
+  const [durationH, setDurationH] = useState('')
+  const [durationMin, setDurationMin] = useState('')
+  const [durationSec, setDurationSec] = useState('')
+  const [date, setDate] = useState(new Date().toISOString().slice(0, 10))
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     const km = parseFloat(distanceKm)
-    if (isNaN(km) || km <= 0) { toast('Distance invalide.', 'error'); return }
+    if (isNaN(km) || km <= 0) {
+      toast('Distance invalide.', 'error')
+      return
+    }
     const totalSec =
-      parseInt(durationH  || '0') * 3600 +
-      parseInt(durationMin || '0') * 60  +
+      parseInt(durationH || '0') * 3600 +
+      parseInt(durationMin || '0') * 60 +
       parseInt(durationSec || '0')
-    if (totalSec <= 0) { toast('Durée invalide.', 'error'); return }
+    if (totalSec <= 0) {
+      toast('Durée invalide.', 'error')
+      return
+    }
     setLoading(true)
     try {
       const perf = await addPerformance({ distance_km: km, duration_sec: totalSec, date })
       onAdded(perf)
-      setDistanceKm(''); setDurationH(''); setDurationMin(''); setDurationSec('')
+      setDistanceKm('')
+      setDurationH('')
+      setDurationMin('')
+      setDurationSec('')
       setDate(new Date().toISOString().slice(0, 10))
       toast('Performance enregistrée !', 'success')
     } catch {
       toast("Erreur lors de l'enregistrement.", 'error')
-    } finally { setLoading(false) }
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
     <form
       onSubmit={handleSubmit}
       className="overflow-hidden rounded-2xl bg-white"
-      style={{ boxShadow: '0 4px 20px rgba(192,48,46,0.08)', border: '1px solid rgba(192,48,46,0.08)' }}
+      style={{
+        boxShadow: '0 4px 20px rgba(192,48,46,0.08)',
+        border: '1px solid rgba(192,48,46,0.08)',
+      }}
     >
-      <div className="px-6 py-4" style={{ background: 'linear-gradient(135deg, rgba(176,137,138,0.08) 0%, rgba(251,57,54,0.04) 100%)', borderBottom: '1px solid rgba(192,48,46,0.06)' }}>
+      <div
+        className="px-6 py-4"
+        style={{
+          background:
+            'linear-gradient(135deg, rgba(176,137,138,0.08) 0%, rgba(251,57,54,0.04) 100%)',
+          borderBottom: '1px solid rgba(192,48,46,0.06)',
+        }}
+      >
         <h3 className="font-bold" style={{ fontFamily: "'Baloo 2', sans-serif", color: '#C0302E' }}>
           + Saisir une performance
         </h3>
-        <p className="text-xs mt-0.5" style={{ color: '#7F7F7F' }}>Ajoutez votre sortie au classement de l&apos;association</p>
+        <p className="mt-0.5 text-xs" style={{ color: '#7F7F7F' }}>
+          Ajoutez votre sortie au classement de l&apos;association
+        </p>
       </div>
       <div className="grid gap-4 p-6 sm:grid-cols-2">
         <div>
-          <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider" style={{ color: '#7F7F7F' }}>Distance (km)</label>
+          <label
+            className="mb-1.5 block text-xs font-semibold tracking-wider uppercase"
+            style={{ color: '#7F7F7F' }}
+          >
+            Distance (km)
+          </label>
           <input
-            type="number" step="0.01" min="0.01"
-            value={distanceKm} onChange={(e) => setDistanceKm(e.target.value)}
-            required placeholder="10.5"
+            type="number"
+            step="0.01"
+            min="0.01"
+            value={distanceKm}
+            onChange={(e) => setDistanceKm(e.target.value)}
+            required
+            placeholder="10.5"
             className="w-full rounded-xl px-4 py-2.5 text-sm transition outline-none"
             style={{ border: '1px solid rgba(192,48,46,0.15)', color: '#C0302E' }}
           />
         </div>
         <div>
-          <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider" style={{ color: '#7F7F7F' }}>Date</label>
+          <label
+            className="mb-1.5 block text-xs font-semibold tracking-wider uppercase"
+            style={{ color: '#7F7F7F' }}
+          >
+            Date
+          </label>
           <input
             type="date"
-            value={date} max={new Date().toISOString().slice(0, 10)}
-            onChange={(e) => setDate(e.target.value)} required
+            value={date}
+            max={new Date().toISOString().slice(0, 10)}
+            onChange={(e) => setDate(e.target.value)}
+            required
             className="w-full rounded-xl px-4 py-2.5 text-sm transition outline-none"
             style={{ border: '1px solid rgba(192,48,46,0.15)', color: '#C0302E' }}
           />
         </div>
         <div className="sm:col-span-2">
-          <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider" style={{ color: '#7F7F7F' }}>Durée</label>
+          <label
+            className="mb-1.5 block text-xs font-semibold tracking-wider uppercase"
+            style={{ color: '#7F7F7F' }}
+          >
+            Durée
+          </label>
           <div className="flex items-center gap-2">
             {[
-              { val: durationH,   set: setDurationH,   ph: '0',  max: 23, unit: 'h'   },
+              { val: durationH, set: setDurationH, ph: '0', max: 23, unit: 'h' },
               { val: durationMin, set: setDurationMin, ph: '45', max: 59, unit: 'min' },
               { val: durationSec, set: setDurationSec, ph: '00', max: 59, unit: 'sec' },
             ].map(({ val, set, ph, max, unit }) => (
               <div key={unit} className="flex items-center gap-1.5">
                 <input
-                  type="number" min="0" max={max} placeholder={ph}
-                  value={val} onChange={(e) => set(e.target.value)}
+                  type="number"
+                  min="0"
+                  max={max}
+                  placeholder={ph}
+                  value={val}
+                  onChange={(e) => set(e.target.value)}
                   className="w-14 rounded-xl px-2 py-2.5 text-center text-sm transition outline-none"
                   style={{ border: '1px solid rgba(192,48,46,0.15)', color: '#C0302E' }}
                 />
-                <span className="text-xs font-medium" style={{ color: '#7F7F7F' }}>{unit}</span>
+                <span className="text-xs font-medium" style={{ color: '#7F7F7F' }}>
+                  {unit}
+                </span>
               </div>
             ))}
           </div>
@@ -160,9 +261,13 @@ function PerformanceForm({ userId, onAdded }: { userId: number; onAdded: (p: Per
       </div>
       <div className="flex justify-end px-6 pb-5">
         <button
-          type="submit" disabled={loading}
+          type="submit"
+          disabled={loading}
           className="rounded-xl px-6 py-2.5 text-sm font-bold text-white transition disabled:opacity-50"
-          style={{ background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)', boxShadow: '0 2px 8px rgba(251,57,54,0.3)' }}
+          style={{
+            background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)',
+            boxShadow: '0 2px 8px rgba(251,57,54,0.3)',
+          }}
         >
           {loading ? 'Enregistrement…' : 'Enregistrer'}
         </button>
@@ -179,11 +284,11 @@ function Podium({ entries }: { entries: LeaderboardEntry[] }) {
 
   const ORDER = [1, 0, 2]
   const HEIGHTS = ['h-20', 'h-28', 'h-16']
-  const RANKS   = ['2', '1', '3']
-  const COLORS  = [
+  const RANKS = ['2', '1', '3']
+  const COLORS = [
     { bg: 'rgba(148,163,184,0.15)', border: '#94a3b8', text: '#64748b' },
-    { bg: 'rgba(251,57,54,0.12)',   border: '#FB3936', text: '#FB3936' },
-    { bg: 'rgba(180,110,50,0.12)',  border: '#b46c32', text: '#9a5a1e' },
+    { bg: 'rgba(251,57,54,0.12)', border: '#FB3936', text: '#FB3936' },
+    { bg: 'rgba(180,110,50,0.12)', border: '#b46c32', text: '#9a5a1e' },
   ]
 
   return (
@@ -206,7 +311,10 @@ function Podium({ entries }: { entries: LeaderboardEntry[] }) {
             >
               {entry.user.name.charAt(0).toUpperCase()}
             </div>
-            <p className="max-w-[80px] truncate text-center text-xs font-bold" style={{ color: '#C0302E' }}>
+            <p
+              className="max-w-20 truncate text-center text-xs font-bold"
+              style={{ color: '#C0302E' }}
+            >
               {entry.user.name.split(' ')[0]}
             </p>
             <p className="text-xs font-semibold" style={{ color: cfg.text }}>
@@ -230,30 +338,36 @@ function Podium({ entries }: { entries: LeaderboardEntry[] }) {
 // ── Main Page ──────────────────────────────────────────────────────────────────
 
 const PERIOD_LABELS: Record<LeaderboardPeriod, string> = {
-  week: 'Cette semaine', month: 'Ce mois', season: 'Cette saison',
+  week: 'Cette semaine',
+  month: 'Ce mois',
+  season: 'Cette saison',
 }
 
 export default function LeaderboardPage() {
   const user = useAuthStore((s) => s.user)
 
-  const [period,   setPeriod]   = useState<LeaderboardPeriod>('month')
-  const [entries,  setEntries]  = useState<LeaderboardEntry[]>([])
-  const [lbLoading,setLbLoading]= useState(true)
+  const [period, setPeriod] = useState<LeaderboardPeriod>('month')
+  const [entries, setEntries] = useState<LeaderboardEntry[]>([])
+  const [lbLoading, setLbLoading] = useState(true)
 
   const [performances, setPerformances] = useState<Performance[]>([])
-  const [perfMeta,     setPerfMeta]     = useState<UserPerformancesMeta | null>(null)
-  const [perfPage,     setPerfPage]     = useState(1)
-  const [perfLoading,  setPerfLoading]  = useState(true)
+  const [perfMeta, setPerfMeta] = useState<UserPerformancesMeta | null>(null)
+  const [perfPage, setPerfPage] = useState(1)
+  const [perfLoading, setPerfLoading] = useState(true)
 
   const [showForm, setShowForm] = useState(false)
-  const [tab,      setTab]      = useState<'leaderboard' | 'my-perfs'>('leaderboard')
+  const [tab, setTab] = useState<'leaderboard' | 'my-perfs'>('leaderboard')
 
   const fetchLeaderboard = useCallback(async () => {
     setLbLoading(true)
     try {
       const res = await getLeaderboard(period)
       setEntries(res.data)
-    } catch { /* silencieux */ } finally { setLbLoading(false) }
+    } catch {
+      /* silencieux */
+    } finally {
+      setLbLoading(false)
+    }
   }, [period])
 
   const fetchMyPerfs = useCallback(async () => {
@@ -263,20 +377,32 @@ export default function LeaderboardPage() {
       const res = await getUserPerformances(user.id, perfPage)
       setPerformances(res.data)
       setPerfMeta(res.meta)
-    } catch { /* silencieux */ } finally { setPerfLoading(false) }
+    } catch {
+      /* silencieux */
+    } finally {
+      setPerfLoading(false)
+    }
   }, [user, perfPage])
 
-  useEffect(() => { fetchLeaderboard() }, [fetchLeaderboard])
-  useEffect(() => { fetchMyPerfs() },     [fetchMyPerfs])
+  useEffect(() => {
+    fetchLeaderboard()
+  }, [fetchLeaderboard])
+  useEffect(() => {
+    fetchMyPerfs()
+  }, [fetchMyPerfs])
 
   const handlePerfAdded = (perf: Performance) => {
     setPerformances((prev) => [perf, ...prev])
-    setPerfMeta((m) => m ? {
-      ...m,
-      total: m.total + 1,
-      total_sessions: m.total_sessions + 1,
-      total_distance: m.total_distance + perf.distance_km,
-    } : m)
+    setPerfMeta((m) =>
+      m
+        ? {
+            ...m,
+            total: m.total + 1,
+            total_sessions: m.total_sessions + 1,
+            total_distance: m.total_distance + perf.distance_km,
+          }
+        : m
+    )
     setShowForm(false)
     setTab('my-perfs')
   }
@@ -316,23 +442,32 @@ export default function LeaderboardPage() {
 
       <div className="lb-page min-h-screen pb-24 lg:pb-8" style={{ background: '#F8F8F8' }}>
         <div className="mx-auto max-w-4xl px-5 py-8">
-
           {/* ── Header ─────────────────────────────────────────────────── */}
-          <div className="lb-fade mb-8 flex items-start justify-between" style={{ animationDelay: '0ms' }}>
+          <div
+            className="lb-fade mb-8 flex items-start justify-between"
+            style={{ animationDelay: '0ms' }}
+          >
             <div>
               <div className="mb-1 flex items-center gap-2" style={{ color: '#D42F2D' }}>
                 <IconTrophy />
-                <h1 className="text-3xl font-extrabold" style={{ letterSpacing: '-0.02em', color: '#C0302E' }}>
+                <h1
+                  className="text-3xl font-extrabold"
+                  style={{ letterSpacing: '-0.02em', color: '#C0302E' }}
+                >
                   Classement
                 </h1>
               </div>
-              <p className="text-sm" style={{ color: '#7F7F7F' }}>Distance totale parcourue par les membres de l&apos;association</p>
+              <p className="text-sm" style={{ color: '#7F7F7F' }}>
+                Distance totale parcourue par les membres de l&apos;association
+              </p>
             </div>
             <button
               onClick={() => setShowForm((v) => !v)}
               className="shrink-0 rounded-xl px-4 py-2.5 text-sm font-bold text-white transition"
               style={{
-                background: showForm ? '#7F7F7F' : 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)',
+                background: showForm
+                  ? '#7F7F7F'
+                  : 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)',
                 boxShadow: showForm ? 'none' : '0 2px 8px rgba(251,57,54,0.3)',
               }}
             >
@@ -343,7 +478,7 @@ export default function LeaderboardPage() {
           {/* ── Form ───────────────────────────────────────────────────── */}
           {showForm && user && (
             <div className="lb-fade mb-6" style={{ animationDelay: '50ms' }}>
-              <PerformanceForm userId={user.id} onAdded={handlePerfAdded} />
+              <PerformanceForm onAdded={handlePerfAdded} />
             </div>
           )}
 
@@ -353,7 +488,8 @@ export default function LeaderboardPage() {
               className="lb-fade mb-6 flex items-center gap-4 rounded-2xl px-5 py-4"
               style={{
                 animationDelay: '80ms',
-                background: 'linear-gradient(135deg, rgba(251,57,54,0.08) 0%, rgba(146,43,33,0.04) 100%)',
+                background:
+                  'linear-gradient(135deg, rgba(251,57,54,0.08) 0%, rgba(146,43,33,0.04) 100%)',
                 border: '1px solid rgba(251,57,54,0.2)',
               }}
             >
@@ -364,15 +500,21 @@ export default function LeaderboardPage() {
                 #{myRank.rank}
               </div>
               <div>
-                <p className="font-bold" style={{ color: '#C0302E' }}>Votre position — {PERIOD_LABELS[period]}</p>
+                <p className="font-bold" style={{ color: '#C0302E' }}>
+                  Votre position — {PERIOD_LABELS[period]}
+                </p>
                 <p className="text-sm" style={{ color: '#7F7F7F' }}>
-                  <span className="font-semibold" style={{ color: '#D42F2D' }}>{myRank.total_distance_km.toFixed(2)} km</span>
+                  <span className="font-semibold" style={{ color: '#D42F2D' }}>
+                    {myRank.total_distance_km.toFixed(2)} km
+                  </span>
                   {' · '}
                   {myRank.total_sessions} sortie{myRank.total_sessions > 1 ? 's' : ''}
                 </p>
               </div>
               <div className="ml-auto text-right">
-                <p className="text-xs" style={{ color: '#7F7F7F' }}>sur {entries.length} coureur{entries.length > 1 ? 's' : ''}</p>
+                <p className="text-xs" style={{ color: '#7F7F7F' }}>
+                  sur {entries.length} coureur{entries.length > 1 ? 's' : ''}
+                </p>
               </div>
             </div>
           )}
@@ -382,10 +524,16 @@ export default function LeaderboardPage() {
             className="lb-fade mb-6 flex w-fit gap-1 rounded-xl p-1"
             style={{ animationDelay: '100ms', background: 'rgba(192,48,46,0.05)' }}
           >
-            <button onClick={() => setTab('leaderboard')} className={`lb-tab ${tab === 'leaderboard' ? 'active' : ''}`}>
+            <button
+              onClick={() => setTab('leaderboard')}
+              className={`lb-tab ${tab === 'leaderboard' ? 'active' : ''}`}
+            >
               Classement
             </button>
-            <button onClick={() => setTab('my-perfs')} className={`lb-tab ${tab === 'my-perfs' ? 'active' : ''}`}>
+            <button
+              onClick={() => setTab('my-perfs')}
+              className={`lb-tab ${tab === 'my-perfs' ? 'active' : ''}`}
+            >
               Mes performances
               {perfMeta && (
                 <span
@@ -404,7 +552,11 @@ export default function LeaderboardPage() {
               {/* Period filter */}
               <div className="flex gap-2">
                 {(Object.keys(PERIOD_LABELS) as LeaderboardPeriod[]).map((p) => (
-                  <button key={p} onClick={() => setPeriod(p)} className={`lb-btn-period ${period === p ? 'active' : ''}`}>
+                  <button
+                    key={p}
+                    onClick={() => setPeriod(p)}
+                    className={`lb-btn-period ${period === p ? 'active' : ''}`}
+                  >
                     {PERIOD_LABELS[p]}
                   </button>
                 ))}
@@ -413,25 +565,66 @@ export default function LeaderboardPage() {
               {lbLoading ? (
                 <div className="flex h-48 items-center justify-center">
                   <div className="flex flex-col items-center gap-3">
-                    <div className="h-8 w-8 animate-spin rounded-full border-2" style={{ borderColor: 'rgba(192,48,46,0.1)', borderTopColor: '#FB3936' }} />
-                    <p className="text-sm" style={{ color: '#7F7F7F' }}>Chargement du classement…</p>
+                    <div
+                      className="h-8 w-8 animate-spin rounded-full border-2"
+                      style={{ borderColor: 'rgba(192,48,46,0.1)', borderTopColor: '#FB3936' }}
+                    />
+                    <p className="text-sm" style={{ color: '#7F7F7F' }}>
+                      Chargement du classement…
+                    </p>
                   </div>
                 </div>
               ) : entries.length === 0 ? (
-                <div className="flex h-48 flex-col items-center justify-center gap-3 rounded-2xl bg-white" style={{ border: '1px solid rgba(192,48,46,0.07)' }}>
-                  <div style={{ opacity: 0.3, color: '#D42F2D' }}><IconEmptyFlag /></div>
-                  <p className="text-sm" style={{ color: '#7F7F7F' }}>Aucune performance pour cette période.</p>
+                <div
+                  className="flex h-48 flex-col items-center justify-center gap-3 rounded-2xl bg-white"
+                  style={{ border: '1px solid rgba(192,48,46,0.07)' }}
+                >
+                  <div style={{ opacity: 0.3, color: '#D42F2D' }}>
+                    <IconEmptyFlag />
+                  </div>
+                  <p className="text-sm" style={{ color: '#7F7F7F' }}>
+                    Aucune performance pour cette période.
+                  </p>
                 </div>
               ) : (
                 <>
                   {entries.length >= 3 && <Podium entries={entries} />}
 
-                  <div className="overflow-hidden rounded-2xl bg-white" style={{ boxShadow: '0 2px 12px rgba(192,48,46,0.07)', border: '1px solid rgba(192,48,46,0.07)' }}>
-                    <div className="grid grid-cols-12 border-b px-5 py-3" style={{ borderColor: 'rgba(192,48,46,0.06)', background: '#F8F8F8' }}>
-                      <div className="col-span-1 text-[11px] font-bold uppercase tracking-wider" style={{ color: '#7F7F7F' }}>#</div>
-                      <div className="col-span-6 text-[11px] font-bold uppercase tracking-wider" style={{ color: '#7F7F7F' }}>Coureur</div>
-                      <div className="col-span-3 text-right text-[11px] font-bold uppercase tracking-wider" style={{ color: '#7F7F7F' }}>Distance</div>
-                      <div className="col-span-2 hidden text-right text-[11px] font-bold uppercase tracking-wider sm:block" style={{ color: '#7F7F7F' }}>Sorties</div>
+                  <div
+                    className="overflow-hidden rounded-2xl bg-white"
+                    style={{
+                      boxShadow: '0 2px 12px rgba(192,48,46,0.07)',
+                      border: '1px solid rgba(192,48,46,0.07)',
+                    }}
+                  >
+                    <div
+                      className="grid grid-cols-12 border-b px-5 py-3"
+                      style={{ borderColor: 'rgba(192,48,46,0.06)', background: '#F8F8F8' }}
+                    >
+                      <div
+                        className="col-span-1 text-[11px] font-bold tracking-wider uppercase"
+                        style={{ color: '#7F7F7F' }}
+                      >
+                        #
+                      </div>
+                      <div
+                        className="col-span-6 text-[11px] font-bold tracking-wider uppercase"
+                        style={{ color: '#7F7F7F' }}
+                      >
+                        Coureur
+                      </div>
+                      <div
+                        className="col-span-3 text-right text-[11px] font-bold tracking-wider uppercase"
+                        style={{ color: '#7F7F7F' }}
+                      >
+                        Distance
+                      </div>
+                      <div
+                        className="col-span-2 hidden text-right text-[11px] font-bold tracking-wider uppercase sm:block"
+                        style={{ color: '#7F7F7F' }}
+                      >
+                        Sorties
+                      </div>
                     </div>
                     {entries.map((entry, i) => {
                       const isMe = user?.id === entry.user.id
@@ -440,7 +633,8 @@ export default function LeaderboardPage() {
                           key={entry.user.id}
                           className="lb-row grid grid-cols-12 items-center px-5 py-3.5"
                           style={{
-                            borderBottom: i < entries.length - 1 ? '1px solid rgba(192,48,46,0.04)' : 'none',
+                            borderBottom:
+                              i < entries.length - 1 ? '1px solid rgba(192,48,46,0.04)' : 'none',
                             background: isMe ? 'rgba(251,57,54,0.04)' : 'transparent',
                           }}
                         >
@@ -449,15 +643,30 @@ export default function LeaderboardPage() {
                               <span
                                 className="flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold"
                                 style={{
-                                  background: entry.rank === 1 ? 'rgba(251,57,54,0.15)' : entry.rank === 2 ? 'rgba(148,163,184,0.2)' : 'rgba(180,110,50,0.15)',
-                                  color: entry.rank === 1 ? '#FB3936' : entry.rank === 2 ? '#64748b' : '#9a5a1e',
+                                  background:
+                                    entry.rank === 1
+                                      ? 'rgba(251,57,54,0.15)'
+                                      : entry.rank === 2
+                                        ? 'rgba(148,163,184,0.2)'
+                                        : 'rgba(180,110,50,0.15)',
+                                  color:
+                                    entry.rank === 1
+                                      ? '#FB3936'
+                                      : entry.rank === 2
+                                        ? '#64748b'
+                                        : '#9a5a1e',
                                   border: `1px solid ${entry.rank === 1 ? 'rgba(251,57,54,0.3)' : entry.rank === 2 ? '#94a3b8' : 'rgba(180,110,50,0.3)'}`,
                                 }}
                               >
                                 {entry.rank}
                               </span>
                             ) : (
-                              <span className="text-sm font-bold" style={{ color: 'rgba(192,48,46,0.2)' }}>{entry.rank}</span>
+                              <span
+                                className="text-sm font-bold"
+                                style={{ color: 'rgba(192,48,46,0.2)' }}
+                              >
+                                {entry.rank}
+                              </span>
                             )}
                           </div>
                           <div className="col-span-6 flex items-center gap-2.5">
@@ -470,16 +679,33 @@ export default function LeaderboardPage() {
                             >
                               {entry.user.name.charAt(0).toUpperCase()}
                             </div>
-                            <span className="text-sm font-semibold" style={{ color: isMe ? '#FB3936' : '#C0302E' }}>
+                            <span
+                              className="text-sm font-semibold"
+                              style={{ color: isMe ? '#FB3936' : '#C0302E' }}
+                            >
                               {entry.user.name}
-                              {isMe && <span className="ml-1 text-[10px] font-normal" style={{ color: '#7F7F7F' }}>(vous)</span>}
+                              {isMe && (
+                                <span
+                                  className="ml-1 text-[10px] font-normal"
+                                  style={{ color: '#7F7F7F' }}
+                                >
+                                  (vous)
+                                </span>
+                              )}
                             </span>
                           </div>
                           <div className="col-span-3 text-right">
-                            <span className="text-sm font-bold" style={{ color: '#C0302E' }}>{entry.total_distance_km.toFixed(2)}</span>
-                            <span className="ml-1 text-xs" style={{ color: '#7F7F7F' }}>km</span>
+                            <span className="text-sm font-bold" style={{ color: '#C0302E' }}>
+                              {entry.total_distance_km.toFixed(2)}
+                            </span>
+                            <span className="ml-1 text-xs" style={{ color: '#7F7F7F' }}>
+                              km
+                            </span>
                           </div>
-                          <div className="col-span-2 hidden text-right text-sm sm:block" style={{ color: '#7F7F7F' }}>
+                          <div
+                            className="col-span-2 hidden text-right text-sm sm:block"
+                            style={{ color: '#7F7F7F' }}
+                          >
                             {entry.total_sessions}
                           </div>
                         </div>
@@ -498,20 +724,41 @@ export default function LeaderboardPage() {
               {perfMeta && (
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
                   {[
-                    { icon: <IconRoute />, label: 'Distance totale',  value: `${perfMeta.total_distance.toFixed(1)} km`, color: '#FB3936' },
-                    { icon: <IconRun />,   label: 'Sorties',           value: String(perfMeta.total_sessions),           color: '#D42F2D' },
                     {
-                      icon: <IconAvg />, label: 'Moy. / sortie',
-                      value: perfMeta.total_sessions > 0 ? `${(perfMeta.total_distance / perfMeta.total_sessions).toFixed(1)} km` : '—',
+                      icon: <IconRoute />,
+                      label: 'Distance totale',
+                      value: `${perfMeta.total_distance.toFixed(1)} km`,
+                      color: '#FB3936',
+                    },
+                    {
+                      icon: <IconRun />,
+                      label: 'Sorties',
+                      value: String(perfMeta.total_sessions),
+                      color: '#D42F2D',
+                    },
+                    {
+                      icon: <IconAvg />,
+                      label: 'Moy. / sortie',
+                      value:
+                        perfMeta.total_sessions > 0
+                          ? `${(perfMeta.total_distance / perfMeta.total_sessions).toFixed(1)} km`
+                          : '—',
                       color: '#d97706',
                     },
                   ].map((stat) => (
                     <div key={stat.label} className="lb-stat-card">
-                      <div className="flex justify-center" style={{ color: stat.color }}>{stat.icon}</div>
-                      <p className="mt-1 text-2xl font-extrabold" style={{ color: stat.color, letterSpacing: '-0.02em' }}>
+                      <div className="flex justify-center" style={{ color: stat.color }}>
+                        {stat.icon}
+                      </div>
+                      <p
+                        className="mt-1 text-2xl font-extrabold"
+                        style={{ color: stat.color, letterSpacing: '-0.02em' }}
+                      >
                         {stat.value}
                       </p>
-                      <p className="mt-0.5 text-xs" style={{ color: '#7F7F7F' }}>{stat.label}</p>
+                      <p className="mt-0.5 text-xs" style={{ color: '#7F7F7F' }}>
+                        {stat.label}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -520,16 +767,31 @@ export default function LeaderboardPage() {
               {perfLoading ? (
                 <div className="flex h-48 items-center justify-center">
                   <div className="flex flex-col items-center gap-3">
-                    <div className="h-8 w-8 animate-spin rounded-full border-2" style={{ borderColor: 'rgba(192,48,46,0.1)', borderTopColor: '#FB3936' }} />
-                    <p className="text-sm" style={{ color: '#7F7F7F' }}>Chargement…</p>
+                    <div
+                      className="h-8 w-8 animate-spin rounded-full border-2"
+                      style={{ borderColor: 'rgba(192,48,46,0.1)', borderTopColor: '#FB3936' }}
+                    />
+                    <p className="text-sm" style={{ color: '#7F7F7F' }}>
+                      Chargement…
+                    </p>
                   </div>
                 </div>
               ) : performances.length === 0 ? (
-                <div className="flex h-48 flex-col items-center justify-center gap-3 rounded-2xl bg-white" style={{ border: '1px solid rgba(192,48,46,0.07)' }}>
-                  <div style={{ opacity: 0.3, color: '#D42F2D' }}><IconEmptyFlag /></div>
-                  <p className="text-sm" style={{ color: '#7F7F7F' }}>Aucune performance enregistrée.</p>
+                <div
+                  className="flex h-48 flex-col items-center justify-center gap-3 rounded-2xl bg-white"
+                  style={{ border: '1px solid rgba(192,48,46,0.07)' }}
+                >
+                  <div style={{ opacity: 0.3, color: '#D42F2D' }}>
+                    <IconEmptyFlag />
+                  </div>
+                  <p className="text-sm" style={{ color: '#7F7F7F' }}>
+                    Aucune performance enregistrée.
+                  </p>
                   <button
-                    onClick={() => { setShowForm(true); setTab('leaderboard') }}
+                    onClick={() => {
+                      setShowForm(true)
+                      setTab('leaderboard')
+                    }}
                     className="text-xs font-semibold hover:underline"
                     style={{ color: '#FB3936' }}
                   >
@@ -537,51 +799,107 @@ export default function LeaderboardPage() {
                   </button>
                 </div>
               ) : (
-                <div className="overflow-hidden rounded-2xl bg-white" style={{ boxShadow: '0 2px 12px rgba(192,48,46,0.07)', border: '1px solid rgba(192,48,46,0.07)' }}>
-                  <div className="grid grid-cols-12 border-b px-5 py-3" style={{ borderColor: 'rgba(192,48,46,0.06)', background: '#F8F8F8' }}>
-                    <div className="col-span-4 text-[11px] font-bold uppercase tracking-wider" style={{ color: '#7F7F7F' }}>Date</div>
-                    <div className="col-span-3 text-right text-[11px] font-bold uppercase tracking-wider" style={{ color: '#7F7F7F' }}>Distance</div>
-                    <div className="col-span-2 hidden text-right text-[11px] font-bold uppercase tracking-wider sm:block" style={{ color: '#7F7F7F' }}>Durée</div>
-                    <div className="col-span-3 hidden text-right text-[11px] font-bold uppercase tracking-wider sm:block" style={{ color: '#7F7F7F' }}>Allure</div>
+                <div
+                  className="overflow-hidden rounded-2xl bg-white"
+                  style={{
+                    boxShadow: '0 2px 12px rgba(192,48,46,0.07)',
+                    border: '1px solid rgba(192,48,46,0.07)',
+                  }}
+                >
+                  <div
+                    className="grid grid-cols-12 border-b px-5 py-3"
+                    style={{ borderColor: 'rgba(192,48,46,0.06)', background: '#F8F8F8' }}
+                  >
+                    <div
+                      className="col-span-4 text-[11px] font-bold tracking-wider uppercase"
+                      style={{ color: '#7F7F7F' }}
+                    >
+                      Date
+                    </div>
+                    <div
+                      className="col-span-3 text-right text-[11px] font-bold tracking-wider uppercase"
+                      style={{ color: '#7F7F7F' }}
+                    >
+                      Distance
+                    </div>
+                    <div
+                      className="col-span-2 hidden text-right text-[11px] font-bold tracking-wider uppercase sm:block"
+                      style={{ color: '#7F7F7F' }}
+                    >
+                      Durée
+                    </div>
+                    <div
+                      className="col-span-3 hidden text-right text-[11px] font-bold tracking-wider uppercase sm:block"
+                      style={{ color: '#7F7F7F' }}
+                    >
+                      Allure
+                    </div>
                   </div>
                   {performances.map((p, i) => {
-                    const pace = p.duration_sec > 0 && p.distance_km > 0
-                      ? Math.round(p.duration_sec / p.distance_km)
-                      : null
+                    const pace =
+                      p.duration_sec > 0 && p.distance_km > 0
+                        ? Math.round(p.duration_sec / p.distance_km)
+                        : null
                     return (
                       <div
                         key={p.id}
                         className="lb-row grid grid-cols-12 items-center px-5 py-3.5"
-                        style={{ borderBottom: i < performances.length - 1 ? '1px solid rgba(192,48,46,0.04)' : 'none' }}
+                        style={{
+                          borderBottom:
+                            i < performances.length - 1 ? '1px solid rgba(192,48,46,0.04)' : 'none',
+                        }}
                       >
-                        <div className="col-span-4 text-sm" style={{ color: '#D42F2D' }}>{formatDate(p.date)}</div>
-                        <div className="col-span-3 text-right">
-                          <span className="text-sm font-bold" style={{ color: '#C0302E' }}>{p.distance_km.toFixed(2)}</span>
-                          <span className="ml-1 text-xs" style={{ color: '#7F7F7F' }}>km</span>
+                        <div className="col-span-4 text-sm" style={{ color: '#D42F2D' }}>
+                          {formatDate(p.date)}
                         </div>
-                        <div className="col-span-2 hidden text-right text-sm sm:block" style={{ color: '#7F7F7F' }}>
+                        <div className="col-span-3 text-right">
+                          <span className="text-sm font-bold" style={{ color: '#C0302E' }}>
+                            {p.distance_km.toFixed(2)}
+                          </span>
+                          <span className="ml-1 text-xs" style={{ color: '#7F7F7F' }}>
+                            km
+                          </span>
+                        </div>
+                        <div
+                          className="col-span-2 hidden text-right text-sm sm:block"
+                          style={{ color: '#7F7F7F' }}
+                        >
                           {formatDuration(p.duration_sec)}
                         </div>
                         <div className="col-span-3 hidden text-right sm:block">
                           {pace ? (
-                            <span className="rounded-full px-2 py-0.5 text-[11px] font-semibold" style={{ background: 'rgba(169,50,38,0.08)', color: '#D42F2D' }}>
+                            <span
+                              className="rounded-full px-2 py-0.5 text-[11px] font-semibold"
+                              style={{ background: 'rgba(169,50,38,0.08)', color: '#D42F2D' }}
+                            >
                               {formatDuration(pace)}/km
                             </span>
-                          ) : '—'}
+                          ) : (
+                            '—'
+                          )}
                         </div>
                       </div>
                     )
                   })}
 
                   {perfMeta && perfMeta.last_page > 1 && (
-                    <div className="flex items-center justify-between px-5 py-3" style={{ borderTop: '1px solid rgba(192,48,46,0.06)' }}>
-                      <p className="text-xs" style={{ color: '#7F7F7F' }}>Page {perfMeta.current_page} sur {perfMeta.last_page}</p>
+                    <div
+                      className="flex items-center justify-between px-5 py-3"
+                      style={{ borderTop: '1px solid rgba(192,48,46,0.06)' }}
+                    >
+                      <p className="text-xs" style={{ color: '#7F7F7F' }}>
+                        Page {perfMeta.current_page} sur {perfMeta.last_page}
+                      </p>
                       <div className="flex gap-2">
                         <button
                           disabled={perfPage <= 1}
                           onClick={() => setPerfPage((p) => p - 1)}
                           className="rounded-xl px-3 py-1.5 text-xs font-medium transition disabled:opacity-30"
-                          style={{ border: '1px solid rgba(192,48,46,0.12)', color: '#D42F2D', background: 'white' }}
+                          style={{
+                            border: '1px solid rgba(192,48,46,0.12)',
+                            color: '#D42F2D',
+                            background: 'white',
+                          }}
                         >
                           ← Préc.
                         </button>
@@ -589,7 +907,11 @@ export default function LeaderboardPage() {
                           disabled={perfPage >= perfMeta.last_page}
                           onClick={() => setPerfPage((p) => p + 1)}
                           className="rounded-xl px-3 py-1.5 text-xs font-medium transition disabled:opacity-30"
-                          style={{ border: '1px solid rgba(192,48,46,0.12)', color: '#D42F2D', background: 'white' }}
+                          style={{
+                            border: '1px solid rgba(192,48,46,0.12)',
+                            color: '#D42F2D',
+                            background: 'white',
+                          }}
                         >
                           Suiv. →
                         </button>
@@ -600,7 +922,6 @@ export default function LeaderboardPage() {
               )}
             </div>
           )}
-
         </div>
       </div>
     </>
