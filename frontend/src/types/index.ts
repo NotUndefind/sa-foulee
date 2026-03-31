@@ -144,7 +144,7 @@ export interface LeaderboardEntry {
 
 // ---- Inventaire ----
 
-export type EquipmentCategory = 'dossard' | 'maillot' | 'matériel' | 'autre'
+export type EquipmentCategory = 'dossard' | 'maillot' | 'materiel' | 'autre'
 export type EquipmentStatus   = 'good' | 'worn' | 'broken'
 
 export interface Equipment {

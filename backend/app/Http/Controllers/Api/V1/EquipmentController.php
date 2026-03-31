@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Equipment\StoreEquipmentRequest;
 use App\Models\Equipment;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -34,18 +35,10 @@ class EquipmentController extends Controller
     /**
      * POST /api/v1/inventory
      */
-    public function store(Request $request): JsonResponse
+    public function store(StoreEquipmentRequest $request): JsonResponse
     {
-        $data = $request->validate([
-            'name'     => ['required', 'string', 'max:255'],
-            'category' => ['required', 'string', 'in:dossard,maillot,matériel,autre'],
-            'quantity' => ['required', 'integer', 'min:1'],
-            'status'   => ['required', 'string', 'in:good,worn,broken'],
-            'notes'    => ['nullable', 'string', 'max:1000'],
-        ]);
-
         $item = Equipment::create([
-            ...$data,
+            ...$request->validated(),
             'created_by' => $request->user()->id,
         ]);
 
@@ -75,7 +68,7 @@ class EquipmentController extends Controller
     {
         $data = $request->validate([
             'name'     => ['sometimes', 'string', 'max:255'],
-            'category' => ['sometimes', 'string', 'in:dossard,maillot,matériel,autre'],
+            'category' => ['sometimes', 'string', 'in:dossard,maillot,materiel,autre'],
             'quantity' => ['sometimes', 'integer', 'min:1'],
             'status'   => ['sometimes', 'string', 'in:good,worn,broken'],
             'notes'    => ['nullable', 'string', 'max:1000'],

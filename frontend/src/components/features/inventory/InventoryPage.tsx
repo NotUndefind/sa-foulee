@@ -8,13 +8,14 @@ import {
   exportInventoryCSV, type EquipmentPayload,
 } from '@/lib/inventory'
 import type { Equipment, EquipmentCategory, EquipmentStatus } from '@/types'
+import { ApiError } from '@/lib/api'
 
 // ─── Labels ──────────────────────────────────────────────────────────────────
 
 const CATEGORY_LABELS: Record<EquipmentCategory, string> = {
   dossard:  'Dossard',
   maillot:  'Maillot',
-  'matériel': 'Matériel',
+  materiel: 'Matériel',
   autre:    'Autre',
 }
 
@@ -76,8 +77,13 @@ function EquipmentForm({ initial, onSave, onCancel }: FormProps) {
         ? await updateEquipment(initial.id, form)
         : await createEquipment(form)
       onSave(saved)
-    } catch {
-      setError('Erreur lors de l\'enregistrement.')
+    } catch (err) {
+      if (err instanceof ApiError && err.errors) {
+        const msgs = Object.values(err.errors).flat()
+        setError(msgs[0] ?? 'Erreur de validation.')
+      } else {
+        setError('Erreur lors de l\'enregistrement.')
+      }
     } finally { setSaving(false) }
   }
 

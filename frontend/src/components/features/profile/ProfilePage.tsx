@@ -256,56 +256,6 @@ export default function ProfilePage() {
             </form>
           </div>
 
-          {/* ── Statut cotisation ───────────────────────────────────────── */}
-          <div className="pf-fade pf-card" style={{ animationDelay: '80ms' }}>
-            <div className="pf-section-header flex items-center gap-2">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#C0302E" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="5" width="16" height="12" rx="2"/>
-                <path d="M14 5V4a2 2 0 0 0-4 0v1M10 12v-2m0 0a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
-              </svg>
-              <h2 className="font-bold" style={{ color: '#C0302E' }}>Statut cotisation</h2>
-            </div>
-            <div className="px-6 py-5">
-              {user.membership_paid_at ? (
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
-                  <div>
-                    <p className="text-sm font-semibold" style={{ color: '#1A1A1A', marginBottom: '0.25rem' }}>
-                      Cotisation réglée
-                    </p>
-                    <p className="text-xs" style={{ color: '#7F7F7F' }}>
-                      Dernier paiement le{' '}
-                      <span style={{ fontWeight: 600, color: '#D42F2D' }}>
-                        {new Date(user.membership_paid_at).toLocaleDateString('fr-FR', {
-                          day: 'numeric', month: 'long', year: 'numeric',
-                        })}
-                      </span>
-                    </p>
-                  </div>
-                  <span className="rounded-full px-3 py-1 text-xs font-bold" style={{ background: 'rgba(251,57,54,0.1)', color: '#D42F2D' }}>
-                    À jour
-                  </span>
-                </div>
-              ) : (
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
-                  <div>
-                    <p className="text-sm font-semibold" style={{ color: '#1A1A1A', marginBottom: '0.25rem' }}>
-                      Cotisation non renseignée
-                    </p>
-                    <p className="text-xs" style={{ color: '#7F7F7F' }}>
-                      Aucun paiement enregistré pour cette saison.
-                    </p>
-                  </div>
-                  <a
-                    href="/adhesion"
-                    className="rounded-xl px-4 py-2 text-xs font-bold text-white transition"
-                    style={{ background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)', boxShadow: '0 2px 8px rgba(251,57,54,0.3)', textDecoration: 'none' }}
-                  >
-                    Adhérer
-                  </a>
-                </div>
-              )}
-            </div>
-          </div>
 
           {/* ── Newsletter ──────────────────────────────────────────────── */}
           <div className="pf-fade pf-card" style={{ animationDelay: '100ms' }}>

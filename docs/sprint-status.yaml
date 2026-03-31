@@ -334,7 +334,7 @@ sprints:
     capacity_points: 10
     committed_points: 8
     completed_points: 8
-    status: "in_progress"
+    status: "completed"
     goal: "100% des pages dashboard en palette chaude — Blog, Classement, Profil, Admin, composants unifiés"
     stories:
       - story_id: "STORY-GFX-08"
@@ -840,87 +840,108 @@ post_sprint:
     end_date: "2026-04-05"
     capacity_points: 11
     committed_points: 11
-    completed_points: 0
-    status: "not_started"
+    completed_points: 17
+    status: "completed"
     goal: "Corriger tous les bugs bloquants — budget, leaderboard, inventaire, newsletter, empty states"
     stories:
       - story_id: "STORY-V3-FX01"
         title: "Budget : migration receipt_url manquante"
         points: 1
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
+        branch: "feature/V3-FX01-FX04-bug-fixes"
         epic: "EPIC-FX"
         priority: "must_have"
         assigned_to: "julesbourin"
       - story_id: "STORY-V3-FX02"
         title: "Leaderboard : retirer performances.deleted_at"
         points: 1
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
+        branch: "feature/V3-FX01-FX04-bug-fixes"
         epic: "EPIC-FX"
         priority: "must_have"
         assigned_to: "julesbourin"
       - story_id: "STORY-V3-FX03"
         title: "Newsletter CSV export : ajouter BOM UTF-8"
         points: 1
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
+        branch: "feature/V3-FX01-FX04-bug-fixes"
         epic: "EPIC-FX"
         priority: "must_have"
         assigned_to: "julesbourin"
       - story_id: "STORY-V3-FX04"
         title: "Empty state cards : distinguer no-data vs filtre vide"
         points: 3
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
+        branch: "feature/V3-FX01-FX04-bug-fixes"
         epic: "EPIC-FX"
         priority: "must_have"
         assigned_to: "julesbourin"
       - story_id: "STORY-V3-FX05"
         title: "Inventaire : corriger formulaire ajout équipement"
         points: 3
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
+        branch: "feature/V3-FX05-inventaire-ajout-equipement"
         epic: "EPIC-FX"
         priority: "must_have"
         assigned_to: "julesbourin"
       - story_id: "STORY-V3-FX06"
         title: "Newsletter toggle profil : corriger erreur"
         points: 2
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
+        branch: "feature/V3-FX01-FX04-bug-fixes"
         epic: "EPIC-FX"
         priority: "should_have"
         assigned_to: "julesbourin"
+        notes: "Résolu par la migration add_newsletter_fields_to_users_table (FX01). Code backend/frontend était déjà correct."
 
   - sprint_number: 17
     start_date: "2026-04-06"
     end_date: "2026-04-12"
     capacity_points: 11
     committed_points: 11
-    completed_points: 0
-    status: "not_started"
+    completed_points: 11
+    status: "completed"
     goal: "Page d'accueil professionnelle — stats lisibles, pas de vert, nom complet asso, clarification events/sessions"
     stories:
       - story_id: "STORY-V3-H01"
         title: "Stats dynamiques + fond crème (remplacer rouge sur rouge)"
         points: 5
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
+        branch: "feature/V3-sprint17-H01-H04-EV01"
         epic: "EPIC-H"
         priority: "must_have"
         assigned_to: "julesbourin"
       - story_id: "STORY-V3-H03"
         title: "Supprimer teintes vertes résiduelles (footer, gradient)"
         points: 2
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
+        branch: "feature/V3-sprint17-H01-H04-EV01"
         epic: "EPIC-H"
         priority: "must_have"
         assigned_to: "julesbourin"
       - story_id: "STORY-V3-H04"
         title: "Correction nom asso dans tous les endroits manquants"
         points: 2
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
+        branch: "feature/V3-sprint17-H01-H04-EV01"
         epic: "EPIC-H"
         priority: "must_have"
         assigned_to: "julesbourin"
       - story_id: "STORY-V3-EV01"
         title: "Renommer Sessions → Entraînements + distinction visuelle"
         points: 2
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
+        branch: "feature/V3-sprint17-H01-H04-EV01"
         epic: "EPIC-EV"
         priority: "should_have"
         assigned_to: "julesbourin"
@@ -930,28 +951,34 @@ post_sprint:
     end_date: "2026-04-19"
     capacity_points: 11
     committed_points: 10
-    completed_points: 0
-    status: "not_started"
+    completed_points: 10
+    status: "completed"
     goal: "Blog enrichi — upload médias, publication immédiate, bouton submit visible"
     stories:
       - story_id: "STORY-V3-BL01"
         title: "Backend endpoint upload média (images/vidéos)"
         points: 3
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
+        branch: "feature/V3-sprint18-BL01-BL03"
         epic: "EPIC-BL"
         priority: "must_have"
         assigned_to: "julesbourin"
       - story_id: "STORY-V3-BL02"
         title: "Frontend upload images et vidéos dans PostForm"
         points: 5
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
+        branch: "feature/V3-sprint18-BL01-BL03"
         epic: "EPIC-BL"
         priority: "must_have"
         assigned_to: "julesbourin"
       - story_id: "STORY-V3-BL03"
         title: "Supprimer brouillons + fix bouton submit"
         points: 2
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
+        branch: "feature/V3-sprint18-BL01-BL03"
         epic: "EPIC-BL"
         priority: "must_have"
         assigned_to: "julesbourin"
@@ -961,21 +988,24 @@ post_sprint:
     end_date: "2026-04-26"
     capacity_points: 11
     committed_points: 10
-    completed_points: 0
-    status: "not_started"
+    completed_points: 10
+    status: "completed"
+    completion_date: "2026-03-31"
     goal: "Paramètres admin — toggle classement on/off par les admins"
     stories:
       - story_id: "STORY-V3-A01"
         title: "Backend infrastructure table settings + modèle Setting"
         points: 5
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
         epic: "EPIC-A"
         priority: "must_have"
         assigned_to: "julesbourin"
       - story_id: "STORY-V3-A02"
         title: "Toggle activation/désactivation classement (admin + frontend)"
         points: 5
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
         epic: "EPIC-A"
         priority: "must_have"
         assigned_to: "julesbourin"
@@ -985,14 +1015,16 @@ post_sprint:
     end_date: "2026-05-03"
     capacity_points: 11
     committed_points: 5
-    completed_points: 0
-    status: "not_started"
+    completed_points: 5
+    status: "completed"
+    completion_date: "2026-03-31"
     goal: "Hero header redesign — illustration dynamique, formes animées, mascotte intégrée"
     stories:
       - story_id: "STORY-V3-H02"
         title: "Redesign hero header — illustration dynamique"
         points: 5
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
         epic: "EPIC-H"
         priority: "should_have"
         assigned_to: "julesbourin"

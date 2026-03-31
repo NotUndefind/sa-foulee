@@ -28,7 +28,6 @@ export interface PostPayload {
   title: string
   content: string
   image?: string | null
-  published_at?: string | null
   is_pinned?: boolean
 }
 
