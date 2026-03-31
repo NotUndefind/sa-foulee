@@ -100,6 +100,7 @@ export default function SessionsPage() {
   const displayed = tab === 'sessions' ? sessions : filteredTemplates
 
   const activeType = tab === 'sessions' ? (filters.type ?? '') : templateType
+  const hasActiveFilter = tab === 'sessions' ? !!filters.type : !!templateType
 
   return (
     <>
@@ -137,11 +138,11 @@ export default function SessionsPage() {
               <div className="mb-1 flex items-center gap-2" style={{ color: '#D42F2D' }}>
                 <IconRun size={26} />
                 <h1 className="text-3xl font-extrabold" style={{ letterSpacing: '-0.02em', color: '#C0302E' }}>
-                  Sessions
+                  Entraînements
                 </h1>
               </div>
               <p className="text-sm" style={{ color: '#7F7F7F' }}>
-                {meta.total} session{meta.total > 1 ? 's' : ''} d'entraînement planifiée{meta.total > 1 ? 's' : ''}
+                Séances structurées créées par les coachs — exercices, intensités et suivi de participation.
               </p>
             </div>
             {canManageSessions && !showForm && (
@@ -236,24 +237,30 @@ export default function SessionsPage() {
               <div style={{ opacity: 0.3, color: '#D42F2D' }}>
                 {tab === 'templates' ? <IconTemplate /> : <IconRun size={40} />}
               </div>
-              <div>
-                <p className="text-sm font-semibold" style={{ color: '#C0302E', marginBottom: '0.25rem' }}>
-                  {tab === 'templates' ? 'Aucun template sauvegardé.' : 'Aucune session pour ce filtre.'}
-                </p>
-                <p className="text-xs" style={{ color: '#7F7F7F' }}>
-                  {tab === 'templates'
-                    ? 'Créez une session et sauvegardez-la comme template pour la réutiliser.'
-                    : 'Essayez un autre filtre, ou soyez le premier à partager une séance d\'entraînement !'}
-                </p>
-              </div>
-              {canManageSessions && (
-                <button
-                  onClick={() => setShowForm(true)}
-                  className="text-xs font-semibold hover:underline"
-                  style={{ color: '#FB3936' }}
-                >
-                  {tab === 'templates' ? 'Créer un template →' : 'Publier une session →'}
-                </button>
+              {!hasActiveFilter && (tab === 'sessions' ? meta.total === 0 : templates.length === 0) ? (
+                <>
+                  <div>
+                    <p className="text-sm font-semibold" style={{ color: '#C0302E', marginBottom: '0.25rem' }}>
+                      {tab === 'templates' ? 'Aucun template sauvegardé.' : 'Aucune session publiée.'}
+                    </p>
+                    <p className="text-xs" style={{ color: '#7F7F7F' }}>
+                      {tab === 'templates'
+                        ? 'Créez une session et sauvegardez-la comme template pour la réutiliser.'
+                        : 'Soyez le premier à partager une séance d\'entraînement !'}
+                    </p>
+                  </div>
+                  {canManageSessions && (
+                    <button
+                      onClick={() => setShowForm(true)}
+                      className="text-xs font-semibold hover:underline"
+                      style={{ color: '#FB3936' }}
+                    >
+                      {tab === 'templates' ? 'Créer un template →' : 'Publier une session →'}
+                    </button>
+                  )}
+                </>
+              ) : (
+                <p className="text-sm font-semibold" style={{ color: '#C0302E' }}>Aucun résultat pour ce filtre.</p>
               )}
             </div>
           ) : (

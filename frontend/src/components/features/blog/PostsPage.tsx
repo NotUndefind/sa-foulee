@@ -84,7 +84,7 @@ export default function PostsPage() {
                 </h1>
               </div>
               <p className="mt-1 text-sm" style={{ color: '#7F7F7F' }}>
-                {meta.total} article{meta.total > 1 ? 's' : ''} · Actualités et annonces de sa Foulée
+                {meta.total} article{meta.total > 1 ? 's' : ''} · Actualités de La Neuville TAF sa Foulée
               </p>
             </div>
 
@@ -140,15 +140,21 @@ export default function PostsPage() {
           ) : posts.length === 0 ? (
             <div className="flex h-48 flex-col items-center justify-center gap-3 rounded-2xl bg-white" style={{ border: '1px solid rgba(192,48,46,0.07)' }}>
               <div style={{ opacity: 0.3, color: '#D42F2D' }}><IconEmptyNewspaper /></div>
-              <p className="text-sm" style={{ color: '#7F7F7F' }}>Aucun article publié pour l'instant.</p>
-              {canPublish && (
-                <button
-                  onClick={() => setShowForm(true)}
-                  className="text-xs font-semibold hover:underline"
-                  style={{ color: '#FB3936' }}
-                >
-                  Rédiger le premier article →
-                </button>
+              {meta.total === 0 ? (
+                <>
+                  <p className="text-sm" style={{ color: '#7F7F7F' }}>Aucun article publié pour l'instant.</p>
+                  {canPublish && (
+                    <button
+                      onClick={() => setShowForm(true)}
+                      className="text-xs font-semibold hover:underline"
+                      style={{ color: '#FB3936' }}
+                    >
+                      Rédiger le premier article →
+                    </button>
+                  )}
+                </>
+              ) : (
+                <p className="text-sm" style={{ color: '#7F7F7F' }}>Aucun résultat pour ce filtre.</p>
               )}
             </div>
           ) : (

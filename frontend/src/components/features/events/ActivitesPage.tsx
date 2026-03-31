@@ -505,7 +505,7 @@ export default function ActivitesPage() {
             </h1>
           </div>
           <p style={{ fontSize: '1rem', color: '#2C2C2C', opacity: 0.8, margin: 0, paddingLeft: '1.25rem' }}>
-            Rejoignez les prochaines sorties et événements de sa Foulée.
+            Rejoignez les prochaines sorties et événements de La Neuville TAF sa Foulée.
           </p>
         </div>
 

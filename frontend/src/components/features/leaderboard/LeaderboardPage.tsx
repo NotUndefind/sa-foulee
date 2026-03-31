@@ -8,6 +8,7 @@ import {
   type LeaderboardPeriod,
   type UserPerformancesMeta,
 } from '@/lib/performances'
+import { ApiError } from '@/lib/api'
 import { useAuthStore } from '@/store/auth.store'
 import type { LeaderboardEntry, Performance } from '@/types'
 import { useCallback, useEffect, useState } from 'react'
@@ -236,9 +237,10 @@ const PERIOD_LABELS: Record<LeaderboardPeriod, string> = {
 export default function LeaderboardPage() {
   const user = useAuthStore((s) => s.user)
 
-  const [period,   setPeriod]   = useState<LeaderboardPeriod>('month')
-  const [entries,  setEntries]  = useState<LeaderboardEntry[]>([])
-  const [lbLoading,setLbLoading]= useState(true)
+  const [period,    setPeriod]    = useState<LeaderboardPeriod>('month')
+  const [entries,   setEntries]   = useState<LeaderboardEntry[]>([])
+  const [lbLoading, setLbLoading] = useState(true)
+  const [isDisabled,setIsDisabled]= useState(false)
 
   const [performances, setPerformances] = useState<Performance[]>([])
   const [perfMeta,     setPerfMeta]     = useState<UserPerformancesMeta | null>(null)
@@ -253,7 +255,12 @@ export default function LeaderboardPage() {
     try {
       const res = await getLeaderboard(period)
       setEntries(res.data)
-    } catch { /* silencieux */ } finally { setLbLoading(false) }
+      setIsDisabled(false)
+    } catch (err) {
+      if (err instanceof ApiError && err.status === 403) {
+        setIsDisabled(true)
+      }
+    } finally { setLbLoading(false) }
   }, [period])
 
   const fetchMyPerfs = useCallback(async () => {
@@ -316,6 +323,17 @@ export default function LeaderboardPage() {
 
       <div className="lb-page min-h-screen pb-24 lg:pb-8" style={{ background: '#F8F8F8' }}>
         <div className="mx-auto max-w-4xl px-5 py-8">
+
+          {/* ── Disabled state ──────────────────────────────────────────── */}
+          {isDisabled && (
+            <div className="flex flex-col items-center justify-center gap-4 rounded-2xl bg-white py-20 text-center" style={{ border: '1px solid rgba(192,48,46,0.08)', boxShadow: '0 2px 8px rgba(192,48,46,0.04)' }}>
+              <div style={{ opacity: 0.3, color: '#C0302E' }}><IconTrophy /></div>
+              <p className="text-lg font-bold" style={{ color: '#1A1A1A' }}>Classement désactivé</p>
+              <p className="text-sm" style={{ color: '#7F7F7F' }}>Fonctionnalité désactivée par l&apos;administrateur.</p>
+            </div>
+          )}
+
+          {!isDisabled && (<>
 
           {/* ── Header ─────────────────────────────────────────────────── */}
           <div className="lb-fade mb-8 flex items-start justify-between" style={{ animationDelay: '0ms' }}>
@@ -600,6 +618,8 @@ export default function LeaderboardPage() {
               )}
             </div>
           )}
+
+          </>)}
 
         </div>
       </div>
