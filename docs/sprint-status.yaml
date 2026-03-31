@@ -951,28 +951,34 @@ post_sprint:
     end_date: "2026-04-19"
     capacity_points: 11
     committed_points: 10
-    completed_points: 0
-    status: "not_started"
+    completed_points: 10
+    status: "completed"
     goal: "Blog enrichi — upload médias, publication immédiate, bouton submit visible"
     stories:
       - story_id: "STORY-V3-BL01"
         title: "Backend endpoint upload média (images/vidéos)"
         points: 3
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
+        branch: "feature/V3-sprint18-BL01-BL03"
         epic: "EPIC-BL"
         priority: "must_have"
         assigned_to: "julesbourin"
       - story_id: "STORY-V3-BL02"
         title: "Frontend upload images et vidéos dans PostForm"
         points: 5
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
+        branch: "feature/V3-sprint18-BL01-BL03"
         epic: "EPIC-BL"
         priority: "must_have"
         assigned_to: "julesbourin"
       - story_id: "STORY-V3-BL03"
         title: "Supprimer brouillons + fix bouton submit"
         points: 2
-        status: "not_started"
+        status: "completed"
+        completion_date: "2026-03-31"
+        branch: "feature/V3-sprint18-BL01-BL03"
         epic: "EPIC-BL"
         priority: "must_have"
         assigned_to: "julesbourin"
