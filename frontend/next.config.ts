@@ -1,4 +1,4 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   typescript: {
@@ -6,9 +6,6 @@ const nextConfig: NextConfig = {
     // Ces erreurs n'affectent pas le runtime — ignorées pour le déploiement Vercel
     ignoreBuildErrors: true,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-};
+}
 
-export default nextConfig;
+export default nextConfig

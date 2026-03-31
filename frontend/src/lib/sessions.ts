@@ -49,7 +49,10 @@ export async function createSession(payload: SessionPayload): Promise<TrainingSe
   return api.post<TrainingSession>('/sessions', payload)
 }
 
-export async function updateSession(id: number, payload: Partial<SessionPayload>): Promise<TrainingSession> {
+export async function updateSession(
+  id: number,
+  payload: Partial<SessionPayload>
+): Promise<TrainingSession> {
   return api.patch<TrainingSession>(`/sessions/${id}`, payload)
 }
 
@@ -57,6 +60,8 @@ export async function deleteSession(id: number): Promise<void> {
   await api.delete(`/sessions/${id}`)
 }
 
-export async function toggleParticipation(id: number): Promise<{ has_participated: boolean; participants_count: number }> {
+export async function toggleParticipation(
+  id: number
+): Promise<{ has_participated: boolean; participants_count: number }> {
   return api.post(`/sessions/${id}/participate`, {})
 }

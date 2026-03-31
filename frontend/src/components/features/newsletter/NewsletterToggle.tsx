@@ -7,17 +7,35 @@ import type { User } from '@/types'
 
 function IconMail() {
   return (
-    <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2" y="4" width="20" height="16" rx="2"/>
-      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+    <svg
+      width={20}
+      height={20}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="2" y="4" width="20" height="16" rx="2" />
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
     </svg>
   )
 }
 
 function IconCheck() {
   return (
-    <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 6 9 17l-5-5"/>
+    <svg
+      width={14}
+      height={14}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M20 6 9 17l-5-5" />
     </svg>
   )
 }
@@ -29,8 +47,8 @@ interface Props {
 export default function NewsletterToggle({ initialSubscribed }: Props) {
   const { user, setUser } = useAuthStore()
   const [subscribed, setSubscribed] = useState(initialSubscribed)
-  const [loading,    setLoading]    = useState(false)
-  const [toast,      setToast]      = useState<{ message: string; type: 'success' | 'error' } | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
 
   const showToast = (message: string, type: 'success' | 'error') => {
     setToast({ message, type })
@@ -128,7 +146,8 @@ export default function NewsletterToggle({ initialSubscribed }: Props) {
         <div className="nl-content">
           <p className="nl-title">Newsletter du club</p>
           <p className="nl-desc">
-            Reçois les actualités de La Neuville TAF sa Foulée : sorties, événements, résultats de courses et infos du bureau.
+            Reçois les actualités de La Neuville TAF sa Foulée : sorties, événements, résultats de
+            courses et infos du bureau.
           </p>
         </div>
 
@@ -152,10 +171,11 @@ export default function NewsletterToggle({ initialSubscribed }: Props) {
           className="nl-toast"
           style={{
             background: toast.type === 'success' ? '#fff' : '#fff1f0',
-            color:      toast.type === 'success' ? '#1A1A1A' : '#c0392b',
-            border:     toast.type === 'success'
-              ? '1px solid rgba(251,57,54,0.2)'
-              : '1px solid rgba(192,57,43,0.3)',
+            color: toast.type === 'success' ? '#1A1A1A' : '#c0392b',
+            border:
+              toast.type === 'success'
+                ? '1px solid rgba(251,57,54,0.2)'
+                : '1px solid rgba(192,57,43,0.3)',
           }}
         >
           {toast.message}

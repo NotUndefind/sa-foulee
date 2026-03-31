@@ -27,7 +27,10 @@ export function createCampaign(data: { subject: string; body_html: string }): Pr
   return api.post<Campaign>('/admin/newsletter/campaigns', data)
 }
 
-export function updateCampaign(id: number, data: { subject?: string; body_html?: string }): Promise<Campaign> {
+export function updateCampaign(
+  id: number,
+  data: { subject?: string; body_html?: string }
+): Promise<Campaign> {
   return api.patch<Campaign>(`/admin/newsletter/campaigns/${id}`, data)
 }
 

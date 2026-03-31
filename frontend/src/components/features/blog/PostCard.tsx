@@ -25,16 +25,35 @@ function formatDate(iso: string): string {
 
 function IconPin({ size = 12 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <line x1="12" y1="17" x2="12" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/>
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="12" y1="17" x2="12" y2="22" />
+      <path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z" />
     </svg>
   )
 }
 
 function IconComment() {
   return (
-    <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    <svg
+      width={14}
+      height={14}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
     </svg>
   )
 }
@@ -123,7 +142,10 @@ export default function PostCard({ post, onUpdate, onDelete, onEdit, canPin }: P
   return (
     <article
       className="overflow-hidden rounded-2xl bg-white"
-      style={{ boxShadow: '0 2px 10px rgba(192,48,46,0.07)', border: '1px solid rgba(192,48,46,0.08)' }}
+      style={{
+        boxShadow: '0 2px 10px rgba(192,48,46,0.07)',
+        border: '1px solid rgba(192,48,46,0.08)',
+      }}
     >
       {/* Image */}
       {post.image && (
@@ -139,19 +161,31 @@ export default function PostCard({ post, onUpdate, onDelete, onEdit, canPin }: P
           {post.is_pinned && (
             <span
               className="flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium"
-              style={{ background: 'rgba(251,57,54,0.1)', color: '#FB3936', border: '1px solid rgba(251,57,54,0.2)' }}
+              style={{
+                background: 'rgba(251,57,54,0.1)',
+                color: '#FB3936',
+                border: '1px solid rgba(251,57,54,0.2)',
+              }}
             >
               <IconPin /> Épinglé
             </span>
           )}
           {post.published_at && (
-            <span className="text-xs" style={{ color: '#7F7F7F' }}>{formatDate(post.published_at)}</span>
+            <span className="text-xs" style={{ color: '#7F7F7F' }}>
+              {formatDate(post.published_at)}
+            </span>
           )}
-          {post.author && <span className="text-xs" style={{ color: '#7F7F7F' }}>par {post.author.name}</span>}
+          {post.author && (
+            <span className="text-xs" style={{ color: '#7F7F7F' }}>
+              par {post.author.name}
+            </span>
+          )}
         </div>
 
         {/* Titre */}
-        <h2 className="text-lg font-bold" style={{ color: '#C0302E' }}>{post.title}</h2>
+        <h2 className="text-lg font-bold" style={{ color: '#C0302E' }}>
+          {post.title}
+        </h2>
 
         {/* Contenu HTML (Tiptap output) */}
         <div
@@ -161,7 +195,10 @@ export default function PostCard({ post, onUpdate, onDelete, onEdit, canPin }: P
         />
 
         {/* Actions */}
-        <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t pt-4" style={{ borderColor: 'rgba(192,48,46,0.06)' }}>
+        <div
+          className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t pt-4"
+          style={{ borderColor: 'rgba(192,48,46,0.06)' }}
+        >
           <button
             onClick={handleToggleComments}
             className="flex items-center gap-1.5 text-sm transition"
@@ -176,9 +213,10 @@ export default function PostCard({ post, onUpdate, onDelete, onEdit, canPin }: P
               <button
                 onClick={handlePin}
                 className="flex items-center gap-1 rounded-lg px-2 py-1 text-xs transition"
-                style={post.is_pinned
-                  ? { color: '#FB3936', background: 'rgba(251,57,54,0.06)' }
-                  : { color: '#7F7F7F' }
+                style={
+                  post.is_pinned
+                    ? { color: '#FB3936', background: 'rgba(251,57,54,0.06)' }
+                    : { color: '#7F7F7F' }
                 }
               >
                 <IconPin /> {post.is_pinned ? 'Désépingler' : 'Épingler'}
@@ -207,9 +245,14 @@ export default function PostCard({ post, onUpdate, onDelete, onEdit, canPin }: P
 
         {/* Section commentaires */}
         {showComments && (
-          <div className="mt-4 space-y-3 border-t pt-4" style={{ borderColor: 'rgba(192,48,46,0.06)' }}>
+          <div
+            className="mt-4 space-y-3 border-t pt-4"
+            style={{ borderColor: 'rgba(192,48,46,0.06)' }}
+          >
             {commentsLoading ? (
-              <p className="text-center text-xs" style={{ color: '#7F7F7F' }}>Chargement…</p>
+              <p className="text-center text-xs" style={{ color: '#7F7F7F' }}>
+                Chargement…
+              </p>
             ) : comments.length === 0 ? (
               <p className="text-center text-xs" style={{ color: '#7F7F7F' }}>
                 Aucun commentaire. Soyez le premier !
@@ -228,9 +271,13 @@ export default function PostCard({ post, onUpdate, onDelete, onEdit, canPin }: P
                       <span className="text-xs font-medium" style={{ color: '#C0302E' }}>
                         {c.user?.name ?? 'Membre'}
                       </span>
-                      <span className="text-xs" style={{ color: '#7F7F7F' }}>{formatDate(c.created_at)}</span>
+                      <span className="text-xs" style={{ color: '#7F7F7F' }}>
+                        {formatDate(c.created_at)}
+                      </span>
                     </div>
-                    <p className="mt-0.5 text-sm" style={{ color: '#D42F2D' }}>{c.content}</p>
+                    <p className="mt-0.5 text-sm" style={{ color: '#D42F2D' }}>
+                      {c.content}
+                    </p>
                   </div>
                   {(isAdmin || true) && (
                     <button
@@ -262,7 +309,7 @@ export default function PostCard({ post, onUpdate, onDelete, onEdit, canPin }: P
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
                 placeholder="Ajouter un commentaire…"
-                className="flex-1 rounded-lg px-3 py-2 text-sm outline-none transition"
+                className="flex-1 rounded-lg px-3 py-2 text-sm transition outline-none"
                 style={{ border: '1px solid rgba(192,48,46,0.15)', color: '#C0302E' }}
               />
               <button

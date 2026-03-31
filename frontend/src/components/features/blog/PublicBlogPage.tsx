@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
-import type { Post } from '@/types'
 import { getPosts } from '@/lib/posts'
+import type { Post } from '@/types'
 import Link from 'next/link'
+import { useCallback, useEffect, useState } from 'react'
 
 function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString('fr-FR', {
@@ -14,9 +14,9 @@ function formatDate(iso: string): string {
 }
 
 export default function PublicBlogPage() {
-  const [posts,   setPosts]   = useState<Post[]>([])
-  const [meta,    setMeta]    = useState({ current_page: 1, last_page: 1, total: 0, per_page: 10 })
-  const [page,    setPage]    = useState(1)
+  const [posts, setPosts] = useState<Post[]>([])
+  const [meta, setMeta] = useState({ current_page: 1, last_page: 1, total: 0, per_page: 10 })
+  const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(true)
 
   const fetchPosts = useCallback(async () => {
@@ -32,25 +32,34 @@ export default function PublicBlogPage() {
     }
   }, [page])
 
-  useEffect(() => { fetchPosts() }, [fetchPosts])
+  useEffect(() => {
+    fetchPosts()
+  }, [fetchPosts])
 
   return (
     <div className="mx-auto max-w-3xl space-y-6 px-4 py-10">
       <div>
         <h1 className="text-2xl font-bold text-zinc-900">Actualités</h1>
-        <p className="mt-1 text-sm text-zinc-500">Les dernières nouvelles de La Neuville TAF sa Foulée</p>
+        <p className="mt-1 text-sm text-zinc-500">
+          Les dernières nouvelles de La Neuville TAF sa Foulée
+        </p>
       </div>
 
       {loading ? (
-        <div className="flex h-40 items-center justify-center text-sm text-zinc-400">Chargement…</div>
+        <div className="flex h-40 items-center justify-center text-sm text-zinc-400">
+          Chargement…
+        </div>
       ) : posts.length === 0 ? (
-        <div className="flex h-40 items-center justify-center rounded-2xl bg-white shadow-sm ring-1 ring-zinc-200 text-sm text-zinc-400">
-          Aucun article publié pour l'instant.
+        <div className="flex h-40 items-center justify-center rounded-2xl bg-white text-sm text-zinc-400 shadow-sm ring-1 ring-zinc-200">
+          Aucun article publié pour l&apos;instant.
         </div>
       ) : (
         <div className="space-y-8">
           {posts.map((post) => (
-            <article key={post.id} className="rounded-2xl bg-white shadow-sm ring-1 ring-zinc-200 overflow-hidden">
+            <article
+              key={post.id}
+              className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-zinc-200"
+            >
               {post.image && (
                 <div className="h-48 w-full overflow-hidden bg-zinc-100">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -60,7 +69,9 @@ export default function PublicBlogPage() {
               <div className="p-6">
                 <div className="mb-2 flex flex-wrap items-center gap-2">
                   {post.is_pinned && (
-                    <span className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700">📌 Épinglé</span>
+                    <span className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700">
+                      📌 Épinglé
+                    </span>
                   )}
                   {post.published_at && (
                     <span className="text-xs text-zinc-400">{formatDate(post.published_at)}</span>
@@ -71,7 +82,7 @@ export default function PublicBlogPage() {
                 </div>
                 <h2 className="text-lg font-bold text-zinc-900">{post.title}</h2>
                 <div
-                  className="prose prose-sm mt-3 max-w-none text-zinc-700 line-clamp-4"
+                  className="prose prose-sm mt-3 line-clamp-4 max-w-none text-zinc-700"
                   dangerouslySetInnerHTML={{ __html: post.content }}
                 />
                 <div className="mt-4 flex items-center justify-between">
@@ -80,7 +91,7 @@ export default function PublicBlogPage() {
                   </span>
                   <Link
                     href="/connexion"
-                    className="text-xs font-medium text-brand hover:underline"
+                    className="text-brand text-xs font-medium hover:underline"
                   >
                     Connectez-vous pour commenter →
                   </Link>
@@ -94,19 +105,21 @@ export default function PublicBlogPage() {
       {/* Pagination */}
       {meta.last_page > 1 && (
         <div className="flex items-center justify-between">
-          <p className="text-xs text-zinc-500">Page {meta.current_page} sur {meta.last_page}</p>
+          <p className="text-xs text-zinc-500">
+            Page {meta.current_page} sur {meta.last_page}
+          </p>
           <div className="flex gap-2">
             <button
               disabled={page <= 1}
               onClick={() => setPage((p) => p - 1)}
-              className="rounded-lg border border-zinc-200 px-3 py-1 text-xs disabled:opacity-40 hover:bg-zinc-50"
+              className="rounded-lg border border-zinc-200 px-3 py-1 text-xs hover:bg-zinc-50 disabled:opacity-40"
             >
               ← Précédent
             </button>
             <button
               disabled={page >= meta.last_page}
               onClick={() => setPage((p) => p + 1)}
-              className="rounded-lg border border-zinc-200 px-3 py-1 text-xs disabled:opacity-40 hover:bg-zinc-50"
+              className="rounded-lg border border-zinc-200 px-3 py-1 text-xs hover:bg-zinc-50 disabled:opacity-40"
             >
               Suivant →
             </button>
@@ -114,12 +127,12 @@ export default function PublicBlogPage() {
         </div>
       )}
 
-      <div className="text-center pt-4">
+      <div className="pt-4 text-center">
         <Link
           href="/inscription"
-          className="inline-block rounded-xl bg-brand px-6 py-2.5 text-sm font-medium text-white hover:bg-brand-dark transition"
+          className="bg-brand hover:bg-brand-dark inline-block rounded-xl px-6 py-2.5 text-sm font-medium text-white transition"
         >
-          Rejoindre l'association pour commenter
+          Rejoindre l&apos;association pour commenter
         </Link>
       </div>
     </div>

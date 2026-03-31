@@ -8,7 +8,10 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       style={{ background: '#FAFAFA' }}
     >
       <div className="mb-8 flex flex-col items-center gap-2">
-        <Link href="/" className="flex flex-col items-center gap-2 transition-opacity hover:opacity-80">
+        <Link
+          href="/"
+          className="flex flex-col items-center gap-2 transition-opacity hover:opacity-80"
+        >
           <Image
             src="/logo-removebg-preview.png"
             alt="La Neuville TAF sa Foulée"
@@ -17,12 +20,17 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             className="object-contain"
             priority
           />
-          <span className="text-lg font-semibold" style={{ color: '#FB3936' }}>La Neuville TAF sa Foulée</span>
+          <span className="text-lg font-semibold" style={{ color: '#FB3936' }}>
+            La Neuville TAF sa Foulée
+          </span>
         </Link>
       </div>
       <div
         className="w-full max-w-md rounded-2xl bg-white p-8"
-        style={{ boxShadow: '0 2px 16px rgba(251,57,54,0.08)', border: '1px solid rgba(251,57,54,0.1)' }}
+        style={{
+          boxShadow: '0 2px 16px rgba(251,57,54,0.08)',
+          border: '1px solid rgba(251,57,54,0.1)',
+        }}
       >
         {children}
       </div>

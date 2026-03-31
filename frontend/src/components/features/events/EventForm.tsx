@@ -8,25 +8,25 @@ import type { Event, EventType } from '@/types'
 import { createEvent, updateEvent, type EventPayload } from '@/lib/events'
 
 const schema = z.object({
-  title:       z.string().min(3, 'Titre trop court').max(255),
+  title: z.string().min(3, 'Titre trop court').max(255),
   description: z.string().min(10, 'Description trop courte').max(5000),
-  type:        z.enum(['race', 'outing', 'competition', 'other'] as const),
-  event_date:  z.string().min(1, 'Date obligatoire'),
-  location:    z.string().min(2, 'Lieu obligatoire').max(255),
-  is_public:   z.boolean(),
+  type: z.enum(['race', 'outing', 'competition', 'other'] as const),
+  event_date: z.string().min(1, 'Date obligatoire'),
+  location: z.string().min(2, 'Lieu obligatoire').max(255),
+  is_public: z.boolean(),
 })
 
 type FormData = z.infer<typeof schema>
 
 const TYPE_OPTIONS: { value: EventType; label: string }[] = [
-  { value: 'race',        label: 'Course' },
-  { value: 'outing',     label: 'Sortie' },
+  { value: 'race', label: 'Course' },
+  { value: 'outing', label: 'Sortie' },
   { value: 'competition', label: 'Compétition' },
-  { value: 'other',      label: 'Autre' },
+  { value: 'other', label: 'Autre' },
 ]
 
 interface Props {
-  event?: Event            // si présent → mode édition
+  event?: Event // si présent → mode édition
   onSuccess: (event: Event) => void
   onCancel: () => void
 }
@@ -43,27 +43,23 @@ export default function EventForm({ event, onSuccess, onCancel }: Props) {
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
-      title:       event?.title       ?? '',
+      title: event?.title ?? '',
       description: event?.description ?? '',
-      type:        event?.type        ?? 'outing',
+      type: event?.type ?? 'outing',
       // Formate la date ISO en "YYYY-MM-DDTHH:MM" pour l'input datetime-local
-      event_date: event?.event_date
-        ? new Date(event.event_date).toISOString().slice(0, 16)
-        : '',
-      location:  event?.location  ?? '',
+      event_date: event?.event_date ? new Date(event.event_date).toISOString().slice(0, 16) : '',
+      location: event?.location ?? '',
       is_public: event?.is_public ?? true,
     },
   })
 
   useEffect(() => {
     reset({
-      title:       event?.title       ?? '',
+      title: event?.title ?? '',
       description: event?.description ?? '',
-      type:        event?.type        ?? 'outing',
-      event_date:  event?.event_date
-        ? new Date(event.event_date).toISOString().slice(0, 16)
-        : '',
-      location:  event?.location  ?? '',
+      type: event?.type ?? 'outing',
+      event_date: event?.event_date ? new Date(event.event_date).toISOString().slice(0, 16) : '',
+      location: event?.location ?? '',
       is_public: event?.is_public ?? true,
     })
   }, [event, reset])
@@ -75,9 +71,7 @@ export default function EventForm({ event, onSuccess, onCancel }: Props) {
       event_date: new Date(data.event_date).toISOString(),
     }
     try {
-      const saved = isEdit
-        ? await updateEvent(event!.id, payload)
-        : await createEvent(payload)
+      const saved = isEdit ? await updateEvent(event!.id, payload) : await createEvent(payload)
       onSuccess(saved)
     } catch (err: unknown) {
       const apiErr = err as { errors?: Record<string, string[]> }
@@ -89,7 +83,8 @@ export default function EventForm({ event, onSuccess, onCancel }: Props) {
     }
   }
 
-  const inputClass = 'w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20'
+  const inputClass =
+    'w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20'
   const errorClass = 'mt-1 text-xs text-red-600'
   const labelClass = 'block text-sm font-medium text-zinc-700 mb-1'
 
@@ -98,7 +93,11 @@ export default function EventForm({ event, onSuccess, onCancel }: Props) {
       {/* Titre */}
       <div>
         <label className={labelClass}>Titre</label>
-        <input {...register('title')} placeholder="Ex: Sortie trail dimanche" className={inputClass} />
+        <input
+          {...register('title')}
+          placeholder="Ex: Sortie trail dimanche"
+          className={inputClass}
+        />
         {errors.title && <p className={errorClass}>{errors.title.message}</p>}
       </div>
 
@@ -120,18 +119,16 @@ export default function EventForm({ event, onSuccess, onCancel }: Props) {
           <label className={labelClass}>Type</label>
           <select {...register('type')} className={inputClass}>
             {TYPE_OPTIONS.map((o) => (
-              <option key={o.value} value={o.value}>{o.label}</option>
+              <option key={o.value} value={o.value}>
+                {o.label}
+              </option>
             ))}
           </select>
           {errors.type && <p className={errorClass}>{errors.type.message}</p>}
         </div>
         <div>
           <label className={labelClass}>Date et heure</label>
-          <input
-            {...register('event_date')}
-            type="datetime-local"
-            className={inputClass}
-          />
+          <input {...register('event_date')} type="datetime-local" className={inputClass} />
           {errors.event_date && <p className={errorClass}>{errors.event_date.message}</p>}
         </div>
       </div>
@@ -144,9 +141,15 @@ export default function EventForm({ event, onSuccess, onCancel }: Props) {
       </div>
 
       {/* Visibilité */}
-      <label className="flex items-center gap-3 cursor-pointer">
-        <input {...register('is_public')} type="checkbox" className="h-4 w-4 rounded accent-brand" />
-        <span className="text-sm text-zinc-700">Événement public (visible par tous les membres)</span>
+      <label className="flex cursor-pointer items-center gap-3">
+        <input
+          {...register('is_public')}
+          type="checkbox"
+          className="accent-brand h-4 w-4 rounded"
+        />
+        <span className="text-sm text-zinc-700">
+          Événement public (visible par tous les membres)
+        </span>
       </label>
 
       {/* Boutons */}
@@ -161,7 +164,7 @@ export default function EventForm({ event, onSuccess, onCancel }: Props) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white hover:bg-brand-dark disabled:opacity-50"
+          className="bg-brand hover:bg-brand-dark rounded-lg px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
         >
           {isSubmitting ? 'Enregistrement…' : isEdit ? 'Modifier' : 'Créer'}
         </button>

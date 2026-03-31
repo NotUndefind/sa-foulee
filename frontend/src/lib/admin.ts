@@ -20,9 +20,9 @@ export interface UserFilters {
 
 export async function getUsers(filters: UserFilters = {}): Promise<PaginatedUsers> {
   const params = new URLSearchParams()
-  if (filters.search)   params.set('search', filters.search)
-  if (filters.role)     params.set('role', filters.role)
-  if (filters.page)     params.set('page', String(filters.page))
+  if (filters.search) params.set('search', filters.search)
+  if (filters.role) params.set('role', filters.role)
+  if (filters.page) params.set('page', String(filters.page))
   if (filters.per_page) params.set('per_page', String(filters.per_page))
 
   const qs = params.toString()

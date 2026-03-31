@@ -12,13 +12,13 @@ interface Props {
 }
 
 export default function CampaignForm({ subscriberCount, onSaved, onCancel }: Props) {
-  const [subject,        setSubject]        = useState('')
-  const [saving,         setSaving]         = useState(false)
-  const [sending,        setSending]        = useState(false)
-  const [savedCampaign,  setSavedCampaign]  = useState<Campaign | null>(null)
-  const [showConfirm,    setShowConfirm]    = useState(false)
-  const [error,          setError]          = useState<string | null>(null)
-  const [successMsg,     setSuccessMsg]     = useState<string | null>(null)
+  const [subject, setSubject] = useState('')
+  const [saving, setSaving] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [savedCampaign, setSavedCampaign] = useState<Campaign | null>(null)
+  const [showConfirm, setShowConfirm] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [successMsg, setSuccessMsg] = useState<string | null>(null)
 
   const editor = useEditor({
     extensions: [StarterKit],
@@ -31,7 +31,12 @@ export default function CampaignForm({ subscriberCount, onSaved, onCancel }: Pro
     },
   })
 
-  useEffect(() => () => { editor?.destroy() }, [editor])
+  useEffect(
+    () => () => {
+      editor?.destroy()
+    },
+    [editor]
+  )
 
   const getHtml = () => editor?.getHTML() ?? ''
 
@@ -54,7 +59,7 @@ export default function CampaignForm({ subscriberCount, onSaved, onCancel }: Pro
       setSuccessMsg('Brouillon enregistré.')
       setTimeout(() => setSuccessMsg(null), 3000)
     } catch {
-      setError('Erreur lors de l\'enregistrement.')
+      setError("Erreur lors de l'enregistrement.")
     } finally {
       setSaving(false)
     }
@@ -67,9 +72,13 @@ export default function CampaignForm({ subscriberCount, onSaved, onCancel }: Pro
     setError(null)
     try {
       await sendCampaign(savedCampaign.id)
-      onSaved({ ...savedCampaign, sent_at: new Date().toISOString(), recipient_count: subscriberCount })
+      onSaved({
+        ...savedCampaign,
+        sent_at: new Date().toISOString(),
+        recipient_count: subscriberCount,
+      })
     } catch {
-      setError('Erreur lors de l\'envoi. Réessaie.')
+      setError("Erreur lors de l'envoi. Réessaie.")
       setSending(false)
     }
   }
@@ -118,19 +127,38 @@ export default function CampaignForm({ subscriberCount, onSaved, onCancel }: Pro
 
       <div className="space-y-4">
         {error && (
-          <div className="rounded-xl px-4 py-3 text-sm" style={{ background: 'rgba(251,57,54,0.06)', border: '1px solid rgba(251,57,54,0.2)', color: '#D42F2D' }}>
+          <div
+            className="rounded-xl px-4 py-3 text-sm"
+            style={{
+              background: 'rgba(251,57,54,0.06)',
+              border: '1px solid rgba(251,57,54,0.2)',
+              color: '#D42F2D',
+            }}
+          >
             {error}
           </div>
         )}
         {successMsg && (
-          <div className="rounded-xl px-4 py-3 text-sm" style={{ background: 'rgba(169,50,38,0.06)', border: '1px solid rgba(169,50,38,0.2)', color: '#D42F2D' }}>
+          <div
+            className="rounded-xl px-4 py-3 text-sm"
+            style={{
+              background: 'rgba(169,50,38,0.06)',
+              border: '1px solid rgba(169,50,38,0.2)',
+              color: '#D42F2D',
+            }}
+          >
             {successMsg}
           </div>
         )}
 
         {/* Sujet */}
         <div>
-          <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider" style={{ color: '#7F7F7F' }}>Sujet</label>
+          <label
+            className="mb-1.5 block text-xs font-bold tracking-wider uppercase"
+            style={{ color: '#7F7F7F' }}
+          >
+            Sujet
+          </label>
           <input
             className="cf-input"
             placeholder="Objet de l'email…"
@@ -141,16 +169,57 @@ export default function CampaignForm({ subscriberCount, onSaved, onCancel }: Pro
 
         {/* Éditeur */}
         <div>
-          <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider" style={{ color: '#7F7F7F' }}>Contenu</label>
+          <label
+            className="mb-1.5 block text-xs font-bold tracking-wider uppercase"
+            style={{ color: '#7F7F7F' }}
+          >
+            Contenu
+          </label>
           <div className="cf-editor-wrap">
             {editor && (
               <div className="cf-toolbar">
-                <button type="button" onClick={() => editor.chain().focus().toggleBold().run()} className={`cf-btn${editor.isActive('bold') ? ' is-active' : ''}`}><strong>G</strong></button>
-                <button type="button" onClick={() => editor.chain().focus().toggleItalic().run()} className={`cf-btn${editor.isActive('italic') ? ' is-active' : ''}`}><em>I</em></button>
-                <button type="button" onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} className={`cf-btn${editor.isActive('heading', { level: 2 }) ? ' is-active' : ''}`}>H2</button>
-                <button type="button" onClick={() => editor.chain().focus().toggleBulletList().run()} className={`cf-btn${editor.isActive('bulletList') ? ' is-active' : ''}`}>• Liste</button>
-                <button type="button" onClick={() => editor.chain().focus().toggleOrderedList().run()} className={`cf-btn${editor.isActive('orderedList') ? ' is-active' : ''}`}>1. Liste</button>
-                <button type="button" onClick={() => editor.chain().focus().setHardBreak().run()} className="cf-btn">↵</button>
+                <button
+                  type="button"
+                  onClick={() => editor.chain().focus().toggleBold().run()}
+                  className={`cf-btn${editor.isActive('bold') ? 'is-active' : ''}`}
+                >
+                  <strong>G</strong>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => editor.chain().focus().toggleItalic().run()}
+                  className={`cf-btn${editor.isActive('italic') ? 'is-active' : ''}`}
+                >
+                  <em>I</em>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+                  className={`cf-btn${editor.isActive('heading', { level: 2 }) ? 'is-active' : ''}`}
+                >
+                  H2
+                </button>
+                <button
+                  type="button"
+                  onClick={() => editor.chain().focus().toggleBulletList().run()}
+                  className={`cf-btn${editor.isActive('bulletList') ? 'is-active' : ''}`}
+                >
+                  • Liste
+                </button>
+                <button
+                  type="button"
+                  onClick={() => editor.chain().focus().toggleOrderedList().run()}
+                  className={`cf-btn${editor.isActive('orderedList') ? 'is-active' : ''}`}
+                >
+                  1. Liste
+                </button>
+                <button
+                  type="button"
+                  onClick={() => editor.chain().focus().setHardBreak().run()}
+                  className="cf-btn"
+                >
+                  ↵
+                </button>
               </div>
             )}
             <EditorContent editor={editor} />
@@ -158,7 +227,7 @@ export default function CampaignForm({ subscriberCount, onSaved, onCancel }: Pro
         </div>
 
         {/* Actions */}
-        <div className="flex items-center justify-between pt-2 gap-3 flex-wrap">
+        <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
           <button
             type="button"
             onClick={onCancel}
@@ -173,7 +242,11 @@ export default function CampaignForm({ subscriberCount, onSaved, onCancel }: Pro
               onClick={handleSaveDraft}
               disabled={saving}
               className="rounded-xl px-5 py-2.5 text-sm font-bold transition disabled:opacity-40"
-              style={{ background: 'rgba(192,48,46,0.08)', color: '#C0302E', border: '1px solid rgba(192,48,46,0.2)' }}
+              style={{
+                background: 'rgba(192,48,46,0.08)',
+                color: '#C0302E',
+                border: '1px solid rgba(192,48,46,0.2)',
+              }}
             >
               {saving ? 'Enregistrement…' : 'Enregistrer brouillon'}
             </button>
@@ -182,7 +255,10 @@ export default function CampaignForm({ subscriberCount, onSaved, onCancel }: Pro
               onClick={handleSendClick}
               disabled={saving || sending || !subject.trim()}
               className="rounded-xl px-5 py-2.5 text-sm font-bold text-white transition disabled:opacity-40"
-              style={{ background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)', boxShadow: '0 2px 8px rgba(251,57,54,0.3)' }}
+              style={{
+                background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)',
+                boxShadow: '0 2px 8px rgba(251,57,54,0.3)',
+              }}
             >
               {sending ? 'Envoi…' : 'Envoyer'}
             </button>
@@ -194,25 +270,42 @@ export default function CampaignForm({ subscriberCount, onSaved, onCancel }: Pro
       {showConfirm && savedCampaign && (
         <div
           style={{
-            position: 'fixed', inset: 0, zIndex: 50,
+            position: 'fixed',
+            inset: 0,
+            zIndex: 50,
             background: 'rgba(0,0,0,0.4)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '20px',
           }}
         >
-          <div style={{
-            background: 'white', borderRadius: '20px', padding: '32px',
-            maxWidth: '420px', width: '100%',
-            boxShadow: '0 8px 40px rgba(0,0,0,0.16)',
-          }}>
-            <h3 style={{ fontSize: '18px', fontWeight: 800, color: '#1A1A1A', marginBottom: '12px' }}>
+          <div
+            style={{
+              background: 'white',
+              borderRadius: '20px',
+              padding: '32px',
+              maxWidth: '420px',
+              width: '100%',
+              boxShadow: '0 8px 40px rgba(0,0,0,0.16)',
+            }}
+          >
+            <h3
+              style={{ fontSize: '18px', fontWeight: 800, color: '#1A1A1A', marginBottom: '12px' }}
+            >
               Confirmer l&apos;envoi
             </h3>
-            <p style={{ fontSize: '14px', color: '#7F7F7F', lineHeight: 1.6, marginBottom: '24px' }}>
-              Vous allez envoyer <strong style={{ color: '#D42F2D' }}>{savedCampaign.subject}</strong> à{' '}
-              <strong style={{ color: '#D42F2D' }}>{subscriberCount} membre{subscriberCount !== 1 ? 's' : ''}</strong> abonné{subscriberCount !== 1 ? 's' : ''}.
-              Cette action est irréversible.
+            <p
+              style={{ fontSize: '14px', color: '#7F7F7F', lineHeight: 1.6, marginBottom: '24px' }}
+            >
+              Vous allez envoyer{' '}
+              <strong style={{ color: '#D42F2D' }}>{savedCampaign.subject}</strong> à{' '}
+              <strong style={{ color: '#D42F2D' }}>
+                {subscriberCount} membre{subscriberCount !== 1 ? 's' : ''}
+              </strong>{' '}
+              abonné{subscriberCount !== 1 ? 's' : ''}. Cette action est irréversible.
             </p>
-            <div className="flex gap-3 justify-end">
+            <div className="flex justify-end gap-3">
               <button
                 onClick={() => setShowConfirm(false)}
                 className="rounded-xl px-5 py-2.5 text-sm font-bold"
@@ -223,7 +316,10 @@ export default function CampaignForm({ subscriberCount, onSaved, onCancel }: Pro
               <button
                 onClick={handleSend}
                 className="rounded-xl px-5 py-2.5 text-sm font-bold text-white"
-                style={{ background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)', boxShadow: '0 2px 8px rgba(251,57,54,0.3)' }}
+                style={{
+                  background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)',
+                  boxShadow: '0 2px 8px rgba(251,57,54,0.3)',
+                }}
               >
                 Envoyer maintenant
               </button>

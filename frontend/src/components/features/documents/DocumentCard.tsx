@@ -12,14 +12,14 @@ const TYPE_LABELS: Record<string, string> = {
 }
 
 const STATUS_STYLES: Record<string, string> = {
-  pending:  'bg-yellow-50 text-yellow-700 ring-yellow-200',
-  valid:    'bg-green-50  text-green-700  ring-green-200',
-  expired:  'bg-red-50    text-red-700    ring-red-200',
+  pending: 'bg-yellow-50 text-yellow-700 ring-yellow-200',
+  valid: 'bg-green-50  text-green-700  ring-green-200',
+  expired: 'bg-red-50    text-red-700    ring-red-200',
 }
 
 const STATUS_LABELS: Record<string, string> = {
   pending: 'En attente',
-  valid:   'Valide',
+  valid: 'Valide',
   expired: 'Expiré',
 }
 
@@ -63,7 +63,9 @@ export default function DocumentCard({ document, onDeleted }: Props) {
           📄
         </div>
         <div>
-          <p className="text-sm font-medium text-zinc-900">{TYPE_LABELS[document.type] ?? document.type}</p>
+          <p className="text-sm font-medium text-zinc-900">
+            {TYPE_LABELS[document.type] ?? document.type}
+          </p>
           <p className="text-xs text-zinc-400">
             {document.filename}
             {document.expires_at && (

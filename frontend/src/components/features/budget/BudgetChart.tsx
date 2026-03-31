@@ -35,7 +35,7 @@ export default function BudgetChart({ data }: Props) {
     )
   }
 
-  const chartData = data.map(d => ({
+  const chartData = data.map((d) => ({
     name: formatMonth(d.month),
     Recettes: d.recettes,
     Dépenses: d.depenses,
@@ -43,7 +43,11 @@ export default function BudgetChart({ data }: Props) {
 
   return (
     <ResponsiveContainer width="100%" height={220}>
-      <BarChart data={chartData} barCategoryGap="30%" margin={{ top: 4, right: 8, left: 0, bottom: 0 }}>
+      <BarChart
+        data={chartData}
+        barCategoryGap="30%"
+        margin={{ top: 4, right: 8, left: 0, bottom: 0 }}
+      >
         <CartesianGrid strokeDasharray="3 3" stroke="rgba(192,48,46,0.07)" vertical={false} />
         <XAxis
           dataKey="name"
@@ -52,7 +56,7 @@ export default function BudgetChart({ data }: Props) {
           tickLine={false}
         />
         <YAxis
-          tickFormatter={v => `${(v / 1000).toFixed(0)}k`}
+          tickFormatter={(v) => `${(v / 1000).toFixed(0)}k`}
           tick={{ fontSize: 11, fill: '#7F7F7F', fontFamily: "'Baloo 2', sans-serif" }}
           axisLine={false}
           tickLine={false}
@@ -68,7 +72,11 @@ export default function BudgetChart({ data }: Props) {
           }}
         />
         <Legend
-          wrapperStyle={{ fontSize: '12px', fontFamily: "'Baloo 2', sans-serif", paddingTop: '8px' }}
+          wrapperStyle={{
+            fontSize: '12px',
+            fontFamily: "'Baloo 2', sans-serif",
+            paddingTop: '8px',
+          }}
         />
         <Bar dataKey="Recettes" fill="#059669" radius={[4, 4, 0, 0]} />
         <Bar dataKey="Dépenses" fill="#FB3936" radius={[4, 4, 0, 0]} />

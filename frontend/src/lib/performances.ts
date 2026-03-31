@@ -28,11 +28,16 @@ export interface PerformancePayload {
   date: string
 }
 
-export async function getLeaderboard(period: LeaderboardPeriod = 'month'): Promise<LeaderboardResponse> {
+export async function getLeaderboard(
+  period: LeaderboardPeriod = 'month'
+): Promise<LeaderboardResponse> {
   return api.get<LeaderboardResponse>(`/leaderboard?period=${period}`)
 }
 
-export async function getUserPerformances(userId: number, page = 1): Promise<PaginatedPerformances> {
+export async function getUserPerformances(
+  userId: number,
+  page = 1
+): Promise<PaginatedPerformances> {
   return api.get<PaginatedPerformances>(`/users/${userId}/performances?page=${page}`)
 }
 

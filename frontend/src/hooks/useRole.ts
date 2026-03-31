@@ -19,12 +19,10 @@ export function useRole() {
   const hasRole = (role: Role): boolean => roles.includes(role)
 
   /** Vérifie si l'utilisateur possède au moins un des rôles listés */
-  const hasAnyRole = (...required: Role[]): boolean =>
-    required.some((r) => roles.includes(r))
+  const hasAnyRole = (...required: Role[]): boolean => required.some((r) => roles.includes(r))
 
   /** Retourne le rôle le plus élevé de l'utilisateur */
-  const primaryRole: Role | null =
-    ROLE_HIERARCHY.find((r) => roles.includes(r)) ?? null
+  const primaryRole: Role | null = ROLE_HIERARCHY.find((r) => roles.includes(r)) ?? null
 
   // ---- Raccourcis sémantiques ----
 

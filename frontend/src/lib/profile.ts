@@ -36,7 +36,10 @@ export async function updateProfile(data: {
 
   if (!res.ok) {
     const err = await res.json().catch(() => ({}))
-    throw Object.assign(new Error(err.message ?? 'Erreur'), { status: res.status, errors: err.errors })
+    throw Object.assign(new Error(err.message ?? 'Erreur'), {
+      status: res.status,
+      errors: err.errors,
+    })
   }
 
   return res.json()
@@ -78,7 +81,10 @@ export async function uploadDocument(
 
   if (!res.ok) {
     const err = await res.json().catch(() => ({}))
-    throw Object.assign(new Error(err.message ?? 'Erreur upload'), { status: res.status, errors: err.errors })
+    throw Object.assign(new Error(err.message ?? 'Erreur upload'), {
+      status: res.status,
+      errors: err.errors,
+    })
   }
 
   return res.json()
