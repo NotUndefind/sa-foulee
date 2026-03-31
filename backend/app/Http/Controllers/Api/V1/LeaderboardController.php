@@ -35,7 +35,6 @@ class LeaderboardController extends Controller
 
             return DB::table('performances')
                 ->join('users', 'performances.user_id', '=', 'users.id')
-                ->whereNull('performances.deleted_at')
                 ->whereNull('users.deleted_at')
                 ->where('performances.date', '>=', $startDate)
                 ->select(

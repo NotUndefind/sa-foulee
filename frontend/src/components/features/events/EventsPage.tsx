@@ -113,6 +113,7 @@ export default function EventsPage() {
   }
 
   const activeType = filters.type ?? ''
+  const hasActiveFilter = !!filters.type || !filters.upcoming
 
   return (
     <>
@@ -258,14 +259,20 @@ export default function EventsPage() {
               ) : events.length === 0 ? (
                 <div className="flex flex-col items-center justify-center gap-3 rounded-2xl bg-white" style={{ border: '1px solid rgba(192,48,46,0.07)', padding: '3rem 2rem', textAlign: 'center' }}>
                   <div style={{ opacity: 0.3, color: '#D42F2D' }}><IconEmptyCalendar /></div>
-                  <div>
-                    <p className="text-sm font-semibold" style={{ color: '#C0302E', marginBottom: '0.25rem' }}>Aucun événement pour ce filtre.</p>
-                    <p className="text-xs" style={{ color: '#7F7F7F' }}>Essayez un autre type ou créez la prochaine sortie de l&apos;association !</p>
-                  </div>
-                  {canManageEvents && (
-                    <button onClick={() => setShowForm(true)} className="text-xs font-semibold hover:underline" style={{ color: '#FB3936' }}>
-                      Créer un événement →
-                    </button>
+                  {!hasActiveFilter && meta.total === 0 ? (
+                    <>
+                      <div>
+                        <p className="text-sm font-semibold" style={{ color: '#C0302E', marginBottom: '0.25rem' }}>Aucun événement planifié.</p>
+                        <p className="text-xs" style={{ color: '#7F7F7F' }}>Créez la première sortie de l&apos;association !</p>
+                      </div>
+                      {canManageEvents && (
+                        <button onClick={() => setShowForm(true)} className="text-xs font-semibold hover:underline" style={{ color: '#FB3936' }}>
+                          Créer un événement →
+                        </button>
+                      )}
+                    </>
+                  ) : (
+                    <p className="text-sm font-semibold" style={{ color: '#C0302E' }}>Aucun résultat pour ce filtre.</p>
                   )}
                 </div>
               ) : (
