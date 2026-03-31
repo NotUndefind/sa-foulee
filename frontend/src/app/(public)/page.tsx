@@ -31,6 +31,7 @@ export default async function PublicHomePage() {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000/api/v1'
     const res = await fetch(`${apiUrl}/events?upcoming=1&per_page=3&is_public=1`, {
       next: { revalidate: 300 },
+      signal: AbortSignal.timeout(5000),
     })
     if (res.ok) {
       const json = await res.json()
@@ -43,7 +44,10 @@ export default async function PublicHomePage() {
   let homepageStats = { member_count: 7, total_km: 50 }
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000/api/v1'
-    const res = await fetch(`${apiUrl}/stats/homepage`, { next: { revalidate: 300 } })
+    const res = await fetch(`${apiUrl}/stats/homepage`, {
+      next: { revalidate: 300 },
+      signal: AbortSignal.timeout(5000),
+    })
     if (res.ok) {
       homepageStats = await res.json()
     }
