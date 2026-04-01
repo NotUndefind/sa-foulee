@@ -29,7 +29,7 @@ class VerifyHelloAssoSignature
             return response()->json(['message' => 'Signature manquante.'], 401);
         }
 
-        $rawBody  = $request->getContent();
+        $rawBody = $request->getContent();
         $expected = base64_encode(hash_hmac('sha256', $rawBody, $secret, true));
 
         if (! hash_equals($expected, $signature)) {

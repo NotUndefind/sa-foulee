@@ -31,14 +31,14 @@ class CampaignController extends Controller
     public function store(Request $request): JsonResponse
     {
         $data = $request->validate([
-            'subject'   => ['required', 'string', 'max:255'],
+            'subject' => ['required', 'string', 'max:255'],
             'body_html' => ['required', 'string'],
         ]);
 
         $campaign = NewsletterCampaign::create([
             'created_by' => $request->user()->id,
-            'subject'    => $data['subject'],
-            'body_html'  => $data['body_html'],
+            'subject' => $data['subject'],
+            'body_html' => $data['body_html'],
         ]);
 
         return response()->json($campaign, 201);
@@ -55,7 +55,7 @@ class CampaignController extends Controller
         }
 
         $data = $request->validate([
-            'subject'   => ['sometimes', 'string', 'max:255'],
+            'subject' => ['sometimes', 'string', 'max:255'],
             'body_html' => ['sometimes', 'string'],
         ]);
 
@@ -87,14 +87,14 @@ class CampaignController extends Controller
         }
 
         $campaign->update([
-            'sent_at'         => now(),
+            'sent_at' => now(),
             'recipient_count' => $subscribers->count(),
         ]);
 
         return response()->json([
-            'message'         => "Campagne envoyée à {$subscribers->count()} abonné(s).",
+            'message' => "Campagne envoyée à {$subscribers->count()} abonné(s).",
             'recipient_count' => $subscribers->count(),
-            'sent_at'         => $campaign->fresh()->sent_at,
+            'sent_at' => $campaign->fresh()->sent_at,
         ]);
     }
 }

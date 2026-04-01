@@ -24,12 +24,12 @@ class StoreDocumentRequest extends FormRequest
     {
         return [
             'type.required' => 'Le type de document est obligatoire.',
-            'type.in'       => 'Type de document invalide.',
+            'type.in' => 'Type de document invalide.',
             'file.required' => 'Le fichier est obligatoire.',
-            'file.file'     => 'Le fichier est invalide.',
-            'file.mimes'    => 'Formats acceptés : PDF, JPG, PNG, WEBP.',
-            'file.max'      => 'Le fichier ne peut pas dépasser 5 Mo.',
-            'expires_at.date'  => "La date d'expiration n'est pas valide.",
+            'file.file' => 'Le fichier est invalide.',
+            'file.mimes' => 'Formats acceptés : PDF, JPG, PNG, WEBP.',
+            'file.max' => 'Le fichier ne peut pas dépasser 5 Mo.',
+            'expires_at.date' => "La date d'expiration n'est pas valide.",
             'expires_at.after' => "La date d'expiration doit être dans le futur.",
         ];
     }

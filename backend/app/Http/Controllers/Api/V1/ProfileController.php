@@ -81,22 +81,22 @@ class ProfileController extends Controller
     private function formatUser($user): array
     {
         return [
-            'id'                     => $user->id,
-            'first_name'             => $user->first_name,
-            'last_name'              => $user->last_name,
-            'email'                  => $user->email,
-            'avatar'                 => $user->avatar
+            'id' => $user->id,
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
+            'email' => $user->email,
+            'avatar' => $user->avatar
                 ? $this->avatarUrl($user->avatar)
                 : null,
-            'bio'                    => $user->bio,
-            'roles'                  => $user->getRoleNames(),
-            'has_complete_documents'  => $user->hasCompleteDocuments(),
-            'document_completion'     => $user->documentCompletion(),
-            'membership_paid_at'        => $user->membership_paid_at,
-            'membership_paid_amount'   => $user->membership_paid_amount,
+            'bio' => $user->bio,
+            'roles' => $user->getRoleNames(),
+            'has_complete_documents' => $user->hasCompleteDocuments(),
+            'document_completion' => $user->documentCompletion(),
+            'membership_paid_at' => $user->membership_paid_at,
+            'membership_paid_amount' => $user->membership_paid_amount,
             'newsletter_subscribed_at' => $user->newsletter_subscribed_at,
-            'email_verified_at'        => $user->email_verified_at,
-            'created_at'               => $user->created_at,
+            'email_verified_at' => $user->email_verified_at,
+            'created_at' => $user->created_at,
         ];
     }
 }

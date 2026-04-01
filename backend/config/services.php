@@ -10,7 +10,7 @@ return [
 
     'helloasso' => [
         'webhook_secret' => env('HELLOASSO_WEBHOOK_SECRET', ''),
-        'form_url'       => env('HELLOASSO_FORM_URL', ''),
+        'form_url' => env('HELLOASSO_FORM_URL', ''),
     ],
 
     'resend' => [
