@@ -23,11 +23,11 @@ class UpdatePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'        => ['sometimes', 'string', 'max:255'],
-            'content'      => ['sometimes', 'string'],
-            'image'        => ['nullable', 'url', 'max:500'],
+            'title' => ['sometimes', 'string', 'max:255'],
+            'content' => ['sometimes', 'string'],
+            'image' => ['nullable', 'url', 'max:500'],
             'published_at' => ['nullable', 'date'],
-            'is_pinned'    => ['nullable', 'boolean'],
+            'is_pinned' => ['nullable', 'boolean'],
         ];
     }
 }

@@ -22,7 +22,7 @@ class StatsController extends Controller
 
         return response()->json([
             'member_count' => $memberCount,
-            'total_km'     => $totalKm > 0 ? round($totalKm) : 50,
+            'total_km' => $totalKm > 0 ? round($totalKm) : 50,
         ])->header('Cache-Control', 'public, max-age=300');
     }
 }

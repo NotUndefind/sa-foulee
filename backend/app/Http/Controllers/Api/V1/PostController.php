@@ -23,12 +23,12 @@ class PostController extends Controller
             ->paginate(10);
 
         return response()->json([
-            'data' => $posts->map(fn(Post $p) => $this->formatPost($p)),
+            'data' => $posts->map(fn (Post $p) => $this->formatPost($p)),
             'meta' => [
                 'current_page' => $posts->currentPage(),
-                'last_page'    => $posts->lastPage(),
-                'total'        => $posts->total(),
-                'per_page'     => $posts->perPage(),
+                'last_page' => $posts->lastPage(),
+                'total' => $posts->total(),
+                'per_page' => $posts->perPage(),
             ],
         ]);
     }
@@ -52,10 +52,10 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request): JsonResponse
     {
-        $data                  = $request->validated();
-        $data['author_id']     = $request->user()->id;
-        $data['is_pinned']     = $request->boolean('is_pinned', false);
-        $data['published_at']  = now();
+        $data = $request->validated();
+        $data['author_id'] = $request->user()->id;
+        $data['is_pinned'] = $request->boolean('is_pinned', false);
+        $data['published_at'] = now();
 
         $post = Post::create($data);
         $post->loadCount('comments')->load('author:id,first_name,last_name');
@@ -110,16 +110,16 @@ class PostController extends Controller
     private function formatPost(Post $post): array
     {
         return [
-            'id'             => $post->id,
-            'title'          => $post->title,
-            'content'        => $post->content,
-            'image'          => $post->image,
-            'is_pinned'      => $post->is_pinned,
-            'published_at'   => $post->published_at?->toIso8601String(),
-            'created_at'     => $post->created_at->toIso8601String(),
+            'id' => $post->id,
+            'title' => $post->title,
+            'content' => $post->content,
+            'image' => $post->image,
+            'is_pinned' => $post->is_pinned,
+            'published_at' => $post->published_at?->toIso8601String(),
+            'created_at' => $post->created_at->toIso8601String(),
             'comments_count' => $post->comments_count ?? 0,
-            'author'         => $post->author ? [
-                'id'   => $post->author->id,
+            'author' => $post->author ? [
+                'id' => $post->author->id,
                 'name' => "{$post->author->first_name} {$post->author->last_name}",
             ] : null,
         ];

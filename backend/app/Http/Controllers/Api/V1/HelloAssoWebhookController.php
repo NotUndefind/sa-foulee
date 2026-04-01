@@ -37,34 +37,35 @@ class HelloAssoWebhookController extends Controller
     public function handle(Request $request): JsonResponse
     {
         $payload = $request->getContent();
-        $data    = json_decode($payload, true);
+        $data = json_decode($payload, true);
 
-        $eventType  = $data['eventType'] ?? null;
+        $eventType = $data['eventType'] ?? null;
         $payerEmail = strtolower(trim($data['data']['payer']['email'] ?? ''));
         $amountCents = (int) ($data['data']['amount'] ?? 0);
         $amountEuros = $amountCents > 0 ? round($amountCents / 100, 2) : null;
-        $orderId    = (string) ($data['data']['order']['id'] ?? '');
-        $paidAt     = isset($data['data']['date'])
+        $orderId = (string) ($data['data']['order']['id'] ?? '');
+        $paidAt = isset($data['data']['date'])
             ? Carbon::parse($data['data']['date'])
             : now();
 
         // ── 1. Log systématique ─────────────────────────────────────────────
         $log = HelloAssoWebhook::create([
-            'event_type'  => $eventType ?? 'unknown',
+            'event_type' => $eventType ?? 'unknown',
             'payer_email' => $payerEmail ?: null,
-            'amount'      => $amountEuros,
-            'order_id'    => $orderId ?: null,
-            'status'      => 'error', // sera mis à jour
-            'payload'     => $payload,
-            'notes'       => null,
+            'amount' => $amountEuros,
+            'order_id' => $orderId ?: null,
+            'status' => 'error', // sera mis à jour
+            'payload' => $payload,
+            'notes' => null,
         ]);
 
         // ── Validation minimale ─────────────────────────────────────────────
         if ($eventType !== 'Payment' || empty($payerEmail)) {
             $log->update([
                 'status' => 'skipped',
-                'notes'  => "Ignoré : eventType={$eventType}, email vide ou absent.",
+                'notes' => "Ignoré : eventType={$eventType}, email vide ou absent.",
             ]);
+
             return response()->json(['message' => 'Webhook ignoré.'], 200);
         }
 
@@ -74,9 +75,10 @@ class HelloAssoWebhookController extends Controller
         if (! $user) {
             $log->update([
                 'status' => 'user_not_found',
-                'notes'  => "Aucun compte trouvé pour {$payerEmail}.",
+                'notes' => "Aucun compte trouvé pour {$payerEmail}.",
             ]);
             Log::info("HelloAsso webhook: user not found for {$payerEmail}");
+
             return response()->json(['message' => 'Utilisateur introuvable — webhook loggé.'], 200);
         }
 
@@ -91,27 +93,28 @@ class HelloAssoWebhookController extends Controller
         if ($alreadyProcessed) {
             $log->update([
                 'status' => 'skipped',
-                'notes'  => "Idempotence : cotisation {$year} déjà enregistrée pour {$payerEmail}.",
+                'notes' => "Idempotence : cotisation {$year} déjà enregistrée pour {$payerEmail}.",
             ]);
+
             return response()->json(['message' => 'Déjà traité.'], 200);
         }
 
         // ── 4. Mise à jour cotisation + création budget_entry ───────────────
         DB::transaction(function () use ($user, $paidAt, $amountEuros, $orderId, $log) {
             $user->update([
-                'membership_paid_at'     => $paidAt,
+                'membership_paid_at' => $paidAt,
                 'membership_paid_amount' => $amountEuros,
             ]);
 
             BudgetEntry::create([
-                'type'         => 'recette',
-                'category'     => 'cotisation',
-                'amount'       => $amountEuros ?? 0,
-                'description'  => "Cotisation HelloAsso — {$user->first_name} {$user->last_name}",
-                'entry_date'   => $paidAt->toDateString(),
-                'user_id'      => $user->id,
-                'created_by'   => null, // automatique, pas d'opérateur humain
-                'source'       => 'helloasso',
+                'type' => 'recette',
+                'category' => 'cotisation',
+                'amount' => $amountEuros ?? 0,
+                'description' => "Cotisation HelloAsso — {$user->first_name} {$user->last_name}",
+                'entry_date' => $paidAt->toDateString(),
+                'user_id' => $user->id,
+                'created_by' => null, // automatique, pas d'opérateur humain
+                'source' => 'helloasso',
                 'external_ref' => $orderId ?: null,
             ]);
 

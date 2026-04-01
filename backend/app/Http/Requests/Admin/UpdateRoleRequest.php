@@ -22,7 +22,7 @@ class UpdateRoleRequest extends FormRequest
     {
         return [
             'role.required' => 'Le rôle est obligatoire.',
-            'role.in'       => 'Rôle invalide. Valeurs acceptées : admin, founder, coach, bureau, member.',
+            'role.in' => 'Rôle invalide. Valeurs acceptées : admin, founder, coach, bureau, member.',
         ];
     }
 }

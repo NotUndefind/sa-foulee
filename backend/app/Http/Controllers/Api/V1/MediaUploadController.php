@@ -45,10 +45,10 @@ class MediaUploadController extends Controller
             ? pathinfo($file->getClientOriginalName(), PATHINFO_EXTENSION) ?: 'jpg'
             : 'mp4';
 
-        $year     = now()->format('Y');
-        $month    = now()->format('m');
-        $filename = Str::uuid() . '.' . $extension;
-        $path     = "uploads/blog/{$year}/{$month}/{$filename}";
+        $year = now()->format('Y');
+        $month = now()->format('m');
+        $filename = Str::uuid().'.'.$extension;
+        $path = "uploads/blog/{$year}/{$month}/{$filename}";
 
         Storage::disk('public')->putFileAs(
             "uploads/blog/{$year}/{$month}",

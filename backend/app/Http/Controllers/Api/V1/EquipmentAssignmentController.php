@@ -18,7 +18,7 @@ class EquipmentAssignmentController extends Controller
     {
         $data = $request->validate([
             'user_id' => ['required', 'integer', 'exists:users,id'],
-            'notes'   => ['nullable', 'string', 'max:500'],
+            'notes' => ['nullable', 'string', 'max:500'],
         ]);
 
         // Vérifier la disponibilité
@@ -30,10 +30,10 @@ class EquipmentAssignmentController extends Controller
 
         $assignment = EquipmentAssignment::create([
             'equipment_id' => $equipment->id,
-            'user_id'      => $data['user_id'],
-            'assigned_by'  => $request->user()->id,
-            'assigned_at'  => now(),
-            'notes'        => $data['notes'] ?? null,
+            'user_id' => $data['user_id'],
+            'assigned_by' => $request->user()->id,
+            'assigned_at' => now(),
+            'notes' => $data['notes'] ?? null,
         ]);
 
         $assignment->load([
@@ -42,19 +42,19 @@ class EquipmentAssignmentController extends Controller
         ]);
 
         return response()->json([
-            'id'          => $assignment->id,
-            'user'        => [
-                'id'         => $assignment->user->id,
+            'id' => $assignment->id,
+            'user' => [
+                'id' => $assignment->user->id,
                 'first_name' => $assignment->user->first_name,
-                'last_name'  => $assignment->user->last_name,
-                'email'      => $assignment->user->email,
+                'last_name' => $assignment->user->last_name,
+                'email' => $assignment->user->email,
             ],
             'assigned_at' => $assignment->assigned_at,
-            'notes'       => $assignment->notes,
+            'notes' => $assignment->notes,
             'assigned_by' => [
-                'id'         => $assignment->assignedBy->id,
+                'id' => $assignment->assignedBy->id,
                 'first_name' => $assignment->assignedBy->first_name,
-                'last_name'  => $assignment->assignedBy->last_name,
+                'last_name' => $assignment->assignedBy->last_name,
             ],
         ], 201);
     }
@@ -72,7 +72,7 @@ class EquipmentAssignmentController extends Controller
         $assignment->update(['returned_at' => now()]);
 
         return response()->json([
-            'id'          => $assignment->id,
+            'id' => $assignment->id,
             'returned_at' => $assignment->returned_at,
         ]);
     }

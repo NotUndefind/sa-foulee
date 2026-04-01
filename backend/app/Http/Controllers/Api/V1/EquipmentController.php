@@ -67,11 +67,11 @@ class EquipmentController extends Controller
     public function update(Request $request, Equipment $equipment): JsonResponse
     {
         $data = $request->validate([
-            'name'     => ['sometimes', 'string', 'max:255'],
+            'name' => ['sometimes', 'string', 'max:255'],
             'category' => ['sometimes', 'string', 'in:dossard,maillot,materiel,autre'],
             'quantity' => ['sometimes', 'integer', 'min:1'],
-            'status'   => ['sometimes', 'string', 'in:good,worn,broken'],
-            'notes'    => ['nullable', 'string', 'max:1000'],
+            'status' => ['sometimes', 'string', 'in:good,worn,broken'],
+            'notes' => ['nullable', 'string', 'max:1000'],
         ]);
 
         $equipment->update($data);
@@ -96,26 +96,26 @@ class EquipmentController extends Controller
      */
     public function export(): Response
     {
-        $items    = Equipment::orderBy('name')->get();
-        $date     = now()->format('Y-m-d');
+        $items = Equipment::orderBy('name')->get();
+        $date = now()->format('Y-m-d');
         $filename = "inventaire-safoulee-{$date}.csv";
 
-        $bom   = "\xEF\xBB\xBF";
-        $lines = [$bom . 'Nom,Catégorie,Quantité,État,Notes,Date création'];
+        $bom = "\xEF\xBB\xBF";
+        $lines = [$bom.'Nom,Catégorie,Quantité,État,Notes,Date création'];
 
         foreach ($items as $item) {
             $lines[] = implode(',', [
-                '"' . str_replace('"', '""', $item->name)     . '"',
-                '"' . $item->category                          . '"',
+                '"'.str_replace('"', '""', $item->name).'"',
+                '"'.$item->category.'"',
                 $item->quantity,
-                '"' . $item->status                            . '"',
-                '"' . str_replace('"', '""', $item->notes ?? '') . '"',
-                '"' . $item->created_at->format('d/m/Y')       . '"',
+                '"'.$item->status.'"',
+                '"'.str_replace('"', '""', $item->notes ?? '').'"',
+                '"'.$item->created_at->format('d/m/Y').'"',
             ]);
         }
 
         return response(implode("\n", $lines), 200, [
-            'Content-Type'        => 'text/csv; charset=UTF-8',
+            'Content-Type' => 'text/csv; charset=UTF-8',
             'Content-Disposition' => "attachment; filename=\"{$filename}\"",
         ]);
     }
@@ -125,15 +125,15 @@ class EquipmentController extends Controller
     private function format(Equipment $e): array
     {
         return [
-            'id'              => $e->id,
-            'name'            => $e->name,
-            'category'        => $e->category,
-            'quantity'        => $e->quantity,
-            'status'          => $e->status,
-            'notes'           => $e->notes,
-            'assigned_count'  => $e->assignedCount(),
+            'id' => $e->id,
+            'name' => $e->name,
+            'category' => $e->category,
+            'quantity' => $e->quantity,
+            'status' => $e->status,
+            'notes' => $e->notes,
+            'assigned_count' => $e->assignedCount(),
             'available_count' => $e->availableCount(),
-            'created_at'      => $e->created_at,
+            'created_at' => $e->created_at,
         ];
     }
 
@@ -141,19 +141,19 @@ class EquipmentController extends Controller
     {
         return [
             ...$this->format($e),
-            'active_assignments'  => $e->activeAssignments->map(fn ($a) => [
-                'id'          => $a->id,
-                'user'        => $a->user ? ['id' => $a->user->id, 'first_name' => $a->user->first_name, 'last_name' => $a->user->last_name, 'email' => $a->user->email] : null,
+            'active_assignments' => $e->activeAssignments->map(fn ($a) => [
+                'id' => $a->id,
+                'user' => $a->user ? ['id' => $a->user->id, 'first_name' => $a->user->first_name, 'last_name' => $a->user->last_name, 'email' => $a->user->email] : null,
                 'assigned_at' => $a->assigned_at,
-                'notes'       => $a->notes,
+                'notes' => $a->notes,
                 'assigned_by' => $a->assignedBy ? ['id' => $a->assignedBy->id, 'first_name' => $a->assignedBy->first_name, 'last_name' => $a->assignedBy->last_name] : null,
             ]),
             'assignment_history' => $e->assignments->map(fn ($a) => [
-                'id'          => $a->id,
-                'user'        => $a->user ? ['id' => $a->user->id, 'first_name' => $a->user->first_name, 'last_name' => $a->user->last_name] : null,
+                'id' => $a->id,
+                'user' => $a->user ? ['id' => $a->user->id, 'first_name' => $a->user->first_name, 'last_name' => $a->user->last_name] : null,
                 'assigned_at' => $a->assigned_at,
                 'returned_at' => $a->returned_at,
-                'notes'       => $a->notes,
+                'notes' => $a->notes,
             ]),
         ];
     }

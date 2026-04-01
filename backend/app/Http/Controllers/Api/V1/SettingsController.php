@@ -30,10 +30,10 @@ class SettingsController extends Controller
     {
         $settings = Setting::all(['key', 'value', 'is_public', 'updated_by', 'updated_at']);
 
-        return response()->json($settings->map(fn($s) => [
-            'key'        => $s->key,
-            'value'      => $s->value,
-            'is_public'  => $s->is_public,
+        return response()->json($settings->map(fn ($s) => [
+            'key' => $s->key,
+            'value' => $s->value,
+            'is_public' => $s->is_public,
             'updated_by' => $s->updated_by,
             'updated_at' => $s->updated_at?->toIso8601String(),
         ]));
@@ -52,7 +52,7 @@ class SettingsController extends Controller
         Setting::set($key, $request->input('value'), $request->user()->id);
 
         return response()->json([
-            'key'   => $key,
+            'key' => $key,
             'value' => Setting::get($key),
         ]);
     }
