@@ -23,11 +23,12 @@ return [
     ]),
 
     /*
-     * Patterns regex pour les preview deployments Vercel (ex: safoulee-xxx.vercel.app)
-     * et pour localhost en dev.
+     * Patterns regex pour les preview deployments Vercel (ex: safoulee-xxx.vercel.app),
+     * le domaine de production custom, et localhost en dev.
      */
     'allowed_origins_patterns' => [
         '#^https://safoulee(-[a-z0-9]+)?\.vercel\.app$#',
+        '#^https://(www\.)?laneuvilletafsafoulee\.fr$#',
         '#^http://localhost(:\d+)?$#',
     ],
 
