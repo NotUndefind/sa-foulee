@@ -18,14 +18,14 @@ class PasswordResetNotification extends Notification
     {
         $frontendUrl = config('app.frontend_url', 'http://localhost:3000');
 
-        $resetUrl = $frontendUrl . '/reinitialiser-mot-de-passe?' . http_build_query([
+        $resetUrl = $frontendUrl.'/reinitialiser-mot-de-passe?'.http_build_query([
             'token' => $this->token,
             'email' => $notifiable->getEmailForPasswordReset(),
         ]);
 
         return (new MailMessage)
             ->subject('Réinitialisation de ton mot de passe — sa Foulée')
-            ->greeting('Bonjour ' . $notifiable->first_name . ' !')
+            ->greeting('Bonjour '.$notifiable->first_name.' !')
             ->line('Tu as demandé la réinitialisation de ton mot de passe.')
             ->action('Réinitialiser mon mot de passe', $resetUrl)
             ->line('Ce lien expirera dans 60 minutes.')

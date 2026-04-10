@@ -2,10 +2,10 @@ name: Backend CI/CD
 
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
     paths: ['backend/**']
   pull_request:
-    branches: [main]
+    branches: [main, dev]
     paths: ['backend/**']
 
 defaults:
@@ -48,6 +48,9 @@ jobs:
 
       - name: Format check (Laravel Pint)
         run: ./vendor/bin/pint --test
+
+      - name: Static analysis (Larastan)
+        run: ./vendor/bin/phpstan analyse --memory-limit=512M
 
       - name: Run migrations
         run: php artisan migrate --force

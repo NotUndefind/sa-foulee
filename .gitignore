@@ -8,9 +8,12 @@ frontend/.env*.local
 backend/vendor/
 backend/.env
 backend/storage/logs/*.log
-backend/storage/framework/cache/
-backend/storage/framework/sessions/
-backend/storage/framework/views/
+backend/storage/framework/cache/*
+!backend/storage/framework/cache/.gitkeep
+backend/storage/framework/sessions/*
+!backend/storage/framework/sessions/.gitkeep
+backend/storage/framework/views/*
+!backend/storage/framework/views/.gitkeep
 backend/.phpunit.result.cache
 
 # OS
