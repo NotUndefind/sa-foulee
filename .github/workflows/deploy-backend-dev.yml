@@ -47,6 +47,7 @@ jobs:
           key: ${{ secrets.O2SWITCH_SSH_PRIVATE_KEY }}
           port: ${{ secrets.O2SWITCH_SSH_PORT || 22 }}
           passphrase: ${{ secrets.O2SWITCH_SSH_PASSPHRASE || '' }}
+          debug: true
           script: |
             set -e
 
