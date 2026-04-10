@@ -4,12 +4,13 @@
 |--------------------------------------------------------------------------
 | CORS — Cross-Origin Resource Sharing
 |--------------------------------------------------------------------------
-| Autorise le frontend Vercel (et les preview deployments) à accéder à l'API.
-| En production sur O2switch, FRONTEND_URL doit pointer vers le domaine Vercel.
+| Autorise le frontend à accéder à l'API.
+| En production sur O2switch, FRONTEND_URL doit pointer vers le domaine principal.
 |
 | Origines autorisées :
-|   - FRONTEND_URL (env var) — domaine Vercel principal ou localhost
+|   - FRONTEND_URL (env var) — domaine principal (ex: https://www.laneuvilletafsafoulee.fr)
 |   - *.vercel.app            — preview deployments automatiques Vercel
+|   - *.laneuvilletafsafoulee.fr — tous les sous-domaines du domaine principal
 */
 
 return [
