@@ -20,11 +20,11 @@ class EventPhotoController extends Controller
     {
         $photos = $event->photos()->get();
 
-        return response()->json($photos->map(fn($photo) => [
-            'id'          => $photo->id,
-            'url'         => $photo->url,
+        return response()->json($photos->map(fn ($photo) => [
+            'id' => $photo->id,
+            'url' => $photo->url,
             'uploaded_by' => $photo->uploaded_by,
-            'created_at'  => $photo->created_at->toIso8601String(),
+            'created_at' => $photo->created_at->toIso8601String(),
         ]));
     }
 
@@ -50,10 +50,10 @@ class EventPhotoController extends Controller
             'photo' => ['required', 'image', 'mimes:jpg,jpeg,png,gif,webp', 'max:10240'],
         ]);
 
-        $file      = $request->file('photo');
+        $file = $request->file('photo');
         $extension = $file->getClientOriginalExtension();
-        $filename  = Str::uuid() . '.' . $extension;
-        $path      = "event-photos/{$event->id}/{$filename}";
+        $filename = Str::uuid().'.'.$extension;
+        $path = "event-photos/{$event->id}/{$filename}";
 
         Storage::disk(config('filesystems.default'))->putFileAs(
             "event-photos/{$event->id}",
@@ -64,17 +64,17 @@ class EventPhotoController extends Controller
         $url = Storage::disk(config('filesystems.default'))->url($path);
 
         $photo = EventPhoto::create([
-            'event_id'    => $event->id,
+            'event_id' => $event->id,
             'uploaded_by' => $user->id,
-            'r2_path'     => $path,
-            'url'         => $url,
+            'r2_path' => $path,
+            'url' => $url,
         ]);
 
         return response()->json([
-            'id'          => $photo->id,
-            'url'         => $photo->url,
+            'id' => $photo->id,
+            'url' => $photo->url,
             'uploaded_by' => $photo->uploaded_by,
-            'created_at'  => $photo->created_at->toIso8601String(),
+            'created_at' => $photo->created_at->toIso8601String(),
         ], 201);
     }
 
@@ -84,7 +84,7 @@ class EventPhotoController extends Controller
      */
     public function destroy(Request $request, EventPhoto $photo): JsonResponse
     {
-        $user  = $request->user();
+        $user = $request->user();
         $event = $photo->event;
 
         if (! $user->hasAnyRole(['admin', 'founder'])

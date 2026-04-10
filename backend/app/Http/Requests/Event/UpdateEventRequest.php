@@ -9,7 +9,7 @@ class UpdateEventRequest extends FormRequest
     public function authorize(): bool
     {
         $event = $this->route('event');
-        $user  = $this->user();
+        $user = $this->user();
 
         // Admin/founder peut tout modifier, bureau seulement ses propres events
         return $user->hasAnyRole(['admin', 'founder'])
@@ -19,12 +19,12 @@ class UpdateEventRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'       => ['sometimes', 'string', 'max:255'],
+            'title' => ['sometimes', 'string', 'max:255'],
             'description' => ['sometimes', 'string', 'max:5000'],
-            'type'        => ['sometimes', 'in:race,outing,competition,other'],
-            'event_date'  => ['sometimes', 'date'],
-            'location'    => ['sometimes', 'string', 'max:255'],
-            'is_public'   => ['sometimes', 'boolean'],
+            'type' => ['sometimes', 'in:race,outing,competition,other'],
+            'event_date' => ['sometimes', 'date'],
+            'location' => ['sometimes', 'string', 'max:255'],
+            'is_public' => ['sometimes', 'boolean'],
         ];
     }
 }

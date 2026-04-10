@@ -31,15 +31,15 @@ class SessionController extends Controller
 
         $userId = $request->user()->id;
 
-        $data = $sessions->map(fn(TrainingSession $s) => $this->formatSession($s, $userId));
+        $data = $sessions->map(fn (TrainingSession $s) => $this->formatSession($s, $userId));
 
         return response()->json([
             'data' => $data,
             'meta' => [
                 'current_page' => $sessions->currentPage(),
-                'last_page'    => $sessions->lastPage(),
-                'total'        => $sessions->total(),
-                'per_page'     => $sessions->perPage(),
+                'last_page' => $sessions->lastPage(),
+                'total' => $sessions->total(),
+                'per_page' => $sessions->perPage(),
             ],
         ]);
     }
@@ -51,7 +51,7 @@ class SessionController extends Controller
      */
     public function templates(Request $request): JsonResponse
     {
-        $user  = $request->user();
+        $user = $request->user();
         $query = TrainingSession::where('is_template', true)
             ->orderByDesc('created_at');
 
@@ -61,14 +61,14 @@ class SessionController extends Controller
         }
 
         // Si pas gestionnaire, seulement ses propres templates
-        if (!$user->hasAnyRole(['admin', 'founder', 'coach'])) {
+        if (! $user->hasAnyRole(['admin', 'founder', 'coach'])) {
             $query->where('created_by', $user->id);
         }
 
         $sessions = $query->get();
 
         return response()->json([
-            'data' => $sessions->map(fn(TrainingSession $s) => $this->formatSession($s, $user->id)),
+            'data' => $sessions->map(fn (TrainingSession $s) => $this->formatSession($s, $user->id)),
         ]);
     }
 
@@ -91,7 +91,7 @@ class SessionController extends Controller
         $data['created_by'] = $request->user()->id;
 
         // is_template et is_published depuis request
-        $data['is_template']  = $request->boolean('is_template', false);
+        $data['is_template'] = $request->boolean('is_template', false);
         $data['published_at'] = $request->input('published_at');
 
         $session = TrainingSession::create($data);
@@ -118,8 +118,8 @@ class SessionController extends Controller
     {
         $user = $request->user();
 
-        if (!$user->hasAnyRole(['admin', 'founder'])
-            && !($user->hasRole('coach') && $session->created_by === $user->id)) {
+        if (! $user->hasAnyRole(['admin', 'founder'])
+            && ! ($user->hasRole('coach') && $session->created_by === $user->id)) {
             abort(403);
         }
 
@@ -150,7 +150,7 @@ class SessionController extends Controller
         $session->loadCount('participants');
 
         return response()->json([
-            'has_participated'   => $participated,
+            'has_participated' => $participated,
             'participants_count' => $session->participants_count,
         ]);
     }
@@ -160,22 +160,22 @@ class SessionController extends Controller
     private function formatSession(TrainingSession $session, int $userId): array
     {
         return [
-            'id'                 => $session->id,
-            'title'              => $session->title,
-            'type'               => $session->type,
-            'distance_km'        => $session->distance_km ? (float) $session->distance_km : null,
-            'duration_min'       => $session->duration_min,
-            'intensity'          => $session->intensity,
-            'exercises'          => $session->exercises ?? [],
-            'description'        => $session->description,
-            'is_template'        => $session->is_template,
-            'created_by'         => $session->created_by,
-            'published_at'       => $session->published_at?->toIso8601String(),
-            'created_at'         => $session->created_at->toIso8601String(),
+            'id' => $session->id,
+            'title' => $session->title,
+            'type' => $session->type,
+            'distance_km' => $session->distance_km ? (float) $session->distance_km : null,
+            'duration_min' => $session->duration_min,
+            'intensity' => $session->intensity,
+            'exercises' => $session->exercises ?? [],
+            'description' => $session->description,
+            'is_template' => $session->is_template,
+            'created_by' => $session->created_by,
+            'published_at' => $session->published_at?->toIso8601String(),
+            'created_at' => $session->created_at->toIso8601String(),
             'participants_count' => $session->participants_count ?? 0,
-            'has_participated'   => $session->participants()
-                                           ->where('user_id', $userId)
-                                           ->exists(),
+            'has_participated' => $session->participants()
+                ->where('user_id', $userId)
+                ->exists(),
         ];
     }
 }

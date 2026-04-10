@@ -14,9 +14,9 @@ class StorePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'        => ['required', 'string', 'max:255'],
-            'content'      => ['required', 'string'],
-            'image'     => ['nullable', 'url', 'max:500'],
+            'title' => ['required', 'string', 'max:255'],
+            'content' => ['required', 'string'],
+            'image' => ['nullable', 'url', 'max:500'],
             'is_pinned' => ['nullable', 'boolean'],
         ];
     }

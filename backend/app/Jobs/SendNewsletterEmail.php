@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use App\Models\User;
 use App\Models\NewsletterCampaign;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -18,7 +18,7 @@ class SendNewsletterEmail implements ShouldQueue
     public int $tries = 3;
 
     public function __construct(
-        public readonly User               $recipient,
+        public readonly User $recipient,
         public readonly NewsletterCampaign $campaign,
     ) {}
 
@@ -30,15 +30,15 @@ class SendNewsletterEmail implements ShouldQueue
             return;
         }
 
-        $unsubscribeUrl = config('app.frontend_url') . '/desabonnement?token=' . $unsubscribeToken;
+        $unsubscribeUrl = config('app.frontend_url').'/desabonnement?token='.$unsubscribeToken;
 
         Mail::send(
             'emails.newsletter',
             [
-                'subject'         => $this->campaign->subject,
-                'bodyHtml'        => $this->campaign->body_html,
-                'unsubscribeUrl'  => $unsubscribeUrl,
-                'recipientName'   => $this->recipient->first_name,
+                'subject' => $this->campaign->subject,
+                'bodyHtml' => $this->campaign->body_html,
+                'unsubscribeUrl' => $unsubscribeUrl,
+                'recipientName' => $this->recipient->first_name,
             ],
             function ($message) use ($unsubscribeUrl) {
                 $message
@@ -49,7 +49,7 @@ class SendNewsletterEmail implements ShouldQueue
                     )
                     ->subject($this->campaign->subject)
                     ->getHeaders()
-                    ->addTextHeader('List-Unsubscribe', '<' . $unsubscribeUrl . '>');
+                    ->addTextHeader('List-Unsubscribe', '<'.$unsubscribeUrl.'>');
             }
         );
     }

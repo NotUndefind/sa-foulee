@@ -24,26 +24,26 @@ class UserController extends Controller
         if ($search = $request->query('search')) {
             $query->where(function ($q) use ($search) {
                 $q->where('first_name', 'like', "%{$search}%")
-                  ->orWhere('last_name', 'like', "%{$search}%")
-                  ->orWhere('email', 'like', "%{$search}%");
+                    ->orWhere('last_name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%");
             });
         }
 
         // Filtre par rôle
         if ($role = $request->query('role')) {
-            $query->whereHas('roles', fn($q) => $q->where('name', $role));
+            $query->whereHas('roles', fn ($q) => $q->where('name', $role));
         }
 
         $perPage = min((int) $request->query('per_page', 20), 100);
-        $users   = $query->paginate($perPage);
+        $users = $query->paginate($perPage);
 
         return response()->json([
-            'data' => collect($users->items())->map(fn($u) => $this->formatUser($u)),
+            'data' => collect($users->items())->map(fn ($u) => $this->formatUser($u)),
             'meta' => [
                 'current_page' => $users->currentPage(),
-                'last_page'    => $users->lastPage(),
-                'per_page'     => $users->perPage(),
-                'total'        => $users->total(),
+                'last_page' => $users->lastPage(),
+                'per_page' => $users->perPage(),
+                'total' => $users->total(),
             ],
         ]);
     }
@@ -58,13 +58,13 @@ class UserController extends Controller
         return response()->json(array_merge(
             $this->formatUser($user),
             [
-                'document_completion'    => $user->documentCompletion(),
+                'document_completion' => $user->documentCompletion(),
                 'has_complete_documents' => $user->hasCompleteDocuments(),
-                'documents'              => $user->documents->map(fn($d) => [
-                    'id'         => $d->id,
-                    'type'       => $d->type,
-                    'filename'   => $d->filename,
-                    'status'     => $d->isExpired() ? 'expired' : $d->status,
+                'documents' => $user->documents->map(fn ($d) => [
+                    'id' => $d->id,
+                    'type' => $d->type,
+                    'filename' => $d->filename,
+                    'status' => $d->isExpired() ? 'expired' : $d->status,
                     'expires_at' => $d->expires_at?->toDateString(),
                 ]),
             ]
@@ -120,16 +120,16 @@ class UserController extends Controller
     private function formatUser(User $user): array
     {
         return [
-            'id'                     => $user->id,
-            'first_name'             => $user->first_name,
-            'last_name'              => $user->last_name,
-            'email'                  => $user->email,
-            'avatar'                 => $user->avatar,
-            'roles'                  => $user->getRoleNames(),
+            'id' => $user->id,
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
+            'email' => $user->email,
+            'avatar' => $user->avatar,
+            'roles' => $user->getRoleNames(),
             'has_complete_documents' => $user->hasCompleteDocuments(),
-            'document_completion'    => $user->documentCompletion(),
-            'email_verified_at'      => $user->email_verified_at,
-            'created_at'             => $user->created_at,
+            'document_completion' => $user->documentCompletion(),
+            'email_verified_at' => $user->email_verified_at,
+            'created_at' => $user->created_at,
         ];
     }
 }
