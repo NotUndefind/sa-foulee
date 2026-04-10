@@ -17,7 +17,8 @@ jobs:
           host: ${{ secrets.O2SWITCH_SSH_HOST }}
           username: ${{ secrets.O2SWITCH_SSH_USERNAME }}
           key: ${{ secrets.O2SWITCH_SSH_PRIVATE_KEY }}
-          port: ${{ secrets.O2SWITCH_SSH_PORT || 22 }}
+          port: ${{ secrets.O2SWITCH_SSH_PORT || 2222 }}
+          passphrase: ${{ secrets.O2SWITCH_SSH_PASSPHRASE || '' }}
           script: |
             set -e
 
