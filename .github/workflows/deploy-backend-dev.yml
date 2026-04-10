@@ -1,0 +1,51 @@
+name: Deploy Backend — O2switch (DEV)
+
+# Déclenchement uniquement manuel
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-dev:
+    name: Deploy to O2switch (dev)
+    runs-on: ubuntu-latest
+    environment: dev
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.O2SWITCH_SSH_HOST }}
+          username: ${{ secrets.O2SWITCH_SSH_USERNAME }}
+          key: ${{ secrets.O2SWITCH_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.O2SWITCH_SSH_PORT || 22 }}
+          script: |
+            set -e
+
+            echo "==> Déploiement backend saFoulee (DEV) sur O2switch"
+            cd ${{ secrets.O2SWITCH_DEV_DEPLOY_PATH }}
+
+            echo "==> Récupération du code (branche dev)"
+            git fetch origin dev
+            git checkout dev
+            git pull origin dev
+
+            echo "==> Installation des dépendances PHP (sans dev)"
+            php $(which composer) install \
+              --no-dev \
+              --optimize-autoloader \
+              --no-interaction \
+              --no-ansi
+
+            echo "==> Migrations base de données"
+            php artisan migrate --force
+
+            echo "==> Mise en cache de la configuration"
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+            php artisan event:cache
+
+            echo "==> Redémarrage de la queue"
+            php artisan queue:restart
+
+            echo "==> Déploiement DEV terminé avec succès"
