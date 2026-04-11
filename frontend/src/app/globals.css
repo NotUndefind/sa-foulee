@@ -74,3 +74,14 @@ input[type='radio'] {
   border-color: #fb3936;
   box-shadow: 0 0 0 3px rgba(251, 57, 54, 0.15);
 }
+
+/* ── Bouton visibilité mot de passe ── */
+.password-toggle {
+  color: #9f9f9f;
+  transition: color 0.15s, background 0.15s;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+.password-toggle:hover {
+  color: #fb3936;
+  background: rgba(251, 57, 54, 0.07);
+}
