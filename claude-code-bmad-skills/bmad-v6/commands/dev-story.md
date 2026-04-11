@@ -52,6 +52,7 @@ Approach: **Practical, quality-focused, thorough.**
 5. **Story points**: Complexity estimate
 
 **Display to user:**
+
 ```
 Implementing STORY-{ID}: {Title}
 
@@ -66,6 +67,7 @@ I'll now plan the implementation...
 ```
 
 **Check dependencies:**
+
 - Are dependent stories complete?
 - Are external dependencies met?
 - If not, warn user and ask to proceed anyway or wait
@@ -79,6 +81,7 @@ I'll now plan the implementation...
 Based on story size and type, typical task breakdown:
 
 **Backend-heavy story (API, data, business logic):**
+
 1. Define data models/schemas
 2. Create database migrations (if needed)
 3. Implement repository/data layer
@@ -91,6 +94,7 @@ Based on story size and type, typical task breakdown:
 10. Update API documentation
 
 **Frontend-heavy story (UI, components):**
+
 1. Create component structure
 2. Implement UI layout
 3. Add state management
@@ -103,10 +107,12 @@ Based on story size and type, typical task breakdown:
 10. Test responsive design
 
 **Full-stack story:**
+
 - Combine backend + frontend tasks
 - Add integration between layers
 
 **Infrastructure story:**
+
 1. Design infrastructure
 2. Create IaC scripts
 3. Set up resources
@@ -117,6 +123,7 @@ Based on story size and type, typical task breakdown:
 **Use TodoWrite** to create task list for story
 
 **Example:**
+
 ```
 TodoWrite:
 - [ ] Create password reset token model
@@ -147,6 +154,7 @@ TodoWrite:
    - Note existing naming conventions
 
 2. **Create feature branch**
+
    ```bash
    git checkout -b feature/STORY-{ID}-{short-title}
    ```
@@ -176,6 +184,7 @@ If story requires data changes:
    - Follow project's ORM/schema pattern
 
 2. **Create migrations**
+
    ```sql
    -- Example for password reset
    ALTER TABLE users ADD COLUMN reset_token VARCHAR(255);
@@ -203,14 +212,15 @@ If story requires data changes:
    - Error messages
 
 **Example (Node.js/Express):**
+
 ```javascript
 // services/password-reset.service.js
-const crypto = require('crypto');
-const bcrypt = require('bcrypt');
+const crypto = require("crypto");
+const bcrypt = require("bcrypt");
 
 class PasswordResetService {
   generateResetToken() {
-    return crypto.randomBytes(32).toString('hex');
+    return crypto.randomBytes(32).toString("hex");
   }
 
   async requestReset(email) {
@@ -225,7 +235,7 @@ class PasswordResetService {
 
     await user.update({
       reset_token: await bcrypt.hash(token, 10),
-      reset_token_expiry: expiry
+      reset_token_expiry: expiry,
     });
 
     await EmailService.sendPasswordResetEmail(user.email, token);
@@ -236,11 +246,11 @@ class PasswordResetService {
   async validateToken(token) {
     const user = await User.findByResetToken(token);
     if (!user) {
-      return { valid: false, error: 'Invalid token' };
+      return { valid: false, error: "Invalid token" };
     }
 
     if (user.reset_token_expiry < new Date()) {
-      return { valid: false, error: 'Token expired' };
+      return { valid: false, error: "Token expired" };
     }
 
     return { valid: true, userId: user.id };
@@ -258,7 +268,7 @@ class PasswordResetService {
     await user.update({
       password: hashedPassword,
       reset_token: null,
-      reset_token_expiry: null
+      reset_token_expiry: null,
     });
 
     return { success: true };
@@ -276,32 +286,35 @@ module.exports = new PasswordResetService();
    - Error handling middleware
 
 **Example:**
+
 ```javascript
 // routes/auth.routes.js
-router.post('/request-password-reset',
+router.post(
+  "/request-password-reset",
   validate(requestResetSchema),
   async (req, res, next) => {
     try {
       const { email } = req.body;
       await PasswordResetService.requestReset(email);
-      res.json({ success: true, message: 'If email exists, reset link sent' });
+      res.json({ success: true, message: "If email exists, reset link sent" });
     } catch (error) {
       next(error);
     }
-  }
+  },
 );
 
-router.post('/reset-password',
+router.post(
+  "/reset-password",
   validate(resetPasswordSchema),
   async (req, res, next) => {
     try {
       const { token, newPassword } = req.body;
       await PasswordResetService.resetPassword(token, newPassword);
-      res.json({ success: true, message: 'Password reset successful' });
+      res.json({ success: true, message: "Password reset successful" });
     } catch (error) {
       next(error);
     }
-  }
+  },
 );
 ```
 
@@ -331,29 +344,30 @@ router.post('/reset-password',
    - Error handling
 
 **Example (React):**
+
 ```jsx
 // components/PasswordResetRequest.jsx
-import { useState } from 'react';
-import { requestPasswordReset } from '../api/auth';
+import { useState } from "react";
+import { requestPasswordReset } from "../api/auth";
 
 export default function PasswordResetRequest() {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
-  const [error, setError] = useState('');
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
-    setMessage('');
+    setError("");
+    setMessage("");
 
     try {
       await requestPasswordReset(email);
-      setMessage('Password reset link sent to your email');
-      setEmail('');
+      setMessage("Password reset link sent to your email");
+      setEmail("");
     } catch (err) {
-      setError('Failed to request password reset. Please try again.');
+      setError("Failed to request password reset. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -379,7 +393,7 @@ export default function PasswordResetRequest() {
         {message && <div className="alert alert-success">{message}</div>}
 
         <button type="submit" disabled={loading}>
-          {loading ? 'Sending...' : 'Send Reset Link'}
+          {loading ? "Sending..." : "Send Reset Link"}
         </button>
       </form>
     </div>
@@ -398,11 +412,12 @@ export default function PasswordResetRequest() {
 Write tests for individual functions/components:
 
 **Backend unit tests:**
+
 ```javascript
 // services/password-reset.service.test.js
-describe('PasswordResetService', () => {
-  describe('generateResetToken', () => {
-    it('should generate a random token', () => {
+describe("PasswordResetService", () => {
+  describe("generateResetToken", () => {
+    it("should generate a random token", () => {
       const token1 = service.generateResetToken();
       const token2 = service.generateResetToken();
 
@@ -411,9 +426,9 @@ describe('PasswordResetService', () => {
     });
   });
 
-  describe('requestReset', () => {
-    it('should send reset email for existing user', async () => {
-      const email = 'test@example.com';
+  describe("requestReset", () => {
+    it("should send reset email for existing user", async () => {
+      const email = "test@example.com";
       await service.requestReset(email);
 
       const user = await User.findByEmail(email);
@@ -421,49 +436,50 @@ describe('PasswordResetService', () => {
       expect(user.reset_token_expiry).toBeGreaterThan(new Date());
     });
 
-    it('should not reveal non-existent email', async () => {
-      const result = await service.requestReset('fake@example.com');
+    it("should not reveal non-existent email", async () => {
+      const result = await service.requestReset("fake@example.com");
       expect(result.success).toBe(true); // Generic response
     });
   });
 
-  describe('validateToken', () => {
-    it('should validate correct token', async () => {
+  describe("validateToken", () => {
+    it("should validate correct token", async () => {
       // Setup user with token
       const result = await service.validateToken(validToken);
       expect(result.valid).toBe(true);
     });
 
-    it('should reject expired token', async () => {
+    it("should reject expired token", async () => {
       // Setup user with expired token
       const result = await service.validateToken(expiredToken);
       expect(result.valid).toBe(false);
-      expect(result.error).toBe('Token expired');
+      expect(result.error).toBe("Token expired");
     });
   });
 });
 ```
 
 **Frontend component tests:**
+
 ```jsx
 // components/PasswordResetRequest.test.jsx
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import PasswordResetRequest from './PasswordResetRequest';
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import PasswordResetRequest from "./PasswordResetRequest";
 
-describe('PasswordResetRequest', () => {
-  it('renders reset form', () => {
+describe("PasswordResetRequest", () => {
+  it("renders reset form", () => {
     render(<PasswordResetRequest />);
     expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
     expect(screen.getByText(/send reset link/i)).toBeInTheDocument();
   });
 
-  it('submits email and shows success message', async () => {
+  it("submits email and shows success message", async () => {
     render(<PasswordResetRequest />);
 
     const emailInput = screen.getByLabelText(/email/i);
     const submitButton = screen.getByText(/send reset link/i);
 
-    fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
+    fireEvent.change(emailInput, { target: { value: "test@example.com" } });
     fireEvent.click(submitButton);
 
     await waitFor(() => {
@@ -471,12 +487,12 @@ describe('PasswordResetRequest', () => {
     });
   });
 
-  it('shows error message on failure', async () => {
+  it("shows error message on failure", async () => {
     // Mock API to fail
     render(<PasswordResetRequest />);
 
     fireEvent.change(screen.getByLabelText(/email/i), {
-      target: { value: 'test@example.com' }
+      target: { value: "test@example.com" },
     });
     fireEvent.click(screen.getByText(/send reset link/i));
 
@@ -488,6 +504,7 @@ describe('PasswordResetRequest', () => {
 ```
 
 **Run tests:**
+
 ```bash
 # Backend
 npm test services/password-reset.service.test.js
@@ -505,34 +522,35 @@ Test complete flows:
 
 ```javascript
 // tests/integration/password-reset.test.js
-describe('Password Reset Flow', () => {
-  it('should complete full password reset', async () => {
+describe("Password Reset Flow", () => {
+  it("should complete full password reset", async () => {
     // 1. Request reset
     const res1 = await request(app)
-      .post('/api/auth/request-password-reset')
-      .send({ email: 'test@example.com' });
+      .post("/api/auth/request-password-reset")
+      .send({ email: "test@example.com" });
     expect(res1.status).toBe(200);
 
     // 2. Get token from database (in real scenario, from email)
-    const user = await User.findByEmail('test@example.com');
+    const user = await User.findByEmail("test@example.com");
     const token = user.reset_token;
 
     // 3. Validate token
-    const res2 = await request(app)
-      .get(`/api/auth/validate-reset-token/${token}`);
+    const res2 = await request(app).get(
+      `/api/auth/validate-reset-token/${token}`,
+    );
     expect(res2.body.valid).toBe(true);
 
     // 4. Reset password
-    const newPassword = 'NewSecure123!';
+    const newPassword = "NewSecure123!";
     const res3 = await request(app)
-      .post('/api/auth/reset-password')
+      .post("/api/auth/reset-password")
       .send({ token, newPassword });
     expect(res3.status).toBe(200);
 
     // 5. Verify can login with new password
     const res4 = await request(app)
-      .post('/api/auth/login')
-      .send({ email: 'test@example.com', password: newPassword });
+      .post("/api/auth/login")
+      .send({ email: "test@example.com", password: newPassword });
     expect(res4.status).toBe(200);
   });
 });
@@ -587,6 +605,7 @@ Acceptance Criteria Checklist:
 ```
 
 **Update status:**
+
 - Mark each criterion as ✓ when validated
 - Note any issues or failures
 - Fix issues before proceeding
@@ -596,6 +615,7 @@ Acceptance Criteria Checklist:
 ### Part 8: Manual Testing & QA
 
 **Functional testing:**
+
 - Test happy path end-to-end
 - Test error cases (invalid email, expired token, weak password, etc.)
 - Test edge cases (special characters in email, very long passwords, etc.)
@@ -603,12 +623,14 @@ Acceptance Criteria Checklist:
 - Test on mobile (if applicable)
 
 **UX testing:**
+
 - Is the flow intuitive?
 - Are error messages clear?
 - Are loading states visible?
 - Is it accessible (keyboard navigation, screen readers)?
 
 **Security testing:**
+
 - Are tokens secure (random, hashed)?
 - Is rate limiting in place?
 - Are inputs sanitized?
@@ -623,6 +645,7 @@ Acceptance Criteria Checklist:
 **Self-review checklist:**
 
 **Code Style:**
+
 - [ ] Follows project conventions
 - [ ] Consistent naming
 - [ ] No commented-out code
@@ -630,24 +653,28 @@ Acceptance Criteria Checklist:
 - [ ] Proper error handling
 
 **Functionality:**
+
 - [ ] All acceptance criteria met
 - [ ] Edge cases handled
 - [ ] Error messages are user-friendly
 - [ ] No hardcoded values (use config)
 
 **Testing:**
+
 - [ ] Test coverage ≥80%
 - [ ] All tests passing
 - [ ] Integration tests cover main flows
 - [ ] Edge cases are tested
 
 **Documentation:**
+
 - [ ] Code comments for complex logic
 - [ ] API documentation updated (if API changes)
 - [ ] README updated (if setup changes)
 - [ ] CHANGELOG updated (if applicable)
 
 **Security:**
+
 - [ ] No secrets in code
 - [ ] Input validation in place
 - [ ] SQL injection prevented (parameterized queries)
@@ -661,17 +688,20 @@ Acceptance Criteria Checklist:
 **Git workflow:**
 
 1. **Review changes:**
+
    ```bash
    git status
    git diff
    ```
 
 2. **Stage changes:**
+
    ```bash
    git add .
    ```
 
 3. **Commit with clear message:**
+
    ```bash
    git commit -m "feat(auth): implement password reset flow (STORY-003)
 
@@ -686,6 +716,7 @@ Acceptance Criteria Checklist:
    ```
 
 4. **Run tests one more time:**
+
    ```bash
    npm test
    ```
@@ -698,6 +729,7 @@ Acceptance Criteria Checklist:
 **Update sprint status:**
 
 Per `helpers.md#Update-Sprint-Status`:
+
 1. Find STORY-003 in sprint status YAML
 2. Update status to "completed"
 3. Add completion_date
@@ -706,10 +738,12 @@ Per `helpers.md#Update-Sprint-Status`:
 6. Save status file
 
 **Update story document** (if exists):
+
 ```markdown
 ## Progress Tracking
 
 **Status History:**
+
 - 2025-11-01: Created by Steve
 - 2025-11-02: Started by Amelia
 - 2025-11-04: Code complete, tests passing
@@ -718,6 +752,7 @@ Per `helpers.md#Update-Sprint-Status`:
 **Actual Effort:** 8 points (matched estimate)
 
 **Implementation Notes:**
+
 - Used bcrypt for token hashing
 - Implemented rate limiting (3 attempts per hour)
 - Email sending via SendGrid
@@ -756,6 +791,7 @@ Next: Create pull request or continue with next story
 ## Recommend Next Steps
 
 **If more stories in sprint:**
+
 ```
 Story STORY-003 complete!
 
@@ -772,6 +808,7 @@ Or run /sprint-status to see full sprint progress
 ```
 
 **If last story in sprint:**
+
 ```
 ✓ Sprint 1 Complete!
 
@@ -787,6 +824,7 @@ Next: Start Sprint 2 or run sprint retrospective
 ```
 
 **If Level 0 (single story):**
+
 ```
 ✓ Story Complete!
 
@@ -809,21 +847,25 @@ Next: Deploy to production or continue with enhancements
 ## Tips for Effective Implementation
 
 **Start Small:**
+
 - Break story into smallest possible tasks
 - Complete one task fully before moving to next
 - Commit frequently
 
 **Test as You Go:**
+
 - Don't wait until end to test
 - Write tests alongside code
 - Fix issues immediately
 
 **Ask Questions:**
+
 - If acceptance criteria unclear, ask user
 - If technical approach uncertain, propose options
 - Don't make assumptions
 
 **Quality Over Speed:**
+
 - Working correctly > finishing quickly
 - Good tests > high coverage number
 - Clean code > clever code

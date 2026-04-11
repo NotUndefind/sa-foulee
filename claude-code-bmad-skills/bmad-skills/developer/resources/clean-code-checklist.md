@@ -7,22 +7,25 @@ A reference guide for writing clean, maintainable code. Use this checklist durin
 ### Variables
 
 **✓ Good:**
+
 ```javascript
-const userEmail = 'user@example.com';
+const userEmail = "user@example.com";
 const totalPrice = calculateTotal(items);
 const isAuthenticated = checkAuth();
 const MAX_RETRY_ATTEMPTS = 3;
 ```
 
 **✗ Bad:**
+
 ```javascript
-const e = 'user@example.com';
+const e = "user@example.com";
 const tp = calculateTotal(items);
 const auth = checkAuth();
 const max = 3;
 ```
 
 **Rules:**
+
 - Use descriptive, meaningful names
 - Use camelCase for variables in JavaScript/TypeScript
 - Use snake_case for variables in Python/Ruby
@@ -35,6 +38,7 @@ const max = 3;
 ### Functions
 
 **✓ Good:**
+
 ```javascript
 function calculateOrderTotal(items, taxRate) { ... }
 function validateEmailFormat(email) { ... }
@@ -43,6 +47,7 @@ function formatCurrency(amount) { ... }
 ```
 
 **✗ Bad:**
+
 ```javascript
 function calc(i, t) { ... }
 function validate(e) { ... }
@@ -51,6 +56,7 @@ function format(a) { ... }
 ```
 
 **Rules:**
+
 - Use verb phrases (calculate, validate, format, get, create, update, delete)
 - Function names should describe what they do
 - Use camelCase in JavaScript/TypeScript
@@ -60,6 +66,7 @@ function format(a) { ... }
 ### Classes and Components
 
 **✓ Good:**
+
 ```javascript
 class UserAuthenticationService { ... }
 class OrderProcessor { ... }
@@ -68,6 +75,7 @@ const ProductCard = () => { ... }
 ```
 
 **✗ Bad:**
+
 ```javascript
 class UAS { ... }
 class Processor { ... }
@@ -76,6 +84,7 @@ const Card = () => { ... }
 ```
 
 **Rules:**
+
 - Use PascalCase
 - Use nouns or noun phrases
 - Be descriptive and specific
@@ -88,6 +97,7 @@ const Card = () => { ... }
 Each function should do one thing and do it well.
 
 **✓ Good:**
+
 ```javascript
 function validateEmail(email) {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -99,19 +109,20 @@ function validatePassword(password) {
 }
 
 function createUser(email, password) {
-  if (!validateEmail(email)) throw new Error('Invalid email');
-  if (!validatePassword(password)) throw new Error('Invalid password');
+  if (!validateEmail(email)) throw new Error("Invalid email");
+  if (!validatePassword(password)) throw new Error("Invalid password");
   return database.users.insert({ email, password });
 }
 ```
 
 **✗ Bad:**
+
 ```javascript
 function createUser(email, password) {
   // Doing too many things: validation, hashing, database insert
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) throw new Error('Invalid email');
-  if (password.length < 8) throw new Error('Invalid password');
+  if (!emailRegex.test(email)) throw new Error("Invalid email");
+  if (password.length < 8) throw new Error("Invalid password");
   const hashedPassword = bcrypt.hashSync(password, 10);
   return database.users.insert({ email, password: hashedPassword });
 }
@@ -122,6 +133,7 @@ function createUser(email, password) {
 Keep functions small - under 50 lines is ideal, under 20 is better.
 
 **✓ Good:**
+
 ```javascript
 function processOrder(order) {
   validateOrder(order);
@@ -132,6 +144,7 @@ function processOrder(order) {
 ```
 
 **✗ Bad:**
+
 ```javascript
 function processOrder(order) {
   // 150 lines of validation, calculation, payment, and database operations
@@ -144,6 +157,7 @@ function processOrder(order) {
 Limit to 3-4 parameters. Use objects for more.
 
 **✓ Good:**
+
 ```javascript
 function createUser({ email, name, age, address, phone }) { ... }
 
@@ -151,6 +165,7 @@ function calculatePrice(basePrice, options) { ... }
 ```
 
 **✗ Bad:**
+
 ```javascript
 function createUser(email, name, age, street, city, state, zip, phone) { ... }
 
@@ -162,6 +177,7 @@ function calculatePrice(base, tax, discount, shipping, handling, fees) { ... }
 Reduce nesting by returning early.
 
 **✓ Good:**
+
 ```javascript
 function processPayment(order) {
   if (!order) return null;
@@ -173,6 +189,7 @@ function processPayment(order) {
 ```
 
 **✗ Bad:**
+
 ```javascript
 function processPayment(order) {
   if (order) {
@@ -191,34 +208,36 @@ function processPayment(order) {
 Extract repeated code into functions.
 
 **✓ Good:**
+
 ```javascript
 function formatCurrency(amount) {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD'
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
   }).format(amount);
 }
 
 const subtotal = formatCurrency(49.99);
-const tax = formatCurrency(4.50);
+const tax = formatCurrency(4.5);
 const total = formatCurrency(54.49);
 ```
 
 **✗ Bad:**
+
 ```javascript
-const subtotal = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD'
+const subtotal = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
 }).format(49.99);
 
-const tax = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD'
-}).format(4.50);
+const tax = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+}).format(4.5);
 
-const total = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD'
+const total = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
 }).format(54.49);
 ```
 
@@ -229,6 +248,7 @@ const total = new Intl.NumberFormat('en-US', {
 Never swallow errors silently.
 
 **✓ Good:**
+
 ```javascript
 async function fetchUser(userId) {
   try {
@@ -238,13 +258,14 @@ async function fetchUser(userId) {
     if (error.response?.status === 404) {
       throw new UserNotFoundError(userId);
     }
-    logger.error('Failed to fetch user', { userId, error });
-    throw new APIError('Failed to fetch user', error);
+    logger.error("Failed to fetch user", { userId, error });
+    throw new APIError("Failed to fetch user", error);
   }
 }
 ```
 
 **✗ Bad:**
+
 ```javascript
 async function fetchUser(userId) {
   try {
@@ -261,19 +282,21 @@ async function fetchUser(userId) {
 Validate inputs early and explicitly.
 
 **✓ Good:**
+
 ```javascript
 function calculateDiscount(price, percent) {
-  if (typeof price !== 'number' || price < 0) {
-    throw new Error('Price must be a non-negative number');
+  if (typeof price !== "number" || price < 0) {
+    throw new Error("Price must be a non-negative number");
   }
-  if (typeof percent !== 'number' || percent < 0 || percent > 100) {
-    throw new Error('Percent must be between 0 and 100');
+  if (typeof percent !== "number" || percent < 0 || percent > 100) {
+    throw new Error("Percent must be between 0 and 100");
   }
   return price * (percent / 100);
 }
 ```
 
 **✗ Bad:**
+
 ```javascript
 function calculateDiscount(price, percent) {
   return price * (percent / 100); // No validation!
@@ -285,23 +308,25 @@ function calculateDiscount(price, percent) {
 ### Comment the "Why" Not the "What"
 
 **✓ Good:**
+
 ```javascript
 // Using exponential backoff to prevent API overwhelm during outages
 const delay = Math.pow(2, attempt) * 1000;
 
 // Legacy accounts (pre-2023) are grandfathered into old pricing
-if (account.createdAt < new Date('2023-01-01')) {
+if (account.createdAt < new Date("2023-01-01")) {
   return LEGACY_PRICING;
 }
 ```
 
 **✗ Bad:**
+
 ```javascript
 // Calculate delay
 const delay = Math.pow(2, attempt) * 1000;
 
 // Check if date is before 2023
-if (account.createdAt < new Date('2023-01-01')) {
+if (account.createdAt < new Date("2023-01-01")) {
   return LEGACY_PRICING;
 }
 ```
@@ -309,23 +334,26 @@ if (account.createdAt < new Date('2023-01-01')) {
 ### Avoid Obvious Comments
 
 **✓ Good:**
+
 ```javascript
 // Complicated logic that needs explanation
 const result = complexCalculation();
 ```
 
 **✗ Bad:**
+
 ```javascript
 // Increment i
 i++;
 
 // Set name to John
-const name = 'John';
+const name = "John";
 ```
 
 ### Remove Dead Code and Commented Code
 
 **✓ Good:**
+
 ```javascript
 function processOrder(order) {
   validateOrder(order);
@@ -334,6 +362,7 @@ function processOrder(order) {
 ```
 
 **✗ Bad:**
+
 ```javascript
 function processOrder(order) {
   validateOrder(order);
@@ -377,6 +406,7 @@ Keep files under 300 lines. Split large files into smaller modules.
 ### Module Exports
 
 **✓ Good:**
+
 ```javascript
 // dateUtils.js
 export function formatDate(date) { ... }
@@ -385,6 +415,7 @@ export const DATE_FORMAT = 'YYYY-MM-DD';
 ```
 
 **✗ Bad:**
+
 ```javascript
 // dateUtils.js
 export default {
@@ -409,6 +440,7 @@ Follow Conventional Commits format:
 ```
 
 **Types:**
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `refactor`: Code refactoring
@@ -417,6 +449,7 @@ Follow Conventional Commits format:
 - `chore`: Maintenance
 
 **Examples:**
+
 ```
 feat(auth): add password reset functionality
 
@@ -437,6 +470,7 @@ docs(readme): update installation instructions
 - Commit frequently (at least daily)
 
 **✓ Good:**
+
 ```
 feat(auth): add User model
 feat(auth): add login endpoint
@@ -445,6 +479,7 @@ test(auth): add unit tests for auth service
 ```
 
 **✗ Bad:**
+
 ```
 feat(auth): complete entire authentication system
 # (One massive commit with 50+ file changes)
@@ -474,6 +509,7 @@ When writing code, ask yourself:
 **The Golden Rule:** Write code that your future self (or another developer) will thank you for.
 
 Clean code is:
+
 - **Readable** - Easy to understand
 - **Maintainable** - Easy to modify
 - **Testable** - Easy to test

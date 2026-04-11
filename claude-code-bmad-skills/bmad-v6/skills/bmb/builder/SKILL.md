@@ -51,6 +51,7 @@ Builder module workflows:
 ## Integration Points
 
 **You work with:**
+
 - All BMAD agents - Extend their capabilities
 - BMad Master - Register new skills and commands
 - Project teams - Understand domain-specific needs
@@ -58,6 +59,7 @@ Builder module workflows:
 ## Critical Actions (On Load)
 
 When activated:
+
 1. Load project config per `helpers.md#Load-Project-Config`
 2. Understand what custom capability is needed
 3. Determine if creating agent, workflow, or template
@@ -68,6 +70,7 @@ When activated:
 **Purpose:** Create domain-specific agents (e.g., QA Engineer, DevOps Engineer, Data Scientist)
 
 **Process:**
+
 1. Identify role and responsibilities
 2. Define workflows the agent executes
 3. Specify integration points
@@ -75,6 +78,7 @@ When activated:
 5. Generate SKILL.md file following BMAD patterns
 
 **Template structure:**
+
 ```markdown
 ---
 skill_id: custom-[module]-[role]
@@ -91,24 +95,30 @@ module: [module]
 **Function:** [What this agent does]
 
 ## Responsibilities
+
 - [Responsibility 1]
 - [Responsibility 2]
 
 ## Core Principles
+
 1. **[Principle 1]** - [Description]
 2. **[Principle 2]** - [Description]
 
 ## Available Commands
+
 - **/[command-name]** - [Description]
 
 ## Workflow Execution
+
 **All workflows follow helpers.md patterns:**
 [Standard workflow pattern]
 
 ## Integration Points
+
 **You work with:** [Other agents/tools]
 
 ## Notes for LLMs
+
 - Use TodoWrite to track tasks
 - Reference helpers.md sections
 - [Domain-specific guidance]
@@ -119,6 +129,7 @@ module: [module]
 **Purpose:** Create domain-specific workflows (e.g., /deploy, /security-audit, /data-analysis)
 
 **Process:**
+
 1. Identify workflow purpose
 2. Define inputs and outputs
 3. Break into steps
@@ -126,6 +137,7 @@ module: [module]
 5. Generate command .md file
 
 **Template structure:**
+
 ```markdown
 You are the [Agent Name], executing the **[Workflow Name]** workflow.
 
@@ -139,6 +151,7 @@ You are the [Agent Name], executing the **[Workflow Name]** workflow.
 **Duration:** [Estimated time]
 
 ## Pre-Flight
+
 1. Load context per helpers.md
 2. [Workflow-specific setup]
 
@@ -147,18 +160,23 @@ You are the [Agent Name], executing the **[Workflow Name]** workflow.
 Use TodoWrite to track: [List of steps]
 
 ## Part 1: [Step Name]
+
 [Step details]
 
 ## Part 2: [Step Name]
+
 [Step details]
 
 ## Generate Output
+
 [Output generation instructions]
 
 ## Update Status
+
 Per helpers.md#Update-Workflow-Status
 
 ## Recommend Next Steps
+
 [What comes after this workflow]
 ```
 
@@ -167,6 +185,7 @@ Per helpers.md#Update-Workflow-Status
 **Purpose:** Create domain-specific document templates
 
 **Process:**
+
 1. Identify document type
 2. Define sections needed
 3. List variables for substitution
@@ -174,6 +193,7 @@ Per helpers.md#Update-Workflow-Status
 5. Test template substitution
 
 **Template structure:**
+
 ```markdown
 # [Document Title]: {{project_name}}
 
@@ -182,9 +202,11 @@ Per helpers.md#Update-Workflow-Status
 **Version:** {{version}}
 
 ## Section 1
+
 {{section_1_content}}
 
 ## Section 2
+
 {{section_2_content}}
 
 [Additional sections...]
@@ -193,12 +215,14 @@ Per helpers.md#Update-Workflow-Status
 ## Domain Customization Examples
 
 **QA Engineering:**
+
 - QA Engineer agent
 - /create-test-plan workflow
 - /execute-tests workflow
 - Test plan template
 
 **DevOps:**
+
 - DevOps Engineer agent
 - /deploy workflow
 - /rollback workflow
@@ -206,12 +230,14 @@ Per helpers.md#Update-Workflow-Status
 - Deployment runbook template
 
 **Data Science:**
+
 - Data Scientist agent
 - /data-analysis workflow
 - /model-training workflow
 - Analysis report template
 
 **Security:**
+
 - Security Engineer agent
 - /security-audit workflow
 - /penetration-test workflow

@@ -51,6 +51,7 @@ find ~/.claude/skills/bmad-skills -name "*.py" -exec chmod +x {} \;
 ```
 
 **Directory structure:**
+
 ```
 ~/.claude/
 └── skills/
@@ -83,6 +84,7 @@ find .claude/skills/bmad-skills -name "*.sh" -exec chmod +x {} \;
 ```
 
 **Directory structure:**
+
 ```
 project/
 └── .claude/
@@ -257,7 +259,7 @@ For a Level 1 project, start with "Create a tech spec" to define your API endpoi
 
 For Level 0-1 projects, we create a tech spec instead of a full PRD:
 
-```
+````
 User: Create a tech spec for this API
 
 Claude: I'll help you create a technical specification for the Todo REST API.
@@ -284,9 +286,10 @@ Let me define the Todo model:
   "updated_at": "datetime",
   "user_id": "uuid"
 }
-```
+````
 
 Does this look correct?
+
 > Yes, add a due_date field too
 
 Updated model includes due_date: datetime?
@@ -295,24 +298,26 @@ Updated model includes due_date: datetime?
 
 Based on CRUD operations:
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | /todos | List all todos (filterable) |
-| POST | /todos | Create a new todo |
-| GET | /todos/:id | Get a specific todo |
-| PUT | /todos/:id | Update a todo |
-| DELETE | /todos/:id | Delete a todo |
-| PATCH | /todos/:id/complete | Toggle completion |
+| Method | Endpoint            | Description                 |
+| ------ | ------------------- | --------------------------- |
+| GET    | /todos              | List all todos (filterable) |
+| POST   | /todos              | Create a new todo           |
+| GET    | /todos/:id          | Get a specific todo         |
+| PUT    | /todos/:id          | Update a todo               |
+| DELETE | /todos/:id          | Delete a todo               |
+| PATCH  | /todos/:id/complete | Toggle completion           |
 
 ## Technology Stack
 
 For a simple REST API, I recommend:
+
 - Runtime: Node.js with Express
 - Database: SQLite (simple) or PostgreSQL (scalable)
 - Auth: JWT tokens
 - Validation: Joi or Zod
 
 Which stack do you prefer?
+
 > Node.js, SQLite, JWT, Zod
 
 ## Output
@@ -322,6 +327,7 @@ Updating workflow status...
 
 Technical specification complete!
 Say "What's my status?" to see next steps.
+
 ```
 
 #### Step 4: Sprint Planning
@@ -329,6 +335,7 @@ Say "What's my status?" to see next steps.
 Now let's plan the implementation:
 
 ```
+
 User: Create a sprint plan for this project
 
 Claude: I'll help plan your sprint for the Todo REST API.
@@ -372,12 +379,14 @@ For a single developer, split into 2 sprints:
 **Sprint 2 (8 points):** Stories 4, 5, 6
 
 Accept this sprint plan?
+
 > Yes
 
 Saving to: docs/sprint-status.yaml
 Creating story files...
 
 Sprint plan complete! Say "Implement STORY-001" to start coding.
+
 ```
 
 **Note on Subagent Execution:** For complex sprint planning (Level 2+), the scrum-master skill can launch parallel subagents to break down multiple epics simultaneously. Each subagent works independently with its own 200K token context, writing results to `bmad/outputs/` for synthesis.
@@ -387,6 +396,7 @@ Sprint plan complete! Say "Implement STORY-001" to start coding.
 Now let's implement the first story:
 
 ```
+
 User: Implement STORY-001
 
 Claude: ## Story: Setup project structure and dependencies
@@ -395,6 +405,7 @@ Claude: ## Story: Setup project structure and dependencies
 **Status:** In Progress
 
 ### Acceptance Criteria
+
 - [ ] Initialize npm project with package.json
 - [ ] Install Express, SQLite3, Zod, JWT dependencies
 - [ ] Create folder structure (src/routes, src/models, src/middleware)
@@ -410,12 +421,14 @@ Let me set up the project structure...
 ### Verification
 
 Running the server:
+
 ```bash
 npm install
 npm run dev
 ```
 
 Testing health check:
+
 ```bash
 curl http://localhost:3000/health
 # {"status":"ok","timestamp":"2025-01-15T10:30:00Z"}
@@ -429,6 +442,7 @@ Updated: docs/stories/STORY-001.md (status: complete)
 Updated: docs/sprint-status.yaml
 
 Next story: Say "Implement STORY-002" to continue.
+
 ```
 
 ---
@@ -440,29 +454,31 @@ BMAD skills leverage parallel subagents to maximize efficiency and utilize the f
 ### How Subagents Work
 
 ```
+
 ┌─────────────────────────────────┐
-│   Main Skill (Orchestrator)    │
-│   - Decomposes task             │
-│   - Launches parallel agents    │
-│   - Synthesizes results         │
+│ Main Skill (Orchestrator) │
+│ - Decomposes task │
+│ - Launches parallel agents │
+│ - Synthesizes results │
 └───────────────┬─────────────────┘
-                │
-    ┌───────────┼───────────┐
-    ▼           ▼           ▼
-┌───────┐   ┌───────┐   ┌───────┐
-│Agent 1│   │Agent 2│   │Agent 3│
-│200K   │   │200K   │   │200K   │
-│Context│   │Context│   │Context│
-└───────┘   └───────┘   └───────┘
-    │           │           │
-    └───────────┴───────────┘
-                │
-    ┌───────────▼───────────┐
-    │   bmad/outputs/       │
-    │   - agent-1-result.md │
-    │   - agent-2-result.md │
-    │   - agent-3-result.md │
-    └───────────────────────┘
+│
+┌───────────┼───────────┐
+▼ ▼ ▼
+┌───────┐ ┌───────┐ ┌───────┐
+│Agent 1│ │Agent 2│ │Agent 3│
+│200K │ │200K │ │200K │
+│Context│ │Context│ │Context│
+└───────┘ └───────┘ └───────┘
+│ │ │
+└───────────┴───────────┘
+│
+┌───────────▼───────────┐
+│ bmad/outputs/ │
+│ - agent-1-result.md │
+│ - agent-2-result.md │
+│ - agent-3-result.md │
+└───────────────────────┘
+
 ```
 
 ### When Subagents Are Used
@@ -480,15 +496,17 @@ BMAD skills leverage parallel subagents to maximize efficiency and utilize the f
 Skills coordinate through shared directories:
 
 ```
+
 bmad/
-├── context/           # Shared context for subagents
-│   ├── config.yaml   # Project configuration
-│   ├── requirements.md  # Current requirements
-│   └── tech-stack.md    # Technical constraints
-└── outputs/           # Subagent results
-    ├── market-research.md
-    ├── competitor-analysis.md
-    └── technical-feasibility.md
+├── context/ # Shared context for subagents
+│ ├── config.yaml # Project configuration
+│ ├── requirements.md # Current requirements
+│ └── tech-stack.md # Technical constraints
+└── outputs/ # Subagent results
+├── market-research.md
+├── competitor-analysis.md
+└── technical-feasibility.md
+
 ```
 
 **Example:** When creating a PRD, the product-manager skill:
@@ -503,9 +521,11 @@ bmad/
 You can explicitly request parallel execution:
 
 ```
+
 User: Research the market, competitors, and technical feasibility in parallel
 
 Claude: I'll launch 3 parallel research agents:
+
 - Agent 1: Market research
 - Agent 2: Competitor analysis
 - Agent 3: Technical feasibility study
@@ -513,6 +533,7 @@ Claude: I'll launch 3 parallel research agents:
 [Launches 3 subagents using Task tool]
 [Monitors outputs in bmad/outputs/]
 [Synthesizes results into product brief]
+
 ```
 
 ---
@@ -526,18 +547,22 @@ BMAD adapts its workflow based on your project's complexity:
 **Example:** Bug fix, config change, single file update
 
 ```
+
 User: Initialize BMAD
+
 > Project: Fix login timeout bug
 > Type: other
 > Level: 0
 
 User: Create a tech spec
+
 > - Issue: Session expires after 5 minutes
 > - Fix: Update SESSION_TIMEOUT to 3600
 > - Files: config/auth.js
 
 User: Implement STORY-001
 [Claude implements the fix directly]
+
 ```
 
 **Required workflow:** Tech Spec → Implementation
@@ -553,13 +578,16 @@ User: Implement STORY-001
 **Example:** User authentication system, dashboard module, API integration
 
 ```
+
 User: Initialize BMAD
+
 > Level: 2
 
-User: Create a product brief    # Optional but recommended
-User: Create a PRD               # Required - full requirements
-User: Design the architecture    # Required - system design
-User: Plan the sprint           # Required - break into sprints
+User: Create a product brief # Optional but recommended
+User: Create a PRD # Required - full requirements
+User: Design the architecture # Required - system design
+User: Plan the sprint # Required - break into sprints
+
 ```
 
 **Required workflow:** PRD → Architecture → Sprint Planning → Implementation
@@ -581,6 +609,7 @@ User: Plan the sprint           # Required - break into sprints
 Use Creative Intelligence before requirements:
 
 ```
+
 User: Brainstorm offline sync strategies using SCAMPER and Six Thinking Hats
 
 Claude: I'll launch parallel brainstorming sessions using different techniques.
@@ -596,6 +625,7 @@ Output saved to: docs/brainstorm-offline-sync.md
 User: Research competitive offline-first mobile apps in parallel with technical feasibility
 
 Claude: Launching 2 research agents:
+
 - Agent 1: Competitor analysis
 - Agent 2: Technical feasibility study
 
@@ -605,6 +635,7 @@ Output saved to: docs/research-offline-sync.md
 
 User: Create a product brief
 [Now informed by research and brainstorming]
+
 ```
 
 ### Design-First Approach
@@ -612,13 +643,15 @@ User: Create a product brief
 Include UX design early:
 
 ```
+
 User: Create a product brief
 User: Create a PRD
-User: Design the UX for all main screens  # Before architecture
+User: Design the UX for all main screens # Before architecture
 
 Claude: I'll create UX designs for your product.
 
 Based on your PRD, I'll design in parallel:
+
 - Agent 1: User flows
 - Agent 2: Wireframes for main screens
 - Agent 3: Component library
@@ -630,6 +663,7 @@ Output saved to: docs/ux-design.md
 
 User: Design the system architecture
 [Architecture informed by UX decisions]
+
 ```
 
 ### Custom Agent Workflow
@@ -637,18 +671,22 @@ User: Design the system architecture
 Create domain-specific agents:
 
 ```
+
 User: Create a custom QA Engineer skill
 
 Claude: What type of agent do you want to create?
+
 > QA Engineer
 
 What are the agent's responsibilities?
+
 > - Test plan creation
 > - Test case design
 > - Bug report writing
 > - Coverage analysis
 
 What natural language triggers should activate it?
+
 > "Create test plan", "Generate test cases", "Run coverage report"
 
 Creating custom skill...
@@ -656,6 +694,7 @@ Creating custom skill...
 Output saved to: ~/.claude/skills/bmad-skills/qa-engineer/SKILL.md
 
 Restart Claude Code to load the new skill.
+
 ```
 
 ---
@@ -705,25 +744,27 @@ Now that you have BMAD installed and understand the basics:
 After initialization, your project will have:
 
 ```
+
 your-project/
-├── CLAUDE.md                # Project configuration and skill triggers
+├── CLAUDE.md # Project configuration and skill triggers
 ├── bmad/
-│   ├── config.yaml         # BMAD configuration
-│   ├── context/            # Shared context for subagents
-│   │   ├── requirements.md # Current requirements
-│   │   └── tech-stack.md   # Technical constraints
-│   └── outputs/            # Subagent results
-│       ├── research-*.md   # Research outputs
-│       └── design-*.md     # Design outputs
+│ ├── config.yaml # BMAD configuration
+│ ├── context/ # Shared context for subagents
+│ │ ├── requirements.md # Current requirements
+│ │ └── tech-stack.md # Technical constraints
+│ └── outputs/ # Subagent results
+│ ├── research-_.md # Research outputs
+│ └── design-_.md # Design outputs
 └── docs/
-    ├── bmm-workflow-status.yaml  # Phase tracking
-    ├── sprint-status.yaml        # Sprint tracking (Phase 4)
-    ├── tech-spec.md              # or prd.md for Level 2+
-    ├── architecture.md           # Level 2+
-    └── stories/
-        ├── STORY-001.md
-        ├── STORY-002.md
-        └── ...
+├── bmm-workflow-status.yaml # Phase tracking
+├── sprint-status.yaml # Sprint tracking (Phase 4)
+├── tech-spec.md # or prd.md for Level 2+
+├── architecture.md # Level 2+
+└── stories/
+├── STORY-001.md
+├── STORY-002.md
+└── ...
+
 ```
 
 ---
@@ -735,3 +776,4 @@ your-project/
 Check the [Troubleshooting Guide](./troubleshooting) or [open an issue](https://github.com/aj-geddes/claude-code-bmad-skills/issues)
 
 </div>
+```

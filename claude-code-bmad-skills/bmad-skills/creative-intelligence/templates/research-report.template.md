@@ -12,6 +12,7 @@
 **Research Objective:** [What question(s) were we trying to answer?]
 
 **Key Findings:**
+
 1. [Primary finding in one sentence]
 2. [Secondary finding in one sentence]
 3. [Tertiary finding in one sentence]
@@ -27,11 +28,13 @@
 ### Objectives
 
 **Primary Questions:**
+
 1. [Question 1]
 2. [Question 2]
 3. [Question 3]
 
 **Secondary Questions:**
+
 - [Question A]
 - [Question B]
 - [Question C]
@@ -39,10 +42,12 @@
 ### Scope Boundaries
 
 **In Scope:**
+
 - [What was included]
 - [What was included]
 
 **Out of Scope:**
+
 - [What was excluded and why]
 - [What was excluded and why]
 
@@ -59,11 +64,13 @@
 **Research Type:** [Primary / Secondary / Mixed]
 
 **Methods Used:**
+
 - [Method 1: e.g., Web search analysis]
 - [Method 2: e.g., Competitor website review]
 - [Method 3: e.g., Documentation analysis]
 
 **Tools Used:**
+
 - [Tool 1: e.g., WebSearch]
 - [Tool 2: e.g., WebFetch]
 - [Tool 3: e.g., Grep for codebase analysis]
@@ -71,6 +78,7 @@
 ### Data Sources
 
 **Primary Sources:**
+
 1. [Source name and URL/location]
    - Type: [Company site, Industry report, etc.]
    - Reliability: [High/Medium/Low]
@@ -82,10 +90,12 @@
    - Date: [Publication date]
 
 **Secondary Sources:**
+
 - [Source with brief description]
 - [Source with brief description]
 
 **Source Limitations:**
+
 - [Potential bias or limitation]
 - [Data gaps or age concerns]
 
@@ -98,17 +108,20 @@
 **Summary:** [2-3 sentence overview of this finding]
 
 **Details:**
+
 - [Specific data point or observation]
 - [Specific data point or observation]
 - [Specific data point or observation]
 
 **Supporting Evidence:**
+
 ```
 [Quote, statistic, or data visualization]
 Source: [Attribution]
 ```
 
 **Implications:**
+
 - [What this means for the project]
 - [What this means for the project]
 
@@ -121,17 +134,20 @@ Source: [Attribution]
 **Summary:** [2-3 sentence overview of this finding]
 
 **Details:**
+
 - [Specific data point or observation]
 - [Specific data point or observation]
 - [Specific data point or observation]
 
 **Supporting Evidence:**
+
 ```
 [Quote, statistic, or data visualization]
 Source: [Attribution]
 ```
 
 **Implications:**
+
 - [What this means for the project]
 - [What this means for the project]
 
@@ -147,18 +163,19 @@ Source: [Attribution]
 
 ## Competitive Analysis Matrix
 
-*(Include if research type is Competitive)*
+_(Include if research type is Competitive)_
 
-| Feature/Aspect | Competitor A | Competitor B | Competitor C | Competitor D | Our Position |
-|----------------|--------------|--------------|--------------|--------------|--------------|
-| [Feature 1] | [Value] | [Value] | [Value] | [Value] | [Value/Gap] |
-| [Feature 2] | [Value] | [Value] | [Value] | [Value] | [Value/Gap] |
-| [Feature 3] | [Value] | [Value] | [Value] | [Value] | [Value/Gap] |
-| [Feature 4] | [Value] | [Value] | [Value] | [Value] | [Value/Gap] |
-| **Pricing** | [Price] | [Price] | [Price] | [Price] | [Price/Gap] |
-| **Market Position** | [Position] | [Position] | [Position] | [Position] | [Position] |
+| Feature/Aspect      | Competitor A | Competitor B | Competitor C | Competitor D | Our Position |
+| ------------------- | ------------ | ------------ | ------------ | ------------ | ------------ |
+| [Feature 1]         | [Value]      | [Value]      | [Value]      | [Value]      | [Value/Gap]  |
+| [Feature 2]         | [Value]      | [Value]      | [Value]      | [Value]      | [Value/Gap]  |
+| [Feature 3]         | [Value]      | [Value]      | [Value]      | [Value]      | [Value/Gap]  |
+| [Feature 4]         | [Value]      | [Value]      | [Value]      | [Value]      | [Value/Gap]  |
+| **Pricing**         | [Price]      | [Price]      | [Price]      | [Price]      | [Price/Gap]  |
+| **Market Position** | [Position]   | [Position]   | [Position]   | [Position]   | [Position]   |
 
 **Key Competitive Insights:**
+
 - [Insight 1]
 - [Insight 2]
 - [Insight 3]
@@ -167,34 +184,40 @@ Source: [Attribution]
 
 ## Market Size & Opportunity
 
-*(Include if research type is Market)*
+_(Include if research type is Market)_
 
 ### Market Sizing
 
 **Total Addressable Market (TAM):** [$ value]
+
 - Definition: [How TAM is defined]
 - Source: [Data source]
 
 **Serviceable Addressable Market (SAM):** [$ value]
+
 - Definition: [How SAM is defined]
 - Source: [Data source]
 
 **Serviceable Obtainable Market (SOM):** [$ value]
+
 - Definition: [Realistic capture estimate]
 - Basis: [Rationale for SOM estimate]
 
 ### Growth Trends
 
 **Historical Growth:**
+
 - [Time period]: [Growth rate] CAGR
 - [Time period]: [Growth rate] CAGR
 
 **Projected Growth:**
+
 - [Time period]: [Growth rate] CAGR
 - [Time period]: [Growth rate] CAGR
 - Source: [Data source]
 
 **Growth Drivers:**
+
 1. [Driver 1 and explanation]
 2. [Driver 2 and explanation]
 3. [Driver 3 and explanation]
@@ -203,17 +226,18 @@ Source: [Attribution]
 
 ## Technical Assessment
 
-*(Include if research type is Technical)*
+_(Include if research type is Technical)_
 
 ### Technology Evaluation
 
-| Technology | Pros | Cons | Adoption | Verdict |
-|------------|------|------|----------|---------|
-| [Tech A] | [Pros] | [Cons] | [High/Med/Low] | [Recommend/Consider/Avoid] |
-| [Tech B] | [Pros] | [Cons] | [High/Med/Low] | [Recommend/Consider/Avoid] |
-| [Tech C] | [Pros] | [Cons] | [High/Med/Low] | [Recommend/Consider/Avoid] |
+| Technology | Pros   | Cons   | Adoption       | Verdict                    |
+| ---------- | ------ | ------ | -------------- | -------------------------- |
+| [Tech A]   | [Pros] | [Cons] | [High/Med/Low] | [Recommend/Consider/Avoid] |
+| [Tech B]   | [Pros] | [Cons] | [High/Med/Low] | [Recommend/Consider/Avoid] |
+| [Tech C]   | [Pros] | [Cons] | [High/Med/Low] | [Recommend/Consider/Avoid] |
 
 **Technical Recommendations:**
+
 1. [Primary recommendation with rationale]
 2. [Secondary recommendation with rationale]
 
@@ -221,17 +245,19 @@ Source: [Attribution]
 
 ## User Insights
 
-*(Include if research type is User)*
+_(Include if research type is User)_
 
 ### User Segments Identified
 
 **Segment 1: [Segment Name]**
+
 - Size: [Percentage or number]
 - Characteristics: [Key traits]
 - Needs: [Primary needs]
 - Pain Points: [Main frustrations]
 
 **Segment 2: [Segment Name]**
+
 - Size: [Percentage or number]
 - Characteristics: [Key traits]
 - Needs: [Primary needs]
@@ -352,11 +378,13 @@ Source: [Attribution]
 ### Additional Research Needed
 
 **Questions Requiring Further Investigation:**
+
 1. [Question that emerged from research]
 2. [Question that emerged from research]
 3. [Question that emerged from research]
 
 **Recommended Research Methods:**
+
 - [Method for unanswered questions]
 - [Method for unanswered questions]
 
@@ -371,10 +399,11 @@ Source: [Attribution]
 ### Appendix B: Source List
 
 **Complete Source Bibliography:**
+
 1. [Full citation with URL and access date]
 2. [Full citation with URL and access date]
 3. [Full citation with URL and access date]
-[Continue for all sources...]
+   [Continue for all sources...]
 
 ### Appendix C: Methodology Notes
 

@@ -10,17 +10,18 @@ This document defines standard patterns for leveraging parallel subagents across
 
 BMAD skills use these subagent patterns via the `Task` tool:
 
-| Subagent Type | Model | Tools | Best For |
-|---------------|-------|-------|----------|
-| `general-purpose` | Inherits | All tools | Research, implementation, analysis |
-| `Explore` | Haiku (fast) | Read, Grep, Glob (read-only) | Fast codebase exploration |
-| `Plan` | Inherits | Read-only tools | Architecture planning, design decisions |
-| `Bash` | Inherits | Bash only | Terminal commands, script execution |
+| Subagent Type     | Model        | Tools                        | Best For                                |
+| ----------------- | ------------ | ---------------------------- | --------------------------------------- |
+| `general-purpose` | Inherits     | All tools                    | Research, implementation, analysis      |
+| `Explore`         | Haiku (fast) | Read, Grep, Glob (read-only) | Fast codebase exploration               |
+| `Plan`            | Inherits     | Read-only tools              | Architecture planning, design decisions |
+| `Bash`            | Inherits     | Bash only                    | Terminal commands, script execution     |
 
 ## Standard Subagent Invocation
 
 ```markdown
 Use the Task tool with:
+
 - subagent_type: "general-purpose" (or "Explore", "Plan", "Bash")
 - run_in_background: true (for parallel execution)
 - isolation: "worktree" (optional, for parallel story implementation to avoid file conflicts)
@@ -55,6 +56,7 @@ When gathering information from multiple sources:
 ```
 
 **Example:** Business Analyst researching a product:
+
 - Agent 1: Market size and trends
 - Agent 2: Competitive landscape
 - Agent 3: Technical feasibility
@@ -85,6 +87,7 @@ When creating multi-section documents:
 ```
 
 **Example:** Product Manager creating PRD:
+
 - Agent 1: Functional Requirements section
 - Agent 2: Non-Functional Requirements section
 - Agent 3: Epics and User Stories
@@ -116,6 +119,7 @@ When designing system components:
 ```
 
 **Example:** System Architect designing system:
+
 - Agent 1: Authentication/Authorization design
 - Agent 2: Data layer and storage design
 - Agent 3: API layer design
@@ -154,23 +158,29 @@ Each subagent prompt should be self-contained:
 ## Task: [Specific Task Name]
 
 ## Context
+
 [Provide all necessary context - the subagent cannot see main conversation]
+
 - Project: {{project_name}}
 - Phase: {{current_phase}}
 - Related docs: [list paths to read]
 
 ## Objective
+
 [Clear, specific goal for this subagent]
 
 ## Constraints
+
 - [Any limitations or requirements]
 - Output format: [specify expected output]
 
 ## Deliverables
+
 1. [Specific deliverable 1]
 2. [Specific deliverable 2]
 
 ## Output Location
+
 Write results to: [specific file path]
 ```
 
@@ -223,41 +233,49 @@ for agent in agents:
 ## Skill-Specific Patterns
 
 ### Business Analyst
+
 - **Research Phase**: 4 parallel agents for market/competitive/tech/user research
 - **Interview Phase**: Sequential (interactive with user)
 - **Document Phase**: 3 parallel agents for different brief sections
 
 ### Product Manager
+
 - **Requirements Gathering**: Sequential (interactive)
 - **PRD Generation**: 4 parallel agents for FR/NFR/Epics/Stories sections
 - **Prioritization**: 1 agent per epic for RICE scoring
 
 ### System Architect
+
 - **Requirements Analysis**: 2 parallel agents (FR analysis, NFR analysis)
 - **Component Design**: N parallel agents (one per major component)
 - **Integration Design**: Sequential (needs component outputs)
 
 ### Scrum Master
+
 - **Epic Breakdown**: N parallel agents (one per epic)
 - **Story Generation**: Parallel within each epic
 - **Sprint Planning**: Sequential (needs all stories)
 
 ### Developer
+
 - **Implementation**: Parallel for independent stories
 - **Testing**: Parallel test writing for different components
 - **Code Review**: Sequential per PR
 
 ### Creative Intelligence
+
 - **Brainstorming**: N parallel agents using different techniques
 - **Research**: 4+ parallel agents for different source types
 - **Synthesis**: Sequential (combines all findings)
 
 ### UX Designer
+
 - **Flow Design**: Parallel for independent user journeys
 - **Wireframing**: Parallel for different screens
 - **Accessibility**: Parallel checklist validation
 
 ### Builder
+
 - **Skill Creation**: Parallel for SKILL.md, scripts, templates, resources
 - **Validation**: Parallel validation of different components
 
@@ -265,22 +283,24 @@ for agent in agents:
 
 Each subagent has up to 1M tokens on Sonnet 4.6 / Opus 4.6 (200K on other models). Recommended budget allocation:
 
-| Activity | Token Budget |
-|----------|-------------|
-| Context loading | ~20K |
-| Research/exploration | ~500K |
-| Generation/writing | ~300K |
-| Verification | ~80K |
+| Activity             | Token Budget |
+| -------------------- | ------------ |
+| Context loading      | ~20K         |
+| Research/exploration | ~500K        |
+| Generation/writing   | ~300K        |
+| Verification         | ~80K         |
 
 ## Anti-Patterns
 
 **Don't:**
+
 - Launch agents for trivial tasks (<1K tokens of work)
 - Pass entire conversation history to subagents
 - Create deep chains of subagents calling subagents
 - Launch dependent tasks in parallel
 
 **Do:**
+
 - Bundle related small tasks into one agent
 - Write concise, focused prompts with just needed context
 - Keep subagent depth to 1 level when possible
@@ -304,6 +324,7 @@ Each skill's SKILL.md should include a "Subagent Strategy" section:
 ## Subagent Strategy
 
 This skill uses parallel subagents for:
+
 - [Task 1]: N agents for [purpose]
 - [Task 2]: N agents for [purpose]
 

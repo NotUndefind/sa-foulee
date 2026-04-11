@@ -15,11 +15,11 @@ BMAD Skills uses a modern configuration system with skill registry, hooks, and p
 
 BMAD Skills uses three primary configuration files:
 
-| File | Location | Purpose |
-|------|----------|---------|
-| Skill Registry | `bmad-skills/settings.json` | Skill definitions and hooks |
-| Project Config | `{project}/bmad/config.yaml` | Project-specific settings |
-| Workflow Status | `{project}/docs/bmm-workflow-status.yaml` | Progress tracking |
+| File            | Location                                  | Purpose                     |
+| --------------- | ----------------------------------------- | --------------------------- |
+| Skill Registry  | `bmad-skills/settings.json`               | Skill definitions and hooks |
+| Project Config  | `{project}/bmad/config.yaml`              | Project-specific settings   |
+| Workflow Status | `{project}/docs/bmm-workflow-status.yaml` | Progress tracking           |
 
 Project settings are created by the `/workflow-init` command and customize behavior for each project.
 
@@ -80,17 +80,17 @@ The skill registry (`bmad-skills/settings.json`) defines all available skills an
 
 All skills are automatically registered and available:
 
-| Skill | Phase | Purpose |
-|-------|-------|---------|
-| `bmad-orchestrator` | Core | Workflow initialization and status |
-| `business-analyst` | Phase 1 | Product discovery and analysis |
-| `product-manager` | Phase 2 | Requirements and planning |
-| `system-architect` | Phase 3 | System architecture design |
-| `scrum-master` | Phase 4 | Sprint planning |
-| `developer` | Phase 4 | Story implementation |
-| `ux-designer` | Cross-phase | UX design |
-| `creative-intelligence` | Cross-phase | Brainstorming and research |
-| `builder` | Meta | Create custom skills |
+| Skill                   | Phase       | Purpose                            |
+| ----------------------- | ----------- | ---------------------------------- |
+| `bmad-orchestrator`     | Core        | Workflow initialization and status |
+| `business-analyst`      | Phase 1     | Product discovery and analysis     |
+| `product-manager`       | Phase 2     | Requirements and planning          |
+| `system-architect`      | Phase 3     | System architecture design         |
+| `scrum-master`          | Phase 4     | Sprint planning                    |
+| `developer`             | Phase 4     | Story implementation               |
+| `ux-designer`           | Cross-phase | UX design                          |
+| `creative-intelligence` | Cross-phase | Brainstorming and research         |
+| `builder`               | Meta        | Create custom skills               |
 
 ### SKILL.md Format (Anthropic Specification)
 
@@ -98,19 +98,19 @@ Each skill follows the Anthropic specification with YAML frontmatter:
 
 ```yaml
 ---
-name: skill-name           # lowercase, hyphens, max 64 chars
-description: |             # max 1024 chars, include trigger words
+name: skill-name # lowercase, hyphens, max 64 chars
+description: | # max 1024 chars, include trigger words
   What it does AND when to use it. Include trigger
   phrases like "/command" or key actions.
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ---
-
 # Skill Name
 
 [Markdown content under 5K tokens]
 ```
 
 **Key Requirements:**
+
 - **name:** lowercase with hyphens, max 64 characters
 - **description:** Max 1024 characters, include trigger words for activation
 - **allowed-tools:** List of permitted Claude Code tools
@@ -127,18 +127,18 @@ BMAD Skills uses hooks to integrate with Claude Code's lifecycle events. Hooks a
 
 The current Claude Code hook system supports the following events:
 
-| Event | When it Fires | Can Block? |
-|-------|--------------|-----------|
-| `SessionStart` | Session begins or resumes | No |
-| `UserPromptSubmit` | User submits a prompt | Yes |
-| `PreToolUse` | Before any tool executes | Yes |
-| `PostToolUse` | After a tool completes | No |
-| `SubagentStart` | Subagent spawned | No |
-| `SubagentStop` | Subagent completes | Yes |
-| `TaskCompleted` | Task marked complete | Yes |
-| `Stop` | Claude finishes responding | Yes |
-| `PreCompact` | Before context compaction | No |
-| `SessionEnd` | Session terminates | No |
+| Event              | When it Fires              | Can Block? |
+| ------------------ | -------------------------- | ---------- |
+| `SessionStart`     | Session begins or resumes  | No         |
+| `UserPromptSubmit` | User submits a prompt      | Yes        |
+| `PreToolUse`       | Before any tool executes   | Yes        |
+| `PostToolUse`      | After a tool completes     | No         |
+| `SubagentStart`    | Subagent spawned           | No         |
+| `SubagentStop`     | Subagent completes         | Yes        |
+| `TaskCompleted`    | Task marked complete       | Yes        |
+| `Stop`             | Claude finishes responding | Yes        |
+| `PreCompact`       | Before context compaction  | No         |
+| `SessionEnd`       | Session terminates         | No         |
 
 BMAD uses three of these:
 
@@ -149,6 +149,7 @@ Executed when a new Claude Code session starts. Loads BMAD environment variables
 **File:** `bmad-skills/hooks/bmad-session-start.sh`
 
 **Actions:**
+
 - Detects if current directory is a BMAD project (checks for `bmad/config.yaml`)
 - Sets environment variables:
   - `BMAD_PROJECT=true/false`
@@ -165,6 +166,7 @@ Executed before any tool is used. Validates and logs tool usage. Uses `matcher` 
 **File:** `bmad-skills/hooks/bmad-pre-tool.sh`
 
 **Actions:**
+
 - Detects writes to BMAD-managed paths (`/docs/`, `/bmad/`)
 - Logs subagent launches when Task tool is used
 - Provides context for workflow tracking
@@ -176,6 +178,7 @@ Executed after a tool completes. Tracks workflow progress.
 **File:** `bmad-skills/hooks/bmad-post-tool.sh`
 
 **Actions:**
+
 - Detects document creation:
   - Product Brief - Phase 1 progress
   - PRD/Tech Spec - Phase 2 progress
@@ -186,6 +189,7 @@ Executed after a tool completes. Tracks workflow progress.
 - Updates workflow tracking metadata
 
 **Example Hook Output:**
+
 ```
 BMAD: Writing to BMAD-managed path: /project/docs/prd-myapp-2025-01-15.md
 BMAD: PRD created - Phase 2 (Planning) progress
@@ -205,8 +209,8 @@ Project config is created by `/workflow-init` at `{project}/bmad/config.yaml`.
 
 project:
   name: "My Project"
-  type: "web-app"  # web-app, mobile-app, api, game, library, cli, other
-  level: 2         # 0-4: see level definitions below
+  type: "web-app" # web-app, mobile-app, api, game, library, cli, other
+  level: 2 # 0-4: see level definitions below
   description: "Brief project description"
 
 # Project Levels:
@@ -225,17 +229,17 @@ paths:
 workflow:
   # Phase requirements based on project level
   phase_1_analysis:
-    product_brief: "recommended"  # required, recommended, optional, skip
+    product_brief: "recommended" # required, recommended, optional, skip
     research: "optional"
     brainstorm: "optional"
 
   phase_2_planning:
-    prd: "required"        # required for level 2+, recommended for level 1
-    tech_spec: "optional"  # required for level 0-1
+    prd: "required" # required for level 2+, recommended for level 1
+    tech_spec: "optional" # required for level 0-1
     ux_design: "recommended"
 
   phase_3_solutioning:
-    architecture: "required"  # required for level 2+
+    architecture: "required" # required for level 2+
     gate_check: "recommended"
 
   phase_4_implementation:
@@ -263,15 +267,16 @@ metadata:
 
 The project level determines which workflows are required:
 
-| Level | Scope | Stories | Required Docs |
-|-------|-------|---------|---------------|
-| 0 | Single atomic change | 1 | Tech Spec only |
-| 1 | Small feature | 1-10 | Tech Spec + Sprint Planning |
-| 2 | Medium feature set | 5-15 | PRD + Architecture + Sprint Planning |
-| 3 | Complex integration | 12-40 | PRD + Architecture + Sprint Planning |
-| 4 | Enterprise expansion | 40+ | PRD + Architecture + Sprint Planning + UX |
+| Level | Scope                | Stories | Required Docs                             |
+| ----- | -------------------- | ------- | ----------------------------------------- |
+| 0     | Single atomic change | 1       | Tech Spec only                            |
+| 1     | Small feature        | 1-10    | Tech Spec + Sprint Planning               |
+| 2     | Medium feature set   | 5-15    | PRD + Architecture + Sprint Planning      |
+| 3     | Complex integration  | 12-40   | PRD + Architecture + Sprint Planning      |
+| 4     | Enterprise expansion | 40+     | PRD + Architecture + Sprint Planning + UX |
 
 **Planning Requirements by Level:**
+
 - **Level 0-1:** Tech Spec required, PRD optional/recommended
 - **Level 2+:** PRD required, Tech Spec optional
 - **Level 2+:** Architecture required
@@ -299,6 +304,7 @@ your-project/
 ```
 
 **Key Directories:**
+
 - **bmad/context/**: Shared context files for parallel subagents to coordinate
 - **bmad/outputs/**: Individual subagent output files before synthesis
 - **docs/stories/**: Finalized user story documents (STORY-001.md, etc.)
@@ -332,25 +338,28 @@ subagents:
   default_type: "general-purpose"
 
   # Skill-specific allocations
-  research_agents: 4      # For creative-intelligence research
-  section_agents: 4       # For document section generation
-  component_agents: 4     # For architecture components
-  story_agents: 4         # For parallel story creation
+  research_agents: 4 # For creative-intelligence research
+  section_agents: 4 # For document section generation
+  component_agents: 4 # For architecture components
+  story_agents: 4 # For parallel story creation
 ```
 
 ### Parallel Execution Patterns
 
 **Fan-Out Research Pattern:**
+
 - Launch 4 agents to research different topics simultaneously
 - Each writes findings to `bmad/outputs/research-{topic}.md`
 - Main context synthesizes into final document
 
 **Parallel Section Generation:**
+
 - Launch 4 agents to write document sections in parallel
 - Each gets shared context from `bmad/context/shared-context.md`
 - Outputs merged into final document
 
 **Component-Based Architecture:**
+
 - Launch agents for each system component
 - Each defines one component independently
 - Synthesize into unified architecture
@@ -360,16 +369,19 @@ subagents:
 Subagents coordinate via shared files:
 
 **Input Context:** `bmad/context/`
+
 - `shared-context.md` - Common requirements all agents need
 - `requirements.yaml` - Structured requirements data
 - `constraints.md` - Technical constraints
 
 **Output Files:** `bmad/outputs/`
+
 - `agent-1-output.md` - Individual agent results
 - `agent-2-output.md`
 - `synthesis.md` - Combined final result
 
 **Example:**
+
 ```yaml
 # Agent 1 reads:
 bmad/context/shared-context.md  # Project overview
@@ -387,7 +399,7 @@ For smaller projects or faster iteration:
 
 ```yaml
 subagents:
-  max_parallel: 2          # Use 2 agents instead of 4
+  max_parallel: 2 # Use 2 agents instead of 4
   research_agents: 2
   section_agents: 2
 ```
@@ -396,7 +408,7 @@ For maximum throughput on complex projects:
 
 ```yaml
 subagents:
-  max_parallel: 6          # Use up to 6 parallel agents
+  max_parallel: 6 # Use up to 6 parallel agents
   research_agents: 6
   section_agents: 6
 ```
@@ -410,6 +422,7 @@ subagents:
 You can have different settings per project by modifying each project's `bmad/config.yaml`:
 
 **Project A (complex enterprise project):**
+
 ```yaml
 project:
   level: 4
@@ -423,6 +436,7 @@ subagents:
 ```
 
 **Project B (fast iteration):**
+
 ```yaml
 project:
   level: 1
@@ -458,17 +472,17 @@ Adjust workflow requirements per project needs:
 ```yaml
 workflow:
   phase_1_analysis:
-    product_brief: "skip"      # Skip if requirements are clear
-    research: "required"       # But require research
+    product_brief: "skip" # Skip if requirements are clear
+    research: "required" # But require research
 
   phase_2_planning:
     prd: "required"
-    tech_spec: "required"      # Require both for complex projects
+    tech_spec: "required" # Require both for complex projects
     ux_design: "required"
 
   phase_3_solutioning:
     architecture: "required"
-    gate_check: "required"     # Add mandatory gate checks
+    gate_check: "required" # Add mandatory gate checks
 ```
 
 ---
@@ -567,14 +581,14 @@ bmad-skills/
 
 Templates use `{{variable}}` placeholders:
 
-| Variable | Description |
-|----------|-------------|
-| `{{project_name}}` | Project name from config |
-| `{{project_type}}` | Project type (web-app, api, etc.) |
-| `{{project_level}}` | Project level (0-4) |
-| `{{date}}` | Current date |
-| `{{timestamp}}` | Current timestamp |
-| `{{product_brief_status}}` | Workflow status value |
+| Variable                   | Description                       |
+| -------------------------- | --------------------------------- |
+| `{{project_name}}`         | Project name from config          |
+| `{{project_type}}`         | Project type (web-app, api, etc.) |
+| `{{project_level}}`        | Project level (0-4)               |
+| `{{date}}`                 | Current date                      |
+| `{{timestamp}}`            | Current timestamp                 |
+| `{{product_brief_status}}` | Workflow status value             |
 
 ### Shared Helpers
 
@@ -605,6 +619,7 @@ bash bmad-skills/builder/scripts/validate-config.sh docs/bmm-workflow-status.yam
 ### Common YAML Issues
 
 **Invalid indentation:**
+
 ```yaml
 # Wrong (tabs or 4 spaces)
 project:
@@ -616,6 +631,7 @@ project:
 ```
 
 **Missing quotes for special characters:**
+
 ```yaml
 # Wrong
 description: Project with: colons
@@ -625,6 +641,7 @@ description: "Project with: colons"
 ```
 
 **Incorrect list syntax:**
+
 ```yaml
 # Wrong
 allowed-tools: Read, Write, Edit
@@ -645,6 +662,7 @@ allowed-tools:
 **Symptoms:** Commands don't recognize your settings
 
 **Fixes:**
+
 1. Verify `bmad/config.yaml` exists in project root
 2. Validate YAML syntax with validation script
 3. Check for required fields: `project`, `paths`, `workflow`
@@ -655,6 +673,7 @@ allowed-tools:
 **Symptoms:** Environment variables not set, no hook output
 
 **Fixes:**
+
 1. Verify hooks are executable: `chmod +x bmad-skills/hooks/*.sh`
 2. Check `settings.json` has correct hook paths
 3. Review `$SKILL_DIR` environment variable is set
@@ -665,6 +684,7 @@ allowed-tools:
 **Symptoms:** "YAML parse error" messages
 
 **Fixes:**
+
 1. Check indentation (use 2 spaces, not tabs)
 2. Quote strings with special characters
 3. Use online YAML validator (yamllint.com)
@@ -675,6 +695,7 @@ allowed-tools:
 **Symptoms:** Workflow requirements not respected
 
 **Fixes:**
+
 1. Verify correct project level is set
 2. Check workflow status file matches project level
 3. Ensure bmad-orchestrator reads config correctly
@@ -685,6 +706,7 @@ allowed-tools:
 **Symptoms:** Parallel execution not happening
 
 **Fixes:**
+
 1. Check `max_parallel` is set in config
 2. Verify Task tool is available
 3. Review subagent output in `bmad/outputs/`
@@ -707,6 +729,7 @@ This ensures team members have consistent project settings and can track workflo
 ### 2. Use Project Level Appropriately
 
 Match project level to actual complexity:
+
 - Bug fix or small change → Level 0
 - Single feature → Level 1
 - Feature set → Level 2
@@ -718,6 +741,7 @@ Don't over-plan small projects or under-plan large ones.
 ### 3. Configure Subagents Based on Complexity
 
 Adjust parallel agent count to match project needs:
+
 - Simple projects → 2 agents
 - Standard projects → 4 agents
 - Complex projects → 6 agents
@@ -727,6 +751,7 @@ More agents = more context but requires coordination.
 ### 4. Use Context Directory for Coordination
 
 When using subagents, always:
+
 1. Write shared context to `bmad/context/`
 2. Each agent reads shared context
 3. Each agent writes to `bmad/outputs/`
@@ -735,6 +760,7 @@ When using subagents, always:
 ### 5. Keep SKILL.md Under 5K Tokens
 
 When creating custom skills:
+
 - Use SKILL.md for core instructions (under 5K tokens)
 - Put detailed reference in REFERENCE.md (unlimited)
 - This ensures fast skill loading
@@ -742,9 +768,10 @@ When creating custom skills:
 ### 6. Update Workflow Status Regularly
 
 After completing each workflow, update status file:
+
 ```yaml
 phase_2_planning:
-  prd: "docs/prd-myapp-2025-01-15.md"  # Mark complete with path
+  prd: "docs/prd-myapp-2025-01-15.md" # Mark complete with path
 ```
 
 This enables accurate `/status` reporting.
@@ -756,12 +783,14 @@ This enables accurate `/status` reporting.
 ### Essential Configuration Tasks
 
 **Initialize BMAD in a project:**
+
 ```bash
 # In your project directory
 /workflow-init
 ```
 
 **Check workflow status:**
+
 ```bash
 /workflow-status
 # or
@@ -769,13 +798,15 @@ This enables accurate `/status` reporting.
 ```
 
 **Change project level:**
+
 ```yaml
 # bmad/config.yaml
 project:
-  level: 3  # Update to match complexity
+  level: 3 # Update to match complexity
 ```
 
 **Configure subagents:**
+
 ```yaml
 # bmad/config.yaml
 subagents:
@@ -785,6 +816,7 @@ subagents:
 ```
 
 **Customize output paths:**
+
 ```yaml
 # bmad/config.yaml
 paths:
@@ -793,6 +825,7 @@ paths:
 ```
 
 **Adjust workflow requirements:**
+
 ```yaml
 # bmad/config.yaml
 workflow:
@@ -804,10 +837,10 @@ workflow:
 
 ### Configuration File Locations
 
-| File | Purpose | When to Edit |
-|------|---------|--------------|
-| `bmad-skills/settings.json` | Skill registry | Rarely (managed by package) |
-| `bmad/config.yaml` | Project settings | At initialization, as needs change |
+| File                            | Purpose           | When to Edit                       |
+| ------------------------------- | ----------------- | ---------------------------------- |
+| `bmad-skills/settings.json`     | Skill registry    | Rarely (managed by package)        |
+| `bmad/config.yaml`              | Project settings  | At initialization, as needs change |
 | `docs/bmm-workflow-status.yaml` | Progress tracking | Updated by workflows automatically |
 
 ### Validation Commands

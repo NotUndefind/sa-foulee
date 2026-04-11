@@ -28,14 +28,14 @@ ssh-keygen -t ed25519 -C "github-actions-safoulee" -f ~/.ssh/safoulee_deploy
 
 Dans le repository GitHub → **Settings → Secrets and variables → Actions** :
 
-| Secret | Valeur |
-|---|---|
-| `O2SWITCH_SSH_HOST` | IP ou hostname O2switch |
-| `O2SWITCH_SSH_USERNAME` | Nom d'utilisateur cPanel |
-| `O2SWITCH_SSH_PRIVATE_KEY` | Contenu de `safoulee_deploy` (clé privée) |
-| `O2SWITCH_SSH_PORT` | `22` (ou port SSH O2switch) |
-| `O2SWITCH_DEPLOY_PATH` | Chemin absolu ex: `/home/user/api.safoulee.fr` |
-| `API_DOMAIN` | `api.safoulee.fr` |
+| Secret                     | Valeur                                         |
+| -------------------------- | ---------------------------------------------- |
+| `O2SWITCH_SSH_HOST`        | IP ou hostname O2switch                        |
+| `O2SWITCH_SSH_USERNAME`    | Nom d'utilisateur cPanel                       |
+| `O2SWITCH_SSH_PRIVATE_KEY` | Contenu de `safoulee_deploy` (clé privée)      |
+| `O2SWITCH_SSH_PORT`        | `22` (ou port SSH O2switch)                    |
+| `O2SWITCH_DEPLOY_PATH`     | Chemin absolu ex: `/home/user/api.safoulee.fr` |
+| `API_DOMAIN`               | `api.safoulee.fr`                              |
 
 ---
 

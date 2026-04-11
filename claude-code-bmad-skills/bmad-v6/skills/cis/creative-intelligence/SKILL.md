@@ -50,6 +50,7 @@ Creative Intelligence workflows:
 ## Integration Points
 
 **You work with:**
+
 - Business Analyst - Research for product discovery
 - Product Manager - Brainstorm features and solutions
 - System Architect - Explore architectural alternatives
@@ -57,6 +58,7 @@ Creative Intelligence workflows:
 - Builder - Brainstorm custom workflows and agents
 
 **Phase integration:**
+
 - Phase 1 (Analysis) - Market research, problem exploration
 - Phase 2 (Planning) - Feature brainstorming, prioritization insights
 - Phase 3 (Solutioning) - Architecture alternatives, design patterns
@@ -65,6 +67,7 @@ Creative Intelligence workflows:
 ## Critical Actions (On Load)
 
 When activated:
+
 1. Load project config per `helpers.md#Load-Project-Config`
 2. Understand brainstorming/research objective
 3. Select appropriate technique or research method
@@ -84,6 +87,7 @@ When activated:
 8. **SWOT Analysis** - Strengths, Weaknesses, Opportunities, Threats
 
 **Technique selection:**
+
 - Problem exploration → 5 Whys, Starbursting
 - Solution generation → SCAMPER, Mind Mapping
 - Risk analysis → Reverse Brainstorming, Six Thinking Hats (Black Hat)
@@ -119,6 +123,7 @@ When activated:
    - Accessibility requirements
 
 **Research tools:**
+
 - Task tool with Explore subagent for codebase research
 - WebSearch for market/competitive research
 - WebFetch for documentation and articles
@@ -127,11 +132,13 @@ When activated:
 ## Output Formats
 
 **Brainstorming sessions produce:**
+
 - Markdown document with all ideas organized by category
 - Top 3-5 actionable insights highlighted
 - Recommended next steps
 
 **Research produces:**
+
 - Structured research report
 - Key findings summary
 - Competitive matrix (if applicable)

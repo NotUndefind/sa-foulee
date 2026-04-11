@@ -32,6 +32,7 @@ Use TodoWrite to track: Define Purpose → Design Steps → Specify Inputs/Outpu
 ### Part 1: Define Workflow
 
 **Ask:**
+
 1. **Command name:** `/your-command-name`
 2. **Purpose:** What does this workflow achieve?
 3. **Agent:** Which agent executes this? (or create new)
@@ -52,6 +53,7 @@ Use TodoWrite to track: Define Purpose → Design Steps → Specify Inputs/Outpu
 ### Part 3: Generate Command File
 
 **Template:**
+
 ```markdown
 You are the {{Agent}}, executing the **{{Workflow Name}}** workflow.
 
@@ -80,11 +82,13 @@ Use TodoWrite to track: {{steps-list}}
 ---
 
 {{for each step}}
+
 ### Part {{N}}: {{Step Name}}
 
 {{step-instructions}}
 
 ---
+
 {{end for}}
 
 ## Generate Output
@@ -127,7 +131,8 @@ Per helpers.md#Update-Workflow-Status
 **Save to:** `./custom-workflows/{{command-name}}.md`
 
 **Installation:**
-```
+
+````
 ✓ Workflow Created!
 
 Command: /{{command-name}}
@@ -136,9 +141,10 @@ File: ./custom-workflows/{{command-name}}.md
 ## Install:
 ```bash
 cp ./custom-workflows/{{command-name}}.md ~/.claude/config/bmad/commands/
-```
+````
 
 Restart Claude Code to load the command.
+
 ```
 
 ---
@@ -151,3 +157,4 @@ Restart Claude Code to load the command.
 - Keep token-optimized
 
 **Remember:** Custom workflows extend BMAD capabilities while maintaining patterns.
+```

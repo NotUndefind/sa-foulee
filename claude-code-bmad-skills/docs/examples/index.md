@@ -13,14 +13,14 @@ Learn BMAD through complete, real-world examples. Each example shows the full wo
 
 ## Example Projects
 
-| Example | Level | Type | Skills Used |
-|---------|-------|------|-------------|
-| [Subagent Execution](#subagent-execution) | N/A | Pattern | Parallel coordination |
-| [E-commerce API](#e-commerce-api) | 2 | API | Full workflow |
-| [CLI Tool](#cli-tool) | 1 | Library | Tech spec only |
-| [Bug Fix](#bug-fix) | 0 | Atomic | Minimal workflow |
-| [Mobile App](#mobile-app) | 3 | Mobile | Full + UX design |
-| [Feature Research](#feature-research) | N/A | Research | Creative Intelligence |
+| Example                                   | Level | Type     | Skills Used           |
+| ----------------------------------------- | ----- | -------- | --------------------- |
+| [Subagent Execution](#subagent-execution) | N/A   | Pattern  | Parallel coordination |
+| [E-commerce API](#e-commerce-api)         | 2     | API      | Full workflow         |
+| [CLI Tool](#cli-tool)                     | 1     | Library  | Tech spec only        |
+| [Bug Fix](#bug-fix)                       | 0     | Atomic   | Minimal workflow      |
+| [Mobile App](#mobile-app)                 | 3     | Mobile   | Full + UX design      |
+| [Feature Research](#feature-research)     | N/A   | Research | Creative Intelligence |
 
 ---
 
@@ -58,6 +58,7 @@ Level: 2
 Type: API
 
 ## Key Requirements (from product brief)
+
 - Product and category management
 - Search with autocomplete
 - Real-time inventory
@@ -66,6 +67,7 @@ Type: API
 - Scale: 1000 RPS
 
 ## Target Deliverables
+
 - Functional Requirements section
 - Non-Functional Requirements section
 - Epics and User Stories
@@ -205,6 +207,7 @@ Synthesizing into final PRD...
 ```
 
 The main agent:
+
 1. Reviews all sections for consistency
 2. Resolves any conflicts (e.g., NFR contradicting FR)
 3. Ensures story points align with project level
@@ -235,11 +238,13 @@ PRD complete!
 ### Why This Matters
 
 **Without subagents (sequential):**
+
 - Token budget: 200K for entire PRD
 - Time: 15-20 minutes sequential writing
 - Depth: Limited by single context
 
 **With subagents (parallel):**
+
 - Token budget: 200K × 4 = 800K total
 - Time: 5-7 minutes (parallel execution)
 - Depth: Each section gets full 200K context
@@ -306,7 +311,7 @@ Claude: I'll help you build that! Let's start by initializing BMAD.
 
 ### Step 1: Initialize Project
 
-~~~~
+```
 User: /workflow-init
 
 Claude: Welcome to BMAD! Let's configure your project.
@@ -325,11 +330,11 @@ Project level?
 
 Created bmad/config.yaml
 Next step: /product-brief
-~~~~
+```
 
 ### Step 2: Product Brief
 
-~~~~
+```
 User: /product-brief
 
 Claude: I'll create a product brief for the E-commerce Product Catalog API.
@@ -365,11 +370,11 @@ Who uses this API?
 > - GDPR compliant for EU customers
 
 Saving to: docs/product-brief.md
-~~~~
+```
 
 ### Step 3: PRD
 
-~~~~
+```
 User: /prd
 
 Claude: Creating PRD based on product brief...
@@ -465,11 +470,11 @@ Loading: docs/product-brief.md
 - Estimated sprints: 3
 
 Saving to: docs/prd.md
-~~~~
+```
 
 ### Step 4: Architecture
 
-~~~~
+````
 User: /architecture
 
 Claude: Designing system architecture...
@@ -622,11 +627,11 @@ CREATE TABLE inventory (
 | Gateway | Kong | Open source, plugins |
 
 Saving to: docs/architecture.md
-~~~~
+````
 
 ### Step 5: Sprint Planning
 
-~~~~
+```
 User: /sprint-planning
 
 Claude: Planning sprints for E-commerce Product Catalog API...
@@ -678,11 +683,11 @@ Loading: docs/prd.md, docs/architecture.md
 
 Saving to: docs/sprint-status.yaml
 Creating stories in: docs/stories/
-~~~~
+```
 
 ### Step 6: Implementation
 
-~~~~
+````
 User: /dev-story STORY-001
 
 Claude: Implementing STORY-001: Product model and migrations
@@ -775,7 +780,7 @@ Running tests: npm test -- --grep "Product"
 ✓ All tests pass
 
 Story complete! Updating docs/stories/STORY-001.md
-~~~~
+````
 
 ### Final Result
 
@@ -813,7 +818,7 @@ Building a simple command-line tool for converting file formats.
 
 For Level 1 projects, skip the product brief and go straight to tech spec:
 
-~~~~
+````
 User: I want to build a CLI tool that converts markdown to HTML.
 
 User: /workflow-init
@@ -888,7 +893,7 @@ User: /sprint-planning
 
 User: /dev-story STORY-001
 [Implementation]
-~~~~
+````
 
 ---
 
@@ -896,7 +901,7 @@ User: /dev-story STORY-001
 
 The minimal BMAD workflow for a single atomic change.
 
-~~~~
+````
 User: There's a bug where user sessions expire after 5 minutes
 instead of 1 hour. I need to fix it.
 
@@ -948,7 +953,7 @@ Claude: Implementing session timeout fix...
 [Runs tests]
 
 Bug fix complete!
-~~~~
+````
 
 ---
 
@@ -959,6 +964,7 @@ A complex project with UX design included.
 ### Project Scope
 
 Building a fitness tracking app with:
+
 - Workout logging
 - Progress tracking
 - Social features
@@ -966,7 +972,7 @@ Building a fitness tracking app with:
 
 ### Workflow with UX Design
 
-~~~~
+````
 User: /workflow-init
 > Project: FitTrack Mobile App
 > Type: mobile-app
@@ -1117,7 +1123,7 @@ HealthKit, wearables, sync
 Performance, offline, testing
 
 Total: 140 pts over 6 sprints
-~~~~
+````
 
 ---
 
@@ -1127,7 +1133,7 @@ Using BMAD for research before committing to a project.
 
 ### Brainstorming Session
 
-~~~~
+```
 User: We're thinking about adding AI features to our product.
 I want to explore possibilities before committing.
 
@@ -1328,7 +1334,7 @@ User: /workflow-init
 > Level: 2
 
 [Continue with regular BMAD workflow]
-~~~~
+```
 
 ---
 
@@ -1406,12 +1412,12 @@ Benefits:
 Don't over-engineer a bug fix with full PRD. Don't under-plan an enterprise system with just a tech spec.
 
 | If your project... | Use level... |
-|--------------------|--------------|
-| Takes <1 day | 0 |
-| Takes <1 week | 1 |
-| Takes 1-4 weeks | 2 |
-| Takes 1-3 months | 3 |
-| Takes 3+ months | 4 |
+| ------------------ | ------------ |
+| Takes <1 day       | 0            |
+| Takes <1 week      | 1            |
+| Takes 1-4 weeks    | 2            |
+| Takes 1-3 months   | 3            |
+| Takes 3+ months    | 4            |
 
 ### 2. Let Phases Build on Each Other
 

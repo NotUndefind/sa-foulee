@@ -14,6 +14,7 @@
 This document defines the system architecture for {{project_name}}. It provides the technical blueprint for implementation, addressing all functional and non-functional requirements from the PRD.
 
 **Related Documents:**
+
 - Product Requirements Document: {{prd_path}}
 - Product Brief: {{product_brief_path}}
 
@@ -282,6 +283,7 @@ These requirements heavily influence architectural decisions:
 ## Approval & Sign-off
 
 **Review Status:**
+
 - [ ] Technical Lead
 - [ ] Product Owner
 - [ ] Security Architect (if applicable)
@@ -291,9 +293,9 @@ These requirements heavily influence architectural decisions:
 
 ## Revision History
 
-| Version | Date | Author | Changes |
-|---------|------|--------|---------|
-| 1.0 | {{date}} | {{user_name}} | Initial architecture |
+| Version | Date     | Author        | Changes              |
+| ------- | -------- | ------------- | -------------------- |
+| 1.0     | {{date}} | {{user_name}} | Initial architecture |
 
 ---
 
@@ -302,12 +304,14 @@ These requirements heavily influence architectural decisions:
 ### Phase 4: Sprint Planning & Implementation
 
 Run `/sprint-planning` to:
+
 - Break epics into detailed user stories
 - Estimate story complexity
 - Plan sprint iterations
 - Begin implementation following this architectural blueprint
 
 **Key Implementation Principles:**
+
 1. Follow component boundaries defined in this document
 2. Implement NFR solutions as specified
 3. Use technology stack as defined
@@ -318,7 +322,7 @@ Run `/sprint-planning` to:
 
 **This document was created using BMAD Method v6 - Phase 3 (Solutioning)**
 
-*To continue: Run `/workflow-status` to see your progress and next recommended workflow.*
+_To continue: Run `/workflow-status` to see your progress and next recommended workflow._
 
 ---
 

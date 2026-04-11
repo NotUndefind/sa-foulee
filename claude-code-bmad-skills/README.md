@@ -2,7 +2,6 @@
 
 [![Run in Smithery](https://smithery.ai/badge/skills/aj-geddes)](https://smithery.ai/skills?ns=aj-geddes&utm_source=github&utm_medium=badge)
 
-
 > **Token-optimized agile development methodology natively integrated with Claude Code**
 >
 > Transform Claude Code into a complete agile development environment with specialized agents, structured workflows, and intelligent context management.
@@ -16,8 +15,6 @@
 # Documentation Site, with examples.
 
 https://aj-geddes.github.io/claude-code-bmad-skills
-
-
 
 ## 🎯 Attribution & Credit
 
@@ -38,6 +35,7 @@ The **BMAD Method** (Breakthrough Method for Agile AI-Driven Development) is cre
 **The methodology, workflow patterns, agent roles, and all BMAD concepts are the intellectual property of the BMAD Code Organization.**
 
 We have adapted and optimized the BMAD Method for:
+
 - Token efficiency (70-85% optimization via helper pattern)
 - Claude Code native integration (no external dependencies)
 - Cross-platform support (Windows, Linux, macOS, WSL)
@@ -54,6 +52,7 @@ We have adapted and optimized the BMAD Method for:
 ### Auto-Detect Platform and Install
 
 1. **Clone repository:**
+
    ```bash
    # Works on all platforms (git is cross-platform)
    cd /tmp
@@ -64,17 +63,20 @@ We have adapted and optimized the BMAD Method for:
 2. **Run appropriate installer:**
 
    **Linux/macOS/WSL:**
+
    ```bash
    chmod +x install-v6.sh
    ./install-v6.sh
    ```
 
    **Windows PowerShell:**
+
    ```powershell
    .\install-v6.ps1
    ```
 
 3. **Verify installation:**
+
    ```bash
    # Check core skill installed
    ls -la ~/.claude/skills/bmad/core/bmad-master/SKILL.md  # Linux/macOS/WSL
@@ -82,6 +84,7 @@ We have adapted and optimized the BMAD Method for:
    ```
 
 4. **Inform user:**
+
    ```
    ✓ BMAD Method v6 installed successfully!
 
@@ -137,17 +140,20 @@ This implementation adapts the complete BMAD agile development methodology to **
 ### Key Features
 
 ✅ **Token-Optimized** - Helper pattern reduces token usage by 70-85%
+
 - Reusable helper sections referenced instead of embedded
 - Functional skills without persona overhead
 - 750-1,000 tokens saved per conversation
 
 ✅ **9 Specialized Skills** - Each agent focused on specific responsibilities
+
 - Core orchestrator (BMad Master)
 - 6 agile agents (Analyst, PM, Architect, SM, Developer, UX Designer)
 - Builder for extensibility
 - Creative Intelligence for innovation
 
 ✅ **15 Workflow Commands** - Structured, repeatable processes
+
 - Phase 1: Analysis (product discovery)
 - Phase 2: Planning (requirements)
 - Phase 3: Solutioning (architecture)
@@ -155,6 +161,7 @@ This implementation adapts the complete BMAD agile development methodology to **
 - Extensibility: Custom agents, workflows, brainstorming, research, UX design
 
 ✅ **Cross-Platform** - Works everywhere Claude Code runs
+
 - Windows (PowerShell 5.1 and 7+)
 - Linux (all distributions)
 - macOS (all versions)
@@ -162,6 +169,7 @@ This implementation adapts the complete BMAD agile development methodology to **
 - No external dependencies (no npx, npm, Python packages)
 
 ✅ **Production Ready** - All 8 phases complete and tested
+
 - Core BMAD workflows (Phases 1-5)
 - Builder module (Phase 6)
 - Creative Intelligence (Phase 7)
@@ -176,6 +184,7 @@ This implementation adapts the complete BMAD agile development methodology to **
 **Agent:** Business Analyst
 
 **Commands:**
+
 - `/workflow-init` - Initialize BMAD structure in project
 - `/workflow-status` - Check current status and get recommendations
 - `/product-brief` - Create product brief with market analysis
@@ -191,10 +200,12 @@ This implementation adapts the complete BMAD agile development methodology to **
 **Agent:** Product Manager
 
 **Commands:**
+
 - `/prd` - Create comprehensive Product Requirements Document (Level 2+ projects)
 - `/tech-spec` - Create lightweight tech spec (Level 0-1 projects)
 
 **Output:** Requirements document with:
+
 - Functional Requirements (FR-XXX)
 - Non-Functional Requirements (NFR-XXX)
 - User stories grouped by epics
@@ -210,10 +221,12 @@ This implementation adapts the complete BMAD agile development methodology to **
 **Agent:** System Architect
 
 **Commands:**
+
 - `/architecture` - Create comprehensive system architecture
 - `/solutioning-gate-check` - Validate architecture quality (≥90% coverage)
 
 **Output:** Architecture document with:
+
 - System components
 - Data models and schemas
 - API specifications
@@ -229,11 +242,13 @@ This implementation adapts the complete BMAD agile development methodology to **
 **Agents:** Scrum Master + Developer
 
 **Commands:**
+
 - `/sprint-planning` - Plan sprint iterations
 - `/create-story` - Create atomic user stories
 - `/dev-story` - Implement stories with tests
 
 **Output:** Working software with:
+
 - Implemented features
 - Automated tests
 - Documentation
@@ -248,6 +263,7 @@ This implementation adapts the complete BMAD agile development methodology to **
 **Agent:** Builder
 
 **Commands:**
+
 - `/create-agent` - Create custom BMAD agent skills (QA, DevOps, Security, etc.)
 - `/create-workflow` - Create custom workflow commands
 - `/create-template` - Create custom document templates
@@ -257,6 +273,7 @@ This implementation adapts the complete BMAD agile development methodology to **
 **When:** Need domain-specific agents or workflows
 
 **Example Use Cases:**
+
 - QA Engineer with `/create-test-plan`, `/execute-tests`
 - DevOps Engineer with `/deploy`, `/rollback`
 - Security Engineer with `/security-audit`, `/pen-test`
@@ -269,16 +286,19 @@ This implementation adapts the complete BMAD agile development methodology to **
 **Agent:** Creative Intelligence
 
 **Commands:**
+
 - `/brainstorm` - Structured brainstorming using 8 proven techniques
   - 5 Whys, SCAMPER, Mind Mapping, Reverse Brainstorming
   - Six Thinking Hats, Starbursting, Brainwriting, SWOT
 - `/research` - Comprehensive research (market, competitive, technical, user)
 
 **Output:**
+
 - Brainstorming documents with organized ideas and insights
 - Research reports with competitive analysis and recommendations
 
 **When:**
+
 - Product discovery (market research)
 - Feature planning (brainstorm ideas)
 - Technical decisions (research options)
@@ -291,9 +311,11 @@ This implementation adapts the complete BMAD agile development methodology to **
 **Agent:** UX Designer
 
 **Commands:**
+
 - `/create-ux-design` - Create comprehensive UX design
 
 **Output:** UX design document with:
+
 - User flows (happy paths, decision points, error cases)
 - Wireframes (ASCII art or structured descriptions)
 - WCAG 2.1 accessibility compliance
@@ -312,11 +334,13 @@ This implementation adapts the complete BMAD agile development methodology to **
 **Option 1: Let Claude Code Install (Recommended)**
 
 Give Claude Code this repository URL:
+
 ```
 https://github.com/aj-geddes/claude-code-bmad-skills
 ```
 
 Then say:
+
 ```
 "Please install BMAD Method v6 from this repository"
 ```
@@ -328,6 +352,7 @@ Claude Code will detect your platform and install automatically.
 **Option 2: Manual Installation**
 
 **Linux/macOS/WSL:**
+
 ```bash
 cd /tmp
 git clone https://github.com/aj-geddes/claude-code-bmad-skills.git
@@ -337,6 +362,7 @@ chmod +x install-v6.sh
 ```
 
 **Windows PowerShell:**
+
 ```powershell
 cd $env:TEMP
 git clone https://github.com/aj-geddes/claude-code-bmad-skills.git
@@ -355,42 +381,51 @@ cd claude-code-bmad-skills
 2. **Open your project directory**
 
 3. **Initialize BMAD:**
+
    ```
    /workflow-init
    ```
+
    This creates BMAD structure and project config.
 
 4. **Check status:**
+
    ```
    /workflow-status
    ```
+
    Get current status and workflow recommendations.
 
 5. **Start your workflow:**
 
    **New Project (Level 0-1):**
+
    ```
    /product-brief → /tech-spec → /architecture → /dev-story
    ```
 
    **Larger Project (Level 2+):**
+
    ```
    /product-brief → /prd → /architecture → /sprint-planning → /dev-story
    ```
 
    **Custom Extensions:**
+
    ```
    /create-agent → Define custom agent
    /create-workflow → Define custom workflow
    ```
 
    **Creative Work:**
+
    ```
    /brainstorm → Generate ideas using structured techniques
    /research → Conduct market/competitive/technical research
    ```
 
    **UX Design:**
+
    ```
    /create-ux-design → User flows + wireframes + accessibility
    ```
@@ -432,6 +467,7 @@ cd claude-code-bmad-skills
 **Total:** 9 skills, 15 commands, 4 templates, 1 helper system
 
 **Token Efficiency:**
+
 - Skills: ~45.9KB (~11,475 tokens)
 - Effective per-conversation: ~15-25KB (~3,750-6,250 tokens)
 - **Savings: 70-85% vs. traditional embedded approach**
@@ -442,31 +478,31 @@ cd claude-code-bmad-skills
 
 ### vs. Traditional Agile
 
-| Feature | Traditional | BMAD v6 |
-|---------|------------|---------|
-| **Context Loss** | Constant re-explaining | Persistent YAML status + helpers.md |
-| **Agent Switching** | Manual role switching | Automatic skill loading by command |
-| **Documentation** | Scattered, outdated | Structured, template-based, in-repo |
-| **Token Usage** | High redundancy | 70-85% optimized with helpers |
-| **Workflow** | Ad-hoc | Structured 4-phase process |
-| **Extensibility** | Limited | Builder module for custom agents |
-| **Creativity** | Manual | Structured brainstorming + research |
-| **UX Design** | Separate tools | Integrated with accessibility |
+| Feature             | Traditional            | BMAD v6                             |
+| ------------------- | ---------------------- | ----------------------------------- |
+| **Context Loss**    | Constant re-explaining | Persistent YAML status + helpers.md |
+| **Agent Switching** | Manual role switching  | Automatic skill loading by command  |
+| **Documentation**   | Scattered, outdated    | Structured, template-based, in-repo |
+| **Token Usage**     | High redundancy        | 70-85% optimized with helpers       |
+| **Workflow**        | Ad-hoc                 | Structured 4-phase process          |
+| **Extensibility**   | Limited                | Builder module for custom agents    |
+| **Creativity**      | Manual                 | Structured brainstorming + research |
+| **UX Design**       | Separate tools         | Integrated with accessibility       |
 
 ### vs. BMAD Method (Original npm Package)
 
-| Feature | BMAD npm | BMAD v6 (Claude Code) |
-|---------|----------|----------------------|
-| **Dependencies** | Node.js, npx | None (pure Claude Code) |
-| **Installation** | npm install | Single script, <5 seconds |
-| **Integration** | External CLI | Native Claude Code skills |
-| **Platform** | Node.js only | Windows, Linux, macOS, WSL |
-| **Token Usage** | Standard | 70-85% optimized |
-| **Personas** | Character-based | Functional (no persona overhead) |
-| **Commands** | CLI flags | Slash commands (/) |
-| **Extensibility** | Limited | Builder module |
-| **Creativity** | Manual | /brainstorm, /research |
-| **UX Design** | Not included | /create-ux-design |
+| Feature           | BMAD npm        | BMAD v6 (Claude Code)            |
+| ----------------- | --------------- | -------------------------------- |
+| **Dependencies**  | Node.js, npx    | None (pure Claude Code)          |
+| **Installation**  | npm install     | Single script, <5 seconds        |
+| **Integration**   | External CLI    | Native Claude Code skills        |
+| **Platform**      | Node.js only    | Windows, Linux, macOS, WSL       |
+| **Token Usage**   | Standard        | 70-85% optimized                 |
+| **Personas**      | Character-based | Functional (no persona overhead) |
+| **Commands**      | CLI flags       | Slash commands (/)               |
+| **Extensibility** | Limited         | Builder module                   |
+| **Creativity**    | Manual          | /brainstorm, /research           |
+| **UX Design**     | Not included    | /create-ux-design                |
 
 ---
 
@@ -475,31 +511,39 @@ cd claude-code-bmad-skills
 ### Token Optimization
 
 **Helper Pattern (70-75% savings):**
+
 ```markdown
 # Instead of embedding this 200+ times:
+
 "Load config from ~/.claude/config/bmad/config.yaml
 Parse YAML to extract user_name, language, output_folder..."
 
 # Commands reference once:
+
 "Per helpers.md#Load-Global-Config"
 ```
 
 **Result:**
+
 - 15 commands reference 1 helpers.md file
 - ~81% reduction in total token usage
 - Single source of truth for common operations
 
 **No Personas (15-30% savings):**
+
 ```markdown
 # Before (persona overhead):
+
 You are Mary, the Business Analyst. Mary is detail-oriented and loves
 uncovering user needs. She's worked on 50+ projects and brings enthusiasm...
 
 # After (functional):
+
 You are the Business Analyst, executing the Product Brief workflow.
 ```
 
 **Result:**
+
 - 150-200 tokens saved per skill
 - 750-1,000 tokens saved per conversation
 - Focus on WHAT to do, not WHO is doing it
@@ -512,15 +556,16 @@ You are the Business Analyst, executing the Product Brief workflow.
 
 BMAD automatically adjusts workflows based on project complexity:
 
-| Level | Stories | Planning | Commands |
-|-------|---------|----------|----------|
-| **0** | 1 story | Minimal | `/product-brief` → `/tech-spec` → `/dev-story` |
-| **1** | 1-10 | Light | `/product-brief` → `/tech-spec` → `/create-story` |
-| **2** | 5-15 | Standard | `/product-brief` → `/prd` → `/architecture` |
-| **3** | 12-40 | Comprehensive | Full BMAD (all phases) |
-| **4** | 40+ | Enterprise | Full BMAD + sprint planning |
+| Level | Stories | Planning      | Commands                                          |
+| ----- | ------- | ------------- | ------------------------------------------------- |
+| **0** | 1 story | Minimal       | `/product-brief` → `/tech-spec` → `/dev-story`    |
+| **1** | 1-10    | Light         | `/product-brief` → `/tech-spec` → `/create-story` |
+| **2** | 5-15    | Standard      | `/product-brief` → `/prd` → `/architecture`       |
+| **3** | 12-40   | Comprehensive | Full BMAD (all phases)                            |
+| **4** | 40+     | Enterprise    | Full BMAD + sprint planning                       |
 
 **Prevents:**
+
 - Over-planning small projects
 - Under-planning large projects
 - Wasted effort on wrong level of detail
@@ -560,6 +605,7 @@ phase_4_implementation:
 ```
 
 **Benefits:**
+
 - Persistent context across sessions
 - No re-explaining project state
 - Workflow recommendations based on status
@@ -599,6 +645,7 @@ Installation: Copy to ~/.claude/skills/bmad/bmb/qa-engineer/
 ```
 
 **Custom workflows:**
+
 ```
 /create-workflow
 
@@ -921,19 +968,20 @@ UX Designer:
 
 ### Supported Platforms
 
-| Platform | Installer | Status |
-|----------|-----------|--------|
-| **Linux** (all distros) | `install-v6.sh` | ✅ Tested |
-| **macOS** (all versions) | `install-v6.sh` | ✅ Tested |
-| **WSL 1/2** | `install-v6.sh` | ✅ Tested |
-| **Windows** (PowerShell 5.1) | `install-v6.ps1` | ✅ Tested |
-| **Windows** (PowerShell 7+) | `install-v6.ps1` | ✅ Tested |
-| **Linux** (PowerShell Core) | `install-v6.ps1` | ✅ Supported |
-| **macOS** (PowerShell Core) | `install-v6.ps1` | ✅ Supported |
+| Platform                     | Installer        | Status       |
+| ---------------------------- | ---------------- | ------------ |
+| **Linux** (all distros)      | `install-v6.sh`  | ✅ Tested    |
+| **macOS** (all versions)     | `install-v6.sh`  | ✅ Tested    |
+| **WSL 1/2**                  | `install-v6.sh`  | ✅ Tested    |
+| **Windows** (PowerShell 5.1) | `install-v6.ps1` | ✅ Tested    |
+| **Windows** (PowerShell 7+)  | `install-v6.ps1` | ✅ Tested    |
+| **Linux** (PowerShell Core)  | `install-v6.ps1` | ✅ Supported |
+| **macOS** (PowerShell Core)  | `install-v6.ps1` | ✅ Supported |
 
 ### No External Dependencies
 
 **Does NOT require:**
+
 - ❌ Node.js
 - ❌ npm or npx
 - ❌ Python
@@ -941,6 +989,7 @@ UX Designer:
 - ❌ Any package managers
 
 **Only requires:**
+
 - ✅ Git (for cloning repository)
 - ✅ Claude Code (obviously)
 - ✅ Bash (Linux/macOS/WSL) OR PowerShell (Windows)
@@ -956,6 +1005,7 @@ UX Designer:
 The installer has been completely rewritten to fix common errors. If you're experiencing issues:
 
 **1. Run diagnostics first:**
+
 ```powershell
 .\install-v6.ps1 -Verbose
 ```
@@ -963,6 +1013,7 @@ The installer has been completely rewritten to fix common errors. If you're expe
 This will show detailed diagnostic output including exactly where the installation fails.
 
 **2. Dry-run to test without installing:**
+
 ```powershell
 .\install-v6.ps1 -WhatIf
 ```
@@ -970,11 +1021,13 @@ This will show detailed diagnostic output including exactly where the installati
 This shows what would be installed without actually doing it.
 
 **3. Force reinstall over existing:**
+
 ```powershell
 .\install-v6.ps1 -Force
 ```
 
 **4. Clean uninstall:**
+
 ```powershell
 .\install-v6.ps1 -Uninstall
 ```
@@ -984,6 +1037,7 @@ This shows what would be installed without actually doing it.
 ### Common PowerShell Errors
 
 **"Scripts disabled" (Windows PowerShell):**
+
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 .\install-v6.ps1
@@ -1032,12 +1086,14 @@ If you still see this error with v6.0.1, run with `-Verbose` and report the issu
 ### Linux/macOS/WSL Installation Issues
 
 **"Permission denied":**
+
 ```bash
 chmod +x install-v6.sh
 ./install-v6.sh
 ```
 
 **Git not found:**
+
 ```bash
 # Install git first
 # Ubuntu/Debian:
@@ -1050,6 +1106,7 @@ brew install git
 **"No such file or directory" for bmad-v6/:**
 
 Make sure you're in the repository root:
+
 ```bash
 ls -la bmad-v6/
 cd /path/to/claude-code-bmad-skills
@@ -1061,6 +1118,7 @@ cd /path/to/claude-code-bmad-skills
 ### Skills Not Loading
 
 **Check installation:**
+
 ```bash
 # Linux/macOS/WSL
 ls -la ~/.claude/skills/bmad/core/bmad-master/SKILL.md
@@ -1080,6 +1138,7 @@ After installing or updating BMAD, you MUST restart Claude Code for skills to lo
 ### Commands Not Working
 
 **Initialize BMAD first:**
+
 ```
 /workflow-init
 ```
@@ -1091,6 +1150,7 @@ Commands require BMAD structure in your project. If `/workflow-init` doesn't wor
 3. Verify BMAD Master skill loaded by checking Claude Code startup messages
 
 **Check project-level config exists:**
+
 ```bash
 ls -la bmad-outputs/project-config.yaml
 ```
@@ -1104,6 +1164,7 @@ After installation, verify everything is working:
 **1. Check files exist:**
 
 Linux/macOS/WSL:
+
 ```bash
 ls -la ~/.claude/skills/bmad/core/bmad-master/SKILL.md
 ls -la ~/.claude/config/bmad/config.yaml
@@ -1111,6 +1172,7 @@ ls -la ~/.claude/config/bmad/helpers.md
 ```
 
 Windows PowerShell:
+
 ```powershell
 dir $env:USERPROFILE\.claude\skills\bmad\core\bmad-master\SKILL.md
 dir $env:USERPROFILE\.claude\config\bmad\config.yaml
@@ -1142,6 +1204,7 @@ If this command works, BMAD is installed correctly!
 If you've tried all troubleshooting steps and still have issues:
 
 1. **Run with diagnostics:**
+
    ```powershell
    .\install-v6.ps1 -Verbose > install-log.txt 2>&1
    ```
@@ -1166,25 +1229,31 @@ If you've tried all troubleshooting steps and still have issues:
 ## 📚 Documentation
 
 ### Core Documentation
+
 - **[README.md](README.md)** - This file (quick start, overview)
 - **[BMAD-V6-COMPLETE.md](BMAD-V6-COMPLETE.md)** - Complete system documentation (Phases 1-5)
 - **[PHASES-6-8-COMPLETE.md](PHASES-6-8-COMPLETE.md)** - Builder, Creative Intelligence, UX (Phases 6-8)
 - **[PERSONA-REFACTOR-COMPLETE.md](PERSONA-REFACTOR-COMPLETE.md)** - Token optimization details
 
 ### Helper System
+
 - **[bmad-v6/utils/helpers.md](bmad-v6/utils/helpers.md)** - Reusable utility sections (the secret to 70-85% token savings)
 
 ### Skills
+
 All skills in `bmad-v6/skills/` directories:
+
 - `core/bmad-master/SKILL.md` - Core orchestrator
 - `bmm/**/SKILL.md` - Main Method Module (6 agents)
 - `bmb/builder/SKILL.md` - Builder module
 - `cis/creative-intelligence/SKILL.md` - Creative Intelligence
 
 ### Commands
+
 All commands in `bmad-v6/commands/` directory (15 total)
 
 ### Templates
+
 All templates in `bmad-v6/templates/` directory (4 total)
 
 ---
@@ -1254,6 +1323,7 @@ The BMAD Method™ provides the foundation, methodology, workflow patterns, and 
 ### Implementation Thanks
 
 **Thanks to:**
+
 - **Claude Code Team** - For creating an extensible AI coding environment with native Skills, Commands, and Hooks support
 - **Contributors** - For improving this Claude Code implementation of BMAD
 - **Community** - For feedback, testing, and real-world usage
@@ -1261,6 +1331,7 @@ The BMAD Method™ provides the foundation, methodology, workflow patterns, and 
 ### Our Contribution
 
 This repository provides a **Claude Code native implementation** of the BMAD Method with:
+
 - Token optimization (70-85% reduction via helper pattern)
 - No external dependencies (pure Claude Code features)
 - Cross-platform support (Windows, Linux, macOS, WSL)
@@ -1273,6 +1344,7 @@ This repository provides a **Claude Code native implementation** of the BMAD Met
 ## 📈 Version History
 
 **v6.0.2** (2025-11-12) - Commands Installation Fix
+
 - 🔧 **Fixed:** Missing slash commands installation (15 commands not being installed)
 - ✨ **Added:** Install-Commands function to install to `~/.claude/commands/bmad/`
 - 📝 **Improved:** Installation now includes all 15 workflow commands
@@ -1281,6 +1353,7 @@ This repository provides a **Claude Code native implementation** of the BMAD Met
 - 📝 **Improved:** Success message lists all 15 commands
 
 **v6.0.1** (2025-11-12) - PowerShell Installer Rewrite
+
 - 🔧 **Fixed:** Critical Copy-Item destination directory issues
 - 🔧 **Fixed:** Missing pre-flight validation (no error checking before install)
 - 🔧 **Fixed:** Generic error messages (now shows exactly what failed)
@@ -1297,6 +1370,7 @@ This repository provides a **Claude Code native implementation** of the BMAD Met
 - 📊 **Result:** Installation success rate improved from ~60% to 95%+
 
 **v6.0.0** (2025-11-01) - Initial Release
+
 - ✅ Core BMAD workflows (Phases 1-5)
 - ✅ Token optimization (helper pattern + functional skills)
 - ✅ Builder module (Phase 6)
@@ -1311,29 +1385,37 @@ This repository provides a **Claude Code native implementation** of the BMAD Met
 ## 💡 Tips for Success
 
 ### 1. Start with /workflow-init
+
 Always initialize BMAD in your project first. This creates necessary structure.
 
 ### 2. Follow the phases
+
 Don't skip directly to implementation. Requirements → Architecture → Development produces better results.
 
 ### 3. Use project levels appropriately
+
 - Small prototype? Use Level 0 (`/tech-spec`)
 - Full product? Use Level 2+ (`/prd` → `/architecture`)
 
 ### 4. Leverage status tracking
+
 Run `/workflow-status` to see where you are and what to do next.
 
 ### 5. Extend when needed
+
 Need QA workflows? Use `/create-agent` to build a QA Engineer.
 Need deployment workflows? Use `/create-workflow` to create custom commands.
 
 ### 6. Brainstorm before deciding
+
 Use `/brainstorm` with multiple techniques before making big decisions.
 
 ### 7. Research before building
+
 Use `/research` to validate assumptions and learn from competitors.
 
 ### 8. Design before coding
+
 Use `/create-ux-design` to think through user experience before implementation.
 
 ---
@@ -1356,6 +1438,7 @@ chmod +x install-v6.sh && ./install-v6.sh
 ```
 
 **Then restart Claude Code and run:**
+
 ```
 /workflow-init
 ```

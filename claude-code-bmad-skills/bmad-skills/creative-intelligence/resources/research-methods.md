@@ -22,25 +22,27 @@ This document provides comprehensive guidance on conducting effective research u
 ### Primary vs. Secondary Research
 
 **Primary Research** - You conduct directly:
+
 - Advantages: Specific to your needs, current, proprietary
 - Disadvantages: Time-consuming, expensive, requires expertise
 - Examples: User interviews, surveys, usability testing, A/B tests
 
 **Secondary Research** - Using existing information:
+
 - Advantages: Faster, cheaper, broader scope possible
 - Disadvantages: May not fit your exact needs, could be outdated
 - Examples: Market reports, competitor websites, academic papers, news articles
 
 ### Research Type Selection
 
-| Goal | Type | Primary/Secondary | Duration |
-|------|------|-------------------|----------|
-| Understand market size | Market | Secondary | 2-4 hours |
-| Identify competitors | Competitive | Secondary | 1-3 hours |
-| Compare technologies | Technical | Secondary | 2-5 hours |
-| Validate user needs | User | Primary + Secondary | 4-8 hours |
-| Test feature concepts | User | Primary | 3-6 hours |
-| Analyze competitor features | Competitive | Secondary | 2-4 hours |
+| Goal                        | Type        | Primary/Secondary   | Duration  |
+| --------------------------- | ----------- | ------------------- | --------- |
+| Understand market size      | Market      | Secondary           | 2-4 hours |
+| Identify competitors        | Competitive | Secondary           | 1-3 hours |
+| Compare technologies        | Technical   | Secondary           | 2-5 hours |
+| Validate user needs         | User        | Primary + Secondary | 4-8 hours |
+| Test feature concepts       | User        | Primary             | 3-6 hours |
+| Analyze competitor features | Competitive | Secondary           | 2-4 hours |
 
 ---
 
@@ -86,6 +88,7 @@ Time Frame: [Current state, 3-year projection]
 #### Step 2: Gather Market Size Data
 
 **Sources for market size:**
+
 - Industry reports: Gartner, Forrester, IDC, Grand View Research
 - Market research firms: Statista, MarketsandMarkets
 - Government data: Census Bureau, Bureau of Labor Statistics
@@ -93,6 +96,7 @@ Time Frame: [Current state, 3-year projection]
 - Trade associations: Industry-specific organizations
 
 **Search strategies:**
+
 ```
 WebSearch queries:
 - "[Industry] market size 2025"
@@ -102,6 +106,7 @@ WebSearch queries:
 ```
 
 **Calculate market sizing:**
+
 ```
 TAM (Total Addressable Market)
 = Total potential revenue if 100% market share
@@ -119,12 +124,14 @@ SOM (Serviceable Obtainable Market)
 #### Step 3: Analyze Market Trends
 
 **Identify trends:**
+
 - Technology trends (AI, mobile, cloud, etc.)
 - Behavioral trends (remote work, subscription preference)
 - Economic trends (spending patterns, investment)
 - Regulatory trends (privacy laws, compliance requirements)
 
 **Growth analysis:**
+
 - Historical growth rate (CAGR over past 3-5 years)
 - Projected growth rate (analyst forecasts)
 - Growth drivers (what's fueling growth)
@@ -133,6 +140,7 @@ SOM (Serviceable Obtainable Market)
 #### Step 4: Segment Analysis
 
 **Common segmentation approaches:**
+
 - **Demographic:** Age, income, education, occupation
 - **Geographic:** Location, region, urban/rural
 - **Psychographic:** Values, attitudes, lifestyle
@@ -141,6 +149,7 @@ SOM (Serviceable Obtainable Market)
 
 **Segment evaluation:**
 For each segment, assess:
+
 - Size (revenue potential)
 - Growth rate
 - Competition level
@@ -150,12 +159,14 @@ For each segment, assess:
 #### Step 5: Competitive Landscape
 
 **Market structure:**
+
 - How fragmented is the market?
 - Who are the major players and their market shares?
 - What's the competitive intensity?
 - Are there dominant platforms or standards?
 
 **Barrier analysis:**
+
 - Capital requirements
 - Technology complexity
 - Regulatory requirements
@@ -169,24 +180,29 @@ For each segment, assess:
 # Market Research Report: [Market Name]
 
 ## Market Overview
+
 - Market definition
 - Total market size (TAM)
 - Growth rate (CAGR)
 - Key characteristics
 
 ## Market Sizing
+
 - TAM: [Value]
 - SAM: [Value]
 - SOM: [Value]
 - Methodology and assumptions
 
 ## Market Trends
+
 1. [Trend 1] - [Impact and trajectory]
 2. [Trend 2] - [Impact and trajectory]
 3. [Trend 3] - [Impact and trajectory]
 
 ## Market Segments
+
 ### Segment 1: [Name]
+
 - Size: [Revenue/customers]
 - Growth: [Rate]
 - Characteristics: [Description]
@@ -195,17 +211,20 @@ For each segment, assess:
 [Repeat for other segments]
 
 ## Competitive Landscape
+
 - Market structure
 - Major players and market shares
 - Competitive intensity
 - Barriers to entry
 
 ## Opportunities
+
 1. [Opportunity 1]
 2. [Opportunity 2]
 3. [Opportunity 3]
 
 ## Recommendations
+
 [Strategic recommendations based on findings]
 ```
 
@@ -245,6 +264,7 @@ Understand competitors, their offerings, positioning, and identify opportunities
 #### Step 1: Identify Competitors
 
 **Discovery methods:**
+
 - Google search: "[your category] software"
 - Review sites: G2, Capterra, TrustRadius
 - "Alternative to X" searches
@@ -254,6 +274,7 @@ Understand competitors, their offerings, positioning, and identify opportunities
 - Job postings (who's hiring for similar roles)
 
 **Categorize competitors:**
+
 ```
 Direct Competitors:
 - [Company A] - Same product, same market
@@ -273,6 +294,7 @@ Potential Competitors:
 **Information to collect:**
 
 **Company Information:**
+
 - Founded date
 - Headquarters location
 - Team size
@@ -281,6 +303,7 @@ Potential Competitors:
 - Leadership team
 
 **Product Information:**
+
 - Core features
 - Platform (web, mobile, desktop)
 - Technology stack (if visible)
@@ -288,6 +311,7 @@ Potential Competitors:
 - API availability
 
 **Pricing Information:**
+
 - Pricing tiers
 - Price per user/seat
 - Free trial details
@@ -295,6 +319,7 @@ Potential Competitors:
 - Enterprise pricing (if available)
 
 **Market Position:**
+
 - Target customers
 - Customer count (if disclosed)
 - Key customers/case studies
@@ -302,6 +327,7 @@ Potential Competitors:
 - Market segment focus
 
 **Marketing & Positioning:**
+
 - Value proposition
 - Key messaging
 - Brand personality
@@ -309,6 +335,7 @@ Potential Competitors:
 - SEO keywords targeted
 
 **Customer Feedback:**
+
 - Review ratings (G2, Capterra, etc.)
 - Common praises
 - Common complaints
@@ -316,6 +343,7 @@ Potential Competitors:
 - Support quality feedback
 
 **Sources for information:**
+
 ```
 Company website:
 - About page (history, team, mission)
@@ -361,21 +389,21 @@ Business databases:
 
 **Feature comparison matrix:**
 
-| Feature | Us | Competitor A | Competitor B | Competitor C | Market Gap? |
-|---------|-----|--------------|--------------|--------------|-------------|
-| Feature 1 | ✓ | ✓ | ✗ | ✓ | - |
-| Feature 2 | ✓ | ✗ | ✓ | ✗ | 2 missing |
-| Feature 3 | Planned | ✗ | ✗ | ✗ | ⭐ Opportunity |
-| Feature 4 | ✗ | ✓ | ✓ | ✓ | We're behind |
+| Feature   | Us      | Competitor A | Competitor B | Competitor C | Market Gap?    |
+| --------- | ------- | ------------ | ------------ | ------------ | -------------- |
+| Feature 1 | ✓       | ✓            | ✗            | ✓            | -              |
+| Feature 2 | ✓       | ✗            | ✓            | ✗            | 2 missing      |
+| Feature 3 | Planned | ✗            | ✗            | ✗            | ⭐ Opportunity |
+| Feature 4 | ✗       | ✓            | ✓            | ✓            | We're behind   |
 
 **Pricing comparison:**
 
-| Tier | Us | Competitor A | Competitor B | Competitor C |
-|------|-----|--------------|--------------|--------------|
-| Free/Trial | 14 days | 30 days | Forever free | 7 days |
-| Entry | $15/user | $12/user | $10/user | $20/user |
-| Professional | $29/user | $25/user | $25/user | $49/user |
-| Enterprise | Custom | $99/user | Custom | Custom |
+| Tier         | Us       | Competitor A | Competitor B | Competitor C |
+| ------------ | -------- | ------------ | ------------ | ------------ |
+| Free/Trial   | 14 days  | 30 days      | Forever free | 7 days       |
+| Entry        | $15/user | $12/user     | $10/user     | $20/user     |
+| Professional | $29/user | $25/user     | $25/user     | $49/user     |
+| Enterprise   | Custom   | $99/user     | Custom       | Custom       |
 
 **Positioning matrix:**
 
@@ -405,21 +433,25 @@ For top 3-5 competitors, create a mini-SWOT:
 ### Competitor A
 
 Strengths:
+
 - Large user base (100K+ customers)
 - Strong brand recognition
 - Feature-rich platform
 
 Weaknesses:
+
 - Outdated UI/UX
 - Slow innovation pace
 - Poor mobile experience
 
 Opportunities (for us):
+
 - Their customers frustrated with UX
 - Mobile-first users underserved
 - Modern tech stack advantage
 
 Threats (to us):
+
 - Established market position
 - Strong enterprise relationships
 - Price advantage
@@ -430,22 +462,26 @@ Threats (to us):
 **Gap types:**
 
 **Feature gaps:**
+
 - Features no one offers (innovation opportunity)
 - Features only we offer (differentiation)
 - Features everyone offers (table stakes)
 
 **Market gaps:**
+
 - Underserved customer segments
 - Geographic regions ignored
 - Use cases not addressed
 
 **Experience gaps:**
+
 - Poor onboarding across competitors
 - Complex interfaces
 - Lack of mobile support
 - Integration limitations
 
 **Price gaps:**
+
 - Premium positioning opportunity
 - Value positioning opportunity
 - Missing price tier
@@ -476,6 +512,7 @@ Evaluate technologies, frameworks, libraries, and implementation approaches for 
 #### Step 1: Identify Options
 
 **Discovery sources:**
+
 - Stack Overflow Trends
 - GitHub trending
 - State of [Technology] surveys (State of JS, State of CSS, etc.)
@@ -485,6 +522,7 @@ Evaluate technologies, frameworks, libraries, and implementation approaches for 
 - Conference talks and presentations
 
 **Technology categories:**
+
 - Languages (Python, JavaScript, Go, etc.)
 - Frameworks (React, Vue, Django, Rails, etc.)
 - Libraries (specific functionality)
@@ -497,6 +535,7 @@ Evaluate technologies, frameworks, libraries, and implementation approaches for 
 **Evaluation criteria:**
 
 **Maturity & Stability:**
+
 - First release date
 - Current version
 - Release frequency
@@ -504,6 +543,7 @@ Evaluate technologies, frameworks, libraries, and implementation approaches for 
 - Backward compatibility
 
 **Community & Support:**
+
 - GitHub stars, forks, watchers
 - Contributors count
 - Issue response time
@@ -512,6 +552,7 @@ Evaluate technologies, frameworks, libraries, and implementation approaches for 
 - Corporate backing
 
 **Documentation:**
+
 - Official docs quality
 - Tutorial availability
 - Example projects
@@ -519,12 +560,14 @@ Evaluate technologies, frameworks, libraries, and implementation approaches for 
 - Video tutorials
 
 **Performance:**
+
 - Benchmarks (TechEmpower, etc.)
 - Real-world performance reports
 - Scalability characteristics
 - Resource requirements
 
 **Developer Experience:**
+
 - Learning curve
 - Setup complexity
 - Development workflow
@@ -532,6 +575,7 @@ Evaluate technologies, frameworks, libraries, and implementation approaches for 
 - IDE support
 
 **Ecosystem:**
+
 - Available plugins/extensions
 - Integration options
 - Package ecosystem size
@@ -539,6 +583,7 @@ Evaluate technologies, frameworks, libraries, and implementation approaches for 
 - Deployment options
 
 **Production Readiness:**
+
 - Companies using in production
 - Case studies
 - Known limitations
@@ -546,6 +591,7 @@ Evaluate technologies, frameworks, libraries, and implementation approaches for 
 - Compliance (SOC 2, GDPR, etc.)
 
 **Cost:**
+
 - License type (MIT, Apache, GPL, etc.)
 - Hosting costs
 - Training costs
@@ -555,53 +601,58 @@ Evaluate technologies, frameworks, libraries, and implementation approaches for 
 
 **Technology evaluation matrix:**
 
-| Criteria | Option A | Option B | Option C | Weight |
-|----------|----------|----------|----------|--------|
-| Maturity | 9/10 | 6/10 | 8/10 | High |
-| Community | 8/10 | 9/10 | 5/10 | High |
-| Documentation | 7/10 | 9/10 | 6/10 | Medium |
-| Performance | 9/10 | 7/10 | 8/10 | High |
-| Learning Curve | 6/10 | 8/10 | 7/10 | Medium |
-| Ecosystem | 9/10 | 8/10 | 6/10 | High |
-| **Weighted Score** | **8.1** | **7.8** | **6.9** | - |
+| Criteria           | Option A | Option B | Option C | Weight |
+| ------------------ | -------- | -------- | -------- | ------ |
+| Maturity           | 9/10     | 6/10     | 8/10     | High   |
+| Community          | 8/10     | 9/10     | 5/10     | High   |
+| Documentation      | 7/10     | 9/10     | 6/10     | Medium |
+| Performance        | 9/10     | 7/10     | 8/10     | High   |
+| Learning Curve     | 6/10     | 8/10     | 7/10     | Medium |
+| Ecosystem          | 9/10     | 8/10     | 6/10     | High   |
+| **Weighted Score** | **8.1**  | **7.8**  | **6.9**  | -      |
 
 **Pros & Cons table:**
 
-| Technology | Pros | Cons | Best For |
-|------------|------|------|----------|
-| Option A | - Mature<br>- Fast<br>- Large community | - Steeper learning curve<br>- Verbose | Large-scale applications |
-| Option B | - Easy to learn<br>- Great docs<br>- Modern features | - Smaller community<br>- Less mature | Rapid prototyping |
-| Option C | - Lightweight<br>- Flexible | - Less documentation<br>- Small community | Simple projects |
+| Technology | Pros                                                 | Cons                                      | Best For                 |
+| ---------- | ---------------------------------------------------- | ----------------------------------------- | ------------------------ |
+| Option A   | - Mature<br>- Fast<br>- Large community              | - Steeper learning curve<br>- Verbose     | Large-scale applications |
+| Option B   | - Easy to learn<br>- Great docs<br>- Modern features | - Smaller community<br>- Less mature      | Rapid prototyping        |
+| Option C   | - Lightweight<br>- Flexible                          | - Less documentation<br>- Small community | Simple projects          |
 
 #### Step 4: Research Best Practices
 
 **Areas to research:**
 
 **Architecture patterns:**
+
 - Common architectural approaches
 - Design patterns in this technology
 - Anti-patterns to avoid
 - Scalability patterns
 
 **Security:**
+
 - Common vulnerabilities
 - Security best practices
 - Authentication/authorization patterns
 - Compliance considerations
 
 **Testing:**
+
 - Testing approaches and tools
 - Test coverage expectations
 - Integration testing strategies
 - E2E testing options
 
 **Deployment:**
+
 - Deployment platforms and methods
 - CI/CD pipeline approaches
 - Monitoring and observability
 - Logging strategies
 
 **Code organization:**
+
 - Project structure conventions
 - Naming conventions
 - File organization patterns
@@ -629,26 +680,32 @@ POC Checklist:
 # Technical Research: [Technology Category]
 
 ## Objective
+
 [What decision are we trying to make?]
 
 ## Options Evaluated
+
 1. [Option A]
 2. [Option B]
 3. [Option C]
 
 ## Evaluation Criteria
+
 [List weighted criteria]
 
 ## Detailed Analysis
 
 ### Option A: [Name]
+
 **Overview:** [Brief description]
 
 **Pros:**
+
 - [Pro 1]
 - [Pro 2]
 
 **Cons:**
+
 - [Con 1]
 - [Con 2]
 
@@ -663,9 +720,11 @@ POC Checklist:
 [Repeat for other options]
 
 ## Comparison Matrix
+
 [Include matrix]
 
 ## Recommendation
+
 **Primary Choice:** [Option]
 **Rationale:** [Why this is the best choice]
 
@@ -673,11 +732,13 @@ POC Checklist:
 **When to use alternative:** [Conditions]
 
 ## Implementation Plan
+
 1. [Step 1]
 2. [Step 2]
 3. [Step 3]
 
 ## Resources
+
 - [Documentation link]
 - [Tutorial link]
 - [Example project link]
@@ -704,6 +765,7 @@ Understand user needs, behaviors, pain points, and validate product concepts.
 #### Primary Research (Direct with users)
 
 **User Interviews:**
+
 - Method: One-on-one conversations with users
 - Duration: 30-60 minutes per interview
 - Sample size: 5-10 users per segment
@@ -711,6 +773,7 @@ Understand user needs, behaviors, pain points, and validate product concepts.
 - Tools: Zoom, Google Meet, in-person
 
 **Surveys:**
+
 - Method: Structured questionnaires
 - Duration: 5-10 minutes to complete
 - Sample size: 50+ responses for statistical significance
@@ -718,6 +781,7 @@ Understand user needs, behaviors, pain points, and validate product concepts.
 - Tools: Google Forms, Typeform, SurveyMonkey
 
 **Usability Testing:**
+
 - Method: Watch users complete tasks
 - Duration: 30-45 minutes per session
 - Sample size: 5-8 users (finds 85% of issues)
@@ -725,6 +789,7 @@ Understand user needs, behaviors, pain points, and validate product concepts.
 - Tools: UserTesting, Maze, in-person testing
 
 **A/B Testing:**
+
 - Method: Show different versions to different users
 - Duration: Until statistical significance (days/weeks)
 - Sample size: Depends on traffic and effect size
@@ -732,6 +797,7 @@ Understand user needs, behaviors, pain points, and validate product concepts.
 - Tools: Optimizely, Google Optimize, LaunchDarkly
 
 **Analytics Analysis:**
+
 - Method: Analyze user behavior data
 - Duration: Ongoing
 - Sample size: All users
@@ -741,21 +807,25 @@ Understand user needs, behaviors, pain points, and validate product concepts.
 #### Secondary Research (Existing information)
 
 **Review Mining:**
+
 - Method: Analyze reviews on App Store, G2, etc.
 - Best for: Understanding common pain points and desires
 - Scale: Analyze 50-100 reviews per product
 
 **Social Media Analysis:**
+
 - Method: Monitor Reddit, Twitter, forums for mentions
 - Best for: Unfiltered opinions and discussions
 - Tools: Social listening tools, manual searching
 
 **Support Ticket Analysis:**
+
 - Method: Review customer support tickets
 - Best for: Identifying common problems and confusion
 - Tools: Zendesk, Intercom reports
 
 **Competitor User Research:**
+
 - Method: Analyze competitor reviews and testimonials
 - Best for: Understanding market needs without direct access
 - Sources: Review sites, case studies, testimonials
@@ -780,16 +850,17 @@ Success Criteria:
 
 **Method selection matrix:**
 
-| Research Question | Best Method | Timeline | Sample Size |
-|------------------|-------------|----------|-------------|
-| Do users need this feature? | Survey + Interviews | 1-2 weeks | 50 survey, 8 interviews |
-| Is the UI intuitive? | Usability Testing | 1 week | 6-8 users |
-| Which design do users prefer? | A/B Test | 2-4 weeks | 1000+ per variant |
-| What are common pain points? | Review Mining | 2-3 days | 100 reviews |
+| Research Question             | Best Method         | Timeline  | Sample Size             |
+| ----------------------------- | ------------------- | --------- | ----------------------- |
+| Do users need this feature?   | Survey + Interviews | 1-2 weeks | 50 survey, 8 interviews |
+| Is the UI intuitive?          | Usability Testing   | 1 week    | 6-8 users               |
+| Which design do users prefer? | A/B Test            | 2-4 weeks | 1000+ per variant       |
+| What are common pain points?  | Review Mining       | 2-3 days  | 100 reviews             |
 
 #### Step 3: Recruit Participants (for primary research)
 
 **Recruitment sources:**
+
 - Existing users (email, in-app messaging)
 - User research platforms (UserTesting, Respondent.io)
 - Social media (LinkedIn, Twitter, Reddit)
@@ -798,6 +869,7 @@ Success Criteria:
 - Beta user lists
 
 **Screening criteria:**
+
 - Target user segment characteristics
 - Frequency of use / engagement level
 - Technical proficiency (if relevant)
@@ -807,6 +879,7 @@ Success Criteria:
 #### Step 4: Conduct Research
 
 **Interview guide structure:**
+
 ```
 Introduction (5 min)
 - Welcome and build rapport
@@ -832,6 +905,7 @@ Total: 50 minutes
 ```
 
 **Survey best practices:**
+
 - Start with easy questions
 - Group related questions
 - Use mix of question types (multiple choice, rating scales, open-ended)
@@ -840,6 +914,7 @@ Total: 50 minutes
 - Offer incentive for completion
 
 **Usability testing protocol:**
+
 ```
 Setup:
 - Define 5-7 realistic tasks
@@ -863,6 +938,7 @@ After tasks:
 #### Step 5: Analyze Findings
 
 **Qualitative analysis:**
+
 - Transcribe interviews
 - Identify themes and patterns
 - Quote powerful user statements
@@ -870,12 +946,14 @@ After tasks:
 - Create affinity maps for organizing insights
 
 **Quantitative analysis:**
+
 - Calculate metrics (completion rate, time on task, NPS)
 - Statistical significance testing (for A/B tests)
 - Segment analysis (how do different groups differ?)
 - Trend analysis (changes over time)
 
 **Synthesis:**
+
 - What patterns emerged across participants?
 - What surprised us?
 - What confirms our hypotheses?
@@ -885,6 +963,7 @@ After tasks:
 #### Step 6: Create User Personas (optional)
 
 **Persona template:**
+
 ```
 Name: [Memorable name]
 Role: [Job title or role]
@@ -913,9 +992,11 @@ Tech Proficiency: [Low/Medium/High]
 # User Research Report: [Research Topic]
 
 ## Research Objective
+
 [What we were trying to learn]
 
 ## Methodology
+
 - **Methods Used:** [Survey, interviews, usability testing, etc.]
 - **Participants:** [Number and description]
 - **Timeline:** [When conducted]
@@ -923,6 +1004,7 @@ Tech Proficiency: [Low/Medium/High]
 ## Key Findings
 
 ### Finding 1: [Title]
+
 **Description:** [What we learned]
 **Evidence:** [Quotes, data, observations]
 **Implication:** [What this means for the product]
@@ -932,26 +1014,31 @@ Tech Proficiency: [Low/Medium/High]
 ## User Segments
 
 ### Segment 1: [Name]
+
 - **Size:** [Percentage]
 - **Characteristics:** [Description]
 - **Needs:** [Primary needs]
 - **Pain Points:** [Key frustrations]
 
 ## Pain Points Ranking
+
 1. [Pain point 1] - Mentioned by X% of users
 2. [Pain point 2] - Mentioned by Y% of users
 3. [Pain point 3] - Mentioned by Z% of users
 
 ## Feature Requests
+
 1. [Feature 1] - [Priority: High/Medium/Low]
 2. [Feature 2] - [Priority: High/Medium/Low]
 
 ## Recommendations
+
 1. [Recommendation 1]
 2. [Recommendation 2]
 3. [Recommendation 3]
 
 ## Next Steps
+
 - [ ] [Action 1]
 - [ ] [Action 2]
 ```
@@ -965,24 +1052,28 @@ See [scripts/research-sources.sh](../scripts/research-sources.sh) for comprehens
 **Quick reference by category:**
 
 **Market Research:**
+
 - Gartner, Forrester, IDC (industry reports)
 - Statista (statistics)
 - IBISWorld (industry data)
 - Government sources (Census, BLS)
 
 **Competitive Research:**
+
 - G2, Capterra, TrustRadius (reviews)
 - Crunchbase (company data)
 - Company websites
 - Social media
 
 **Technical Research:**
+
 - Official documentation
 - GitHub (code, issues, discussions)
 - Stack Overflow
 - Dev.to, Hacker News
 
 **User Research:**
+
 - Direct user interviews
 - Surveys (Google Forms, Typeform)
 - App Store / Google Play reviews
@@ -1025,24 +1116,28 @@ See [scripts/research-sources.sh](../scripts/research-sources.sh) for comprehens
 ### Time-Boxing Research
 
 **Quick Research (1-2 hours):**
+
 - Single focused question
 - Secondary research only
 - 3-5 key sources
 - Summary findings, not full report
 
 **Standard Research (3-6 hours):**
+
 - Multiple related questions
 - Secondary research + some analysis
 - 10-15 sources
 - Structured report with recommendations
 
 **Comprehensive Research (1-2 days):**
+
 - Complex questions requiring depth
 - Secondary + primary research
 - 20+ sources
 - Full report with competitive matrix, personas, etc.
 
 **Deep Research (1 week+):**
+
 - Strategic decisions
 - Primary research with users
 - Comprehensive competitive analysis
@@ -1134,34 +1229,42 @@ See [scripts/research-sources.sh](../scripts/research-sources.sh) for comprehens
 ### Common Research Mistakes
 
 **Mistake 1: Confirmation bias**
+
 - Problem: Only seeking information that confirms existing beliefs
 - Solution: Actively look for contradictory information
 
 **Mistake 2: Outdated information**
+
 - Problem: Using old research in fast-moving fields
 - Solution: Check publication dates, prioritize recent sources
 
 **Mistake 3: Single-source reliance**
+
 - Problem: Basing decisions on one source
 - Solution: Triangulate across multiple sources
 
 **Mistake 4: Not documenting sources**
+
 - Problem: Can't verify or return to original sources
 - Solution: Document URLs, access dates, key quotes immediately
 
 **Mistake 5: Analysis paralysis**
+
 - Problem: Endless research without decisions
 - Solution: Time-box research, set "good enough" threshold
 
 **Mistake 6: Asking leading questions (in primary research)**
+
 - Problem: "Don't you think this feature would be useful?"
 - Solution: "How do you currently handle [problem]?"
 
 **Mistake 7: Small sample sizes (in quantitative research)**
+
 - Problem: Drawing conclusions from 3 user interviews
 - Solution: Use appropriate sample sizes or acknowledge limitations
 
 **Mistake 8: Ignoring contrary evidence**
+
 - Problem: Cherry-picking data that supports preferred direction
 - Solution: Document all findings, explain contradictions
 
@@ -1170,6 +1273,7 @@ See [scripts/research-sources.sh](../scripts/research-sources.sh) for comprehens
 ## Conclusion
 
 Effective research is:
+
 - **Focused:** Clear questions drive efficient research
 - **Systematic:** Follow structured processes
 - **Rigorous:** Triangulate, verify, question

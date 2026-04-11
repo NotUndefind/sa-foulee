@@ -58,18 +58,18 @@ Web Content Accessibility Guidelines (WCAG) 2.1 is the international standard fo
 
 ```html
 <!-- Informative image -->
-<img src="chart.png" alt="Sales increased 25% in Q4 2024">
+<img src="chart.png" alt="Sales increased 25% in Q4 2024" />
 
 <!-- Decorative image -->
-<img src="decoration.png" alt="" role="presentation">
+<img src="decoration.png" alt="" role="presentation" />
 
 <!-- Complex image -->
-<img src="complex-chart.png"
-     alt="Quarterly sales chart"
-     aria-describedby="chart-description">
-<div id="chart-description">
-  Detailed description: Sales data from Q1-Q4...
-</div>
+<img
+  src="complex-chart.png"
+  alt="Quarterly sales chart"
+  aria-describedby="chart-description"
+/>
+<div id="chart-description">Detailed description: Sales data from Q1-Q4...</div>
 ```
 
 **Icons with meaning:**
@@ -92,7 +92,7 @@ Web Content Accessibility Guidelines (WCAG) 2.1 is the international standard fo
 ```html
 <!-- Every input needs a label -->
 <label for="email">Email Address</label>
-<input type="email" id="email" name="email">
+<input type="email" id="email" name="email" />
 ```
 
 ---
@@ -140,7 +140,9 @@ Web Content Accessibility Guidelines (WCAG) 2.1 is the international standard fo
 
 <!-- Tables -->
 <table>
-  <caption>Q4 Sales Data</caption>
+  <caption>
+    Q4 Sales Data
+  </caption>
   <thead>
     <tr>
       <th scope="col">Month</th>
@@ -202,17 +204,11 @@ Web Content Accessibility Guidelines (WCAG) 2.1 is the international standard fo
 
 ```html
 <!-- Use autocomplete attributes -->
-<input type="text"
-       name="name"
-       autocomplete="name">
+<input type="text" name="name" autocomplete="name" />
 
-<input type="email"
-       name="email"
-       autocomplete="email">
+<input type="email" name="email" autocomplete="email" />
 
-<input type="tel"
-       name="phone"
-       autocomplete="tel">
+<input type="tel" name="phone" autocomplete="tel" />
 ```
 
 ---
@@ -240,11 +236,13 @@ Web Content Accessibility Guidelines (WCAG) 2.1 is the international standard fo
 #### 1.4.3 Contrast (Minimum) (Level AA) ⭐ **CRITICAL**
 
 **Requirement:**
+
 - Normal text: 4.5:1 contrast ratio
 - Large text (18px+ or 14px+ bold): 3:1 contrast ratio
 - UI components and graphics: 3:1 contrast ratio
 
 **Check with:**
+
 ```bash
 python scripts/contrast-check.py #333333 #ffffff
 ```
@@ -341,15 +339,16 @@ python scripts/contrast-check.py #333333 #ffffff
 
 <!-- Keyboard event handler -->
 <script>
-function handleKeyPress(event) {
-  if (event.key === 'Enter' || event.key === ' ') {
-    // Trigger action
+  function handleKeyPress(event) {
+    if (event.key === "Enter" || event.key === " ") {
+      // Trigger action
+    }
   }
-}
 </script>
 ```
 
 **Tab order:**
+
 - Use `tabindex="0"` for custom interactive elements
 - Use `tabindex="-1"` for elements that should receive focus programmatically but not via Tab
 - Never use positive tabindex values (they break natural order)
@@ -366,12 +365,16 @@ function handleKeyPress(event) {
 const lastFocus = document.activeElement;
 
 // 2. Move focus into modal
-modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])').focus();
+modal
+  .querySelector(
+    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+  )
+  .focus();
 
 // 3. Trap focus within modal
-modal.addEventListener('keydown', (e) => {
-  if (e.key === 'Tab') {
-    const focusable = modal.querySelectorAll('...');
+modal.addEventListener("keydown", (e) => {
+  if (e.key === "Tab") {
+    const focusable = modal.querySelectorAll("...");
     const first = focusable[0];
     const last = focusable[focusable.length - 1];
 
@@ -385,7 +388,7 @@ modal.addEventListener('keydown', (e) => {
   }
 
   // Escape key closes modal
-  if (e.key === 'Escape') {
+  if (e.key === "Escape") {
     closeModal();
   }
 });
@@ -449,19 +452,19 @@ lastFocus.focus();
 </main>
 
 <style>
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: #000;
-  color: #fff;
-  padding: 8px;
-  z-index: 100;
-}
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #000;
+    color: #fff;
+    padding: 8px;
+    z-index: 100;
+  }
 
-.skip-link:focus {
-  top: 0;
-}
+  .skip-link:focus {
+    top: 0;
+  }
 </style>
 ```
 
@@ -500,7 +503,8 @@ lastFocus.focus();
 <article>
   <h2>New Feature Released</h2>
   <p>We've added dark mode...</p>
-  <a href="/feature">Read more</a> <!-- Context from heading -->
+  <a href="/feature">Read more</a>
+  <!-- Context from heading -->
 </article>
 ```
 
@@ -534,13 +538,13 @@ lastFocus.focus();
 ```css
 /* Default focus styles */
 :focus {
-  outline: 2px solid #0066CC;
+  outline: 2px solid #0066cc;
   outline-offset: 2px;
 }
 
 /* Custom focus styles */
 button:focus {
-  outline: 2px solid #0066CC;
+  outline: 2px solid #0066cc;
   outline-offset: 2px;
   box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.2);
 }
@@ -605,8 +609,10 @@ button:focus {
 
 ```html
 <html lang="en">
-<html lang="es">
-<html lang="fr">
+  <html lang="es">
+    <html lang="fr"></html>
+  </html>
+</html>
 ```
 
 #### 3.1.2 Language of Parts (Level AA)
@@ -636,10 +642,11 @@ button:focus {
 ```html
 <!-- Bad: Auto-submits -->
 <select onchange="this.form.submit()">
-
-<!-- Good: Requires explicit action -->
-<select id="country">
-<button type="submit">Update</button>
+  <!-- Good: Requires explicit action -->
+  <select id="country">
+    <button type="submit">Update</button>
+  </select>
+</select>
 ```
 
 #### 3.2.3 Consistent Navigation (Level AA)
@@ -670,10 +677,12 @@ button:focus {
 <form>
   <div class="field-error">
     <label for="email">Email Address *</label>
-    <input type="email"
-           id="email"
-           aria-invalid="true"
-           aria-describedby="email-error">
+    <input
+      type="email"
+      id="email"
+      aria-invalid="true"
+      aria-describedby="email-error"
+    />
     <div id="email-error" class="error-message" role="alert">
       <svg aria-hidden="true"><!-- Error icon --></svg>
       Please enter a valid email address (e.g., name@example.com)
@@ -689,11 +698,11 @@ button:focus {
 ```html
 <!-- Every input needs a label -->
 <label for="username">Username *</label>
-<input type="text" id="username" required>
+<input type="text" id="username" required />
 
 <!-- Complex inputs need instructions -->
 <label for="password">Password *</label>
-<input type="password" id="password" aria-describedby="password-rules">
+<input type="password" id="password" aria-describedby="password-rules" />
 <div id="password-rules">
   Password must be at least 8 characters and include letters and numbers.
 </div>
@@ -714,8 +723,8 @@ button:focus {
 
 <!-- Good: Specific correction -->
 <div role="alert">
-  Password must include at least one number.
-  Example: Add123 to the end of your password.
+  Password must include at least one number. Example: Add123 to the end of your
+  password.
 </div>
 ```
 
@@ -752,7 +761,7 @@ button:focus {
 ```html
 <!-- Bad: Invalid HTML -->
 <div id="main">
-  <p>Content
+  <p>Content</p>
 </div>
 <div id="main">Another div with same ID</div>
 
@@ -764,6 +773,7 @@ button:focus {
 ```
 
 **Validate with:**
+
 - W3C HTML Validator
 - Browser DevTools console
 
@@ -777,28 +787,16 @@ button:focus {
 <!-- role="button" (implicit), name="Click me", value=N/A -->
 
 <!-- Custom elements need ARIA -->
-<div role="button"
-     tabindex="0"
-     aria-pressed="false">
-  Toggle
-</div>
+<div role="button" tabindex="0" aria-pressed="false">Toggle</div>
 
 <!-- Form inputs need names -->
 <label for="search">Search</label>
-<input type="search" id="search" name="search">
+<input type="search" id="search" name="search" />
 
 <!-- Complex widgets need proper ARIA -->
 <div role="tablist">
-  <button role="tab"
-          aria-selected="true"
-          aria-controls="panel1">
-    Tab 1
-  </button>
-  <button role="tab"
-          aria-selected="false"
-          aria-controls="panel2">
-    Tab 2
-  </button>
+  <button role="tab" aria-selected="true" aria-controls="panel1">Tab 1</button>
+  <button role="tab" aria-selected="false" aria-controls="panel2">Tab 2</button>
 </div>
 <div role="tabpanel" id="panel1">Panel 1 content</div>
 <div role="tabpanel" id="panel2" hidden>Panel 2 content</div>
@@ -810,9 +808,7 @@ button:focus {
 
 ```html
 <!-- Success message -->
-<div role="status" aria-live="polite">
-  Your changes have been saved.
-</div>
+<div role="status" aria-live="polite">Your changes have been saved.</div>
 
 <!-- Error alert -->
 <div role="alert" aria-live="assertive">
@@ -820,12 +816,11 @@ button:focus {
 </div>
 
 <!-- Loading indicator -->
-<div role="status" aria-live="polite" aria-busy="true">
-  Loading...
-</div>
+<div role="status" aria-live="polite" aria-busy="true">Loading...</div>
 ```
 
 **ARIA live regions:**
+
 - `aria-live="polite"`: Announced at next opportunity (status, progress)
 - `aria-live="assertive"`: Announced immediately (errors, warnings)
 - `role="status"`: Equivalent to aria-live="polite"
@@ -838,17 +833,19 @@ button:focus {
 ### Violation 1: Missing Alt Text
 
 **Problem:**
+
 ```html
-<img src="chart.png">
+<img src="chart.png" />
 ```
 
 **Fix:**
+
 ```html
 <!-- Informative image -->
-<img src="chart.png" alt="Sales chart showing 25% increase in Q4">
+<img src="chart.png" alt="Sales chart showing 25% increase in Q4" />
 
 <!-- Decorative image -->
-<img src="decorative-line.png" alt="">
+<img src="decorative-line.png" alt="" />
 ```
 
 ---
@@ -856,19 +853,30 @@ button:focus {
 ### Violation 2: Poor Color Contrast
 
 **Problem:**
+
 ```css
 /* #999 on #FFF = 2.85:1 (FAIL) */
-.text { color: #999; background: #FFF; }
+.text {
+  color: #999;
+  background: #fff;
+}
 ```
 
 **Fix:**
+
 ```css
 /* #767676 on #FFF = 4.54:1 (PASS) */
-.text { color: #767676; background: #FFF; }
+.text {
+  color: #767676;
+  background: #fff;
+}
 
 /* Or use darker text */
 /* #333 on #FFF = 12.63:1 (PASS) */
-.text { color: #333; background: #FFF; }
+.text {
+  color: #333;
+  background: #fff;
+}
 ```
 
 **Check:** `python scripts/contrast-check.py #999999 #ffffff`
@@ -878,14 +886,16 @@ button:focus {
 ### Violation 3: Missing Form Labels
 
 **Problem:**
+
 ```html
-<input type="text" placeholder="Enter your name">
+<input type="text" placeholder="Enter your name" />
 ```
 
 **Fix:**
+
 ```html
 <label for="name">Name</label>
-<input type="text" id="name" placeholder="Enter your name">
+<input type="text" id="name" placeholder="Enter your name" />
 ```
 
 ---
@@ -893,20 +903,24 @@ button:focus {
 ### Violation 4: Keyboard Inaccessible Buttons
 
 **Problem:**
+
 ```html
 <div onclick="handleClick()">Click me</div>
 ```
 
 **Fix:**
+
 ```html
 <!-- Option 1: Use native button -->
 <button onclick="handleClick()">Click me</button>
 
 <!-- Option 2: Add keyboard support -->
-<div role="button"
-     tabindex="0"
-     onclick="handleClick()"
-     onkeydown="if(event.key==='Enter'||event.key===' ')handleClick()">
+<div
+  role="button"
+  tabindex="0"
+  onclick="handleClick()"
+  onkeydown="if(event.key==='Enter'||event.key===' ')handleClick()"
+>
   Click me
 </div>
 ```
@@ -916,22 +930,26 @@ button:focus {
 ### Violation 5: No Focus Indicator
 
 **Problem:**
+
 ```css
-:focus { outline: none; }
+:focus {
+  outline: none;
+}
 ```
 
 **Fix:**
+
 ```css
 /* Remove default outline but provide alternative */
 :focus {
   outline: none; /* Only if you provide alternative below */
-  box-shadow: 0 0 0 2px #0066CC;
-  border-color: #0066CC;
+  box-shadow: 0 0 0 2px #0066cc;
+  border-color: #0066cc;
 }
 
 /* Or use default outline */
 :focus {
-  outline: 2px solid #0066CC;
+  outline: 2px solid #0066cc;
   outline-offset: 2px;
 }
 ```
@@ -941,9 +959,10 @@ button:focus {
 ### Violation 6: Empty Links/Buttons
 
 **Problem:**
+
 ```html
 <a href="/profile">
-  <img src="avatar.png">
+  <img src="avatar.png" />
 </a>
 
 <button>
@@ -952,9 +971,10 @@ button:focus {
 ```
 
 **Fix:**
+
 ```html
 <a href="/profile">
-  <img src="avatar.png" alt="View profile">
+  <img src="avatar.png" alt="View profile" />
 </a>
 
 <button aria-label="Close dialog">
@@ -967,6 +987,7 @@ button:focus {
 ### Violation 7: Non-semantic HTML
 
 **Problem:**
+
 ```html
 <div class="heading">Page Title</div>
 <div class="list">
@@ -976,6 +997,7 @@ button:focus {
 ```
 
 **Fix:**
+
 ```html
 <h1>Page Title</h1>
 <ul>
@@ -989,17 +1011,17 @@ button:focus {
 ### Violation 8: Color-only Information
 
 **Problem:**
+
 ```html
 <p>Fields in red are required</p>
 <span style="color: red">Email</span>
 ```
 
 **Fix:**
+
 ```html
 <p>Required fields are marked with an asterisk (*)</p>
-<label>
-  Email <span aria-label="required">*</span>
-</label>
+<label> Email <span aria-label="required">*</span> </label>
 ```
 
 ---
@@ -1009,6 +1031,7 @@ button:focus {
 ### Manual Testing
 
 **1. Keyboard Testing:**
+
 ```
 [ ] Tab through all interactive elements
 [ ] All elements reachable
@@ -1021,6 +1044,7 @@ button:focus {
 ```
 
 **2. Screen Reader Testing:**
+
 ```
 [ ] All content announced
 [ ] Images have alt text
@@ -1032,12 +1056,14 @@ button:focus {
 ```
 
 **Screen readers to test:**
+
 - **NVDA** (Windows, free)
 - **JAWS** (Windows, paid)
 - **VoiceOver** (Mac/iOS, built-in)
 - **TalkBack** (Android, built-in)
 
 **3. Zoom Testing:**
+
 ```
 [ ] Zoom to 200%
 [ ] No horizontal scroll at 200%
@@ -1046,6 +1072,7 @@ button:focus {
 ```
 
 **4. Color Blindness Testing:**
+
 ```
 [ ] Simulate protanopia (red-blind)
 [ ] Simulate deuteranopia (green-blind)
@@ -1054,6 +1081,7 @@ button:focus {
 ```
 
 Tools:
+
 - Chrome DevTools: Rendering > Emulate vision deficiencies
 - Color Oracle (desktop app)
 
@@ -1087,11 +1115,11 @@ lhci autorun --collect.url=https://example.com
 
 ```javascript
 // Jest + jest-axe
-import { axe, toHaveNoViolations } from 'jest-axe';
+import { axe, toHaveNoViolations } from "jest-axe";
 
 expect.extend(toHaveNoViolations);
 
-test('should not have accessibility violations', async () => {
+test("should not have accessibility violations", async () => {
   const { container } = render(<MyComponent />);
   const results = await axe(container);
   expect(results).toHaveNoViolations();
@@ -1103,6 +1131,7 @@ test('should not have accessibility violations', async () => {
 ### Testing Checklist
 
 **Quick Audit:**
+
 ```
 [ ] Run axe DevTools (aim for 0 violations)
 [ ] Tab through page (keyboard only)
@@ -1113,6 +1142,7 @@ test('should not have accessibility violations', async () => {
 ```
 
 **Comprehensive Audit:**
+
 ```
 [ ] Automated tools (axe, WAVE, Lighthouse)
 [ ] Keyboard navigation (all functionality)
@@ -1135,36 +1165,43 @@ test('should not have accessibility violations', async () => {
 ### Testing Tools
 
 **Browser Extensions:**
+
 - axe DevTools: https://www.deque.com/axe/devtools/
 - WAVE: https://wave.webaim.org/extension/
 - Accessibility Insights: https://accessibilityinsights.io/
 
 **Screen Readers:**
+
 - NVDA (Windows): https://www.nvaccess.org/
 - VoiceOver (Mac): Built-in (Cmd+F5)
 - JAWS (Windows): https://www.freedomscientific.com/products/software/jaws/
 
 **Contrast Checkers:**
+
 - Built-in: `python scripts/contrast-check.py`
 - WebAIM: https://webaim.org/resources/contrastchecker/
 - Colour Contrast Analyser: https://www.tpgi.com/color-contrast-checker/
 
 **HTML Validators:**
+
 - W3C: https://validator.w3.org/
 - Nu Html Checker: https://validator.github.io/validator/
 
 ### Documentation
 
 **Official:**
+
 - WCAG 2.1: https://www.w3.org/WAI/WCAG21/quickref/
 - ARIA Authoring Practices: https://www.w3.org/WAI/ARIA/apg/
 
 **Guides:**
+
 - WebAIM: https://webaim.org/
 - A11y Project: https://www.a11yproject.com/
 - MDN Accessibility: https://developer.mozilla.org/en-US/docs/Web/Accessibility
 
 **ARIA Patterns:**
+
 - Tabs: https://www.w3.org/WAI/ARIA/apg/patterns/tabs/
 - Modals: https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/
 - Menus: https://www.w3.org/WAI/ARIA/apg/patterns/menu/
@@ -1172,6 +1209,7 @@ test('should not have accessibility violations', async () => {
 ### Quick Reference
 
 **Run accessibility checks:**
+
 ```bash
 # WCAG checklist
 bash scripts/wcag-checklist.sh
@@ -1206,5 +1244,6 @@ bash scripts/responsive-breakpoints.sh
 https://www.w3.org/WAI/WCAG21/quickref/
 
 **Run accessibility checks:**
+
 - `bash scripts/wcag-checklist.sh` - Full WCAG AA checklist
 - `python scripts/contrast-check.py #hex1 #hex2` - Color contrast check

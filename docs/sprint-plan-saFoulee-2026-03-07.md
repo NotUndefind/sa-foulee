@@ -19,6 +19,7 @@ Le plan de sprint couvre les 4 epics de saFoulee sur 4 semaines. Sprint 1 pose l
 **Note importante :** 52 points pour 40 points de capacité → un léger dépassement est attendu. Les stories Could Have (Strava) passent en post-lancement si nécessaire.
 
 **Métriques clés :**
+
 - Total Stories : 17
 - Total Points : 52
 - Sprints : 4
@@ -44,6 +45,7 @@ je veux avoir un projet Next.js + Laravel correctement configuré avec CI/CD,
 afin de pouvoir développer et déployer de manière fiable dès le premier jour.
 
 **Acceptance Criteria:**
+
 - [ ] Repo GitHub créé avec structure monorepo ou repos séparés (frontend/backend)
 - [ ] Next.js 14 initialisé (TypeScript, App Router, Tailwind CSS, Motion.dev)
 - [ ] Laravel 11 initialisé (PHP 8.2, Sanctum, Spatie Permission, Laravel Media Library)
@@ -72,6 +74,7 @@ je veux avoir toutes les migrations Laravel définies,
 afin que la structure de données soit prête avant le développement des fonctionnalités.
 
 **Acceptance Criteria:**
+
 - [ ] Migrations créées pour toutes les tables : users, user_documents, events, event_registrations, training_sessions, session_participations, posts, comments, performances, chat_messages, notifications, notification_preferences
 - [ ] Indexes créés sur les colonnes fréquemment filtrées (voir architecture doc)
 - [ ] Seeders pour les données de test (1 admin, 5 membres, rôles)
@@ -100,6 +103,7 @@ je veux pouvoir m'inscrire sur saFoulee,
 afin de rejoindre l'association et accéder à l'espace membre.
 
 **Acceptance Criteria:**
+
 - [ ] Formulaire d'inscription : prénom, nom, email, mot de passe (confirmation)
 - [ ] Validation côté client (react-hook-form + zod) et côté serveur (Laravel FormRequest)
 - [ ] Email de confirmation envoyé via Resend (vérification optionnelle v1)
@@ -128,6 +132,7 @@ je veux pouvoir me connecter, me déconnecter et réinitialiser mon mot de passe
 afin d'accéder à mon compte en toute sécurité.
 
 **Acceptance Criteria:**
+
 - [ ] Formulaire de connexion (email + mot de passe)
 - [ ] Token Sanctum stocké en cookie httpOnly après login
 - [ ] Déconnexion révoque le token en BDD
@@ -155,6 +160,7 @@ je veux pouvoir assigner des rôles aux membres,
 afin de contrôler qui peut créer des événements, sessions et posts.
 
 **Acceptance Criteria:**
+
 - [ ] 5 rôles configurés via Spatie Permission : admin, founder, coach, bureau, member
 - [ ] Laravel Policies créées pour chaque ressource (EventPolicy, PostPolicy, SessionPolicy, DocumentPolicy)
 - [ ] Middleware `role:` et `permission:` appliqués sur les routes API
@@ -181,6 +187,7 @@ je veux uploader mes documents obligatoires et voir l'état de mon dossier,
 afin de valider mon adhésion à l'association.
 
 **Acceptance Criteria:**
+
 - [ ] Page profil : modifier nom, prénom, photo (upload vers R2), bio
 - [ ] Section "Mon dossier" : upload licence, fiche d'adhésion, certificat médical (PDF/JPG/PNG, max 10 MB)
 - [ ] Indicateur de complétude du dossier (0/3, 1/3, 2/3, 3/3 documents)
@@ -207,6 +214,7 @@ je veux avoir une vue d'ensemble des membres et de leurs dossiers,
 afin de gérer l'association efficacement.
 
 **Acceptance Criteria:**
+
 - [ ] Liste des membres avec statut de dossier (complet/incomplet) et rôle
 - [ ] Filtres : par rôle, par statut de dossier
 - [ ] Action : modifier le rôle d'un membre
@@ -238,6 +246,7 @@ je veux créer, modifier et supprimer des événements,
 afin d'organiser les activités de l'association.
 
 **Acceptance Criteria:**
+
 - [ ] Formulaire de création d'événement : titre, description, type (course/sortie/compétition/autre), date, heure, lieu
 - [ ] Publication immédiate ou planifiée
 - [ ] Modification et suppression par le créateur ou Admin
@@ -264,6 +273,7 @@ je veux voir le calendrier des événements et m'y inscrire,
 afin de participer aux activités de l'association.
 
 **Acceptance Criteria:**
+
 - [ ] Calendrier mensuel des événements (vue liste + vue calendrier)
 - [ ] Détail d'un événement : infos complètes, liste des inscrits (count)
 - [ ] Bouton "S'inscrire" / "Se désinscrire"
@@ -290,6 +300,7 @@ je veux créer une session d'entraînement guidée avec des exercices structuré
 afin de proposer un programme clair aux membres.
 
 **Acceptance Criteria:**
+
 - [ ] Formulaire guidé multi-étapes : type de session (course/interval/fartlek/récupération/renforcement), distance (km), durée estimée (min), intensité (faible/moyenne/élevée)
 - [ ] Section "Exercices" : ajout dynamique d'exercices (nom, répétitions/durée, repos)
 - [ ] Description libre (rich text simple)
@@ -316,6 +327,7 @@ je veux réutiliser des templates de sessions,
 afin de créer rapidement des entraînements récurrents.
 
 **Acceptance Criteria:**
+
 - [ ] Liste des templates créés (personnels + partagés)
 - [ ] Créer une session à partir d'un template (pré-remplit le formulaire)
 - [ ] Modifier et supprimer un template
@@ -344,6 +356,7 @@ je veux voir la page de présentation de l'association,
 afin de découvrir "sa Foulée" et décider de la rejoindre.
 
 **Acceptance Criteria:**
+
 - [ ] Page d'accueil publique : logo, nom, description, couleurs (#FF383E, #7EAA99)
 - [ ] Aperçu des derniers posts du blog (3 articles)
 - [ ] Aperçu des prochains événements (3 événements)
@@ -370,6 +383,7 @@ je veux créer et publier des posts sur le blog de l'association,
 afin de partager les actualités avec les membres et le public.
 
 **Acceptance Criteria:**
+
 - [ ] Éditeur de post : titre, contenu riche (bold, italic, listes, liens), image optionnelle
 - [ ] Templates de posts prédéfinis : compte-rendu de course, annonce d'événement, résultats
 - [ ] Publication immédiate ou planifiée
@@ -397,6 +411,7 @@ je veux envoyer des messages en temps réel dans le chat,
 afin de communiquer avec les autres coureurs de l'association.
 
 **Acceptance Criteria:**
+
 - [ ] Canal général accessible à tous les membres
 - [ ] Canaux par événement (créés automatiquement à la création d'un événement)
 - [ ] Messages affichés en temps réel (WebSocket via Pusher)
@@ -424,6 +439,7 @@ je veux recevoir des notifications in-app et par email pour les événements imp
 afin de ne rien manquer de la vie de l'association.
 
 **Acceptance Criteria:**
+
 - [ ] Icône cloche dans le header avec compteur de notifications non lues
 - [ ] Notifications in-app : nouvel événement, nouveau post, message chat, modification d'événement inscrit
 - [ ] Email automatique si document manquant ou expiré dans le dossier
@@ -453,6 +469,7 @@ je veux voir le classement des coureurs et mes propres performances,
 afin de me motiver et suivre ma progression.
 
 **Acceptance Criteria:**
+
 - [ ] Leaderboard : classement des membres par distance totale (semaine/mois/saison)
 - [ ] Profil performance individuel : historique des sessions, distance totale, évolution
 - [ ] Saisie manuelle d'une performance (distance, durée, date)
@@ -478,6 +495,7 @@ je veux connecter mon compte Strava,
 afin que mes activités sportives soient automatiquement importées dans saFoulee.
 
 **Acceptance Criteria:**
+
 - [ ] Bouton "Connecter Strava" dans le profil → OAuth2 Strava
 - [ ] Synchronisation automatique des activités de course (distance, durée, date)
 - [ ] Webhook Strava pour les nouvelles activités en temps réel
@@ -511,12 +529,14 @@ Strava OAuth2 + webhook. Tokens chiffrés (`encrypted` cast). StravaService avec
 | STORY-002 | Inscription membre | 3 | Must Have |
 | STORY-003 | Authentification | 3 | Must Have |
 
-**Total:** 10 points / 10 capacité *(100% — sprint dense, infrastructure critique)*
+**Total:** 10 points / 10 capacité _(100% — sprint dense, infrastructure critique)_
 
 **Risques:**
+
 - Setup CI/CD peut prendre plus de temps que prévu → commencer par l'essentiel (repo + Laravel + Next.js) avant de configurer Vercel + GitHub Actions
 
 **Livrables démontrables :**
+
 - Un visiteur peut s'inscrire et se connecter sur l'application déployée
 
 ---
@@ -532,13 +552,15 @@ Strava OAuth2 + webhook. Tokens chiffrés (`encrypted` cast). StravaService avec
 | STORY-005 | Profil & documents adhérents | 5 | Must Have |
 | STORY-006 | Tableau de bord Admin | 3 | Must Have |
 
-**Total:** 11 points / 10 capacité *(+1 point → acceptable, STORY-006 peut déborder légèrement sur Sprint 3)*
+**Total:** 11 points / 10 capacité _(+1 point → acceptable, STORY-006 peut déborder légèrement sur Sprint 3)_
 
 **Risques:**
+
 - Intégration Cloudflare R2 peut nécessiter du débogage (premier usage)
 - URLs signées S3 : tester sur les navigateurs mobiles
 
 **Livrables démontrables :**
+
 - Un Admin peut voir tous les membres, leurs dossiers et modifier leurs rôles
 - Un membre peut uploader ses documents
 
@@ -555,13 +577,15 @@ Strava OAuth2 + webhook. Tokens chiffrés (`encrypted` cast). StravaService avec
 | STORY-008 | Calendrier & inscriptions | 3 | Must Have |
 | STORY-009 | Sessions d'entraînement | 5 | Must Have |
 
-**Total:** 11 points / 10 capacité *(+1 point — STORY-009 peut déborder légèrement sur Sprint 4)*
+**Total:** 11 points / 10 capacité _(+1 point — STORY-009 peut déborder légèrement sur Sprint 4)_
 
 **Risques:**
+
 - Formulaire multi-étapes pour les sessions : complexité UX potentielle
 - Gestion des JSON exercises côté Laravel
 
 **Livrables démontrables :**
+
 - Un Entraîneur peut créer une session d'entraînement guidée
 - Un membre peut voir le calendrier et s'inscrire à un événement
 
@@ -579,13 +603,15 @@ Strava OAuth2 + webhook. Tokens chiffrés (`encrypted` cast). StravaService avec
 | STORY-012 | Blog / fil d'actualité | 5 | Must Have |
 | STORY-015 | Leaderboard | 3 | Should Have |
 
-**Total:** 12 points / 10 capacité *(+2 points — prioriser 011 et 012 absolument, 010 et 015 si temps)*
+**Total:** 12 points / 10 capacité _(+2 points — prioriser 011 et 012 absolument, 010 et 015 si temps)_
 
 **Risques:**
+
 - Sprint le plus dense, potentiel de dépassement
 - Prioriser la page publique et le blog (visibles des visiteurs)
 
 **Livrables démontrables :**
+
 - L'association est visible publiquement avec blog et événements
 - Les membres voient le leaderboard
 
@@ -608,32 +634,32 @@ Strava OAuth2 + webhook. Tokens chiffrés (`encrypted` cast). StravaService avec
 
 ## Epic Traceability
 
-| Epic ID | Epic Name | Stories | Points | Sprints |
-|---------|-----------|---------|--------|---------|
-| Infrastructure | Setup & BDD | STORY-000, STORY-001 | 4 | Sprint 1 |
-| EPIC-001 | Membres & Admin | STORY-002, 003, 004, 005, 006 | 17 | Sprint 1-2 |
-| EPIC-002 | Événements & Sessions | STORY-007, 008, 009, 010 | 13 | Sprint 3-4 |
-| EPIC-003 | Communauté | STORY-011, 012, 013, 014 | 15 | Sprint 4 + post |
-| EPIC-004 | Performances | STORY-015, 016 | 8 | Sprint 4 + post |
+| Epic ID        | Epic Name             | Stories                       | Points | Sprints         |
+| -------------- | --------------------- | ----------------------------- | ------ | --------------- |
+| Infrastructure | Setup & BDD           | STORY-000, STORY-001          | 4      | Sprint 1        |
+| EPIC-001       | Membres & Admin       | STORY-002, 003, 004, 005, 006 | 17     | Sprint 1-2      |
+| EPIC-002       | Événements & Sessions | STORY-007, 008, 009, 010      | 13     | Sprint 3-4      |
+| EPIC-003       | Communauté            | STORY-011, 012, 013, 014      | 15     | Sprint 4 + post |
+| EPIC-004       | Performances          | STORY-015, 016                | 8      | Sprint 4 + post |
 
 ---
 
 ## Requirements Coverage
 
-| FR ID | FR Name | Story | Sprint |
-|-------|---------|-------|--------|
-| FR-001 | Authentification & Profil | STORY-002, STORY-003 | 1 |
-| FR-002 | Gestion des documents | STORY-005 | 2 |
-| FR-003 | Système de rôles | STORY-004 | 2 |
-| FR-004 | Création sessions | STORY-009, STORY-010 | 3-4 |
-| FR-005 | Gestion événements | STORY-007, STORY-008 | 3 |
-| FR-006 | Blog / actualités | STORY-012 | 4 |
-| FR-007 | Leaderboard & performances | STORY-015 | 4 |
-| FR-008 | Intégration Strava | STORY-016 | Post-lancement |
-| FR-009 | Chat | STORY-013 | Post-lancement |
-| FR-010 | Accès public | STORY-011 | 4 |
-| FR-011 | Tableau de bord Admin | STORY-006 | 2 |
-| FR-012 | Notifications | STORY-014 | Post-lancement |
+| FR ID  | FR Name                    | Story                | Sprint         |
+| ------ | -------------------------- | -------------------- | -------------- |
+| FR-001 | Authentification & Profil  | STORY-002, STORY-003 | 1              |
+| FR-002 | Gestion des documents      | STORY-005            | 2              |
+| FR-003 | Système de rôles           | STORY-004            | 2              |
+| FR-004 | Création sessions          | STORY-009, STORY-010 | 3-4            |
+| FR-005 | Gestion événements         | STORY-007, STORY-008 | 3              |
+| FR-006 | Blog / actualités          | STORY-012            | 4              |
+| FR-007 | Leaderboard & performances | STORY-015            | 4              |
+| FR-008 | Intégration Strava         | STORY-016            | Post-lancement |
+| FR-009 | Chat                       | STORY-013            | Post-lancement |
+| FR-010 | Accès public               | STORY-011            | 4              |
+| FR-011 | Tableau de bord Admin      | STORY-006            | 2              |
+| FR-012 | Notifications              | STORY-014            | Post-lancement |
 
 **Couverture Must Have au lancement :** FR-001 à FR-007, FR-010, FR-011 ✓ (9/12 FRs)
 **Post-lancement :** FR-008, FR-009, FR-012 (3/12 FRs — Should/Could Have)
@@ -643,14 +669,17 @@ Strava OAuth2 + webhook. Tokens chiffrés (`encrypted` cast). StravaService avec
 ## Risks and Mitigation
 
 **Élevé :**
+
 - **Timeline serrée** (52 points pour 40 de capacité) → Mitigation : différer chat, notifications et Strava post-lancement. Prioriser Must Have absolus.
 - **Cloudflare R2 + URLs signées** (première intégration) → Mitigation : prototyper en Sprint 2 jour 1, prévoir 2h de débogage.
 
 **Moyen :**
+
 - **Pusher WebSocket sur shared hosting** → Mitigation : architecture choisie pour éviter ce problème (client initie la connexion vers Pusher). Tester en Sprint 4.
 - **Formulaire sessions multi-étapes** (UX complexe) → Mitigation : commencer par une version simple (formulaire unique) et améliorer en post-lancement.
 
 **Faible :**
+
 - **Strava API payante** → Mitigation : vérifier en Sprint 4, différer si nécessaire.
 - **O2switch limitations cron** → Mitigation : tester les crons dès Sprint 1 (task scheduler Laravel).
 
@@ -659,6 +688,7 @@ Strava OAuth2 + webhook. Tokens chiffrés (`encrypted` cast). StravaService avec
 ## Definition of Done
 
 Pour une story considérée comme complète :
+
 - [ ] Code implémenté et commité sur `main`
 - [ ] Tests Pest (backend) ou Vitest (frontend) écrits sur les cas critiques
 - [ ] Code lint (ESLint + PHP-CS-Fixer) sans erreur
@@ -684,6 +714,7 @@ Pour une story considérée comme complète :
 Pour chaque story, utiliser `/dev-story {STORY-ID}` pour obtenir une implémentation guidée détaillée.
 
 **Ordre recommandé Sprint 1 :**
+
 1. `/dev-story STORY-000` — Setup du projet
 2. `/dev-story STORY-001` — Schéma BDD
 3. `/dev-story STORY-002` — Inscription membre
@@ -693,4 +724,4 @@ Pour chaque story, utiliser `/dev-story {STORY-ID}` pour obtenir une implémenta
 
 **This plan was created using BMAD Method v6 - Phase 4 (Implementation Planning)**
 
-*Run `/workflow-status` to check overall progress.*
+_Run `/workflow-status` to check overall progress._

@@ -17,6 +17,7 @@ Complete reference for design patterns, accessibility guidelines, and wireframe 
 ### ASCII Wireframe Best Practices
 
 **Layout Characters:**
+
 ```
 Boxes: ┌─┐ └─┘ ├─┤ │
 Light: ┌─┐ └─┘ ├─┤ │
@@ -25,6 +26,7 @@ Double: ╔═╗ ╚═╝ ╠═╣ ║
 ```
 
 **Full Page Example:**
+
 ```
 ┌─────────────────────────────────────────────────────────┐
 │  [Logo]  [Search...]         [Nav1] [Nav2] [Account ▼] │
@@ -61,6 +63,7 @@ When ASCII is not suitable, use structured descriptions:
 ## Screen: Dashboard
 
 ### Layout
+
 - Header (fixed, 64px height)
   - Logo (left, 120px × 40px)
   - Search bar (center, 400px × 40px)
@@ -84,6 +87,7 @@ When ASCII is not suitable, use structured descriptions:
   - Copyright notice
 
 ### Interactions
+
 - Logo → Navigate to home
 - Search → Autocomplete dropdown (max 8 results)
 - User menu → Dropdown with 4 options
@@ -93,6 +97,7 @@ When ASCII is not suitable, use structured descriptions:
 - Cards click → Navigate to detail page
 
 ### Responsive Behavior
+
 - Mobile (< 768px):
   - Sidebar collapses to hamburger menu
   - Card grid becomes single column
@@ -107,6 +112,7 @@ When ASCII is not suitable, use structured descriptions:
   - All hover states active
 
 ### Accessibility
+
 - Landmark regions: header, nav, main, footer
 - Skip to content link
 - Search: aria-label="Search products"
@@ -121,6 +127,7 @@ When ASCII is not suitable, use structured descriptions:
 ### Navigation Patterns
 
 **Top Navigation Bar:**
+
 ```
 Desktop:
 ┌─────────────────────────────────────────┐
@@ -137,6 +144,7 @@ Properties:
 ```
 
 **Hamburger Menu (Mobile):**
+
 ```
 Mobile:
 ┌─────────────────┐
@@ -163,6 +171,7 @@ Properties:
 ```
 
 **Tab Navigation:**
+
 ```
 ┌────────────────────────────────────┐
 │  [Tab 1*]  [Tab 2]  [Tab 3]        │
@@ -181,6 +190,7 @@ Properties:
 ```
 
 **Breadcrumbs:**
+
 ```
 Home > Category > Subcategory > Current Page
 
@@ -195,6 +205,7 @@ Properties:
 ### Form Patterns
 
 **Single Column Form:**
+
 ```
 ┌────────────────────────────┐
 │  Form Title                │
@@ -233,6 +244,7 @@ Best Practices:
 ```
 
 **Form Validation States:**
+
 ```
 Default:
 ┌────────────────────────────┐
@@ -263,6 +275,7 @@ Error:
 ### Card Patterns
 
 **Basic Card:**
+
 ```
 ┌────────────────────┐
 │  [Image 16:9]      │
@@ -286,6 +299,7 @@ Properties:
 ```
 
 **Card Grid:**
+
 ```
 ┌─────┐ ┌─────┐ ┌─────┐
 │Card │ │Card │ │Card │
@@ -305,6 +319,7 @@ Mobile: 1 column, gap 16px
 ### Modal Patterns
 
 **Modal Dialog:**
+
 ```
 ┌─────────────────────────────────────┐
 │  Overlay (rgba(0,0,0,0.5))          │
@@ -338,6 +353,7 @@ Properties:
 ### Button Patterns
 
 **Button Hierarchy:**
+
 ```
 Primary:     [  Primary Action  ]  ← Solid, high contrast
 Secondary:   [  Secondary Action ]  ← Outlined
@@ -354,6 +370,7 @@ Properties:
 ```
 
 **Button States:**
+
 ```
 Default:    [ Button ]
 Hover:      [ Button ] ← Darken 10%
@@ -364,6 +381,7 @@ Loading:    [ ⟳ Loading... ]
 ```
 
 **Touch Targets:**
+
 - Minimum size: 44px × 44px
 - Spacing: Minimum 8px between targets
 - Mobile: Larger targets (48px+)
@@ -375,6 +393,7 @@ See `resources/accessibility-guide.md` for complete WCAG 2.1 reference.
 ### Quick Accessibility Checklist
 
 **Visual:**
+
 - [ ] Color contrast ≥ 4.5:1 (text)
 - [ ] Color contrast ≥ 3:1 (UI components)
 - [ ] Don't rely on color alone
@@ -382,6 +401,7 @@ See `resources/accessibility-guide.md` for complete WCAG 2.1 reference.
 - [ ] No horizontal scroll at 320px width
 
 **Keyboard:**
+
 - [ ] All functionality via keyboard
 - [ ] Visible focus indicators (2px outline minimum)
 - [ ] Logical tab order
@@ -389,6 +409,7 @@ See `resources/accessibility-guide.md` for complete WCAG 2.1 reference.
 - [ ] Skip links for navigation
 
 **Semantic:**
+
 - [ ] Proper heading hierarchy (H1 > H2 > H3)
 - [ ] Landmark regions (header, nav, main, footer)
 - [ ] Alt text for images
@@ -396,6 +417,7 @@ See `resources/accessibility-guide.md` for complete WCAG 2.1 reference.
 - [ ] ARIA when semantic HTML insufficient
 
 **Interactive:**
+
 - [ ] Error messages clear and actionable
 - [ ] Form validation messages announced
 - [ ] Loading states announced
@@ -755,6 +777,7 @@ Use for:
 10. **Design error states** - Clear, actionable error messages
 
 For more details, see:
+
 - `resources/accessibility-guide.md` - Complete WCAG reference
 - `resources/design-patterns.md` - Full pattern library
 - `resources/design-tokens.md` - Design system tokens

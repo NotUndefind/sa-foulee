@@ -44,6 +44,7 @@ Approach: **Strategic, organized, pragmatic.**
 ### Part 1: Foundation (From Product Brief)
 
 If product brief exists, extract and confirm:
+
 - Executive summary
 - Business objectives
 - Success metrics
@@ -62,6 +63,7 @@ Store as: `{{business_objectives}}`, `{{success_metrics}}`
 ### Part 2: Functional Requirements (FRs)
 
 **Explain to user:**
+
 > "Functional Requirements define **what** the system does. Each FR is a specific capability or feature.
 > We'll organize these into Must/Should/Could priorities using the MoSCoW method."
 
@@ -79,6 +81,7 @@ For each major feature area (derived from product brief or user input):
 3. **Assign FR-ID:** FR-001, FR-002, etc. (sequential)
 
 **Format each FR:**
+
 ```markdown
 ### FR-{ID}: {Short Title}
 
@@ -88,6 +91,7 @@ For each major feature area (derived from product brief or user input):
 {What the system should do - specific and testable}
 
 **Acceptance Criteria:**
+
 - [ ] Criterion 1
 - [ ] Criterion 2
 - [ ] Criterion 3
@@ -96,11 +100,13 @@ For each major feature area (derived from product brief or user input):
 ```
 
 **Guidance:**
+
 - **Must Have:** Critical for MVP, project fails without it
 - **Should Have:** Important but workaround exists
 - **Could Have:** Nice to have, skip if time/budget tight
 
 **Typical FR count by level:**
+
 - Level 2: 8-15 FRs
 - Level 3: 15-30 FRs
 - Level 4: 30-50 FRs
@@ -112,6 +118,7 @@ For each major feature area (derived from product brief or user input):
 ### Part 3: Non-Functional Requirements (NFRs)
 
 **Explain to user:**
+
 > "Non-Functional Requirements define **how** the system performs - quality attributes like performance, security, scalability."
 
 **NFR Categories to cover:**
@@ -157,6 +164,7 @@ For each major feature area (derived from product brief or user input):
 **Ask:** "What are your [category] requirements?"
 
 **Format:**
+
 ```markdown
 ### NFR-{ID}: {Category} - {Short Title}
 
@@ -166,6 +174,7 @@ For each major feature area (derived from product brief or user input):
 {Specific, measurable requirement}
 
 **Acceptance Criteria:**
+
 - [ ] Measurable criterion (e.g., "Response time < 200ms for 95% of requests")
 
 **Rationale:**
@@ -181,6 +190,7 @@ For each major feature area (derived from product brief or user input):
 ### Part 4: Epics
 
 **Explain to user:**
+
 > "Epics are large bodies of work that group related FRs. Each epic will break down into 2-10 user stories in Phase 4."
 
 **Epic Creation Process:**
@@ -194,6 +204,7 @@ For each major feature area (derived from product brief or user input):
    - **Story Count Estimate:** 2-10 stories
 
 **Format:**
+
 ```markdown
 ### EPIC-{ID}: {Epic Name}
 
@@ -201,6 +212,7 @@ For each major feature area (derived from product brief or user input):
 {What this epic delivers}
 
 **Functional Requirements:**
+
 - FR-001
 - FR-003
 - FR-007
@@ -214,6 +226,7 @@ For each major feature area (derived from product brief or user input):
 ```
 
 **Typical epic count by level:**
+
 - Level 2: 2-4 epics
 - Level 3: 4-8 epics
 - Level 4: 8-15 epics
@@ -228,12 +241,14 @@ For each major feature area (derived from product brief or user input):
 
 If YES:
 For each epic, create 2-3 example stories in format:
+
 > "As a [user type], I want [goal] so that [benefit]."
 
 **Store as:** `{{user_stories}}`
 
 If NO:
 Set `{{user_stories}}` to:
+
 > "Detailed user stories will be created during sprint planning (Phase 4)."
 
 ---
@@ -280,11 +295,13 @@ Set `{{user_stories}}` to:
    - Product brief path if available
 
 3. **Generate traceability matrix:**
+
    ```
    | Epic ID | Epic Name | FRs | Story Estimate |
    |---------|-----------|-----|----------------|
    | EPIC-001 | User Management | FR-001, FR-002, FR-005 | 5-8 stories |
    ```
+
    Store as: `{{traceability_matrix}}`
 
 4. **Generate prioritization summary:**
@@ -297,6 +314,7 @@ Set `{{user_stories}}` to:
 6. **Write document** using Write tool
 
 7. **Display summary:**
+
    ```
    ✓ PRD Created!
 
@@ -351,6 +369,7 @@ Per `helpers.md#Determine-Next-Workflow`:
 **Based on project level:**
 
 **Level 2:**
+
 ```
 ✓ PRD complete!
 
@@ -362,6 +381,7 @@ FRs and NFRs are addressed systematically.
 ```
 
 **Level 3-4:**
+
 ```
 ✓ PRD complete!
 
@@ -391,22 +411,26 @@ is critical for success.
 ## Tips for Effective Requirements Gathering
 
 **Functional Requirements:**
+
 - Be specific: "User can upload PDF files up to 10MB" vs. "User can upload files"
 - Be testable: Include clear acceptance criteria
 - Avoid solution statements: "User can reset password" vs. "System uses JWT tokens"
 - One requirement per FR: Break complex features into atomic FRs
 
 **Non-Functional Requirements:**
+
 - Be measurable: "API response < 200ms" vs. "System is fast"
 - Include context: "99.9% uptime during business hours (M-F, 8am-6pm EST)"
 - Consider cost: Some NFRs are expensive (e.g., 99.999% uptime)
 
 **Epics:**
+
 - Epic ≠ Feature: An epic can span multiple features
 - Right-sized: 2-10 stories each (not 1, not 50)
 - Vertical slices: Each epic delivers end-to-end value
 
 **Prioritization:**
+
 - Not everything is "Must Have" - be honest about what's critical
 - Use data: Impact × Reach ÷ Effort
 - Consider dependencies: Some FRs must come before others

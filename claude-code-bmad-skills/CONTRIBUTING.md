@@ -7,6 +7,7 @@ Thank you for your interest in contributing! This project implements the BMAD Me
 **Important**: The BMAD Method is created and owned by the [BMAD Code Organization](https://github.com/bmad-code-org).
 
 When contributing:
+
 - ✅ Improvements to Claude Code integration
 - ✅ Bug fixes in installation or skills
 - ✅ Better documentation
@@ -15,6 +16,7 @@ When contributing:
 - ✅ Command improvements
 
 **Do not**:
+
 - ❌ Modify core BMAD methodology without coordinating with BMAD Code org
 - ❌ Remove or alter attribution to BMAD authors
 - ❌ Change fundamental BMAD workflows or agent roles
@@ -52,25 +54,32 @@ mkdir -p skills/your-skill
 ```
 
 **Skill Template:**
+
 ```markdown
 # [Language/Domain] Skill
 
 ## Overview
+
 [Brief description of what this skill covers]
 
 ## Best Practices
+
 [Key practices and patterns]
 
 ## Code Examples
+
 [Working examples with explanations]
 
 ## Common Patterns
+
 [Frequently used patterns]
 
 ## Anti-Patterns
+
 [Things to avoid]
 
 ## Integration with BMAD
+
 [How this skill works with BMAD projects]
 ```
 
@@ -96,6 +105,7 @@ You are being asked to [do something].
 [Clear, step-by-step instructions]
 
 ## Important
+
 [Critical points]
 ```
 
@@ -126,6 +136,7 @@ git commit -m "docs(readme): improve LLM installation instructions"
 ```
 
 **Commit types:**
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation only
@@ -140,6 +151,7 @@ git push origin feature/add-rust-skill
 ```
 
 Then create a Pull Request on GitHub with:
+
 - **Title**: Clear description of change
 - **Description**:
   - What problem does this solve?
@@ -222,11 +234,13 @@ Before submitting:
 ## 🎓 Learning Resources
 
 ### BMAD Method
+
 - [Original BMAD](https://github.com/bmad-code-org/BMAD-METHOD)
 - [BMAD Website](https://bmadcodes.com/bmad-method/)
 - [YouTube Channel](https://www.youtube.com/@BMadCode)
 
 ### Claude Code
+
 - [Claude Code Docs](https://docs.claude.com/claude-code)
 - Skills system
 - Slash commands
@@ -237,6 +251,7 @@ Before submitting:
 Your contributions help make BMAD more accessible in Claude Code.
 
 Special thanks to:
+
 - **BMAD Code Organization** - For the amazing methodology
 - **All contributors** - For improvements and fixes
 - **Community** - For feedback and support

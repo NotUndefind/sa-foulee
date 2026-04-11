@@ -38,6 +38,7 @@ Use TodoWrite to track: Load Requirements → Define Scope → Create User Flows
 **Load requirements document:**
 
 Per `helpers.md#Load-Documents`:
+
 - Read PRD or tech-spec from project
 - Extract all user stories (US-XXX)
 - Extract all NFRs related to UX:
@@ -49,9 +50,11 @@ Per `helpers.md#Load-Documents`:
 **Ask user for additional context:**
 
 **Q1: Target Platforms**
+
 > "What platforms are we designing for?"
 >
 > Options (select multiple):
+>
 > - [ ] Web (desktop)
 > - [ ] Web (mobile)
 > - [ ] Web (tablet)
@@ -62,6 +65,7 @@ Per `helpers.md#Load-Documents`:
 **Store as:** `{{target_platforms}}`
 
 **Q2: Design Complexity**
+
 > "What level of design detail?"
 >
 > 1. **High-level** - User flows and basic wireframes
@@ -71,6 +75,7 @@ Per `helpers.md#Load-Documents`:
 **Store as:** `{{design_level}}`
 
 **Q3: Accessibility Requirements**
+
 > "What accessibility level?"
 >
 > 1. WCAG 2.1 Level A (minimum)
@@ -80,6 +85,7 @@ Per `helpers.md#Load-Documents`:
 **Store as:** `{{wcag_level}}`
 
 **Q4: Existing Design System**
+
 > "Do you have an existing design system or brand guidelines?"
 >
 > If yes: Ask for link or file
@@ -94,6 +100,7 @@ Per `helpers.md#Load-Documents`:
 **From requirements, extract screens to design:**
 
 **Group user stories by screen/flow:**
+
 ```
 Flow 1: User Authentication
 - US-001: User can sign up
@@ -112,6 +119,7 @@ Screens needed: Dashboard (empty state), Dashboard (with data)
 **Count total screens:** {{screen_count}}
 
 **Inform user:**
+
 > "I've identified {{screen_count}} screens across {{flow_count}} user flows."
 
 ---
@@ -121,41 +129,50 @@ Screens needed: Dashboard (empty state), Dashboard (with data)
 **For each major flow, create user flow diagram.**
 
 **User flow format:**
+
 ```markdown
 ### Flow: {{flow_name}}
 
 **Entry Point:** {{how_user_starts_flow}}
 
 **Happy Path:**
+
 1. {{screen_1}} → User {{action}} → {{screen_2}}
 2. {{screen_2}} → User {{action}} → {{screen_3}}
 3. {{screen_3}} → {{final_state}}
 
 **Decision Points:**
+
 - At {{screen}}: If {{condition}} → {{alternative_path}}
 
 **Error Cases:**
+
 - {{error_scenario}} → Show {{error_message}} → {{recovery_action}}
 
 **Exit Points:**
+
 - Success: {{success_screen}}
 - Cancel: {{cancel_destination}}
 - Error: {{error_screen}}
 
 **Diagram:**
 ```
+
 [Start]
-   ↓
+↓
 [Screen 1: {{name}}]
-   ↓ {{action}}
+↓ {{action}}
 [Screen 2: {{name}}]
-   ↓ {{action}}
-   ├─→ [Success: {{screen}}]
-   └─→ [Error: {{screen}}]
+↓ {{action}}
+├─→ [Success: {{screen}}]
+└─→ [Error: {{screen}}]
+
 ```
+
 ```
 
 **Create flows for:**
+
 - Authentication flows
 - Core feature flows
 - Settings/configuration flows
@@ -227,6 +244,7 @@ Desktop (1024px+):
 **Layout Structure:**
 
 **Header (fixed, 60px height):**
+
 - Logo (left, 40px × 40px)
   - Click → Home page
 - Navigation menu (center)
@@ -238,15 +256,18 @@ Desktop (1024px+):
 **Main Content (scrollable):**
 
 **Hero Section (full-width, 400px height):**
+
 - Headline (H1, 48px, center-aligned)
 - Subheadline (H2, 24px, center-aligned)
 - Background: gradient or image
 
 **Card Grid (responsive):**
+
 - Layout: 2 columns (desktop), 1 column (mobile)
 - Gap: 24px between cards
 
 **Card Component (300px × 250px):**
+
 - Image (full-width, 150px height)
 - Title (H3, 20px, 16px padding)
 - Description (Body text, 14px, 16px padding)
@@ -256,21 +277,25 @@ Desktop (1024px+):
   - Fixed-width on desktop (160px)
 
 **CTA Section (center-aligned, 200px height):**
+
 - Primary Button (200px × 56px)
   - Text: "{{cta_text}}"
   - Click → {{destination}}
 
 **Footer (full-width, 120px height):**
+
 - Links (horizontal, center-aligned)
 - Copyright notice (center, 12px text)
 
 **Interactions:**
+
 - Card hover → Elevation shadow
 - Button hover → Darken 10%
 - Button click → {{action}}
 - Links hover → Underline
 
 **States:**
+
 - Default
 - Hover (for interactive elements)
 - Focus (keyboard navigation)
@@ -279,6 +304,7 @@ Desktop (1024px+):
 - Loading (for async actions)
 
 **Responsive Behavior:**
+
 - **Mobile (320-767px):**
   - Single column layout
   - Stack cards vertically
@@ -310,6 +336,7 @@ Desktop (1024px+):
 **WCAG {{wcag_level}} Compliance:**
 
 **Perceivable:**
+
 - [ ] All images have alt text: "{{alt_text}}"
 - [ ] Color contrast checked:
   - Text on background: {{ratio}} (minimum 4.5:1)
@@ -319,6 +346,7 @@ Desktop (1024px+):
 - [ ] No horizontal scrolling at 320px width
 
 **Operable:**
+
 - [ ] Tab order: {{tab_order_sequence}}
 - [ ] Focus indicators visible (2px outline, primary color)
 - [ ] No keyboard traps
@@ -327,6 +355,7 @@ Desktop (1024px+):
 - [ ] Animations respect prefers-reduced-motion
 
 **Understandable:**
+
 - [ ] Page language: `lang="en"`
 - [ ] Form labels for all inputs
 - [ ] Error messages: "{{example_error}}" (clear and actionable)
@@ -334,6 +363,7 @@ Desktop (1024px+):
 - [ ] Predictable interactions (no surprise navigation)
 
 **Robust:**
+
 - [ ] Semantic HTML: `<header>`, `<nav>`, `<main>`, `<footer>`
 - [ ] ARIA labels where needed:
   - Button: `aria-label="{{label}}"`
@@ -343,12 +373,14 @@ Desktop (1024px+):
 
 **Keyboard Navigation:**
 ```
+
 Tab → Focus next interactive element
 Shift+Tab → Focus previous
 Enter → Activate button/link
 Space → Activate button, toggle checkbox
 Escape → Close modal/dropdown
 Arrow keys → Navigate within component (tabs, menus)
+
 ```
 
 **Screen Reader Annotations:**
@@ -370,6 +402,7 @@ Arrow keys → Navigate within component (tabs, menus)
 ### Button Component
 
 **Variants:**
+
 - **Primary:** Main actions (e.g., Submit, Save)
   - Background: Primary color
   - Text: White
@@ -389,6 +422,7 @@ Arrow keys → Navigate within component (tabs, menus)
   - No border
 
 **States:**
+
 - Default
 - Hover: Background darkens 10%
 - Focus: 2px outline, offset 2px
@@ -396,6 +430,7 @@ Arrow keys → Navigate within component (tabs, menus)
 - Disabled: Opacity 50%, cursor not-allowed
 
 **Accessibility:**
+
 - Minimum size: 44px × 44px
 - Focus indicator visible
 - aria-disabled when disabled
@@ -405,21 +440,25 @@ Arrow keys → Navigate within component (tabs, menus)
 ### Card Component
 
 **Structure:**
+
 - Image (optional, 16:9 aspect ratio)
 - Title (H3)
 - Description (Body text)
 - Action button (optional)
 
 **Sizing:**
+
 - Mobile: Full-width
 - Tablet: 48% width (2 columns)
 - Desktop: 32% width (3 columns)
 
 **Spacing:**
+
 - Internal padding: 16px
 - Gap between cards: 24px
 
 **States:**
+
 - Default: elevation 1
 - Hover: elevation 2
 - Focus: outline
@@ -429,24 +468,28 @@ Arrow keys → Navigate within component (tabs, menus)
 ### Form Input Component
 
 **Structure:**
+
 - Label (above input, required)
 - Input field
 - Help text (optional)
 - Error message (when invalid)
 
 **Styling:**
+
 - Border: 1px solid neutral-300
 - Padding: 12px
 - Border-radius: 4px
 - Font: 16px (prevent zoom on mobile)
 
 **States:**
+
 - Default: neutral border
 - Focus: primary border, 2px
 - Error: error border, show error message
 - Disabled: gray background, not-allowed cursor
 
 **Accessibility:**
+
 - Label linked to input: `for="{{id}}"`
 - Required: `aria-required="true"`
 - Error: `aria-invalid="true"`, `aria-describedby="{{error-id}}"`
@@ -466,17 +509,20 @@ Arrow keys → Navigate within component (tabs, menus)
 ### Colors
 
 **Primary Palette:**
+
 - Primary: #0066CC (contrast ratio: 4.57:1 on white)
 - Primary-dark: #004C99
 - Primary-light: #3385D6
 
 **Semantic Colors:**
+
 - Success: #00AA44 (WCAG AA compliant)
 - Warning: #FF8800
 - Error: #DD0000
 - Info: #0066CC
 
 **Neutral Palette:**
+
 - Neutral-50: #F9F9F9 (backgrounds)
 - Neutral-100: #F0F0F0
 - Neutral-300: #CCCCCC (borders)
@@ -485,6 +531,7 @@ Arrow keys → Navigate within component (tabs, menus)
 - Neutral-900: #222222 (headings)
 
 **Contrast Ratios (checked):**
+
 - Neutral-700 on white: 7.5:1 ✓ (AAA)
 - Primary on white: 4.57:1 ✓ (AA)
 - Error on white: 6.2:1 ✓ (AA)
@@ -492,10 +539,12 @@ Arrow keys → Navigate within component (tabs, menus)
 ### Typography
 
 **Font Family:**
+
 - Primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif
 - Monospace: "SF Mono", Monaco, monospace
 
 **Type Scale:**
+
 - H1: 48px / 600 / 1.2 line-height
 - H2: 36px / 600 / 1.3
 - H3: 24px / 600 / 1.4
@@ -505,6 +554,7 @@ Arrow keys → Navigate within component (tabs, menus)
 - Tiny: 12px / 400 / 1.4
 
 **Responsive Type:**
+
 - Mobile: Reduce by 20%
 - Tablet: Reduce by 10%
 - Desktop: Base scale
@@ -512,6 +562,7 @@ Arrow keys → Navigate within component (tabs, menus)
 ### Spacing
 
 **Scale (based on 8px):**
+
 - xs: 4px
 - sm: 8px
 - md: 16px
@@ -521,6 +572,7 @@ Arrow keys → Navigate within component (tabs, menus)
 - 3xl: 64px
 
 **Layout:**
+
 - Container max-width: 1200px
 - Gutter: 16px (mobile), 24px (desktop)
 - Section spacing: 48px (mobile), 96px (desktop)
@@ -528,6 +580,7 @@ Arrow keys → Navigate within component (tabs, menus)
 ### Shadows
 
 **Elevation:**
+
 - Level 1: 0 1px 3px rgba(0,0,0,0.12)
 - Level 2: 0 4px 6px rgba(0,0,0,0.16)
 - Level 3: 0 10px 20px rgba(0,0,0,0.20)
@@ -552,23 +605,26 @@ Arrow keys → Navigate within component (tabs, menus)
 
 **Document implementation details:**
 
-```markdown
+````markdown
 ## Developer Handoff
 
 ### Implementation Priorities
 
 **Phase 1 - Foundation:**
+
 1. Set up design tokens (colors, spacing, typography)
 2. Implement base components (Button, Input, Card)
 3. Create responsive grid system
 4. Set up accessibility infrastructure
 
 **Phase 2 - Screens:**
+
 1. {{highest_priority_screen}}
 2. {{second_priority_screen}}
 3. {{third_priority_screen}}
 
 **Phase 3 - Polish:**
+
 1. Animations and transitions
 2. Loading states
 3. Error states
@@ -577,6 +633,7 @@ Arrow keys → Navigate within component (tabs, menus)
 ### Component Implementation Notes
 
 **Button Component:**
+
 ```css
 /* Base button */
 .btn {
@@ -605,10 +662,12 @@ Arrow keys → Navigate within component (tabs, menus)
   background: var(--primary-dark);
 }
 ```
+````
 
 ### Responsive Implementation
 
 **Mobile-first approach:**
+
 ```css
 /* Base (mobile) */
 .container {
@@ -634,6 +693,7 @@ Arrow keys → Navigate within component (tabs, menus)
 ### Accessibility Implementation
 
 **Required attributes:**
+
 - All images: `alt="{{description}}"`
 - Form inputs: `id`, `aria-label` or `<label for>`
 - Buttons: `aria-label` if icon-only
@@ -641,6 +701,7 @@ Arrow keys → Navigate within component (tabs, menus)
 - Live regions: `aria-live="polite"`
 
 **Testing:**
+
 - Keyboard navigation (Tab, Enter, Escape)
 - Screen reader (test with NVDA/JAWS/VoiceOver)
 - Color contrast (use Axe DevTools)
@@ -649,16 +710,20 @@ Arrow keys → Navigate within component (tabs, menus)
 ### Assets Needed
 
 **Images:**
+
 - Logo (SVG preferred, PNG fallback)
 - Icons (SVG, 24px × 24px)
 - Placeholder images (16:9 ratio)
 
 **Fonts:**
+
 - System fonts (no web fonts for performance)
 
 **Third-party:**
+
 - None (using native HTML/CSS/JS)
-```
+
+````
 
 ---
 
@@ -735,11 +800,12 @@ Arrow keys → Navigate within component (tabs, menus)
 
 *Generated by BMAD Method v6 - UX Designer*
 *Design Date: {{date}}*
-```
+````
 
 **Save to:** `{{output_folder}}/ux-design-{{project_name}}.md`
 
 **Inform user:**
+
 ```
 ✓ UX Design Complete!
 
@@ -760,15 +826,16 @@ Ready for developer handoff!
 Per `helpers.md#Update-Workflow-Status`
 
 Update `bmm-workflow-status.yaml`:
+
 ```yaml
 phase_2_planning:
   ux_design_completed: true
-  ux_design_date: {{current_date}}
-  screens_designed: {{screen_count}}
-  accessibility_level: {{wcag_level}}
+  ux_design_date: { { current_date } }
+  screens_designed: { { screen_count } }
+  accessibility_level: { { wcag_level } }
 
 last_workflow: create-ux-design
-last_workflow_date: {{current_date}}
+last_workflow_date: { { current_date } }
 ```
 
 ---

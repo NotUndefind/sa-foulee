@@ -4,7 +4,7 @@
 
 project_name: "{{PROJECT_NAME}}"
 project_type: "{{PROJECT_TYPE}}"
-project_level: {{PROJECT_LEVEL}}
+project_level: { { PROJECT_LEVEL } }
 communication_language: "English"
 output_language: "English"
 last_updated: "{{TIMESTAMP}}"
@@ -38,12 +38,12 @@ workflow_status:
   # Phase 2: Planning (Required - choose one based on project level)
   - name: prd
     phase: 2
-    status: "{{PRD_STATUS}}"  # required for level 2+, recommended for level 1
+    status: "{{PRD_STATUS}}" # required for level 2+, recommended for level 1
     description: "Product Requirements Document"
 
   - name: tech-spec
     phase: 2
-    status: "{{TECH_SPEC_STATUS}}"  # required for level 0-1, optional for 2+
+    status: "{{TECH_SPEC_STATUS}}" # required for level 0-1, optional for 2+
     description: "Technical Specification"
 
   - name: create-ux-design
@@ -54,7 +54,7 @@ workflow_status:
   # Phase 3: Solutioning (Conditional on project level)
   - name: architecture
     phase: 3
-    status: "{{ARCHITECTURE_STATUS}}"  # required for level 2+
+    status: "{{ARCHITECTURE_STATUS}}" # required for level 2+
     description: "System architecture design"
 
   - name: solutioning-gate-check

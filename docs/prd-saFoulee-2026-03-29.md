@@ -13,6 +13,7 @@
 Ce PRD définit les exigences fonctionnelles et non-fonctionnelles pour la **version 2** du site de l'association La Neuville TAF sa Foulée. Il couvre la refonte graphique, les correctifs UX bloquants, et quatre nouvelles fonctionnalités majeures.
 
 **Documents liés :**
+
 - PRD v1 : `docs/prd-saFoulee-2026-03-07.md`
 - Architecture : `docs/architecture-saFoulee-2026-03-07.md`
 - Product Brief : `docs/product-brief-saFoulee-2026-03-07.md`
@@ -46,13 +47,13 @@ Le site de l'association La Neuville TAF sa Foulée (anciennement "sa Foulée") 
 
 ### Indicateurs de succès
 
-| Indicateur | Cible |
-|-----------|-------|
-| Taux d'erreur console sur les pages auth/blog | 0 |
-| Membres abonnés à la newsletter dans les 3 premiers mois | ≥ 30 % |
-| Cotisations payées en ligne vs. espèces | ≥ 50 % en année 1 |
-| Inventaire renseigné dès le lancement | 100 % du matériel connu |
-| Score Core Web Vitals (LCP) | < 2,5 s |
+| Indicateur                                               | Cible                   |
+| -------------------------------------------------------- | ----------------------- |
+| Taux d'erreur console sur les pages auth/blog            | 0                       |
+| Membres abonnés à la newsletter dans les 3 premiers mois | ≥ 30 %                  |
+| Cotisations payées en ligne vs. espèces                  | ≥ 50 % en année 1       |
+| Inventaire renseigné dès le lancement                    | 100 % du matériel connu |
+| Score Core Web Vitals (LCP)                              | < 2,5 s                 |
 
 ---
 
@@ -70,6 +71,7 @@ Le site de l'association La Neuville TAF sa Foulée (anciennement "sa Foulée") 
 Remplacer l'intégralité des tokens de couleur actuels (`--forest`, `--terra`, `--sage`, etc.) par la nouvelle palette officielle. La couleur primaire est `#FB3936` (rouge association), la couleur secondaire est `#FAFAFA` (blanc crème). Les déclinaisons (hover, dark, light) doivent être calculées à partir de ces deux couleurs de base.
 
 **Critères d'acceptation :**
+
 - [ ] Tous les boutons CTA primaires utilisent `#FB3936`
 - [ ] Les hover states sont une nuance plus sombre de `#FB3936` (ex. `#D42F2D`)
 - [ ] Le fond de page utilise `#FAFAFA`
@@ -84,16 +86,19 @@ Remplacer l'intégralité des tokens de couleur actuels (`--forest`, `--terra`, 
 
 **Description :**
 Utiliser les trois visuels officiels fournis dans `/frontend/public/` :
+
 - `logo-removebg-preview.png` — Logo de l'association (fond transparent)
 - `mascotte-removebg-preview.png` — Mascotte (fond transparent)
 - `bureau.png` — Photo des membres du bureau devant le panneau du village
 
 **Utilisation recommandée :**
+
 - **Logo** : Navbar publique, layout auth, favicon (via `next/image`)
 - **Mascotte** : Section hero de la page d'accueil, section CTA, page 404
 - **Bureau** : Section "À propos" / "Notre association" sur la page d'accueil
 
 **Critères d'acceptation :**
+
 - [ ] Le logo apparaît dans la navbar publique en remplacement du texte "sF"
 - [ ] Le logo apparaît dans le layout auth avec un lien vers `/`
 - [ ] La mascotte est visible sur la page d'accueil (hero ou section CTA)
@@ -111,6 +116,7 @@ Utiliser les trois visuels officiels fournis dans `/frontend/public/` :
 L'entité est une **association** et non un club. Le nom complet est **"La Neuville TAF sa Foulée"**. Toutes les occurrences de "club", "sa Foulée" seul, ou "saFoulee" visibles par l'utilisateur doivent être corrigées.
 
 **Critères d'acceptation :**
+
 - [ ] La balise `<title>` du site affiche "La Neuville TAF sa Foulée"
 - [ ] Le footer affiche "La Neuville TAF sa Foulée"
 - [ ] Le layout auth affiche "La Neuville TAF sa Foulée"
@@ -132,6 +138,7 @@ L'entité est une **association** et non un club. Le nom complet est **"La Neuvi
 Les pages `/connexion`, `/inscription`, `/mot-de-passe-oublie` et `/reinitialiser-mot-de-passe` ne proposent aucun moyen de revenir à l'accueil. Le layout auth doit afficher un logo cliquable qui redirige vers `/`.
 
 **Critères d'acceptation :**
+
 - [ ] Le logo de l'association est affiché en haut du layout auth
 - [ ] Le logo est un `<Link href="/">` discret (pas un bouton "Retour")
 - [ ] Le logo utilise `next/image` avec `logo-removebg-preview.png`
@@ -150,6 +157,7 @@ Les pages `/connexion`, `/inscription`, `/mot-de-passe-oublie` et `/reinitialise
 L'éditeur de blog (`PostForm.tsx`) génère une erreur SSR Tiptap au rendu serveur. L'option `immediatelyRender: false` doit être ajoutée à `useEditor()`.
 
 **Critères d'acceptation :**
+
 - [ ] Aucune erreur console "SSR has been detected" sur la page de création/édition de post
 - [ ] L'éditeur se charge correctement côté client
 - [ ] Aucune hydration mismatch en mode production
@@ -170,6 +178,7 @@ L'éditeur de blog (`PostForm.tsx`) génère une erreur SSR Tiptap au rendu serv
 Un membre connecté peut activer ou désactiver son abonnement à la newsletter depuis son profil. Le consentement est explicite (case à cocher ou toggle) et horodaté.
 
 **Critères d'acceptation :**
+
 - [ ] Un toggle "Recevoir la newsletter" est visible sur la page `/tableau-de-bord/profil`
 - [ ] L'état (abonné/non-abonné) est persisté en base de données
 - [ ] La date de consentement est enregistrée (`newsletter_subscribed_at`)
@@ -188,6 +197,7 @@ Un membre connecté peut activer ou désactiver son abonnement à la newsletter 
 Les administrateurs et fondateurs peuvent voir la liste des membres abonnés à la newsletter, avec leur email et la date d'abonnement. Un export CSV est disponible.
 
 **Critères d'acceptation :**
+
 - [ ] Page `/tableau-de-bord/admin/newsletter` accessible aux rôles `admin` et `founder`
 - [ ] Tableau : nom, email, date d'abonnement, statut actif/inactif
 - [ ] Bouton "Exporter CSV" télécharge la liste des abonnés actifs
@@ -204,6 +214,7 @@ Les administrateurs et fondateurs peuvent voir la liste des membres abonnés à 
 Un admin peut composer et envoyer une newsletter à tous les membres abonnés actifs. L'envoi utilise Resend (déjà intégré dans le projet).
 
 **Critères d'acceptation :**
+
 - [ ] Formulaire de création : sujet, corps (éditeur rich text Tiptap), prévisualisation
 - [ ] Bouton "Envoyer" avec confirmation modale ("Vous allez envoyer à X abonnés")
 - [ ] Envoi via Resend avec l'expéditeur `newsletter@[domaine]`
@@ -223,6 +234,7 @@ Un admin peut composer et envoyer une newsletter à tous les membres abonnés ac
 Chaque email de newsletter contient un lien de désabonnement unique. Un clic sur ce lien désabonne le membre sans nécessiter de connexion.
 
 **Critères d'acceptation :**
+
 - [ ] Le lien de désabonnement est présent dans le footer de chaque email envoyé
 - [ ] Le lien contient un token unique et signé (non-devinable)
 - [ ] Une page publique `/desabonnement?token=XXX` confirme le désabonnement
@@ -244,6 +256,7 @@ Chaque email de newsletter contient un lien de désabonnement unique. Un clic su
 Les admins et membres bureau peuvent gérer une liste des équipements de l'association. Chaque équipement a un nom, une catégorie, une quantité, un état et des notes libres.
 
 **Champs :**
+
 - `name` (string, obligatoire)
 - `category` (enum : textile / matériel / électronique / autre)
 - `quantity` (integer, ≥ 1)
@@ -251,6 +264,7 @@ Les admins et membres bureau peuvent gérer une liste des équipements de l'asso
 - `notes` (text, optionnel)
 
 **Critères d'acceptation :**
+
 - [ ] Page `/tableau-de-bord/inventaire` accessible aux rôles `admin`, `founder`, `bureau`
 - [ ] Liste paginée des équipements avec filtres (catégorie, état)
 - [ ] Formulaire d'ajout / modification en modal ou page dédiée
@@ -267,6 +281,7 @@ Les admins et membres bureau peuvent gérer une liste des équipements de l'asso
 Les admins peuvent enregistrer des attributions d'équipements (quel membre possède quoi depuis quand) et les restitutions.
 
 **Critères d'acceptation :**
+
 - [ ] Formulaire "Attribuer à un membre" sur chaque fiche équipement
 - [ ] Liste des attributions actives (nom membre, équipement, date d'attribution)
 - [ ] Bouton "Marquer comme rendu" pour clore une attribution
@@ -282,6 +297,7 @@ Les admins peuvent enregistrer des attributions d'équipements (quel membre poss
 Export CSV de l'inventaire complet (tous les équipements avec leur état actuel).
 
 **Critères d'acceptation :**
+
 - [ ] Bouton "Exporter CSV" sur la page inventaire
 - [ ] Le fichier contient : nom, catégorie, quantité, état, notes, date de dernière modification
 
@@ -299,6 +315,7 @@ Export CSV de l'inventaire complet (tous les équipements avec leur état actuel
 Les admins et bureau peuvent saisir des mouvements financiers (dépenses ou recettes) avec leur montant, date, catégorie et description.
 
 **Champs :**
+
 - `type` (enum : dépense / recette)
 - `amount` (decimal, > 0)
 - `date` (date)
@@ -307,6 +324,7 @@ Les admins et bureau peuvent saisir des mouvements financiers (dépenses ou rece
 - `receipt_url` (optionnel — URL ou chemin vers justificatif)
 
 **Critères d'acceptation :**
+
 - [ ] Page `/tableau-de-bord/budget` accessible aux rôles `admin`, `founder`, `bureau`
 - [ ] Formulaire de saisie rapide (dépense ou recette) avec tous les champs
 - [ ] Liste chronologique des mouvements avec filtres (type, catégorie, période)
@@ -323,6 +341,7 @@ Les admins et bureau peuvent saisir des mouvements financiers (dépenses ou rece
 Vue synthétique des finances de l'association : solde, graphique mensuel, répartition par catégorie.
 
 **Critères d'acceptation :**
+
 - [ ] Solde total (recettes cumulées - dépenses cumulées) affiché en valeur absolue
 - [ ] Graphique en barres : recettes vs dépenses par mois (12 derniers mois)
 - [ ] Répartition par catégorie (graphique donut ou liste)
@@ -339,6 +358,7 @@ Vue synthétique des finances de l'association : solde, graphique mensuel, répa
 Export CSV des mouvements sur une période définie, pour une utilisation dans un logiciel comptable.
 
 **Critères d'acceptation :**
+
 - [ ] Sélection d'une plage de dates (date début / date fin)
 - [ ] Export CSV : date, type, catégorie, description, montant
 - [ ] Colonnes séparées dépenses / recettes pour faciliter l'import comptable
@@ -357,6 +377,7 @@ Export CSV des mouvements sur une période définie, pour une utilisation dans u
 Les membres peuvent payer leur cotisation annuelle via HelloAsso. L'intégration se fait via un lien ou widget HelloAsso pointant vers le formulaire de l'association.
 
 **Critères d'acceptation :**
+
 - [ ] Bouton "Payer ma cotisation" visible sur la page profil membre
 - [ ] Bouton "Adhérer" sur la page publique (landing ou page dédiée `/adhesion`)
 - [ ] Le lien ouvre le formulaire HelloAsso dans un nouvel onglet (ou widget embarqué)
@@ -373,6 +394,7 @@ Les membres peuvent payer leur cotisation annuelle via HelloAsso. L'intégration
 HelloAsso envoie un webhook après chaque paiement confirmé. Le backend Laravel met à jour le champ `membership_paid_at` du membre correspondant.
 
 **Critères d'acceptation :**
+
 - [ ] Endpoint API `POST /api/v1/webhooks/helloasso` créé et documenté
 - [ ] Vérification de la signature HelloAsso sur chaque requête entrante
 - [ ] Mise à jour de `membership_paid_at` pour le membre identifié par email
@@ -396,6 +418,7 @@ HelloAsso envoie un webhook après chaque paiement confirmé. Le backend Laravel
 Le frontend Next.js est déployé sur Vercel avec les bonnes variables d'environnement, un domaine personnalisé et les preview deployments activés.
 
 **Critères d'acceptation :**
+
 - [ ] Variable `NEXT_PUBLIC_API_URL` configurée sur Vercel (pointe vers O2switch)
 - [ ] Domaine personnalisé configuré (ex. `safoulee.fr` ou `laneuvilletafsafoulee.fr`)
 - [ ] Preview deployments fonctionnels sur les PR GitHub
@@ -412,6 +435,7 @@ Le frontend Next.js est déployé sur Vercel avec les bonnes variables d'environ
 Le backend Laravel est déployé sur le serveur mutualisé O2switch avec une configuration CORS adaptée au domaine Vercel.
 
 **Critères d'acceptation :**
+
 - [ ] Fichier `.env.production` configuré (DB, CORS, Resend, Pusher)
 - [ ] `APP_URL` pointe vers le sous-domaine API sur O2switch
 - [ ] `CORS_ALLOWED_ORIGINS` inclut le domaine Vercel (production + preview)
@@ -432,6 +456,7 @@ Le backend Laravel est déployé sur le serveur mutualisé O2switch avec une con
 **Description :** Les données personnelles collectées (newsletter, budget) doivent respecter le RGPD.
 
 **Critères d'acceptation :**
+
 - [ ] Consentement explicite et horodaté pour la newsletter
 - [ ] Lien de désabonnement en 1 clic dans chaque email
 - [ ] Données financières visibles uniquement par admin/bureau
@@ -446,6 +471,7 @@ Le backend Laravel est déployé sur le serveur mutualisé O2switch avec une con
 **Description :** Le frontend Next.js ne doit pas dépendre de processus serveur persistants. Les fonctions API Route ne doivent pas dépasser 10 s (tier gratuit Vercel).
 
 **Critères d'acceptation :**
+
 - [ ] L'envoi de newsletter est déclenché depuis le backend O2switch, pas une API Route Next.js
 - [ ] Pusher fonctionne via API HTTP (pas de WebSocket persistant côté Vercel)
 - [ ] Aucune session serveur persistante dans Next.js
@@ -459,6 +485,7 @@ Le backend Laravel est déployé sur le serveur mutualisé O2switch avec une con
 **Description :** Le backend Laravel doit fonctionner dans les contraintes d'un hébergement mutualisé.
 
 **Critères d'acceptation :**
+
 - [ ] PHP 8.2 minimum (vérifié dans `composer.json`)
 - [ ] Pas de processus démon (pas de `php artisan queue:work` en continu)
 - [ ] Queues Laravel configurées via cron O2switch si nécessaire
@@ -473,6 +500,7 @@ Le backend Laravel est déployé sur le serveur mutualisé O2switch avec une con
 **Description :** Le site public doit atteindre de bonnes performances de chargement.
 
 **Critères d'acceptation :**
+
 - [ ] LCP (Largest Contentful Paint) < 2,5 s sur la page d'accueil
 - [ ] Toutes les images utilisent `next/image` (optimisation automatique WebP/AVIF)
 - [ ] Pas de blocking scripts dans le `<head>`
@@ -487,6 +515,7 @@ Le backend Laravel est déployé sur le serveur mutualisé O2switch avec une con
 **Description :** La nouvelle palette rouge doit conserver un ratio de contraste suffisant.
 
 **Critères d'acceptation :**
+
 - [ ] Ratio de contraste `#FB3936` sur blanc : ≥ 3:1 pour les UI, ≥ 4.5:1 pour le texte
 - [ ] Les boutons et liens ont des `aria-label` ou du texte visible
 - [ ] Navigation clavier fonctionnelle sur les formulaires auth
@@ -501,6 +530,7 @@ Le backend Laravel est déployé sur le serveur mutualisé O2switch avec une con
 Mise à jour complète de l'identité visuelle du site — nouvelle palette, visuels officiels, correction du nom et des correctifs UX bloquants.
 
 **Exigences fonctionnelles :**
+
 - FR-R01, FR-R02, FR-R03
 - FR-UX01, FR-UX02
 
@@ -518,6 +548,7 @@ Mise à jour complète de l'identité visuelle du site — nouvelle palette, vis
 Système complet de newsletter opt-in pour les membres : abonnement depuis le profil, gestion admin, envoi via Resend, désabonnement RGPD.
 
 **Exigences fonctionnelles :**
+
 - FR-N01, FR-N02, FR-N03, FR-N04
 
 **Estimation stories :** 5–7
@@ -534,6 +565,7 @@ Système complet de newsletter opt-in pour les membres : abonnement depuis le pr
 Outil de gestion du matériel de l'association — CRUD équipements, suivi état, historique des attributions.
 
 **Exigences fonctionnelles :**
+
 - FR-I01, FR-I02, FR-I03
 
 **Estimation stories :** 3–5
@@ -550,6 +582,7 @@ Outil de gestion du matériel de l'association — CRUD équipements, suivi éta
 Module financier interne (admin/bureau) : saisie des mouvements, tableau de bord, export comptable.
 
 **Exigences fonctionnelles :**
+
 - FR-B01, FR-B02, FR-B03
 
 **Estimation stories :** 3–5
@@ -566,6 +599,7 @@ Module financier interne (admin/bureau) : saisie des mouvements, tableau de bord
 Intégration HelloAsso pour le paiement de la cotisation annuelle, avec webhook de confirmation et mise à jour du statut membre.
 
 **Exigences fonctionnelles :**
+
 - FR-P01, FR-P02
 
 **Estimation stories :** 2–3
@@ -582,6 +616,7 @@ Intégration HelloAsso pour le paiement de la cotisation annuelle, avec webhook 
 Mise en production sur Vercel (Next.js) et O2switch (Laravel), configuration des environnements, domaines et CI/CD.
 
 **Exigences fonctionnelles :**
+
 - FR-D01, FR-D02
 
 **Estimation stories :** 2–3
@@ -595,28 +630,34 @@ Mise en production sur Vercel (Next.js) et O2switch (Laravel), configuration des
 ## Stories de haut niveau
 
 ### EPIC-R
+
 - En tant que visiteur, je veux voir le logo officiel dans la navbar pour reconnaître visuellement l'association.
 - En tant qu'utilisateur sur la page de connexion, je veux pouvoir cliquer sur le logo pour retourner à l'accueil.
 - En tant que visiteur, je veux voir la mascotte et la photo du bureau pour me sentir proche de l'association.
 
 ### EPIC-N
+
 - En tant que membre, je veux activer la newsletter depuis mon profil pour recevoir les actualités.
 - En tant qu'admin, je veux voir la liste des abonnés et envoyer une newsletter depuis le dashboard.
 - En tant qu'abonné, je veux me désabonner en un clic depuis le lien dans l'email.
 
 ### EPIC-I
+
 - En tant qu'admin, je veux ajouter et modifier les équipements de l'association pour en garder une trace.
 - En tant que bureau, je veux enregistrer qu'un membre a emprunté un équipement pour suivre les attributions.
 
 ### EPIC-B
+
 - En tant que trésorier (bureau), je veux saisir les dépenses et recettes pour tenir les comptes à jour.
 - En tant qu'admin, je veux voir un tableau de bord financier pour préparer l'assemblée générale.
 
 ### EPIC-P
+
 - En tant que nouveau membre, je veux payer ma cotisation en ligne via HelloAsso sans avoir à passer par un trésorier.
 - En tant qu'admin, je veux que le paiement HelloAsso mette automatiquement à jour le statut de cotisation du membre.
 
 ### EPIC-D
+
 - En tant que développeur, je veux déployer le frontend sur Vercel avec un domaine personnalisé et les preview deployments.
 - En tant que développeur, je veux configurer le backend Laravel sur O2switch avec les bons CORS et variables de production.
 
@@ -624,19 +665,20 @@ Mise en production sur Vercel (Next.js) et O2switch (Laravel), configuration des
 
 ## Personas utilisateurs
 
-| Persona | Rôle | Besoins principaux |
-|---------|------|--------------------|
-| **Marie** — Présidente | `founder` | Vue d'ensemble, gestion des membres, budget, newsletter |
-| **Paul** — Trésorier | `bureau` | Saisie budget, export comptable, suivi cotisations HelloAsso |
-| **Sophie** — Coureuse | `member` | Inscription aux événements, paiement cotisation, blog |
-| **Luc** — Entraîneur | `coach` | Création de séances, suivi des participants |
-| **Julien** — Visiteur | — | Découvrir l'association, voir les événements, adhérer |
+| Persona                | Rôle      | Besoins principaux                                           |
+| ---------------------- | --------- | ------------------------------------------------------------ |
+| **Marie** — Présidente | `founder` | Vue d'ensemble, gestion des membres, budget, newsletter      |
+| **Paul** — Trésorier   | `bureau`  | Saisie budget, export comptable, suivi cotisations HelloAsso |
+| **Sophie** — Coureuse  | `member`  | Inscription aux événements, paiement cotisation, blog        |
+| **Luc** — Entraîneur   | `coach`   | Création de séances, suivi des participants                  |
+| **Julien** — Visiteur  | —         | Découvrir l'association, voir les événements, adhérer        |
 
 ---
 
 ## Flux utilisateurs clés
 
 ### Flux 1 — Nouveau membre qui adhère
+
 1. Visiteur arrive sur la page d'accueil
 2. Clique sur "Adhérer" → page `/adhesion`
 3. Lit les informations sur l'association et la cotisation
@@ -646,6 +688,7 @@ Mise en production sur Vercel (Next.js) et O2switch (Laravel), configuration des
 7. Active la newsletter dans ses préférences
 
 ### Flux 2 — Admin envoie une newsletter
+
 1. Admin va sur `/tableau-de-bord/admin/newsletter`
 2. Consulte la liste des abonnés (N membres)
 3. Clique "Nouvelle newsletter" → formulaire (sujet + éditeur Tiptap)
@@ -654,6 +697,7 @@ Mise en production sur Vercel (Next.js) et O2switch (Laravel), configuration des
 6. Chaque email contient un lien de désabonnement unique
 
 ### Flux 3 — Bureau saisit une dépense
+
 1. Bureau va sur `/tableau-de-bord/budget`
 2. Voit le solde actuel et le graphique mensuel
 3. Clique "Ajouter une dépense"
@@ -666,22 +710,22 @@ Mise en production sur Vercel (Next.js) et O2switch (Laravel), configuration des
 
 ### Dépendances internes
 
-| Dépendance | Description |
-|-----------|-------------|
-| PRD v1 | Les FRs v1 (auth, events, blog, sessions, leaderboard) restent valides et ne sont pas modifiés |
-| Architecture v1 | La stack technique (Next.js + Laravel + Sanctum + Pusher + Resend) est conservée |
-| Sprint status | Les stories v1 en cours ne sont pas impactées par ce PRD v2 |
+| Dépendance      | Description                                                                                    |
+| --------------- | ---------------------------------------------------------------------------------------------- |
+| PRD v1          | Les FRs v1 (auth, events, blog, sessions, leaderboard) restent valides et ne sont pas modifiés |
+| Architecture v1 | La stack technique (Next.js + Laravel + Sanctum + Pusher + Resend) est conservée               |
+| Sprint status   | Les stories v1 en cours ne sont pas impactées par ce PRD v2                                    |
 
 ### Dépendances externes
 
-| Service | Usage | Contrainte |
-|---------|-------|-----------|
-| **Vercel** | Hébergement Next.js | Plan gratuit ou Pro selon trafic |
-| **O2switch** | Hébergement Laravel/PHP | PHP 8.2+, MySQL 8, pas de WebSockets |
-| **HelloAsso** | Paiement cotisation | Compte asso HelloAsso créé, formulaire configuré |
-| **Resend** | Envoi newsletter et emails | API key configurée, domaine vérifié |
-| **Pusher** | Chat temps réel (existant) | API HTTP compatible O2switch |
-| **GitHub Actions** | CI/CD | Déjà configuré, à adapter pour Vercel + O2switch |
+| Service            | Usage                      | Contrainte                                       |
+| ------------------ | -------------------------- | ------------------------------------------------ |
+| **Vercel**         | Hébergement Next.js        | Plan gratuit ou Pro selon trafic                 |
+| **O2switch**       | Hébergement Laravel/PHP    | PHP 8.2+, MySQL 8, pas de WebSockets             |
+| **HelloAsso**      | Paiement cotisation        | Compte asso HelloAsso créé, formulaire configuré |
+| **Resend**         | Envoi newsletter et emails | API key configurée, domaine vérifié              |
+| **Pusher**         | Chat temps réel (existant) | API HTTP compatible O2switch                     |
+| **GitHub Actions** | CI/CD                      | Déjà configuré, à adapter pour Vercel + O2switch |
 
 ---
 
@@ -710,13 +754,13 @@ Mise en production sur Vercel (Next.js) et O2switch (Laravel), configuration des
 
 ## Questions ouvertes
 
-| # | Question | Impact | Responsable |
-|---|----------|--------|-------------|
-| Q1 | Quel domaine final pour le site ? (`safoulee.fr`, `laneuvilletaf.fr`, autre ?) | FR-D01, FR-D02 | Jules |
-| Q2 | Montant de la cotisation annuelle à afficher sur la page `/adhesion` ? | FR-P01 | Bureau |
-| Q3 | L'envoi newsletter doit-il supporter le HTML personnalisé ou un template fixe suffit ? | FR-N03 | Jules |
-| Q4 | Les queues Laravel pour la newsletter doivent-elles être asynchrones (cron) ou synchrones (max ~50 destinataires) ? | FR-N03, NFR-03 | Jules |
-| Q5 | Y a-t-il un exercice comptable en cours à importer dans FR-B01 au lancement ? | FR-B01 | Trésorier |
+| #   | Question                                                                                                            | Impact         | Responsable |
+| --- | ------------------------------------------------------------------------------------------------------------------- | -------------- | ----------- |
+| Q1  | Quel domaine final pour le site ? (`safoulee.fr`, `laneuvilletaf.fr`, autre ?)                                      | FR-D01, FR-D02 | Jules       |
+| Q2  | Montant de la cotisation annuelle à afficher sur la page `/adhesion` ?                                              | FR-P01         | Bureau      |
+| Q3  | L'envoi newsletter doit-il supporter le HTML personnalisé ou un template fixe suffit ?                              | FR-N03         | Jules       |
+| Q4  | Les queues Laravel pour la newsletter doivent-elles être asynchrones (cron) ou synchrones (max ~50 destinataires) ? | FR-N03, NFR-03 | Jules       |
+| Q5  | Y a-t-il un exercice comptable en cours à importer dans FR-B01 au lancement ?                                       | FR-B01         | Trésorier   |
 
 ---
 
@@ -724,26 +768,26 @@ Mise en production sur Vercel (Next.js) et O2switch (Laravel), configuration des
 
 ### Parties prenantes
 
-| Rôle | Nom | Statut |
-|------|-----|--------|
-| Product Owner | Jules Bourin | ✅ Approuvé |
+| Rôle             | Nom          | Statut      |
+| ---------------- | ------------ | ----------- |
+| Product Owner    | Jules Bourin | ✅ Approuvé |
 | Engineering Lead | Jules Bourin | ✅ Approuvé |
 
 ### Statut d'approbation
 
 - [x] Product Owner
 - [x] Engineering Lead
-- [ ] Design Lead *(solo project)*
-- [ ] QA Lead *(solo project)*
+- [ ] Design Lead _(solo project)_
+- [ ] QA Lead _(solo project)_
 
 ---
 
 ## Historique des révisions
 
-| Version | Date | Auteur | Modifications |
-|---------|------|--------|--------------|
-| 1.0 | 2026-03-07 | Jules Bourin | PRD initial (auth, events, blog, sessions, leaderboard) |
-| 2.0 | 2026-03-29 | Jules Bourin | Refonte graphique, correctifs UX, newsletter, inventaire, budget, HelloAsso, infrastructure production |
+| Version | Date       | Auteur       | Modifications                                                                                          |
+| ------- | ---------- | ------------ | ------------------------------------------------------------------------------------------------------ |
+| 1.0     | 2026-03-07 | Jules Bourin | PRD initial (auth, events, blog, sessions, leaderboard)                                                |
+| 2.0     | 2026-03-29 | Jules Bourin | Refonte graphique, correctifs UX, newsletter, inventaire, budget, HelloAsso, infrastructure production |
 
 ---
 
@@ -752,6 +796,7 @@ Mise en production sur Vercel (Next.js) et O2switch (Laravel), configuration des
 ### Architecture v2
 
 Mettre à jour `docs/architecture-saFoulee-2026-03-07.md` pour couvrir :
+
 - Schéma BDD des nouvelles tables (newsletter, inventory, budget_entries, webhooks)
 - Configuration CORS Vercel ↔ O2switch
 - Architecture d'envoi newsletter (queue + Resend)
@@ -771,25 +816,25 @@ Exécuter `/sprint-planning` pour décomposer les 6 epics en stories et planifie
 
 ## Annexe A : Matrice de traçabilité
 
-| Epic ID | Epic Name | Exigences fonctionnelles | Estimation stories |
-|---------|-----------|--------------------------|-------------------|
-| EPIC-R | Refonte Graphique & Identité | FR-R01, FR-R02, FR-R03, FR-UX01, FR-UX02 | 4–6 |
-| EPIC-N | Newsletter Membres | FR-N01, FR-N02, FR-N03, FR-N04 | 5–7 |
-| EPIC-I | Inventaire Équipements | FR-I01, FR-I02, FR-I03 | 3–5 |
-| EPIC-B | Gestion Budgétaire | FR-B01, FR-B02, FR-B03 | 3–5 |
-| EPIC-P | Paiement HelloAsso | FR-P01, FR-P02 | 2–3 |
-| EPIC-D | Infrastructure Production | FR-D01, FR-D02 | 2–3 |
-| **Total** | | **17 FRs + 5 NFRs** | **19–29 stories** |
+| Epic ID   | Epic Name                    | Exigences fonctionnelles                 | Estimation stories |
+| --------- | ---------------------------- | ---------------------------------------- | ------------------ |
+| EPIC-R    | Refonte Graphique & Identité | FR-R01, FR-R02, FR-R03, FR-UX01, FR-UX02 | 4–6                |
+| EPIC-N    | Newsletter Membres           | FR-N01, FR-N02, FR-N03, FR-N04           | 5–7                |
+| EPIC-I    | Inventaire Équipements       | FR-I01, FR-I02, FR-I03                   | 3–5                |
+| EPIC-B    | Gestion Budgétaire           | FR-B01, FR-B02, FR-B03                   | 3–5                |
+| EPIC-P    | Paiement HelloAsso           | FR-P01, FR-P02                           | 2–3                |
+| EPIC-D    | Infrastructure Production    | FR-D01, FR-D02                           | 2–3                |
+| **Total** |                              | **17 FRs + 5 NFRs**                      | **19–29 stories**  |
 
 ---
 
 ## Annexe B : Prioritisation
 
-| Priorité | FRs | NFRs |
-|----------|-----|------|
-| Must Have | FR-R01, R02, R03, UX01, UX02, N01, N02, N04, I01, B01, B02, P01, D01, D02 | NFR-01, 02, 03 |
-| Should Have | FR-N03, I02, B03, P02 | NFR-04, 05 |
-| Could Have | FR-I03 | — |
+| Priorité    | FRs                                                                       | NFRs           |
+| ----------- | ------------------------------------------------------------------------- | -------------- |
+| Must Have   | FR-R01, R02, R03, UX01, UX02, N01, N02, N04, I01, B01, B02, P01, D01, D02 | NFR-01, 02, 03 |
+| Should Have | FR-N03, I02, B03, P02                                                     | NFR-04, 05     |
+| Could Have  | FR-I03                                                                    | —              |
 
 **Total Must Have :** 14 FRs — cœur du MVP v2
 **Total Should Have :** 5 FRs — important mais non bloquant
