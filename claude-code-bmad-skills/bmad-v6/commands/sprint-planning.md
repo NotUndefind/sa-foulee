@@ -48,22 +48,26 @@ Approach: **Organized, pragmatic, team-focused.**
 ### Part 1: Extract and Inventory
 
 **From PRD (Level 2+):**
+
 - Extract all epics (Epic-001, Epic-002, etc.)
 - For each epic, extract associated FRs
 - Note epic priorities (Must/Should/Could Have)
 - Count total epics and FRs
 
 **From Tech-Spec (Level 0-1):**
+
 - Extract requirements list (simple features)
 - Note priorities
 - Count total requirements
 
 **From Architecture (if exists):**
+
 - Review component structure (guides story breakdown)
 - Note technical dependencies
 - Identify infrastructure stories needed
 
 **Create inventory:**
+
 ```
 Project Inventory:
 - Level: {0|1|2|3|4}
@@ -85,6 +89,7 @@ Project Inventory:
    - Stories should be testable
 
 2. **Apply story template:**
+
    ```markdown
    ### STORY-{number}: {Title}
 
@@ -97,6 +102,7 @@ Project Inventory:
    So that {benefit}
 
    **Acceptance Criteria:**
+
    - [ ] Criterion 1
    - [ ] Criterion 2
    - [ ] Criterion 3
@@ -123,6 +129,7 @@ Project Inventory:
 **Typical breakdown patterns:**
 
 **Authentication Epic →**
+
 - STORY-001: User registration
 - STORY-002: User login
 - STORY-003: Password reset
@@ -130,6 +137,7 @@ Project Inventory:
 - STORY-005: Profile management
 
 **Product Catalog Epic →**
+
 - STORY-006: Product listing page
 - STORY-007: Product search
 - STORY-008: Product detail page
@@ -137,6 +145,7 @@ Project Inventory:
 - STORY-010: Product images
 
 **Infrastructure (if needed) →**
+
 - STORY-000: Set up development environment
 - STORY-INF-001: Database schema
 - STORY-INF-002: CI/CD pipeline
@@ -149,6 +158,7 @@ Project Inventory:
 **For each story, assign points using Fibonacci scale:**
 
 **Estimation guidelines:**
+
 - **1 point:** Trivial (1-2 hours) - Config change, text update
 - **2 points:** Simple (2-4 hours) - Basic CRUD, simple component
 - **3 points:** Moderate (4-8 hours) - Complex component, business logic
@@ -157,6 +167,7 @@ Project Inventory:
 - **13 points:** Epic-sized (3-5 days) - **BREAK THIS DOWN**
 
 **Estimation factors:**
+
 - Complexity of business logic
 - Number of components/files to change
 - Dependencies on other stories
@@ -164,7 +175,9 @@ Project Inventory:
 - Unknowns or research needed
 
 **Ask user for estimation input (if needed):**
+
 > "I've estimated STORY-006 (Product listing page) at 8 points (2-3 days). Does this align with your expectations given it includes:
+>
 > - API endpoint for products
 > - Frontend listing component
 > - Pagination
@@ -174,6 +187,7 @@ Project Inventory:
 > Adjust if your team's velocity differs."
 
 **Store estimates:**
+
 ```
 STORY-001: User registration - 5 points
 STORY-002: User login - 3 points
@@ -184,6 +198,7 @@ Total Points: {sum} points
 ```
 
 **Validate:**
+
 - No story >8 points (break down if needed)
 - Point distribution is balanced
 - Infrastructure stories are included
@@ -193,15 +208,18 @@ Total Points: {sum} points
 ### Part 4: Calculate Team Capacity
 
 **Ask user:**
+
 > "Let's determine your sprint capacity.
 >
 > Questions:
+>
 > 1. How many developers on the team? (default: 1)
 > 2. Sprint length in weeks? (default: 2 weeks)
 > 3. Any holidays or PTO during sprint?
 > 4. Team experience level? (Junior: 4h/day, Mid: 5h/day, Senior: 6h/day productive)"
 
 **Calculate capacity:**
+
 ```
 Team size: {developers}
 Sprint length: {weeks} weeks = {days} workdays
@@ -211,6 +229,7 @@ Total hours: {developers} × ({days} - {days_off}) × {hours}
 ```
 
 **Convert to story points:**
+
 ```
 Velocity (if known from past sprints): {points/sprint}
 
@@ -223,6 +242,7 @@ Capacity = Total hours ÷ hours per point
 ```
 
 **Example:**
+
 ```
 1 senior developer
 2-week sprint = 10 workdays
@@ -233,6 +253,7 @@ Velocity: 60 ÷ 2 = 30 points per sprint
 ```
 
 **Store capacity:**
+
 ```
 Sprint Capacity: {points} points
 Team Size: {developers}
@@ -244,11 +265,13 @@ Sprint Length: {weeks} weeks
 ### Part 5: Allocate Stories to Sprints
 
 **Level 0 (1 story):**
+
 - No sprint allocation needed
 - Just create the single story
 - Proceed directly to /dev-story
 
 **Level 1 (1-10 stories):**
+
 - Single sprint
 - Allocate all stories
 - Order by priority and dependency
@@ -265,12 +288,14 @@ For each sprint:
 5. **Leave buffer** (10-20% for unknowns and bugs)
 
 **Sprint allocation format:**
+
 ```markdown
 ### Sprint 1 (Weeks 1-2) - {points}/{capacity} points
 
 **Goal:** {What this sprint delivers}
 
 **Stories:**
+
 - STORY-001: User registration (5 points) - Must Have
 - STORY-002: User login (3 points) - Must Have
 - STORY-003: Password reset (3 points) - Should Have
@@ -280,9 +305,11 @@ For each sprint:
 **Total:** 18 points / 30 capacity (60% utilization)
 
 **Risks:**
+
 - {Any identified risks for this sprint}
 
 **Dependencies:**
+
 - {External dependencies}
 
 ---
@@ -296,6 +323,7 @@ For each sprint:
 ```
 
 **Validate allocation:**
+
 - All Must Have stories are allocated
 - Dependencies are respected
 - Sprints are balanced (not overloaded)
@@ -309,16 +337,19 @@ For each sprint:
 **For each sprint, create a clear goal:**
 
 **Good sprint goals:**
+
 - "Complete user authentication with registration, login, and password reset"
 - "Deliver product catalog with listing, search, and detail views"
 - "Enable checkout flow from cart to order confirmation"
 
 **Bad sprint goals:**
+
 - "Do some stuff" (too vague)
 - "Finish everything" (not specific)
 - "STORY-001 through STORY-020" (not user-focused)
 
 **SMART goals:**
+
 - Specific: What exactly is being delivered
 - Measurable: Clear success criteria
 - Achievable: Fits within capacity
@@ -330,30 +361,34 @@ For each sprint:
 ### Part 7: Create Traceability
 
 **Epic to Story mapping:**
+
 ```markdown
 ## Epic Traceability
 
-| Epic ID | Epic Name | Stories | Total Points | Sprint |
-|---------|-----------|---------|--------------|--------|
-| Epic-001 | User Authentication | STORY-001, 002, 003, 004, 005 | 21 points | Sprint 1 |
-| Epic-002 | Product Catalog | STORY-006, 007, 008, 009, 010 | 28 points | Sprint 1-2 |
-| Epic-003 | Shopping Cart | STORY-011, 012, 013 | 15 points | Sprint 2 |
-| Epic-004 | Checkout | STORY-014, 015, 016, 017 | 20 points | Sprint 3 |
+| Epic ID  | Epic Name           | Stories                       | Total Points | Sprint     |
+| -------- | ------------------- | ----------------------------- | ------------ | ---------- |
+| Epic-001 | User Authentication | STORY-001, 002, 003, 004, 005 | 21 points    | Sprint 1   |
+| Epic-002 | Product Catalog     | STORY-006, 007, 008, 009, 010 | 28 points    | Sprint 1-2 |
+| Epic-003 | Shopping Cart       | STORY-011, 012, 013           | 15 points    | Sprint 2   |
+| Epic-004 | Checkout            | STORY-014, 015, 016, 017      | 20 points    | Sprint 3   |
 ```
 
 **FR to Story mapping:**
+
 ```markdown
 ## Functional Requirements Coverage
 
-| FR ID | FR Name | Story | Sprint |
-|-------|---------|-------|--------|
-| FR-001 | User registration | STORY-001 | 1 |
-| FR-002 | User login | STORY-002 | 1 |
-| FR-003 | Password reset | STORY-003 | 1 |
+| FR ID  | FR Name           | Story     | Sprint |
+| ------ | ----------------- | --------- | ------ |
+| FR-001 | User registration | STORY-001 | 1      |
+| FR-002 | User login        | STORY-002 | 1      |
+| FR-003 | Password reset    | STORY-003 | 1      |
+
 ...
 ```
 
 **Ensures:**
+
 - All FRs are covered
 - All epics are broken down
 - No requirements are forgotten
@@ -366,27 +401,33 @@ For each sprint:
 **For the overall plan:**
 
 **Risks:**
+
 - Technical risks (new technology, integration complexity)
 - Resource risks (team availability, holidays)
 - Dependency risks (external APIs, third-party services)
 - Scope risks (unclear requirements, scope creep)
 
 **Format:**
+
 ```markdown
 ## Risks
 
 **High:**
+
 - Integration with payment gateway (Stripe) - mitigation: prototype in Sprint 1
 - Database performance at scale - mitigation: load testing in Sprint 2
 
 **Medium:**
+
 - Email delivery reliability - mitigation: use SendGrid, monitor bounces
 
 **Low:**
+
 - Browser compatibility issues - mitigation: test on major browsers
 ```
 
 **Dependencies:**
+
 - External teams or services
 - Infrastructure provisioning
 - Design assets
@@ -415,6 +456,7 @@ For each sprint:
 {2-3 sentence overview of the sprint plan}
 
 **Key Metrics:**
+
 - Total Stories: {count}
 - Total Points: {sum}
 - Sprints: {count}
@@ -462,6 +504,7 @@ For each sprint:
 ## Definition of Done
 
 For a story to be considered complete:
+
 - [ ] Code implemented and committed
 - [ ] Unit tests written and passing (≥80% coverage)
 - [ ] Integration tests passing
@@ -479,6 +522,7 @@ For a story to be considered complete:
 Run /create-story to create detailed story documents for Sprint 1 stories, or run /dev-story {STORY-ID} to implement a specific story.
 
 **Sprint cadence:**
+
 - Sprint length: {weeks} weeks
 - Sprint planning: Monday Week 1
 - Sprint review: Friday Week 2
@@ -490,6 +534,7 @@ Run /create-story to create detailed story documents for Sprint 1 stories, or ru
 ```
 
 **Save document:**
+
 - Path: `{output_folder}/sprint-plan-{project-name}-{date}.md`
 - Use Write tool
 
@@ -568,6 +613,7 @@ Ready to begin implementation!
 ## Update Workflow Status
 
 Per `helpers.md#Update-Workflow-Status`:
+
 1. Update `sprint-planning` status to file path
 2. Set current phase to "implementation"
 3. Save status file
@@ -577,6 +623,7 @@ Per `helpers.md#Update-Workflow-Status`:
 ## Recommend Next Steps
 
 **Level 0:**
+
 ```
 ✓ Sprint plan complete (1 story)
 
@@ -585,6 +632,7 @@ Run /dev-story STORY-001 to begin implementation
 ```
 
 **Level 1-2:**
+
 ```
 ✓ Sprint plan complete ({sprints} sprint{s})
 
@@ -598,6 +646,7 @@ Recommended: Start with /dev-story for first story
 ```
 
 **Level 3-4:**
+
 ```
 ✓ Sprint plan complete ({sprints} sprints)
 
@@ -632,36 +681,42 @@ Or run /create-story STORY-XXX to generate detailed story docs
 **Use these examples to calibrate estimates:**
 
 **1 point (1-2 hours):**
+
 - Update configuration value
 - Change text/copy
 - Add simple validation
 - Fix typo in code
 
 **2 points (2-4 hours):**
+
 - Create basic CRUD endpoint
 - Simple React component (no state)
 - Add database index
 - Write unit tests for existing code
 
 **3 points (4-8 hours):**
+
 - Complex React component with state
 - Business logic function
 - Integration test suite
 - API endpoint with validation
 
 **5 points (1-2 days):**
+
 - Feature with frontend + backend
 - Database migration with data transformation
 - Complex business logic with edge cases
 - Full test coverage for feature
 
 **8 points (2-3 days):**
+
 - Complete user flow (e.g., registration)
 - Multiple related components
 - Complex state management
 - Integration with external service
 
 **13 points (3-5 days):**
+
 - **TOO BIG - BREAK IT DOWN**
 - This is an epic, not a story
 
@@ -670,21 +725,25 @@ Or run /create-story STORY-XXX to generate detailed story docs
 ## Tips for Effective Sprint Planning
 
 **Right-size stories:**
+
 - Target: 2-5 points per story
 - Avoid: 1-point stories (too granular) and 13-point stories (too large)
 - Ideal sprint: Mix of 2, 3, 5, and 8-point stories
 
 **Balance sprints:**
+
 - Don't front-load all hard stories
 - Mix Must/Should/Could priorities
 - Leave buffer for unknowns (10-20%)
 
 **Respect dependencies:**
+
 - Infrastructure before features
 - Foundation before extensions
 - Backend before frontend (usually)
 
 **Keep user value visible:**
+
 - Each sprint should deliver something usable
 - Demo-able progress at sprint end
 - Incremental value delivery

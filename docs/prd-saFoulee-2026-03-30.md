@@ -13,6 +13,7 @@
 Ce PRD v3 est un amendement au PRD v2 (2026-03-29). Il couvre les bugs bloquants identifiés après les premiers tests utilisateurs, les améliorations demandées sur la page d'accueil, le blog et la gestion du classement, ainsi qu'une correction systématique du nom de l'association.
 
 **Documents liés :**
+
 - PRD v1 : `docs/prd-saFoulee-2026-03-07.md`
 - PRD v2 : `docs/prd-saFoulee-2026-03-29.md`
 - Architecture v2 : `docs/architecture-saFoulee-2026-03-29.md`
@@ -46,13 +47,13 @@ Suite aux premiers tests de l'application, plusieurs problèmes bloquants et dem
 
 ### Indicateurs de succès
 
-| Indicateur | Cible |
-|-----------|-------|
-| Bugs backend bloquants résolus | 100 % |
-| Section stats lisible (ratio contraste WCAG AA) | ≥ 4.5:1 pour le texte |
+| Indicateur                                      | Cible                          |
+| ----------------------------------------------- | ------------------------------ |
+| Bugs backend bloquants résolus                  | 100 %                          |
+| Section stats lisible (ratio contraste WCAG AA) | ≥ 4.5:1 pour le texte          |
 | Nom complet "La Neuville TAF sa Foulée" affiché | 100 % des occurrences visibles |
-| Upload média fonctionnel sur les articles | ✓ |
-| Classement désactivable par admin | ✓ |
+| Upload média fonctionnel sur les articles       | ✓                              |
+| Classement désactivable par admin               | ✓                              |
 
 ---
 
@@ -68,21 +69,25 @@ Suite aux premiers tests de l'application, plusieurs problèmes bloquants et dem
 
 **Description :**
 La section statistiques de la page d'accueil est actuellement illisible (texte rouge `#FB3936` sur fond rouge `#C0302E`). Elle affiche des valeurs hardcodées incorrectes. Il faut :
+
 1. Remplacer le fond rouge par un fond crème chaud `#F5F0EB`
 2. Rendre les chiffres dynamiques via un nouvel endpoint public
 3. Mettre à jour les valeurs : 1 sortie/mois, N coureurs actifs (dynamique), X km parcourus (dynamique)
 
 **Nouvelles valeurs :**
-- **"1"** — Sortie par mois *(statique)*
-- **"N"** — Coureurs membres actifs *(dynamique : count d'utilisateurs avec statut actif)*
-- **"X km"** — Parcourus *(dynamique : somme des `total_distance_km` sur les performances ; fallback 50 si résultat = 0)*
+
+- **"1"** — Sortie par mois _(statique)_
+- **"N"** — Coureurs membres actifs _(dynamique : count d'utilisateurs avec statut actif)_
+- **"X km"** — Parcourus _(dynamique : somme des `total_distance_km` sur les performances ; fallback 50 si résultat = 0)_
 
 **Backend — nouvel endpoint :**
+
 - `GET /api/v1/stats/homepage` — public, non authentifié
 - Réponse : `{ "member_count": 7, "total_km": 312 }`
 - Cache recommandé (5 minutes) pour éviter des requêtes trop fréquentes
 
 **Design :**
+
 - Fond section : `#F5F0EB` (crème chaud)
 - Label "En chiffres" : `#C0302E` (rouge foncé lisible sur crème)
 - Chiffres statistiques : `#C0302E`
@@ -91,6 +96,7 @@ La section statistiques de la page d'accueil est actuellement illisible (texte r
 - Cards : fond blanc `#FFFFFF`, bordure `1px solid rgba(192,48,46,0.12)`, ombre subtile
 
 **Critères d'acceptation :**
+
 - [ ] Le fond de la section est `#F5F0EB` (plus de rouge sur rouge)
 - [ ] Le ratio de contraste texte/fond est ≥ 4.5:1 (WCAG AA)
 - [ ] Le nombre de coureurs est récupéré depuis l'API (endpoint `GET /api/v1/stats/homepage`)
@@ -100,9 +106,10 @@ La section statistiques de la page d'accueil est actuellement illisible (texte r
 - [ ] En cas d'erreur API, les valeurs fallback sont affichées (7 coureurs, 50 km)
 
 **Fichiers :**
+
 - `frontend/src/app/(public)/page.tsx` (lignes 512-588)
-- `backend/app/Http/Controllers/Api/V1/StatsController.php` *(nouveau)*
-- `backend/routes/api.php` *(ajout route publique)*
+- `backend/app/Http/Controllers/Api/V1/StatsController.php` _(nouveau)_
+- `backend/routes/api.php` _(ajout route publique)_
 
 ---
 
@@ -114,10 +121,12 @@ La section statistiques de la page d'accueil est actuellement illisible (texte r
 Le hero header actuel est fonctionnel mais visuellement peu inspirant. Il doit être redessiné avec un style illustration dynamique : formes géométriques/organiques animées, dégradé chaud (crème → rouge très doux), typographie imposante, mascotte intégrée dans la composition.
 
 **Nom sur 2 lignes :**
+
 - Ligne 1 : `"La Neuville TAF"` — police légère, taille medium (ex. 1.5–2rem)
 - Ligne 2 : `"sa Foulée"` — police ultra-bold, taille XXL (ex. 6–10rem)
 
 **Éléments de design :**
+
 - Dégradé de fond : `#FAFAFA → #F5F0EB` (plus de teinte verte `#DDE8D4`)
 - Formes décoratives animées : cercles/courbes en rouge très transparent (`rgba(251,57,54,0.04–0.08)`)
 - Mascotte : côté droit, taille plus grande, animation de flottement conservée
@@ -126,6 +135,7 @@ Le hero header actuel est fonctionnel mais visuellement peu inspirant. Il doit �
 - Supprimer le gradient vert `#DDE8D4` du hero
 
 **Critères d'acceptation :**
+
 - [ ] Nom affiché sur 2 lignes : "La Neuville TAF" (petit) + "sa Foulée" (grand)
 - [ ] Aucune teinte verte dans le hero (gradient, overlay, formes)
 - [ ] Le dégradé de fond utilise uniquement des tons crème/blanc/rouge
@@ -135,6 +145,7 @@ Le hero header actuel est fonctionnel mais visuellement peu inspirant. Il doit �
 - [ ] LCP (Largest Contentful Paint) non dégradé
 
 **Fichiers :**
+
 - `frontend/src/app/(public)/page.tsx` (lignes 215-352)
 
 ---
@@ -155,12 +166,14 @@ Malgré la migration vers la palette rouge/crème, plusieurs éléments utilisen
 | Textes footer | `rgba(x,x,x)` teintés vert | `rgba(255,255,255,0.6–0.8)` |
 
 **Critères d'acceptation :**
+
 - [ ] Aucune valeur hexadécimale verte (`#1x2x0x`, `#3x5x3x`, `#DDE8D4`, etc.) dans le composant page d'accueil
 - [ ] Le footer utilise un fond neutre foncé (`#1A1A1A` ou équivalent)
 - [ ] Le gradient du hero ne contient aucune teinte verte
 - [ ] L'ensemble de la page d'accueil respecte la palette rouge/crème/neutre
 
 **Fichiers :**
+
 - `frontend/src/app/(public)/page.tsx` (lignes 215–352 hero, 1035–1084 footer)
 
 ---
@@ -174,21 +187,26 @@ Complète le FR-R03 du PRD v2. Plusieurs occurrences du nom court "sa Foulée" o
 
 **Occurrences identifiées :**
 
-*Page d'accueil (`page.tsx`) :*
+_Page d'accueil (`page.tsx`) :_
+
 - L547 : `"sa Foulee, c'est"` → `"La Neuville TAF sa Foulée, c'est"`
 - L712 : `"Rejoindre sa Foulee est simple..."` → `"Rejoindre La Neuville TAF sa Foulée est simple..."`
 - L838 (testimonial) : `"J'ai rejoint sa Foulee..."` → conserver comme citation si c'est une vraie citation, sinon corriger
 
-*Navbar publique (`(public)/layout.tsx`) :*
+_Navbar publique (`(public)/layout.tsx`) :_
+
 - L52 : `<span>sa Foulee</span>` → `<span>La Neuville TAF sa Foulée</span>` (ou réduire la taille de police pour tenir)
 
-*Blog (`PostsPage.tsx`) :*
+_Blog (`PostsPage.tsx`) :_
+
 - L87 : `"Actualités et annonces de sa Foulee"` → `"Actualités de La Neuville TAF sa Foulée"`
 
-*Activités (`ActivitesPage.tsx`) :*
+_Activités (`ActivitesPage.tsx`) :_
+
 - L508 : `"de sa Foulee."` → `"de La Neuville TAF sa Foulée."`
 
-*Metadata des pages dashboard :*
+_Metadata des pages dashboard :_
+
 - `tableau-de-bord/evenements/page.tsx` : `'Événements — saFoulee'` → `'Événements — La Neuville TAF sa Foulée'`
 - `tableau-de-bord/evenements/[id]/page.tsx` : `'Événement — saFoulee'` → `'Événement — La Neuville TAF sa Foulée'`
 - `tableau-de-bord/sessions/page.tsx` : `'Sessions d\'entraînement — saFoulee'` → `'Entraînements — La Neuville TAF sa Foulée'`
@@ -196,6 +214,7 @@ Complète le FR-R03 du PRD v2. Plusieurs occurrences du nom court "sa Foulée" o
 - `tableau-de-bord/newsletter/page.tsx` : `'Newsletter — sa Foulee'` → `'Newsletter — La Neuville TAF sa Foulée'`
 
 **Critères d'acceptation :**
+
 - [ ] Aucune occurrence visible de "sa Foulée" seul ou "saFoulee" dans l'UI
 - [ ] La navbar affiche le nom complet (ou le logo officiel en remplacement)
 - [ ] Toutes les balises `<title>` des pages dashboard utilisent le nom complet
@@ -216,6 +235,7 @@ Complète le FR-R03 du PRD v2. Plusieurs occurrences du nom court "sa Foulée" o
 Le formulaire de création d'article (`PostForm.tsx`) ne propose actuellement qu'un champ URL pour l'image. Il faut permettre un vrai upload de fichier (image ou vidéo) depuis le navigateur, simple et intégré à l'éditeur existant.
 
 **Approche backend :**
+
 - Nouvel endpoint : `POST /api/v1/uploads/media` (auth requise, rôles : admin/founder/coach/bureau)
 - Accepte un fichier multipart (`file`)
 - Types autorisés : `jpg`, `jpeg`, `png`, `webp` (max 5 Mo), `mp4` (max 50 Mo)
@@ -224,6 +244,7 @@ Le formulaire de création d'article (`PostForm.tsx`) ne propose actuellement qu
 - Réutiliser le pattern de `EventPhotoController` pour la gestion du fichier
 
 **Approche frontend :**
+
 - Dans `PostForm.tsx`, remplacer le champ "URL de l'image" par :
   - Un bouton "Ajouter une image" (ouvre un file picker, filtre images)
   - Un bouton "Ajouter une vidéo" (ouvre un file picker, filtre vidéos)
@@ -234,6 +255,7 @@ Le formulaire de création d'article (`PostForm.tsx`) ne propose actuellement qu
 - Les templates prédéfinis restent inchangés
 
 **Critères d'acceptation :**
+
 - [ ] Bouton "Ajouter une image" présent dans le formulaire
 - [ ] Bouton "Ajouter une vidéo" présent dans le formulaire
 - [ ] Preview de l'image visible avant soumission
@@ -244,8 +266,9 @@ Le formulaire de création d'article (`PostForm.tsx`) ne propose actuellement qu
 - [ ] Compatible avec les permissions existantes (seulement les rôles autorisés à publier)
 
 **Fichiers :**
+
 - `frontend/src/components/features/blog/PostForm.tsx`
-- `backend/app/Http/Controllers/Api/V1/MediaUploadController.php` *(nouveau)*
+- `backend/app/Http/Controllers/Api/V1/MediaUploadController.php` _(nouveau)_
 - `backend/routes/api.php`
 
 ---
@@ -258,12 +281,14 @@ Le formulaire de création d'article (`PostForm.tsx`) ne propose actuellement qu
 Le champ "Date de publication" avec l'option "laisser vide pour brouillon" est source de confusion et inutile pour l'association. Les articles sont toujours publiés immédiatement.
 
 **Changements frontend :**
+
 - Supprimer le champ `published_at` (datetime-local) du formulaire
 - Supprimer le bouton "Effacer" associé à ce champ
 - Supprimer le label "laisser vide pour brouillon"
 - Le `published_at` est désormais géré automatiquement par le backend
 
 **Changements backend :**
+
 - Dans `StorePostRequest` : retirer `published_at` des règles de validation, ou le rendre ignoré
 - Dans `PostController::store()` : forcer `published_at = now()` quelle que soit la valeur reçue
 - Dans `UpdatePostRequest` : conserver `published_at` modifiable pour l'édition (cas d'usage : corriger une date incorrecte)
@@ -271,6 +296,7 @@ Le champ "Date de publication" avec l'option "laisser vide pour brouillon" est s
 **Note :** La colonne `published_at` reste en base de données. Seule l'interface de création est simplifiée.
 
 **Critères d'acceptation :**
+
 - [ ] Le formulaire de création n'affiche plus de champ date de publication
 - [ ] Un nouvel article est toujours publié immédiatement (visible dans la liste publique)
 - [ ] Le backend force `published_at = now()` à la création
@@ -278,6 +304,7 @@ Le champ "Date de publication" avec l'option "laisser vide pour brouillon" est s
 - [ ] Aucune mention de "brouillon" dans l'interface
 
 **Fichiers :**
+
 - `frontend/src/components/features/blog/PostForm.tsx` (lignes 260-280)
 - `backend/app/Http/Requests/Post/StorePostRequest.php`
 - `backend/app/Http/Controllers/Api/V1/PostController.php`
@@ -292,21 +319,25 @@ Le champ "Date de publication" avec l'option "laisser vide pour brouillon" est s
 Le bouton "Publier" / "Enregistrer" du formulaire de création/édition d'article n'est pas visible (hors viewport ou style incorrect). L'utilisateur ne peut pas soumettre le formulaire.
 
 **Investigation nécessaire :**
+
 - Vérifier si le bouton utilise `bg-brand` (classe Tailwind) ou une variable CSS non définie
 - Vérifier si le formulaire a une hauteur fixe qui cache le bouton en bas
 - Vérifier si le `z-index` ou un `overflow: hidden` masque le bouton
 
 **Correction attendue :**
+
 - Le bouton doit toujours être visible, idéalement en position sticky en bas du formulaire
 - Style : fond `#FB3936`, texte blanc, hover `#D42F2D`, padding suffisant
 
 **Critères d'acceptation :**
+
 - [ ] Le bouton "Publier" est visible sans scroll dans tous les cas
 - [ ] Le bouton "Enregistrer les modifications" est visible sur la page d'édition
 - [ ] Le style est cohérent avec les autres boutons primaires de l'application
 - [ ] Le bouton affiche un état de chargement (spinner) pendant la soumission
 
 **Fichiers :**
+
 - `frontend/src/components/features/blog/PostForm.tsx` (lignes 282-298)
 
 ---
@@ -323,18 +354,21 @@ Le bouton "Publier" / "Enregistrer" du formulaire de création/édition d'articl
 Le modèle `BudgetEntry` liste `receipt_url` dans `$fillable` et le controller valide ce champ, mais la migration de création de la table `budget_entries` ne crée pas cette colonne. Cela cause une erreur SQL en mode strict et empêche l'ajout d'entrées budget.
 
 **Correction :**
+
 - Créer une nouvelle migration `add_receipt_url_to_budget_entries_table`
 - Ajouter : `$table->string('receipt_url', 500)->nullable()->after('description');`
 - Exécuter `php artisan migrate`
 
 **Critères d'acceptation :**
+
 - [ ] La migration s'exécute sans erreur
 - [ ] Il est possible d'ajouter une entrée budget avec ou sans `receipt_url`
 - [ ] La liste des mouvements s'affiche correctement
 - [ ] Les entrées existantes ne sont pas affectées
 
 **Fichiers :**
-- `backend/database/migrations/YYYY_MM_DD_add_receipt_url_to_budget_entries_table.php` *(nouveau)*
+
+- `backend/database/migrations/YYYY_MM_DD_add_receipt_url_to_budget_entries_table.php` _(nouveau)_
 
 ---
 
@@ -346,15 +380,18 @@ Le modèle `BudgetEntry` liste `receipt_url` dans `$fillable` et le controller v
 Le `LeaderboardController` filtre avec `->whereNull('performances.deleted_at')` mais la table `performances` n'a pas de colonne `deleted_at` (le modèle `Performance` n'utilise pas `SoftDeletes`). Cela cause une erreur SQL qui rend le classement inaccessible.
 
 **Correction :**
+
 - Retirer la ligne `->whereNull('performances.deleted_at')` du `LeaderboardController`
 - Vérifier que la query reste correcte sans ce filtre
 
 **Critères d'acceptation :**
+
 - [ ] La page classement se charge sans erreur SQL
 - [ ] Le classement affiche les performances correctement
 - [ ] Aucun `whereNull('performances.deleted_at')` dans le controller
 
 **Fichiers :**
+
 - `backend/app/Http/Controllers/Api/V1/LeaderboardController.php` (ligne 38)
 
 ---
@@ -367,14 +404,17 @@ Le `LeaderboardController` filtre avec `->whereNull('performances.deleted_at')` 
 L'export CSV de la liste des abonnés newsletter ne contient pas le BOM UTF-8 (`\xEF\xBB\xBF`) contrairement aux autres exports du projet (budget, inventaire). Cela cause des problèmes d'encodage des caractères accentués dans Excel.
 
 **Correction :**
+
 - Ajouter `$bom = "\xEF\xBB\xBF";` en préfixe de la première ligne du CSV dans `NewsletterController::exportSubscribers()`
 
 **Critères d'acceptation :**
+
 - [ ] L'export CSV des abonnés s'ouvre correctement dans Excel avec les accents français
 - [ ] Les noms (prénom, nom) sont correctement affichés
 - [ ] Le fichier est identique aux autres exports CSV du projet
 
 **Fichiers :**
+
 - `backend/app/Http/Controllers/Api/V1/NewsletterController.php` (ligne 101)
 
 ---
@@ -388,19 +428,21 @@ Dans plusieurs pages du dashboard, la carte "Rédiger le premier article" / "Cr�
 
 **Pages concernées et corrections :**
 
-| Page | Fichier | Comportement actuel | Comportement attendu |
-|------|---------|---------------------|---------------------|
-| Blog | `PostsPage.tsx:140` | "Rédiger le premier article" si `posts.length === 0` | Même message si aucun article existe du tout ; "Aucun article pour cette recherche." si filtre actif |
-| Événements | `EventsPage.tsx:258` | "Créer un événement" si liste filtrée vide | Idem |
-| Sessions | `SessionsPage.tsx:234` | "Publier une session" si liste filtrée vide | Idem |
-| Inventaire | `InventoryPage.tsx:279` | "Ajouter le premier" si liste filtrée vide | Idem |
+| Page       | Fichier                 | Comportement actuel                                  | Comportement attendu                                                                                 |
+| ---------- | ----------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Blog       | `PostsPage.tsx:140`     | "Rédiger le premier article" si `posts.length === 0` | Même message si aucun article existe du tout ; "Aucun article pour cette recherche." si filtre actif |
+| Événements | `EventsPage.tsx:258`    | "Créer un événement" si liste filtrée vide           | Idem                                                                                                 |
+| Sessions   | `SessionsPage.tsx:234`  | "Publier une session" si liste filtrée vide          | Idem                                                                                                 |
+| Inventaire | `InventoryPage.tsx:279` | "Ajouter le premier" si liste filtrée vide           | Idem                                                                                                 |
 
 **Approche :**
+
 - Utiliser le `meta.total` (total non filtré) de la pagination API pour distinguer les deux cas
 - Si `meta.total === 0` (ou équivalent) : afficher le CTA "créer le premier"
 - Si `meta.total > 0` mais liste filtrée vide : afficher "Aucun résultat pour ce filtre"
 
 **Critères d'acceptation :**
+
 - [ ] Blog : le CTA "Rédiger le premier article" n'apparaît que si aucun article n'existe en base
 - [ ] Événements : le CTA "Créer un événement" n'apparaît que si aucun événement n'existe
 - [ ] Sessions : le CTA "Publier une session" n'apparaît que si aucune session n'existe
@@ -408,6 +450,7 @@ Dans plusieurs pages du dashboard, la carte "Rédiger le premier article" / "Cr�
 - [ ] Un message neutre ("Aucun résultat pour ce filtre") s'affiche quand un filtre ne retourne rien
 
 **Fichiers :**
+
 - `frontend/src/components/features/blog/PostsPage.tsx`
 - `frontend/src/components/features/events/EventsPage.tsx`
 - `frontend/src/components/features/sessions/SessionsPage.tsx`
@@ -423,24 +466,28 @@ Dans plusieurs pages du dashboard, la carte "Rédiger le premier article" / "Cr�
 L'ajout d'un équipement ne fonctionne pas depuis le frontend. Le problème est à investiguer entre le formulaire frontend et l'endpoint backend.
 
 **Investigation requise :**
+
 1. Vérifier la requête envoyée par le frontend (payload, Content-Type)
 2. Vérifier les valeurs enum acceptées par le backend (`dossard,maillot,materiel,autre`) vs les valeurs envoyées par le frontend
 3. Vérifier les messages d'erreur retournés par le 422 Unprocessable Entity
 4. Remplacer la validation inline du `EquipmentController::store()` par un `StoreEquipmentRequest` dédié pour une meilleure cohérence
 
 **Correction probable :**
+
 - Le frontend envoie peut-être des valeurs de catégorie différentes de celles acceptées par le backend
 - Synchroniser les enums frontend/backend
 
 **Critères d'acceptation :**
+
 - [ ] Un équipement peut être ajouté avec succès depuis le formulaire
 - [ ] Les catégories disponibles sont identiques frontend et backend
 - [ ] Les erreurs de validation backend sont affichées dans le formulaire frontend
 - [ ] Un `StoreEquipmentRequest` est créé (cohérence avec les autres controllers)
 
 **Fichiers :**
+
 - `backend/app/Http/Controllers/Api/V1/EquipmentController.php`
-- `backend/app/Http/Requests/Equipment/StoreEquipmentRequest.php` *(nouveau)*
+- `backend/app/Http/Requests/Equipment/StoreEquipmentRequest.php` _(nouveau)_
 - `frontend/src/components/features/inventory/InventoryPage.tsx` (formulaire d'ajout)
 
 ---
@@ -453,18 +500,21 @@ L'ajout d'un équipement ne fonctionne pas depuis le frontend. Le problème est 
 Le bouton toggle newsletter dans la page profil déclenche une erreur. L'endpoint `PATCH /api/v1/me/newsletter` doit être vérifié de bout en bout.
 
 **Investigation requise :**
+
 1. Vérifier le payload envoyé par `NewsletterToggle.tsx` (doit être `{ "subscribed": true/false }`)
 2. Vérifier que la route existe et pointe vers `NewsletterController::toggle`
 3. Vérifier que le middleware `auth:sanctum` est appliqué sur la route
 4. Vérifier les logs Laravel pour l'erreur exacte
 
 **Critères d'acceptation :**
+
 - [ ] Le toggle s'active et se désactive sans erreur
 - [ ] L'état est persisté en base (`newsletter_subscribed_at` mis à jour)
 - [ ] Un toast de confirmation s'affiche après chaque changement
 - [ ] L'état initial du toggle correspond à l'état réel en base
 
 **Fichiers :**
+
 - `backend/app/Http/Controllers/Api/V1/NewsletterController.php`
 - `frontend/src/components/features/newsletter/NewsletterToggle.tsx`
 - `backend/routes/api.php`
@@ -491,21 +541,26 @@ Créer une table `settings` pour stocker des paramètres de configuration de l'a
 | `created_at`, `updated_at` | timestamps | |
 
 **Modèle `Setting` :**
+
 - `Setting::get('key', $default)` — retourne la valeur ou le défaut
 - `Setting::set('key', $value, $userId)` — met à jour ou crée
 - `Setting::getBool('key', $default)` — retourne un boolean
 
 **Seeder :**
-- `leaderboard_enabled = "true"` *(activé par défaut)*
+
+- `leaderboard_enabled = "true"` _(activé par défaut)_
 
 **Endpoint admin :**
+
 - `GET /api/v1/admin/settings` — liste tous les paramètres (admin/founder)
 - `PATCH /api/v1/admin/settings/{key}` — met à jour un paramètre (admin/founder)
 
 **Endpoint public :**
+
 - `GET /api/v1/settings/public` — retourne uniquement les paramètres publics (ex. `leaderboard_enabled`) sans authentification, pour que le frontend puisse adapter l'UI au chargement
 
 **Critères d'acceptation :**
+
 - [ ] La migration crée la table `settings` correctement
 - [ ] Le seeder insère la valeur initiale `leaderboard_enabled = true`
 - [ ] `Setting::get()` et `Setting::set()` fonctionnent correctement
@@ -513,10 +568,11 @@ Créer une table `settings` pour stocker des paramètres de configuration de l'a
 - [ ] L'endpoint public retourne uniquement les paramètres marqués comme publics
 
 **Fichiers :**
-- `backend/database/migrations/YYYY_MM_DD_create_settings_table.php` *(nouveau)*
-- `backend/database/seeders/SettingsSeeder.php` *(nouveau)*
-- `backend/app/Models/Setting.php` *(nouveau)*
-- `backend/app/Http/Controllers/Api/V1/SettingsController.php` *(nouveau)*
+
+- `backend/database/migrations/YYYY_MM_DD_create_settings_table.php` _(nouveau)_
+- `backend/database/seeders/SettingsSeeder.php` _(nouveau)_
+- `backend/app/Models/Setting.php` _(nouveau)_
+- `backend/app/Http/Controllers/Api/V1/SettingsController.php` _(nouveau)_
 - `backend/routes/api.php`
 
 ---
@@ -529,18 +585,21 @@ Créer une table `settings` pour stocker des paramètres de configuration de l'a
 Les administrateurs et fondateurs peuvent activer ou désactiver la fonctionnalité de classement (leaderboard) depuis une page de paramètres. Quand désactivée, le classement est masqué pour tous les membres.
 
 **Comportement quand désactivé :**
+
 - La page `/tableau-de-bord/leaderboard` retourne un message "Fonctionnalité désactivée par l'administrateur"
 - Le lien "Classement" dans la sidebar du dashboard est masqué pour les rôles non-admin
 - L'API `GET /api/v1/leaderboard` retourne une 403 avec message explicatif
 - Les admins/founders voient toujours le lien (avec une indication "désactivé")
 
 **Page paramètres admin :**
+
 - URL : `/tableau-de-bord/admin/parametres`
 - Accessible aux rôles `admin` et `founder` uniquement
 - Section "Fonctionnalités" avec toggle "Classement"
 - Description du toggle : "Activer le classement permet aux membres de soumettre leurs performances et de se comparer. Désactivez-le si vous souhaitez préserver la convivialité de l'association."
 
 **Critères d'acceptation :**
+
 - [ ] Une page `/tableau-de-bord/admin/parametres` existe, accessible aux admins/founders
 - [ ] Un toggle "Classement actif/inactif" est présent sur cette page
 - [ ] La modification est persistée immédiatement via l'API settings
@@ -551,8 +610,9 @@ Les administrateurs et fondateurs peuvent activer ou désactiver la fonctionnali
 - [ ] Le statut actuel est chargé au démarrage de l'application via `GET /api/v1/settings/public`
 
 **Fichiers :**
-- `frontend/src/app/(dashboard)/tableau-de-bord/admin/parametres/page.tsx` *(nouveau)*
-- `frontend/src/components/features/admin/AdminSettingsPage.tsx` *(nouveau)*
+
+- `frontend/src/app/(dashboard)/tableau-de-bord/admin/parametres/page.tsx` _(nouveau)_
+- `frontend/src/components/features/admin/AdminSettingsPage.tsx` _(nouveau)_
 - `frontend/src/components/layout/DashboardSidebar.tsx` (ou équivalent — masquer lien)
 - `frontend/src/components/features/leaderboard/LeaderboardPage.tsx`
 - `backend/app/Http/Controllers/Api/V1/LeaderboardController.php`
@@ -574,14 +634,16 @@ Les utilisateurs confondent parfois les deux modules car leurs noms sont proches
 - **Entraînements** (anciennement "Sessions") = séances structurées avec exercices, créées par les coachs
 
 **Changements UI :**
+
 1. Renommer "Sessions" → "Entraînements" dans le menu sidebar et les titres de pages
 2. Ajouter une ligne descriptive sous le titre de chaque page :
-   - Page Événements : *"Sorties, courses et compétitions de l'association — inscrivez-vous et partagez des photos."*
-   - Page Entraînements : *"Séances structurées créées par les coachs — exercices, intensités et suivi de participation."*
+   - Page Événements : _"Sorties, courses et compétitions de l'association — inscrivez-vous et partagez des photos."_
+   - Page Entraînements : _"Séances structurées créées par les coachs — exercices, intensités et suivi de participation."_
 3. Différencier les icônes dans la sidebar (ex. calendrier pour événements, chronomètre pour entraînements)
 4. Mettre à jour les métadonnées : `title: 'Entraînements — La Neuville TAF sa Foulée'`
 
 **Critères d'acceptation :**
+
 - [ ] La sidebar utilise "Entraînements" à la place de "Sessions"
 - [ ] Le titre de page `/tableau-de-bord/sessions` affiche "Entraînements"
 - [ ] Une description courte est présente sous le titre de chaque page
@@ -589,6 +651,7 @@ Les utilisateurs confondent parfois les deux modules car leurs noms sont proches
 - [ ] Les metadata (`title`) sont mis à jour
 
 **Fichiers :**
+
 - Dashboard layout sidebar
 - `frontend/src/app/(dashboard)/tableau-de-bord/sessions/page.tsx`
 - `frontend/src/components/features/sessions/SessionsPage.tsx`
@@ -606,6 +669,7 @@ Les utilisateurs confondent parfois les deux modules car leurs noms sont proches
 **Description :** Toute couleur de texte sur fond coloré doit respecter le ratio de contraste WCAG AA (≥ 4.5:1 pour le texte normal, ≥ 3:1 pour les grands textes et UI).
 
 **Critères d'acceptation :**
+
 - [ ] La section stats n'a plus de texte rouge sur fond rouge
 - [ ] Le fond crème `#F5F0EB` avec texte `#C0302E` : ratio ≈ 5.8:1 ✓
 - [ ] Le footer sombre avec texte blanc : ratio > 7:1 ✓
@@ -620,6 +684,7 @@ Les utilisateurs confondent parfois les deux modules car leurs noms sont proches
 **Description :** Les uploads de fichiers (FR-BL01) doivent être sécurisés.
 
 **Critères d'acceptation :**
+
 - [ ] Validation du type MIME côté backend (pas uniquement l'extension)
 - [ ] Taille max : 5 Mo pour les images, 50 Mo pour les vidéos
 - [ ] Nommage des fichiers : UUIDs (pas de noms originaux conservés)
@@ -703,40 +768,45 @@ Distinction visuelle et sémantique claire entre les événements (happenings r�
 ## Stories de haut niveau — v3
 
 ### EPIC-H
+
 - En tant que visiteur, je veux voir la section chiffres avec un fond lisible pour pouvoir lire les statistiques de l'association.
 - En tant que visiteur, je veux voir le nom complet "La Neuville TAF sa Foulée" partout sur le site pour identifier correctement l'association.
 - En tant que visiteur, je veux un hero header dynamique et inspirant pour avoir envie de rejoindre l'association.
 
 ### EPIC-BL
+
 - En tant que rédacteur, je veux uploader une photo directement depuis mon ordinateur pour illustrer un article sans passer par une URL externe.
 - En tant que rédacteur, je veux créer un article et le publier immédiatement sans avoir à gérer une date manuellement.
 
 ### EPIC-FX
+
 - En tant que trésorier, je veux pouvoir enregistrer une dépense ou une recette sans que le formulaire génère une erreur.
 - En tant que membre, je veux voir le classement s'afficher correctement sans erreur SQL.
 - En tant qu'admin, je veux que l'export CSV des abonnés newsletter s'ouvre correctement dans Excel.
 - En tant qu'admin, je veux que la liste des équipements montre "Aucun équipement" seulement quand c'est vraiment le cas, pas quand un filtre masque les résultats.
 
 ### EPIC-A
+
 - En tant qu'admin, je veux activer ou désactiver le classement depuis une page de paramètres pour contrôler les fonctionnalités de l'espace membre.
 - En tant que membre, je veux que le lien "Classement" disparaisse de mon menu quand la fonctionnalité est désactivée par l'admin.
 
 ### EPIC-EV
+
 - En tant que membre, je veux comprendre immédiatement la différence entre un "Événement" et un "Entraînement" sans avoir à explorer les deux sections.
 
 ---
 
 ## Personas utilisateurs
 
-*(Inchangés depuis le PRD v2)*
+_(Inchangés depuis le PRD v2)_
 
-| Persona | Rôle | Besoins principaux |
-|---------|------|--------------------|
+| Persona                | Rôle      | Besoins principaux                                             |
+| ---------------------- | --------- | -------------------------------------------------------------- |
 | **Marie** — Présidente | `founder` | Vue d'ensemble, contrôle des fonctionnalités, paramètres admin |
-| **Paul** — Trésorier | `bureau` | Saisie budget (corrigée), inventaire fonctionnel |
-| **Sophie** — Coureuse | `member` | Blog avec photos, classement (si activé), newsletter |
-| **Luc** — Entraîneur | `coach` | Création d'entraînements, blog |
-| **Julien** — Visiteur | — | Première impression du hero, chiffres lisibles |
+| **Paul** — Trésorier   | `bureau`  | Saisie budget (corrigée), inventaire fonctionnel               |
+| **Sophie** — Coureuse  | `member`  | Blog avec photos, classement (si activé), newsletter           |
+| **Luc** — Entraîneur   | `coach`   | Création d'entraînements, blog                                 |
+| **Julien** — Visiteur  | —         | Première impression du hero, chiffres lisibles                 |
 
 ---
 
@@ -744,19 +814,19 @@ Distinction visuelle et sémantique claire entre les événements (happenings r�
 
 ### Dépendances internes
 
-| Dépendance | Description |
-|-----------|-------------|
-| PRD v1, v2 | Tous les FRs v1 et v2 restent valides. Ce PRD v3 s'y ajoute. |
-| FR-A01 | Requis avant FR-A02 (infrastructure settings avant toggle leaderboard) |
-| FR-BL01 | Requiert un endpoint upload backend nouveau |
-| FR-H01 | Requiert un endpoint stats public nouveau |
+| Dépendance | Description                                                            |
+| ---------- | ---------------------------------------------------------------------- |
+| PRD v1, v2 | Tous les FRs v1 et v2 restent valides. Ce PRD v3 s'y ajoute.           |
+| FR-A01     | Requis avant FR-A02 (infrastructure settings avant toggle leaderboard) |
+| FR-BL01    | Requiert un endpoint upload backend nouveau                            |
+| FR-H01     | Requiert un endpoint stats public nouveau                              |
 
 ### Dépendances externes
 
-| Service | Usage | Contrainte |
-|---------|-------|-----------|
-| **Laravel Storage** | Upload médias blog | Disk `public` configuré, lien symbolique `storage:link` exécuté |
-| *(Autres dépendances inchangées depuis v2)* | | |
+| Service                                     | Usage              | Contrainte                                                      |
+| ------------------------------------------- | ------------------ | --------------------------------------------------------------- |
+| **Laravel Storage**                         | Upload médias blog | Disk `public` configuré, lien symbolique `storage:link` exécuté |
+| _(Autres dépendances inchangées depuis v2)_ |                    |                                                                 |
 
 ---
 
@@ -777,19 +847,19 @@ Distinction visuelle et sémantique claire entre les événements (happenings r�
 - Galerie média indépendante du blog (les uploads restent liés aux articles)
 - Droits granulaires sur le classement (par membre) — seul le toggle global est prévu
 - Interface de gestion des uploads existants (pas de médiathèque)
-- *(Tout le hors périmètre du PRD v2 reste valide)*
+- _(Tout le hors périmètre du PRD v2 reste valide)_
 
 ---
 
 ## Questions ouvertes
 
-| # | Question | Impact | Responsable |
-|---|----------|--------|-------------|
-| Q1 | La limite d'upload PHP sur O2switch peut-elle être augmentée via `.htaccess` ? | FR-BL01 (vidéos) | Jules |
-| Q2 | Le testimonial de la page d'accueil est-il fictif ou une vraie citation d'un membre ? | FR-H04 | Jules |
-| Q3 | Quel est le seuil de membres en dessous duquel on affiche le fallback "7 coureurs" ? | FR-H01 | Jules |
-| Q4 | Le renommage "Sessions" → "Entraînements" doit-il être répercuté dans les URLs (`/sessions` → `/entrainements`) ou seulement dans l'affichage ? | FR-EV01 | Jules |
-| Q5 | Y a-t-il d'autres fonctionnalités que le classement qui mériteraient un toggle admin à terme ? | FR-A01, A02 | Jules |
+| #   | Question                                                                                                                                        | Impact           | Responsable |
+| --- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- | ----------- |
+| Q1  | La limite d'upload PHP sur O2switch peut-elle être augmentée via `.htaccess` ?                                                                  | FR-BL01 (vidéos) | Jules       |
+| Q2  | Le testimonial de la page d'accueil est-il fictif ou une vraie citation d'un membre ?                                                           | FR-H04           | Jules       |
+| Q3  | Quel est le seuil de membres en dessous duquel on affiche le fallback "7 coureurs" ?                                                            | FR-H01           | Jules       |
+| Q4  | Le renommage "Sessions" → "Entraînements" doit-il être répercuté dans les URLs (`/sessions` → `/entrainements`) ou seulement dans l'affichage ? | FR-EV01          | Jules       |
+| Q5  | Y a-t-il d'autres fonctionnalités que le classement qui mériteraient un toggle admin à terme ?                                                  | FR-A01, A02      | Jules       |
 
 ---
 
@@ -797,27 +867,27 @@ Distinction visuelle et sémantique claire entre les événements (happenings r�
 
 ### Parties prenantes
 
-| Rôle | Nom | Statut |
-|------|-----|--------|
-| Product Owner | Jules Bourin | ✅ Approuvé |
+| Rôle             | Nom          | Statut      |
+| ---------------- | ------------ | ----------- |
+| Product Owner    | Jules Bourin | ✅ Approuvé |
 | Engineering Lead | Jules Bourin | ✅ Approuvé |
 
 ### Statut d'approbation
 
 - [x] Product Owner
 - [x] Engineering Lead
-- [ ] Design Lead *(solo project)*
-- [ ] QA Lead *(solo project)*
+- [ ] Design Lead _(solo project)_
+- [ ] QA Lead _(solo project)_
 
 ---
 
 ## Historique des révisions
 
-| Version | Date | Auteur | Modifications |
-|---------|------|--------|--------------|
-| 1.0 | 2026-03-07 | Jules Bourin | PRD initial (auth, events, blog, sessions, leaderboard) |
-| 2.0 | 2026-03-29 | Jules Bourin | Refonte graphique, correctifs UX, newsletter, inventaire, budget, HelloAsso, infrastructure production |
-| 3.0 | 2026-03-30 | Jules Bourin | Bugs bloquants (budget, leaderboard, inventaire, newsletter), refonte page d'accueil, blog média, toggle classement, nom asso, green purge |
+| Version | Date       | Auteur       | Modifications                                                                                                                              |
+| ------- | ---------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1.0     | 2026-03-07 | Jules Bourin | PRD initial (auth, events, blog, sessions, leaderboard)                                                                                    |
+| 2.0     | 2026-03-29 | Jules Bourin | Refonte graphique, correctifs UX, newsletter, inventaire, budget, HelloAsso, infrastructure production                                     |
+| 3.0     | 2026-03-30 | Jules Bourin | Bugs bloquants (budget, leaderboard, inventaire, newsletter), refonte page d'accueil, blog média, toggle classement, nom asso, green purge |
 
 ---
 
@@ -828,6 +898,7 @@ Distinction visuelle et sémantique claire entre les événements (happenings r�
 Exécuter `/sprint-planning` pour décomposer les nouveaux epics en stories et les intégrer au sprint en cours.
 
 **Séquence recommandée :**
+
 1. **Sprint FX** — Corriger tous les bugs backend en priorité (FR-FX01 à FX06) — débloque les tests
 2. **Sprint H** — Page d'accueil (FR-H01, H03, H04) + nom asso
 3. **Sprint BL** — Blog (FR-BL01, BL02, BL03) + empty state fix (FX04)
@@ -844,25 +915,25 @@ Exécuter `/sprint-planning` pour décomposer les nouveaux epics en stories et l
 
 ## Annexe A : Matrice de traçabilité
 
-| Epic ID | Epic Name | Exigences fonctionnelles | Estimation stories |
-|---------|-----------|--------------------------|-------------------|
-| EPIC-H | Refonte Page d'Accueil | FR-H01, FR-H02, FR-H03, FR-H04 | 4–6 |
-| EPIC-BL | Blog — Upload Média | FR-BL01, FR-BL02, FR-BL03 | 3–4 |
-| EPIC-FX | Corrections de Bugs | FR-FX01, FR-FX02, FR-FX03, FR-FX04, FR-FX05, FR-FX06 | 5–7 |
-| EPIC-A | Paramètres Administrateur | FR-A01, FR-A02 | 2–3 |
-| EPIC-EV | Clarification Events/Sessions | FR-EV01 | 1–2 |
-| *(v2 epics)* | *(EPIC-R, N, I, B, P, D — inchangés)* | *(v2 FRs)* | *(19–29 stories)* |
-| **Total v3 (nouveaux)** | | **15 FRs + 2 NFRs** | **15–22 stories** |
+| Epic ID                 | Epic Name                             | Exigences fonctionnelles                             | Estimation stories |
+| ----------------------- | ------------------------------------- | ---------------------------------------------------- | ------------------ |
+| EPIC-H                  | Refonte Page d'Accueil                | FR-H01, FR-H02, FR-H03, FR-H04                       | 4–6                |
+| EPIC-BL                 | Blog — Upload Média                   | FR-BL01, FR-BL02, FR-BL03                            | 3–4                |
+| EPIC-FX                 | Corrections de Bugs                   | FR-FX01, FR-FX02, FR-FX03, FR-FX04, FR-FX05, FR-FX06 | 5–7                |
+| EPIC-A                  | Paramètres Administrateur             | FR-A01, FR-A02                                       | 2–3                |
+| EPIC-EV                 | Clarification Events/Sessions         | FR-EV01                                              | 1–2                |
+| _(v2 epics)_            | _(EPIC-R, N, I, B, P, D — inchangés)_ | _(v2 FRs)_                                           | _(19–29 stories)_  |
+| **Total v3 (nouveaux)** |                                       | **15 FRs + 2 NFRs**                                  | **15–22 stories**  |
 
 ---
 
 ## Annexe B : Prioritisation
 
-| Priorité | FRs v3 |
-|----------|--------|
-| Must Have | FR-H01, H03, H04, BL01, BL02, BL03, FX01, FX02, FX03, FX04, FX05, A01, A02 |
-| Should Have | FR-H02, FX06, EV01 |
-| Could Have | — |
+| Priorité    | FRs v3                                                                     |
+| ----------- | -------------------------------------------------------------------------- |
+| Must Have   | FR-H01, H03, H04, BL01, BL02, BL03, FX01, FX02, FX03, FX04, FX05, A01, A02 |
+| Should Have | FR-H02, FX06, EV01                                                         |
+| Could Have  | —                                                                          |
 
 **Total Must Have v3 :** 13 FRs
 **Total Should Have v3 :** 3 FRs

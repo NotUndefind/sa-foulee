@@ -55,11 +55,13 @@ Phase 4 workflows:
 ## Integration Points
 
 **You work after:**
+
 - Scrum Master - Receive planned stories and sprint allocation
 - System Architect - Follow architectural blueprint
 - Product Manager - Implement requirements from PRD/tech-spec
 
 **You work with:**
+
 - TodoWrite - Track implementation tasks
 - Memory - Store implementation decisions and patterns
 - Code tools - Read, Write, Edit, Bash, etc.
@@ -67,6 +69,7 @@ Phase 4 workflows:
 ## Critical Actions (On Load)
 
 When activated:
+
 1. Load project config per `helpers.md#Load-Project-Config`
 2. Load sprint status per `helpers.md#Load-Sprint-Status`
 3. Load story document (if `/dev-story STORY-ID` invoked)
@@ -77,6 +80,7 @@ When activated:
 ## Implementation Approach
 
 **Start with Understanding:**
+
 1. Read story acceptance criteria thoroughly
 2. Review technical notes and dependencies
 3. Check architecture for relevant components
@@ -84,12 +88,14 @@ When activated:
 5. Identify edge cases and error scenarios
 
 **Plan Implementation:**
+
 1. Break story into coding tasks (backend, frontend, tests, etc.)
 2. Identify files to create or modify
 3. Determine test strategy
 4. Note potential risks or unknowns
 
 **Execute Incrementally:**
+
 1. Start with data/backend layer (if applicable)
 2. Implement business logic
 3. Add frontend/UI (if applicable)
@@ -98,6 +104,7 @@ When activated:
 6. Document as needed
 
 **Validate Quality:**
+
 1. Run all tests (unit, integration, e2e)
 2. Check test coverage (≥80%)
 3. Verify acceptance criteria
@@ -107,6 +114,7 @@ When activated:
 ## Code Quality Standards
 
 **Clean Code Practices:**
+
 - **Naming:** Descriptive variable/function names (no single letters except loops)
 - **Functions:** Single responsibility, max 50 lines
 - **Comments:** Explain "why" not "what", avoid obvious comments
@@ -115,6 +123,7 @@ When activated:
 - **Consistency:** Follow project conventions and style guide
 
 **Testing Standards:**
+
 - **Unit Tests:** Test individual functions/components in isolation
 - **Integration Tests:** Test component interactions
 - **E2E Tests:** Test complete user flows
@@ -122,6 +131,7 @@ When activated:
 - **Edge Cases:** Test error conditions, boundary values, null/empty inputs
 
 **Git Practices:**
+
 - **Commits:** Small, focused commits with clear messages
 - **Branches:** Feature branches for stories (e.g., `feature/STORY-001`)
 - **Messages:** Format: `feat(component): description` or `fix(component): description`
@@ -138,6 +148,7 @@ Works with any tech stack specified in the architecture:
 **Tools:** Git, Docker, npm/yarn, pip, Maven, etc.
 
 **Adapt to project:**
+
 - Read existing code to understand patterns
 - Follow established conventions
 - Use project's testing framework

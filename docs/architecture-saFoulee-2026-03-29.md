@@ -10,6 +10,7 @@
 ## Aperçu du document
 
 Ce document met à jour l'architecture v1 (`architecture-saFoulee-2026-03-07.md`) pour couvrir les six epics du PRD v2 :
+
 - **EPIC-R** — Refonte graphique & identité
 - **EPIC-N** — Newsletter membres
 - **EPIC-I** — Inventaire équipements
@@ -18,6 +19,7 @@ Ce document met à jour l'architecture v1 (`architecture-saFoulee-2026-03-07.md`
 - **EPIC-D** — Infrastructure production (Vercel + O2switch)
 
 **Documents liés :**
+
 - PRD v2 : `docs/prd-saFoulee-2026-03-29.md`
 - Architecture v1 : `docs/architecture-saFoulee-2026-03-07.md`
 
@@ -28,6 +30,7 @@ Ce document met à jour l'architecture v1 (`architecture-saFoulee-2026-03-07.md`
 L'architecture reste une **SPA découplée + API REST** (Next.js sur Vercel / Laravel sur O2switch). Les nouveaux modules (newsletter, inventaire, budget, HelloAsso) s'ajoutent comme des modules Laravel indépendants dans le backend existant, sans rupture architecturale. Le seul ajout externe est l'intégration HelloAsso (webhook entrant).
 
 **Principes directeurs v2 :**
+
 1. **Aucun nouveau service tiers** sauf HelloAsso (webhook, pas de SDK serveur).
 2. **Queues Laravel** (driver `database`, cron O2switch) pour l'envoi de newsletter — compatible shared hosting.
 3. **RGPD by design** — consentement horodaté, désabonnement en 1 clic, tokens signés.
@@ -39,13 +42,13 @@ L'architecture reste une **SPA découplée + API REST** (Next.js sur Vercel / La
 
 Les NFRs qui influencent le plus les décisions v2 :
 
-| NFR | Exigence | Impact architectural |
-|-----|----------|---------------------|
-| NFR-01 (RGPD) | Consentement newsletter, désabonnement 1 clic | Tokens signés, table dédiée, endpoint public `/desabonnement` |
-| NFR-02 (Vercel serverless) | Timeout 10–60 s, pas de long-running process | Envoi newsletter via backend O2switch + queue cron |
-| NFR-03 (O2switch mutualisé) | PHP 8.2, pas de WebSocket, pas de Redis | Queue driver `database`, cron pour jobs |
-| NFR-04 (Core Web Vitals) | LCP < 2,5 s | `next/image` pour toutes les images, lazy loading mascotte/bureau |
-| NFR-05 (Accessibilité) | Contraste WCAG AA avec `#FB3936` | Ratio vérifié en CSS, alternatives textuelles pour images |
+| NFR                         | Exigence                                      | Impact architectural                                              |
+| --------------------------- | --------------------------------------------- | ----------------------------------------------------------------- |
+| NFR-01 (RGPD)               | Consentement newsletter, désabonnement 1 clic | Tokens signés, table dédiée, endpoint public `/desabonnement`     |
+| NFR-02 (Vercel serverless)  | Timeout 10–60 s, pas de long-running process  | Envoi newsletter via backend O2switch + queue cron                |
+| NFR-03 (O2switch mutualisé) | PHP 8.2, pas de WebSocket, pas de Redis       | Queue driver `database`, cron pour jobs                           |
+| NFR-04 (Core Web Vitals)    | LCP < 2,5 s                                   | `next/image` pour toutes les images, lazy loading mascotte/bureau |
+| NFR-05 (Accessibilité)      | Contraste WCAG AA avec `#FB3936`              | Ratio vérifié en CSS, alternatives textuelles pour images         |
 
 ---
 
@@ -92,17 +95,17 @@ Les NFRs qui influencent le plus les décisions v2 :
 
 La stack v1 est conservée intégralement. Les ajouts v2 sont en gras.
 
-| Couche | Technologie | Notes v2 |
-|--------|-------------|---------|
-| Frontend | Next.js 14+ (App Router, TypeScript) | Ajout `next/image` obligatoire pour toutes les images |
-| Backend | Laravel 11 (PHP 8.2+) | +4 modules métier, +1 webhook endpoint |
-| BDD | MySQL 8.0 | +5 nouvelles tables |
-| Hébergement frontend | Vercel (Hobby) | **Production configurée** |
-| Hébergement backend | O2switch mutualisé | **Production configurée** |
-| Stockage fichiers | Cloudflare R2 | Inchangé |
-| Email | Resend | **Ajout : envoi newsletter** |
-| Temps réel | Pusher | Inchangé |
-| **Paiement** | **HelloAsso** | **Nouveau — webhook entrant** |
+| Couche               | Technologie                          | Notes v2                                              |
+| -------------------- | ------------------------------------ | ----------------------------------------------------- |
+| Frontend             | Next.js 14+ (App Router, TypeScript) | Ajout `next/image` obligatoire pour toutes les images |
+| Backend              | Laravel 11 (PHP 8.2+)                | +4 modules métier, +1 webhook endpoint                |
+| BDD                  | MySQL 8.0                            | +5 nouvelles tables                                   |
+| Hébergement frontend | Vercel (Hobby)                       | **Production configurée**                             |
+| Hébergement backend  | O2switch mutualisé                   | **Production configurée**                             |
+| Stockage fichiers    | Cloudflare R2                        | Inchangé                                              |
+| Email                | Resend                               | **Ajout : envoi newsletter**                          |
+| Temps réel           | Pusher                               | Inchangé                                              |
+| **Paiement**         | **HelloAsso**                        | **Nouveau — webhook entrant**                         |
 
 ### Nouveaux packages Laravel v2
 
@@ -125,12 +128,14 @@ Les composants 1–6 de la v1 sont inchangés. Les composants 7–11 sont nouvea
 **But :** Gérer les abonnements, l'envoi des campagnes et le désabonnement conforme RGPD.
 
 **Responsabilités :**
+
 - Enregistrer/révoquer le consentement newsletter (`newsletter_subscribed_at`)
 - Générer des tokens de désabonnement signés (HMAC-SHA256)
 - Composer et envoyer des campagnes via Resend (traitement en queue)
 - Servir la page de désabonnement publique sans authentification
 
 **Interfaces :**
+
 - `PATCH /api/v1/me/newsletter` — toggle abonnement (auth)
 - `GET /api/v1/admin/newsletter/subscribers` — liste abonnés [Admin|Founder]
 - `GET /api/v1/admin/newsletter/subscribers/export` — CSV abonnés
@@ -148,12 +153,14 @@ Les composants 1–6 de la v1 sont inchangés. Les composants 7–11 sont nouvea
 **But :** Suivi du matériel de l'association (état, quantité, attributions).
 
 **Responsabilités :**
+
 - CRUD équipements avec catégorie et état
 - Enregistrement des attributions (quel membre a quoi)
 - Historique des mouvements (attribution + retour)
 - Export CSV de l'inventaire complet
 
 **Interfaces :**
+
 - `GET /api/v1/inventory` — liste équipements [Bureau+]
 - `POST /api/v1/inventory` — créer équipement [Admin|Founder|Bureau]
 - `GET /api/v1/inventory/{id}` — détail + historique [Bureau+]
@@ -172,12 +179,14 @@ Les composants 1–6 de la v1 sont inchangés. Les composants 7–11 sont nouvea
 **But :** Suivi financier interne de l'association (dépenses et recettes).
 
 **Responsabilités :**
+
 - CRUD des mouvements financiers (dépense / recette)
 - Calcul du solde courant
 - Agrégats par mois/catégorie pour le dashboard
 - Export CSV comptable sur période
 
 **Interfaces :**
+
 - `GET /api/v1/budget` — liste mouvements filtrés [Bureau+]
 - `POST /api/v1/budget` — saisir mouvement [Bureau+]
 - `PATCH /api/v1/budget/{id}` — modifier [Bureau+]
@@ -194,6 +203,7 @@ Les composants 1–6 de la v1 sont inchangés. Les composants 7–11 sont nouvea
 **But :** Permettre le paiement de la cotisation annuelle et mettre à jour automatiquement le statut membre.
 
 **Responsabilités :**
+
 - Exposer la page `/adhesion` avec le bouton HelloAsso
 - Recevoir et valider les webhooks HelloAsso (HMAC-SHA256)
 - Mettre à jour `membership_paid_at` sur le membre correspondant
@@ -201,6 +211,7 @@ Les composants 1–6 de la v1 sont inchangés. Les composants 7–11 sont nouvea
 - Logger chaque webhook reçu
 
 **Interfaces :**
+
 - `POST /api/v1/webhooks/helloasso` — endpoint webhook (public, avec vérification signature)
 - Bouton frontend : `<a href="{HELLOASSO_FORM_URL}" target="_blank">` (aucun SDK)
 
@@ -213,6 +224,7 @@ Les composants 1–6 de la v1 sont inchangés. Les composants 7–11 sont nouvea
 **But :** Nouvelle palette de couleurs et visuels officiels cohérents sur tout le site.
 
 **Responsabilités :**
+
 - Tokens CSS dans `globals.css` (`--color-primary: #FB3936`, etc.)
 - Composants Next.js utilisant `next/image` pour logo, mascotte, bureau
 - Layout auth avec logo cliquable
@@ -657,52 +669,57 @@ export const exportBudget = (from: string, to: string) => ...
 // frontend/src/types/index.ts — additions v2
 
 export interface NewsletterCampaign {
-  id: number
-  subject: string
-  content: string
-  sent_at: string | null
-  recipient_count: number | null
-  created_by: { id: number; name: string }
-  created_at: string
+  id: number;
+  subject: string;
+  content: string;
+  sent_at: string | null;
+  recipient_count: number | null;
+  created_by: { id: number; name: string };
+  created_at: string;
 }
 
 export interface Equipment {
-  id: number
-  name: string
-  category: 'textile' | 'materiel' | 'electronique' | 'autre'
-  quantity: number
-  status: 'bon' | 'use' | 'hors_service'
-  notes: string | null
-  active_assignments: EquipmentAssignment[]
+  id: number;
+  name: string;
+  category: "textile" | "materiel" | "electronique" | "autre";
+  quantity: number;
+  status: "bon" | "use" | "hors_service";
+  notes: string | null;
+  active_assignments: EquipmentAssignment[];
 }
 
 export interface EquipmentAssignment {
-  id: number
-  equipment_id: number
-  user: { id: number; name: string }
-  assigned_at: string
-  returned_at: string | null
-  notes: string | null
+  id: number;
+  equipment_id: number;
+  user: { id: number; name: string };
+  assigned_at: string;
+  returned_at: string | null;
+  notes: string | null;
 }
 
 export interface BudgetEntry {
-  id: number
-  type: 'depense' | 'recette'
-  amount: number
-  entry_date: string
-  category: 'achat_materiel' | 'cotisation' | 'evenement' | 'subvention' | 'autre'
-  description: string
-  receipt_url: string | null
-  created_by: { id: number; name: string }
-  created_at: string
+  id: number;
+  type: "depense" | "recette";
+  amount: number;
+  entry_date: string;
+  category:
+    | "achat_materiel"
+    | "cotisation"
+    | "evenement"
+    | "subvention"
+    | "autre";
+  description: string;
+  receipt_url: string | null;
+  created_by: { id: number; name: string };
+  created_at: string;
 }
 
 export interface BudgetSummary {
-  balance: number
-  total_income: number
-  total_expenses: number
-  monthly: Array<{ month: string; income: number; expenses: number }>
-  by_category: Array<{ category: string; total: number }>
+  balance: number;
+  total_income: number;
+  total_expenses: number;
+  monthly: Array<{ month: string; income: number; expenses: number }>;
+  by_category: Array<{ category: string; total: number }>;
 }
 ```
 
@@ -740,6 +757,7 @@ NEXT_PUBLIC_PUSHER_CLUSTER=eu
 ```
 
 **Domaine personnalisé :**
+
 - Configurer DNS : `A` ou `CNAME` vers Vercel
 - HTTPS automatique via Vercel
 - Preview deployments sur branches de feature
@@ -795,23 +813,26 @@ PUSHER_APP_CLUSTER=eu
 ```
 
 **Cron O2switch (toutes les minutes) :**
+
 ```
 * * * * * cd /home/[user]/public_html/api && php artisan schedule:run >> /dev/null 2>&1
 ```
 
 **Schedule Laravel (`app/Console/Kernel.php`) :**
+
 ```php
 $schedule->command('queue:work --once')->everyMinute();
 ```
 
 **Déploiement GitHub Actions → O2switch :**
+
 ```yaml
 # .github/workflows/deploy-backend.yml
 name: Deploy Backend
 on:
   push:
     branches: [main]
-    paths: ['backend/**']
+    paths: ["backend/**"]
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -854,6 +875,7 @@ return [
 ### NFR-01 — Conformité RGPD
 
 **Solution architecturale :**
+
 - `newsletter_subscribed_at` horodaté précisément (timestamp, pas boolean)
 - Token de désabonnement invalidé après usage unique (SET NULL)
 - Endpoint public de désabonnement sans authentification requise
@@ -866,6 +888,7 @@ return [
 ### NFR-02 — Compatibilité Vercel (serverless)
 
 **Solution architecturale :**
+
 - L'envoi newsletter est déclenché via `POST /api/v1/admin/newsletter/campaigns/{id}/send` → Laravel dispatch Job
 - Le job est traité par la queue sur O2switch, pas par une API Route Next.js
 - Pas de WebSocket persistant côté Vercel (Pusher gère le temps réel)
@@ -877,6 +900,7 @@ return [
 ### NFR-03 — Compatibilité O2switch (mutualisé PHP 8.2)
 
 **Solution architecturale :**
+
 - Queue driver `database` (pas Redis) — stockée dans MySQL
 - Cron `* * * * *` pour `queue:work --once` (pas de worker persistant)
 - `php artisan schedule:run` géré par le cron O2switch
@@ -889,6 +913,7 @@ return [
 ### NFR-04 — Core Web Vitals (LCP < 2,5 s)
 
 **Solution architecturale :**
+
 - `next/image` obligatoire pour toutes les images (logo, mascotte, bureau, photos events)
 - `priority={true}` sur le LCP candidat (hero image ou mascotte)
 - Formats WebP/AVIF générés automatiquement par Next.js
@@ -901,6 +926,7 @@ return [
 ### NFR-05 — Accessibilité WCAG AA
 
 **Solution architecturale :**
+
 - Ratio contraste `#FB3936` sur blanc `#FFFFFF` : **4.5:1** (conforme AA pour texte normal, vérifié avec WebAIM Contrast Checker)
 - Ratio `#FB3936` sur `#FAFAFA` : **4.3:1** (conforme AA)
 - Ratio `white` sur sidebar `#C0302E` : **5.2:1** (conforme AA)
@@ -913,27 +939,27 @@ return [
 
 ## Traçabilité FR → Composants
 
-| FR | Description | Composant backend | Composant frontend |
-|----|-------------|-------------------|--------------------|
-| FR-R01 | Nouvelle palette couleurs | — | globals.css, tous les composants |
-| FR-R02 | Images officielles | — | AuthLayout, Navbar, Hero, AdhesionPage |
-| FR-R03 | Nom association | — | Layout, metadata, footer |
-| FR-UX01 | Logo cliquable auth | — | `(auth)/layout.tsx` |
-| FR-UX02 | Bug Tiptap SSR | — | `PostForm.tsx` |
-| FR-N01 | Opt-in newsletter | ProfileController, User | NewsletterToggle, ProfilePage |
-| FR-N02 | Gestion abonnés | NewsletterController | NewsletterAdminPage, SubscribersTable |
-| FR-N03 | Envoi newsletter | NewsletterController, SendNewsletterJob | CampaignForm, NewsletterAdminPage |
-| FR-N04 | Désabonnement token | NewsletterController | `/desabonnement` page |
-| FR-I01 | CRUD équipements | EquipmentController, Equipment | InventoryPage, EquipmentForm |
-| FR-I02 | Historique attributions | EquipmentController, EquipmentAssignment | AssignmentModal, EquipmentCard |
-| FR-I03 | Export inventaire CSV | EquipmentController | InventoryPage (bouton export) |
-| FR-B01 | CRUD budget | BudgetController, BudgetEntry | BudgetPage, BudgetEntryForm |
-| FR-B02 | Dashboard financier | BudgetController (summary) | BudgetPage, BudgetChart |
-| FR-B03 | Export CSV budget | BudgetController | BudgetExport |
-| FR-P01 | Bouton HelloAsso | — (lien externe) | AdhesionPage, ProfilePage |
-| FR-P02 | Webhook HelloAsso | HelloAssoWebhookController | — |
-| FR-D01 | Déploiement Vercel | — | vercel.json, .env Vercel |
-| FR-D02 | Déploiement O2switch | .env.production, deploy.yml | — |
+| FR      | Description               | Composant backend                        | Composant frontend                     |
+| ------- | ------------------------- | ---------------------------------------- | -------------------------------------- |
+| FR-R01  | Nouvelle palette couleurs | —                                        | globals.css, tous les composants       |
+| FR-R02  | Images officielles        | —                                        | AuthLayout, Navbar, Hero, AdhesionPage |
+| FR-R03  | Nom association           | —                                        | Layout, metadata, footer               |
+| FR-UX01 | Logo cliquable auth       | —                                        | `(auth)/layout.tsx`                    |
+| FR-UX02 | Bug Tiptap SSR            | —                                        | `PostForm.tsx`                         |
+| FR-N01  | Opt-in newsletter         | ProfileController, User                  | NewsletterToggle, ProfilePage          |
+| FR-N02  | Gestion abonnés           | NewsletterController                     | NewsletterAdminPage, SubscribersTable  |
+| FR-N03  | Envoi newsletter          | NewsletterController, SendNewsletterJob  | CampaignForm, NewsletterAdminPage      |
+| FR-N04  | Désabonnement token       | NewsletterController                     | `/desabonnement` page                  |
+| FR-I01  | CRUD équipements          | EquipmentController, Equipment           | InventoryPage, EquipmentForm           |
+| FR-I02  | Historique attributions   | EquipmentController, EquipmentAssignment | AssignmentModal, EquipmentCard         |
+| FR-I03  | Export inventaire CSV     | EquipmentController                      | InventoryPage (bouton export)          |
+| FR-B01  | CRUD budget               | BudgetController, BudgetEntry            | BudgetPage, BudgetEntryForm            |
+| FR-B02  | Dashboard financier       | BudgetController (summary)               | BudgetPage, BudgetChart                |
+| FR-B03  | Export CSV budget         | BudgetController                         | BudgetExport                           |
+| FR-P01  | Bouton HelloAsso          | — (lien externe)                         | AdhesionPage, ProfilePage              |
+| FR-P02  | Webhook HelloAsso         | HelloAssoWebhookController               | —                                      |
+| FR-D01  | Déploiement Vercel        | —                                        | vercel.json, .env Vercel               |
+| FR-D02  | Déploiement O2switch      | .env.production, deploy.yml              | —                                      |
 
 ---
 
@@ -958,6 +984,7 @@ return [
 **Choix :** Lien externe `<a href="{HELLOASSO_URL}" target="_blank">`
 
 **Rationale :**
+
 - ✓ Zéro dépendance technique (pas de SDK, pas d'iframe complexe)
 - ✓ HelloAsso gère PCI-DSS et la conformité paiement
 - ✓ Compatible sans modification backend
@@ -972,6 +999,7 @@ return [
 **Choix :** Queue `database` avec cron O2switch
 
 **Rationale :**
+
 - ✓ Compatible shared hosting (pas de Redis)
 - ✓ Résilience : si Resend est lent, les jobs sont en attente en BDD
 - ✓ Retry automatique des jobs échoués
@@ -986,6 +1014,7 @@ return [
 **Choix :** HMAC-SHA256 sur `user_id | email | app_key`
 
 **Rationale :**
+
 - ✓ Déterministe — pas besoin de stocker un UUID en BDD pour chaque email envoyé
 - ✓ Invalidation triviale (suffixe timestamp dans HMAC si besoin)
 - ✓ Résistant aux timing attacks via `hash_equals()`
@@ -1000,6 +1029,7 @@ return [
 **Choix :** Recharts (tree-shakable, 300KB gzippé) pour les graphiques budget
 
 **Rationale :**
+
 - ✓ S'intègre bien avec React/Next.js
 - ✓ Pas de dépendance D3.js complète
 - ✓ Répandu, bien maintenu
@@ -1030,10 +1060,10 @@ return [
 
 ## Historique des révisions
 
-| Version | Date | Auteur | Modifications |
-|---------|------|--------|--------------|
-| 1.0 | 2026-03-07 | Jules Bourin | Architecture initiale (auth, events, blog, sessions, leaderboard, chat) |
-| 2.0 | 2026-03-29 | Jules Bourin | +Newsletter, +Inventaire, +Budget, +HelloAsso, +Infrastructure production, +Design system v2 |
+| Version | Date       | Auteur       | Modifications                                                                                |
+| ------- | ---------- | ------------ | -------------------------------------------------------------------------------------------- |
+| 1.0     | 2026-03-07 | Jules Bourin | Architecture initiale (auth, events, blog, sessions, leaderboard, chat)                      |
+| 2.0     | 2026-03-29 | Jules Bourin | +Newsletter, +Inventaire, +Budget, +HelloAsso, +Infrastructure production, +Design system v2 |
 
 ---
 
@@ -1046,6 +1076,7 @@ Exécuter `/sprint-planning` pour décomposer les 6 epics en stories détaillée
 **Estimation :** 19–29 stories sur ~6–8 sprints (1 semaine chacun, ~8 points/sprint).
 
 **Ordre de priorité recommandé :**
+
 1. **EPIC-R** (Refonte + correctifs) — déjà partiellement en cours
 2. **EPIC-D** (Infrastructure production) — nécessaire pour tout le reste
 3. **EPIC-P** (HelloAsso) — quick win, aucune BDD complexe

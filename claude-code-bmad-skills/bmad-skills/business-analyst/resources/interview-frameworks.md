@@ -18,9 +18,11 @@ This document provides detailed frameworks and techniques for conducting effecti
 ## 5 Whys Framework
 
 ### Purpose
+
 Identify root causes by asking "why" repeatedly to move beyond symptoms to underlying problems.
 
 ### When to Use
+
 - Problem identification phase
 - Understanding user pain points
 - Debugging complaints or issues
@@ -83,6 +85,7 @@ Solution: Implement analytics and feature prioritization system
 ### Tips for Success
 
 **Do:**
+
 - Focus on processes and systems, not people
 - Be specific with each answer
 - Ask follow-up questions for clarity
@@ -90,6 +93,7 @@ Solution: Implement analytics and feature prioritization system
 - Verify the root cause with stakeholders
 
 **Don't:**
+
 - Stop too early (at symptoms)
 - Blame individuals
 - Accept vague answers
@@ -115,9 +119,11 @@ Solution: Implement analytics and feature prioritization system
 ## Jobs-to-be-Done (JTBD)
 
 ### Purpose
+
 Understand what users are trying to accomplish (their "job") rather than what features they want.
 
 ### Core Concept
+
 People don't want products; they want to get jobs done. Focus on the outcome, not the tool.
 
 ### The JTBD Statement Format
@@ -139,24 +145,28 @@ so I can [expected outcome]
 ### Key Questions to Ask
 
 **Understanding the Job:**
+
 - What are you trying to accomplish?
 - What job are you hiring this product to do?
 - When do you need to do this?
 - How do you know when you've succeeded?
 
 **Understanding Current Solutions:**
+
 - How do you do this today?
 - What products/tools are you using?
 - What do you like about your current solution?
 - What frustrates you about it?
 
 **Understanding Obstacles:**
+
 - What's the hardest part about getting this done?
 - What slows you down?
 - What would make this easier?
 - What have you tried that didn't work?
 
 **Understanding Success:**
+
 - What would the ideal solution look like?
 - How would you measure success?
 - What would change in your work if this was solved?
@@ -167,6 +177,7 @@ so I can [expected outcome]
 "I want a recipe search with filters and a shopping list"
 
 **JTBD Approach (Outcome):**
+
 ```
 When I'm planning my weekly meals,
 I want to quickly find recipes that use ingredients I already have,
@@ -181,6 +192,7 @@ Success: Find suitable recipes in under 5 minutes
 ```
 
 **Insights:**
+
 - Focus on ingredient matching, not recipe variety
 - Prioritize speed over comprehensiveness
 - Integration with pantry inventory
@@ -192,6 +204,7 @@ Success: Find suitable recipes in under 5 minutes
 "I want Gantt charts and task assignments"
 
 **JTBD Approach (Outcome):**
+
 ```
 When I'm leading a project with multiple stakeholders,
 I want to quickly understand who is working on what and if we're on track,
@@ -206,6 +219,7 @@ Success: Get complete project status in under 5 minutes
 ```
 
 **Insights:**
+
 - Focus on status visibility, not task tracking
 - Real-time updates more important than planning features
 - Integration with communication tools
@@ -215,15 +229,16 @@ Success: Get complete project status in under 5 minutes
 
 **Job Success Matrix:**
 
-| Job Stage | Current Solution | Pain Level | Our Opportunity | Priority |
-|-----------|-----------------|------------|-----------------|----------|
-| Discovery | Google search | High | Intelligent search | High |
-| Evaluation | Manual comparison | Medium | Comparison tool | Medium |
-| Purchase | Phone call | Low | Online booking | Low |
+| Job Stage  | Current Solution  | Pain Level | Our Opportunity    | Priority |
+| ---------- | ----------------- | ---------- | ------------------ | -------- |
+| Discovery  | Google search     | High       | Intelligent search | High     |
+| Evaluation | Manual comparison | Medium     | Comparison tool    | Medium   |
+| Purchase   | Phone call        | Low        | Online booking     | Low      |
 
 ### Tips for JTBD Interviews
 
 **Do:**
+
 - Focus on specific situations and stories
 - Ask "Tell me about the last time you..."
 - Understand the job before discussing solutions
@@ -231,6 +246,7 @@ Success: Get complete project status in under 5 minutes
 - Document exact quotes
 
 **Don't:**
+
 - Ask "Would you use feature X?"
 - Accept hypotheticals ("I would probably...")
 - Focus only on functional jobs
@@ -246,6 +262,7 @@ Success: Get complete project status in under 5 minutes
 "When I'm searching for a specific type of item, I want to narrow down results by my key criteria, so I can find what I need without scrolling through hundreds of irrelevant results"
 
 The JTBD version reveals:
+
 - Specific situation (searching for specific type)
 - Real problem (hundreds of irrelevant results)
 - Success criteria (no excessive scrolling)
@@ -256,72 +273,88 @@ The JTBD version reveals:
 ## SMART Goals
 
 ### Purpose
+
 Ensure goals are well-defined, measurable, and achievable.
 
 ### SMART Criteria
 
 #### S - Specific
+
 **What:** Clearly defined, unambiguous goal
 **Why:** Prevents misinterpretation and scope creep
 
 **Questions:**
+
 - What exactly are we trying to achieve?
 - Who is involved?
 - What is included/excluded?
 
 **Example:**
+
 - Vague: "Improve the dashboard"
 - Specific: "Redesign the analytics dashboard to display real-time sales data with drill-down capabilities"
 
 #### M - Measurable
+
 **What:** Quantifiable success criteria
 **Why:** Enables tracking progress and determining success
 
 **Questions:**
+
 - How will we measure success?
 - What metrics will we track?
 - How much improvement is needed?
 
 **Example:**
+
 - Vague: "Make the app faster"
 - Measurable: "Reduce page load time from 5 seconds to 2 seconds for 95% of requests"
 
 #### A - Achievable
+
 **What:** Realistic given resources and constraints
 **Why:** Prevents setting up for failure and maintains motivation
 
 **Questions:**
+
 - Is this realistic with our resources?
 - What constraints do we face?
 - What dependencies exist?
 
 **Example:**
+
 - Unrealistic: "Build a complete AI platform in 2 weeks"
 - Achievable: "Implement basic AI-powered search suggestions in 6 weeks"
 
 #### R - Relevant
+
 **What:** Aligned with broader objectives
 **Why:** Ensures effort contributes to strategic goals
 
 **Questions:**
+
 - Why does this matter?
 - How does it support business objectives?
 - Is this the right time?
 
 **Example:**
+
 - Irrelevant: "Add social sharing to internal admin tool"
 - Relevant: "Add bulk operations to admin tool to reduce manual work by 80%"
 
 #### T - Time-bound
+
 **What:** Has a specific deadline or timeline
 **Why:** Creates urgency and enables planning
 
 **Questions:**
+
 - When will this be complete?
 - What are the milestones?
 - What's the timeline?
 
 **Example:**
+
 - Vague: "Eventually launch mobile app"
 - Time-bound: "Launch iOS app beta by Q2 2025, Android by Q3 2025"
 
@@ -336,6 +369,7 @@ Ensure goals are well-defined, measurable, and achievable.
 "Increase user satisfaction score from 3.2 to 4.0 (out of 5) by Q2 2025 by implementing the top 3 feature requests identified in user surveys (search filters, saved preferences, and export functionality)"
 
 **Breakdown:**
+
 - S: User satisfaction score, specific features
 - M: 3.2 to 4.0 on 5-point scale
 - A: Top 3 features (focused scope)
@@ -351,6 +385,7 @@ Ensure goals are well-defined, measurable, and achievable.
 "Reduce API response time from 800ms to 300ms for 95% of requests by end of Q1 2025 through database optimization and caching implementation"
 
 **Breakdown:**
+
 - S: API response time, specific optimizations
 - M: 800ms to 300ms, 95th percentile
 - A: Known optimization techniques
@@ -366,6 +401,7 @@ Ensure goals are well-defined, measurable, and achievable.
 "Launch in 3 European markets (UK, Germany, France) by Q3 2025, achieving 1,000 paid users and $50K MRR within 6 months of launch through localized marketing and sales efforts"
 
 **Breakdown:**
+
 - S: 3 specific markets, specific activities
 - M: 1,000 users, $50K MRR
 - A: 6-month ramp period
@@ -375,6 +411,7 @@ Ensure goals are well-defined, measurable, and achievable.
 ### Applying SMART to Product Features
 
 **Feature Goal Template:**
+
 ```
 [Action] [Specific Feature]
 to achieve [Measurable Outcome]
@@ -391,46 +428,55 @@ with [Achievable Constraints]
 ## Problem-Solution Fit
 
 ### Purpose
+
 Validate that proposed solutions actually address real problems before investing in development.
 
 ### The Four Validation Questions
 
 #### 1. Is this a real problem?
+
 - Does it actually exist?
 - Is it frequent or severe enough to matter?
 - Do people currently try to solve it?
 
 **Red Flags:**
+
 - Users don't mention it unprompted
 - No current workarounds exist
 - "Nice to have" but not essential
 
 #### 2. Is it painful enough?
+
 - Would users pay (money or effort) to solve it?
 - What do they currently sacrifice?
 - How much time/money/frustration does it cost?
 
 **Pain Scale:**
+
 - **Low:** Mild annoyance, rarely thought about
 - **Medium:** Regular frustration, actively looking for solutions
 - **High:** Critical blocker, willing to pay significantly
 
 #### 3. Is our solution viable?
+
 - Does it actually solve the problem?
 - Is it technically feasible?
 - Can we build/deliver it?
 
 **Validation:**
+
 - Prototype testing
 - Technical spikes
 - Resource assessment
 
 #### 4. Is it better than alternatives?
+
 - What do users do now?
 - Why would they switch?
 - What's our unique value?
 
 **Competitive Test:**
+
 - 10x better on one dimension, or
 - Significantly better on multiple dimensions
 
@@ -439,6 +485,7 @@ Validate that proposed solutions actually address real problems before investing
 **Phase 1: Problem Validation**
 
 Questions to answer:
+
 - [ ] What specific problem are we solving?
 - [ ] Who experiences this problem?
 - [ ] How often does it occur?
@@ -448,6 +495,7 @@ Questions to answer:
 - [ ] Would they pay to solve it?
 
 **Evidence Needed:**
+
 - User interviews (minimum 10-15)
 - Usage data showing workarounds
 - Support tickets/complaints
@@ -456,6 +504,7 @@ Questions to answer:
 **Phase 2: Solution Validation**
 
 Questions to answer:
+
 - [ ] Does our solution address the root cause?
 - [ ] Is it technically feasible?
 - [ ] Can users actually use it?
@@ -464,6 +513,7 @@ Questions to answer:
 - [ ] What's the total cost (not just money)?
 
 **Evidence Needed:**
+
 - Prototype testing
 - Technical proof of concept
 - User feedback on mockups
@@ -472,6 +522,7 @@ Questions to answer:
 **Phase 3: Fit Validation**
 
 Questions to answer:
+
 - [ ] Would users actually adopt this?
 - [ ] What would prevent adoption?
 - [ ] What would make them switch?
@@ -480,6 +531,7 @@ Questions to answer:
 - [ ] Can we support them?
 
 **Evidence Needed:**
+
 - Beta testing
 - Early adopter feedback
 - Conversion data
@@ -490,6 +542,7 @@ Questions to answer:
 **Proposed Feature:** AI-powered email subject line suggestions
 
 **Problem Validation:**
+
 ```
 Problem: Low email open rates
 Who: Marketing teams
@@ -499,9 +552,11 @@ Current Solution: Manual A/B testing, trial and error
 Pain Level: High - directly impacts campaign ROI
 Willingness to Pay: Yes - already paying for email tools
 ```
+
 Result: VALID PROBLEM
 
 **Solution Validation:**
+
 ```
 Proposed Solution: AI suggests 5 subject lines, ranks by predicted open rate
 Technical Feasibility: Yes - existing AI models available
@@ -511,9 +566,11 @@ Better than Alternatives:
   - Competitors: Basic templates (generic, not AI)
 Unique Value: Personalized suggestions based on audience and history
 ```
+
 Result: VIABLE SOLUTION
 
 **Fit Validation:**
+
 ```
 Would users adopt? Yes - beta test showed 80% usage rate
 Barriers: Learning to trust AI suggestions
@@ -521,6 +578,7 @@ Value Prop: "Increase open rates by 25% in half the time"
 User Acquisition: Existing email marketing customers
 Support Needs: Documentation, AI explanation
 ```
+
 Result: GOOD FIT
 
 Decision: BUILD IT
@@ -530,34 +588,40 @@ Decision: BUILD IT
 ## Open-Ended Questions
 
 ### Purpose
+
 Encourage detailed responses and uncover insights that closed questions would miss.
 
 ### Question Starters
 
 **Exploratory:**
+
 - "Tell me about..."
 - "Describe..."
 - "Walk me through..."
 - "Help me understand..."
 
 **Process-Oriented:**
+
 - "How do you currently..."
 - "What's your process for..."
 - "How do you decide..."
 - "What happens when..."
 
 **Experience-Oriented:**
+
 - "Can you think of a time when..."
 - "Describe a recent situation where..."
 - "What was it like when..."
 
 **Problem-Oriented:**
+
 - "What challenges do you face..."
 - "What's difficult about..."
 - "What frustrates you about..."
 - "What would make [task] easier?"
 
 **Opinion-Oriented:**
+
 - "What do you think about..."
 - "How do you feel about..."
 - "What's your take on..."
@@ -565,21 +629,25 @@ Encourage detailed responses and uncover insights that closed questions would mi
 ### Examples by Context
 
 **Understanding Current Workflow:**
+
 - "Walk me through how you handle [task] from start to finish"
 - "Tell me about the last time you needed to [do X]"
 - "Describe a typical day using [product/tool]"
 
 **Identifying Pain Points:**
+
 - "What's the most frustrating part of [process]?"
 - "What challenges do you face when trying to [goal]?"
 - "Tell me about a time when [tool] didn't work as expected"
 
 **Understanding Priorities:**
+
 - "If you could only fix one thing, what would it be?"
 - "What keeps you up at night about [topic]?"
 - "What would make the biggest difference in your work?"
 
 **Exploring Solutions:**
+
 - "How would you ideally like this to work?"
 - "What would make this task easier for you?"
 - "Describe your perfect solution to this problem"
@@ -587,11 +655,13 @@ Encourage detailed responses and uncover insights that closed questions would mi
 ### Open vs. Closed Questions
 
 **Closed (Avoid):**
+
 - "Do you like the dashboard?" (Yes/No)
 - "Is the search fast enough?" (Yes/No)
 - "Would you use this feature?" (Yes/No)
 
 **Open (Better):**
+
 - "What do you like or dislike about the dashboard?"
 - "How does the search speed affect your work?"
 - "Tell me about how you would use this feature"
@@ -601,56 +671,69 @@ Encourage detailed responses and uncover insights that closed questions would mi
 ## Probing Techniques
 
 ### Purpose
+
 Dig deeper into responses to uncover specific details and true motivations.
 
 ### Types of Probes
 
 #### 1. Clarification Probes
+
 **Purpose:** Ensure you understand correctly
 
 **Examples:**
+
 - "What do you mean by [term they used]?"
 - "Can you clarify what you meant when you said [quote]?"
 - "I want to make sure I understand - are you saying that [paraphrase]?"
 
 #### 2. Detail Probes
+
 **Purpose:** Get specific examples and details
 
 **Examples:**
+
 - "Can you give me a specific example?"
 - "Tell me more about that"
 - "What specifically happened?"
 - "How exactly does that work?"
 
 #### 3. Frequency Probes
+
 **Purpose:** Understand how often something occurs
 
 **Examples:**
+
 - "How often does that happen?"
 - "When was the last time?"
 - "How many times per week/month?"
 
 #### 4. Impact Probes
+
 **Purpose:** Understand consequences and importance
 
 **Examples:**
+
 - "What happens when [situation]?"
 - "How does that affect your work?"
 - "What's the cost of [problem]?"
 - "Why is that important to you?"
 
 #### 5. Comparison Probes
+
 **Purpose:** Understand relative importance
 
 **Examples:**
+
 - "How does this compare to [alternative]?"
 - "Which is more important: [X] or [Y]?"
 - "What's different about [scenario A] vs [scenario B]?"
 
 #### 6. Exception Probes
+
 **Purpose:** Find edge cases and limitations
 
 **Examples:**
+
 - "Are there times when that doesn't work?"
 - "What's different about [exception]?"
 - "Has it ever failed? Tell me about that."
@@ -660,11 +743,13 @@ Dig deeper into responses to uncover specific details and true motivations.
 **Technique:** After someone finishes answering, wait 5 seconds before responding.
 
 **Why:**
+
 - People often continue talking to fill silence
 - Additional information is often more candid
 - Shows you're listening and thinking
 
 **Example:**
+
 ```
 Interviewer: "What challenges do you face with the current system?"
 User: "It's slow sometimes"
@@ -707,50 +792,59 @@ User: "Actually, the main issue is that when I'm running reports,
 ### Active Listening Techniques
 
 #### 1. Reflecting
+
 Repeat back what you heard
 
 "So what I'm hearing is that [summary]. Is that right?"
 
 #### 2. Paraphrasing
+
 Restate in your own words
 
 "It sounds like the main issue is [paraphrase]?"
 
 #### 3. Summarizing
+
 Capture key points periodically
 
 "Let me make sure I've got this - you mentioned [point 1], [point 2], and [point 3]"
 
 #### 4. Validating
+
 Acknowledge their experience
 
 "That sounds frustrating"
 "I can see why that would be challenging"
 
 #### 5. Probing
+
 Ask follow-up questions (see Probing section)
 
 ### What to Listen For
 
 **Pain Points:**
+
 - Frustration in tone
 - Words like "annoying," "difficult," "confusing"
 - Workarounds and hacks
 - Repeated mentions
 
 **Priorities:**
+
 - What they mention first
 - What they spend most time on
 - What they return to
 - Emotional emphasis
 
 **Assumptions:**
+
 - "Of course..."
 - "Obviously..."
 - "Everyone knows..."
 - Statements treated as facts
 
 **Constraints:**
+
 - "We can't..."
 - "It has to..."
 - "They require..."
@@ -763,6 +857,7 @@ Ask follow-up questions (see Probing section)
 ### Before the Interview
 
 **Preparation:**
+
 - [ ] Research the interviewee (role, context)
 - [ ] Review existing documentation
 - [ ] Prepare core questions
@@ -773,6 +868,7 @@ Ask follow-up questions (see Probing section)
 - [ ] Prepare note-taking method
 
 **Opening:**
+
 - Introduce yourself and purpose
 - Explain how you'll use the information
 - Set expectations for time
@@ -782,6 +878,7 @@ Ask follow-up questions (see Probing section)
 ### During the Interview
 
 **Do:**
+
 - Start with open-ended questions
 - Listen more than talk (80/20 rule)
 - Take detailed notes (exact quotes when possible)
@@ -793,6 +890,7 @@ Ask follow-up questions (see Probing section)
 - Stay neutral (don't lead)
 
 **Don't:**
+
 - Jump to solutions
 - Ask leading questions
 - Interrupt
@@ -805,6 +903,7 @@ Ask follow-up questions (see Probing section)
 ### Note-Taking Tips
 
 **Capture:**
+
 - Exact quotes (use quotation marks)
 - Specific examples
 - Numbers and metrics
@@ -813,6 +912,7 @@ Ask follow-up questions (see Probing section)
 - Follow-up questions
 
 **Format:**
+
 ```
 [timestamp] QUOTE: "It takes forever to load"
 [timestamp] NOTE: User seemed frustrated
@@ -823,6 +923,7 @@ Ask follow-up questions (see Probing section)
 ### After the Interview
 
 **Immediate Actions (within 1 hour):**
+
 - [ ] Review and clean up notes
 - [ ] Highlight key insights
 - [ ] Note patterns and themes
@@ -830,6 +931,7 @@ Ask follow-up questions (see Probing section)
 - [ ] Document assumptions to validate
 
 **Follow-Up:**
+
 - [ ] Send thank you
 - [ ] Share summary (if appropriate)
 - [ ] Schedule follow-up if needed
@@ -837,6 +939,7 @@ Ask follow-up questions (see Probing section)
 - [ ] Update requirements
 
 **Synthesis:**
+
 - [ ] Compare with other interviews
 - [ ] Identify patterns
 - [ ] Note contradictions
@@ -846,28 +949,33 @@ Ask follow-up questions (see Probing section)
 ### Interview Questions Checklist
 
 **Context:**
+
 - [ ] What's your role?
 - [ ] What are your main responsibilities?
 - [ ] Who do you work with?
 
 **Current State:**
+
 - [ ] How do you currently handle [task]?
 - [ ] What tools do you use?
 - [ ] What's your typical workflow?
 - [ ] How often do you do this?
 
 **Pain Points:**
+
 - [ ] What's most challenging about [process]?
 - [ ] What frustrates you?
 - [ ] What takes the most time?
 - [ ] What would you change?
 
 **Priorities:**
+
 - [ ] What's most important to you?
 - [ ] If you could only fix one thing, what would it be?
 - [ ] What do you spend most time on?
 
 **Success:**
+
 - [ ] What does success look like?
 - [ ] How do you measure it?
 - [ ] What would make your work easier?
@@ -911,6 +1019,7 @@ Ask follow-up questions (see Probing section)
 ## Quick Reference Cards
 
 ### Discovery Interview Card
+
 ```
 OPENING: Context & role
 CURRENT STATE: How they work now
@@ -924,6 +1033,7 @@ FOLLOWUP: Probe for specifics
 ```
 
 ### Problem Validation Card
+
 ```
 □ What is the problem?
 □ Who has it?
@@ -936,6 +1046,7 @@ FOLLOWUP: Probe for specifics
 ```
 
 ### Feature Validation Card
+
 ```
 □ What job does it do?
 □ How does it help?

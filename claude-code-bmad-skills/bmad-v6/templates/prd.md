@@ -14,6 +14,7 @@
 This Product Requirements Document (PRD) defines the functional and non-functional requirements for {{project_name}}. It serves as the source of truth for what will be built and provides traceability from requirements through implementation.
 
 **Related Documents:**
+
 - Product Brief: {{product_brief_path}}
 
 ---
@@ -41,6 +42,7 @@ This Product Requirements Document (PRD) defines the functional and non-function
 Functional Requirements (FRs) define **what** the system does - specific features and behaviors.
 
 Each requirement includes:
+
 - **ID**: Unique identifier (FR-001, FR-002, etc.)
 - **Priority**: Must Have / Should Have / Could Have / Won't Have (MoSCoW)
 - **Description**: What the system should do
@@ -145,9 +147,9 @@ These are preliminary stories. Detailed stories will be created in Phase 4 (Impl
 
 ## Revision History
 
-| Version | Date | Author | Changes |
-|---------|------|--------|---------|
-| 1.0 | {{date}} | {{user_name}} | Initial PRD |
+| Version | Date     | Author        | Changes     |
+| ------- | -------- | ------------- | ----------- |
+| 1.0     | {{date}} | {{user_name}} | Initial PRD |
 
 ---
 
@@ -158,6 +160,7 @@ These are preliminary stories. Detailed stories will be created in Phase 4 (Impl
 Run `/architecture` to create system architecture based on these requirements.
 
 The architecture will address:
+
 - All functional requirements (FRs)
 - All non-functional requirements (NFRs)
 - Technical stack decisions
@@ -167,6 +170,7 @@ The architecture will address:
 ### Phase 4: Sprint Planning
 
 After architecture is complete, run `/sprint-planning` to:
+
 - Break epics into detailed user stories
 - Estimate story complexity
 - Plan sprint iterations
@@ -176,14 +180,15 @@ After architecture is complete, run `/sprint-planning` to:
 
 **This document was created using BMAD Method v6 - Phase 2 (Planning)**
 
-*To continue: Run `/workflow-status` to see your progress and next recommended workflow.*
+_To continue: Run `/workflow-status` to see your progress and next recommended workflow._
 
 ---
 
 ## Appendix A: Requirements Traceability Matrix
 
 | Epic ID | Epic Name | Functional Requirements | Story Count (Est.) |
-|---------|-----------|-------------------------|-------------------|
+| ------- | --------- | ----------------------- | ------------------ |
+
 {{traceability_matrix}}
 
 ---

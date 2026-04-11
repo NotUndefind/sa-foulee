@@ -41,12 +41,15 @@ Approach: **Professional, methodical, curious.** Ask clarifying follow-ups if an
 ### Section 1: Executive Summary
 
 **Ask:**
+
 > "Let's start with the big picture. In 2-3 sentences:
+>
 > - What are you building?
 > - Who is it for?
 > - Why does it matter?"
 
 **Probe if vague:**
+
 - "Can you be more specific about WHO will use this?"
 - "What makes this different from existing solutions?"
 
@@ -57,18 +60,22 @@ Approach: **Professional, methodical, curious.** Ask clarifying follow-ups if an
 ### Section 2: Problem Statement
 
 **Ask:**
+
 > "What specific problem are you solving?"
 
 **Probe:**
+
 - "Can you give me a concrete example of this problem?"
 - "How do users currently deal with this problem?"
 - "What happens if this problem continues unsolved?"
 
 **Follow-ups:**
+
 > "Why is NOW the right time to solve this?"
 > "What's the impact if we don't solve it?"
 
 **Store as:**
+
 - `{{problem_statement}}`
 - `{{why_now}}`
 - `{{impact_if_unsolved}}`
@@ -78,21 +85,26 @@ Approach: **Professional, methodical, curious.** Ask clarifying follow-ups if an
 ### Section 3: Target Audience
 
 **Ask:**
+
 > "Who are the PRIMARY users? (The main people who will use this daily)"
 
 **Probe:**
+
 - Demographics (age, role, location, etc.)
 - Tech savviness
 - Current behaviors
 - Pain points
 
 **Follow-up:**
+
 > "Are there SECONDARY users? (People who use it occasionally or indirectly)"
 
 **Then:**
+
 > "What are the top 3 needs these users have that your solution addresses?"
 
 **Store as:**
+
 - `{{primary_users}}`
 - `{{secondary_users}}`
 - `{{user_needs}}`
@@ -102,14 +114,17 @@ Approach: **Professional, methodical, curious.** Ask clarifying follow-ups if an
 ### Section 4: Solution Overview
 
 **Ask:**
+
 > "At a high level, what's your proposed solution?"
 
 **Probe:**
+
 - "What are the CORE features? (the must-haves)"
 - "How does this solve the problem you described?"
 - "What makes this solution compelling?"
 
 **Store as:**
+
 - `{{proposed_solution}}`
 - `{{key_features}}` (format as bulleted list)
 - `{{value_proposition}}`
@@ -119,9 +134,11 @@ Approach: **Professional, methodical, curious.** Ask clarifying follow-ups if an
 ### Section 5: Business Objectives
 
 **Ask:**
+
 > "What are your business goals for this project?"
 
 **Use SMART framework:**
+
 - Specific
 - Measurable
 - Achievable
@@ -129,10 +146,12 @@ Approach: **Professional, methodical, curious.** Ask clarifying follow-ups if an
 - Time-bound
 
 **Follow-up:**
+
 > "How will you measure success? What are the key metrics?"
 > "What's the expected business value? (revenue, cost savings, user growth, etc.)"
 
 **Store as:**
+
 - `{{business_goals}}` (format as bulleted list)
 - `{{success_metrics}}` (format as bulleted list)
 - `{{business_value}}`
@@ -142,21 +161,26 @@ Approach: **Professional, methodical, curious.** Ask clarifying follow-ups if an
 ### Section 6: Scope
 
 **Ask:**
+
 > "What features or capabilities are IN SCOPE for this project?"
 
 **Encourage specificity:**
+
 - "What else should be included?"
 - "Are there any technical requirements?"
 
 **Then (CRITICAL):**
+
 > "What is explicitly OUT OF SCOPE?"
 
 **Explain:** "This is vital for managing expectations. What WON'T you build, at least not in this phase?"
 
 **Follow-up:**
+
 > "Are there features you're considering for FUTURE phases?"
 
 **Store as:**
+
 - `{{in_scope}}` (format as bulleted list)
 - `{{out_of_scope}}` (format as bulleted list)
 - `{{future_considerations}}` (format as bulleted list)
@@ -166,14 +190,17 @@ Approach: **Professional, methodical, curious.** Ask clarifying follow-ups if an
 ### Section 7: Stakeholders
 
 **Ask:**
+
 > "Who are the key stakeholders for this project?"
 
 **For each stakeholder, capture:**
+
 - Name / Role
 - Interest in the project
 - Level of influence (High / Medium / Low)
 
 **Format:**
+
 ```
 - **Name (Role)** - Influence level. Interest description.
 ```
@@ -185,9 +212,11 @@ Approach: **Professional, methodical, curious.** Ask clarifying follow-ups if an
 ### Section 8: Constraints and Assumptions
 
 **Ask:**
+
 > "What constraints do you have?"
 
 **Examples:**
+
 - Budget limitations
 - Time constraints
 - Technology restrictions
@@ -195,14 +224,17 @@ Approach: **Professional, methodical, curious.** Ask clarifying follow-ups if an
 - Regulatory requirements
 
 **Then:**
+
 > "What assumptions are you making?"
 
 **Examples:**
+
 - "We assume users have smartphones"
 - "We assume the API will be available"
 - "We assume current infrastructure can handle load"
 
 **Store as:**
+
 - `{{constraints}}` (format as bulleted list)
 - `{{assumptions}}` (format as bulleted list)
 
@@ -211,9 +243,11 @@ Approach: **Professional, methodical, curious.** Ask clarifying follow-ups if an
 ### Section 9: Success Criteria
 
 **Ask:**
+
 > "Beyond metrics, what does success look like? How will you know this project succeeded?"
 
 **Probe for:**
+
 - User satisfaction indicators
 - Adoption targets
 - Quality benchmarks
@@ -226,12 +260,15 @@ Approach: **Professional, methodical, curious.** Ask clarifying follow-ups if an
 ### Section 10: Timeline
 
 **Ask:**
+
 > "What's your target launch date or timeline?"
 
 **Follow-up:**
+
 > "What are the key milestones along the way?"
 
 **Store as:**
+
 - `{{target_launch}}`
 - `{{key_milestones}}` (format as bulleted list)
 
@@ -240,14 +277,17 @@ Approach: **Professional, methodical, curious.** Ask clarifying follow-ups if an
 ### Section 11: Risks
 
 **Ask:**
+
 > "What are the biggest risks to this project?"
 
 **For each risk:**
+
 - What's the risk?
 - How likely is it?
 - What's the mitigation strategy?
 
 **Format:**
+
 ```
 - **Risk:** Description
   - **Likelihood:** High/Medium/Low
@@ -302,6 +342,7 @@ Review the document:
 **Ask user:** "Please review the product brief. Does it capture your vision accurately?"
 
 **If changes needed:**
+
 - Make edits using Edit tool
 - Re-validate
 
@@ -328,6 +369,7 @@ Per `helpers.md#Determine-Next-Workflow`:
 **Based on project level:**
 
 **Level 0-1:**
+
 ```
 ✓ Product brief complete!
 
@@ -339,6 +381,7 @@ focused technical planning without heavyweight PRD process.
 ```
 
 **Level 2+:**
+
 ```
 ✓ Product brief complete!
 
@@ -351,6 +394,7 @@ implementation.
 ```
 
 **Offer:**
+
 > "Would you like me to hand off to Product Manager to start your [tech-spec/PRD]?"
 
 If yes → Inform user to run `/tech-spec` or `/prd`

@@ -3,7 +3,7 @@
 
 project:
   name: "{{project_name}}"
-  level: {{project_level}}
+  level: { { project_level } }
   initialized: "{{timestamp}}"
   last_updated: "{{timestamp}}"
 
@@ -13,10 +13,10 @@ current_workflow: null
 phases:
   phase_1_analysis:
     name: "Analysis"
-    status: "not_started"  # not_started, in_progress, completed, skipped
+    status: "not_started" # not_started, in_progress, completed, skipped
     workflows:
       product_brief:
-        status: "{{product_brief_status}}"  # required, recommended, optional
+        status: "{{product_brief_status}}" # required, recommended, optional
         completed: false
         output_file: null
         completed_at: null

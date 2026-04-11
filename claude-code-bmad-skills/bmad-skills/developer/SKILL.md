@@ -40,6 +40,7 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ### 2. Plan Implementation
 
 Use TodoWrite to break work into tasks:
+
 - Backend/data layer changes
 - Business logic implementation
 - Frontend/UI components
@@ -50,6 +51,7 @@ Use TodoWrite to break work into tasks:
 ### 3. Execute Incrementally
 
 Follow TDD where appropriate:
+
 1. Start with data/backend layer
 2. Implement business logic with tests
 3. Add frontend/UI components with tests
@@ -60,6 +62,7 @@ Follow TDD where appropriate:
 ### 4. Validate Quality
 
 Before completing any story:
+
 - Run all test suites (unit, integration, e2e)
 - Check coverage meets 80% threshold (see [check-coverage.sh](scripts/check-coverage.sh))
 - Verify all acceptance criteria
@@ -72,6 +75,7 @@ Before completing any story:
 See [REFERENCE.md](REFERENCE.md) for complete standards. Key requirements:
 
 **Clean Code:**
+
 - Descriptive names (no single-letter variables except loop counters)
 - Functions under 50 lines with single responsibility
 - DRY principle - extract common logic
@@ -79,6 +83,7 @@ See [REFERENCE.md](REFERENCE.md) for complete standards. Key requirements:
 - Comments explain "why" not "what"
 
 **Testing:**
+
 - Unit tests for individual functions/components
 - Integration tests for component interactions
 - E2E tests for critical user flows
@@ -86,6 +91,7 @@ See [REFERENCE.md](REFERENCE.md) for complete standards. Key requirements:
 - Test edge cases, error conditions, boundary values
 
 **Git Commits:**
+
 - Small, focused commits with clear messages
 - Format: `feat(component): description` or `fix(component): description`
 - Commit frequently, push regularly
@@ -102,6 +108,7 @@ This skill works with any technology stack. Adapt to the project by:
 5. Respecting project's tooling and workflows
 
 **Common Stacks Supported:**
+
 - Frontend: React, Vue, Angular, Svelte, vanilla JS
 - Backend: Node.js, Python, Go, Java, Ruby, PHP
 - Databases: PostgreSQL, MySQL, MongoDB, Redis
@@ -144,14 +151,17 @@ When implementing a story:
 ## Scripts and Resources
 
 **Scripts:**
+
 - [scripts/check-coverage.sh](scripts/check-coverage.sh) - Verify test coverage meets threshold
 - [scripts/lint-check.sh](scripts/lint-check.sh) - Run project linting
 - [scripts/pre-commit-check.sh](scripts/pre-commit-check.sh) - Pre-commit validation
 
 **Templates:**
+
 - [templates/code-review.template.md](templates/code-review.template.md) - Code review checklist
 
 **Resources:**
+
 - [resources/clean-code-checklist.md](resources/clean-code-checklist.md) - Clean code principles
 - [resources/testing-standards.md](resources/testing-standards.md) - Testing patterns and coverage
 
@@ -209,16 +219,18 @@ Ready for code review and deployment.
 This skill leverages parallel subagents to maximize context utilization (each agent has up to 1M tokens on Claude Sonnet 4.6 / Opus 4.6).
 
 ### Story Implementation Workflow (Independent Stories)
+
 **Pattern:** Story Parallel Implementation
 **Agents:** N parallel agents (one per independent story)
 
-| Agent | Task | Output |
-|-------|------|--------|
+| Agent   | Task                           | Output               |
+| ------- | ------------------------------ | -------------------- |
 | Agent 1 | Implement STORY-001 with tests | Code changes + tests |
 | Agent 2 | Implement STORY-002 with tests | Code changes + tests |
-| Agent N | Implement STORY-N with tests | Code changes + tests |
+| Agent N | Implement STORY-N with tests   | Code changes + tests |
 
 **Coordination:**
+
 1. Identify independent stories with no blocking dependencies
 2. Launch parallel agents, each implementing one complete story
 3. Each agent: reads requirements, writes code, writes tests, validates acceptance criteria
@@ -229,17 +241,19 @@ This skill leverages parallel subagents to maximize context utilization (each ag
 **Best for:** Sprint with 3-5 independent stories that don't touch same files
 
 ### Test Writing Workflow (Large Codebase)
+
 **Pattern:** Component Parallel Design
 **Agents:** N parallel agents (one per component/module)
 
-| Agent | Task | Output |
-|-------|------|--------|
-| Agent 1 | Write unit tests for authentication module | tests/auth/*.test.js |
-| Agent 2 | Write unit tests for data layer module | tests/data/*.test.js |
-| Agent 3 | Write integration tests for API layer | tests/integration/api/*.test.js |
-| Agent 4 | Write E2E tests for critical user flows | tests/e2e/*.test.js |
+| Agent   | Task                                       | Output                           |
+| ------- | ------------------------------------------ | -------------------------------- |
+| Agent 1 | Write unit tests for authentication module | tests/auth/\*.test.js            |
+| Agent 2 | Write unit tests for data layer module     | tests/data/\*.test.js            |
+| Agent 3 | Write integration tests for API layer      | tests/integration/api/\*.test.js |
+| Agent 4 | Write E2E tests for critical user flows    | tests/e2e/\*.test.js             |
 
 **Coordination:**
+
 1. Identify components/modules needing test coverage
 2. Launch parallel agents for each test suite
 3. Each agent writes comprehensive tests for their component
@@ -249,17 +263,19 @@ This skill leverages parallel subagents to maximize context utilization (each ag
 **Best for:** Adding test coverage to existing code or large new features
 
 ### Implementation Task Breakdown Workflow
+
 **Pattern:** Parallel Section Generation
 **Agents:** 4 parallel agents
 
-| Agent | Task | Output |
-|-------|------|--------|
-| Agent 1 | Implement backend/data layer changes | Backend code changes |
-| Agent 2 | Implement business logic with unit tests | Business logic + tests |
-| Agent 3 | Implement frontend/UI components with tests | Frontend code + tests |
-| Agent 4 | Write integration and E2E tests | Integration/E2E tests |
+| Agent   | Task                                        | Output                 |
+| ------- | ------------------------------------------- | ---------------------- |
+| Agent 1 | Implement backend/data layer changes        | Backend code changes   |
+| Agent 2 | Implement business logic with unit tests    | Business logic + tests |
+| Agent 3 | Implement frontend/UI components with tests | Frontend code + tests  |
+| Agent 4 | Write integration and E2E tests             | Integration/E2E tests  |
 
 **Coordination:**
+
 1. Analyze story and break into layers (backend, logic, frontend, tests)
 2. Launch parallel agents for each layer
 3. Backend agent completes first (other layers depend on it)
@@ -270,16 +286,18 @@ This skill leverages parallel subagents to maximize context utilization (each ag
 **Best for:** Full-stack stories with clear layer separation
 
 ### Code Review Workflow (Multiple PRs)
+
 **Pattern:** Fan-Out Research
 **Agents:** N parallel agents (one per PR)
 
-| Agent | Task | Output |
-|-------|------|--------|
+| Agent   | Task                                    | Output                      |
+| ------- | --------------------------------------- | --------------------------- |
 | Agent 1 | Review PR #1 using code review template | bmad/outputs/review-pr-1.md |
 | Agent 2 | Review PR #2 using code review template | bmad/outputs/review-pr-2.md |
 | Agent N | Review PR #N using code review template | bmad/outputs/review-pr-n.md |
 
 **Coordination:**
+
 1. Identify PRs needing review
 2. Launch parallel agents, each reviewing one PR
 3. Each agent checks: code quality, test coverage, acceptance criteria, security
@@ -288,6 +306,7 @@ This skill leverages parallel subagents to maximize context utilization (each ag
 **Best for:** Sprint review with multiple PRs to review
 
 ### Example Subagent Prompt
+
 ```
 Task: Implement user login functionality (STORY-002)
 Context: Read docs/stories/STORY-002.md for requirements and acceptance criteria

@@ -13,6 +13,7 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite, AskUserQuestion
 ## When to Use This Skill
 
 Use this skill when you need to:
+
 - Create Product Requirements Documents (PRDs) for Level 2+ projects
 - Create Technical Specifications for Level 0-1 projects
 - Define functional requirements (FRs) and non-functional requirements (NFRs)
@@ -32,6 +33,7 @@ Use this skill when you need to:
 ## PRD vs Tech Spec Decision Logic
 
 **Use PRD when:**
+
 - Project Level 2+ (complex, multi-team, strategic)
 - Multiple stakeholders need alignment
 - Requirements are extensive or complex
@@ -39,6 +41,7 @@ Use this skill when you need to:
 - Cross-functional coordination required
 
 **Use Tech Spec when:**
+
 - Project Level 0-1 (simple, tactical, single-team)
 - Implementation-focused with clear scope
 - Limited stakeholders
@@ -48,9 +51,11 @@ Use this skill when you need to:
 ## Requirements Types
 
 ### Functional Requirements (FRs)
+
 What the system does - user capabilities and system behaviors.
 
 **Format:**
+
 ```
 FR-{ID}: {Priority} - {Description}
 Acceptance Criteria:
@@ -60,6 +65,7 @@ Acceptance Criteria:
 ```
 
 **Example:**
+
 ```
 FR-001: MUST - User can create a new account with email and password
 Acceptance Criteria:
@@ -70,9 +76,11 @@ Acceptance Criteria:
 ```
 
 ### Non-Functional Requirements (NFRs)
+
 How the system performs - quality attributes and constraints.
 
 **Categories:**
+
 - **Performance:** Response times, throughput, resource usage
 - **Security:** Authentication, authorization, data protection
 - **Scalability:** User load, data volume, growth handling
@@ -81,6 +89,7 @@ How the system performs - quality attributes and constraints.
 - **Maintainability:** Code quality, documentation, testability
 
 **Example:**
+
 ```
 NFR-001: MUST - API endpoints must respond within 200ms for 95th percentile
 NFR-002: MUST - System must support 10,000 concurrent users
@@ -90,6 +99,7 @@ NFR-003: SHOULD - Application must achieve WCAG 2.1 AA compliance
 ## Prioritization Frameworks
 
 ### MoSCoW Method
+
 Best for: Time-boxed projects, MVP definition, stakeholder alignment
 
 - **Must Have:** Critical for MVP; without these, project fails
@@ -98,6 +108,7 @@ Best for: Time-boxed projects, MVP definition, stakeholder alignment
 - **Won't Have:** Explicitly out of scope for this release
 
 ### RICE Scoring
+
 Best for: Data-driven prioritization, comparing many features
 
 **Formula:** `(Reach × Impact × Confidence) / Effort`
@@ -110,6 +121,7 @@ Best for: Data-driven prioritization, comparing many features
 Use the included script: `scripts/prioritize.py`
 
 ### Kano Model
+
 Best for: Understanding feature types, customer satisfaction
 
 - **Basic:** Expected features (dissatisfiers if missing)
@@ -121,6 +133,7 @@ See [REFERENCE.md](REFERENCE.md) for detailed framework guidance.
 ## Epic to Story Breakdown
 
 **Epic Structure:**
+
 ```
 Epic: [High-level capability]
 Business Value: [Why this matters]
@@ -132,6 +145,7 @@ Stories:
 ```
 
 **Example:**
+
 ```
 Epic: User Authentication
 Business Value: Enable personalized experiences and secure user data
@@ -207,14 +221,17 @@ Use template: `templates/tech-spec.template.md`
 ## Templates and Scripts
 
 ### Available Templates
+
 - `templates/prd.template.md` - Full PRD template with all sections
 - `templates/tech-spec.template.md` - Lightweight tech spec for simple projects
 
 ### Available Scripts
+
 - `scripts/prioritize.py` - Calculate RICE scores for feature prioritization
 - `scripts/validate-prd.sh` - Validate PRD has all required sections
 
 ### Resources
+
 - `resources/prioritization-frameworks.md` - Detailed framework reference
 
 ## Validation Checklist
@@ -234,10 +251,12 @@ Before completing a PRD or tech spec, verify:
 ## Integration Points
 
 **Receives input from:**
+
 - Business Analyst (product brief, business objectives)
 - Stakeholders (requirements, priorities)
 
 **Provides output to:**
+
 - System Architect (PRD for architecture design)
 - UX Designer (interface requirements)
 - Scrum Master (epics for backlog)
@@ -257,17 +276,19 @@ Before completing a PRD or tech spec, verify:
 This skill leverages parallel subagents to maximize context utilization (each agent has up to 1M tokens on Claude Sonnet 4.6 / Opus 4.6).
 
 ### PRD Generation Workflow
+
 **Pattern:** Parallel Section Generation
 **Agents:** 4 parallel agents
 
-| Agent | Task | Output |
-|-------|------|--------|
+| Agent   | Task                                                     | Output                                  |
+| ------- | -------------------------------------------------------- | --------------------------------------- |
 | Agent 1 | Functional Requirements section with acceptance criteria | bmad/outputs/section-functional-reqs.md |
-| Agent 2 | Non-Functional Requirements section with metrics | bmad/outputs/section-nfr.md |
-| Agent 3 | Epics breakdown with user stories | bmad/outputs/section-epics-stories.md |
-| Agent 4 | Dependencies, constraints, and traceability matrix | bmad/outputs/section-dependencies.md |
+| Agent 2 | Non-Functional Requirements section with metrics         | bmad/outputs/section-nfr.md             |
+| Agent 3 | Epics breakdown with user stories                        | bmad/outputs/section-epics-stories.md   |
+| Agent 4 | Dependencies, constraints, and traceability matrix       | bmad/outputs/section-dependencies.md    |
 
 **Coordination:**
+
 1. Load product brief and conduct requirements gathering (sequential)
 2. Write consolidated context to bmad/context/prd-requirements.md
 3. Launch all 4 agents in parallel with shared requirements context
@@ -276,16 +297,18 @@ This skill leverages parallel subagents to maximize context utilization (each ag
 6. Validate completeness and run scripts/validate-prd.sh
 
 ### Epic Prioritization Workflow
+
 **Pattern:** Parallel Section Generation
 **Agents:** N parallel agents (one per epic)
 
-| Agent | Task | Output |
-|-------|------|--------|
+| Agent   | Task                            | Output                      |
+| ------- | ------------------------------- | --------------------------- |
 | Agent 1 | Calculate RICE score for Epic 1 | bmad/outputs/epic-1-rice.md |
 | Agent 2 | Calculate RICE score for Epic 2 | bmad/outputs/epic-2-rice.md |
 | Agent N | Calculate RICE score for Epic N | bmad/outputs/epic-n-rice.md |
 
 **Coordination:**
+
 1. Extract all epics from requirements
 2. Write scoring criteria to bmad/context/rice-criteria.md
 3. Launch parallel agents, one per epic for RICE scoring
@@ -293,22 +316,25 @@ This skill leverages parallel subagents to maximize context utilization (each ag
 5. Update PRD with prioritization rationale
 
 ### Tech Spec Generation Workflow (Level 0-1)
+
 **Pattern:** Parallel Section Generation
 **Agents:** 3 parallel agents
 
-| Agent | Task | Output |
-|-------|------|--------|
-| Agent 1 | Core requirements and acceptance criteria | bmad/outputs/section-requirements.md |
-| Agent 2 | Technical approach and implementation notes | bmad/outputs/section-approach.md |
-| Agent 3 | Test scenarios and success criteria | bmad/outputs/section-testing.md |
+| Agent   | Task                                        | Output                               |
+| ------- | ------------------------------------------- | ------------------------------------ |
+| Agent 1 | Core requirements and acceptance criteria   | bmad/outputs/section-requirements.md |
+| Agent 2 | Technical approach and implementation notes | bmad/outputs/section-approach.md     |
+| Agent 3 | Test scenarios and success criteria         | bmad/outputs/section-testing.md      |
 
 **Coordination:**
+
 1. Define scope and gather requirements (sequential)
 2. Write problem statement to bmad/context/tech-spec-scope.md
 3. Launch parallel agents for section generation
 4. Main context assembles lightweight tech spec document
 
 ### Example Subagent Prompt
+
 ```
 Task: Generate Functional Requirements section for e-commerce PRD
 Context: Read bmad/context/prd-requirements.md for consolidated requirements

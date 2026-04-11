@@ -9,6 +9,7 @@ This document provides detailed guidance on prioritization frameworks, requireme
 **Overview:** Time-boxed prioritization framework for requirements classification.
 
 **When to Use:**
+
 - Fixed timeline projects
 - MVP definition
 - Stakeholder alignment needed
@@ -82,6 +83,7 @@ Won't Have:
 **Formula:** `RICE Score = (Reach × Impact × Confidence) / Effort`
 
 **When to Use:**
+
 - Multiple features to compare
 - Data-driven decision making needed
 - Cross-functional prioritization
@@ -160,6 +162,7 @@ python scripts/prioritize.py
 ```
 
 **Interpretation:**
+
 - Higher scores = higher priority
 - Compare relative scores, not absolute numbers
 - Review outliers (very high/low scores)
@@ -170,6 +173,7 @@ python scripts/prioritize.py
 **Overview:** Framework for understanding feature types and customer satisfaction impact.
 
 **When to Use:**
+
 - Understanding feature value perception
 - Balancing feature types in roadmap
 - Customer satisfaction optimization
@@ -230,6 +234,7 @@ python scripts/prioritize.py
    - **Strategy:** Identify and remove
 
 **Feature Evolution:**
+
 ```
 Excitement → Performance → Basic → Indifferent/Reverse
 (Innovation) → (Standard) → (Expected) → (Obsolete)
@@ -292,14 +297,14 @@ For each feature, ask two questions:
 
 **Interpretation Matrix:**
 
-| Functional → | Like | Expect | Neutral | Tolerate | Dislike |
-|--------------|------|--------|---------|----------|---------|
-| Dysfunctional ↓ | | | | | |
-| Like | Q | E | E | E | P |
-| Expect | R | I | I | I | B |
-| Neutral | R | I | I | I | B |
-| Tolerate | R | I | I | I | B |
-| Dislike | R | R | R | R | Q |
+| Functional →    | Like | Expect | Neutral | Tolerate | Dislike |
+| --------------- | ---- | ------ | ------- | -------- | ------- |
+| Dysfunctional ↓ |      |        |         |          |         |
+| Like            | Q    | E      | E       | E        | P       |
+| Expect          | R    | I      | I       | I        | B       |
+| Neutral         | R    | I      | I       | I        | B       |
+| Tolerate        | R    | I      | I       | I        | B       |
+| Dislike         | R    | R      | R       | R        | Q       |
 
 - E = Excitement
 - P = Performance
@@ -313,6 +318,7 @@ For each feature, ask two questions:
 ### Functional Requirement Patterns
 
 **User Action Pattern:**
+
 ```
 FR-XXX: [Priority] - User can [action] [object] [qualifier]
 Acceptance Criteria:
@@ -322,6 +328,7 @@ Acceptance Criteria:
 ```
 
 **System Behavior Pattern:**
+
 ```
 FR-XXX: [Priority] - System shall [behavior] when [condition]
 Acceptance Criteria:
@@ -331,6 +338,7 @@ Acceptance Criteria:
 ```
 
 **Data Management Pattern:**
+
 ```
 FR-XXX: [Priority] - System shall store/retrieve/update [data] with [constraints]
 Acceptance Criteria:
@@ -340,6 +348,7 @@ Acceptance Criteria:
 ```
 
 **Integration Pattern:**
+
 ```
 FR-XXX: [Priority] - System shall integrate with [external system] to [purpose]
 Acceptance Criteria:
@@ -351,36 +360,42 @@ Acceptance Criteria:
 ### Non-Functional Requirement Patterns
 
 **Performance Pattern:**
+
 ```
 NFR-XXX: [Priority] - [Operation] shall complete within [time] for [percentile] of requests
 Example: API response shall complete within 200ms for 95th percentile under normal load
 ```
 
 **Scalability Pattern:**
+
 ```
 NFR-XXX: [Priority] - System shall support [quantity] [resource] with [degradation] degradation
 Example: System shall support 10,000 concurrent users with <5% performance degradation
 ```
 
 **Security Pattern:**
+
 ```
 NFR-XXX: [Priority] - [Component] shall implement [security control] per [standard]
 Example: API shall implement OAuth 2.0 authentication per RFC 6749
 ```
 
 **Reliability Pattern:**
+
 ```
 NFR-XXX: [Priority] - System shall maintain [uptime]% availability excluding planned maintenance
 Example: System shall maintain 99.9% availability excluding scheduled maintenance windows
 ```
 
 **Usability Pattern:**
+
 ```
 NFR-XXX: [Priority] - [Interface] shall achieve [metric] compliance/score
 Example: Application shall achieve WCAG 2.1 AA compliance for all user-facing features
 ```
 
 **Maintainability Pattern:**
+
 ```
 NFR-XXX: [Priority] - Codebase shall maintain [metric] above [threshold]
 Example: Codebase shall maintain test coverage above 80% for critical business logic
@@ -448,18 +463,21 @@ Estimate:
 ### Story Size Guidelines
 
 **Good Story Size:**
+
 - Completable in 1-3 days
 - Single responsibility
 - Independently testable
 - Delivers incremental value
 
 **Story Too Large (Split It):**
+
 - Takes more than 1 sprint
 - Multiple user roles involved
 - Complex technical implementation
 - Many acceptance criteria
 
 **Story Too Small (Combine It):**
+
 - Trivial implementation
 - No business value alone
 - Just configuration change
@@ -470,13 +488,14 @@ Estimate:
 
 **Structure:**
 
-| Requirement ID | Description | Priority | Business Objective | Epic | Status | Test Case |
-|----------------|-------------|----------|-------------------|------|--------|-----------|
-| FR-001 | User login | MUST | Personalization | EPIC-AUTH | Complete | TC-001 |
-| FR-002 | Password reset | MUST | Security | EPIC-AUTH | In Progress | TC-002 |
-| NFR-001 | <200ms response | MUST | User Experience | N/A | Planned | TC-015 |
+| Requirement ID | Description     | Priority | Business Objective | Epic      | Status      | Test Case |
+| -------------- | --------------- | -------- | ------------------ | --------- | ----------- | --------- |
+| FR-001         | User login      | MUST     | Personalization    | EPIC-AUTH | Complete    | TC-001    |
+| FR-002         | Password reset  | MUST     | Security           | EPIC-AUTH | In Progress | TC-002    |
+| NFR-001        | <200ms response | MUST     | User Experience    | N/A       | Planned     | TC-015    |
 
 **Maintenance:**
+
 - Update as requirements change
 - Link to test cases as they're created
 - Track status throughout implementation
@@ -485,6 +504,7 @@ Estimate:
 ## Acceptance Criteria Best Practices
 
 **Good Acceptance Criteria:**
+
 - Specific and unambiguous
 - Testable (can verify pass/fail)
 - Written from user perspective
@@ -494,6 +514,7 @@ Estimate:
 **Examples:**
 
 **Bad:**
+
 ```
 - System should be fast
 - User interface should be intuitive
@@ -501,6 +522,7 @@ Estimate:
 ```
 
 **Good:**
+
 ```
 - Page loads within 2 seconds on 3G connection
 - New users complete first task within 5 minutes without help documentation
@@ -516,6 +538,7 @@ Then [expected outcome]
 ```
 
 Example:
+
 ```
 Given a user is on the login page
 When they enter valid credentials and click "Login"
@@ -526,24 +549,28 @@ And their session token is stored securely
 ## Framework Selection Guide
 
 **Choose MoSCoW when:**
+
 - You have a fixed timeline
 - Need stakeholder alignment
 - Defining MVP scope
 - Simple, fast prioritization needed
 
 **Choose RICE when:**
+
 - You have quantitative data
 - Comparing many features
 - Need objective prioritization
 - Resource allocation decisions
 
 **Choose Kano when:**
+
 - Understanding feature value perception
 - Balancing innovation vs. basics
 - Competitive positioning
 - Long-term roadmap planning
 
 **Use Multiple Frameworks:**
+
 - Apply MoSCoW for initial filtering
 - Use RICE to rank within each MoSCoW category
 - Apply Kano to understand feature types

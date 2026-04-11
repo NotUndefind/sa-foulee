@@ -35,9 +35,11 @@ Use TodoWrite to track: Define Scope → Select Research Type → Gather Informa
 **Ask user:**
 
 **Q1: Research Topic**
+
 > "What are we researching?"
 >
 > Examples:
+>
 > - Market size for fitness apps
 > - Competitors in project management space
 > - Best practices for authentication
@@ -47,9 +49,11 @@ Use TodoWrite to track: Define Scope → Select Research Type → Gather Informa
 **Store as:** `{{research_topic}}`
 
 **Q2: Research Type**
+
 > "What type of research?"
 >
 > Options:
+>
 > 1. **Market Research** - Market size, trends, growth, customer segments
 > 2. **Competitive Research** - Competitors, features, positioning, gaps
 > 3. **Technical Research** - Technologies, frameworks, best practices, patterns
@@ -59,6 +63,7 @@ Use TodoWrite to track: Define Scope → Select Research Type → Gather Informa
 **Store as:** `{{research_type}}`
 
 **Q3: Specific Questions**
+
 > "What specific questions should this research answer?"
 >
 > List 3-7 key questions to guide research.
@@ -66,9 +71,11 @@ Use TodoWrite to track: Define Scope → Select Research Type → Gather Informa
 **Store as:** `{{research_questions}}`
 
 **Q4: Constraints**
+
 > "Any constraints or focus areas?"
 >
 > Examples:
+>
 > - Geographic region (US market only)
 > - Industry segment (B2B SaaS)
 > - Technology stack (React ecosystem)
@@ -83,31 +90,37 @@ Use TodoWrite to track: Define Scope → Select Research Type → Gather Informa
 **Based on research type, determine methods:**
 
 **For Market Research:**
+
 - WebSearch for industry reports, market analysis, trends
 - WebFetch for analyst reports and whitepapers
 - Document secondary research sources
 - Quantify market size, growth rate, segments
 
 **For Competitive Research:**
+
 - WebSearch for competitor websites, reviews, comparisons
 - WebFetch for product pages, pricing, documentation
 - Create competitive feature matrix
 - Identify gaps and opportunities
 
 **For Technical Research:**
+
 - WebSearch for documentation, tutorials, comparisons
 - WebFetch for official docs, GitHub repos
 - Task tool with Explore subagent for codebase research
 - Evaluate technologies against criteria
 
 **For User Research:**
+
 - WebSearch for user forums, reviews, surveys
 - WebFetch for user studies, accessibility guidelines
 - Analyze pain points and needs
 - Map user journeys
 
 **Inform user:**
+
 > "Research approach:
+>
 > - Method 1: {{method}}
 > - Method 2: {{method}}
 > - Method 3: {{method}}
@@ -123,6 +136,7 @@ Use TodoWrite to track: Define Scope → Select Research Type → Gather Informa
 #### Market Research
 
 **Use WebSearch for:**
+
 ```
 - "{{market}} market size 2025"
 - "{{market}} industry trends"
@@ -131,6 +145,7 @@ Use TodoWrite to track: Define Scope → Select Research Type → Gather Informa
 ```
 
 **Capture:**
+
 - Market size (TAM, SAM, SOM if available)
 - Growth rate (CAGR)
 - Key trends
@@ -143,6 +158,7 @@ Use TodoWrite to track: Define Scope → Select Research Type → Gather Informa
 **For each competitor (3-7 competitors):**
 
 **Use WebSearch:**
+
 ```
 - "{{competitor_name}} features"
 - "{{competitor_name}} pricing"
@@ -151,6 +167,7 @@ Use TodoWrite to track: Define Scope → Select Research Type → Gather Informa
 ```
 
 **Use WebFetch on:**
+
 - Product pages
 - Pricing pages
 - Documentation
@@ -158,6 +175,7 @@ Use TodoWrite to track: Define Scope → Select Research Type → Gather Informa
 - Customer reviews
 
 **Capture per competitor:**
+
 ```markdown
 ### {{Competitor Name}}
 
@@ -165,15 +183,18 @@ Use TodoWrite to track: Define Scope → Select Research Type → Gather Informa
 **Target Market:** {{target}}
 **Pricing:** {{pricing_model}}
 **Key Features:**
+
 - Feature 1
 - Feature 2
 - Feature 3
 
 **Strengths:**
+
 - Strength 1
 - Strength 2
 
 **Weaknesses:**
+
 - Weakness 1
 - Weakness 2
 
@@ -187,6 +208,7 @@ Use TodoWrite to track: Define Scope → Select Research Type → Gather Informa
 **For each technology/framework:**
 
 **Use WebSearch:**
+
 ```
 - "{{technology}} documentation"
 - "{{technology}} best practices"
@@ -195,18 +217,21 @@ Use TodoWrite to track: Define Scope → Select Research Type → Gather Informa
 ```
 
 **Use WebFetch for:**
+
 - Official documentation
 - GitHub repo (stars, issues, activity)
 - Performance comparisons
 - Community size
 
 **If researching internal codebase:**
+
 - Use Task tool with Explore subagent
 - Search for usage patterns
 - Identify dependencies
 - Analyze architecture
 
 **Capture per technology:**
+
 ```markdown
 ### {{Technology Name}}
 
@@ -216,10 +241,12 @@ Use TodoWrite to track: Define Scope → Select Research Type → Gather Informa
 **Performance:** {{benchmarks}}
 
 **Pros:**
+
 - Pro 1
 - Pro 2
 
 **Cons:**
+
 - Con 1
 - Con 2
 
@@ -232,6 +259,7 @@ Use TodoWrite to track: Define Scope → Select Research Type → Gather Informa
 #### User Research
 
 **Use WebSearch for:**
+
 ```
 - "{{user_type}} pain points {{domain}}"
 - "{{user_type}} needs {{domain}}"
@@ -240,12 +268,14 @@ Use TodoWrite to track: Define Scope → Select Research Type → Gather Informa
 ```
 
 **Use WebFetch for:**
+
 - User forums and discussions
 - Product reviews
 - Accessibility guidelines (WCAG, etc.)
 - User research reports
 
 **Capture:**
+
 - User personas
 - Pain points
 - Needs and goals
@@ -260,12 +290,14 @@ Use TodoWrite to track: Define Scope → Select Research Type → Gather Informa
 **Synthesize all gathered information.**
 
 **For each research question from Part 1:**
+
 ```markdown
 ### Q: {{research_question}}
 
 **Answer:** {{synthesis_from_research}}
 
 **Supporting Evidence:**
+
 - {{source_1}}: {{finding}}
 - {{source_2}}: {{finding}}
 - {{source_3}}: {{finding}}
@@ -275,6 +307,7 @@ Use TodoWrite to track: Define Scope → Select Research Type → Gather Informa
 ```
 
 **Identify patterns:**
+
 - Common themes across sources
 - Conflicting information (note discrepancies)
 - Gaps in available information
@@ -287,16 +320,18 @@ Use TodoWrite to track: Define Scope → Select Research Type → Gather Informa
 **If research type is Competitive or Mixed, create feature comparison.**
 
 **Matrix format:**
+
 ```markdown
 ## Competitive Feature Matrix
 
-| Feature | Our Product | Competitor 1 | Competitor 2 | Competitor 3 |
-|---------|-------------|--------------|--------------|--------------|
-| Feature 1 | ✓ Planned | ✓ | ✓ | ✗ |
-| Feature 2 | ✗ | ✓ | ✗ | ✓ |
-| Feature 3 | ✓ Unique | ✗ | ✗ | ✗ |
+| Feature   | Our Product | Competitor 1 | Competitor 2 | Competitor 3 |
+| --------- | ----------- | ------------ | ------------ | ------------ |
+| Feature 1 | ✓ Planned   | ✓            | ✓            | ✗            |
+| Feature 2 | ✗           | ✓            | ✗            | ✓            |
+| Feature 3 | ✓ Unique    | ✗            | ✗            | ✗            |
 
 Legend:
+
 - ✓ = Available
 - ✗ = Not available
 - ✓ Planned = On roadmap
@@ -304,14 +339,15 @@ Legend:
 ```
 
 **Pricing comparison (if applicable):**
+
 ```markdown
 ## Pricing Comparison
 
-| Competitor | Entry Tier | Mid Tier | Enterprise | Notes |
-|------------|------------|----------|------------|-------|
-| Competitor 1 | $10/mo | $50/mo | Custom | Free tier available |
-| Competitor 2 | $0 | $25/mo | $200/mo | Freemium model |
-| Competitor 3 | $15/mo | $75/mo | Custom | 14-day trial |
+| Competitor   | Entry Tier | Mid Tier | Enterprise | Notes               |
+| ------------ | ---------- | -------- | ---------- | ------------------- |
+| Competitor 1 | $10/mo     | $50/mo   | Custom     | Free tier available |
+| Competitor 2 | $0         | $25/mo   | $200/mo    | Freemium model      |
+| Competitor 3 | $15/mo     | $75/mo   | Custom     | 14-day trial        |
 ```
 
 ---
@@ -321,6 +357,7 @@ Legend:
 **Identify 5-10 actionable insights from research.**
 
 **Format each insight:**
+
 ```markdown
 ### Insight {{N}}: {{title}}
 
@@ -336,6 +373,7 @@ Legend:
 ```
 
 **Categorize insights:**
+
 - Market insights
 - Competitive insights
 - Technical insights
@@ -352,6 +390,7 @@ Legend:
 **Use template:** `research-report.md` (or generate inline)
 
 **Report structure:**
+
 ```markdown
 # Research Report: {{research_topic}}
 
@@ -364,6 +403,7 @@ Legend:
 {{2-3_paragraph_summary}}
 
 Key findings:
+
 - Finding 1
 - Finding 2
 - Finding 3
@@ -375,6 +415,7 @@ Key findings:
 ## Methodology
 
 **Research approach:**
+
 - {{method_1}}
 - {{method_2}}
 - {{method_3}}
@@ -386,9 +427,11 @@ Key findings:
 ## Findings
 
 ### Research Question 1: {{question}}
+
 {{answer_from_part_4}}
 
 ### Research Question 2: {{question}}
+
 {{answer_from_part_4}}
 
 [All questions...]
@@ -396,33 +439,44 @@ Key findings:
 ## Detailed Analysis
 
 {{If market research:}}
+
 ### Market Overview
+
 - Market Size: {{size}}
 - Growth Rate: {{rate}}
 - Key Trends: {{trends}}
 - Customer Segments: {{segments}}
 
 {{If competitive research:}}
+
 ### Competitive Landscape
+
 {{competitive_matrix_from_part_5}}
 
 #### Competitor Profiles
+
 {{detailed_competitor_analysis_from_part_3}}
 
 #### Competitive Gaps
+
 - Gap 1: {{what_competitors_lack}}
 - Gap 2: {{opportunity_for_differentiation}}
 
 {{If technical research:}}
+
 ### Technology Evaluation
+
 {{technology_comparisons_from_part_3}}
 
 #### Recommended Technology Stack
+
 - Technology 1: {{rationale}}
 - Technology 2: {{rationale}}
 
 {{If user research:}}
+
 ### User Insights
+
 - Pain Points: {{findings}}
 - Needs: {{findings}}
 - Behavior Patterns: {{findings}}
@@ -435,24 +489,29 @@ Key findings:
 ## Recommendations
 
 ### Immediate Actions (Next 2 weeks)
+
 1. {{action_1}}
 2. {{action_2}}
 
 ### Short-term (Next 1-3 months)
+
 1. {{action_1}}
 2. {{action_2}}
 
 ### Long-term (3+ months)
+
 1. {{action_1}}
 2. {{action_2}}
 
 ## Research Gaps
 
 **What we still don't know:**
+
 - Gap 1: {{unanswered_question}}
 - Gap 2: {{area_needing_deeper_research}}
 
 **Recommended follow-up research:**
+
 - Follow-up 1
 - Follow-up 2
 
@@ -470,14 +529,15 @@ Key findings:
 
 ---
 
-*Generated by BMAD Method v6 - Creative Intelligence*
-*Research Duration: {{duration}} minutes*
-*Sources Consulted: {{count}}*
+_Generated by BMAD Method v6 - Creative Intelligence_
+_Research Duration: {{duration}} minutes_
+_Sources Consulted: {{count}}_
 ```
 
 **Save to:** `{{output_folder}}/research-{{topic}}-{{date}}.md`
 
 **Inform user:**
+
 ```
 ✓ Research Complete!
 
@@ -502,14 +562,15 @@ Top Recommendation: {{top_recommendation}}
 Per `helpers.md#Update-Workflow-Status`
 
 Update `bmm-workflow-status.yaml`:
+
 ```yaml
 last_workflow: research
-last_workflow_date: {{current_date}}
+last_workflow_date: { { current_date } }
 research:
-  reports_completed: {{increment_count}}
-  last_research_topic: {{research_topic}}
-  last_research_type: {{research_type}}
-  total_sources: {{total_count}}
+  reports_completed: { { increment_count } }
+  last_research_topic: { { research_topic } }
+  last_research_type: { { research_type } }
+  total_sources: { { total_count } }
 ```
 
 ---
@@ -519,6 +580,7 @@ research:
 **Based on research type and findings:**
 
 **If Market Research → Business Analyst or Product Manager**
+
 ```
 Next: Use market insights for product positioning
 Run: /product-brief or /prd
@@ -526,6 +588,7 @@ Incorporate market trends and customer segments
 ```
 
 **If Competitive Research → Product Manager**
+
 ```
 Next: Define competitive differentiation
 Run: /prd
@@ -533,6 +596,7 @@ Use competitive gaps to inform feature prioritization
 ```
 
 **If Technical Research → System Architect**
+
 ```
 Next: Incorporate technology recommendations
 Run: /architecture
@@ -540,6 +604,7 @@ Use evaluated technologies in system design
 ```
 
 **If User Research → Product Manager or UX Designer**
+
 ```
 Next: Create user-centered requirements
 Run: /prd or /create-ux-design
@@ -547,6 +612,7 @@ Use pain points and needs to inform design
 ```
 
 **If Research revealed gaps → Creative Intelligence**
+
 ```
 Next: Conduct follow-up research
 Run: /research again with refined questions
@@ -554,6 +620,7 @@ Fill knowledge gaps
 ```
 
 **If Research supports hypothesis → Continue to planning**
+
 ```
 Next: Move to planning phase
 Run: /prd or /tech-spec

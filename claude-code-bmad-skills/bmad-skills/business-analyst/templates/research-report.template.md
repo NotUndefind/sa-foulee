@@ -12,6 +12,7 @@
 {{EXECUTIVE_SUMMARY}}
 
 **Key Findings:**
+
 - {{KEY_FINDING_1}}
 - {{KEY_FINDING_2}}
 - {{KEY_FINDING_3}}
@@ -27,6 +28,7 @@
 {{PRIMARY_OBJECTIVES}}
 
 **Questions to Answer:**
+
 1. {{QUESTION_1}}
 2. {{QUESTION_2}}
 3. {{QUESTION_3}}
@@ -35,11 +37,13 @@
 ### Scope
 
 **In Scope:**
+
 - {{IN_SCOPE_1}}
 - {{IN_SCOPE_2}}
 - {{IN_SCOPE_3}}
 
 **Out of Scope:**
+
 - {{OUT_OF_SCOPE_1}}
 - {{OUT_OF_SCOPE_2}}
 
@@ -52,6 +56,7 @@
 {{METHODOLOGY}}
 
 **Research Methods Used:**
+
 - {{METHOD_1}}
 - {{METHOD_2}}
 - {{METHOD_3}}
@@ -59,11 +64,13 @@
 ### Data Sources
 
 **Primary Sources:**
+
 - {{PRIMARY_SOURCE_1}}
 - {{PRIMARY_SOURCE_2}}
 - {{PRIMARY_SOURCE_3}}
 
 **Secondary Sources:**
+
 - {{SECONDARY_SOURCE_1}}
 - {{SECONDARY_SOURCE_2}}
 - {{SECONDARY_SOURCE_3}}
@@ -83,6 +90,7 @@
 **Market Growth Rate:** {{GROWTH_RATE}}
 
 **Market Trends:**
+
 1. {{TREND_1}}
    - Description: {{TREND_1_DESC}}
    - Impact: {{TREND_1_IMPACT}}
@@ -98,18 +106,21 @@
 ### Target Market Segments
 
 #### Segment 1: {{SEGMENT_1_NAME}}
+
 - **Size:** {{SEGMENT_1_SIZE}}
 - **Characteristics:** {{SEGMENT_1_CHARS}}
 - **Needs:** {{SEGMENT_1_NEEDS}}
 - **Opportunity:** {{SEGMENT_1_OPPORTUNITY}}
 
 #### Segment 2: {{SEGMENT_2_NAME}}
+
 - **Size:** {{SEGMENT_2_SIZE}}
 - **Characteristics:** {{SEGMENT_2_CHARS}}
 - **Needs:** {{SEGMENT_2_NEEDS}}
 - **Opportunity:** {{SEGMENT_2_OPPORTUNITY}}
 
 #### Segment 3: {{SEGMENT_3_NAME}}
+
 - **Size:** {{SEGMENT_3_SIZE}}
 - **Characteristics:** {{SEGMENT_3_CHARS}}
 - **Needs:** {{SEGMENT_3_NEEDS}}
@@ -124,6 +135,7 @@
 {{COMPETITIVE_LANDSCAPE}}
 
 **Market Leaders:**
+
 - {{LEADER_1}} - {{LEADER_1_SHARE}}% market share
 - {{LEADER_2}} - {{LEADER_2_SHARE}}% market share
 - {{LEADER_3}} - {{LEADER_3_SHARE}}% market share
@@ -139,6 +151,7 @@
 {{COMPETITOR_1_PRODUCT}}
 
 **Features:**
+
 - {{COMPETITOR_1_FEATURE_1}}
 - {{COMPETITOR_1_FEATURE_2}}
 - {{COMPETITOR_1_FEATURE_3}}
@@ -151,11 +164,13 @@
 {{COMPETITOR_1_TARGET}}
 
 **Strengths:**
+
 - {{COMPETITOR_1_STRENGTH_1}}
 - {{COMPETITOR_1_STRENGTH_2}}
 - {{COMPETITOR_1_STRENGTH_3}}
 
 **Weaknesses:**
+
 - {{COMPETITOR_1_WEAKNESS_1}}
 - {{COMPETITOR_1_WEAKNESS_2}}
 - {{COMPETITOR_1_WEAKNESS_3}}
@@ -177,6 +192,7 @@
 {{COMPETITOR_2_PRODUCT}}
 
 **Features:**
+
 - {{COMPETITOR_2_FEATURE_1}}
 - {{COMPETITOR_2_FEATURE_2}}
 - {{COMPETITOR_2_FEATURE_3}}
@@ -189,11 +205,13 @@
 {{COMPETITOR_2_TARGET}}
 
 **Strengths:**
+
 - {{COMPETITOR_2_STRENGTH_1}}
 - {{COMPETITOR_2_STRENGTH_2}}
 - {{COMPETITOR_2_STRENGTH_3}}
 
 **Weaknesses:**
+
 - {{COMPETITOR_2_WEAKNESS_1}}
 - {{COMPETITOR_2_WEAKNESS_2}}
 - {{COMPETITOR_2_WEAKNESS_3}}
@@ -215,6 +233,7 @@
 {{COMPETITOR_3_PRODUCT}}
 
 **Features:**
+
 - {{COMPETITOR_3_FEATURE_1}}
 - {{COMPETITOR_3_FEATURE_2}}
 - {{COMPETITOR_3_FEATURE_3}}
@@ -227,11 +246,13 @@
 {{COMPETITOR_3_TARGET}}
 
 **Strengths:**
+
 - {{COMPETITOR_3_STRENGTH_1}}
 - {{COMPETITOR_3_STRENGTH_2}}
 - {{COMPETITOR_3_STRENGTH_3}}
 
 **Weaknesses:**
+
 - {{COMPETITOR_3_WEAKNESS_1}}
 - {{COMPETITOR_3_WEAKNESS_2}}
 - {{COMPETITOR_3_WEAKNESS_3}}
@@ -246,18 +267,18 @@
 
 ### Feature Comparison Matrix
 
-| Feature | {{COMPETITOR_1_NAME}} | {{COMPETITOR_2_NAME}} | {{COMPETITOR_3_NAME}} | Our Opportunity |
-|---------|---------------------|---------------------|---------------------|-----------------|
-| {{FEATURE_1}} | {{C1_F1}} | {{C2_F1}} | {{C3_F1}} | {{OPP_F1}} |
-| {{FEATURE_2}} | {{C1_F2}} | {{C2_F2}} | {{C3_F2}} | {{OPP_F2}} |
-| {{FEATURE_3}} | {{C1_F3}} | {{C2_F3}} | {{C3_F3}} | {{OPP_F3}} |
-| {{FEATURE_4}} | {{C1_F4}} | {{C2_F4}} | {{C3_F4}} | {{OPP_F4}} |
-| {{FEATURE_5}} | {{C1_F5}} | {{C2_F5}} | {{C3_F5}} | {{OPP_F5}} |
+| Feature       | {{COMPETITOR_1_NAME}} | {{COMPETITOR_2_NAME}} | {{COMPETITOR_3_NAME}} | Our Opportunity |
+| ------------- | --------------------- | --------------------- | --------------------- | --------------- |
+| {{FEATURE_1}} | {{C1_F1}}             | {{C2_F1}}             | {{C3_F1}}             | {{OPP_F1}}      |
+| {{FEATURE_2}} | {{C1_F2}}             | {{C2_F2}}             | {{C3_F2}}             | {{OPP_F2}}      |
+| {{FEATURE_3}} | {{C1_F3}}             | {{C2_F3}}             | {{C3_F3}}             | {{OPP_F3}}      |
+| {{FEATURE_4}} | {{C1_F4}}             | {{C2_F4}}             | {{C3_F4}}             | {{OPP_F4}}      |
+| {{FEATURE_5}} | {{C1_F5}}             | {{C2_F5}}             | {{C3_F5}}             | {{OPP_F5}}      |
 
 ### Pricing Comparison
 
-| Competitor | Basic Tier | Mid Tier | Premium Tier | Enterprise |
-|------------|-----------|----------|--------------|------------|
+| Competitor            | Basic Tier   | Mid Tier   | Premium Tier   | Enterprise        |
+| --------------------- | ------------ | ---------- | -------------- | ----------------- |
 | {{COMPETITOR_1_NAME}} | {{C1_BASIC}} | {{C1_MID}} | {{C1_PREMIUM}} | {{C1_ENTERPRISE}} |
 | {{COMPETITOR_2_NAME}} | {{C2_BASIC}} | {{C2_MID}} | {{C2_PREMIUM}} | {{C2_ENTERPRISE}} |
 | {{COMPETITOR_3_NAME}} | {{C3_BASIC}} | {{C3_MID}} | {{C3_PREMIUM}} | {{C3_ENTERPRISE}} |
@@ -272,6 +293,7 @@
 ### User Needs Analysis
 
 **Primary Needs:**
+
 1. {{USER_NEED_1}}
    - Importance: {{NEED_1_IMPORTANCE}}
    - Currently Met: {{NEED_1_MET}}
@@ -290,6 +312,7 @@
 ### Pain Points
 
 **Most Common Pain Points:**
+
 1. {{PAIN_POINT_1}} - {{PAIN_1_FREQUENCY}}
 2. {{PAIN_POINT_2}} - {{PAIN_2_FREQUENCY}}
 3. {{PAIN_POINT_3}} - {{PAIN_3_FREQUENCY}}
@@ -302,6 +325,7 @@
 {{USER_PREFERENCES}}
 
 **Key Preferences:**
+
 - {{PREFERENCE_1}}
 - {{PREFERENCE_2}}
 - {{PREFERENCE_3}}
@@ -313,18 +337,21 @@
 ### Market Gaps Identified
 
 **Gap 1: {{GAP_1_NAME}}**
+
 - Description: {{GAP_1_DESC}}
 - Market Size: {{GAP_1_SIZE}}
 - Opportunity Score: {{GAP_1_SCORE}}
 - Difficulty: {{GAP_1_DIFFICULTY}}
 
 **Gap 2: {{GAP_2_NAME}}**
+
 - Description: {{GAP_2_DESC}}
 - Market Size: {{GAP_2_SIZE}}
 - Opportunity Score: {{GAP_2_SCORE}}
 - Difficulty: {{GAP_2_DIFFICULTY}}
 
 **Gap 3: {{GAP_3_NAME}}**
+
 - Description: {{GAP_3_DESC}}
 - Market Size: {{GAP_3_SIZE}}
 - Opportunity Score: {{GAP_3_SCORE}}
@@ -345,6 +372,7 @@
 ### Strategic Opportunities
 
 **Opportunity 1: {{OPPORTUNITY_1_NAME}}**
+
 - Description: {{OPPORTUNITY_1_DESC}}
 - Potential Impact: {{OPPORTUNITY_1_IMPACT}}
 - Investment Required: {{OPPORTUNITY_1_INVESTMENT}}
@@ -352,6 +380,7 @@
 - Priority: {{OPPORTUNITY_1_PRIORITY}}
 
 **Opportunity 2: {{OPPORTUNITY_2_NAME}}**
+
 - Description: {{OPPORTUNITY_2_DESC}}
 - Potential Impact: {{OPPORTUNITY_2_IMPACT}}
 - Investment Required: {{OPPORTUNITY_2_INVESTMENT}}
@@ -359,6 +388,7 @@
 - Priority: {{OPPORTUNITY_2_PRIORITY}}
 
 **Opportunity 3: {{OPPORTUNITY_3_NAME}}**
+
 - Description: {{OPPORTUNITY_3_DESC}}
 - Potential Impact: {{OPPORTUNITY_3_IMPACT}}
 - Investment Required: {{OPPORTUNITY_3_INVESTMENT}}
@@ -371,16 +401,19 @@
 {{PRIMARY_REC_DETAIL}}
 
 **Secondary Recommendations:**
+
 1. {{SECONDARY_REC_1}}
 2. {{SECONDARY_REC_2}}
 3. {{SECONDARY_REC_3}}
 
 **Actions to Take:**
+
 - {{ACTION_1}}
 - {{ACTION_2}}
 - {{ACTION_3}}
 
 **Actions to Avoid:**
+
 - {{AVOID_1}}
 - {{AVOID_2}}
 - {{AVOID_3}}
@@ -392,11 +425,13 @@
 ### Market Risks
 
 **Risk 1: {{MARKET_RISK_1}}**
+
 - Probability: {{MRISK_1_PROB}}
 - Impact: {{MRISK_1_IMPACT}}
 - Mitigation: {{MRISK_1_MITIGATION}}
 
 **Risk 2: {{MARKET_RISK_2}}**
+
 - Probability: {{MRISK_2_PROB}}
 - Impact: {{MRISK_2_IMPACT}}
 - Mitigation: {{MRISK_2_MITIGATION}}
@@ -404,11 +439,13 @@
 ### Competitive Risks
 
 **Risk 1: {{COMP_RISK_1}}**
+
 - Probability: {{CRISK_1_PROB}}
 - Impact: {{CRISK_1_IMPACT}}
 - Mitigation: {{CRISK_1_MITIGATION}}
 
 **Risk 2: {{COMP_RISK_2}}**
+
 - Probability: {{CRISK_2_PROB}}
 - Impact: {{CRISK_2_IMPACT}}
 - Mitigation: {{CRISK_2_MITIGATION}}
@@ -465,11 +502,13 @@
 ### Data Sources
 
 **Primary Research:**
+
 - {{DATA_SOURCE_1}}
 - {{DATA_SOURCE_2}}
 - {{DATA_SOURCE_3}}
 
 **Secondary Research:**
+
 - {{DATA_SOURCE_4}}
 - {{DATA_SOURCE_5}}
 - {{DATA_SOURCE_6}}

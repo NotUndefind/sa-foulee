@@ -3,8 +3,8 @@
 
 project:
   name: "{{project_name}}"
-  type: "{{project_type}}"  # web-app, mobile-app, api, game, library, cli, other
-  level: {{project_level}}  # 0-4: see level definitions below
+  type: "{{project_type}}" # web-app, mobile-app, api, game, library, cli, other
+  level: { { project_level } } # 0-4: see level definitions below
   description: "{{project_description}}"
 
 # Project Levels:
@@ -23,17 +23,17 @@ paths:
 workflow:
   # Phase requirements based on project level
   phase_1_analysis:
-    product_brief: "{{product_brief_status}}"  # required, recommended, optional, skip
+    product_brief: "{{product_brief_status}}" # required, recommended, optional, skip
     research: "optional"
     brainstorm: "optional"
 
   phase_2_planning:
-    prd: "{{prd_status}}"  # required for level 2+, recommended for level 1
-    tech_spec: "{{tech_spec_status}}"  # required for level 0-1
+    prd: "{{prd_status}}" # required for level 2+, recommended for level 1
+    tech_spec: "{{tech_spec_status}}" # required for level 0-1
     ux_design: "recommended"
 
   phase_3_solutioning:
-    architecture: "{{architecture_status}}"  # required for level 2+
+    architecture: "{{architecture_status}}" # required for level 2+
     gate_check: "recommended"
 
   phase_4_implementation:

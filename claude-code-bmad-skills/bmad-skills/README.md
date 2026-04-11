@@ -35,17 +35,17 @@ bmad-skills/
 
 ## Skills Overview
 
-| Skill | Phase | Purpose | Subagent Strategy |
-|-------|-------|---------|-------------------|
-| **bmad-orchestrator** | All | Project init, status, routing | Parallel status checks |
-| **business-analyst** | 1 | Product discovery, research | 4-way parallel research |
-| **product-manager** | 2 | PRD, requirements, prioritization | Parallel section generation |
-| **system-architect** | 3 | Architecture design | Parallel component design |
-| **scrum-master** | 4 | Sprint planning, stories | Parallel epic breakdown |
-| **developer** | 4 | Story implementation | Parallel story implementation |
-| **ux-designer** | 2-3 | UX design, wireframes, accessibility | Parallel screen design |
-| **creative-intelligence** | All | Brainstorming, research | Multi-technique parallel |
-| **builder** | N/A | Create custom skills/workflows | Parallel component creation |
+| Skill                     | Phase | Purpose                              | Subagent Strategy             |
+| ------------------------- | ----- | ------------------------------------ | ----------------------------- |
+| **bmad-orchestrator**     | All   | Project init, status, routing        | Parallel status checks        |
+| **business-analyst**      | 1     | Product discovery, research          | 4-way parallel research       |
+| **product-manager**       | 2     | PRD, requirements, prioritization    | Parallel section generation   |
+| **system-architect**      | 3     | Architecture design                  | Parallel component design     |
+| **scrum-master**          | 4     | Sprint planning, stories             | Parallel epic breakdown       |
+| **developer**             | 4     | Story implementation                 | Parallel story implementation |
+| **ux-designer**           | 2-3   | UX design, wireframes, accessibility | Parallel screen design        |
+| **creative-intelligence** | All   | Brainstorming, research              | Multi-technique parallel      |
+| **builder**               | N/A   | Create custom skills/workflows       | Parallel component creation   |
 
 ## BMAD Method Phases
 
@@ -58,13 +58,13 @@ Phase 4: Implementation → Scrum Master, Developer
 
 ## Project Levels
 
-| Level | Scope | Stories | Required Docs |
-|-------|-------|---------|---------------|
-| 0 | Single change | 1 | Tech Spec |
-| 1 | Small feature | 1-10 | Tech Spec |
-| 2 | Medium feature | 5-15 | PRD + Architecture |
-| 3 | Complex integration | 12-40 | PRD + Architecture |
-| 4 | Enterprise expansion | 40+ | PRD + Architecture |
+| Level | Scope                | Stories | Required Docs      |
+| ----- | -------------------- | ------- | ------------------ |
+| 0     | Single change        | 1       | Tech Spec          |
+| 1     | Small feature        | 1-10    | Tech Spec          |
+| 2     | Medium feature       | 5-15    | PRD + Architecture |
+| 3     | Complex integration  | 12-40   | PRD + Architecture |
+| 4     | Enterprise expansion | 40+     | PRD + Architecture |
 
 ## Installation
 
@@ -202,7 +202,6 @@ name: skill-name
 description: Clear description AND when to use it (max 1024 chars)
 allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite, Task
 ---
-
 # Skill Name
 
 [Markdown instructions under 5K tokens]
