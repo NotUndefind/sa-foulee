@@ -25,19 +25,19 @@ Check status with: "What's my BMAD status?"
 
 Use these BMAD skills for structured development:
 
-| Need | Say | Skill |
-|------|-----|-------|
-| Start a new project | "Initialize BMAD" | bmad-orchestrator |
-| Check progress | "What's the project status?" | bmad-orchestrator |
-| Define the problem | "Create a product brief" | business-analyst |
-| Research the market | "Research competitors for..." | business-analyst |
-| Brainstorm features | "Brainstorm using SCAMPER" | creative-intelligence |
-| Define requirements | "Create a PRD" | product-manager |
-| Prioritize features | "Prioritize with RICE scoring" | product-manager |
-| Design UX | "Create wireframes for..." | ux-designer |
-| Design architecture | "Design the system architecture" | system-architect |
-| Plan sprints | "Create sprint plan" | scrum-master |
-| Implement features | "Implement STORY-001" | developer |
+| Need                | Say                              | Skill                 |
+| ------------------- | -------------------------------- | --------------------- |
+| Start a new project | "Initialize BMAD"                | bmad-orchestrator     |
+| Check progress      | "What's the project status?"     | bmad-orchestrator     |
+| Define the problem  | "Create a product brief"         | business-analyst      |
+| Research the market | "Research competitors for..."    | business-analyst      |
+| Brainstorm features | "Brainstorm using SCAMPER"       | creative-intelligence |
+| Define requirements | "Create a PRD"                   | product-manager       |
+| Prioritize features | "Prioritize with RICE scoring"   | product-manager       |
+| Design UX           | "Create wireframes for..."       | ux-designer           |
+| Design architecture | "Design the system architecture" | system-architect      |
+| Plan sprints        | "Create sprint plan"             | scrum-master          |
+| Implement features  | "Implement STORY-001"            | developer             |
 
 ## Parallel Subagent Usage
 
@@ -66,20 +66,24 @@ Each subagent has up to 1M tokens on Claude Sonnet 4.6 / Opus 4.6 - leverage thi
 ## Workflow Shortcuts
 
 Phase 1 (Analysis):
+
 - "Create product brief" → Product discovery
 - "Research [topic]" → Market/competitive research
 - "Brainstorm [topic]" → Structured ideation
 
 Phase 2 (Planning):
+
 - "Create PRD" → Full requirements document
 - "Create tech spec" → Lightweight spec for small projects
 - "Design UX for [feature]" → Wireframes and flows
 
 Phase 3 (Solutioning):
+
 - "Design architecture" → System architecture
 - "Run gate check" → Validate before implementation
 
 Phase 4 (Implementation):
+
 - "Plan sprint" → Break epics into stories
 - "Implement [STORY-ID]" → Code the story
 - "Review [file/PR]" → Code review

@@ -16,6 +16,7 @@ BMAD provides 15 slash commands for managing your agile development workflow. Ea
 Commands trigger **BMAD skills** - specialized AI agents that execute structured workflows. Skills are located in `~/.claude/skills/bmad-skills/` and may leverage **parallel subagents** for complex tasks.
 
 **How it works:**
+
 1. You trigger a command (e.g., `/prd`)
 2. Claude activates the corresponding skill (e.g., `product-manager`)
 3. The skill may launch parallel subagents to process different sections simultaneously
@@ -31,53 +32,53 @@ Commands trigger **BMAD skills** - specialized AI agents that execute structured
 
 ### Initialization
 
-| Command | Purpose |
-|---------|---------|
-| [/workflow-init](#workflow-init) | Initialize BMAD in your project |
+| Command                              | Purpose                                |
+| ------------------------------------ | -------------------------------------- |
+| [/workflow-init](#workflow-init)     | Initialize BMAD in your project        |
 | [/workflow-status](#workflow-status) | Check progress and get recommendations |
 
 ### Phase 1 - Analysis
 
-| Command | Purpose |
-|---------|---------|
+| Command                          | Purpose                            |
+| -------------------------------- | ---------------------------------- |
 | [/product-brief](#product-brief) | Create comprehensive product brief |
 
 ### Phase 2 - Planning
 
-| Command | Purpose |
-|---------|---------|
-| [/prd](#prd) | Product Requirements Document |
-| [/tech-spec](#tech-spec) | Technical Specification (Level 0-1) |
-| [/create-ux-design](#create-ux-design) | UX/UI design workflow |
+| Command                                | Purpose                             |
+| -------------------------------------- | ----------------------------------- |
+| [/prd](#prd)                           | Product Requirements Document       |
+| [/tech-spec](#tech-spec)               | Technical Specification (Level 0-1) |
+| [/create-ux-design](#create-ux-design) | UX/UI design workflow               |
 
 ### Phase 3 - Solutioning
 
-| Command | Purpose |
-|---------|---------|
-| [/architecture](#architecture) | System architecture design |
-| [/solutioning-gate-check](#solutioning-gate-check) | Validate architecture |
+| Command                                            | Purpose                    |
+| -------------------------------------------------- | -------------------------- |
+| [/architecture](#architecture)                     | System architecture design |
+| [/solutioning-gate-check](#solutioning-gate-check) | Validate architecture      |
 
 ### Phase 4 - Implementation
 
-| Command | Purpose |
-|---------|---------|
-| [/sprint-planning](#sprint-planning) | Plan sprint iterations |
-| [/create-story](#create-story) | Create individual story |
-| [/dev-story](#dev-story) | Implement user story |
+| Command                              | Purpose                 |
+| ------------------------------------ | ----------------------- |
+| [/sprint-planning](#sprint-planning) | Plan sprint iterations  |
+| [/create-story](#create-story)       | Create individual story |
+| [/dev-story](#dev-story)             | Implement user story    |
 
 ### Builder (Custom)
 
-| Command | Purpose |
-|---------|---------|
-| [/create-agent](#create-agent) | Create custom BMAD agent |
-| [/create-workflow](#create-workflow) | Create custom workflow |
+| Command                              | Purpose                  |
+| ------------------------------------ | ------------------------ |
+| [/create-agent](#create-agent)       | Create custom BMAD agent |
+| [/create-workflow](#create-workflow) | Create custom workflow   |
 
 ### Creative Intelligence
 
-| Command | Purpose |
-|---------|---------|
-| [/brainstorm](#brainstorm) | Structured brainstorming |
-| [/research](#research) | Market/tech/competitive research |
+| Command                    | Purpose                          |
+| -------------------------- | -------------------------------- |
+| [/brainstorm](#brainstorm) | Structured brainstorming         |
+| [/research](#research)     | Market/tech/competitive research |
 
 ---
 
@@ -93,7 +94,7 @@ Initialize BMAD in your project. This creates the project configuration and sets
 
 #### Example
 
-~~~~
+````
 User: /workflow-init
 
 Claude: Welcome to BMAD! I'll initialize your project.
@@ -154,7 +155,7 @@ Created directories:
 - docs/stories/
 
 Project initialized! Run /workflow-status to see next steps.
-~~~~
+````
 
 ---
 
@@ -511,7 +512,7 @@ Create a lightweight technical specification for Level 0-1 projects. Simpler tha
 
 #### Example
 
-~~~~
+````
 User: /tech-spec
 
 Claude: I'll create a tech spec for your project.
@@ -584,7 +585,7 @@ Expiration note: "This link expires in 1 hour"
 2-3 points (half day to one day)
 
 Saving tech spec to: docs/tech-spec.md
-~~~~
+````
 
 ---
 
@@ -600,7 +601,7 @@ Create UX designs including user flows, wireframes, and design system specificat
 
 #### Example
 
-~~~~
+````
 User: /create-ux-design
 
 Claude: I'll create UX designs for Real-time Chat Application.
@@ -790,7 +791,7 @@ Tablet: Collapsible sidebar
 Desktop: Full three-column layout
 
 Saving UX design to: docs/ux-design.md
-~~~~
+````
 
 ---
 
@@ -932,7 +933,7 @@ Create a single user story with acceptance criteria and implementation notes.
 
 #### Example
 
-```
+````
 User: /create-story
 
 Claude: I'll help create a new user story.
@@ -1008,10 +1009,11 @@ so that I can quickly acknowledge or respond without typing.
 
 ## Implementation
 [To be filled during development]
-```
+````
 
 Saved to: docs/stories/STORY-029.md
 Updated: docs/sprint-status.yaml (added to backlog)
+
 ```
 
 ---
@@ -1061,6 +1063,7 @@ Create a custom workflow skill.
 #### Example
 
 ```
+
 User: /create-workflow
 
 Claude: I'll help create a custom workflow command.
@@ -1068,21 +1071,26 @@ Claude: I'll help create a custom workflow command.
 ## Workflow Details
 
 Command name (without /):
+
 > security-review
 
 What does this workflow do?
+
 > Reviews code for security vulnerabilities and generates
 > a security report
 
 What inputs does it need?
+
 > - Files or directories to review
 > - Security checklist to use
 > - Output format (markdown/JSON)
 
 What outputs does it produce?
+
 > docs/security-review.md with findings
 
 What skills does it use?
+
 > Custom security-reviewer agent (or Developer)
 
 ## Workflow Created
@@ -1091,9 +1099,11 @@ What skills does it use?
 # /security-review
 
 ## Description
+
 Perform security review of code and generate findings report.
 
 ## Usage
+
 /security-review [path] [--checklist=owasp|custom] [--format=md|json]
 
 ## Workflow
@@ -1134,6 +1144,7 @@ Perform security review of code and generate findings report.
 **Checklist:** OWASP Top 10
 
 ## Summary
+
 - Critical: 1
 - High: 2
 - Medium: 5
@@ -1142,6 +1153,7 @@ Perform security review of code and generate findings report.
 ## Critical Findings
 
 ### SQL-001: SQL Injection
+
 **File:** src/models/user.js:45
 **Risk:** Unsanitized user input in query
 **Fix:** Use parameterized queries
@@ -1150,6 +1162,7 @@ Perform security review of code and generate findings report.
 Saved to: ~/.claude/skills/bmad-skills/security-reviewer/SKILL.md
 
 Restart Claude Code to load the new skill.
+
 ```
 
 ---
@@ -1198,32 +1211,40 @@ See the [Creative Intelligence skill documentation](../skills/#creative-intellig
 
 ### Start a New Project
 ```
+
 /workflow-init
-/product-brief      # Level 2+
-/prd               # Level 2+
-  OR
-/tech-spec         # Level 0-1
-/architecture      # Level 2+
+/product-brief # Level 2+
+/prd # Level 2+
+OR
+/tech-spec # Level 0-1
+/architecture # Level 2+
 /sprint-planning
 /dev-story STORY-001
+
 ```
 
 ### Check Status
 ```
+
 /workflow-status
+
 ```
 
 ### Research First
 ```
+
 /brainstorm
 /research
 /product-brief
+
 ```
 
 ### Create Custom Tools
 ```
+
 /create-agent
 /create-workflow
+
 ```
 
 ---
@@ -1233,3 +1254,4 @@ See the [Creative Intelligence skill documentation](../skills/#creative-intellig
 - See [real-world examples](../examples/) of complete workflows
 - Learn about [configuration options](../configuration)
 - Check [troubleshooting](../troubleshooting) for common issues
+```

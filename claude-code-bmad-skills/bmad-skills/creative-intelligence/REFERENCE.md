@@ -31,6 +31,7 @@ Solution: Implement guest checkout with email tracking
 ```
 
 **Tips:**
+
 - Sometimes the root cause appears before 5 iterations
 - Can branch into multiple "why" chains
 - Focus on process/system issues, not blaming people
@@ -55,6 +56,7 @@ Reverse: Reverse teacher/student - peer-to-peer teaching
 ```
 
 **Tips:**
+
 - Don't filter ideas during generation - even wild ideas spark creativity
 - Each SCAMPER prompt generates 3-5 variations
 - Combine multiple SCAMPER modifications for novel features
@@ -80,6 +82,7 @@ Reverse: Reverse teacher/student - peer-to-peer teaching
 ```
 
 **Tips:**
+
 - Start with central concept, branch outward
 - Use colors to group related concepts
 - Show connections between branches
@@ -117,6 +120,7 @@ Preventive Actions:
 ```
 
 **Tips:**
+
 - Embrace the negativity - think of worst case scenarios
 - Convert each failure mode into preventive action
 - This technique often reveals blind spots
@@ -171,6 +175,7 @@ Blue Hat (Process):
 ```
 
 **Tips:**
+
 - Use all six hats in sequence
 - Separate hat sessions to avoid mixing modes
 - Blue Hat (process) goes first and last
@@ -200,42 +205,49 @@ Blue Hat (Process):
 **Detailed Questions:**
 
 **Who:**
+
 - Who is the primary user sharing content?
 - Who is the target audience for shared content?
 - Who moderates shared content?
 - Who has permission to share what?
 
 **What:**
+
 - What types of content can be shared?
 - What metadata is included?
 - What privacy controls exist?
 - What happens to shared content over time?
 
 **Where:**
+
 - Where can content be shared (platforms)?
 - Where is shared content displayed?
 - Where is sharing initiated in the UI?
 - Where is shared content stored?
 
 **When:**
+
 - When is sharing available?
 - When do users receive notifications?
 - When does shared content expire?
 - When is sharing analytics captured?
 
 **Why:**
+
 - Why would users share?
 - Why this feature over alternatives?
 - Why these platforms specifically?
 - Why now (timing)?
 
 **How:**
+
 - How is sharing implemented technically?
 - How are privacy concerns addressed?
 - How is success measured?
 - How do users customize sharing?
 
 **Tips:**
+
 - Generate 5-10 questions per prompt word
 - Questions reveal requirements and edge cases
 - Use answers to drive further questioning
@@ -272,6 +284,7 @@ STRATEGY:
 ```
 
 **Tips:**
+
 - Be honest about weaknesses - they're not failures
 - Opportunities are external, Strengths are internal
 - Combine quadrants for strategies (e.g., Strength + Opportunity)
@@ -285,6 +298,7 @@ STRATEGY:
 **Objective:** Determine market size for project management tools
 
 **Methodology:**
+
 1. Use WebSearch for market reports and statistics
 2. Identify total addressable market (TAM)
 3. Calculate serviceable addressable market (SAM)
@@ -292,6 +306,7 @@ STRATEGY:
 5. Analyze growth trends and drivers
 
 **Sample Findings Structure:**
+
 ```
 Market Size:
 - TAM: $6.8B globally (2025)
@@ -321,6 +336,7 @@ Growth Drivers:
 **Objective:** Compare features of top 5 competitors
 
 **Methodology:**
+
 1. Identify competitors through WebSearch
 2. Use WebFetch to analyze competitor websites
 3. Review product documentation and pricing
@@ -328,6 +344,7 @@ Growth Drivers:
 5. Identify gaps and opportunities
 
 **Sample Feature Matrix:**
+
 ```
 Feature              | CompA | CompB | CompC | CompD | CompE | Gaps
 ---------------------|-------|-------|-------|-------|-------|-------
@@ -350,44 +367,54 @@ Price (per user/mo) | $15   | $25   | $12   | $49   | $19   | Avg: $24
 ### Example: New Product Feature Development
 
 **Phase 1: Exploration (Starbursting)**
+
 - Generate all questions about the feature
 - Identify unknowns and requirements
 
 **Phase 2: Ideation (SCAMPER)**
+
 - Create variations and creative alternatives
 - Generate feature possibilities
 
 **Phase 3: Organization (Mind Mapping)**
+
 - Structure ideas hierarchically
 - Show relationships between features
 
 **Phase 4: Validation (Reverse Brainstorming)**
+
 - Identify potential failure modes
 - Create risk mitigation strategies
 
 **Phase 5: Decision (Six Thinking Hats)**
+
 - Evaluate from multiple perspectives
 - Make informed go/no-go decision
 
 **Phase 6: Planning (SWOT)**
+
 - Assess strategic position
 - Plan execution approach
 
 ### Example: Problem Solving Complex Bug
 
 **Phase 1: Root Cause (5 Whys)**
+
 - Identify underlying system issue
 - Understand causation chain
 
 **Phase 2: Research (Technical Research)**
+
 - Investigate best practices
 - Review similar problems and solutions
 
 **Phase 3: Solutions (SCAMPER)**
+
 - Generate alternative fix approaches
 - Consider creative solutions
 
 **Phase 4: Evaluation (Six Thinking Hats)**
+
 - Assess each solution from multiple angles
 - Select best approach
 
@@ -396,6 +423,7 @@ Price (per user/mo) | $15   | $25   | $12   | $49   | $19   | Avg: $24
 ### Cross-Domain Innovation
 
 Use SCAMPER to apply ideas from other industries:
+
 - How does Amazon do this? → Apply to your domain
 - What would a game designer do? → Gamification concepts
 - How would Tesla approach this? → Apply innovation mindset
@@ -403,6 +431,7 @@ Use SCAMPER to apply ideas from other industries:
 ### Layered Research
 
 Combine research types for comprehensive understanding:
+
 1. Market Research → Size the opportunity
 2. Competitive Research → Understand landscape
 3. User Research → Validate needs
@@ -411,6 +440,7 @@ Combine research types for comprehensive understanding:
 ### Rapid Prototyping Ideas
 
 Use Mind Mapping + SCAMPER together:
+
 1. Mind Map the current solution
 2. Apply SCAMPER to each branch
 3. Generate 3-5x more possibilities
@@ -419,6 +449,7 @@ Use Mind Mapping + SCAMPER together:
 ### Risk-First Planning
 
 Use Reverse Brainstorming before planning:
+
 1. Identify all failure modes
 2. Prioritize by impact × likelihood
 3. Build plan with mitigation for top risks

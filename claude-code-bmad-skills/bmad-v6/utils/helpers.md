@@ -5,6 +5,7 @@ This document contains reusable utilities for BMAD workflows. Skills and command
 ## Config Loading
 
 ### Load Global Config
+
 ```
 Path: ~/.claude/config/bmad/config.yaml
 Purpose: Get user settings, enabled modules, defaults
@@ -20,6 +21,7 @@ Using Read tool:
 ```
 
 ### Load Project Config
+
 ```
 Path: {project-root}/bmad/config.yaml
 Purpose: Get project-specific settings
@@ -35,6 +37,7 @@ Using Read tool:
 ```
 
 ### Combined Config Load
+
 ```
 Execute in order:
 1. Load global config (defaults)
@@ -45,6 +48,7 @@ Execute in order:
 ## Status File Operations
 
 ### Load Workflow Status
+
 ```
 Path: {output_folder}/bmm-workflow-status.yaml (from project config)
 Purpose: Check completed workflows, current phase
@@ -60,6 +64,7 @@ Using Read tool:
 ```
 
 ### Update Workflow Status
+
 ```
 Purpose: Mark workflow as complete
 
@@ -72,6 +77,7 @@ Using Edit tool:
 ```
 
 ### Load Sprint Status
+
 ```
 Path: {output_folder}/sprint-status.yaml
 Purpose: Check epic/story progress
@@ -86,6 +92,7 @@ Using Read tool:
 ```
 
 ### Update Sprint Status
+
 ```
 Purpose: Add/update epics and stories
 
@@ -100,6 +107,7 @@ Using Edit tool:
 ## Template Operations
 
 ### Load Template
+
 ```
 Purpose: Load document template for workflow
 
@@ -110,6 +118,7 @@ Using Read tool:
 ```
 
 ### Apply Variables to Template
+
 ```
 Purpose: Substitute {{variables}} with actual values
 
@@ -125,6 +134,7 @@ Process:
 ```
 
 ### Save Output Document
+
 ```
 Purpose: Write completed document to output folder
 
@@ -139,6 +149,7 @@ Using Write tool:
 ## Variable Substitution
 
 ### Standard Variables
+
 ```
 {{project_name}}           → config: project_name
 {{project_type}}           → config: project_type
@@ -150,6 +161,7 @@ Using Write tool:
 ```
 
 ### Conditional Variables
+
 ```
 {{PRD_STATUS}}             → "required" if level >= 2, else "recommended"
 {{TECH_SPEC_STATUS}}       → "required" if level <= 1, else "optional"
@@ -157,6 +169,7 @@ Using Write tool:
 ```
 
 ### Level-Based Logic
+
 ```
 Level 0 (1 story):         PRD optional, tech-spec required, no architecture
 Level 1 (1-10 stories):    PRD recommended, tech-spec required, no architecture
@@ -168,6 +181,7 @@ Level 4 (40+ stories):     PRD required, tech-spec optional, architecture requir
 ## Workflow Recommendations
 
 ### Determine Next Workflow
+
 ```
 Input: workflow_status array
 Output: recommended next workflow
@@ -183,6 +197,7 @@ Logic:
 ```
 
 ### Status Display Format
+
 ```
 ✓ = Completed (green)
 ⚠ = Required but not started (yellow)
@@ -205,6 +220,7 @@ Phase 3: Solutioning
 ## Path Resolution
 
 ### Resolve Project Root
+
 ```
 Method: Use environment or detect
 - Claude Code provides working directory
@@ -213,6 +229,7 @@ Method: Use environment or detect
 ```
 
 ### Resolve Config Paths
+
 ```
 ~/.claude/config/bmad/config.yaml           → Global config
 {project-root}/bmad/config.yaml             → Project config
@@ -220,6 +237,7 @@ Method: Use environment or detect
 ```
 
 ### Resolve Template Paths
+
 ```
 ~/.claude/config/bmad/templates/{name}.md   → Template files
 ```
@@ -227,6 +245,7 @@ Method: Use environment or detect
 ## Error Handling
 
 ### File Not Found
+
 ```
 If config file missing:
   - Use defaults
@@ -242,6 +261,7 @@ If template missing:
 ```
 
 ### Invalid YAML
+
 ```
 If YAML parse error:
   - Show error message
@@ -252,6 +272,7 @@ If YAML parse error:
 ## Token Optimization Tips
 
 ### Reference vs. Embed
+
 ```
 ✓ Good: "Follow helper instructions in utils/helpers.md#Load-Global-Config"
 ✗ Bad: Embed full instructions in every command
@@ -261,6 +282,7 @@ If YAML parse error:
 ```
 
 ### Lazy Loading
+
 ```
 ✓ Good: Load config only when needed
 ✗ Bad: Load all files upfront
@@ -270,6 +292,7 @@ If YAML parse error:
 ```
 
 ### Reuse Patterns
+
 ```
 ✓ Good: "Execute Step 1-3 from helpers.md#Combined-Config-Load"
 ✗ Bad: Repeat config loading steps in every workflow
@@ -278,6 +301,7 @@ If YAML parse error:
 ## Quick Reference Commands
 
 ### For Skills/Commands
+
 ```
 To load config: See helpers.md#Combined-Config-Load
 To check status: See helpers.md#Load-Workflow-Status

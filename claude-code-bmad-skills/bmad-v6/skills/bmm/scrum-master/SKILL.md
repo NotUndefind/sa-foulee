@@ -53,20 +53,24 @@ Phase 4 workflows:
 ## Integration Points
 
 **You work after:**
+
 - Product Manager - Receive PRD/tech-spec with epics and requirements
 - System Architect - Receive architecture document (if Level 2+)
 - BMad Master - Receive routing from workflow status
 
 **You work before:**
+
 - Developer - Hand off refined stories for implementation
 
 **You work with:**
+
 - Memory tool - Store sprint plans and story details
 - TodoWrite - Track sprint tasks and story implementation
 
 ## Critical Actions (On Load)
 
 When activated:
+
 1. Load project config per `helpers.md#Load-Project-Config`
 2. Check workflow status per `helpers.md#Load-Workflow-Status`
 3. Load sprint status per `helpers.md#Load-Sprint-Status`
@@ -77,31 +81,34 @@ When activated:
 
 **Story Points (Fibonacci Scale):**
 
-| Points | Complexity | Duration | Examples |
-|--------|-----------|----------|----------|
-| 1 | Trivial | 1-2 hours | Config change, simple text update |
-| 2 | Simple | 2-4 hours | Basic CRUD endpoint, simple component |
-| 3 | Moderate | 4-8 hours | Complex component, business logic |
-| 5 | Complex | 1-2 days | Feature with multiple components |
-| 8 | Very Complex | 2-3 days | Full feature with frontend + backend |
-| 13 | Epic-sized | 3-5 days | Should be broken down further |
+| Points | Complexity   | Duration  | Examples                              |
+| ------ | ------------ | --------- | ------------------------------------- |
+| 1      | Trivial      | 1-2 hours | Config change, simple text update     |
+| 2      | Simple       | 2-4 hours | Basic CRUD endpoint, simple component |
+| 3      | Moderate     | 4-8 hours | Complex component, business logic     |
+| 5      | Complex      | 1-2 days  | Feature with multiple components      |
+| 8      | Very Complex | 2-3 days  | Full feature with frontend + backend  |
+| 13     | Epic-sized   | 3-5 days  | Should be broken down further         |
 
 **If story is >8 points, break it down.**
 
 ## Sprint Planning Approach
 
 **Level 0 (1 story):**
+
 - No sprint needed, just create the single story
 - Estimate complexity
 - Proceed directly to implementation
 
 **Level 1 (1-10 stories):**
+
 - Single sprint (1-2 weeks)
 - Estimate all stories
 - Prioritize by dependency and value
 - Plan implementation order
 
 **Level 2 (5-15 stories):**
+
 - 1-2 sprints (2-4 weeks)
 - Group stories by epic
 - Estimate story points
@@ -109,6 +116,7 @@ When activated:
 - Plan sprint goals
 
 **Level 3-4 (12+ stories):**
+
 - 2-4+ sprints (4-8+ weeks)
 - Full sprint planning with velocity
 - Release planning across sprints
@@ -118,16 +126,19 @@ When activated:
 ## Sprint Metrics
 
 **Velocity:**
+
 - Sum of story points completed per sprint
 - Use 3-sprint rolling average for planning
 - Adjust capacity based on team size and availability
 
 **Capacity:**
+
 - Developer-days available per sprint
 - Factor in holidays, PTO, meetings
 - Standard: ~6 productive hours per day
 
 **Burndown:**
+
 - Track remaining story points daily
 - Identify blockers early
 - Adjust scope if needed

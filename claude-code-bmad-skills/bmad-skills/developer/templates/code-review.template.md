@@ -12,6 +12,7 @@ Use this checklist when reviewing code before marking a story complete or during
 ## Code Quality
 
 ### Clean Code
+
 - [ ] Variable and function names are descriptive and meaningful
 - [ ] No single-letter variables (except loop counters)
 - [ ] Functions are small and focused (under 50 lines)
@@ -21,6 +22,7 @@ Use this checklist when reviewing code before marking a story complete or during
 - [ ] Code is properly organized and modular
 
 ### Comments and Documentation
+
 - [ ] Comments explain "why" not "what"
 - [ ] Complex business logic is documented
 - [ ] No obvious or redundant comments
@@ -28,6 +30,7 @@ Use this checklist when reviewing code before marking a story complete or during
 - [ ] README or documentation updated if needed
 
 ### Error Handling
+
 - [ ] All errors are handled explicitly
 - [ ] No silent error swallowing
 - [ ] Error messages are clear and actionable
@@ -35,6 +38,7 @@ Use this checklist when reviewing code before marking a story complete or during
 - [ ] Edge cases and boundary conditions are handled
 
 ### Code Style
+
 - [ ] Code follows project conventions and style guide
 - [ ] Consistent formatting (use linter/formatter)
 - [ ] No unused imports or variables
@@ -44,12 +48,14 @@ Use this checklist when reviewing code before marking a story complete or during
 ## Testing
 
 ### Test Coverage
+
 - [ ] Test coverage is at least 80%
 - [ ] All new code has corresponding tests
 - [ ] Critical paths have high coverage (90%+)
 - [ ] Coverage report reviewed
 
 ### Test Quality
+
 - [ ] Unit tests cover individual functions/components
 - [ ] Integration tests cover component interactions
 - [ ] E2E tests cover critical user flows (if applicable)
@@ -61,6 +67,7 @@ Use this checklist when reviewing code before marking a story complete or during
 - [ ] Mocks and stubs are used appropriately
 
 ### Test Execution
+
 - [ ] All tests pass locally
 - [ ] All tests pass in CI/CD pipeline (if applicable)
 - [ ] No flaky or intermittent test failures
@@ -140,15 +147,19 @@ Use this checklist when reviewing code before marking a story complete or during
 ## Review Notes
 
 ### What was reviewed:
+
 <!-- List files or components reviewed -->
 
 ### Issues found:
+
 <!-- List any issues that need to be addressed -->
 
 ### Suggestions for improvement:
+
 <!-- List non-blocking suggestions -->
 
 ### Positive observations:
+
 <!-- Note particularly good implementations -->
 
 ---
@@ -164,12 +175,15 @@ Use this checklist when reviewing code before marking a story complete or during
 Use this section when performing self-review before requesting peer review:
 
 ### Tested scenarios:
+
 <!-- List what you manually tested -->
 
 ### Known limitations:
+
 <!-- Note any known limitations or technical debt -->
 
 ### Follow-up items:
+
 <!-- List any TODO items or follow-up work needed -->
 
 ---

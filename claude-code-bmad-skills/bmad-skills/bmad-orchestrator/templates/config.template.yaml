@@ -7,16 +7,17 @@ bmad_version: "6.0.0"
 
 # Project Information
 project_name: "{{PROJECT_NAME}}"
-project_type: "{{PROJECT_TYPE}}"  # web-app, mobile-app, api, game, library, other
-project_level: {{PROJECT_LEVEL}}  # 0-4 (see documentation for level definitions)
+project_type: "{{PROJECT_TYPE}}" # web-app, mobile-app, api, game, library, other
+project_level: { { PROJECT_LEVEL } } # 0-4 (see documentation for level definitions)
 
 # Output Configuration
-output_folder: "docs"  # Where to store BMAD documents
-stories_folder: "docs/stories"  # Where to store user stories
+output_folder: "docs" # Where to store BMAD documents
+stories_folder: "docs/stories" # Where to store user stories
 
 # Language Settings
-communication_language: "English"  # Language for AI communication
-document_output_language: "English"  # Language for generated documents
+communication_language: "English" # Language for AI communication
+document_output_language: "English" # Language for generated documents
+
 
 # Optional: Override agent behaviors
 # Uncomment and customize as needed

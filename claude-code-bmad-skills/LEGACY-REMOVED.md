@@ -5,10 +5,12 @@ This repository now focuses exclusively on **BMAD Method v6** for Claude Code.
 ## Files Removed (as of 2025-11-12)
 
 ### Legacy Installers
+
 - `install.ps1` - Old PowerShell installer for original BMAD skills
 - `install.sh` - Old Bash installer for original BMAD skills
 
 ### Legacy Directories
+
 - `skills/` - Old BMAD skills structure (7 skills: bmad-method, security, python, javascript, devops, testing, git)
 - `commands/` - Old BMAD commands (5 commands: bmad-init, bmad-prd, bmad-arch, bmad-story, bmad-assess)
 - `hooks/` - Old BMAD hooks (project-open.sh)
@@ -18,6 +20,7 @@ This repository now focuses exclusively on **BMAD Method v6** for Claude Code.
 **If you were using the old BMAD installation:**
 
 1. **Uninstall old version:**
+
    ```bash
    rm -rf ~/.claude/skills/bmad-method
    rm -rf ~/.claude/skills/security
@@ -31,11 +34,13 @@ This repository now focuses exclusively on **BMAD Method v6** for Claude Code.
 2. **Install BMAD v6:**
 
    **Linux/macOS/WSL:**
+
    ```bash
    ./install-v6.sh
    ```
 
    **Windows PowerShell:**
+
    ```powershell
    .\install-v6.ps1
    ```

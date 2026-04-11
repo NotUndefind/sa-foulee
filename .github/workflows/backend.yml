@@ -3,10 +3,10 @@ name: Backend CI/CD
 on:
   push:
     branches: [main, dev]
-    paths: ['backend/**']
+    paths: ["backend/**"]
   pull_request:
     branches: [main, dev]
-    paths: ['backend/**']
+    paths: ["backend/**"]
 
 defaults:
   run:
@@ -33,7 +33,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.4'
+          php-version: "8.4"
           extensions: mbstring, pdo, pdo_mysql, xml, bcmath
           coverage: none
 

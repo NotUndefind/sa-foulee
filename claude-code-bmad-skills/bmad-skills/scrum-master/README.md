@@ -5,6 +5,7 @@ A comprehensive Anthropic Claude Code skill for sprint planning, user story crea
 ## Overview
 
 The Scrum Master skill helps you:
+
 - Break down epics into detailed, implementable user stories
 - Estimate story complexity using Fibonacci story points
 - Plan sprint iterations based on team velocity
@@ -16,6 +17,7 @@ The Scrum Master skill helps you:
 ### Activate the Skill
 
 The skill activates on these trigger keywords:
+
 - sprint planning
 - user story
 - story points
@@ -65,15 +67,18 @@ scrum-master/
 ## Documentation
 
 ### Main Documentation
+
 - **[SKILL.md](SKILL.md)** - Core skill definition, principles, and workflows
 - **[REFERENCE.md](REFERENCE.md)** - Detailed reference for metrics and calculations
 
 ### Templates
+
 - **[user-story.template.md](templates/user-story.template.md)** - Complete user story format
 - **[sprint-plan.template.md](templates/sprint-plan.template.md)** - Sprint planning document
 - **[sprint-status.template.yaml](templates/sprint-status.template.yaml)** - YAML status tracking
 
 ### Resources
+
 - **[story-sizing-guide.md](resources/story-sizing-guide.md)** - Comprehensive story sizing guide
 
 ## Scripts
@@ -87,6 +92,7 @@ python scripts/calculate-velocity.py .bmad/sprint-status.yaml
 ```
 
 **Output:**
+
 - Current sprint velocity
 - Velocity history
 - 3-sprint rolling average
@@ -102,6 +108,7 @@ bash scripts/generate-story-id.sh [project-name]
 ```
 
 **Output:**
+
 ```
 STORY-001  # If no stories exist
 STORY-042  # If 41 stories exist
@@ -127,14 +134,14 @@ python scripts/sprint-burndown.py .bmad/sprint-status.yaml 2
 
 ## Story Sizing Quick Reference
 
-| Points | Complexity | Duration | Examples |
-|--------|-----------|----------|----------|
-| 1 | Trivial | 1-2 hours | Config change, text update |
-| 2 | Simple | 2-4 hours | Basic CRUD, simple component |
-| 3 | Moderate | 4-8 hours | Complex component, business logic |
-| 5 | Complex | 1-2 days | Feature with multiple components |
-| 8 | Very Complex | 2-3 days | Full feature (frontend + backend) |
-| 13 | Epic-sized | 3-5 days | **Break this down!** |
+| Points | Complexity   | Duration  | Examples                          |
+| ------ | ------------ | --------- | --------------------------------- |
+| 1      | Trivial      | 1-2 hours | Config change, text update        |
+| 2      | Simple       | 2-4 hours | Basic CRUD, simple component      |
+| 3      | Moderate     | 4-8 hours | Complex component, business logic |
+| 5      | Complex      | 1-2 days  | Feature with multiple components  |
+| 8      | Very Complex | 2-3 days  | Full feature (frontend + backend) |
+| 13     | Epic-sized   | 3-5 days  | **Break this down!**              |
 
 **Rule:** Stories >8 points must be broken into smaller stories.
 
@@ -143,22 +150,26 @@ See [story-sizing-guide.md](resources/story-sizing-guide.md) for detailed sizing
 ## Sprint Planning by Project Level
 
 ### Level 0 (1 story)
+
 - No sprint planning needed
 - Create single story
 - Proceed to implementation
 
 ### Level 1 (1-10 stories)
+
 - Single sprint (1-2 weeks)
 - Estimate and prioritize
 - Simple task list
 
 ### Level 2 (5-15 stories)
+
 - 1-2 sprints (2-4 weeks)
 - Group by epic
 - Define sprint goals
 - Track velocity
 
 ### Level 3-4 (12+ stories)
+
 - 2-4+ sprints (4-8+ weeks)
 - Full velocity-based planning
 - Release planning
@@ -175,11 +186,13 @@ Used to predict future capacity and plan sprints realistically.
 ### Calculating Velocity
 
 **3-Sprint Rolling Average (Recommended):**
+
 ```
 Average = (Sprint1 + Sprint2 + Sprint3) / 3
 ```
 
 **When to Use:**
+
 - New team: Use capacity planning (dev-days × points/day)
 - After Sprint 1: Use single sprint velocity
 - After Sprint 3+: Use 3-sprint rolling average
@@ -189,13 +202,16 @@ See [REFERENCE.md](REFERENCE.md) for detailed velocity calculations.
 ## Workflow Integration
 
 ### You Work After:
+
 - **Product Manager** - Receives PRD/tech-spec with epics
 - **System Architect** - Receives architecture document (Level 2+)
 
 ### You Work Before:
+
 - **Developer** - Hands off refined stories for implementation
 
 ### You Work With:
+
 - **Memory Tool** - Store sprint plans and velocity data
 - **TodoWrite** - Track sprint tasks and story progress
 
@@ -235,6 +251,7 @@ So that **I can access the platform securely**
 ## Technical Notes
 
 ### Implementation Approach
+
 - POST /api/auth/register endpoint
 - Validate input with Joi schema
 - Hash password with bcrypt (10 rounds)
@@ -243,6 +260,7 @@ So that **I can access the platform securely**
 - Send verification email via SendGrid
 
 ### Files/Modules Affected
+
 - `routes/auth.js` - New registration route
 - `controllers/authController.js` - Registration logic
 - `models/User.js` - User schema
@@ -302,22 +320,27 @@ Total: 40 points (matches capacity)
 ## Common Pitfalls
 
 ### Anti-Pattern 1: Stories Too Large
+
 **Problem:** Stories estimated at 13+ points
 **Solution:** Break into 2-4 smaller stories (3-5 points each)
 
 ### Anti-Pattern 2: Vague Acceptance Criteria
+
 **Problem:** "User can login" (not testable)
 **Solution:** "User can submit valid credentials and receive JWT token with 24h expiration"
 
 ### Anti-Pattern 3: Over-committing Sprint
+
 **Problem:** Planning 60 points when velocity is 40
 **Solution:** Use 3-sprint average, add 10-20% buffer
 
 ### Anti-Pattern 4: Ignoring Dependencies
+
 **Problem:** Planning stories out of order
 **Solution:** Identify dependencies, plan critical path first
 
 ### Anti-Pattern 5: No Sprint Goal
+
 **Problem:** Collection of unrelated stories
 **Solution:** Define clear, achievable sprint goal
 
@@ -349,6 +372,7 @@ velocity_history:
 ## Contributing
 
 This skill package follows the Anthropic Claude Code Skills specification:
+
 - SKILL.md with YAML frontmatter
 - Allowed tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 - Templates for common documents
@@ -358,6 +382,7 @@ This skill package follows the Anthropic Claude Code Skills specification:
 ## Support
 
 For issues, questions, or improvements, refer to:
+
 - [SKILL.md](SKILL.md) - Main skill documentation
 - [REFERENCE.md](REFERENCE.md) - Detailed reference
 - [story-sizing-guide.md](resources/story-sizing-guide.md) - Sizing guide

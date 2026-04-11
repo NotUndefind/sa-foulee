@@ -3,19 +3,19 @@
 
 project:
   name: "{{project_name}}"
-  level: {{project_level}}
+  level: { { project_level } }
 
 sprint:
-  number: {{sprint_number}}
+  number: { { sprint_number } }
   start_date: "{{sprint_start}}"
   end_date: "{{sprint_end}}"
   goal: "{{sprint_goal}}"
-  capacity_points: {{capacity_points}}
-  committed_points: {{committed_points}}
+  capacity_points: { { capacity_points } }
+  committed_points: { { committed_points } }
 
 velocity:
   current_sprint: 0
-  rolling_average: 0  # 3-sprint average
+  rolling_average: 0 # 3-sprint average
   history:
     # - sprint: 1
     #   completed_points: 0

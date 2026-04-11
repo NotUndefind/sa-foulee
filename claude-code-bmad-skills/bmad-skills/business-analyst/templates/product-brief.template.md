@@ -12,6 +12,7 @@
 {{EXECUTIVE_SUMMARY}}
 
 **Key Points:**
+
 - Problem: {{PROBLEM_SUMMARY}}
 - Solution: {{SOLUTION_SUMMARY}}
 - Target Users: {{TARGET_USERS_SUMMARY}}
@@ -30,11 +31,13 @@
 {{USER_SEGMENTS}}
 
 **Primary Users:**
+
 - {{PRIMARY_USER_1}}
 - {{PRIMARY_USER_2}}
 - {{PRIMARY_USER_3}}
 
 **Secondary Users:**
+
 - {{SECONDARY_USER_1}}
 - {{SECONDARY_USER_2}}
 
@@ -44,6 +47,7 @@
 {{CURRENT_SOLUTION}}
 
 **Pain Points:**
+
 - {{PAIN_POINT_1}}
 - {{PAIN_POINT_2}}
 - {{PAIN_POINT_3}}
@@ -66,6 +70,7 @@
 ### User Personas
 
 #### Persona 1: {{PERSONA_1_NAME}}
+
 - **Role:** {{PERSONA_1_ROLE}}
 - **Goals:** {{PERSONA_1_GOALS}}
 - **Pain Points:** {{PERSONA_1_PAIN_POINTS}}
@@ -73,6 +78,7 @@
 - **Usage Pattern:** {{PERSONA_1_USAGE}}
 
 #### Persona 2: {{PERSONA_2_NAME}}
+
 - **Role:** {{PERSONA_2_ROLE}}
 - **Goals:** {{PERSONA_2_GOALS}}
 - **Pain Points:** {{PERSONA_2_PAIN_POINTS}}
@@ -82,15 +88,18 @@
 ### User Needs
 
 **Must Have:**
+
 - {{USER_NEED_1}}
 - {{USER_NEED_2}}
 - {{USER_NEED_3}}
 
 **Should Have:**
+
 - {{USER_NEED_4}}
 - {{USER_NEED_5}}
 
 **Nice to Have:**
+
 - {{USER_NEED_6}}
 - {{USER_NEED_7}}
 
@@ -134,11 +143,13 @@
 ### Minimum Viable Solution
 
 **Core Features for MVP:**
+
 - {{MVP_FEATURE_1}}
 - {{MVP_FEATURE_2}}
 - {{MVP_FEATURE_3}}
 
 **Deferred to Later:**
+
 - {{FUTURE_FEATURE_1}}
 - {{FUTURE_FEATURE_2}}
 
@@ -149,18 +160,21 @@
 ### Primary Metrics
 
 **{{METRIC_1_NAME}}**
+
 - Baseline: {{METRIC_1_BASELINE}}
 - Target: {{METRIC_1_TARGET}}
 - Timeline: {{METRIC_1_TIMELINE}}
 - Measurement: {{METRIC_1_METHOD}}
 
 **{{METRIC_2_NAME}}**
+
 - Baseline: {{METRIC_2_BASELINE}}
 - Target: {{METRIC_2_TARGET}}
 - Timeline: {{METRIC_2_TIMELINE}}
 - Measurement: {{METRIC_2_METHOD}}
 
 **{{METRIC_3_NAME}}**
+
 - Baseline: {{METRIC_3_BASELINE}}
 - Target: {{METRIC_3_TARGET}}
 - Timeline: {{METRIC_3_TIMELINE}}
@@ -175,10 +189,12 @@
 ### Success Criteria
 
 **Must Achieve:**
+
 - {{SUCCESS_CRITERIA_1}}
 - {{SUCCESS_CRITERIA_2}}
 
 **Should Achieve:**
+
 - {{SUCCESS_CRITERIA_3}}
 - {{SUCCESS_CRITERIA_4}}
 
@@ -191,6 +207,7 @@
 **Market Size:** {{MARKET_SIZE}}
 
 **Market Trends:**
+
 - {{TREND_1}}
 - {{TREND_2}}
 - {{TREND_3}}
@@ -200,18 +217,21 @@
 ### Competitive Landscape
 
 #### Competitor 1: {{COMPETITOR_1_NAME}}
+
 - **Strengths:** {{COMPETITOR_1_STRENGTHS}}
 - **Weaknesses:** {{COMPETITOR_1_WEAKNESSES}}
 - **Pricing:** {{COMPETITOR_1_PRICING}}
 - **Market Position:** {{COMPETITOR_1_POSITION}}
 
 #### Competitor 2: {{COMPETITOR_2_NAME}}
+
 - **Strengths:** {{COMPETITOR_2_STRENGTHS}}
 - **Weaknesses:** {{COMPETITOR_2_WEAKNESSES}}
 - **Pricing:** {{COMPETITOR_2_PRICING}}
 - **Market Position:** {{COMPETITOR_2_POSITION}}
 
 #### Competitor 3: {{COMPETITOR_3_NAME}}
+
 - **Strengths:** {{COMPETITOR_3_STRENGTHS}}
 - **Weaknesses:** {{COMPETITOR_3_WEAKNESSES}}
 - **Pricing:** {{COMPETITOR_3_PRICING}}
@@ -220,11 +240,13 @@
 ### Competitive Advantages
 
 **Our Advantages:**
+
 - {{ADVANTAGE_1}}
 - {{ADVANTAGE_2}}
 - {{ADVANTAGE_3}}
 
 **Gaps We Need to Close:**
+
 - {{GAP_1}}
 - {{GAP_2}}
 
@@ -241,6 +263,7 @@
 {{PRICING_STRATEGY}}
 
 **Price Points:**
+
 - {{PRICE_TIER_1}}
 - {{PRICE_TIER_2}}
 - {{PRICE_TIER_3}}
@@ -248,6 +271,7 @@
 ### Customer Acquisition
 
 **Acquisition Channels:**
+
 - {{CHANNEL_1}}
 - {{CHANNEL_2}}
 - {{CHANNEL_3}}
@@ -265,11 +289,13 @@
 **Platform:** {{PLATFORM}}
 
 **Integrations Required:**
+
 - {{INTEGRATION_1}}
 - {{INTEGRATION_2}}
 - {{INTEGRATION_3}}
 
 **Technical Constraints:**
+
 - {{CONSTRAINT_1}}
 - {{CONSTRAINT_2}}
 - {{CONSTRAINT_3}}
@@ -277,21 +303,25 @@
 ### Scale Requirements
 
 **Expected Usage:**
+
 - Users: {{USER_COUNT}}
 - Transactions: {{TRANSACTION_VOLUME}}
 - Data Volume: {{DATA_VOLUME}}
 
 **Performance Requirements:**
+
 - {{PERFORMANCE_REQ_1}}
 - {{PERFORMANCE_REQ_2}}
 
 ### Security & Compliance
 
 **Security Requirements:**
+
 - {{SECURITY_REQ_1}}
 - {{SECURITY_REQ_2}}
 
 **Compliance Requirements:**
+
 - {{COMPLIANCE_REQ_1}}
 - {{COMPLIANCE_REQ_2}}
 
@@ -302,18 +332,21 @@
 ### High Priority Risks
 
 **Risk 1: {{RISK_1_NAME}}**
+
 - Probability: {{RISK_1_PROBABILITY}}
 - Impact: {{RISK_1_IMPACT}}
 - Mitigation: {{RISK_1_MITIGATION}}
 - Owner: {{RISK_1_OWNER}}
 
 **Risk 2: {{RISK_2_NAME}}**
+
 - Probability: {{RISK_2_PROBABILITY}}
 - Impact: {{RISK_2_IMPACT}}
 - Mitigation: {{RISK_2_MITIGATION}}
 - Owner: {{RISK_2_OWNER}}
 
 **Risk 3: {{RISK_3_NAME}}**
+
 - Probability: {{RISK_3_PROBABILITY}}
 - Impact: {{RISK_3_IMPACT}}
 - Mitigation: {{RISK_3_MITIGATION}}
@@ -328,6 +361,7 @@
 ### Assumptions
 
 **Critical Assumptions:**
+
 - {{ASSUMPTION_1}}
 - {{ASSUMPTION_2}}
 - {{ASSUMPTION_3}}
@@ -342,6 +376,7 @@
 ### Team Requirements
 
 **Roles Needed:**
+
 - {{ROLE_1}}: {{ROLE_1_ALLOCATION}}
 - {{ROLE_2}}: {{ROLE_2_ALLOCATION}}
 - {{ROLE_3}}: {{ROLE_3_ALLOCATION}}
@@ -350,6 +385,7 @@
 ### Timeline Estimate
 
 **High-Level Phases:**
+
 - Discovery & Planning: {{PHASE_1_DURATION}}
 - Design: {{PHASE_2_DURATION}}
 - Development: {{PHASE_3_DURATION}}
@@ -387,6 +423,7 @@
 ### Blockers
 
 **Current Blockers:**
+
 - {{BLOCKER_1}}
 - {{BLOCKER_2}}
 
@@ -410,6 +447,7 @@
 **Handoff To:** {{HANDOFF_ROLE}}
 
 **Required Before Moving Forward:**
+
 - {{PREREQ_1}}
 - {{PREREQ_2}}
 - {{PREREQ_3}}
@@ -429,6 +467,7 @@
 {{INTERVIEW_SUMMARY}}
 
 **Stakeholders Consulted:**
+
 - {{STAKEHOLDER_1}} - {{STAKEHOLDER_1_ROLE}}
 - {{STAKEHOLDER_2}} - {{STAKEHOLDER_2_ROLE}}
 - {{STAKEHOLDER_3}} - {{STAKEHOLDER_3_ROLE}}

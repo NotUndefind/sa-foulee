@@ -43,6 +43,7 @@ Approach: **Thorough, systematic, quality-focused.**
 ### Part 1: Load and Parse Documents
 
 **Load Architecture Document:**
+
 1. Read architecture document from `docs/architecture-*.md`
 2. Extract key sections:
    - Architectural drivers
@@ -55,6 +56,7 @@ Approach: **Thorough, systematic, quality-focused.**
    - NFR traceability
 
 **Load Requirements Document:**
+
 1. Read PRD or tech-spec
 2. Extract all FRs (Functional Requirements)
    - For PRD: Look for FR-001, FR-002, etc.
@@ -64,6 +66,7 @@ Approach: **Thorough, systematic, quality-focused.**
    - For tech-spec: Extract from performance, security, other NFR sections
 
 **Create baseline:**
+
 ```
 Requirements Baseline:
 - Total FRs: {count}
@@ -97,6 +100,7 @@ Requirements Baseline:
    ```
 
 **Generate FR Coverage Report:**
+
 ```markdown
 ### Functional Requirements Coverage
 
@@ -138,6 +142,7 @@ Requirements Baseline:
    ```
 
 **Common NFR categories to check:**
+
 - Performance (response time, throughput)
 - Security (auth, encryption, compliance)
 - Scalability (concurrent users, data volume)
@@ -147,6 +152,7 @@ Requirements Baseline:
 - Compatibility (browsers, devices, platforms)
 
 **Generate NFR Coverage Report:**
+
 ```markdown
 ### Non-Functional Requirements Coverage
 
@@ -174,6 +180,7 @@ Run systematic checklist:
 ### Architecture Quality Checklist
 
 **System Design:**
+
 - [ ] Architectural pattern is clearly stated and justified
 - [ ] System components are well-defined (3-10 components)
 - [ ] Component responsibilities are clear
@@ -181,6 +188,7 @@ Run systematic checklist:
 - [ ] Dependencies between components are documented
 
 **Technology Stack:**
+
 - [ ] Frontend technology is selected and justified
 - [ ] Backend framework is selected and justified
 - [ ] Database choice is explained with rationale
@@ -189,6 +197,7 @@ Run systematic checklist:
 - [ ] Trade-offs are documented for major tech choices
 
 **Data Architecture:**
+
 - [ ] Core data entities are defined
 - [ ] Entity relationships are specified
 - [ ] Database design is described
@@ -196,6 +205,7 @@ Run systematic checklist:
 - [ ] Caching strategy is defined (if applicable)
 
 **API Design:**
+
 - [ ] API architecture is specified (REST, GraphQL, etc.)
 - [ ] Key endpoints are listed (10-20 for Level 2, more for 3-4)
 - [ ] Authentication method is defined
@@ -203,6 +213,7 @@ Run systematic checklist:
 - [ ] API versioning strategy is stated
 
 **Security:**
+
 - [ ] Authentication design is comprehensive
 - [ ] Authorization model is defined
 - [ ] Data encryption (at rest and in transit) is addressed
@@ -210,18 +221,21 @@ Run systematic checklist:
 - [ ] Secrets management is addressed
 
 **Scalability & Performance:**
+
 - [ ] Scaling strategy is defined (horizontal/vertical)
 - [ ] Performance optimization approaches are listed
 - [ ] Caching strategy is comprehensive
 - [ ] Load balancing is addressed
 
 **Reliability:**
+
 - [ ] High availability design is present
 - [ ] Disaster recovery approach is defined
 - [ ] Backup strategy is specified
 - [ ] Monitoring and alerting are addressed
 
 **Development & Deployment:**
+
 - [ ] Code organization is described
 - [ ] Testing strategy is defined (unit, integration, e2e)
 - [ ] CI/CD pipeline is outlined
@@ -229,11 +243,13 @@ Run systematic checklist:
 - [ ] Environments are defined (dev, staging, prod)
 
 **Traceability:**
+
 - [ ] FR-to-component mapping exists
 - [ ] NFR-to-solution mapping exists
 - [ ] Trade-offs are explicitly documented
 
 **Completeness:**
+
 - [ ] All major decisions have rationale ("why")
 - [ ] Assumptions are stated
 - [ ] Constraints are documented
@@ -242,6 +258,7 @@ Run systematic checklist:
 ```
 
 **Count:**
+
 - Total checks: {total}
 - Passed: {passed} ({percentage}%)
 - Failed: {failed}
@@ -254,6 +271,7 @@ Run systematic checklist:
 
 ```markdown
 # Solutioning Gate Check Report
+
 **Date:** {date}
 **Project:** {project_name}
 **Reviewer:** {user_name} (Winston - System Architect)
@@ -269,6 +287,7 @@ Run systematic checklist:
 {2-3 sentence summary of architecture quality and readiness}
 
 **Key Findings:**
+
 - {Finding 1}
 - {Finding 2}
 - {Finding 3}
@@ -278,6 +297,7 @@ Run systematic checklist:
 ## Requirements Coverage
 
 ### Functional Requirements
+
 - **Total FRs:** {total}
 - **Covered:** {covered} ({percentage}%)
 - **Missing:** {missing}
@@ -285,6 +305,7 @@ Run systematic checklist:
 {Details from Part 2}
 
 ### Non-Functional Requirements
+
 - **Total NFRs:** {total}
 - **Fully Addressed:** {full} ({percentage}%)
 - **Partially Addressed:** {partial} ({percentage}%)
@@ -326,18 +347,21 @@ Run systematic checklist:
 **Decision:** {PASS | CONDITIONAL PASS | FAIL}
 
 **PASS Criteria:**
+
 - ≥90% FR coverage
 - ≥90% NFR coverage (fully or partially addressed)
 - ≥80% quality checks passed
 - No critical blockers
 
 **CONDITIONAL PASS Criteria:**
+
 - ≥80% FR coverage
 - ≥80% NFR coverage
 - ≥70% quality checks passed
 - Blockers have mitigation plans
 
 **FAIL Criteria:**
+
 - <80% FR or NFR coverage
 - <70% quality checks passed
 - Critical blockers without mitigation
@@ -360,6 +384,7 @@ Run systematic checklist:
 
 Next: Sprint Planning
 Run /sprint-planning to:
+
 - Break epics into detailed stories
 - Estimate story complexity
 - Plan sprint iterations
@@ -393,6 +418,7 @@ Re-run /solutioning-gate-check after addressing these issues.
 ```
 
 **Save report:**
+
 - Path: `{output_folder}/solutioning-gate-check-{project-name}-{date}.md`
 - Use Write tool
 
@@ -424,11 +450,13 @@ Full report: {file_path}
 **If PASS or CONDITIONAL PASS:**
 
 Per `helpers.md#Update-Workflow-Status`:
+
 1. Update `solutioning-gate-check` status to "PASS" or "CONDITIONAL"
 2. Add gate check report path
 3. Save status file
 
 **If FAIL:**
+
 - Update status to "FAIL"
 - Do NOT proceed to Phase 4
 - User must address issues and re-run
@@ -438,6 +466,7 @@ Per `helpers.md#Update-Workflow-Status`:
 ## Recommend Next Steps
 
 **If PASS:**
+
 ```
 Excellent! Your architecture is solid and complete.
 
@@ -456,6 +485,7 @@ Your planning documentation is complete:
 ```
 
 **If CONDITIONAL PASS:**
+
 ```
 Your architecture is approved with minor conditions.
 
@@ -468,6 +498,7 @@ Address conditions during early sprints.
 ```
 
 **If FAIL:**
+
 ```
 Architecture needs improvement before implementation can begin.
 
@@ -495,12 +526,14 @@ After addressing these:
 ## Validation Logic
 
 **FR Coverage Calculation:**
+
 ```
 Covered FRs = FRs with component assignments
 Coverage % = (Covered / Total) * 100
 ```
 
 **NFR Coverage Calculation:**
+
 ```
 Fully Addressed = NFRs with complete architectural solutions
 Partially Addressed = NFRs mentioned but solution incomplete
@@ -508,11 +541,13 @@ Coverage % = ((Fully + Partial) / Total) * 100
 ```
 
 **Quality Score Calculation:**
+
 ```
 Quality % = (Passed Checks / Total Checks) * 100
 ```
 
 **Pass Thresholds:**
+
 - PASS: FR≥90%, NFR≥90%, Quality≥80%, No blockers
 - CONDITIONAL: FR≥80%, NFR≥80%, Quality≥70%, Mitigated blockers
 - FAIL: Below conditional thresholds or critical blockers
@@ -522,21 +557,25 @@ Quality % = (Passed Checks / Total Checks) * 100
 ## Tips for Effective Gate Checks
 
 **Be Objective:**
+
 - Apply consistent criteria
 - Document findings clearly
 - Don't let personal preferences override standards
 
 **Be Constructive:**
+
 - Identify issues specifically
 - Suggest concrete improvements
 - Acknowledge what's done well
 
 **Be Pragmatic:**
+
 - Perfect is the enemy of good
 - CONDITIONAL PASS is often appropriate
 - Some issues can be addressed during implementation
 
 **Be Thorough:**
+
 - Don't skip NFR coverage check
 - Quality checklist matters
 - Traceability ensures nothing is forgotten
