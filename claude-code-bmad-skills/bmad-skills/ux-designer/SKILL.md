@@ -13,15 +13,18 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite, AskUserQuestion
 ## Quick Reference
 
 **Run scripts:**
+
 - `bash scripts/wcag-checklist.sh` - WCAG 2.1 AA compliance checklist
 - `python scripts/contrast-check.py #000000 #ffffff` - Check color contrast
 - `bash scripts/responsive-breakpoints.sh` - Show responsive breakpoints
 
 **Use templates:**
+
 - `templates/ux-design.template.md` - Complete UX design document
 - `templates/user-flow.template.md` - User flow diagram template
 
 **Reference guides:**
+
 - [REFERENCE.md](REFERENCE.md) - Design patterns and detailed guidance
 - `resources/accessibility-guide.md` - WCAG compliance reference
 - `resources/design-patterns.md` - UI pattern library
@@ -126,6 +129,7 @@ Accessibility:
 ## Responsive Design Approach
 
 **Mobile-First Design:**
+
 ```
 Mobile (320-767px):
 - Single column layout
@@ -150,14 +154,17 @@ Run `bash scripts/responsive-breakpoints.sh` for detailed breakpoint reference.
 ## Integration Points
 
 **You work after:**
+
 - Business Analyst - Receives user research and pain points
 - Product Manager - Receives requirements and acceptance criteria
 
 **You work before:**
+
 - System Architect - Provides UX constraints for architecture
 - Developer - Hands off design for implementation
 
 **You work with:**
+
 - Product Manager - Validate designs against requirements
 - Creative Intelligence - Brainstorm design alternatives
 
@@ -190,6 +197,7 @@ Check contrast: `python scripts/contrast-check.py #333333 #ffffff`
 ## Design Tokens
 
 Reference `resources/design-tokens.md` for:
+
 - Color system (primary, secondary, semantic)
 - Typography scale (headings, body, sizes)
 - Spacing scale (8px base unit)
@@ -211,18 +219,20 @@ See `resources/design-patterns.md` for detailed patterns:
 This skill leverages parallel subagents to maximize context utilization (each agent has up to 1M tokens on Claude Sonnet 4.6 / Opus 4.6).
 
 ### Screen/Flow Design Workflow
+
 **Pattern:** Parallel Section Generation
 **Agents:** N parallel agents (one per major screen or flow)
 
-| Agent | Task | Output |
-|-------|------|--------|
-| Agent 1 | Design home/landing screen with wireframe | bmad/outputs/screen-home.md |
-| Agent 2 | Design registration flow screens | bmad/outputs/flow-registration.md |
-| Agent 3 | Design dashboard screen with components | bmad/outputs/screen-dashboard.md |
-| Agent 4 | Design settings/profile screens | bmad/outputs/screen-settings.md |
-| Agent N | Design additional screens or flows | bmad/outputs/screen-n.md |
+| Agent   | Task                                      | Output                            |
+| ------- | ----------------------------------------- | --------------------------------- |
+| Agent 1 | Design home/landing screen with wireframe | bmad/outputs/screen-home.md       |
+| Agent 2 | Design registration flow screens          | bmad/outputs/flow-registration.md |
+| Agent 3 | Design dashboard screen with components   | bmad/outputs/screen-dashboard.md  |
+| Agent 4 | Design settings/profile screens           | bmad/outputs/screen-settings.md   |
+| Agent N | Design additional screens or flows        | bmad/outputs/screen-n.md          |
 
 **Coordination:**
+
 1. Load requirements and user stories from PRD
 2. Identify major screens and user flows (typically 5-10)
 3. Write shared design context to bmad/context/ux-context.md (brand, patterns, tokens)
@@ -234,17 +244,19 @@ This skill leverages parallel subagents to maximize context utilization (each ag
 **Best for:** Multi-screen applications with independent user journeys
 
 ### User Flow Design Workflow
+
 **Pattern:** Parallel Section Generation
 **Agents:** N parallel agents (one per user journey)
 
-| Agent | Task | Output |
-|-------|------|--------|
-| Agent 1 | Design user onboarding flow | bmad/outputs/flow-onboarding.md |
-| Agent 2 | Design purchase/checkout flow | bmad/outputs/flow-checkout.md |
-| Agent 3 | Design account management flow | bmad/outputs/flow-account.md |
-| Agent 4 | Design error and recovery flows | bmad/outputs/flow-errors.md |
+| Agent   | Task                            | Output                          |
+| ------- | ------------------------------- | ------------------------------- |
+| Agent 1 | Design user onboarding flow     | bmad/outputs/flow-onboarding.md |
+| Agent 2 | Design purchase/checkout flow   | bmad/outputs/flow-checkout.md   |
+| Agent 3 | Design account management flow  | bmad/outputs/flow-account.md    |
+| Agent 4 | Design error and recovery flows | bmad/outputs/flow-errors.md     |
 
 **Coordination:**
+
 1. Extract user journeys from requirements
 2. Write shared context (user personas, entry points) to bmad/context/flows-context.md
 3. Launch parallel agents for each independent user flow
@@ -254,17 +266,19 @@ This skill leverages parallel subagents to maximize context utilization (each ag
 **Best for:** Complex applications with distinct user journeys
 
 ### Accessibility Validation Workflow
+
 **Pattern:** Fan-Out Research
 **Agents:** 4 parallel agents (one per accessibility domain)
 
-| Agent | Task | Output |
-|-------|------|--------|
-| Agent 1 | Validate color contrast and visual accessibility | bmad/outputs/a11y-visual.md |
-| Agent 2 | Validate keyboard navigation and focus management | bmad/outputs/a11y-keyboard.md |
-| Agent 3 | Validate ARIA labels and semantic structure | bmad/outputs/a11y-aria.md |
+| Agent   | Task                                                | Output                          |
+| ------- | --------------------------------------------------- | ------------------------------- |
+| Agent 1 | Validate color contrast and visual accessibility    | bmad/outputs/a11y-visual.md     |
+| Agent 2 | Validate keyboard navigation and focus management   | bmad/outputs/a11y-keyboard.md   |
+| Agent 3 | Validate ARIA labels and semantic structure         | bmad/outputs/a11y-aria.md       |
 | Agent 4 | Validate responsive design and mobile accessibility | bmad/outputs/a11y-responsive.md |
 
 **Coordination:**
+
 1. Load complete design document with all screens
 2. Launch parallel agents for different accessibility domains
 3. Each agent runs WCAG 2.1 AA checklist for their domain
@@ -274,18 +288,20 @@ This skill leverages parallel subagents to maximize context utilization (each ag
 **Best for:** Comprehensive accessibility audit of complete designs
 
 ### Component Specification Workflow
+
 **Pattern:** Component Parallel Design
 **Agents:** N parallel agents (one per component type)
 
-| Agent | Task | Output |
-|-------|------|--------|
-| Agent 1 | Specify button component variants and states | bmad/outputs/component-buttons.md |
-| Agent 2 | Specify form input components and validation | bmad/outputs/component-forms.md |
-| Agent 3 | Specify navigation components | bmad/outputs/component-navigation.md |
-| Agent 4 | Specify card and list components | bmad/outputs/component-cards.md |
-| Agent 5 | Specify modal and overlay components | bmad/outputs/component-modals.md |
+| Agent   | Task                                         | Output                               |
+| ------- | -------------------------------------------- | ------------------------------------ |
+| Agent 1 | Specify button component variants and states | bmad/outputs/component-buttons.md    |
+| Agent 2 | Specify form input components and validation | bmad/outputs/component-forms.md      |
+| Agent 3 | Specify navigation components                | bmad/outputs/component-navigation.md |
+| Agent 4 | Specify card and list components             | bmad/outputs/component-cards.md      |
+| Agent 5 | Specify modal and overlay components         | bmad/outputs/component-modals.md     |
 
 **Coordination:**
+
 1. Identify reusable component types from screen designs
 2. Write design system foundation to bmad/context/design-system.md
 3. Launch parallel agents, each specifying one component family
@@ -295,6 +311,7 @@ This skill leverages parallel subagents to maximize context utilization (each ag
 **Best for:** Design system creation or component library documentation
 
 ### Example Subagent Prompt
+
 ```
 Task: Design registration flow screens with accessibility
 Context: Read bmad/context/ux-context.md for design system and patterns

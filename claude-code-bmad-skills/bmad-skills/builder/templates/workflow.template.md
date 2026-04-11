@@ -34,17 +34,20 @@ Use TodoWrite to track these steps:
 {{step_1_detailed_instructions}}
 
 **Actions:**
+
 - {{step_1_action_1}}
 - {{step_1_action_2}}
 - {{step_1_action_3}}
 
 **Tools:**
+
 - {{step_1_tool_1}}
 - {{step_1_tool_2}}
 
 **Output:** {{step_1_output}}
 
 **Validation:**
+
 - [ ] {{step_1_validation_1}}
 - [ ] {{step_1_validation_2}}
 
@@ -53,17 +56,20 @@ Use TodoWrite to track these steps:
 {{step_2_detailed_instructions}}
 
 **Actions:**
+
 - {{step_2_action_1}}
 - {{step_2_action_2}}
 - {{step_2_action_3}}
 
 **Tools:**
+
 - {{step_2_tool_1}}
 - {{step_2_tool_2}}
 
 **Output:** {{step_2_output}}
 
 **Validation:**
+
 - [ ] {{step_2_validation_1}}
 - [ ] {{step_2_validation_2}}
 
@@ -72,17 +78,20 @@ Use TodoWrite to track these steps:
 {{step_3_detailed_instructions}}
 
 **Actions:**
+
 - {{step_3_action_1}}
 - {{step_3_action_2}}
 - {{step_3_action_3}}
 
 **Tools:**
+
 - {{step_3_tool_1}}
 - {{step_3_tool_2}}
 
 **Output:** {{step_3_output}}
 
 **Validation:**
+
 - [ ] {{step_3_validation_1}}
 - [ ] {{step_3_validation_2}}
 
@@ -91,17 +100,20 @@ Use TodoWrite to track these steps:
 {{step_4_detailed_instructions}}
 
 **Actions:**
+
 - {{step_4_action_1}}
 - {{step_4_action_2}}
 - {{step_4_action_3}}
 
 **Tools:**
+
 - {{step_4_tool_1}}
 - {{step_4_tool_2}}
 
 **Output:** {{step_4_output}}
 
 **Validation:**
+
 - [ ] {{step_4_validation_1}}
 - [ ] {{step_4_validation_2}}
 
@@ -110,17 +122,20 @@ Use TodoWrite to track these steps:
 {{step_5_detailed_instructions}}
 
 **Actions:**
+
 - {{step_5_action_1}}
 - {{step_5_action_2}}
 - {{step_5_action_3}}
 
 **Tools:**
+
 - {{step_5_tool_1}}
 - {{step_5_tool_2}}
 
 **Output:** {{step_5_output}}
 
 **Validation:**
+
 - [ ] {{step_5_validation_1}}
 - [ ] {{step_5_validation_2}}
 
@@ -129,6 +144,7 @@ Use TodoWrite to track these steps:
 {{output_generation_instructions}}
 
 **Output Format:**
+
 ```
 {{output_format_example}}
 ```
@@ -136,6 +152,7 @@ Use TodoWrite to track these steps:
 **Output Location:** {{output_location}}
 
 **Output Validation:**
+
 - [ ] {{output_validation_1}}
 - [ ] {{output_validation_2}}
 - [ ] {{output_validation_3}}
@@ -153,10 +170,12 @@ Mark workflow as complete:
 After completing this workflow, suggest:
 
 **Immediate next actions:**
+
 - {{next_step_1}} - {{next_step_1_description}}
 - {{next_step_2}} - {{next_step_2_description}}
 
 **Future considerations:**
+
 - {{future_step_1}} - {{future_step_1_description}}
 - {{future_step_2}} - {{future_step_2_description}}
 
@@ -165,14 +184,17 @@ After completing this workflow, suggest:
 If errors occur during workflow execution:
 
 **{{error_type_1}}:**
+
 - Symptoms: {{error_1_symptoms}}
 - Resolution: {{error_1_resolution}}
 
 **{{error_type_2}}:**
+
 - Symptoms: {{error_2_symptoms}}
 - Resolution: {{error_2_resolution}}
 
 **{{error_type_3}}:**
+
 - Symptoms: {{error_3_symptoms}}
 - Resolution: {{error_3_resolution}}
 

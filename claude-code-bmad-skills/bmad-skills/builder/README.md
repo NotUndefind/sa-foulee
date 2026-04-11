@@ -46,6 +46,7 @@ builder/
 ### Core Files
 
 **SKILL.md**
+
 - Main entry point for the Builder skill
 - Contains YAML frontmatter with metadata
 - Overview of capabilities and workflows
@@ -53,6 +54,7 @@ builder/
 - References REFERENCE.md for details
 
 **REFERENCE.md**
+
 - Detailed patterns and examples
 - Complete template structures
 - Step-by-step processes
@@ -62,12 +64,14 @@ builder/
 ### Scripts
 
 **validate-skill.sh**
+
 - Validates SKILL.md has required YAML frontmatter
 - Checks `name`, `description`, and `allowed-tools` fields
 - Validates naming conventions
 - Provides clear error messages
 
 **scaffold-skill.sh**
+
 - Creates standard skill directory structure
 - Generates scripts/, templates/, resources/ subdirectories
 - Creates placeholder README files
@@ -76,18 +80,21 @@ builder/
 ### Templates
 
 **skill.template.md**
+
 - Complete SKILL.md template with {{variables}}
 - Includes YAML frontmatter structure
 - Follows Anthropic specification
 - Ready to customize
 
 **workflow.template.md**
+
 - Template for creating workflow commands
 - Includes TodoWrite integration
 - Pre-flight checks, steps, validation
 - Status updates and next steps
 
 **document.template.md**
+
 - Template for document templates
 - {{variable}} placeholders for substitution
 - Standard sections and metadata
@@ -96,6 +103,7 @@ builder/
 ### Resources
 
 **skill-patterns.md**
+
 - Comprehensive design patterns reference
 - Anthropic skill specification details
 - Progressive disclosure pattern (Level 1/2/3)
@@ -171,6 +179,7 @@ The `validate-skill.sh` script checks:
 - File size (warns if > 20KB / ~5k tokens)
 
 **Example:**
+
 ```bash
 $ ./scripts/validate-skill.sh SKILL.md
 Validating: SKILL.md
@@ -199,16 +208,19 @@ Validating: SKILL.md
 ## Progressive Disclosure Pattern
 
 **Level 1: SKILL.md** (< 5k tokens)
+
 - YAML frontmatter
 - Overview and essentials
 - References to Level 2
 
 **Level 2: REFERENCE.md** (< 10k tokens)
+
 - Detailed patterns
 - Complete examples
 - References to Level 3
 
 **Level 3: resources/** (unlimited)
+
 - Deep reference materials
 - Extended examples
 - Design philosophy
@@ -239,8 +251,8 @@ Required YAML frontmatter fields:
 
 ```yaml
 ---
-name: skill-name                    # Required: lowercase, hyphenated
-description: Clear description...   # Required: includes trigger keywords
+name: skill-name # Required: lowercase, hyphenated
+description: Clear description... # Required: includes trigger keywords
 allowed-tools: Read, Write, Edit... # Optional but recommended
 ---
 ```

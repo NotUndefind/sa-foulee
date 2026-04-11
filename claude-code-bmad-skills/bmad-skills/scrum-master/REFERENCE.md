@@ -16,6 +16,7 @@ This document provides detailed information on sprint metrics, velocity calculat
 ### Fibonacci Scale Rationale
 
 We use the Fibonacci sequence (1, 2, 3, 5, 8, 13) because:
+
 - It reflects increasing uncertainty at larger sizes
 - Gaps between numbers prevent false precision
 - Natural breakpoint at 8 points encourages story decomposition
@@ -23,18 +24,19 @@ We use the Fibonacci sequence (1, 2, 3, 5, 8, 13) because:
 
 ### Detailed Sizing Guide
 
-| Points | Complexity | Duration | Dev Effort | Examples | When to Use |
-|--------|-----------|----------|------------|----------|-------------|
-| 1 | Trivial | 1-2 hours | 0.125-0.25 days | Config change, copy update, CSS tweak | Single file, no logic |
-| 2 | Simple | 2-4 hours | 0.25-0.5 days | Simple CRUD endpoint, basic component | Straightforward implementation |
-| 3 | Moderate | 4-8 hours | 0.5-1 day | Component with state, business logic | Some complexity, standard patterns |
-| 5 | Complex | 1-2 days | 1-2 days | Feature with multiple files, integration | Multiple components/layers |
-| 8 | Very Complex | 2-3 days | 2-3 days | Full-stack feature, complex logic | Maximum recommended size |
-| 13 | Epic-sized | 3-5 days | 3-5 days | Mini-epic, needs breakdown | **Always break down** |
+| Points | Complexity   | Duration  | Dev Effort      | Examples                                 | When to Use                        |
+| ------ | ------------ | --------- | --------------- | ---------------------------------------- | ---------------------------------- |
+| 1      | Trivial      | 1-2 hours | 0.125-0.25 days | Config change, copy update, CSS tweak    | Single file, no logic              |
+| 2      | Simple       | 2-4 hours | 0.25-0.5 days   | Simple CRUD endpoint, basic component    | Straightforward implementation     |
+| 3      | Moderate     | 4-8 hours | 0.5-1 day       | Component with state, business logic     | Some complexity, standard patterns |
+| 5      | Complex      | 1-2 days  | 1-2 days        | Feature with multiple files, integration | Multiple components/layers         |
+| 8      | Very Complex | 2-3 days  | 2-3 days        | Full-stack feature, complex logic        | Maximum recommended size           |
+| 13     | Epic-sized   | 3-5 days  | 3-5 days        | Mini-epic, needs breakdown               | **Always break down**              |
 
 ### Story Point Characteristics
 
 **1 Point Stories:**
+
 - Single file modification
 - No new dependencies
 - No database changes
@@ -43,6 +45,7 @@ We use the Fibonacci sequence (1, 2, 3, 5, 8, 13) because:
 - Examples: Update text, change color, fix typo, update constant
 
 **2 Point Stories:**
+
 - 1-2 file modifications
 - Reuse existing patterns
 - Simple CRUD operations
@@ -51,6 +54,7 @@ We use the Fibonacci sequence (1, 2, 3, 5, 8, 13) because:
 - Examples: Add form field, simple filter, basic endpoint
 
 **3 Point Stories:**
+
 - 2-4 file modifications
 - Some new logic required
 - State management needed
@@ -59,6 +63,7 @@ We use the Fibonacci sequence (1, 2, 3, 5, 8, 13) because:
 - Examples: User preferences, search functionality, data validation
 
 **5 Point Stories:**
+
 - 4-8 file modifications
 - New patterns or approaches
 - Multiple component integration
@@ -67,6 +72,7 @@ We use the Fibonacci sequence (1, 2, 3, 5, 8, 13) because:
 - Examples: Authentication flow, report generation, file upload
 
 **8 Point Stories:**
+
 - 8-12 file modifications
 - Complex business logic
 - Multiple system integration
@@ -76,6 +82,7 @@ We use the Fibonacci sequence (1, 2, 3, 5, 8, 13) because:
 - Examples: Payment processing, advanced search, real-time features
 
 **13+ Point Stories:**
+
 - **Too large - must be broken down**
 - If you estimate 13 points, you're looking at a mini-epic
 - Break into 2-4 smaller stories (3-5 points each)
@@ -91,16 +98,19 @@ Velocity measures team throughput and is used to predict future capacity.
 ### Calculating Velocity
 
 **Single Sprint Velocity:**
+
 ```
 Velocity = Σ(Completed Story Points)
 ```
 
 Example:
+
 - Sprint 1: STORY-001 (5pts), STORY-002 (3pts), STORY-003 (5pts) = 13 pts
 - Sprint 2: STORY-004 (8pts), STORY-005 (3pts), STORY-006 (2pts) = 13 pts
 - Sprint 3: STORY-007 (5pts), STORY-008 (5pts), STORY-009 (5pts) = 15 pts
 
 **3-Sprint Rolling Average (Recommended):**
+
 ```
 Average Velocity = (Sprint1 + Sprint2 + Sprint3) / 3
                  = (13 + 13 + 15) / 3
@@ -116,16 +126,19 @@ Average Velocity = (Sprint1 + Sprint2 + Sprint3) / 3
 ### Velocity Trends
 
 **Increasing Velocity:**
+
 - Team is learning and improving
 - Consider if sprint scope is being reduced
 - Validate estimates aren't inflating
 
 **Decreasing Velocity:**
+
 - Technical debt accumulating
 - Team facing blockers or distractions
 - Stories may be underestimated
 
 **Stable Velocity:**
+
 - Team has found sustainable pace
 - Good for predictable planning
 - Use this for release forecasting
@@ -135,12 +148,15 @@ Average Velocity = (Sprint1 + Sprint2 + Sprint3) / 3
 ### Capacity Calculation Methods
 
 **Method 1: Velocity-Based (Sprint 3+)**
+
 ```
 Sprint Capacity = 3-Sprint Rolling Average Velocity
 ```
+
 Best for established teams with historical data.
 
 **Method 2: Developer-Days (New Teams)**
+
 ```
 Sprint Capacity = (Team Size × Sprint Days × Points per Dev-Day)
 
@@ -151,12 +167,14 @@ Where:
 ```
 
 Example:
+
 - 2 developers
 - 10-day sprint (2 weeks)
 - 2.5 points per dev-day
 - Capacity = 2 × 10 × 2.5 = 50 points
 
 **Method 3: Hour-Based**
+
 ```
 Sprint Capacity = (Available Hours / Hours per Point)
 
@@ -168,6 +186,7 @@ Where:
 ### Capacity Adjustments
 
 **Reduce capacity for:**
+
 - Holidays and PTO (-X dev-days)
 - Team onboarding (-20-50% for new members)
 - Technical debt work (-10-20%)
@@ -175,6 +194,7 @@ Where:
 - Production support (-10-30%)
 
 **Example Adjustment:**
+
 ```
 Base Capacity: 50 points
 - Holiday (1 dev-day): -2.5 points
@@ -192,6 +212,7 @@ A burndown chart shows **remaining work** (story points) over time within a spri
 ### Burndown Data Points
 
 Track daily or every few days:
+
 - **Date:** Tracking date
 - **Remaining Points:** Sum of incomplete story points
 - **Ideal Burndown:** Linear line from starting points to zero
@@ -201,27 +222,30 @@ Track daily or every few days:
 Sprint 1 (10 days, 40 points):
 
 | Day | Completed | Remaining | Ideal |
-|-----|-----------|-----------|-------|
-| 0 | 0 | 40 | 40 |
-| 2 | 5 | 35 | 32 |
-| 4 | 13 | 27 | 24 |
-| 6 | 18 | 22 | 16 |
-| 8 | 28 | 12 | 8 |
-| 10 | 40 | 0 | 0 |
+| --- | --------- | --------- | ----- |
+| 0   | 0         | 40        | 40    |
+| 2   | 5         | 35        | 32    |
+| 4   | 13        | 27        | 24    |
+| 6   | 18        | 22        | 16    |
+| 8   | 28        | 12        | 8     |
+| 10  | 40        | 0         | 0     |
 
 ### Interpreting Burndown
 
 **Tracking above ideal line:**
+
 - Team is behind pace
 - May not complete all stories
 - Consider removing lowest-priority stories
 
 **Tracking below ideal line:**
+
 - Team is ahead of pace
 - May complete more than planned
 - Consider pulling in additional stories
 
 **Flat sections:**
+
 - Stories are blocked
 - Team needs help or dependencies resolved
 - Investigate and remove blockers
@@ -231,11 +255,13 @@ Sprint 1 (10 days, 40 points):
 ### Level 0: Single Story
 
 **Characteristics:**
+
 - 1 story total
 - Trivial to simple complexity
 - No sprint planning needed
 
 **Approach:**
+
 1. Create single story with acceptance criteria
 2. Estimate story points (typically 1-5)
 3. Proceed directly to implementation
@@ -244,11 +270,13 @@ Sprint 1 (10 days, 40 points):
 ### Level 1: 1-10 Stories
 
 **Characteristics:**
+
 - Small project or single feature
 - Simple requirements
 - 1-2 week timeline
 
 **Approach:**
+
 1. Break requirements into 1-10 stories
 2. Estimate all stories
 3. Single sprint (no multi-sprint planning)
@@ -257,6 +285,7 @@ Sprint 1 (10 days, 40 points):
 6. Track completion, but velocity optional
 
 **Typical Story Distribution:**
+
 - 3-5 stories: 2-3 points each
 - 6-10 stories: 1-3 points each
 - Total: 15-30 points
@@ -264,11 +293,13 @@ Sprint 1 (10 days, 40 points):
 ### Level 2: 5-15 Stories
 
 **Characteristics:**
+
 - Medium project
 - Multiple related features
 - 2-4 week timeline
 
 **Approach:**
+
 1. Group stories by epic (2-3 epics)
 2. Estimate using story points
 3. Plan 1-2 sprints
@@ -278,6 +309,7 @@ Sprint 1 (10 days, 40 points):
 7. Formal sprint plan document
 
 **Typical Story Distribution:**
+
 - 2-3 epics
 - 5-8 stories per epic
 - Story sizes: 2-8 points
@@ -287,11 +319,13 @@ Sprint 1 (10 days, 40 points):
 ### Level 3: 12-40 Stories
 
 **Characteristics:**
+
 - Large project
 - Multiple epics and features
 - 1-2 month timeline
 
 **Approach:**
+
 1. Break into 3-5 epics
 2. Detailed story breakdown (12-40 stories)
 3. Estimate all stories
@@ -302,6 +336,7 @@ Sprint 1 (10 days, 40 points):
 8. Regular sprint reviews and planning
 
 **Typical Story Distribution:**
+
 - 3-5 epics
 - 3-10 stories per epic
 - Story sizes: 2-8 points (mostly 3-5)
@@ -311,11 +346,13 @@ Sprint 1 (10 days, 40 points):
 ### Level 4: 40+ Stories
 
 **Characteristics:**
+
 - Very large project or multi-team effort
 - Complex domain with many features
 - 2-4+ month timeline
 
 **Approach:**
+
 1. Break into 5-10 epics
 2. Extensive story breakdown (40-100+ stories)
 3. Multi-sprint planning (4-8 sprints)
@@ -326,6 +363,7 @@ Sprint 1 (10 days, 40 points):
 8. Regular retrospectives and adjustments
 
 **Typical Story Distribution:**
+
 - 5-10 epics
 - 5-15 stories per epic
 - Story sizes: 2-8 points (avoid 1s and 13s)
@@ -337,6 +375,7 @@ Sprint 1 (10 days, 40 points):
 ### When to Break Down Stories
 
 Break down a story if:
+
 - **Size:** Story is estimated at 13+ points
 - **Time:** Story takes more than 3 days
 - **Complexity:** Story has too many acceptance criteria (>7)
@@ -348,9 +387,11 @@ Break down a story if:
 **1. By Workflow Steps**
 
 Original (13 points):
+
 - "User can complete checkout process"
 
 Broken down:
+
 - "User can review cart before checkout" (3 points)
 - "User can enter shipping information" (3 points)
 - "User can enter payment information" (5 points)
@@ -359,9 +400,11 @@ Broken down:
 **2. By User Role**
 
 Original (13 points):
+
 - "Users can manage their account"
 
 Broken down:
+
 - "Customer can update profile information" (3 points)
 - "Admin can manage user accounts" (5 points)
 - "Support staff can view user activity" (2 points)
@@ -369,9 +412,11 @@ Broken down:
 **3. By Technical Layer**
 
 Original (13 points):
+
 - "Product search functionality"
 
 Broken down:
+
 - "Backend: Search API endpoint" (5 points)
 - "Frontend: Search input component" (3 points)
 - "Frontend: Search results display" (3 points)
@@ -380,9 +425,11 @@ Broken down:
 **4. By CRUD Operations**
 
 Original (13 points):
+
 - "Product management system"
 
 Broken down:
+
 - "Create product" (3 points)
 - "Read/view product" (2 points)
 - "Update product" (3 points)
@@ -392,9 +439,11 @@ Broken down:
 **5. By Priority (Thin Vertical Slices)**
 
 Original (13 points):
+
 - "Comprehensive reporting dashboard"
 
 Broken down:
+
 - "Basic sales report (MVP)" (5 points)
 - "Add date filtering" (2 points)
 - "Add export to CSV" (3 points)
@@ -459,6 +508,7 @@ velocity_history:
 ### Velocity Tracking
 
 Update after each sprint completes:
+
 1. Sum completed story points
 2. Add to velocity history
 3. Calculate 3-sprint rolling average (if applicable)
@@ -471,6 +521,7 @@ Update after each sprint completes:
 **Situation:** Level 2 project, 2 developers, 2-week sprints, no velocity data
 
 **Approach:**
+
 1. Estimate capacity: 2 devs × 10 days × 2.5 pts/day = 50 points
 2. Reduce for safety: 50 × 0.8 = 40 points (Sprint 1 capacity)
 3. Plan Sprint 1 with 40 points
@@ -481,6 +532,7 @@ Update after each sprint completes:
 **Situation:** Level 3 project, 3 sprints completed, velocity is 35, 38, 36
 
 **Approach:**
+
 1. Calculate 3-sprint average: (35 + 38 + 36) / 3 = 36.3 ≈ 36 points
 2. Plan Sprint 4 with 36 points capacity
 3. Continue tracking and adjusting
@@ -490,6 +542,7 @@ Update after each sprint completes:
 **Situation:** Story estimated at 13 points during planning
 
 **Approach:**
+
 1. Identify breakdown strategy (workflow, layer, priority)
 2. Split into 2-4 stories (3-5 points each)
 3. Re-estimate split stories
@@ -500,6 +553,7 @@ Update after each sprint completes:
 **Situation:** Day 6 of 10, completed 10 points of 40 (ideal: 24 points)
 
 **Approach:**
+
 1. Identify blockers and resolve
 2. Consider removing lowest-priority stories
 3. Focus team on highest-priority work

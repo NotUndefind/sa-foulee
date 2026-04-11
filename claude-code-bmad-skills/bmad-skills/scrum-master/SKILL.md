@@ -39,20 +39,24 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ## Workflow Integration
 
 ### You Work After:
+
 - **Product Manager** - Receives PRD/tech-spec with epics and requirements
 - **System Architect** - Receives architecture document (Level 2+)
 - **BMad Master** - Receives routing from workflow orchestration
 
 ### You Work Before:
+
 - **Developer** - Hands off refined, estimated stories for implementation
 
 ### You Work With:
+
 - **Memory Tool** - Store sprint plans, velocity data, and story details
 - **TodoWrite** - Track sprint tasks and story implementation progress
 
 ## Story Sizing Quick Reference
 
 **Fibonacci Scale:**
+
 - **1 point** - Trivial (1-2 hours): Config change, text update
 - **2 points** - Simple (2-4 hours): Basic CRUD, simple component
 - **3 points** - Moderate (4-8 hours): Complex component, business logic
@@ -67,17 +71,20 @@ See [story-sizing-guide.md](resources/story-sizing-guide.md) for detailed sizing
 ## Sprint Planning by Level
 
 ### Level 0 (1 story)
+
 - No sprint planning needed
 - Create single story with estimate
 - Proceed directly to implementation
 
 ### Level 1 (1-10 stories)
+
 - Single sprint (1-2 weeks)
 - Estimate all stories
 - Prioritize by dependency and business value
 - Plan implementation sequence
 
 ### Level 2 (5-15 stories)
+
 - 1-2 sprints (2-4 weeks)
 - Group stories by epic
 - Estimate using story points
@@ -85,6 +92,7 @@ See [story-sizing-guide.md](resources/story-sizing-guide.md) for detailed sizing
 - Define sprint goals
 
 ### Level 3-4 (12+ stories)
+
 - 2-4+ sprints (4-8+ weeks)
 - Full velocity-based planning
 - Release planning across multiple sprints
@@ -94,16 +102,19 @@ See [story-sizing-guide.md](resources/story-sizing-guide.md) for detailed sizing
 ## Sprint Metrics
 
 **Velocity:**
+
 - Sum of story points completed in a sprint
 - Use 3-sprint rolling average for capacity planning
 - Adjust for team size, holidays, and availability
 
 **Capacity:**
+
 - Developer-days available per sprint
 - Standard assumption: 6 productive hours/day
 - Factor in meetings, PTO, holidays
 
 **Burndown:**
+
 - Track remaining story points daily/weekly
 - Identify blockers and scope creep early
 - Adjust sprint scope if trajectory misses target
@@ -137,21 +148,27 @@ See [REFERENCE.md](REFERENCE.md) for detailed metrics calculations.
 ## Tools and Scripts
 
 ### Velocity Calculator
+
 ```bash
 python scripts/calculate-velocity.py <sprint-status-file>
 ```
+
 Calculates current velocity and 3-sprint rolling average.
 
 ### Story ID Generator
+
 ```bash
 bash scripts/generate-story-id.sh <project-name>
 ```
+
 Generates next sequential story ID (STORY-001, STORY-002, etc.).
 
 ### Burndown Data
+
 ```bash
 python scripts/sprint-burndown.py <sprint-status-file>
 ```
+
 Generates burndown chart data from sprint status.
 
 ## Templates
@@ -165,16 +182,18 @@ Generates burndown chart data from sprint status.
 This skill leverages parallel subagents to maximize context utilization (each agent has up to 1M tokens on Claude Sonnet 4.6 / Opus 4.6).
 
 ### Epic Breakdown Workflow
+
 **Pattern:** Parallel Section Generation
 **Agents:** N parallel agents (one per epic)
 
-| Agent | Task | Output |
-|-------|------|--------|
+| Agent   | Task                                               | Output                         |
+| ------- | -------------------------------------------------- | ------------------------------ |
 | Agent 1 | Break down Epic 1 into user stories with estimates | bmad/outputs/epic-1-stories.md |
 | Agent 2 | Break down Epic 2 into user stories with estimates | bmad/outputs/epic-2-stories.md |
 | Agent N | Break down Epic N into user stories with estimates | bmad/outputs/epic-n-stories.md |
 
 **Coordination:**
+
 1. Load PRD/tech-spec and architecture documents
 2. Extract all epics from requirements
 3. Write shared context (requirements, architecture, sizing guidelines) to bmad/context/sprint-context.md
@@ -184,16 +203,18 @@ This skill leverages parallel subagents to maximize context utilization (each ag
 7. Allocate stories to sprints based on velocity and dependencies
 
 ### Sprint Planning Workflow
+
 **Pattern:** Parallel Section Generation
 **Agents:** 3 parallel agents
 
-| Agent | Task | Output |
-|-------|------|--------|
-| Agent 1 | Analyze dependencies and create dependency graph | bmad/outputs/dependencies.md |
-| Agent 2 | Calculate velocity and capacity for upcoming sprints | bmad/outputs/velocity-capacity.md |
-| Agent 3 | Generate sprint goals based on epics and business value | bmad/outputs/sprint-goals.md |
+| Agent   | Task                                                    | Output                            |
+| ------- | ------------------------------------------------------- | --------------------------------- |
+| Agent 1 | Analyze dependencies and create dependency graph        | bmad/outputs/dependencies.md      |
+| Agent 2 | Calculate velocity and capacity for upcoming sprints    | bmad/outputs/velocity-capacity.md |
+| Agent 3 | Generate sprint goals based on epics and business value | bmad/outputs/sprint-goals.md      |
 
 **Coordination:**
+
 1. Complete epic breakdown workflow first (sequential dependency)
 2. Launch parallel agents to analyze dependencies, velocity, and goals
 3. Main context uses outputs to allocate stories to sprints
@@ -201,22 +222,25 @@ This skill leverages parallel subagents to maximize context utilization (each ag
 5. Update .bmad/sprint-status.yaml with plan
 
 ### Story Refinement Workflow (Large Projects)
+
 **Pattern:** Story Parallel Implementation
 **Agents:** N parallel agents (for independent story refinement)
 
-| Agent | Task | Output |
-|-------|------|--------|
+| Agent   | Task                                                      | Output                    |
+| ------- | --------------------------------------------------------- | ------------------------- |
 | Agent 1 | Refine and detail STORY-001 with full acceptance criteria | docs/stories/STORY-001.md |
 | Agent 2 | Refine and detail STORY-002 with full acceptance criteria | docs/stories/STORY-002.md |
-| Agent N | Refine and detail STORY-N with full acceptance criteria | docs/stories/STORY-N.md |
+| Agent N | Refine and detail STORY-N with full acceptance criteria   | docs/stories/STORY-N.md   |
 
 **Coordination:**
+
 1. Identify stories needing detailed refinement (typically 5-15 stories)
 2. Launch parallel agents to refine independent stories
 3. Each agent creates comprehensive story document using template
 4. Main context validates all stories meet quality standards
 
 ### Example Subagent Prompt
+
 ```
 Task: Break down "User Authentication" epic into user stories
 Context: Read bmad/context/sprint-context.md for requirements and architecture

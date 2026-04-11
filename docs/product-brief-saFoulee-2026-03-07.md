@@ -35,6 +35,7 @@ Sans cet outil, l'association risque une désorganisation administrative (docume
 ### Primary Users
 
 Membres de l'association "sa Foulée" :
+
 - **Âge :** 20 à 40 ans
 - **Profil tech :** Peu à l'aise avec les applications numériques (contexte village)
 - **Volume :** ~10 membres au lancement, ~50 membres à terme
@@ -222,4 +223,4 @@ Outil associatif fondateur qui structure et professionnalise l'association dès 
 
 **This document was created using BMAD Method v6 - Phase 1 (Analysis)**
 
-*To continue: Run `/workflow-status` to see your progress and next recommended workflow.*
+_To continue: Run `/workflow-status` to see your progress and next recommended workflow._

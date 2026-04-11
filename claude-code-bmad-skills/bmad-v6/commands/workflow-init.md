@@ -7,6 +7,7 @@ You are executing the **Workflow Init** command to initialize BMAD Method in the
 **Agent:** BMad Master (Core Orchestrator)
 
 **Output:**
+
 - `bmad/config.yaml` - Project configuration
 - `docs/bmm-workflow-status.yaml` - Workflow status tracking
 - Directory structure for BMAD artifacts
@@ -51,6 +52,7 @@ docs/
 Ask user these questions (one at a time):
 
 **Q1: Project Name**
+
 ```
 "What is your project name?"
 
@@ -59,6 +61,7 @@ Default: Use directory name if user skips
 ```
 
 **Q2: Project Type**
+
 ```
 "What type of project is this?"
 
@@ -74,6 +77,7 @@ Store as: "web-app", "mobile-app", "api", "game", "library", "other"
 ```
 
 **Q3: Project Level**
+
 ```
 "What is the project complexity level?"
 
@@ -108,6 +112,7 @@ Store as: 0, 1, 2, 3, or 4
 4. Write to `bmad/config.yaml` using Write tool
 
 **Example output:**
+
 ```yaml
 project_name: "MyApp"
 project_type: "web-app"
@@ -127,6 +132,7 @@ paths:
 1. Load template from `~/.claude/config/bmad/templates/bmm-workflow-status.template.yaml`
 
 2. Determine conditional statuses based on project level:
+
    ```
    Level 0-1:
      - PRD: "recommended" (optional for level 0)
@@ -179,6 +185,7 @@ Recommended Next Step:
 Based on project level, show recommended path:
 
 **Level 0:**
+
 ```
 Phase 1 (Optional): /product-brief
 Phase 2 (Required): /tech-spec
@@ -186,6 +193,7 @@ Phase 4 (Required): /create-story → /dev-story
 ```
 
 **Level 1:**
+
 ```
 Phase 1 (Recommended): /product-brief
 Phase 2 (Required): /tech-spec
@@ -193,6 +201,7 @@ Phase 4 (Required): /sprint-planning → stories
 ```
 
 **Level 2+:**
+
 ```
 Phase 1 (Recommended): /product-brief
 Phase 2 (Required): /prd
@@ -203,6 +212,7 @@ Phase 4 (Required): /sprint-planning → stories
 ### Step 8: Offer to Start
 
 Ask user:
+
 ```
 "Would you like to start with the recommended workflow?"
 
@@ -228,16 +238,19 @@ If no: "Run /workflow-status anytime to check your progress."
 ## Error Handling
 
 **If BMAD already initialized:**
+
 - Inform user
 - Offer to reinitialize (overwrites config)
 - Offer to check status instead (`/workflow-status`)
 
 **If directory creation fails:**
+
 - Show error
 - Check permissions
 - Suggest manual directory creation
 
 **If template missing:**
+
 - Use inline fallback template
 - Log warning
 - Continue initialization

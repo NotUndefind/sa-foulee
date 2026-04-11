@@ -43,6 +43,7 @@ Approach: **Thoughtful, principled, detail-oriented.**
 **Architectural drivers** are requirements that heavily influence design decisions.
 
 **Review all NFRs**, identify those requiring significant architectural consideration:
+
 - Performance requirements (response time, throughput)
 - Scalability requirements (concurrent users, data volume)
 - Security requirements (compliance, encryption, auth)
@@ -52,6 +53,7 @@ Approach: **Thoughtful, principled, detail-oriented.**
 **Ask user:** "Which of these NFRs are most critical for your architecture?"
 
 **Format:**
+
 ```
 **Architectural Drivers:**
 1. NFR-001: 99.9% availability → Requires redundancy, failover
@@ -66,15 +68,18 @@ Approach: **Thoughtful, principled, detail-oriented.**
 ### Part 2: High-Level Architecture
 
 **Explain to user:**
+
 > "Let's start with the big picture. What's the overall architecture pattern?"
 
 **Based on project level and requirements, suggest:**
 
 **Level 2 (5-15 stories):**
+
 - **Modular Monolith**: Simple deployment, clear boundaries, easy to start
 - **Layered Architecture**: Traditional, proven, good for CRUD apps
 
 **Level 3-4 (12+ stories):**
+
 - **Microservices**: Independent scaling, team autonomy, complex coordination
 - **Event-Driven**: Asynchronous, loosely coupled, good for workflows
 - **Hybrid**: Mix of patterns where appropriate
@@ -82,11 +87,13 @@ Approach: **Thoughtful, principled, detail-oriented.**
 **Ask user:** "Which pattern fits best? Or do you have a preference?"
 
 **Describe:**
+
 - Main system components (3-7 major components)
 - How they interact
 - Data flow overview
 
 **Format:**
+
 ```
 **Pattern:** Modular Monolith with API Gateway
 
@@ -116,43 +123,50 @@ If text: Provide ASCII/mermaid format
 
 **Frontend:**
 Ask: "What frontend technology?"
+
 - React, Vue, Angular, Svelte, etc.
 - Consider: NFR requirements (SEO, performance, accessibility)
-Justify: Why this choice over alternatives?
+  Justify: Why this choice over alternatives?
 
 **Backend:**
 Ask: "What backend framework?"
+
 - Based on team skills, performance needs, ecosystem
 - Consider: Scalability, developer productivity, library support
-Justify: Why this choice?
+  Justify: Why this choice?
 
 **Database:**
 Ask: "What database(s)?"
+
 - Relational (PostgreSQL, MySQL) vs. NoSQL (MongoDB, DynamoDB)
 - Consider: Data model complexity, query patterns, consistency needs
-Justify: Why this choice?
+  Justify: Why this choice?
 
 **Infrastructure:**
 Ask: "Where will this run?"
+
 - Cloud (AWS, Azure, GCP) vs. On-prem
 - Containerization (Docker, K8s)
 - Serverless vs. VMs
-Justify: Why this approach?
+  Justify: Why this approach?
 
 **Third-Party Services:**
 Ask: "Any external services needed?"
+
 - Auth (Auth0, Cognito)
 - Payments (Stripe, PayPal)
 - Email (SendGrid, SES)
 - Analytics, monitoring, etc.
 
 **Development & Deployment:**
+
 - Version control (Git)
 - CI/CD (GitHub Actions, GitLab CI, Jenkins)
 - Testing frameworks
 - Monitoring/logging (Datadog, CloudWatch, ELK)
 
 **For each technology:**
+
 ```markdown
 ### {Category}
 
@@ -172,6 +186,7 @@ Ask: "Any external services needed?"
 **Define 3-10 major components** (based on project level).
 
 For each component:
+
 - **Name** and **purpose**
 - **Responsibilities** (what it does)
 - **Interfaces** (how it's accessed)
@@ -179,22 +194,26 @@ For each component:
 - **FRs addressed** (which requirements it satisfies)
 
 **Format:**
+
 ```markdown
 ### Component: API Gateway
 
 **Purpose:** Single entry point for all client requests
 
 **Responsibilities:**
+
 - Request routing
 - Authentication/authorization
 - Rate limiting
 - API versioning
 
 **Interfaces:**
+
 - REST API (HTTPS, port 443)
 - WebSocket (for real-time features)
 
 **Dependencies:**
+
 - Auth Service (for token validation)
 - Backend Services (routing targets)
 
@@ -211,12 +230,14 @@ For each component:
 Ask: "What are the core data entities?"
 
 For each entity:
+
 - Entity name
 - Key attributes
 - Relationships
 - Cardinality
 
 **Format:**
+
 ```
 **Entities:**
 1. User (id, email, name, created_at)
@@ -229,11 +250,13 @@ For each entity:
 ```
 
 **Database Design:**
+
 - Schema design (tables, indexes)
 - Normalization level
 - Partitioning strategy (if applicable)
 
 **Data Flow:**
+
 - How data moves through system
 - Read vs. write paths
 - Caching layers
@@ -245,6 +268,7 @@ For each entity:
 ### Part 6: API Design
 
 **API Architecture:**
+
 - REST, GraphQL, gRPC, or hybrid?
 - Versioning strategy
 - Authentication method (JWT, OAuth, API keys)
@@ -254,6 +278,7 @@ For each entity:
 List 10-20 most important API endpoints.
 
 **Format:**
+
 ```
 ### User Management
 - POST /api/v1/auth/register - Register new user
@@ -271,6 +296,7 @@ List 10-20 most important API endpoints.
 ```
 
 **Authentication & Authorization:**
+
 - How users authenticate
 - How permissions are enforced
 - Token management
@@ -285,6 +311,7 @@ List 10-20 most important API endpoints.
 **For EACH NFR from PRD/tech-spec**, document how architecture addresses it.
 
 **Template per NFR:**
+
 ```markdown
 ### NFR-{ID}: {NFR Name}
 
@@ -303,6 +330,7 @@ List 10-20 most important API endpoints.
 **Examples:**
 
 **NFR-001: Performance**
+
 ```
 **Requirement:** API response time < 200ms for 95% of requests
 
@@ -331,21 +359,25 @@ List 10-20 most important API endpoints.
 ### Part 8: Security Architecture
 
 **Authentication:**
+
 - Method (JWT, OAuth 2.0, SAML)
 - Token lifetime and refresh
 - Multi-factor authentication (if required)
 
 **Authorization:**
+
 - RBAC (Role-Based Access Control) or ABAC (Attribute-Based)
 - Permission model
 - How permissions are enforced
 
 **Data Encryption:**
+
 - At rest: Database encryption, file storage encryption
 - In transit: TLS 1.3, HTTPS everywhere
 - Key management (AWS KMS, Azure Key Vault)
 
 **Security Best Practices:**
+
 - Input validation
 - SQL injection prevention
 - XSS prevention
@@ -360,23 +392,27 @@ List 10-20 most important API endpoints.
 ### Part 9: Scalability & Performance
 
 **Scaling Strategy:**
+
 - Horizontal scaling (add more instances)
 - Vertical scaling (bigger instances)
 - Auto-scaling triggers and limits
 - Database scaling (read replicas, sharding)
 
 **Performance Optimization:**
+
 - Query optimization
 - N+1 query prevention
 - Lazy loading strategies
 - Compression
 
 **Caching Strategy:**
+
 - What to cache (hot data, computed results)
 - Cache invalidation strategy
 - Cache hierarchy (CDN, app cache, DB cache)
 
 **Load Balancing:**
+
 - Load balancer type (ALB, NLB, nginx)
 - Algorithm (round-robin, least connections)
 - Health checks
@@ -388,18 +424,21 @@ List 10-20 most important API endpoints.
 ### Part 10: Reliability & Availability
 
 **High Availability:**
+
 - Multi-AZ deployment
 - Redundancy (no single points of failure)
 - Failover mechanisms
 - Circuit breakers
 
 **Disaster Recovery:**
+
 - RPO (Recovery Point Objective)
 - RTO (Recovery Time Objective)
 - Backup frequency
 - Restore procedures
 
 **Monitoring & Alerting:**
+
 - Metrics to track (latency, error rate, saturation)
 - Logging strategy (structured logging, log aggregation)
 - Alerting thresholds and escalation
@@ -411,22 +450,26 @@ List 10-20 most important API endpoints.
 ### Part 11: Development & Deployment
 
 **Code Organization:**
+
 - Project structure
 - Module boundaries
 - Naming conventions
 
 **Testing Strategy:**
+
 - Unit testing (coverage target: 80%+)
 - Integration testing
 - E2E testing
 - Performance testing
 
 **CI/CD Pipeline:**
+
 - Build → Test → Deploy stages
 - Automated testing gates
 - Deployment strategy (blue-green, canary, rolling)
 
 **Environments:**
+
 - Development, staging, production
 - Environment parity
 - Configuration management
@@ -439,6 +482,7 @@ List 10-20 most important API endpoints.
 
 **FR Traceability:**
 Create table mapping each FR to components that implement it:
+
 ```
 | FR ID | FR Name | Components | Notes |
 |-------|---------|------------|-------|
@@ -448,6 +492,7 @@ Create table mapping each FR to components that implement it:
 
 **NFR Traceability:**
 Map each NFR to architectural solutions:
+
 ```
 | NFR ID | NFR Name | Solution | Validation |
 |--------|----------|----------|------------|
@@ -457,6 +502,7 @@ Map each NFR to architectural solutions:
 
 **Trade-offs:**
 Document major trade-offs:
+
 ```
 **Decision:** Use microservices architecture
 **Trade-off:**
@@ -476,6 +522,7 @@ Document major trade-offs:
 3. **Determine output path:** `{output_folder}/architecture-{project-name}-{date}.md`
 4. **Write document** using Write tool
 5. **Display summary:**
+
    ```
    ✓ Architecture Created!
 
@@ -513,6 +560,7 @@ Document major trade-offs:
 ## Update Status
 
 Per `helpers.md#Update-Workflow-Status`:
+
 1. Update `architecture` status to file path
 2. Save
 
@@ -555,26 +603,31 @@ Implementation teams have everything needed to build successfully!
 ## Tips for Effective Architecture
 
 **Start with NFRs:**
+
 - NFRs drive architecture more than FRs
 - Identify architectural drivers early
 - Design for constraints first
 
 **Keep it Simple:**
+
 - Simplest solution that meets requirements
 - Avoid premature optimization
 - Don't over-engineer for Level 2 projects
 
 **Document Decisions:**
+
 - Every major choice needs a "why"
 - Trade-offs should be explicit
 - Future readers need context
 
 **Think in Layers:**
+
 - Clear separation of concerns
 - Loose coupling between layers
 - High cohesion within layers
 
 **Design for Change:**
+
 - Identify likely changes
 - Make those areas pluggable
 - But don't abstract everything

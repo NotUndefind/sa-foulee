@@ -17,6 +17,7 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 **Purpose:** Create comprehensive product vision and high-level requirements.
 
 **Output:** Product brief document with:
+
 - Problem statement
 - Target users
 - Value proposition
@@ -35,6 +36,7 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 **Purpose:** Structured ideation session for features and solutions.
 
 **Output:** Brainstorming session notes with:
+
 - Problem exploration
 - Solution ideas
 - Feature concepts
@@ -49,6 +51,7 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 **Purpose:** Market analysis, competitive research, technical investigation.
 
 **Output:** Research report with:
+
 - Market analysis
 - Competitor comparison
 - Technical feasibility
@@ -73,6 +76,7 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 **Purpose:** Comprehensive product requirements for multi-feature projects.
 
 **Output:** PRD document with:
+
 - Executive summary
 - User stories
 - Functional requirements
@@ -89,6 +93,7 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 **Optional for:** Level 0 projects
 
 **When to choose PRD over Tech Spec:**
+
 - Multiple features
 - Stakeholder alignment needed
 - Product perspective important
@@ -99,6 +104,7 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 **Purpose:** Technical design for single features or components.
 
 **Output:** Tech spec document with:
+
 - Technical overview
 - Implementation approach
 - API contracts
@@ -112,6 +118,7 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 **Optional for:** Level 2+ projects (supplement to PRD)
 
 **When to choose Tech Spec over PRD:**
+
 - Single feature
 - Technical focus
 - Limited scope
@@ -122,6 +129,7 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 **Purpose:** Design user interface and user experience.
 
 **Output:** UX design document with:
+
 - User flows
 - Wireframes
 - UI mockups
@@ -151,6 +159,7 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 **Purpose:** Design system architecture, components, and integrations.
 
 **Output:** Architecture document with:
+
 - System overview
 - Component design
 - Data flow
@@ -167,6 +176,7 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 **Optional for:** Level 0-1 with architectural impact
 
 **Content varies by level:**
+
 - Level 2: Component architecture, basic integrations
 - Level 3: Comprehensive system design, multiple integrations
 - Level 4: Enterprise architecture, platform design, infrastructure
@@ -176,6 +186,7 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 **Purpose:** Validate architecture against requirements before implementation.
 
 **Output:** Gate check report with:
+
 - Requirements coverage
 - Risk assessment
 - Technical debt analysis
@@ -202,6 +213,7 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 **Purpose:** Break down requirements into epics and stories, plan sprints.
 
 **Output:**
+
 - Sprint plan with epics and stories
 - sprint-status.yaml tracking file
 - Story files in docs/stories/
@@ -213,6 +225,7 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 **Simplified for:** Level 0 (single story, no sprint)
 
 **Generates:**
+
 - Epics (Level 1+)
 - User stories with acceptance criteria
 - Story point estimates
@@ -223,6 +236,7 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 **Purpose:** Create individual user story with details.
 
 **Output:** Story file (docs/stories/story-{epic}-{id}.md) with:
+
 - User story format
 - Acceptance criteria
 - Tasks breakdown
@@ -240,6 +254,7 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 **Purpose:** Implement a specific story with code generation.
 
 **Output:**
+
 - Code implementation
 - Tests
 - Documentation
@@ -250,6 +265,7 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 **Required for:** Story implementation
 
 **Process:**
+
 1. Read story file
 2. Implement code
 3. Write tests
@@ -274,19 +290,20 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 
 ### Level 0: Single Atomic Change (1 story)
 
-| Phase | Workflow | Status |
-|-------|----------|--------|
-| 1 | Product Brief | Optional |
-| 1 | Research | Optional |
-| 2 | PRD | Optional |
-| 2 | Tech Spec | **Required** |
-| 3 | Architecture | Skip |
-| 4 | Sprint Planning | Simplified (single story) |
-| 4 | Dev Story | **Required** |
+| Phase | Workflow        | Status                    |
+| ----- | --------------- | ------------------------- |
+| 1     | Product Brief   | Optional                  |
+| 1     | Research        | Optional                  |
+| 2     | PRD             | Optional                  |
+| 2     | Tech Spec       | **Required**              |
+| 3     | Architecture    | Skip                      |
+| 4     | Sprint Planning | Simplified (single story) |
+| 4     | Dev Story       | **Required**              |
 
 **Typical flow:** Tech Spec → Single Story → Implementation
 
 **Example projects:**
+
 - Bug fix
 - Configuration change
 - Small UI tweak
@@ -296,21 +313,22 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 
 ### Level 1: Small Feature (1-10 stories)
 
-| Phase | Workflow | Status |
-|-------|----------|--------|
-| 1 | Product Brief | Recommended |
-| 1 | Research | Optional |
-| 2 | PRD | Recommended |
-| 2 | Tech Spec | **Required** |
-| 2 | UX Design | Optional |
-| 3 | Architecture | Optional |
-| 4 | Sprint Planning | **Required** |
-| 4 | Create Story | **Required** (multiple) |
-| 4 | Dev Story | **Required** |
+| Phase | Workflow        | Status                  |
+| ----- | --------------- | ----------------------- |
+| 1     | Product Brief   | Recommended             |
+| 1     | Research        | Optional                |
+| 2     | PRD             | Recommended             |
+| 2     | Tech Spec       | **Required**            |
+| 2     | UX Design       | Optional                |
+| 3     | Architecture    | Optional                |
+| 4     | Sprint Planning | **Required**            |
+| 4     | Create Story    | **Required** (multiple) |
+| 4     | Dev Story       | **Required**            |
 
 **Typical flow:** Product Brief → Tech Spec → Sprint Planning → Stories → Implementation
 
 **Example projects:**
+
 - New API endpoint
 - User profile page
 - Data export feature
@@ -320,23 +338,24 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 
 ### Level 2: Medium Feature Set (5-15 stories)
 
-| Phase | Workflow | Status |
-|-------|----------|--------|
-| 1 | Product Brief | Recommended |
-| 1 | Research | Recommended |
-| 2 | PRD | **Required** |
-| 2 | Tech Spec | Optional |
-| 2 | UX Design | Recommended |
-| 3 | Architecture | **Required** |
-| 3 | Gate Check | Optional |
-| 4 | Sprint Planning | **Required** |
-| 4 | Create Story | **Required** (multiple) |
-| 4 | Dev Story | **Required** |
-| 4 | Code Review | Recommended |
+| Phase | Workflow        | Status                  |
+| ----- | --------------- | ----------------------- |
+| 1     | Product Brief   | Recommended             |
+| 1     | Research        | Recommended             |
+| 2     | PRD             | **Required**            |
+| 2     | Tech Spec       | Optional                |
+| 2     | UX Design       | Recommended             |
+| 3     | Architecture    | **Required**            |
+| 3     | Gate Check      | Optional                |
+| 4     | Sprint Planning | **Required**            |
+| 4     | Create Story    | **Required** (multiple) |
+| 4     | Dev Story       | **Required**            |
+| 4     | Code Review     | Recommended             |
 
 **Typical flow:** Product Brief → PRD → Architecture → Sprint Planning → Stories → Implementation
 
 **Example projects:**
+
 - User authentication system
 - Payment integration
 - Dashboard with multiple widgets
@@ -346,22 +365,23 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 
 ### Level 3: Complex Integration (12-40 stories)
 
-| Phase | Workflow | Status |
-|-------|----------|--------|
-| 1 | Product Brief | **Required** |
-| 1 | Research | Recommended |
-| 2 | PRD | **Required** (detailed) |
-| 2 | UX Design | Recommended |
-| 3 | Architecture | **Required** (comprehensive) |
-| 3 | Gate Check | Recommended |
-| 4 | Sprint Planning | **Required** (multiple sprints) |
-| 4 | Create Story | **Required** (many) |
-| 4 | Dev Story | **Required** |
-| 4 | Code Review | **Required** |
+| Phase | Workflow        | Status                          |
+| ----- | --------------- | ------------------------------- |
+| 1     | Product Brief   | **Required**                    |
+| 1     | Research        | Recommended                     |
+| 2     | PRD             | **Required** (detailed)         |
+| 2     | UX Design       | Recommended                     |
+| 3     | Architecture    | **Required** (comprehensive)    |
+| 3     | Gate Check      | Recommended                     |
+| 4     | Sprint Planning | **Required** (multiple sprints) |
+| 4     | Create Story    | **Required** (many)             |
+| 4     | Dev Story       | **Required**                    |
+| 4     | Code Review     | **Required**                    |
 
 **Typical flow:** Product Brief → Research → PRD → Architecture → Gate Check → Multiple Sprints → Implementation
 
 **Example projects:**
+
 - Third-party API integration
 - Multi-tenant system
 - Real-time collaboration features
@@ -371,22 +391,23 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 
 ### Level 4: Enterprise Expansion (40+ stories)
 
-| Phase | Workflow | Status |
-|-------|----------|--------|
-| 1 | Product Brief | **Required** (detailed) |
-| 1 | Research | **Required** |
-| 2 | PRD | **Required** (extensive) |
-| 2 | UX Design | **Required** |
-| 3 | Architecture | **Required** (system-wide) |
-| 3 | Gate Check | **Required** |
-| 4 | Sprint Planning | **Required** (many sprints) |
-| 4 | Create Story | **Required** (extensive) |
-| 4 | Dev Story | **Required** |
-| 4 | Code Review | **Required** |
+| Phase | Workflow        | Status                      |
+| ----- | --------------- | --------------------------- |
+| 1     | Product Brief   | **Required** (detailed)     |
+| 1     | Research        | **Required**                |
+| 2     | PRD             | **Required** (extensive)    |
+| 2     | UX Design       | **Required**                |
+| 3     | Architecture    | **Required** (system-wide)  |
+| 3     | Gate Check      | **Required**                |
+| 4     | Sprint Planning | **Required** (many sprints) |
+| 4     | Create Story    | **Required** (extensive)    |
+| 4     | Dev Story       | **Required**                |
+| 4     | Code Review     | **Required**                |
 
 **Typical flow:** Product Brief → Research → PRD → UX Design → Architecture → Gate Check → Many Sprints → Implementation → Reviews
 
 **Example projects:**
+
 - Platform migration
 - Microservices architecture
 - Enterprise SaaS product
@@ -399,10 +420,12 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 ### Phase 1 → Phase 2
 
 **Can transition when:**
+
 - Product brief completed (if created), OR
 - User explicitly skips Phase 1
 
 **Blocking issues:**
+
 - None (Phase 1 is optional)
 
 **Recommendation:** Complete product brief for Level 2+ projects
@@ -412,10 +435,12 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 ### Phase 2 → Phase 3
 
 **Can transition when:**
+
 - PRD completed (Level 2+), OR
 - Tech Spec completed (Level 0-1)
 
 **Blocking issues:**
+
 - No planning document created
 - Planning document incomplete or invalid
 
@@ -426,10 +451,12 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 ### Phase 3 → Phase 4
 
 **Can transition when:**
+
 - Architecture completed (Level 2+), OR
 - Project is Level 0-1 (skip Phase 3)
 
 **Blocking issues:**
+
 - Level 2+ project without architecture
 - Architecture incomplete or not validated
 
@@ -440,11 +467,13 @@ Complete reference for all 4 BMAD phases, workflows, and project levels.
 ### Phase 4 Complete
 
 **Can transition when:**
+
 - All stories marked "done" in sprint-status.yaml
 - Code reviewed (if required)
 - Tests passing
 
 **Blocking issues:**
+
 - Incomplete stories
 - Failing tests
 - Unresolved blockers
@@ -584,10 +613,10 @@ Code Review → Iteration → Done
 
 ## Quick Reference Table
 
-| Project Type | Level | Required Workflows | Duration |
-|--------------|-------|-------------------|----------|
-| Bug fix | 0 | Tech Spec, Story | Hours |
-| Small feature | 1 | Tech Spec, Sprint, Stories | 1-5 days |
-| Feature set | 2 | PRD, Architecture, Sprint, Stories | 1-3 weeks |
-| Integration | 3 | Brief, PRD, Architecture, Sprints | 3-8 weeks |
-| Platform | 4 | Brief, Research, PRD, UX, Architecture, Sprints | 2+ months |
+| Project Type  | Level | Required Workflows                              | Duration  |
+| ------------- | ----- | ----------------------------------------------- | --------- |
+| Bug fix       | 0     | Tech Spec, Story                                | Hours     |
+| Small feature | 1     | Tech Spec, Sprint, Stories                      | 1-5 days  |
+| Feature set   | 2     | PRD, Architecture, Sprint, Stories              | 1-3 weeks |
+| Integration   | 3     | Brief, PRD, Architecture, Sprints               | 3-8 weeks |
+| Platform      | 4     | Brief, Research, PRD, UX, Architecture, Sprints | 2+ months |

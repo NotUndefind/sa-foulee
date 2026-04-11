@@ -20,12 +20,12 @@ afin que le site soit accessible au public sur l'URL officielle.
 
 - [x] `vercel.json` créé dans le repository (`frontend/vercel.json`)
 - [x] Build Next.js passe sans erreurs TypeScript en mode production (`npm run build`)
-- [ ] Projet Vercel connecté au repository GitHub *(étape externe — voir guide ci-dessous)*
-- [ ] Variable `NEXT_PUBLIC_API_URL` configurée (URL O2switch) *(étape externe)*
-- [ ] Variable `NEXT_PUBLIC_HELLOASSO_FORM_URL` configurée *(étape externe)*
-- [ ] Domaine personnalisé configuré (DNS mis à jour) *(étape externe)*
-- [ ] HTTPS actif et valide *(automatique via Vercel)*
-- [ ] Preview deployments fonctionnels sur les branches *(automatique après connexion repo)*
+- [ ] Projet Vercel connecté au repository GitHub _(étape externe — voir guide ci-dessous)_
+- [ ] Variable `NEXT_PUBLIC_API_URL` configurée (URL O2switch) _(étape externe)_
+- [ ] Variable `NEXT_PUBLIC_HELLOASSO_FORM_URL` configurée _(étape externe)_
+- [ ] Domaine personnalisé configuré (DNS mis à jour) _(étape externe)_
+- [ ] HTTPS actif et valide _(automatique via Vercel)_
+- [ ] Preview deployments fonctionnels sur les branches _(automatique après connexion repo)_
 
 ---
 
@@ -66,12 +66,12 @@ Ajout de `NEXT_PUBLIC_HELLOASSO_FORM_URL` manquante.
 
 Dans Vercel → Project Settings → Environment Variables, ajouter :
 
-| Variable | Environnement | Valeur |
-|----------|--------------|--------|
-| `NEXT_PUBLIC_API_URL` | Production | `https://api.[votre-domaine]/api/v1` |
-| `NEXT_PUBLIC_API_URL` | Preview | `https://api.[votre-domaine]/api/v1` |
-| `NEXT_PUBLIC_HELLOASSO_FORM_URL` | All | URL HelloAsso du formulaire |
-| `NEXT_PUBLIC_APP_URL` | Production | `https://[votre-domaine]` |
+| Variable                         | Environnement | Valeur                               |
+| -------------------------------- | ------------- | ------------------------------------ |
+| `NEXT_PUBLIC_API_URL`            | Production    | `https://api.[votre-domaine]/api/v1` |
+| `NEXT_PUBLIC_API_URL`            | Preview       | `https://api.[votre-domaine]/api/v1` |
+| `NEXT_PUBLIC_HELLOASSO_FORM_URL` | All           | URL HelloAsso du formulaire          |
+| `NEXT_PUBLIC_APP_URL`            | Production    | `https://[votre-domaine]`            |
 
 ### 4. Configurer le domaine personnalisé
 
@@ -90,6 +90,7 @@ Vérifier dans Vercel Dashboard → Deployments que les previews s'affichent bie
 
 **Note CORS :** Le backend Laravel doit autoriser les URLs preview Vercel.
 Pattern regex à ajouter dans `config/cors.php` :
+
 ```
 https://.*\.vercel\.app
 ```
@@ -117,6 +118,7 @@ curl -I https://[votre-domaine]  # doit retourner HTTP/2 200
 ## Progression
 
 **Historique :**
+
 - 2026-03-30 : Démarré — vercel.json créé, build validé, guide rédigé
 - Attente STORY-V2-D02 pour connaître l'URL API O2switch
 

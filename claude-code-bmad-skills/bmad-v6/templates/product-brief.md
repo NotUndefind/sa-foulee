@@ -146,4 +146,4 @@
 
 **This document was created using BMAD Method v6 - Phase 1 (Analysis)**
 
-*To continue: Run `/workflow-status` to see your progress and next recommended workflow.*
+_To continue: Run `/workflow-status` to see your progress and next recommended workflow._

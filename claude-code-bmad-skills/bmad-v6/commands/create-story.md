@@ -40,12 +40,14 @@ Approach: **Organized, pragmatic, detail-oriented.**
 ### Part 1: Story Identification
 
 **If story ID provided (e.g., "STORY-001"):**
+
 1. Load sprint plan
 2. Find story by ID
 3. Extract existing details (title, epic, points, basic description)
 4. Expand with full details
 
 **If description provided:**
+
 1. Generate next story ID (check sprint status for last ID)
 2. Ask user for epic/category
 3. Ask user for priority
@@ -56,6 +58,7 @@ Approach: **Organized, pragmatic, detail-oriented.**
 ### Part 2: Define User Story
 
 **Core user story format:**
+
 ```
 As a {user type}
 I want to {capability}
@@ -63,14 +66,17 @@ So that {benefit}
 ```
 
 **Ask user (if not from sprint plan):**
+
 > "Let's define the user story. Who is the user and what do they want to accomplish?"
 
 **Good user stories:**
+
 - As a **customer**, I want to **view my order history**, so that **I can track past purchases**
 - As an **administrator**, I want to **manage user roles**, so that **I can control access permissions**
 - As a **registered user**, I want to **reset my password**, so that **I can regain access if I forget it**
 
 **Bad user stories:**
+
 - "Implement user login" (not user-focused)
 - "Create database table" (too technical, no user value)
 - "Fix bug in checkout" (that's a bug fix, not a story)
@@ -86,30 +92,37 @@ So that {benefit}
 Ask: "What's the detailed context and scope for this story?"
 
 **Include:**
+
 - **Background:** Why is this needed? What problem does it solve?
 - **Scope:** What's included? What's explicitly out of scope?
 - **User flow:** Step-by-step what the user does
 
 **Example:**
+
 ```markdown
 ## Description
 
 ### Background
+
 Currently, users cannot recover their accounts if they forget passwords. This leads to support tickets and frustrated users. This story implements a self-service password reset flow.
 
 ### Scope
+
 **In scope:**
+
 - Email-based password reset link
 - Secure token generation (expires in 1 hour)
 - Password strength validation
 - Success confirmation
 
 **Out of scope:**
+
 - SMS-based reset (future enhancement)
 - Password history tracking
 - Account recovery via security questions
 
 ### User Flow
+
 1. User clicks "Forgot Password" on login page
 2. User enters email address
 3. System sends reset link to email
@@ -130,6 +143,7 @@ Currently, users cannot recover their accounts if they forget passwords. This le
 **Define testable acceptance criteria:**
 
 **Format:**
+
 ```markdown
 ## Acceptance Criteria
 
@@ -150,6 +164,7 @@ Currently, users cannot recover their accounts if they forget passwords. This le
 ```
 
 **Guidelines:**
+
 - Each criterion should be testable (pass/fail)
 - Use specific, measurable language
 - Cover happy path and error cases
@@ -169,6 +184,7 @@ Currently, users cannot recover their accounts if they forget passwords. This le
 Ask: "Any technical details developers should know?"
 
 **Include:**
+
 - **Components involved:** Which parts of the codebase
 - **APIs/endpoints:** New or modified APIs
 - **Database changes:** Schema changes, migrations
@@ -177,15 +193,18 @@ Ask: "Any technical details developers should know?"
 - **Security considerations:** Auth, encryption, validation
 
 **Example:**
-```markdown
+
+````markdown
 ## Technical Notes
 
 ### Components
+
 - **Backend:** User service, email service, auth service
 - **Frontend:** Login page, password reset pages (request, reset)
 - **Database:** users table (add reset_token, reset_token_expiry columns)
 
 ### API Endpoints
+
 - `POST /api/auth/request-password-reset` - Initiate reset
   - Input: { email }
   - Output: { success, message }
@@ -196,13 +215,16 @@ Ask: "Any technical details developers should know?"
   - Output: { valid, expired, message }
 
 ### Database Changes
+
 ```sql
 ALTER TABLE users ADD COLUMN reset_token VARCHAR(255);
 ALTER TABLE users ADD COLUMN reset_token_expiry TIMESTAMP;
 CREATE INDEX idx_reset_token ON users(reset_token);
 ```
+````
 
 ### Security Considerations
+
 - Generate cryptographically secure random tokens (use crypto.randomBytes)
 - Hash tokens before storing in database
 - Set token expiry to 1 hour
@@ -211,11 +233,13 @@ CREATE INDEX idx_reset_token ON users(reset_token);
 - Use HTTPS for all reset links
 
 ### Edge Cases
+
 - User requests multiple resets (invalidate previous tokens)
 - Reset link clicked after expiry (clear error message)
 - Email doesn't exist (don't reveal, generic success message)
 - Password doesn't meet requirements (clear validation errors)
-```
+
+````
 
 **Store as:** `{{technical_notes}}`
 
@@ -282,7 +306,7 @@ Ask: "How complex is this story? Let's estimate story points."
 - SendGrid API configured and tested
 - Password strength validation library installed (zxcvbn)
 - Email templates designed and approved
-```
+````
 
 **Store as:** `{{dependencies}}`
 
@@ -324,16 +348,19 @@ Ask: "How complex is this story? Let's estimate story points."
 ### Part 9: Additional Sections (Optional)
 
 **UI/UX Notes (if applicable):**
+
 - Wireframes or mockups
 - Design specifications
 - Accessibility requirements
 
 **Testing Strategy:**
+
 - Unit test scenarios
 - Integration test scenarios
 - Manual test checklist
 
 **Rollout Plan (if needed):**
+
 - Feature flags
 - Phased rollout
 - Rollback plan
@@ -427,6 +454,7 @@ So that {benefit}
 ## Progress Tracking
 
 **Status History:**
+
 - {date}: Created by {user}
 - {date}: Started by {developer}
 - {date}: Code review by {reviewer}
@@ -440,6 +468,7 @@ So that {benefit}
 ```
 
 **Save document:**
+
 - Path: `docs/stories/STORY-{ID}.md`
 - Use Write tool
 
@@ -450,12 +479,14 @@ So that {benefit}
 **If sprint status exists:**
 
 Per `helpers.md#Update-Sprint-Status`:
+
 1. Find story in sprint status YAML
 2. Update story status to "defined"
 3. Add story document path
 4. Save status file
 
 **If story is new:**
+
 1. Add to current sprint in sprint status
 2. Increment story count
 3. Add points to sprint total
@@ -514,6 +545,7 @@ Run /sprint-status
 ## Tips for Good Stories
 
 **INVEST criteria:**
+
 - **Independent:** Can be developed independently
 - **Negotiable:** Details can be discussed
 - **Valuable:** Delivers user value
@@ -522,6 +554,7 @@ Run /sprint-status
 - **Testable:** Has clear acceptance criteria
 
 **Common mistakes to avoid:**
+
 - Too technical (focus on user value, not implementation)
 - Too large (break down >8 point stories)
 - No acceptance criteria (how do you know it's done?)
