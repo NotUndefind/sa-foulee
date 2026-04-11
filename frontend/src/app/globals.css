@@ -78,7 +78,9 @@ input[type='radio'] {
 /* ── Bouton visibilité mot de passe ── */
 .password-toggle {
   color: #9f9f9f;
-  transition: color 0.15s, background 0.15s;
+  transition:
+    color 0.15s,
+    background 0.15s;
   border-radius: 0 0.5rem 0.5rem 0;
 }
 .password-toggle:hover {
