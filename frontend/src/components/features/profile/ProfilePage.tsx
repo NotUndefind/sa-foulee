@@ -107,6 +107,7 @@ export default function ProfilePage() {
       const updated = await updateProfile({ ...values, avatar: avatarFile ?? undefined })
       setUser(updated)
       setAvatarFile(null)
+      setAvatarPreview(null)
       setSaveSuccess(true)
       setTimeout(() => setSaveSuccess(false), 3000)
     } catch (err: unknown) {

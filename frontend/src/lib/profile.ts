@@ -16,6 +16,9 @@ export async function updateProfile(data: {
 }): Promise<User> {
   // Utiliser FormData pour l'upload d'avatar
   const formData = new FormData()
+  // Laravel ne parse pas $_POST/$_FILES pour les requêtes PATCH multipart/form-data (limite PHP).
+  // On utilise le method spoofing : POST + _method=PATCH.
+  formData.append('_method', 'PATCH')
   Object.entries(data).forEach(([key, value]) => {
     if (value !== undefined && value !== null) {
       formData.append(key, value as string | Blob)
@@ -26,7 +29,7 @@ export async function updateProfile(data: {
   const token = typeof window !== 'undefined' ? localStorage.getItem('auth_token') : null
 
   const res = await fetch(`${apiBase}/me`, {
-    method: 'PATCH',
+    method: 'POST',
     headers: {
       Accept: 'application/json',
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
