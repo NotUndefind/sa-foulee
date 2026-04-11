@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ $subject }}</title>
+  <title>404 – Page non trouvée</title>
   <style>
     body { margin: 0; padding: 0; background: #F8F8F8; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
     .wrapper { max-width: 600px; margin: 32px auto; }
