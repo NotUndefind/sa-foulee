@@ -60,6 +60,9 @@ jobs:
             git checkout dev
             git pull origin dev
 
+            echo "==> Aller dans le dossier backend"
+            cd backend
+
             echo "==> Installation des dépendances PHP (sans dev)"
             php $(which composer) install \
               --no-dev \
