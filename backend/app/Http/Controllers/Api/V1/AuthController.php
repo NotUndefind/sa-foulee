@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Notifications\WelcomeNotification;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
 
@@ -30,7 +31,11 @@ class AuthController extends Controller
 
         $token = $user->createToken('api')->plainTextToken;
 
-        $user->notify(new WelcomeNotification);
+        try {
+            $user->notify(new WelcomeNotification);
+        } catch (\Throwable $e) {
+            Log::error('WelcomeNotification failed for user ' . $user->id . ': ' . $e->getMessage());
+        }
 
         return response()->json([
             'user' => $this->formatUser($user),
