@@ -20,32 +20,32 @@ class AuthController extends Controller
     public function register(RegisterRequest $request): JsonResponse
     {
         $user = User::create([
-            "first_name" => $request->first_name,
-            "last_name" => $request->last_name,
-            "email" => $request->email,
-            "password" => Hash::make($request->password),
-            "consent_given_at" => now(),
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'consent_given_at' => now(),
         ]);
 
-        $user->assignRole("member");
+        $user->assignRole('member');
 
-        $token = $user->createToken("api")->plainTextToken;
+        $token = $user->createToken('api')->plainTextToken;
 
         try {
-            $user->notify(new WelcomeNotification());
+            $user->notify(new WelcomeNotification);
         } catch (\Throwable $e) {
             Log::error(
-                "WelcomeNotification failed for user " .
-                    $user->id .
-                    ": " .
+                'WelcomeNotification failed for user '.
+                    $user->id.
+                    ': '.
                     $e->getMessage(),
             );
         }
 
         return response()->json(
             [
-                "user" => $this->formatUser($user),
-                "token" => $token,
+                'user' => $this->formatUser($user),
+                'token' => $token,
             ],
             201,
         );
@@ -53,22 +53,22 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request): JsonResponse
     {
-        $user = User::where("email", $request->email)->first();
+        $user = User::where('email', $request->email)->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
+        if (! $user || ! Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
-                "email" => [
+                'email' => [
                     "L'adresse e-mail ou le mot de passe est incorrect.",
                 ],
             ]);
         }
 
         // Révoquer les anciens tokens de l'appareil si besoin (optionnel)
-        $token = $user->createToken("api")->plainTextToken;
+        $token = $user->createToken('api')->plainTextToken;
 
         return response()->json([
-            "user" => $this->formatUser($user),
-            "token" => $token,
+            'user' => $this->formatUser($user),
+            'token' => $token,
         ]);
     }
 
@@ -77,17 +77,16 @@ class AuthController extends Controller
         // Révoquer uniquement le token courant
         request()->user()->currentAccessToken()->delete();
 
-        return response()->json(["message" => "Déconnexion réussie."]);
+        return response()->json(['message' => 'Déconnexion réussie.']);
     }
 
     public function forgotPassword(ForgotPasswordRequest $request): JsonResponse
     {
-        $status = Password::sendResetLink($request->only("email"));
+        $status = Password::sendResetLink($request->only('email'));
 
         // Toujours renvoyer 200 pour ne pas révéler si l'email existe
         return response()->json([
-            "message" =>
-                "Si un compte existe pour cette adresse, un e-mail de réinitialisation a été envoyé.",
+            'message' => 'Si un compte existe pour cette adresse, un e-mail de réinitialisation a été envoyé.',
         ]);
     }
 
@@ -95,13 +94,13 @@ class AuthController extends Controller
     {
         $status = Password::reset(
             $request->only(
-                "email",
-                "password",
-                "password_confirmation",
-                "token",
+                'email',
+                'password',
+                'password_confirmation',
+                'token',
             ),
             function (User $user, string $password) {
-                $user->forceFill(["password" => Hash::make($password)])->save();
+                $user->forceFill(['password' => Hash::make($password)])->save();
                 // Révoquer tous les tokens après reset
                 $user->tokens()->delete();
             },
@@ -109,14 +108,14 @@ class AuthController extends Controller
 
         if ($status !== Password::PASSWORD_RESET) {
             throw ValidationException::withMessages([
-                "token" => [
-                    "Ce lien de réinitialisation est invalide ou a expiré.",
+                'token' => [
+                    'Ce lien de réinitialisation est invalide ou a expiré.',
                 ],
             ]);
         }
 
         return response()->json([
-            "message" => "Mot de passe réinitialisé avec succès.",
+            'message' => 'Mot de passe réinitialisé avec succès.',
         ]);
     }
 
@@ -125,11 +124,11 @@ class AuthController extends Controller
     private function formatUser(User $user): array
     {
         return [
-            "id" => $user->id,
-            "first_name" => $user->first_name,
-            "last_name" => $user->last_name,
-            "email" => $user->email,
-            "roles" => $user->getRoleNames(),
+            'id' => $user->id,
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
+            'email' => $user->email,
+            'roles' => $user->getRoleNames(),
         ];
     }
 }
