@@ -479,7 +479,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   href === '/tableau-de-bord/leaderboard' && !leaderboardEnabled
                 return (
                   <li key={href}>
-                    <Link href={href} className={`sf-nav-link${active ? 'active' : ''}`}>
+                    <Link href={href} className={`sf-nav-link\${active ? ' active' : ''}`}>
                       <span style={{ opacity: active ? 1 : 0.7, flexShrink: 0 }}>
                         <Icon active={active} />
                       </span>
@@ -527,7 +527,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                       <li>
                         <Link
                           href="/tableau-de-bord/inventaire"
-                          className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/inventaire') ? 'active' : ''}`}
+                          className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/inventaire') ? ' active' : ''}`}
                         >
                           <span
                             style={{
@@ -543,7 +543,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                       <li>
                         <Link
                           href="/tableau-de-bord/budget"
-                          className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/budget') ? 'active' : ''}`}
+                          className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/budget') ? ' active' : ''}`}
                         >
                           <span
                             style={{
@@ -561,7 +561,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   <li>
                     <Link
                       href="/tableau-de-bord/admin"
-                      className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/admin') ? 'active' : ''}`}
+                      className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/admin') ? ' active' : ''}`}
                     >
                       <span
                         style={{
@@ -577,7 +577,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   <li>
                     <Link
                       href="/tableau-de-bord/newsletter"
-                      className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/newsletter') ? 'active' : ''}`}
+                      className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/newsletter') ? ' active' : ''}`}
                     >
                       <span
                         style={{
@@ -593,7 +593,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   <li>
                     <Link
                       href="/tableau-de-bord/admin/parametres"
-                      className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/admin/parametres') ? 'active' : ''}`}
+                      className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/admin/parametres') ? ' active' : ''}`}
                     >
                       <span
                         style={{
@@ -711,7 +711,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               const active =
                 pathname === href || (href !== '/tableau-de-bord' && pathname.startsWith(href))
               return (
-                <Link key={href} href={href} className={`sf-mobile-link${active ? 'active' : ''}`}>
+                <Link key={href} href={href} className={`sf-mobile-link${active ? ' active' : ''}`}>
                   {active && <span className="sf-mobile-dot" />}
                   <span style={{ marginTop: active ? '4px' : '0' }}>
                     <Icon active={active} />
