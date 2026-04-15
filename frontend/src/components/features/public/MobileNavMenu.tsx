@@ -75,7 +75,7 @@ export default function MobileNavMenu() {
   return (
     <Link
       href="/connexion"
-      className="md:hidden"
+      className="md:hidden flex items-center"
       style={{
         fontSize: '0.875rem',
         fontWeight: 700,
@@ -88,8 +88,6 @@ export default function MobileNavMenu() {
         whiteSpace: 'nowrap',
         fontFamily: "'Baloo 2', sans-serif",
         minHeight: '44px',
-        display: 'flex',
-        alignItems: 'center',
       }}
     >
       Connexion

@@ -1,7 +1,7 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import PublicNavUser from '@/components/features/public/PublicNavUser'
 import MobileNavMenu from '@/components/features/public/MobileNavMenu'
+import PublicNavUser from '@/components/features/public/PublicNavUser'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -73,10 +73,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
           {/* Right side */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
             {/* Desktop : liens nav + auth (masqués sur mobile) */}
-            <nav
-              className="hidden md:flex items-center"
-              style={{ gap: '1.75rem' }}
-            >
+            <nav className="hidden items-center md:flex" style={{ gap: '1.75rem' }}>
               <Link href="/activites" className="sF-nav-link">
                 Activités
               </Link>
@@ -84,7 +81,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
                 Blog
               </Link>
             </nav>
-            <div className="hidden md:flex items-center">
+            <div className="hidden items-center md:flex">
               <PublicNavUser />
             </div>
             {/* Mobile : hamburger + drawer */}
