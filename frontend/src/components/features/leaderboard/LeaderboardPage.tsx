@@ -3,6 +3,7 @@
 import { useToast } from '@/components/ui/Toast'
 import {
   addPerformance,
+  deletePerformance,
   getLeaderboard,
   getUserPerformances,
   type LeaderboardPeriod,
@@ -119,6 +120,26 @@ function IconEmptyFlag() {
     >
       <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
       <line x1="4" y1="22" x2="4" y2="15" />
+    </svg>
+  )
+}
+
+function IconTrash() {
+  return (
+    <svg
+      width={15}
+      height={15}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <polyline points="3 6 5 6 21 6" />
+      <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+      <path d="M10 11v6M14 11v6" />
+      <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
     </svg>
   )
 }
@@ -358,6 +379,7 @@ export default function LeaderboardPage() {
   const [isDisabled] = useState(false)
   const [showForm, setShowForm] = useState(false)
   const [tab, setTab] = useState<'leaderboard' | 'my-perfs'>('leaderboard')
+  const [deletingId, setDeletingId] = useState<number | null>(null)
 
   const fetchLeaderboard = useCallback(async () => {
     setLbLoading(true)
@@ -406,6 +428,29 @@ export default function LeaderboardPage() {
     )
     setShowForm(false)
     setTab('my-perfs')
+  }
+
+  const handleDelete = async (perf: Performance) => {
+    try {
+      await deletePerformance(perf.id)
+      setPerformances((prev) => prev.filter((p) => p.id !== perf.id))
+      setPerfMeta((m) =>
+        m
+          ? {
+              ...m,
+              total: m.total - 1,
+              total_sessions: m.total_sessions - 1,
+              total_distance: m.total_distance - perf.distance_km,
+            }
+          : m
+      )
+      fetchLeaderboard()
+      toast('Performance supprimée.', 'success')
+    } catch {
+      toast('Erreur lors de la suppression.', 'error')
+    } finally {
+      setDeletingId(null)
+    }
   }
 
   const myRank = user ? entries.find((e) => e.user.id === user.id) : null
@@ -614,11 +659,13 @@ export default function LeaderboardPage() {
                     <>
                       {entries.length >= 3 && <Podium entries={entries} />}
 
+                      <div style={{ overflowX: 'auto' }}>
                       <div
                         className="overflow-hidden rounded-2xl bg-white"
                         style={{
                           boxShadow: '0 2px 12px rgba(192,48,46,0.07)',
                           border: '1px solid rgba(192,48,46,0.07)',
+                          minWidth: '360px',
                         }}
                       >
                         <div
@@ -740,6 +787,7 @@ export default function LeaderboardPage() {
                           )
                         })}
                       </div>
+                      </div>
                     </>
                   )}
                 </div>
@@ -857,17 +905,19 @@ export default function LeaderboardPage() {
                           Durée
                         </div>
                         <div
-                          className="col-span-3 hidden text-right text-[11px] font-bold tracking-wider uppercase sm:block"
+                          className="col-span-2 hidden text-right text-[11px] font-bold tracking-wider uppercase sm:block"
                           style={{ color: '#7F7F7F' }}
                         >
                           Allure
                         </div>
+                        <div className="col-span-3 sm:col-span-1" />
                       </div>
                       {performances.map((p, i) => {
                         const pace =
                           p.duration_sec > 0 && p.distance_km > 0
                             ? Math.round(p.duration_sec / p.distance_km)
                             : null
+                        const isConfirming = deletingId === p.id
                         return (
                           <div
                             key={p.id}
@@ -896,7 +946,7 @@ export default function LeaderboardPage() {
                             >
                               {formatDuration(p.duration_sec)}
                             </div>
-                            <div className="col-span-3 hidden text-right sm:block">
+                            <div className="col-span-2 hidden text-right sm:block">
                               {pace ? (
                                 <span
                                   className="rounded-full px-2 py-0.5 text-[11px] font-semibold"
@@ -906,6 +956,46 @@ export default function LeaderboardPage() {
                                 </span>
                               ) : (
                                 '—'
+                              )}
+                            </div>
+                            <div className="col-span-3 flex justify-end sm:col-span-1">
+                              {isConfirming ? (
+                                <div className="flex items-center gap-1">
+                                  <button
+                                    onClick={() => handleDelete(p)}
+                                    className="rounded-lg px-2 py-1 text-[10px] font-bold text-white transition"
+                                    style={{ background: '#FB3936' }}
+                                  >
+                                    Oui
+                                  </button>
+                                  <button
+                                    onClick={() => setDeletingId(null)}
+                                    className="rounded-lg px-2 py-1 text-[10px] font-medium transition"
+                                    style={{
+                                      color: '#7F7F7F',
+                                      border: '1px solid rgba(192,48,46,0.15)',
+                                    }}
+                                  >
+                                    Non
+                                  </button>
+                                </div>
+                              ) : (
+                                <button
+                                  onClick={() => setDeletingId(p.id)}
+                                  className="flex items-center justify-center rounded-lg p-1.5 transition"
+                                  style={{ color: 'rgba(192,48,46,0.3)' }}
+                                  onMouseEnter={(e) => {
+                                    e.currentTarget.style.color = '#FB3936'
+                                    e.currentTarget.style.background = 'rgba(251,57,54,0.06)'
+                                  }}
+                                  onMouseLeave={(e) => {
+                                    e.currentTarget.style.color = 'rgba(192,48,46,0.3)'
+                                    e.currentTarget.style.background = 'transparent'
+                                  }}
+                                  title="Supprimer cette performance"
+                                >
+                                  <IconTrash />
+                                </button>
                               )}
                             </div>
                           </div>
