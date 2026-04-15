@@ -1138,10 +1138,14 @@ post_sprint:
       - story_id: "STORY-RES-10"
         title: "Dashboard pages intérieures overflow + formulaires mobile"
         points: 5
-        status: "not_started"
+        status: "completed"
+        completed_date: "2026-04-15"
         epic: "EPIC-R04"
         priority: "should_have"
-        assigned_to: null
+        assigned_to: "julesbourin"
+        files_modified:
+          - "frontend/src/components/features/leaderboard/LeaderboardPage.tsx"
+          - "frontend/src/components/features/profile/ProfilePage.tsx"
 
   - sprint_number: 24
     start_date: "2026-05-05"
