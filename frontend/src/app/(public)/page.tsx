@@ -229,10 +229,16 @@ export default async function PublicHomePage() {
           text-transform: uppercase;
           margin-bottom: 0.875rem;
         }
+
+        /* ── Hero responsive ── */
+        @media (max-width: 767px) {
+          .sF-hero-section { padding: 3rem 1.25rem 5rem !important; min-height: auto !important; }
+        }
       `}</style>
 
       {/* ─────────────────────────────────────────── HERO ── */}
       <section
+        className="sF-hero-section"
         style={{
           minHeight: 'calc(100vh - 68px)',
           display: 'flex',
@@ -311,7 +317,7 @@ export default async function PublicHomePage() {
 
         {/* Mascotte flottante */}
         <div
-          className="sF-deco"
+          className="sF-deco hidden md:block"
           style={{
             position: 'absolute',
             right: '4%',
@@ -432,7 +438,7 @@ export default async function PublicHomePage() {
             <span
               style={{
                 display: 'block',
-                fontSize: 'clamp(4.5rem, 14vw, 10rem)',
+                fontSize: 'clamp(2.5rem, 14vw, 10rem)',
                 fontWeight: 800,
                 color: '#FB3936',
                 letterSpacing: '-0.03em',
@@ -460,10 +466,7 @@ export default async function PublicHomePage() {
           </p>
 
           {/* CTAs */}
-          <div
-            className="sF-cta"
-            style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}
-          >
+          <div className="sF-cta flex flex-col items-center justify-center gap-3 md:flex-row">
             <Link href="/inscription" className="sF-btn">
               Rejoindre l&apos;association
               <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
