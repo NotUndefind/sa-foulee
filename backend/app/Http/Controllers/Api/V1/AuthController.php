@@ -13,6 +13,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
@@ -53,9 +55,26 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request): JsonResponse
     {
+        // ---- Account Lockout ----
+        $throttleKey = 'login.' . Str::lower($request->email);
+
+        if (RateLimiter::tooManyAttempts($throttleKey, 7)) {
+            $seconds = RateLimiter::availableIn($throttleKey);
+            $minutes = (int) ceil($seconds / 60);
+
+            return response()->json([
+                'message'     => "Trop de tentatives de connexion. Veuillez réessayer dans {$minutes} minute(s).",
+                'retry_after' => $seconds,
+            ], 429)->withHeaders([
+                'Retry-After' => $seconds,
+            ]);
+        }
+
+        // ---- Vérification credentials ----
         $user = User::where('email', $request->email)->first();
 
         if (! $user || ! Hash::check($request->password, $user->password)) {
+            RateLimiter::hit($throttleKey, 300); // 15 minutes
             throw ValidationException::withMessages([
                 'email' => [
                     "L'adresse e-mail ou le mot de passe est incorrect.",
@@ -63,7 +82,9 @@ class AuthController extends Controller
             ]);
         }
 
-        // Révoquer les anciens tokens de l'appareil si besoin (optionnel)
+        // ---- Succès ----
+        RateLimiter::clear($throttleKey);
+
         $token = $user->createToken('api')->plainTextToken;
 
         return response()->json([
