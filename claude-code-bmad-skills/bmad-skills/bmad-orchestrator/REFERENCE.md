@@ -3,6 +3,7 @@
 This document provides detailed reference information for the BMAD Orchestrator skill.
 
 ## Table of Contents
+
 - [Workflow Routing Logic](#workflow-routing-logic)
 - [Project Level Guidelines](#project-level-guidelines)
 - [Status File Structure](#status-file-structure)
@@ -53,22 +54,26 @@ Step 3: Return recommendation with explanation
 ### Phase Transition Rules
 
 **Phase 1 → Phase 2:**
+
 - Transition when: Product brief complete OR user explicitly skips analysis
 - Required before transition: None (Analysis is optional)
 
 **Phase 2 → Phase 3:**
+
 - Transition when: PRD or Tech Spec complete
 - Required before transition:
   - Level 0-1: Tech Spec complete
   - Level 2+: PRD complete
 
 **Phase 3 → Phase 4:**
+
 - Transition when: Architecture complete (if required)
 - Required before transition:
   - Level 0-1: None (skip Phase 3)
   - Level 2+: Architecture complete
 
 **Phase 4 completion:**
+
 - All stories in sprint-status.yaml marked as "done"
 - Final review/retrospective complete
 
@@ -77,17 +82,20 @@ Step 3: Return recommendation with explanation
 ### Level 0: Single Atomic Change (1 story)
 
 **Characteristics:**
+
 - Bug fix
 - Small configuration change
 - Single file modification
 - No breaking changes
 
 **Required workflows:**
+
 - Tech Spec (brief, 1-2 pages)
 - Single story
 - Direct implementation
 
 **Skip:**
+
 - Product brief (unless complex bug)
 - PRD
 - Architecture
@@ -98,20 +106,24 @@ Step 3: Return recommendation with explanation
 ### Level 1: Small Feature (1-10 stories)
 
 **Characteristics:**
+
 - New small feature
 - Limited scope
 - 1-3 files affected
 - Minimal dependencies
 
 **Required workflows:**
+
 - Tech Spec
 - Sprint planning (simple)
 
 **Optional but recommended:**
+
 - Product brief (if feature requires context)
 - PRD (if stakeholder alignment needed)
 
 **Skip:**
+
 - Architecture (unless significant design needed)
 
 **Typical timeline:** 1-5 days
@@ -119,17 +131,20 @@ Step 3: Return recommendation with explanation
 ### Level 2: Medium Feature Set (5-15 stories)
 
 **Characteristics:**
+
 - Multiple related features
 - 5-20 files affected
 - Some dependencies
 - Database changes likely
 
 **Required workflows:**
+
 - PRD
 - Architecture
 - Sprint planning
 
 **Optional:**
+
 - Product brief (recommended)
 - Tech spec (for complex components)
 
@@ -138,6 +153,7 @@ Step 3: Return recommendation with explanation
 ### Level 3: Complex Integration (12-40 stories)
 
 **Characteristics:**
+
 - System integration
 - Multiple subsystems
 - 20-50 files affected
@@ -145,6 +161,7 @@ Step 3: Return recommendation with explanation
 - Third-party integrations
 
 **Required workflows:**
+
 - Product brief (strongly recommended)
 - PRD (detailed)
 - Architecture (comprehensive)
@@ -155,6 +172,7 @@ Step 3: Return recommendation with explanation
 ### Level 4: Enterprise Expansion (40+ stories)
 
 **Characteristics:**
+
 - Major system overhaul
 - 50+ files affected
 - Multiple teams
@@ -162,6 +180,7 @@ Step 3: Return recommendation with explanation
 - Infrastructure updates
 
 **Required workflows:**
+
 - Product brief (required)
 - PRD (extensive)
 - Architecture (system-wide)
@@ -203,6 +222,7 @@ workflow_status:
 ### Updating Status
 
 When a workflow completes:
+
 1. Read docs/bmm-workflow-status.yaml
 2. Find workflow by name
 3. Update status to file path: `"docs/prd-myapp-2025-01-11.md"`
@@ -210,6 +230,7 @@ When a workflow completes:
 5. Write updated file
 
 Example Edit operation:
+
 ```yaml
 # Before
 - name: prd
@@ -229,6 +250,7 @@ Example Edit operation:
 ### Project Config (bmad/config.yaml)
 
 Complete schema:
+
 ```yaml
 # Project identification
 project_name: "string"
@@ -236,7 +258,7 @@ project_type: "web-app|mobile-app|api|game|library|other"
 project_level: 0-4
 
 # Output settings
-output_folder: "docs"  # relative to project root
+output_folder: "docs" # relative to project root
 stories_folder: "docs/stories"
 
 # Language settings
@@ -290,6 +312,7 @@ verbose_mode: false
 ### Reading Config Files
 
 **Load project config:**
+
 ```
 Tool: Read
 Path: {project-root}/bmad/config.yaml
@@ -298,6 +321,7 @@ Extract: project_name, project_type, project_level, output_folder
 ```
 
 **Load global config:**
+
 ```
 Tool: Read
 Path: ~/.claude/config/bmad/config.yaml
@@ -306,6 +330,7 @@ Extract: user_name, communication_language, default_output_folder
 ```
 
 **Merge configs:**
+
 ```
 Result = Global config + Project config (project overrides global)
 ```
@@ -313,6 +338,7 @@ Result = Global config + Project config (project overrides global)
 ### Writing Status Files
 
 **Create workflow status:**
+
 ```
 Tool: Write
 Path: {project-root}/{output_folder}/bmm-workflow-status.yaml
@@ -320,6 +346,7 @@ Content: Processed template with variables substituted
 ```
 
 **Update workflow status:**
+
 ```
 Tool: Edit
 Path: {project-root}/{output_folder}/bmm-workflow-status.yaml
@@ -330,6 +357,7 @@ New: status: "docs/prd-myapp-2025-01-11.md"
 ### Directory Creation
 
 **Initialize project structure:**
+
 ```
 Tool: Bash
 Commands:
@@ -383,6 +411,7 @@ Based on project level:
 5. Return processed content
 
 Example:
+
 ```yaml
 # Template
 project_name: "{{PROJECT_NAME}}"
@@ -411,6 +440,7 @@ Templates: {project-root}/bmad/agent-overrides/ (optional)
 Convention: `{workflow-name}-{project-name}-{date}.md`
 
 Examples:
+
 ```
 docs/product-brief-myapp-2025-01-11.md
 docs/prd-myapp-2025-01-11.md
@@ -423,6 +453,7 @@ docs/tech-spec-myapp-2025-01-11.md
 Convention: `story-{epic-id}-{story-id}.md`
 
 Examples:
+
 ```
 docs/stories/story-E001-S001.md
 docs/stories/story-E001-S002.md

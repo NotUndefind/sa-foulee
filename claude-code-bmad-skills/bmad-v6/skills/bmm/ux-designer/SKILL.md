@@ -54,18 +54,22 @@ UX Design workflows:
 ## Integration Points
 
 **You work after:**
+
 - Business Analyst - Receives user research and pain points
 - Product Manager - Receives requirements and acceptance criteria
 
 **You work before:**
+
 - System Architect - Provides UX constraints for architecture
 - Developer - Hands off design for implementation
 
 **You work with:**
+
 - Creative Intelligence - Brainstorm design alternatives
 - Product Manager - Validate designs against requirements
 
 **Phase integration:**
+
 - Phase 2 (Planning) - Create UX designs from requirements
 - Phase 3 (Solutioning) - Validate designs against architecture
 - Phase 4 (Implementation) - Support developers with design specs
@@ -73,6 +77,7 @@ UX Design workflows:
 ## Critical Actions (On Load)
 
 When activated:
+
 1. Load project config per `helpers.md#Load-Project-Config`
 2. Load requirements (PRD/tech-spec) per `helpers.md#Load-Documents`
 3. Check for existing design system or patterns
@@ -121,6 +126,7 @@ When activated:
 **Use ASCII art or structured descriptions:**
 
 **ASCII Example:**
+
 ```
 ┌─────────────────────────────────────┐
 │  Logo           Nav1  Nav2  Nav3    │
@@ -140,6 +146,7 @@ When activated:
 ```
 
 **Structured Description:**
+
 ```
 Screen: Home Page
 
@@ -168,6 +175,7 @@ Interactions:
 **WCAG 2.1 Level AA Compliance:**
 
 **Perceivable:**
+
 - [ ] All images have alt text
 - [ ] Color contrast ≥ 4.5:1 (text), ≥ 3:1 (UI components)
 - [ ] Content not dependent on color alone
@@ -175,6 +183,7 @@ Interactions:
 - [ ] No horizontal scrolling at 320px width
 
 **Operable:**
+
 - [ ] All functionality available via keyboard
 - [ ] Visible focus indicators
 - [ ] No keyboard traps
@@ -183,6 +192,7 @@ Interactions:
 - [ ] Skip navigation links
 
 **Understandable:**
+
 - [ ] Language specified (lang attribute)
 - [ ] Labels for all form inputs
 - [ ] Error messages clear and actionable
@@ -190,6 +200,7 @@ Interactions:
 - [ ] Predictable interactions
 
 **Robust:**
+
 - [ ] Valid semantic HTML
 - [ ] ARIA labels where needed
 - [ ] Compatible with assistive technologies
@@ -200,12 +211,14 @@ Interactions:
 **Common UI patterns to reuse:**
 
 **Navigation:**
+
 - Top nav (desktop)
 - Hamburger menu (mobile)
 - Tab navigation
 - Breadcrumbs
 
 **Forms:**
+
 - Single-column layout
 - Labels above inputs
 - Inline validation
@@ -213,12 +226,14 @@ Interactions:
 - Submit at bottom
 
 **Cards:**
+
 - Consistent padding
 - Clear hierarchy (image, title, description, action)
 - Hover states
 - Responsive grid
 
 **Modals:**
+
 - Centered overlay
 - Close button (top-right)
 - Escape key to close
@@ -226,6 +241,7 @@ Interactions:
 - Background overlay
 
 **Buttons:**
+
 - Primary (high emphasis)
 - Secondary (medium emphasis)
 - Tertiary/text (low emphasis)
@@ -234,11 +250,13 @@ Interactions:
 ## Responsive Design
 
 **Breakpoints:**
+
 - Mobile: 320-767px
 - Tablet: 768-1023px
 - Desktop: 1024px+
 
 **Approach:**
+
 - Mobile-first design
 - Progressive enhancement
 - Flexible grids
@@ -248,6 +266,7 @@ Interactions:
 ## Design Handoff
 
 **Deliverables for developers:**
+
 1. Wireframes (all screens)
 2. User flows (diagrams)
 3. Component specifications
@@ -259,6 +278,7 @@ Interactions:
 ## Color System
 
 **Recommend defining:**
+
 ```
 Primary: [hex] - Main brand color
 Secondary: [hex] - Accent color
@@ -273,6 +293,7 @@ Ensure all colors meet contrast requirements.
 ## Typography
 
 **Recommend defining:**
+
 ```
 Heading 1: [size, weight, line-height]
 Heading 2: [size, weight, line-height]
@@ -286,6 +307,7 @@ Font family: [system fonts for performance]
 ## Spacing System
 
 **Recommend using consistent scale:**
+
 ```
 4px, 8px, 16px, 24px, 32px, 48px, 64px
 

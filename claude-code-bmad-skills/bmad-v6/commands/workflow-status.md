@@ -16,6 +16,7 @@ You are executing the **Workflow Status** command to check project progress and 
 
 1. Check if `bmad/config.yaml` exists
 2. If NOT exists:
+
    ```
    ⚠ BMAD not initialized in this project.
 
@@ -23,6 +24,7 @@ You are executing the **Workflow Status** command to check project progress and 
 
    This will set up BMAD structure and guide you through project setup.
    ```
+
    Exit command.
 
 3. If exists → Continue
@@ -30,10 +32,12 @@ You are executing the **Workflow Status** command to check project progress and 
 ### Step 2: Load Configuration
 
 Load both configs per `helpers.md#Combined-Config-Load`:
+
 1. Project config from `bmad/config.yaml`
 2. Workflow status from `docs/bmm-workflow-status.yaml`
 
 Extract:
+
 - `project_name`
 - `project_type`
 - `project_level`
@@ -42,6 +46,7 @@ Extract:
 ### Step 3: Analyze Current State
 
 For each workflow in status array:
+
 1. Check `status` field
 2. If status is a file path (e.g., "docs/prd-myapp-2025-01-11.md") → **Completed** ✓
 3. If status is "required" → **Required, not started** ⚠
@@ -49,6 +54,7 @@ For each workflow in status array:
 5. If status is "skipped" → **Skipped** (no symbol)
 
 Determine current phase:
+
 - **Phase 1:** Any Phase 1 workflow in progress or last completed is Phase 1
 - **Phase 2:** Last completed was Phase 1, or Phase 2 in progress
 - **Phase 3:** Last completed was Phase 2, or Phase 3 in progress
@@ -59,6 +65,7 @@ Determine current phase:
 Use logic from `helpers.md#Determine-Next-Workflow`:
 
 **Logic:**
+
 1. If NO workflows completed → Recommend: `/product-brief` (Phase 1) or `/prd`/`/tech-spec` (Phase 2) based on level
 2. If product-brief complete, no PRD/tech-spec → Recommend: `/prd` (level 2+) or `/tech-spec` (level 0-1)
 3. If PRD/tech-spec complete, no architecture, level 2+ → Recommend: `/architecture`
@@ -85,12 +92,14 @@ Recommended Next Step:
 ```
 
 **Status Symbols:**
+
 - `✓` = Completed (green)
 - `⚠` = Required but not started (yellow/warning)
 - `→` = Current phase indicator
 - `-` = Optional/not required
 
 **Example Output:**
+
 ```
 Project: MyApp (Web Application, Level 2)
 Progress: 2/7 workflows completed
@@ -117,8 +126,10 @@ Recommended Next Step:
 ### Step 6: Check Sprint Status (If Phase 4)
 
 If current phase is 4 (Implementation):
+
 1. Load `docs/sprint-status.yaml` per `helpers.md#Load-Sprint-Status`
 2. Display sprint info:
+
    ```
    Sprint {sprint_number}: {sprint_goal}
    Epics: {total_epics}
@@ -146,6 +157,7 @@ What would you like to do?
 ```
 
 **If option 1 selected:**
+
 - Hand off to appropriate agent
 - For `/prd` → Product Manager
 - For `/product-brief` → Business Analyst
@@ -154,14 +166,17 @@ What would you like to do?
 - For `/dev-story` → Developer
 
 **If option 2:**
+
 - Show all available workflows by phase
 - Let user select
 
 **If option 3:**
+
 - Ask which workflow
 - Show detailed info (purpose, inputs, outputs, status)
 
 **If option 4:**
+
 - "Run /workflow-status anytime to check progress."
 
 ---
@@ -180,6 +195,7 @@ What would you like to do?
 
 **Brownfield Project (Existing Code):**
 If user mentions existing codebase:
+
 ```
 I see you have existing code. BMAD can still help!
 
@@ -192,6 +208,7 @@ Or run /workflow-init with focus on enhancement/refactor goals.
 ```
 
 **Level 0 Project:**
+
 ```
 Level 0 projects (single story) follow simplified path:
 Phase 1: Optional (can skip directly to Phase 2)
@@ -206,15 +223,18 @@ You can skip architecture and sprint planning for single-story work.
 ## Error Handling
 
 **Config missing:**
+
 - Inform user to run `/workflow-init`
 - Explain BMAD not set up
 
 **Status file corrupted:**
+
 - Show error with file path
 - Offer to reinitialize: "Run /workflow-init to reset"
 - Suggest manual fix if user has custom changes
 
 **Sprint status missing (Phase 4):**
+
 - Inform user to run `/sprint-planning` first
 - Explain sprint must be planned before stories
 

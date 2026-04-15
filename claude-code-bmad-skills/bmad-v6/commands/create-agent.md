@@ -35,9 +35,11 @@ Use TodoWrite to track: Gather Requirements → Design Agent → Define Workflow
 **Ask user:**
 
 **Q1: Agent Role**
+
 > "What role should this agent perform?"
 >
 > Examples:
+>
 > - QA Engineer (testing, quality assurance)
 > - DevOps Engineer (deployment, infrastructure)
 > - Security Analyst (security audits, pen testing)
@@ -47,9 +49,11 @@ Use TodoWrite to track: Gather Requirements → Design Agent → Define Workflow
 **Store as:** `{{agent_role}}`
 
 **Q2: Domain/Phase**
+
 > "Which BMAD phase or domain does this agent work in?"
 >
 > Options:
+>
 > 1. Phase 1 - Analysis
 > 2. Phase 2 - Planning
 > 3. Phase 3 - Solutioning
@@ -59,6 +63,7 @@ Use TodoWrite to track: Gather Requirements → Design Agent → Define Workflow
 **Store as:** `{{agent_phase}}`
 
 **Q3: Primary Responsibilities**
+
 > "What are the 3-7 key responsibilities of this agent?"
 >
 > Format as bulleted list. Be specific.
@@ -70,22 +75,27 @@ Use TodoWrite to track: Gather Requirements → Design Agent → Define Workflow
 ### Part 2: Define Core Principles
 
 **Explain:**
+
 > "Agents follow core principles that guide their approach. Let's define 3-5 principles for your agent."
 
 **Ask:**
+
 > "What principles should guide this agent?"
 >
 > Examples for QA Engineer:
+>
 > - Test Early - Find bugs before production
 > - Comprehensive Coverage - Test all critical paths
 > - Automate Everything - Manual testing doesn't scale
 >
 > Examples for DevOps:
+>
 > - Infrastructure as Code - Everything version controlled
 > - Automate Deployment - Humans don't deploy, systems do
 > - Monitor Everything - You can't improve what you don't measure
 
 **Format each:**
+
 ```
 **[Principle Name]** - [Description]
 ```
@@ -97,6 +107,7 @@ Use TodoWrite to track: Gather Requirements → Design Agent → Define Workflow
 ### Part 3: Define Workflows
 
 **Ask:**
+
 > "What workflows (commands) will this agent execute?"
 >
 > List 1-5 commands this agent will handle.
@@ -104,6 +115,7 @@ Use TodoWrite to track: Gather Requirements → Design Agent → Define Workflow
 > Format: /command-name - Description
 
 **Example for QA Engineer:**
+
 ```
 - /create-test-plan - Create comprehensive test plan
 - /execute-tests - Run test suite
@@ -118,14 +130,17 @@ Use TodoWrite to track: Gather Requirements → Design Agent → Define Workflow
 ### Part 4: Specify Integration Points
 
 **Ask:**
+
 > "Which other BMAD agents or tools will this agent work with?"
 
 **Probe:**
+
 - Works after which agents? (receives input from)
 - Works before which agents? (hands off to)
 - Works alongside which tools? (collaborates with)
 
 **Example for QA Engineer:**
+
 ```
 **Works after:**
 - Developer - Receives code for testing
@@ -145,9 +160,11 @@ Use TodoWrite to track: Gather Requirements → Design Agent → Define Workflow
 ### Part 5: Domain-Specific Guidance
 
 **Ask:**
+
 > "Any domain-specific guidance for LLMs executing this agent?"
 >
 > Examples:
+>
 > - Specific tools to use (pytest, Jest, Selenium)
 > - Frameworks to follow (BDD, TDD)
 > - Standards to apply (OWASP, PCI-DSS)
@@ -160,6 +177,7 @@ Use TodoWrite to track: Gather Requirements → Design Agent → Define Workflow
 ### Part 6: Generate Skill File
 
 **Determine file path:**
+
 ```
 Module: bmb (builder module for custom agents)
 Role: {{agent_role}} (normalized: lowercase, hyphens)
@@ -171,8 +189,8 @@ Path: ~/.claude/skills/bmad/bmb/{{role-name}}/SKILL.md
 ```markdown
 ---
 skill_id: bmad-bmb-{{role-name}}
-name: {{agent_role}}
-description: {{one-line-description}}
+name: { { agent_role } }
+description: { { one-line-description } }
 version: 1.0.0
 module: bmb
 ---
@@ -213,6 +231,7 @@ module: bmb
 ## Critical Actions (On Load)
 
 When activated:
+
 1. Load project config per `helpers.md#Load-Project-Config`
 2. Check workflow status per `helpers.md#Load-Workflow-Status`
 3. {{domain-specific-setup}}
@@ -230,12 +249,13 @@ When activated:
 - Update workflow status after completion
 
 ## Example Interaction
-
 ```
+
 User: /{{example-command}}
 
 {{agent_role}}:
 {{example-interaction}}
+
 ```
 
 **Remember:** {{key-reminder-for-agent}}
@@ -265,12 +285,14 @@ Show the skill file content and ask:
 ### Part 8: Save Skill File
 
 **Save to project (for review):**
+
 ```
 ./custom-agents/{{role-name}}/SKILL.md
 ```
 
 **Instructions for installation:**
-```
+
+````
 ✓ Custom Agent Created!
 
 Agent: {{agent_role}}
@@ -282,7 +304,7 @@ File: ./custom-agents/{{role-name}}/SKILL.md
    ```bash
    mkdir -p ~/.claude/skills/bmad/bmb/{{role-name}}
    cp ./custom-agents/{{role-name}}/SKILL.md ~/.claude/skills/bmad/bmb/{{role-name}}/
-   ```
+````
 
 2. **Restart Claude Code**
    New skills load on restart
@@ -295,6 +317,7 @@ File: ./custom-agents/{{role-name}}/SKILL.md
 - Create workflow commands: /create-workflow
 - Create templates: /create-template
 - Update BMad Master to route to this agent (if needed)
+
 ```
 
 ---
@@ -302,6 +325,7 @@ File: ./custom-agents/{{role-name}}/SKILL.md
 ## Recommend Next Steps
 
 ```
+
 ✓ Agent skill created!
 
 Next: Create workflow commands
@@ -310,6 +334,7 @@ Run /create-workflow to create the commands this agent executes.
 
 Recommended workflows for {{agent_role}}:
 {{suggested-workflows}}
+
 ```
 
 ---
@@ -358,3 +383,4 @@ Recommended workflows for {{agent_role}}:
 - Suggest logical next steps (creating workflows/templates)
 
 **Remember:** Custom agents extend BMAD's capabilities while maintaining its token-optimized, pattern-based architecture. They should feel native to BMAD, not like external plugins.
+```

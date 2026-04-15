@@ -13,6 +13,7 @@
 Ce plan couvre les **16 nouvelles stories** issues du PRD v3 (2026-03-30), réparties sur **5 sprints** d'une semaine. Les sprints v1 (1–8) et v2 (9–15) restent inchangés. La numérotation des sprints reprend à Sprint 16.
 
 **Métriques clés :**
+
 - Stories v3 : 16 stories
 - Points totaux : 48 points
 - Sprints planifiés : 5 (Sprint 16 → Sprint 20)
@@ -21,6 +22,7 @@ Ce plan couvre les **16 nouvelles stories** issues du PRD v3 (2026-03-30), répa
 - Livraison estimée : 2026-05-03
 
 **Priorité des epics :**
+
 1. **EPIC-FX** — Bugs bloquants (budget, leaderboard, inventaire, newsletter) → Sprint 16
 2. **EPIC-H** — Refonte page d'accueil (stats lisibles, nom asso, green purge) + **EPIC-EV** → Sprint 17
 3. **EPIC-BL** — Blog (upload média, suppression brouillons, fix submit) → Sprint 18
@@ -47,12 +49,14 @@ Je veux pouvoir enregistrer une dépense ou une recette sans erreur SQL,
 Afin de tenir les comptes de l'association à jour.
 
 **Critères d'acceptation :**
+
 - [ ] Une migration `add_receipt_url_to_budget_entries_table` est créée et exécutée
 - [ ] La colonne `receipt_url VARCHAR(500) NULLABLE` existe dans `budget_entries`
 - [ ] L'ajout d'une dépense/recette fonctionne (avec ou sans `receipt_url`)
 - [ ] Les entrées existantes ne sont pas modifiées
 
 **Notes techniques :**
+
 - Fichier : `backend/database/migrations/YYYY_add_receipt_url_to_budget_entries_table.php`
 - Commande : `$table->string('receipt_url', 500)->nullable()->after('description');`
 - Après migration : tester le formulaire budget complet
@@ -73,11 +77,13 @@ Je veux voir le classement s'afficher sans erreur,
 Afin de consulter les performances de l'association.
 
 **Critères d'acceptation :**
+
 - [ ] La page classement se charge sans erreur SQL
 - [ ] Le classement affiche les performances correctement
 - [ ] Aucun `->whereNull('performances.deleted_at')` dans `LeaderboardController`
 
 **Notes techniques :**
+
 - Fichier : `backend/app/Http/Controllers/Api/V1/LeaderboardController.php` ligne 38
 - Retirer : `->whereNull('performances.deleted_at')`
 - Le modèle `Performance` n'a pas `SoftDeletes`, la colonne n'existe pas
@@ -98,11 +104,13 @@ Je veux que l'export CSV des abonnés newsletter s'ouvre correctement dans Excel
 Afin de gérer la liste des abonnés sans problème d'encodage.
 
 **Critères d'acceptation :**
+
 - [ ] L'export CSV contient le BOM UTF-8 (`\xEF\xBB\xBF`) en début de fichier
 - [ ] Les prénoms et noms avec accents s'affichent correctement dans Excel
 - [ ] Le format est identique aux autres exports CSV du projet
 
 **Notes techniques :**
+
 - Fichier : `backend/app/Http/Controllers/Api/V1/NewsletterController.php` ligne 101
 - Ajouter : `$bom = "\xEF\xBB\xBF";` et préfixer la première ligne
 
@@ -122,6 +130,7 @@ Je veux que la carte "Créer le premier X" s'affiche uniquement quand aucun él�
 Afin de ne pas être induit en erreur quand un filtre masque des données existantes.
 
 **Critères d'acceptation :**
+
 - [ ] Blog : "Rédiger le premier article" uniquement si `meta.total === 0` (aucun article en base)
 - [ ] Événements : "Créer un événement" uniquement si aucun événement n'existe
 - [ ] Sessions : "Publier une session" uniquement si aucune session n'existe
@@ -130,6 +139,7 @@ Afin de ne pas être induit en erreur quand un filtre masque des données exista
 - [ ] Sans filtre + 0 résultat : afficher le CTA de création
 
 **Notes techniques :**
+
 - Utiliser `meta.total` (ou équivalent selon la structure de réponse API) comme source de vérité
 - Fichiers :
   - `frontend/src/components/features/blog/PostsPage.tsx` (ligne ~140)
@@ -154,6 +164,7 @@ Je veux pouvoir ajouter un équipement depuis le formulaire sans erreur,
 Afin de tenir l'inventaire de l'association à jour.
 
 **Critères d'acceptation :**
+
 - [ ] Un équipement peut être ajouté depuis le formulaire (test end-to-end)
 - [ ] Les catégories disponibles sont identiques frontend et backend
 - [ ] Les erreurs de validation backend sont affichées dans le formulaire frontend
@@ -161,6 +172,7 @@ Afin de tenir l'inventaire de l'association à jour.
 - [ ] La réponse d'erreur 422 est traitée côté frontend
 
 **Notes techniques :**
+
 - Investiguer le mismatch enum catégorie frontend/backend :
   - Backend accepte : `dossard,maillot,materiel,autre` (vérifier les accents !)
   - Frontend envoie : vérifier les valeurs dans `InventoryPage.tsx`
@@ -184,12 +196,14 @@ Je veux activer ou désactiver la newsletter depuis mon profil sans erreur,
 Afin de gérer mes préférences de communication.
 
 **Critères d'acceptation :**
+
 - [ ] Le toggle s'active et se désactive sans erreur 500 ou 422
 - [ ] L'état est persisté en base (`newsletter_subscribed_at` mis à jour)
 - [ ] Un toast de confirmation s'affiche après chaque changement
 - [ ] L'état initial du toggle est cohérent avec l'état en base
 
 **Notes techniques :**
+
 - Vérifier la route `PATCH /api/v1/me/newsletter` dans `api.php`
 - Vérifier que le middleware `auth:sanctum` est appliqué
 - Payload attendu : `{ "subscribed": true/false }`
@@ -216,6 +230,7 @@ Je veux voir les statistiques de l'association avec un fond lisible et des chiff
 Afin d'avoir une première impression professionnelle et honnête de l'association.
 
 **Critères d'acceptation :**
+
 - [ ] Endpoint `GET /api/v1/stats/homepage` créé et public (sans auth)
 - [ ] L'endpoint retourne `{ "member_count": N, "total_km": X }`
 - [ ] `member_count` = nombre d'utilisateurs actifs (non-bloqués)
@@ -228,6 +243,7 @@ Afin d'avoir une première impression professionnelle et honnête de l'associati
 - [ ] Ratio contraste ≥ 4.5:1 vérifié
 
 **Notes techniques :**
+
 - Backend : `backend/app/Http/Controllers/Api/V1/StatsController.php` (nouveau)
 - Route publique dans `api.php` : `Route::get('stats/homepage', [StatsController::class, 'homepage'])`
 - Frontend : `frontend/src/app/(public)/page.tsx` (lignes 512-588)
@@ -250,6 +266,7 @@ Je veux que la page d'accueil utilise uniquement la palette rouge/crème officie
 Afin de percevoir une identité visuelle cohérente.
 
 **Critères d'acceptation :**
+
 - [ ] Le fond du footer est `#1A1A1A` (remplace `#141F0C` vert)
 - [ ] Le gradient du hero ne contient plus `#DDE8D4` (remplacé par `#F5F0EB` ou `#FAF0EE`)
 - [ ] Le gradient complet : `linear-gradient(150deg, #FAFAFA 0%, #F5F0EB 60%, #FAF0EE 100%)`
@@ -257,6 +274,7 @@ Afin de percevoir une identité visuelle cohérente.
 - [ ] Les textes du footer utilisent `rgba(255,255,255,0.6)` et `rgba(255,255,255,0.8)`
 
 **Notes techniques :**
+
 - Fichier unique : `frontend/src/app/(public)/page.tsx`
 - Hero : lignes ~217-225 (gradient inline style)
 - Footer : lignes ~1036-1084 (fond + textes)
@@ -278,6 +296,7 @@ Je veux voir le nom complet "La Neuville TAF sa Foulée" partout dans l'applicat
 Afin de reconnaître correctement l'association.
 
 **Critères d'acceptation :**
+
 - [ ] Navbar publique : "La Neuville TAF sa Foulée" (ou logo seul)
 - [ ] Stats section : "La Neuville TAF sa Foulée, c'est"
 - [ ] Section how-to-join : "Rejoindre La Neuville TAF sa Foulée est simple..."
@@ -290,6 +309,7 @@ Afin de reconnaître correctement l'association.
 - [ ] Metadata `newsletter/page.tsx` : "Newsletter — La Neuville TAF sa Foulée"
 
 **Notes techniques :**
+
 - Fichiers :
   - `frontend/src/app/(public)/page.tsx` (lignes 547, 712, 838)
   - `frontend/src/app/(public)/layout.tsx` (ligne 52 — navbar brand)
@@ -318,6 +338,7 @@ Je veux comprendre immédiatement la différence entre un Événement et un Entr
 Afin de naviguer intuitivement dans le dashboard.
 
 **Critères d'acceptation :**
+
 - [ ] "Sessions" → "Entraînements" dans la sidebar du dashboard
 - [ ] Titre de page `/tableau-de-bord/sessions` affiché "Entraînements"
 - [ ] Description sous le titre Événements : "Sorties, courses et compétitions — inscrivez-vous et partagez des photos."
@@ -327,6 +348,7 @@ Afin de naviguer intuitivement dans le dashboard.
 - [ ] Les URLs restent inchangées (`/sessions`) — seulement l'affichage change
 
 **Notes techniques :**
+
 - Fichiers :
   - Dashboard sidebar layout (identifier le composant exact)
   - `frontend/src/app/(dashboard)/tableau-de-bord/sessions/page.tsx` (metadata)
@@ -354,6 +376,7 @@ Je veux pouvoir uploader une image ou une vidéo via l'API,
 Afin d'illustrer mes articles de blog.
 
 **Critères d'acceptation :**
+
 - [ ] Endpoint `POST /api/v1/uploads/media` créé (auth requise : admin/founder/coach/bureau)
 - [ ] Accepte un fichier multipart (`file`)
 - [ ] Images acceptées : `jpg`, `jpeg`, `png`, `webp` (max 5 Mo)
@@ -365,6 +388,7 @@ Afin d'illustrer mes articles de blog.
 - [ ] Les fichiers exécutables sont rejetés (`.php`, `.js`, etc.)
 
 **Notes techniques :**
+
 - Nouveau controller : `backend/app/Http/Controllers/Api/V1/MediaUploadController.php`
 - Réutiliser le pattern de `EventPhotoController` pour la gestion du fichier
 - Commande `php artisan storage:link` doit être exécutée si pas encore fait
@@ -386,6 +410,7 @@ Je veux uploader une image ou vidéo directement depuis mon ordinateur lors de l
 Afin d'illustrer mes articles sans passer par une URL externe.
 
 **Critères d'acceptation :**
+
 - [ ] Bouton "Ajouter une image" présent dans le formulaire (ouvre un file picker image)
 - [ ] Bouton "Ajouter une vidéo" présent dans le formulaire (ouvre un file picker vidéo)
 - [ ] Preview de l'image sélectionnée visible avant soumission (miniature)
@@ -398,6 +423,7 @@ Afin d'illustrer mes articles sans passer par une URL externe.
 - [ ] Les templates prédéfinis sont inchangés
 
 **Notes techniques :**
+
 - Fichier : `frontend/src/components/features/blog/PostForm.tsx`
 - Appel API : `POST /api/v1/uploads/media` avec `FormData`
 - Utiliser `useRef` pour le file input (évite les re-renders)
@@ -420,6 +446,7 @@ Je veux créer et publier un article en un seul geste sans gérer de date de pub
 Afin de simplifier le processus de publication.
 
 **Critères d'acceptation :**
+
 - [ ] Le champ "Date de publication" est retiré du formulaire de création
 - [ ] Le label "laisser vide pour brouillon" a disparu
 - [ ] Le bouton "Effacer" la date a disparu
@@ -431,6 +458,7 @@ Afin de simplifier le processus de publication.
 - [ ] Le bouton affiche un spinner pendant la soumission
 
 **Notes techniques :**
+
 - Frontend : `frontend/src/components/features/blog/PostForm.tsx` (lignes 260-300)
   - Retirer le bloc date de publication (datetime-local input + label + bouton Effacer)
   - Corriger le style du bouton submit (vérifier `bg-brand` vs inline style)
@@ -459,6 +487,7 @@ Je veux une table `settings` avec un modèle dédié,
 Afin de stocker les paramètres configurables de l'application.
 
 **Critères d'acceptation :**
+
 - [ ] Migration `create_settings_table` exécutée sans erreur
 - [ ] Table : `key` (string, unique), `value` (text, nullable), `updated_by` (FK users nullable), timestamps
 - [ ] Modèle `Setting` avec `Setting::get('key', $default)`, `Setting::set('key', $value, $userId)`, `Setting::getBool('key', $default)`
@@ -468,6 +497,7 @@ Afin de stocker les paramètres configurables de l'application.
 - [ ] Endpoint `PATCH /api/v1/admin/settings/{key}` (admin/founder) met à jour un setting
 
 **Notes techniques :**
+
 - `backend/database/migrations/YYYY_create_settings_table.php`
 - `backend/app/Models/Setting.php` — méthodes statiques `get`/`set`/`getBool`
 - `backend/database/seeders/SettingsSeeder.php` — ajouter dans `DatabaseSeeder`
@@ -491,6 +521,7 @@ Je veux activer ou désactiver le classement depuis une page de paramètres,
 Afin de contrôler les fonctionnalités exposées aux membres sans toucher au code.
 
 **Critères d'acceptation :**
+
 - [ ] Page `/tableau-de-bord/admin/parametres` accessible aux admins et founders
 - [ ] Toggle "Classement actif / inactif" visible sur cette page
 - [ ] La modification est persistée immédiatement via `PATCH /api/v1/admin/settings/leaderboard_enabled`
@@ -502,6 +533,7 @@ Afin de contrôler les fonctionnalités exposées aux membres sans toucher au co
 - [ ] Toast de confirmation après chaque changement
 
 **Notes techniques :**
+
 - Frontend :
   - `frontend/src/app/(dashboard)/tableau-de-bord/admin/parametres/page.tsx` (nouveau)
   - `frontend/src/components/features/admin/AdminSettingsPage.tsx` (nouveau)
@@ -532,6 +564,7 @@ Je veux voir un hero header inspirant et dynamique,
 Afin d'avoir envie de rejoindre l'association dès la première visite.
 
 **Critères d'acceptation :**
+
 - [ ] Nom sur 2 lignes : "La Neuville TAF" (petite taille, light) + "sa Foulée" (XXL, ultra-bold)
 - [ ] Formes décoratives animées (cercles/courbes) en rouge très transparent (`rgba(251,57,54,0.04–0.08)`)
 - [ ] Dégradé de fond chaud : `linear-gradient(150deg, #FAFAFA 0%, #F5F0EB 60%, #FAF0EE 100%)`
@@ -543,6 +576,7 @@ Afin d'avoir envie de rejoindre l'association dès la première visite.
 - [ ] Accessibilité : texte lisible sur fond, contrastes respectés
 
 **Notes techniques :**
+
 - Fichier : `frontend/src/app/(public)/page.tsx` (lignes 215-352)
 - Approche formes animées : `@keyframes` CSS ou Framer Motion si déjà utilisé
 - Formes : 3-5 cercles avec `border-radius: 50%`, `position: absolute`, `animation: pulse 6s ease-in-out infinite`
@@ -561,18 +595,19 @@ Afin d'avoir envie de rejoindre l'association dès la première visite.
 
 **Objectif :** Corriger tous les bugs bloquants identifiés (budget, leaderboard, inventaire, newsletter)
 
-| Story | Titre | Points | Priorité |
-|-------|-------|--------|----------|
-| STORY-V3-FX01 | Budget : migration `receipt_url` | 1 | Must Have |
-| STORY-V3-FX02 | Leaderboard : retirer `deleted_at` | 1 | Must Have |
-| STORY-V3-FX03 | Newsletter CSV : ajouter BOM UTF-8 | 1 | Must Have |
-| STORY-V3-FX04 | Empty state cards contextuelles | 3 | Must Have |
-| STORY-V3-FX05 | Inventaire : corriger formulaire ajout | 3 | Must Have |
-| STORY-V3-FX06 | Newsletter toggle profil : corriger | 2 | Should Have |
+| Story         | Titre                                  | Points | Priorité    |
+| ------------- | -------------------------------------- | ------ | ----------- |
+| STORY-V3-FX01 | Budget : migration `receipt_url`       | 1      | Must Have   |
+| STORY-V3-FX02 | Leaderboard : retirer `deleted_at`     | 1      | Must Have   |
+| STORY-V3-FX03 | Newsletter CSV : ajouter BOM UTF-8     | 1      | Must Have   |
+| STORY-V3-FX04 | Empty state cards contextuelles        | 3      | Must Have   |
+| STORY-V3-FX05 | Inventaire : corriger formulaire ajout | 3      | Must Have   |
+| STORY-V3-FX06 | Newsletter toggle profil : corriger    | 2      | Should Have |
 
 **Total :** 11 pts
 
 **Risques :**
+
 - FX05 : le bug inventaire peut cacher un problème côté frontend ou backend, laisser du temps de débogage
 
 ---
@@ -581,16 +616,17 @@ Afin d'avoir envie de rejoindre l'association dès la première visite.
 
 **Objectif :** Corriger la page d'accueil (stats lisibles, teintes vertes, nom asso) et clarifier la distinction Events/Sessions
 
-| Story | Titre | Points | Priorité |
-|-------|-------|--------|----------|
-| STORY-V3-H01 | Stats dynamiques + fix couleur fond | 5 | Must Have |
-| STORY-V3-H03 | Supprimer teintes vertes résiduelles | 2 | Must Have |
-| STORY-V3-H04 | Correction nom asso (tous endroits) | 2 | Must Have |
-| STORY-V3-EV01 | Renommer Sessions → Entraînements | 2 | Should Have |
+| Story         | Titre                                | Points | Priorité    |
+| ------------- | ------------------------------------ | ------ | ----------- |
+| STORY-V3-H01  | Stats dynamiques + fix couleur fond  | 5      | Must Have   |
+| STORY-V3-H03  | Supprimer teintes vertes résiduelles | 2      | Must Have   |
+| STORY-V3-H04  | Correction nom asso (tous endroits)  | 2      | Must Have   |
+| STORY-V3-EV01 | Renommer Sessions → Entraînements    | 2      | Should Have |
 
 **Total :** 11 pts
 
 **Risques :**
+
 - H01 : l'endpoint backend est simple mais le fetch côté Server Component doit être testé
 
 ---
@@ -599,15 +635,16 @@ Afin d'avoir envie de rejoindre l'association dès la première visite.
 
 **Objectif :** Enrichir le blog avec l'upload média et simplifier la création d'articles
 
-| Story | Titre | Points | Priorité |
-|-------|-------|--------|----------|
-| STORY-V3-BL01 | Backend endpoint upload média | 3 | Must Have |
-| STORY-V3-BL02 | Frontend upload images/vidéos | 5 | Must Have |
-| STORY-V3-BL03 | Supprimer brouillons + fix submit | 2 | Must Have |
+| Story         | Titre                             | Points | Priorité  |
+| ------------- | --------------------------------- | ------ | --------- |
+| STORY-V3-BL01 | Backend endpoint upload média     | 3      | Must Have |
+| STORY-V3-BL02 | Frontend upload images/vidéos     | 5      | Must Have |
+| STORY-V3-BL03 | Supprimer brouillons + fix submit | 2      | Must Have |
 
 **Total :** 10 pts (1 pt de buffer)
 
 **Risques :**
+
 - BL02 dépend de BL01 : faire BL01 en début de sprint
 - Vérifier les limites PHP upload sur O2switch (`upload_max_filesize`)
 
@@ -617,14 +654,15 @@ Afin d'avoir envie de rejoindre l'association dès la première visite.
 
 **Objectif :** Donner aux admins le contrôle sur les fonctionnalités (settings + toggle classement)
 
-| Story | Titre | Points | Priorité |
-|-------|-------|--------|----------|
-| STORY-V3-A01 | Backend infrastructure settings | 5 | Must Have |
-| STORY-V3-A02 | Toggle classement (admin + frontend) | 5 | Must Have |
+| Story        | Titre                                | Points | Priorité  |
+| ------------ | ------------------------------------ | ------ | --------- |
+| STORY-V3-A01 | Backend infrastructure settings      | 5      | Must Have |
+| STORY-V3-A02 | Toggle classement (admin + frontend) | 5      | Must Have |
 
 **Total :** 10 pts (1 pt de buffer)
 
 **Risques :**
+
 - A02 dépend de A01 : faire A01 le lundi/mardi
 - La propagation du `leaderboard_enabled` dans la sidebar nécessite un state management soigné
 
@@ -634,9 +672,9 @@ Afin d'avoir envie de rejoindre l'association dès la première visite.
 
 **Objectif :** Redesign créatif du hero header
 
-| Story | Titre | Points | Priorité |
-|-------|-------|--------|----------|
-| STORY-V3-H02 | Hero header redesign (illustration dynamique) | 5 | Should Have |
+| Story        | Titre                                         | Points | Priorité    |
+| ------------ | --------------------------------------------- | ------ | ----------- |
+| STORY-V3-H02 | Hero header redesign (illustration dynamique) | 5      | Should Have |
 
 **Total :** 5 pts (sprint allégé — buffer pour retard ou polish des sprints précédents)
 
@@ -646,70 +684,74 @@ Afin d'avoir envie de rejoindre l'association dès la première visite.
 
 ## Traçabilité Epic → Stories
 
-| Epic | Stories | Total points | Sprint |
-|------|---------|--------------|--------|
-| EPIC-FX | FX01, FX02, FX03, FX04, FX05, FX06 | 11 pts | Sprint 16 |
-| EPIC-H | H01, H03, H04 | 9 pts | Sprint 17 |
-| EPIC-EV | EV01 | 2 pts | Sprint 17 |
-| EPIC-BL | BL01, BL02, BL03 | 10 pts | Sprint 18 |
-| EPIC-A | A01, A02 | 10 pts | Sprint 19 |
-| EPIC-H (H02) | H02 | 5 pts | Sprint 20 |
-| **Total v3** | **16 stories** | **47 pts** | **5 sprints** |
+| Epic         | Stories                            | Total points | Sprint        |
+| ------------ | ---------------------------------- | ------------ | ------------- |
+| EPIC-FX      | FX01, FX02, FX03, FX04, FX05, FX06 | 11 pts       | Sprint 16     |
+| EPIC-H       | H01, H03, H04                      | 9 pts        | Sprint 17     |
+| EPIC-EV      | EV01                               | 2 pts        | Sprint 17     |
+| EPIC-BL      | BL01, BL02, BL03                   | 10 pts       | Sprint 18     |
+| EPIC-A       | A01, A02                           | 10 pts       | Sprint 19     |
+| EPIC-H (H02) | H02                                | 5 pts        | Sprint 20     |
+| **Total v3** | **16 stories**                     | **47 pts**   | **5 sprints** |
 
 ---
 
 ## Couverture des Exigences Fonctionnelles
 
-| FR ID | Titre | Story | Sprint |
-|-------|-------|-------|--------|
-| FR-FX01 | Budget `receipt_url` | STORY-V3-FX01 | 16 |
-| FR-FX02 | Leaderboard `deleted_at` | STORY-V3-FX02 | 16 |
-| FR-FX03 | Newsletter CSV BOM | STORY-V3-FX03 | 16 |
-| FR-FX04 | Empty state cards | STORY-V3-FX04 | 16 |
-| FR-FX05 | Inventaire store | STORY-V3-FX05 | 16 |
-| FR-FX06 | Newsletter toggle | STORY-V3-FX06 | 16 |
-| FR-H01 | Stats dynamiques + couleur | STORY-V3-H01 | 17 |
-| FR-H02 | Hero redesign | STORY-V3-H02 | 20 |
-| FR-H03 | Green purge | STORY-V3-H03 | 17 |
-| FR-H04 | Nom asso | STORY-V3-H04 | 17 |
-| FR-BL01 | Upload média | STORY-V3-BL01 + BL02 | 18 |
-| FR-BL02 | Supprimer brouillons | STORY-V3-BL03 | 18 |
-| FR-BL03 | Fix submit button | STORY-V3-BL03 | 18 |
-| FR-A01 | Infrastructure settings | STORY-V3-A01 | 19 |
-| FR-A02 | Toggle leaderboard | STORY-V3-A02 | 19 |
-| FR-EV01 | Clarification Events/Sessions | STORY-V3-EV01 | 17 |
+| FR ID   | Titre                         | Story                | Sprint |
+| ------- | ----------------------------- | -------------------- | ------ |
+| FR-FX01 | Budget `receipt_url`          | STORY-V3-FX01        | 16     |
+| FR-FX02 | Leaderboard `deleted_at`      | STORY-V3-FX02        | 16     |
+| FR-FX03 | Newsletter CSV BOM            | STORY-V3-FX03        | 16     |
+| FR-FX04 | Empty state cards             | STORY-V3-FX04        | 16     |
+| FR-FX05 | Inventaire store              | STORY-V3-FX05        | 16     |
+| FR-FX06 | Newsletter toggle             | STORY-V3-FX06        | 16     |
+| FR-H01  | Stats dynamiques + couleur    | STORY-V3-H01         | 17     |
+| FR-H02  | Hero redesign                 | STORY-V3-H02         | 20     |
+| FR-H03  | Green purge                   | STORY-V3-H03         | 17     |
+| FR-H04  | Nom asso                      | STORY-V3-H04         | 17     |
+| FR-BL01 | Upload média                  | STORY-V3-BL01 + BL02 | 18     |
+| FR-BL02 | Supprimer brouillons          | STORY-V3-BL03        | 18     |
+| FR-BL03 | Fix submit button             | STORY-V3-BL03        | 18     |
+| FR-A01  | Infrastructure settings       | STORY-V3-A01         | 19     |
+| FR-A02  | Toggle leaderboard            | STORY-V3-A02         | 19     |
+| FR-EV01 | Clarification Events/Sessions | STORY-V3-EV01        | 17     |
 
 ---
 
 ## Risques et Mitigation
 
 **Élevés :**
+
 - **Limites PHP upload (O2switch)** — La config par défaut d'O2switch peut limiter `upload_max_filesize` à 2 Mo. Mitigation : tester rapidement en production, configurer via `.htaccess` si nécessaire avant BL01.
 - **State management leaderboard_enabled** — Propager ce setting dans toute la sidebar sans refactoring lourd. Mitigation : fetch dans le layout dashboard au montage, stocker dans le store Zustand existant.
 
 **Moyens :**
+
 - **FX05 bug inventaire** — Le root cause n'est pas certain (enum mismatch ? middleware ? payload ?). Mitigation : investiguer d'abord en lisant les logs backend et les requêtes network avant de coder.
 - **H02 hero redesign** — Sprint allégé (5 pts) mais design créatif peut prendre plus de temps. Mitigation : sprint 20 a 6 pts de buffer.
 
 **Faibles :**
+
 - **FX04 empty state** — Certaines pages peuvent ne pas exposer `meta.total` dans leur réponse API. Mitigation : vérifier les réponses API au début du sprint.
 
 ---
 
 ## Dépendances
 
-| Story | Dépend de | Contrainte |
-|-------|-----------|-----------|
-| STORY-V3-BL02 | STORY-V3-BL01 | Backend upload doit exister avant le frontend |
-| STORY-V3-A02 | STORY-V3-A01 | Table settings doit exister avant le toggle |
-| STORY-V3-H02 | STORY-V3-H03, H04 | Le hero doit déjà utiliser les bonnes couleurs et le bon nom |
-| STORY-V3-EV01 | STORY-V3-H04 | Cohérence du nom dans les metadata |
+| Story         | Dépend de         | Contrainte                                                   |
+| ------------- | ----------------- | ------------------------------------------------------------ |
+| STORY-V3-BL02 | STORY-V3-BL01     | Backend upload doit exister avant le frontend                |
+| STORY-V3-A02  | STORY-V3-A01      | Table settings doit exister avant le toggle                  |
+| STORY-V3-H02  | STORY-V3-H03, H04 | Le hero doit déjà utiliser les bonnes couleurs et le bon nom |
+| STORY-V3-EV01 | STORY-V3-H04      | Cohérence du nom dans les metadata                           |
 
 ---
 
 ## Définition of Done
 
 Pour qu'une story soit considérée terminée :
+
 - [ ] Code implémenté et commité sur la branche `integration`
 - [ ] Testé manuellement (ou tests unitaires si pertinent)
 - [ ] Aucune erreur console en mode développement
@@ -732,6 +774,7 @@ Pour implémenter une story :
 ```
 
 **Cadence des sprints :**
+
 - Durée : 1 semaine
 - Planning : lundi
 - Review/Retro : dimanche

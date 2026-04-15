@@ -38,12 +38,12 @@ workflow_status:
   # Phase 2: Planning (Required - choose one based on project level)
   - name: prd
     phase: 2
-    status: "docs/prd-saFoulee-2026-03-30.md"
-    description: "Product Requirements Document v3 (bugs bloquants, refonte accueil, blog média, toggle classement, nom asso, green purge)"
+    status: "docs/prd-saFoulee-responsive-2026-04-14.md"
+    description: "PRD v4 — Responsive Design complet (iPhone + tablette) : navbar hamburger, hero card + carousel activités, landing allégée, dashboard drawer collapsible, toutes pages"
 
   - name: tech-spec
     phase: 2
-    status: "optional"  # optional for level 2+
+    status: "optional" # optional for level 2+
     description: "Technical Specification"
 
   - name: create-ux-design
@@ -66,5 +66,5 @@ workflow_status:
   # Note: Implementation tracked in sprint-status.yaml
   - name: sprint-planning
     phase: 4
-    status: "docs/sprint-plan-saFoulee-2026-03-30-v3.md"
-    description: "Sprint plan v3 — 16 stories, 5 sprints (Sprint 16-20), correctifs + homepage + blog + admin settings"
+    status: "docs/sprint-plan-saFoulee-responsive-2026-04-14.md"
+    description: "Sprint plan v4 — 11 stories, 5 sprints (Sprint 21-25), responsive design complet iPhone + tablette"

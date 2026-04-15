@@ -8,10 +8,11 @@ import Link from 'next/link'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { resetPassword } from '@/lib/auth'
 import { ApiError } from '@/lib/api'
+import { passwordSchema } from '@/lib/password-policy'
 
 const schema = z
   .object({
-    password: z.string().min(8, 'Le mot de passe doit contenir au moins 8 caractères.'),
+    password: passwordSchema,
     password_confirmation: z.string().min(1, 'Veuillez confirmer votre mot de passe.'),
   })
   .refine((d) => d.password === d.password_confirmation, {
@@ -100,7 +101,7 @@ export default function ResetPasswordForm() {
           Nouveau mot de passe
         </h1>
         <p className="mt-1 text-sm" style={{ color: '#7F7F7F' }}>
-          Choisis un mot de passe d&apos;au moins 8 caractères.
+          Choisis un mot de passe d&apos;au moins 10 caractères.
         </p>
       </div>
 
@@ -131,7 +132,7 @@ export default function ResetPasswordForm() {
           autoComplete="new-password"
           {...register('password')}
           className="auth-input"
-          placeholder="8 caractères minimum"
+          placeholder="10 caractères minimum"
         />
         {errors.password && (
           <p className="mt-1 text-xs" style={{ color: '#FB3936' }}>
@@ -166,7 +167,7 @@ export default function ResetPasswordForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
+        className="w-full rounded-lg px-4 py-3 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
         style={{
           background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)',
           boxShadow: '0 2px 8px rgba(251,57,54,0.25)',

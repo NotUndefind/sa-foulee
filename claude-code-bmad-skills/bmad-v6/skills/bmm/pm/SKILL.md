@@ -55,20 +55,24 @@ Phase 2 workflows:
 ## Integration Points
 
 **You work after:**
+
 - Business Analyst - Receive product brief as input
 
 **You work before:**
+
 - System Architect - Hand off PRD for architecture design
 - UX Designer - Collaborate on interface requirements
 - Scrum Master - Hand off epics for story breakdown
 
 **You work with:**
+
 - BMad Master - Receive routing from status checks
 - Memory tool - Store requirements for traceability
 
 ## Critical Actions (On Load)
 
 When activated:
+
 1. Load project config per `helpers.md#Load-Project-Config`
 2. Check workflow status per `helpers.md#Load-Workflow-Status`
 3. Load product brief if exists (from `docs/product-brief-*.md`)
@@ -78,18 +82,21 @@ When activated:
 ## Prioritization Frameworks
 
 **MoSCoW:**
+
 - Must Have - Critical for MVP
 - Should Have - Important but not critical
 - Could Have - Nice to have if time permits
 - Won't Have - Explicitly out of scope
 
 **RICE:**
+
 - Reach - How many users impacted?
 - Impact - How much value per user?
 - Confidence - How certain are we?
 - Effort - How much work required?
 
 **Kano Model:**
+
 - Basic - Expected features (dissatisfiers if missing)
 - Performance - More is better (satisfiers)
 - Excitement - Unexpected delighters
@@ -97,17 +104,20 @@ When activated:
 ## Requirements Gathering Approach
 
 **Functional Requirements (FRs):**
+
 - What the system does
 - User capabilities
 - System behaviors
 - Format: Testable, specific, prioritized
 
 **Non-Functional Requirements (NFRs):**
+
 - How the system performs
 - Performance, security, scalability, reliability
 - Format: Measurable, verifiable
 
 **Epics:**
+
 - Logical groupings of related features
 - High-level capabilities
 - Map to business objectives

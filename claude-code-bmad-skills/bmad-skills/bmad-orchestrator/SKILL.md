@@ -11,6 +11,7 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ## When to Use This Skill
 
 Use this skill when:
+
 - User requests `/workflow-init` or `/init` - Initialize BMAD in a project
 - User requests `/workflow-status` or `/status` - Check progress and get recommendations
 - User mentions "BMAD setup" or "start BMAD workflow"
@@ -42,6 +43,7 @@ Use this skill when:
 - **Level 4:** Enterprise expansion (40+ stories) - Large-scale projects
 
 **Planning Requirements by Level:**
+
 - Level 0-1: Tech Spec required, PRD optional/recommended
 - Level 2+: PRD required, Tech Spec optional
 - Level 2+: Architecture required
@@ -53,7 +55,9 @@ Use this skill when:
 Initialize BMAD structure in the current project.
 
 **Steps:**
+
 1. Create directory structure:
+
    ```
    bmad/
    ├── config.yaml
@@ -84,6 +88,7 @@ Initialize BMAD structure in the current project.
 6. Offer to start recommended workflow
 
 **Example interaction:**
+
 ```
 User: /workflow-init
 
@@ -110,6 +115,7 @@ Would you like to start with /product-brief?
 Check project status and get recommendations for next steps.
 
 **Steps:**
+
 1. Load project config (bmad/config.yaml)
 2. Load workflow status (docs/bmm-workflow-status.yaml)
 3. Determine current phase and next recommended workflow
@@ -117,12 +123,14 @@ Check project status and get recommendations for next steps.
 5. Offer to execute recommended workflow
 
 **Status Indicators:**
+
 - ✓ = Completed (shows file path)
 - ⚠ = Required but not started
 - → = Current phase
 - - = Optional/not required
 
 **Example interaction:**
+
 ```
 User: /status
 
@@ -149,6 +157,7 @@ Would you like to run /prd to create your PRD?
 ```
 
 **If project not initialized:**
+
 - Inform user BMAD not detected
 - Offer to run `/workflow-init`
 
@@ -164,6 +173,7 @@ After determining project status, route users to specialized workflows:
 - **Development workflows:** `/dev-story`, `/code-review`
 
 **Recommendation logic:**
+
 1. If no product-brief and project new → Recommend: `/product-brief`
 2. If product-brief complete, no PRD/tech-spec:
    - Level 0-1 → Recommend: `/tech-spec`
@@ -177,16 +187,19 @@ See [REFERENCE.md](REFERENCE.md) for detailed routing logic.
 ## Configuration Files
 
 ### Project Config (bmad/config.yaml)
+
 ```yaml
 project_name: "MyApp"
-project_type: "web-app"  # web-app, mobile-app, api, game, library, other
-project_level: 2         # 0-4
+project_type: "web-app" # web-app, mobile-app, api, game, library, other
+project_level: 2 # 0-4
 output_folder: "docs"
 communication_language: "English"
 ```
 
 ### Workflow Status (docs/bmm-workflow-status.yaml)
+
 Tracks completion of each workflow with status values:
+
 - `"optional"` - Can be skipped
 - `"recommended"` - Strongly suggested
 - `"required"` - Must be completed
@@ -200,11 +213,13 @@ See [templates/config.template.yaml](templates/config.template.yaml) for full te
 Execute via Bash tool:
 
 - **init-project.sh** - Automated project initialization
+
   ```bash
   bash scripts/init-project.sh --name "MyApp" --type web-app --level 2
   ```
 
 - **check-status.sh** - Display current workflow status
+
   ```bash
   bash scripts/check-status.sh
   ```
@@ -219,25 +234,30 @@ See [scripts documentation](resources/workflow-phases.md) for details.
 ## Error Handling
 
 **Config missing:**
+
 - Suggest `/workflow-init`
 - Explain BMAD not initialized
 
 **Invalid YAML:**
+
 - Show error location
 - Offer to fix or reinitialize
 
 **Template missing:**
+
 - Use inline fallback
 - Log warning
 - Continue operation
 
 **Status file inconsistent:**
+
 - Validate against project level
 - Offer to regenerate
 
 ## Integration with Other Skills
 
 This orchestrator coordinates with specialized BMAD skills:
+
 - `business-analyst` - Analysis phase workflows
 - `product-manager` - Planning phase workflows
 - `system-architect` - Architecture design
@@ -245,6 +265,7 @@ This orchestrator coordinates with specialized BMAD skills:
 - `developer` - Development workflows
 
 When routing to these skills, pass context:
+
 - Current project config
 - Workflow status
 - Project level
@@ -263,38 +284,43 @@ When routing to these skills, pass context:
 This skill leverages parallel subagents to maximize context utilization (each agent has up to 1M tokens on Claude Sonnet 4.6 / Opus 4.6).
 
 ### Workflow Status Check Workflow
+
 **Pattern:** Fan-Out Research
 **Agents:** 3-4 parallel agents
 
-| Agent | Task | Output |
-|-------|------|--------|
-| Agent 1 | Check project config and validate structure | bmad/outputs/config-status.md |
-| Agent 2 | Analyze workflow status file and phase completion | bmad/outputs/workflow-status.md |
-| Agent 3 | Scan docs directory for completed artifacts | bmad/outputs/artifacts-status.md |
-| Agent 4 | Generate recommendations based on project level | bmad/outputs/recommendations.md |
+| Agent   | Task                                              | Output                           |
+| ------- | ------------------------------------------------- | -------------------------------- |
+| Agent 1 | Check project config and validate structure       | bmad/outputs/config-status.md    |
+| Agent 2 | Analyze workflow status file and phase completion | bmad/outputs/workflow-status.md  |
+| Agent 3 | Scan docs directory for completed artifacts       | bmad/outputs/artifacts-status.md |
+| Agent 4 | Generate recommendations based on project level   | bmad/outputs/recommendations.md  |
 
 **Coordination:**
+
 1. Launch all agents with shared project context
 2. Each agent writes status findings to designated output
 3. Main context synthesizes results into unified status report
 4. Display visual status indicators and next steps
 
 ### Project Initialization Workflow
+
 **Pattern:** Parallel Section Generation
 **Agents:** 3 parallel agents
 
-| Agent | Task | Output |
-|-------|------|--------|
-| Agent 1 | Create directory structure and validate paths | bmad/outputs/directory-setup.md |
-| Agent 2 | Generate project config from template | bmad/config.yaml |
-| Agent 3 | Generate workflow status file with level-based requirements | docs/bmm-workflow-status.yaml |
+| Agent   | Task                                                        | Output                          |
+| ------- | ----------------------------------------------------------- | ------------------------------- |
+| Agent 1 | Create directory structure and validate paths               | bmad/outputs/directory-setup.md |
+| Agent 2 | Generate project config from template                       | bmad/config.yaml                |
+| Agent 3 | Generate workflow status file with level-based requirements | docs/bmm-workflow-status.yaml   |
 
 **Coordination:**
+
 1. Gather project information from user (sequential)
 2. Launch parallel agents to create structures and configs
 3. Main context validates all outputs and displays summary
 
 ### Example Subagent Prompt
+
 ```
 Task: Analyze workflow status and determine current phase
 Context: Read bmad/config.yaml and docs/bmm-workflow-status.yaml

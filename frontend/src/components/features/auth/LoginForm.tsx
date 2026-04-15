@@ -9,21 +9,61 @@ import { useRouter } from 'next/navigation'
 import { login } from '@/lib/auth'
 import { useAuthStore } from '@/store/auth.store'
 import { ApiError } from '@/lib/api'
+import { passwordSchema } from '@/lib/password-policy'
 
 const schema = z.object({
   email: z
     .string()
     .min(1, "L'adresse e-mail est obligatoire.")
     .email("L'adresse e-mail n'est pas valide."),
-  password: z.string().min(1, 'Le mot de passe est obligatoire.'),
+  password: passwordSchema,
 })
 
 type FormValues = z.infer<typeof schema>
+
+function EyeIcon({ open }: { open: boolean }) {
+  if (open) {
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+    )
+  }
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
+      <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+      <line x1="2" y1="2" x2="22" y2="22" />
+    </svg>
+  )
+}
 
 export default function LoginForm() {
   const router = useRouter()
   const setUser = useAuthStore((s) => s.setUser)
   const [globalError, setGlobalError] = useState<string | null>(null)
+  const [showPassword, setShowPassword] = useState(false)
 
   const {
     register,
@@ -41,6 +81,8 @@ export default function LoginForm() {
     } catch (err) {
       if (err instanceof ApiError && err.status === 422) {
         setGlobalError("L'adresse e-mail ou le mot de passe est incorrect.")
+      } else if (err instanceof ApiError && err.status === 429) {
+        setGlobalError(err.message ?? 'Trop de tentatives de connexion. Veuillez réessayer dans quelques minutes.')
       } else {
         setGlobalError('Une erreur inattendue est survenue. Veuillez réessayer.')
       }
@@ -107,24 +149,43 @@ export default function LoginForm() {
             Mot de passe oublié ?
           </Link>
         </div>
-        <input
-          id="password"
-          type="password"
-          autoComplete="current-password"
-          {...register('password')}
-          className="auth-input"
-        />
+        <div className="relative">
+          <input
+            id="password"
+            type={showPassword ? 'text' : 'password'}
+            autoComplete="current-password"
+            {...register('password')}
+            className="auth-input pr-10"
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword((v) => !v)}
+            tabIndex={-1}
+            aria-label={showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}
+            className="password-toggle absolute inset-y-0 right-0 flex w-10 items-center justify-center"
+          >
+            <EyeIcon open={showPassword} />
+          </button>
+        </div>
         {errors.password && (
-          <p className="mt-1 text-xs" style={{ color: '#FB3936' }}>
-            {errors.password.message}
-          </p>
+          <div className="mt-1">
+            <p className="text-xs" style={{ color: '#FB3936' }}>
+              {errors.password.message}
+            </p>
+            <p className="mt-0.5 text-xs" style={{ color: '#7F7F7F' }}>
+              Ancien mot de passe ?{' '}
+              <Link href="/mot-de-passe-oublie" className="underline" style={{ color: '#FB3936' }}>
+                Réinitialisez-le ici
+              </Link>
+            </p>
+          </div>
         )}
       </div>
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
+        className="w-full rounded-lg px-4 py-3 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
         style={{
           background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)',
           boxShadow: '0 2px 8px rgba(251,57,54,0.25)',

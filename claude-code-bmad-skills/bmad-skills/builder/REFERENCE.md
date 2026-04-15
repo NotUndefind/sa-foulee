@@ -26,9 +26,9 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 
 ```markdown
 ---
-name: {{skill_name}}
-description: {{description}}
-allowed-tools: {{tools}}
+name: { { skill_name } }
+description: { { description } }
+allowed-tools: { { tools } }
 ---
 
 # {{Skill Display Name}}
@@ -56,6 +56,7 @@ allowed-tools: {{tools}}
 **Purpose:** {{What this workflow achieves}}
 
 **Process:**
+
 1. {{Step 1}}
 2. {{Step 2}}
 3. {{Step 3}}
@@ -84,6 +85,7 @@ allowed-tools: {{tools}}
 ### Progressive Disclosure Pattern
 
 **Level 1 (SKILL.md):** Overview and essential information (keep under 5k tokens)
+
 - YAML frontmatter
 - Role and responsibilities
 - Core principles
@@ -91,6 +93,7 @@ allowed-tools: {{tools}}
 - References to Level 2
 
 **Level 2 (REFERENCE.md):** Detailed patterns and examples
+
 - Complete templates
 - Step-by-step processes
 - Code examples
@@ -98,6 +101,7 @@ allowed-tools: {{tools}}
 - References to Level 3
 
 **Level 3 (resources/):** Deep reference materials
+
 - Design patterns
 - Best practices
 - Extended examples
@@ -121,6 +125,7 @@ You are the {{Agent Name}}, executing the **{{Workflow Name}}** workflow.
 ## Pre-Flight Checks
 
 Before starting, verify:
+
 1. {{Prerequisite 1}}
 2. {{Prerequisite 2}}
 3. {{Prerequisite 3}}
@@ -128,6 +133,7 @@ Before starting, verify:
 ## {{Workflow Name}} Process
 
 Use TodoWrite to track these steps:
+
 1. {{Step 1 description}}
 2. {{Step 2 description}}
 3. {{Step 3 description}}
@@ -138,6 +144,7 @@ Use TodoWrite to track these steps:
 {{Detailed instructions for this step}}
 
 **Actions:**
+
 - {{Action 1}}
 - {{Action 2}}
 
@@ -148,6 +155,7 @@ Use TodoWrite to track these steps:
 {{Detailed instructions for this step}}
 
 **Actions:**
+
 - {{Action 1}}
 - {{Action 2}}
 
@@ -158,6 +166,7 @@ Use TodoWrite to track these steps:
 {{Detailed instructions for this step}}
 
 **Actions:**
+
 - {{Action 1}}
 - {{Action 2}}
 
@@ -169,7 +178,9 @@ Use TodoWrite to track these steps:
 
 **Output Format:**
 ```
+
 {{Example output structure}}
+
 ```
 
 ## Status Update
@@ -242,6 +253,7 @@ Suggest logical next actions:
 ---
 
 **Document Control:**
+
 - **Template Version:** {{template_version}}
 - **Last Updated:** {{last_updated}}
 - **Next Review:** {{next_review}}
@@ -250,6 +262,7 @@ Suggest logical next actions:
 ### Template Variable Naming
 
 Use `{{variable_name}}` syntax for placeholders:
+
 - **Lowercase with underscores:** `{{project_name}}`, `{{author_name}}`
 - **Descriptive names:** `{{test_plan_scope}}` not `{{scope}}`
 - **Consistent naming:** Use same variable names across related templates
@@ -257,20 +270,24 @@ Use `{{variable_name}}` syntax for placeholders:
 ### Common Template Variables
 
 **Project Context:**
+
 - `{{project_name}}` - Project name
 - `{{project_version}}` - Version number
 - `{{project_description}}` - Brief description
 
 **Authorship:**
+
 - `{{author_name}}` - Author/creator name
 - `{{date}}` - Creation date
 - `{{last_updated}}` - Last modification date
 
 **Status:**
+
 - `{{status}}` - Current status (Draft, Review, Approved, etc.)
 - `{{version}}` - Document version
 
 **Content:**
+
 - `{{section_name_content}}` - Section-specific content
 - `{{executive_summary}}` - High-level summary
 - `{{appendix_content}}` - Supplementary material
@@ -280,12 +297,14 @@ Use `{{variable_name}}` syntax for placeholders:
 ### Required YAML Fields
 
 Validate every SKILL.md has:
+
 1. `name` field (lowercase, hyphenated)
 2. `description` field (with trigger keywords)
 
 ### Recommended YAML Fields
 
 Include these for better Claude integration:
+
 1. `allowed-tools` - List of tools skill can use
 2. Custom metadata as needed
 
@@ -344,11 +363,13 @@ allowed-tools: Read, Write, Edit, Bash, Grep, TodoWrite
 ```
 
 **Workflows:**
+
 - /create-test-plan
 - /execute-tests
 - /analyze-coverage
 
 **Templates:**
+
 - test-plan.md
 - test-report.md
 - bug-report.md
@@ -364,12 +385,14 @@ allowed-tools: Read, Write, Edit, Bash, Grep, TodoWrite
 ```
 
 **Workflows:**
+
 - /deploy
 - /rollback
 - /infrastructure-audit
 - /setup-ci-cd
 
 **Templates:**
+
 - deployment-runbook.md
 - incident-report.md
 - infrastructure-plan.md
@@ -385,11 +408,13 @@ allowed-tools: Read, Write, Edit, Bash, Grep, TodoWrite
 ```
 
 **Workflows:**
+
 - /security-audit
 - /penetration-test
 - /vulnerability-scan
 
 **Templates:**
+
 - security-assessment.md
 - penetration-test-report.md
 - compliance-checklist.md
@@ -399,6 +424,7 @@ allowed-tools: Read, Write, Edit, Bash, Grep, TodoWrite
 ### 1. Reference External Files
 
 Instead of embedding large blocks in SKILL.md:
+
 ```markdown
 **See:** [REFERENCE.md](REFERENCE.md) for detailed workflow patterns
 ```
@@ -412,6 +438,7 @@ Instead of embedding large blocks in SKILL.md:
 ### 3. Link, Don't Duplicate
 
 Instead of repeating patterns:
+
 ```markdown
 Follow the standard workflow pattern described in [REFERENCE.md#workflow-pattern](REFERENCE.md#workflow-pattern)
 ```
@@ -419,6 +446,7 @@ Follow the standard workflow pattern described in [REFERENCE.md#workflow-pattern
 ### 4. Template Variables
 
 Use templates with variables instead of multiple examples:
+
 ```markdown
 See [templates/skill.template.md](templates/skill.template.md) for skill structure
 ```
@@ -426,6 +454,7 @@ See [templates/skill.template.md](templates/skill.template.md) for skill structu
 ### 5. Minimal Examples
 
 Provide one good example, reference more:
+
 ```markdown
 Example: See qa-engineer skill for reference implementation
 ```
@@ -437,22 +466,27 @@ Example: See qa-engineer skill for reference implementation
 Specify allowed-tools based on skill needs:
 
 **File Operations:**
+
 - Read, Write, Edit - File manipulation
 - Glob, Grep - File search and pattern matching
 
 **Execution:**
+
 - Bash - Command execution, scripts
 
 **Workflow:**
+
 - TodoWrite - Task tracking
 
 ### Skill Composition
 
 Custom skills can reference other skills:
+
 ```markdown
 ## Integration Points
 
 **Works with:**
+
 - builder - Create custom workflows
 - validator - Validate outputs
 - Domain-specific skills as needed
@@ -461,10 +495,12 @@ Custom skills can reference other skills:
 ### Workflow Chaining
 
 Link workflows together:
+
 ```markdown
 ## Recommend Next Steps
 
 After completing this workflow:
+
 - /next-workflow - Continue with next phase
 - /validate-output - Verify results
 - /generate-report - Document findings
@@ -507,15 +543,18 @@ After completing this workflow:
 ## {{Workflow Name}} Process
 
 Use TodoWrite to track:
+
 1. {{Step 1}}
 2. {{Step 2}}
 3. {{Step 3}}
 4. {{Step 4}}
 
 ## Part 1: {{Step 1}}
+
 {{Details}}
 
 ## Part 2: {{Step 2}}
+
 {{Details}}
 
 [etc.]
@@ -527,9 +566,11 @@ Use TodoWrite to track:
 ## {{Step Name}}
 
 If {{condition}}:
+
 - {{Action A}}
 
 Otherwise:
+
 - {{Action B}}
 ```
 
@@ -539,6 +580,7 @@ Otherwise:
 ## {{Step Name}}
 
 Execute in parallel:
+
 - Task A: {{description}}
 - Task B: {{description}}
 - Task C: {{description}}
@@ -552,6 +594,7 @@ Wait for all to complete before proceeding.
 ## {{Step Name}}
 
 After completion, validate:
+
 - [ ] {{Check 1}}
 - [ ] {{Check 2}}
 - [ ] {{Check 3}}

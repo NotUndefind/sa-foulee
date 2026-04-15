@@ -48,15 +48,15 @@ BMAD (Business Methodology for AI Development) transforms Claude Code into a ful
 
 ### Key Benefits
 
-| Feature | Description |
-|---------|-------------|
-| **Native Integration** | Uses Claude Code's built-in skills system |
-| **Parallel Subagents** | Execute complex workflows using parallel agents, each with 200K token context (1M context available on Sonnet/Opus 4.6) |
-| **4 Subagent Types** | `general-purpose`, `Explore` (Haiku, fast), `Plan`, and `Bash` for right-sized execution |
-| **Complete Workflow** | From product brief to deployed code |
-| **Right-Sized Planning** | 5 project levels from single changes to enterprise systems |
-| **Cross-Platform** | Works on Windows, macOS, Linux, and WSL |
-| **No Dependencies** | Pure Claude Code - no npm, Python, or external tools |
+| Feature                  | Description                                                                                                             |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| **Native Integration**   | Uses Claude Code's built-in skills system                                                                               |
+| **Parallel Subagents**   | Execute complex workflows using parallel agents, each with 200K token context (1M context available on Sonnet/Opus 4.6) |
+| **4 Subagent Types**     | `general-purpose`, `Explore` (Haiku, fast), `Plan`, and `Bash` for right-sized execution                                |
+| **Complete Workflow**    | From product brief to deployed code                                                                                     |
+| **Right-Sized Planning** | 5 project levels from single changes to enterprise systems                                                              |
+| **Cross-Platform**       | Works on Windows, macOS, Linux, and WSL                                                                                 |
+| **No Dependencies**      | Pure Claude Code - no npm, Python, or external tools                                                                    |
 
 ---
 
@@ -73,6 +73,7 @@ BMAD (Business Methodology for AI Development) transforms Claude Code into a ful
 ### For Humans
 
 1. **Install BMAD Skills:**
+
    ```bash
    # Clone the repository
    git clone https://github.com/aj-geddes/claude-code-bmad-skills.git
@@ -86,6 +87,7 @@ BMAD (Business Methodology for AI Development) transforms Claude Code into a ful
 2. **Restart Claude Code** (skills load on startup)
 
 3. **Initialize in your project:**
+
    ```
    Say: "Initialize BMAD for this project"
 
@@ -101,24 +103,28 @@ BMAD (Business Methodology for AI Development) transforms Claude Code into a ful
 ## The Four Phases
 
 ### Phase 1: Analysis
+
 **Skills:** business-analyst, creative-intelligence
 **Say:** "Create a product brief" or "Research the market for [topic]"
 
 Discover requirements, research markets, and define the problem space. Uses parallel subagents for market/competitive/technical/user research.
 
 ### Phase 2: Planning
+
 **Skills:** product-manager, ux-designer
 **Say:** "Create a PRD" or "Create UX design"
 
 Create comprehensive requirements and design documents. Parallel section generation for efficient PRD creation.
 
 ### Phase 3: Solutioning
+
 **Skills:** system-architect, ux-designer
 **Say:** "Design the system architecture" or "Run solutioning gate check"
 
 Design system architecture and validate against requirements. Parallel component design with integration architecture.
 
 ### Phase 4: Implementation
+
 **Skills:** scrum-master, developer
 **Say:** "Plan the sprint" or "Implement STORY-001"
 
@@ -181,6 +187,7 @@ Claude: I'll help you build that! Let me initialize BMAD in your project.
 [bmad-orchestrator skill activates]
 
 Created:
+
 - bmad/config.yaml (Project: Task Management App, Level: 2, Type: web-app)
 - bmad/context/ (shared subagent context)
 - bmad/outputs/ (subagent outputs)
@@ -197,6 +204,7 @@ Claude: [business-analyst skill activates]
 I'll create a comprehensive product brief using parallel research agents.
 
 Launching subagents:
+
 - Agent 1: Market research
 - Agent 2: Competitive analysis
 - Agent 3: Technical feasibility
@@ -235,41 +243,43 @@ Output saved to: docs/prd-[timestamp].md
 
 BMAD right-sizes your planning based on project complexity:
 
-| Level | Name | Stories | Example | Required Docs |
-|-------|------|---------|---------|---------------|
-| 0 | Atomic | 1 | Bug fix | Tech Spec only |
-| 1 | Small | 1-10 | Single feature | Tech Spec only |
-| 2 | Medium | 5-15 | Feature set | PRD + Architecture |
-| 3 | Complex | 12-40 | System integration | Full workflow |
-| 4 | Enterprise | 40+ | Platform expansion | Full workflow + UX |
+| Level | Name       | Stories | Example            | Required Docs      |
+| ----- | ---------- | ------- | ------------------ | ------------------ |
+| 0     | Atomic     | 1       | Bug fix            | Tech Spec only     |
+| 1     | Small      | 1-10    | Single feature     | Tech Spec only     |
+| 2     | Medium     | 5-15    | Feature set        | PRD + Architecture |
+| 3     | Complex    | 12-40   | System integration | Full workflow      |
+| 4     | Enterprise | 40+     | Platform expansion | Full workflow + UX |
 
 ---
 
 ## Skills Overview
 
-| Skill | Phase | Purpose | Subagent Strategy |
-|-------|-------|---------|-------------------|
-| [bmad-orchestrator](./skills/#bmad-orchestrator) | All | Orchestration and routing | Parallel status checks |
-| [business-analyst](./skills/#business-analyst) | 1 | Requirements discovery | 4-way parallel research |
-| [product-manager](./skills/#product-manager) | 2 | PRD and planning | Parallel section generation |
-| [ux-designer](./skills/#ux-designer) | 2-3 | Interface design | Parallel screen design |
-| [system-architect](./skills/#system-architect) | 3 | Technical architecture | Parallel component design |
-| [scrum-master](./skills/#scrum-master) | 4 | Sprint planning | Parallel epic breakdown |
-| [developer](./skills/#developer) | 4 | Implementation | Parallel story implementation |
-| [creative-intelligence](./skills/#creative-intelligence) | Any | Brainstorming/research | Multi-technique parallel |
-| [builder](./skills/#builder) | N/A | Custom skills/workflows | Parallel component creation |
+| Skill                                                    | Phase | Purpose                   | Subagent Strategy             |
+| -------------------------------------------------------- | ----- | ------------------------- | ----------------------------- |
+| [bmad-orchestrator](./skills/#bmad-orchestrator)         | All   | Orchestration and routing | Parallel status checks        |
+| [business-analyst](./skills/#business-analyst)           | 1     | Requirements discovery    | 4-way parallel research       |
+| [product-manager](./skills/#product-manager)             | 2     | PRD and planning          | Parallel section generation   |
+| [ux-designer](./skills/#ux-designer)                     | 2-3   | Interface design          | Parallel screen design        |
+| [system-architect](./skills/#system-architect)           | 3     | Technical architecture    | Parallel component design     |
+| [scrum-master](./skills/#scrum-master)                   | 4     | Sprint planning           | Parallel epic breakdown       |
+| [developer](./skills/#developer)                         | 4     | Implementation            | Parallel story implementation |
+| [creative-intelligence](./skills/#creative-intelligence) | Any   | Brainstorming/research    | Multi-technique parallel      |
+| [builder](./skills/#builder)                             | N/A   | Custom skills/workflows   | Parallel component creation   |
 
 ---
 
 ## Why Claude Code Native?
 
 Traditional development methodologies require:
+
 - Separate project management tools
 - Multiple documentation systems
 - Context switching between tools
 - Manual status tracking
 
 BMAD Skills provides:
+
 - **Single Interface** - Everything in your terminal through natural language
 - **Parallel Execution** - Subagents with 200K tokens each for massive parallelization
 - **Persistent Context** - Shared context via bmad/context/ for agent coordination
@@ -288,14 +298,14 @@ BMAD Skills provides:
 
 ## Version History
 
-| Version | Date | Changes |
-|---------|------|---------|
-| 7.1.0 | 2026-02-22 | Updated for Claude Sonnet/Opus 4.6; correct hook format with `type` field and matcher structure; added Bash subagent type; 1M context window notes; worktree isolation docs; new hook events reference |
-| 7.0.0 | 2025-12-09 | bmad-skills architecture with subagent patterns |
-| 6.0.3 | 2025-11-12 | PowerShell WSL fixes |
-| 6.0.2 | 2025-11-12 | Added slash commands installation |
-| 6.0.1 | 2025-11-12 | PowerShell installer rewrite |
-| 6.0.0 | 2025-11-01 | Initial Claude Code native release |
+| Version | Date       | Changes                                                                                                                                                                                                |
+| ------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 7.1.0   | 2026-02-22 | Updated for Claude Sonnet/Opus 4.6; correct hook format with `type` field and matcher structure; added Bash subagent type; 1M context window notes; worktree isolation docs; new hook events reference |
+| 7.0.0   | 2025-12-09 | bmad-skills architecture with subagent patterns                                                                                                                                                        |
+| 6.0.3   | 2025-11-12 | PowerShell WSL fixes                                                                                                                                                                                   |
+| 6.0.2   | 2025-11-12 | Added slash commands installation                                                                                                                                                                      |
+| 6.0.1   | 2025-11-12 | PowerShell installer rewrite                                                                                                                                                                           |
+| 6.0.0   | 2025-11-01 | Initial Claude Code native release                                                                                                                                                                     |
 
 ---
 

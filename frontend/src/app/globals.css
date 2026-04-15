@@ -58,7 +58,7 @@ input[type='radio'] {
   width: 100%;
   border-radius: 0.5rem;
   border: 1px solid rgba(192, 48, 46, 0.2);
-  padding: 0.5rem 0.75rem;
+  padding: 0.75rem;
   font-size: 0.875rem;
   color: #c0302e;
   outline: none;
@@ -73,4 +73,17 @@ input[type='radio'] {
 .auth-input:focus {
   border-color: #fb3936;
   box-shadow: 0 0 0 3px rgba(251, 57, 54, 0.15);
+}
+
+/* ── Bouton visibilité mot de passe ── */
+.password-toggle {
+  color: #9f9f9f;
+  transition:
+    color 0.15s,
+    background 0.15s;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+.password-toggle:hover {
+  color: #fb3936;
+  background: rgba(251, 57, 54, 0.07);
 }

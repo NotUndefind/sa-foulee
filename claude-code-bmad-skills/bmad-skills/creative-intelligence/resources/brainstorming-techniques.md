@@ -24,6 +24,7 @@ This document provides detailed descriptions and guidance for all brainstorming 
 **Purpose:** Root cause analysis - dig beneath surface symptoms to find underlying causes
 
 **Best For:**
+
 - Problem investigation
 - Debugging systemic issues
 - Understanding user pain points
@@ -93,6 +94,7 @@ Solution: Implement form design review checklist
 **Purpose:** Generate creative variations by systematically modifying existing concepts
 
 **Acronym:**
+
 - **S**ubstitute
 - **C**ombine
 - **A**dapt
@@ -102,6 +104,7 @@ Solution: Implement form design review checklist
 - **R**everse / Rearrange
 
 **Best For:**
+
 - Feature ideation
 - Product innovation
 - Creative problem-solving
@@ -123,86 +126,107 @@ Solution: Implement form design review checklist
 ### SCAMPER Prompts
 
 #### Substitute
+
 "What can you replace or swap out?"
+
 - Materials, components, processes
 - People, roles, responsibilities
 - Technology, tools, platforms
 
 **Example (Video Learning Platform):**
+
 - Substitute pre-recorded videos → live interactive sessions
 - Substitute text quizzes → verbal comprehension checks
 - Substitute traditional grading → peer review system
 
 #### Combine
+
 "What can you merge or bring together?"
+
 - Features, functions, services
 - Products, offerings
 - Processes, workflows
 - Markets, audiences
 
 **Example:**
+
 - Combine video lessons + coding playground = interactive coding tutorials
 - Combine learning platform + job board = skill-to-employment pipeline
 - Combine courses + mentorship = guided learning paths
 
 #### Adapt
+
 "What else is like this? What can you borrow?"
+
 - Solutions from other industries
 - Competitor features adapted
 - Natural or historical patterns
 - Cross-domain inspirations
 
 **Example:**
+
 - Adapt from gaming: achievement system and leaderboards
 - Adapt from social media: following teachers and course creators
 - Adapt from fitness apps: daily streak tracking and reminders
 
 #### Modify / Magnify / Minify
+
 "What can you change in size, scope, or characteristics?"
+
 - Make bigger, smaller, longer, shorter
 - Change color, shape, form
 - Amplify or minimize aspects
 - Alter frequency or intensity
 
 **Example:**
+
 - Magnify: Create comprehensive bootcamp programs (3-6 months)
 - Minify: Create 5-minute micro-lessons for busy professionals
 - Modify: Change video format from lecture-style to documentary-style
 
 #### Put to Other Uses
+
 "What else can this be used for?"
+
 - Different audiences or markets
 - Alternative applications
 - Repurposing byproducts
 - Unexpected use cases
 
 **Example:**
+
 - Use for corporate training (not just individual learners)
 - Use course content for marketing materials
 - Use student projects as portfolio pieces
 - Use platform for teaching soft skills, not just technical
 
 #### Eliminate
+
 "What can you remove or simplify?"
+
 - Unnecessary features or steps
 - Complexity or friction points
 - Assumptions or constraints
 - Redundant processes
 
 **Example:**
+
 - Eliminate account creation requirement for browsing
 - Eliminate chapters - make courses modular and non-linear
 - Eliminate instructor-only content - allow peer-generated lessons
 - Eliminate fixed pace - fully self-paced learning
 
 #### Reverse / Rearrange
+
 "What if you flipped or reordered things?"
+
 - Reverse the process or sequence
 - Swap roles (user becomes provider)
 - Inside-out or backward
 - Different arrangement or layout
 
 **Example:**
+
 - Reverse: Students teach each other (peer-to-peer)
 - Reverse: Companies create courses for skills they need
 - Rearrange: Start with projects, learn theory as needed (vs. theory-first)
@@ -262,6 +286,7 @@ Top 5 Most Promising:
 **Purpose:** Visually organize ideas, explore relationships, and structure complex concepts
 
 **Best For:**
+
 - Organizing brainstorming results
 - Exploring concept relationships
 - System design and architecture
@@ -324,11 +349,13 @@ Top 5 Most Promising:
 ### Digital vs. Paper
 
 **Paper Mind Mapping:**
+
 - Pros: Faster, more creative, tactile
 - Cons: Hard to reorganize, difficult to share
 - Best for: Personal brainstorming, quick sketches
 
 **Digital Mind Mapping:**
+
 - Pros: Easy to reorganize, shareable, searchable
 - Cons: Tool learning curve, less tactile
 - Tools: Miro, Mural, XMind, MindMeister, Coggle
@@ -351,6 +378,7 @@ Top 5 Most Promising:
 ### Output Format
 
 For text-based mind maps:
+
 ```
 [Central Concept]
 ├─ [Theme 1]
@@ -375,6 +403,7 @@ For text-based mind maps:
 **Purpose:** Identify risks, problems, and failure modes by asking "How could we make this fail?"
 
 **Best For:**
+
 - Risk identification
 - Quality assurance planning
 - Testing assumptions
@@ -466,6 +495,7 @@ Preventive Actions:
 **Created by:** Edward de Bono
 
 **Hats (Perspectives):**
+
 1. **White Hat** - Facts and information
 2. **Red Hat** - Emotions and intuition
 3. **Black Hat** - Caution and critical judgment
@@ -474,6 +504,7 @@ Preventive Actions:
 6. **Blue Hat** - Process and organization
 
 **Best For:**
+
 - Decision making
 - Proposal evaluation
 - Comprehensive analysis
@@ -499,12 +530,14 @@ Preventive Actions:
 **Focus:** Objective data, facts, information
 
 **Questions to ask:**
+
 - What information do we have?
 - What information is missing?
 - What facts are relevant?
 - What data can we gather?
 
 **Example (New Feature Decision):**
+
 - 67% of users requested this feature in surveys
 - Development estimate: 3 months, 2 engineers
 - Projected increase in retention: 15%
@@ -516,12 +549,14 @@ Preventive Actions:
 **Focus:** Feelings, hunches, gut reactions (no justification needed)
 
 **Questions to ask:**
+
 - How do I feel about this?
 - What's my intuition saying?
 - What are the emotional reactions?
 - What's my gut feeling?
 
 **Example:**
+
 - Excitement about innovative approach
 - Anxiety about timeline being too aggressive
 - Frustration with current limitations
@@ -533,6 +568,7 @@ Preventive Actions:
 **Focus:** Risks, weaknesses, what could go wrong
 
 **Questions to ask:**
+
 - What are the risks?
 - What could go wrong?
 - What are the weaknesses?
@@ -540,6 +576,7 @@ Preventive Actions:
 - What are we overlooking?
 
 **Example:**
+
 - Development might take longer than estimated
 - Feature complexity could confuse users
 - May cannibalize existing feature usage
@@ -552,6 +589,7 @@ Preventive Actions:
 **Focus:** Advantages, benefits, positive outcomes
 
 **Questions to ask:**
+
 - What are the benefits?
 - Why will this work?
 - What's the best-case scenario?
@@ -559,6 +597,7 @@ Preventive Actions:
 - What opportunities emerge?
 
 **Example:**
+
 - Differentiates from competitors
 - Addresses top user pain point
 - Opens new market segment
@@ -571,12 +610,14 @@ Preventive Actions:
 **Focus:** New ideas, alternatives, creative solutions
 
 **Questions to ask:**
+
 - What are alternative approaches?
 - How else could we solve this?
 - What creative options exist?
 - What if we tried...?
 
 **Example:**
+
 - What if we built an MVP first?
 - Could we partner instead of building?
 - What about a phased rollout?
@@ -588,11 +629,13 @@ Preventive Actions:
 **Focus:** Managing the thinking process, synthesis, decisions
 
 **Used at start:**
+
 - What are we trying to decide?
 - What's the agenda?
 - Which hats should we use and in what order?
 
 **Used at end:**
+
 - What have we learned from each perspective?
 - What conclusions can we draw?
 - What's the decision?
@@ -603,6 +646,7 @@ Preventive Actions:
 **Common sequences:**
 
 **For decision-making:**
+
 1. Blue (define problem)
 2. White (gather facts)
 3. Green (explore options)
@@ -612,6 +656,7 @@ Preventive Actions:
 7. Blue (decide)
 
 **For evaluation:**
+
 1. Blue (define criteria)
 2. White (what we know)
 3. Yellow (benefits)
@@ -653,6 +698,7 @@ Preventive Actions:
 **Purpose:** Explore a topic comprehensively by generating questions from six prompts: Who, What, Where, When, Why, How
 
 **Best For:**
+
 - Requirement gathering
 - Planning projects
 - Exploring unknowns
@@ -675,6 +721,7 @@ Preventive Actions:
 ### The Six Question Prompts
 
 #### Who?
+
 - Who is involved?
 - Who benefits?
 - Who will use this?
@@ -685,6 +732,7 @@ Preventive Actions:
 - Who needs to approve?
 
 #### What?
+
 - What is the goal?
 - What problem does this solve?
 - What features are included?
@@ -695,6 +743,7 @@ Preventive Actions:
 - What success looks like?
 
 #### Where?
+
 - Where will this be used?
 - Where will it be built?
 - Where are we now?
@@ -705,6 +754,7 @@ Preventive Actions:
 - Where should we focus?
 
 #### When?
+
 - When is the deadline?
 - When do we start?
 - When are milestones?
@@ -715,6 +765,7 @@ Preventive Actions:
 - When do dependencies complete?
 
 #### Why?
+
 - Why are we doing this?
 - Why now?
 - Why not alternatives?
@@ -725,6 +776,7 @@ Preventive Actions:
 - Why this approach?
 
 #### How?
+
 - How will we build this?
 - How will users discover it?
 - How will we measure success?
@@ -844,12 +896,14 @@ Priority Questions (need answers before proceeding):
 **Purpose:** Strategic planning through analyzing Strengths, Weaknesses, Opportunities, and Threats
 
 **Components:**
+
 - **Strengths** (internal, positive)
 - **Weaknesses** (internal, negative)
 - **Opportunities** (external, positive)
 - **Threats** (external, negative)
 
 **Best For:**
+
 - Strategic planning
 - Competitive positioning
 - Business decisions
@@ -879,6 +933,7 @@ Priority Questions (need answers before proceeding):
 #### Strengths (Internal, Positive)
 
 **Questions to ask:**
+
 - What do we do well?
 - What unique resources do we have?
 - What advantages do we have over competitors?
@@ -886,6 +941,7 @@ Priority Questions (need answers before proceeding):
 - What are we known for?
 
 **Examples:**
+
 - Strong brand recognition
 - Skilled team
 - Proprietary technology
@@ -896,6 +952,7 @@ Priority Questions (need answers before proceeding):
 #### Weaknesses (Internal, Negative)
 
 **Questions to ask:**
+
 - What could we improve?
 - Where are we lacking resources?
 - What do competitors do better?
@@ -903,6 +960,7 @@ Priority Questions (need answers before proceeding):
 - What limits our growth?
 
 **Examples:**
+
 - Limited budget
 - Outdated technology
 - Small team
@@ -913,6 +971,7 @@ Priority Questions (need answers before proceeding):
 #### Opportunities (External, Positive)
 
 **Questions to ask:**
+
 - What trends could we capitalize on?
 - What market gaps exist?
 - What changes favor our approach?
@@ -920,6 +979,7 @@ Priority Questions (need answers before proceeding):
 - What partnerships are possible?
 
 **Examples:**
+
 - Growing market demand
 - Competitor weakness
 - Regulatory changes
@@ -930,6 +990,7 @@ Priority Questions (need answers before proceeding):
 #### Threats (External, Negative)
 
 **Questions to ask:**
+
 - What obstacles do we face?
 - What are competitors doing?
 - What trends work against us?
@@ -937,6 +998,7 @@ Priority Questions (need answers before proceeding):
 - What changes could hurt us?
 
 **Examples:**
+
 - Strong competitors
 - Economic downturn
 - Changing regulations
@@ -947,33 +1009,41 @@ Priority Questions (need answers before proceeding):
 ### Creating Strategies from SWOT
 
 #### SO Strategies (Strength + Opportunity)
+
 How can we use our strengths to take advantage of opportunities?
 
 **Example:**
+
 - Strength: Strong engineering team
 - Opportunity: Growing demand for AI features
 - **Strategy:** Develop AI-powered features to capture growing market
 
 #### ST Strategies (Strength + Threat)
+
 How can we use our strengths to reduce threats?
 
 **Example:**
+
 - Strength: Loyal customer base
 - Threat: New competitor entering market
 - **Strategy:** Launch referral program to leverage customer advocacy
 
 #### WO Strategies (Weakness + Opportunity)
+
 How can we overcome weaknesses to pursue opportunities?
 
 **Example:**
+
 - Weakness: Limited sales team
 - Opportunity: Enterprise market demand
 - **Strategy:** Partner with established enterprise sales agency
 
 #### WT Strategies (Weakness + Threat)
+
 How can we minimize weaknesses and avoid threats?
 
 **Example:**
+
 - Weakness: High customer churn
 - Threat: Competitors improving retention
 - **Strategy:** Implement customer success program before losing more ground
@@ -1047,18 +1117,18 @@ WT: [Strategy]
 
 Use this matrix to quickly select the right technique for your needs:
 
-| Your Need | Recommended Technique | Alternative |
-|-----------|----------------------|-------------|
-| Find root cause of problem | 5 Whys | Starbursting |
-| Generate feature ideas | SCAMPER | Mind Mapping |
-| Organize complex ideas | Mind Mapping | - |
-| Identify risks | Reverse Brainstorming | SWOT (Threats) |
-| Make important decision | Six Thinking Hats | SWOT |
-| Plan new project | Starbursting | SWOT |
-| Strategic positioning | SWOT Analysis | Six Thinking Hats |
-| Explore all angles | Six Thinking Hats | Starbursting |
-| Understand requirements | Starbursting | 5 Whys |
-| Innovation session | SCAMPER | Green Hat (Six Hats) |
+| Your Need                  | Recommended Technique | Alternative          |
+| -------------------------- | --------------------- | -------------------- |
+| Find root cause of problem | 5 Whys                | Starbursting         |
+| Generate feature ideas     | SCAMPER               | Mind Mapping         |
+| Organize complex ideas     | Mind Mapping          | -                    |
+| Identify risks             | Reverse Brainstorming | SWOT (Threats)       |
+| Make important decision    | Six Thinking Hats     | SWOT                 |
+| Plan new project           | Starbursting          | SWOT                 |
+| Strategic positioning      | SWOT Analysis         | Six Thinking Hats    |
+| Explore all angles         | Six Thinking Hats     | Starbursting         |
+| Understand requirements    | Starbursting          | 5 Whys               |
+| Innovation session         | SCAMPER               | Green Hat (Six Hats) |
 
 ### Quick Decision Tree
 
@@ -1112,6 +1182,7 @@ Start Here
 ## Conclusion
 
 Master these seven techniques and you'll have a comprehensive toolkit for:
+
 - Understanding problems (5 Whys)
 - Generating ideas (SCAMPER)
 - Organizing thoughts (Mind Mapping)

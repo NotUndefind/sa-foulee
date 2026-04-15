@@ -15,6 +15,7 @@
 **User Persona:** [Primary persona this flow is designed for]
 
 **Entry Points:**
+
 - [Entry point 1 - e.g., "Homepage 'Sign Up' button"]
 - [Entry point 2 - e.g., "Prompted when trying to access gated content"]
 - [Entry point 3 - e.g., "Direct link from marketing email"]
@@ -286,23 +287,27 @@
 **Purpose:** Collect user information to create account
 
 **Components:**
+
 - Form with 5 fields (email, password, first name, last name, terms)
 - Primary button: "Create Account"
 - Link: "Already have an account? Log in"
 
 **Validation:**
+
 - Email: Valid format, not empty
 - Password: 8+ characters, includes number and letter
 - First/Last name: Not empty, 2+ characters
 - Terms: Must be checked
 
 **Error Messages:**
+
 - Email: "Please enter a valid email address"
 - Password: "Password must be at least 8 characters with letters and numbers"
 - Names: "Please enter your [first/last] name"
 - Terms: "You must accept the terms of service to continue"
 
 **Accessibility:**
+
 - All inputs have labels
 - Error messages use role="alert"
 - Focus moves to first error on submit
@@ -315,6 +320,7 @@
 **Purpose:** Inform user to check email and provide resend option
 
 **Components:**
+
 - Heading: "Check your email"
 - Message: "We sent a verification link to [email]"
 - Icon: Email illustration
@@ -322,11 +328,13 @@
 - Secondary text: "Check spam folder"
 
 **Behaviors:**
+
 - Show user's email address
 - Resend button has 60-second cooldown
 - Automatically check if email verified (polling every 5s)
 
 **Accessibility:**
+
 - Clear headings
 - Email address announced by screen readers
 - Success message announced when verified
@@ -338,16 +346,19 @@
 **Purpose:** Confirm successful verification and guide to next step
 
 **Components:**
+
 - Heading: "Account verified!"
 - Success icon (checkmark)
 - Welcome message
 - Primary button: "Continue to Dashboard"
 
 **Behaviors:**
+
 - Auto-redirect after 3 seconds (with option to cancel)
 - Show countdown timer
 
 **Accessibility:**
+
 - Success announced to screen readers
 - Clear focus on continue button
 - Skip countdown option
@@ -361,6 +372,7 @@
 **Trigger:** Email doesn't match valid pattern
 
 **Display:**
+
 - Red border on email input
 - Error icon next to input
 - Error message below: "Please enter a valid email address"
@@ -375,6 +387,7 @@
 **Trigger:** Password less than 8 characters or missing requirements
 
 **Display:**
+
 - Red border on password input
 - Checklist of requirements (with X or ✓):
   - At least 8 characters
@@ -390,6 +403,7 @@
 **Trigger:** Email exists in database
 
 **Display:**
+
 - Alert banner at top of form (yellow/warning)
 - Message: "This email is already registered"
 - Link: "Log in instead"
@@ -404,6 +418,7 @@
 **Trigger:** User submits without checking terms checkbox
 
 **Display:**
+
 - Red border around checkbox
 - Error message: "You must accept the terms of service to continue"
 - Focus moves to checkbox
@@ -417,6 +432,7 @@
 **Trigger:** API request fails
 
 **Display:**
+
 - Modal overlay or banner
 - Error icon
 - Message: "Something went wrong. Please try again."
@@ -432,6 +448,7 @@
 **Trigger:** User clicks link after 24 hours
 
 **Display:**
+
 - Full-page error state
 - Warning icon
 - Heading: "This link has expired"
@@ -447,6 +464,7 @@
 ### State 1: Form Submission
 
 **Display:**
+
 - Submit button shows spinner
 - Button text: "Creating account..."
 - Button disabled
@@ -459,6 +477,7 @@
 ### State 2: Sending Verification Email
 
 **Display:**
+
 - Loading spinner overlay
 - Text: "Sending verification email..."
 
@@ -469,6 +488,7 @@
 ### State 3: Verifying Link
 
 **Display:**
+
 - Full-page spinner
 - Text: "Verifying your account..."
 
@@ -491,6 +511,7 @@
 **Scenario:** User opens verification link in different tab while waiting
 
 **Behavior:**
+
 - Original tab detects verification (polling)
 - Shows success message
 - Redirects to dashboard
@@ -502,6 +523,7 @@
 **Scenario:** Email client modifies verification link
 
 **Behavior:**
+
 - Show clear error if link malformed
 - Provide manual code entry option as fallback
 
@@ -512,6 +534,7 @@
 **Scenario:** Email goes to spam
 
 **Behavior:**
+
 - Verification screen mentions checking spam
 - Resend option available after 60 seconds
 - Option to change email if persistently failing
@@ -523,6 +546,7 @@
 **Scenario:** User clicks back after submitting form
 
 **Behavior:**
+
 - Show confirmation: "Are you sure you want to leave? Your registration is in progress"
 - If confirmed, return to form (data preserved if possible)
 
@@ -531,22 +555,27 @@
 ## Success Metrics
 
 **Completion Rate:**
+
 - Target: >80% of users who start complete the flow
 - Measure: Users who reach dashboard / Users who click sign up
 
 **Time to Complete:**
+
 - Target: <3 minutes average
 - Measure: Time from start to verified dashboard
 
 **Error Rate:**
+
 - Target: <20% of submissions have errors
 - Measure: Forms with validation errors / Total submissions
 
 **Drop-off Points:**
+
 - Monitor: Where users abandon the flow
 - Common: Registration form, email verification waiting
 
 **Support Tickets:**
+
 - Target: <5% of users need help
 - Measure: Support requests related to registration / Total registrations
 
@@ -555,12 +584,14 @@
 ## Testing Checklist
 
 **Happy Path:**
+
 - [ ] Complete registration with valid data
 - [ ] Receive email within 1 minute
 - [ ] Click verification link successfully
 - [ ] Arrive at dashboard as new user
 
 **Error Paths:**
+
 - [ ] Submit with invalid email
 - [ ] Submit with weak password
 - [ ] Submit without accepting terms
@@ -571,6 +602,7 @@
 - [ ] Test network error handling
 
 **Edge Cases:**
+
 - [ ] Registration while logged in
 - [ ] Multiple tabs during verification
 - [ ] Browser back button behavior
@@ -578,6 +610,7 @@
 - [ ] Email in spam folder
 
 **Accessibility:**
+
 - [ ] Complete with keyboard only
 - [ ] Complete with screen reader
 - [ ] All errors announced properly
@@ -585,6 +618,7 @@
 - [ ] Color contrast sufficient
 
 **Devices:**
+
 - [ ] Mobile (portrait)
 - [ ] Mobile (landscape)
 - [ ] Tablet
@@ -595,6 +629,7 @@
 ## Technical Requirements
 
 **Frontend:**
+
 - Form validation (client-side)
 - Email format validation (regex)
 - Password strength indicator
@@ -604,6 +639,7 @@
 - Focus management
 
 **Backend:**
+
 - User creation endpoint
 - Email uniqueness check
 - Password hashing
@@ -613,6 +649,7 @@
 - Token expiration (24 hours)
 
 **Email:**
+
 - Verification email template
 - Clear subject line
 - Prominent verification button/link
@@ -624,18 +661,21 @@
 ## Notes & Considerations
 
 **Security:**
+
 - Passwords must be hashed (bcrypt/argon2)
 - Verification tokens must be cryptographically secure
 - Rate limiting on registration attempts
 - CAPTCHA if spam becomes issue
 
 **Privacy:**
+
 - Clear privacy policy link
 - Explain how data will be used
 - GDPR/CCPA compliance if applicable
 - Option to delete account later
 
 **UX Improvements:**
+
 - Social login options (Google, GitHub, etc.)
 - Password strength meter (visual)
 - Show password toggle
@@ -643,6 +683,7 @@
 - Welcome email after verification
 
 **Localization:**
+
 - All text should be translatable
 - Date/time formats locale-appropriate
 - Email in user's language
@@ -650,11 +691,13 @@
 ---
 
 **Related Flows:**
+
 - [Login Flow]
 - [Password Reset Flow]
 - [Profile Setup Flow]
 
 **Dependencies:**
+
 - Email service configured
 - User database schema
 - Authentication system

@@ -17,6 +17,7 @@ This document provides detailed frameworks, techniques, and best practices for c
 **Purpose:** Identify root causes by asking "why" repeatedly
 
 **Process:**
+
 1. State the problem clearly
 2. Ask "Why does this happen?"
 3. Take the answer and ask "Why?" again
@@ -24,6 +25,7 @@ This document provides detailed frameworks, techniques, and best practices for c
 5. Address the root cause, not symptoms
 
 **Example:**
+
 ```
 Problem: Users abandon checkout process
 
@@ -37,6 +39,7 @@ Root Cause: Lack of secure storage for user data
 ```
 
 **When to Use:**
+
 - Problem identification phase
 - Understanding pain points
 - Debugging user complaints
@@ -49,9 +52,11 @@ Root Cause: Lack of secure storage for user data
 **Core Concept:** People don't want products; they want to get jobs done
 
 **Question Structure:**
+
 - "When [situation], I want to [motivation], so I can [expected outcome]"
 
 **Key Questions:**
+
 - What job are you trying to get done?
 - What are you using now to accomplish this?
 - What's the hardest part about getting this job done?
@@ -59,6 +64,7 @@ Root Cause: Lack of secure storage for user data
 - What would make this job easier?
 
 **Example:**
+
 ```
 Job: "When I'm planning my weekly meals, I want to quickly find recipes
 that use ingredients I already have, so I can reduce food waste and save time."
@@ -69,6 +75,7 @@ Success Metric: Find suitable recipe in under 5 minutes
 ```
 
 **When to Use:**
+
 - Understanding user motivation
 - Feature prioritization
 - Identifying alternatives and competition
@@ -79,6 +86,7 @@ Success Metric: Find suitable recipe in under 5 minutes
 **Purpose:** Ensure goals are well-defined and achievable
 
 **Criteria:**
+
 - **S**pecific - Clear and unambiguous
 - **M**easurable - Quantifiable metrics
 - **A**chievable - Realistic given constraints
@@ -95,6 +103,7 @@ Success Metric: Find suitable recipe in under 5 minutes
 by Q2 2025 through implementing the top 3 feature requests"
 
 **Application:**
+
 - S: User satisfaction score, specific features
 - M: 3.2 to 4.0 on 5-point scale
 - A: Top 3 features (not 20)
@@ -102,6 +111,7 @@ by Q2 2025 through implementing the top 3 feature requests"
 - T: By Q2 2025
 
 **When to Use:**
+
 - Setting project objectives
 - Defining success criteria
 - Planning milestones
@@ -138,6 +148,7 @@ by Q2 2025 through implementing the top 3 feature requests"
    - What's the success threshold?
 
 **When to Use:**
+
 - Product discovery phase
 - Feature validation
 - Solution design
@@ -150,6 +161,7 @@ by Q2 2025 through implementing the top 3 feature requests"
 **Purpose:** Encourage detailed responses and uncover insights
 
 **Examples:**
+
 - "Tell me about how you currently handle..."
 - "Walk me through your process for..."
 - "Describe a recent time when..."
@@ -157,6 +169,7 @@ by Q2 2025 through implementing the top 3 feature requests"
 - "How do you decide when to...?"
 
 **Best For:**
+
 - Initial discovery
 - Understanding workflows
 - Identifying pain points
@@ -167,6 +180,7 @@ by Q2 2025 through implementing the top 3 feature requests"
 **Purpose:** Dig deeper into responses
 
 **Examples:**
+
 - "Can you give me a specific example?"
 - "What did you mean by [their phrase]?"
 - "How often does that happen?"
@@ -175,6 +189,7 @@ by Q2 2025 through implementing the top 3 feature requests"
 - "What happens if you don't do that?"
 
 **Best For:**
+
 - Clarifying vague responses
 - Getting concrete details
 - Understanding priorities
@@ -185,12 +200,14 @@ by Q2 2025 through implementing the top 3 feature requests"
 **Purpose:** Understand relative importance and preferences
 
 **Examples:**
+
 - "How does this compare to [alternative]?"
 - "Would you rather have X or Y?"
 - "What's the difference between [scenario A] and [scenario B]?"
 - "If you could only fix one thing, what would it be?"
 
 **Best For:**
+
 - Prioritization
 - Trade-off discussions
 - Competitive analysis
@@ -201,6 +218,7 @@ by Q2 2025 through implementing the top 3 feature requests"
 **Purpose:** Get measurable data
 
 **Examples:**
+
 - "How much time does that take?"
 - "How often do you do that?"
 - "How many people does this affect?"
@@ -208,6 +226,7 @@ by Q2 2025 through implementing the top 3 feature requests"
 - "On a scale of 1-10, how important is this?"
 
 **Best For:**
+
 - Building business cases
 - Setting baselines
 - Defining success metrics
@@ -216,18 +235,22 @@ by Q2 2025 through implementing the top 3 feature requests"
 ### Questions to Avoid
 
 **Leading Questions:**
+
 - BAD: "Don't you think dark mode would be better?"
 - GOOD: "What are your thoughts on the current color scheme?"
 
 **Yes/No Questions:**
+
 - BAD: "Do you like the current dashboard?"
 - GOOD: "What do you like or dislike about the current dashboard?"
 
 **Solution-Focused Too Early:**
+
 - BAD: "Would you use a drag-and-drop feature?"
 - GOOD: "How do you currently organize your items?"
 
 **Multiple Questions at Once:**
+
 - BAD: "What features do you want and when do you need them and what's your budget?"
 - GOOD: Ask one at a time
 
@@ -236,18 +259,21 @@ by Q2 2025 through implementing the top 3 feature requests"
 ### Phase 1: Problem Understanding
 
 **Objectives:**
+
 - Identify the core problem
 - Understand who is affected
 - Quantify the impact
 - Validate the problem is worth solving
 
 **Key Activities:**
+
 1. Stakeholder interviews
 2. User observation (if applicable)
 3. Data analysis (usage metrics, support tickets)
 4. Market research
 
 **Deliverables:**
+
 - Problem statement
 - User segments affected
 - Impact assessment
@@ -256,18 +282,21 @@ by Q2 2025 through implementing the top 3 feature requests"
 ### Phase 2: Solution Exploration
 
 **Objectives:**
+
 - Explore potential solutions
 - Understand constraints
 - Identify alternatives
 - Define minimum viable solution
 
 **Key Activities:**
+
 1. Brainstorming sessions
 2. Competitive analysis
 3. Technical feasibility assessment
 4. Resource estimation
 
 **Deliverables:**
+
 - Solution concepts
 - Competitive landscape
 - Feasibility assessment
@@ -276,18 +305,21 @@ by Q2 2025 through implementing the top 3 feature requests"
 ### Phase 3: Requirements Definition
 
 **Objectives:**
+
 - Define specific requirements
 - Set success metrics
 - Document constraints
 - Create product brief
 
 **Key Activities:**
+
 1. Requirements gathering
 2. Success criteria definition
 3. Risk assessment
 4. Dependency mapping
 
 **Deliverables:**
+
 - Product brief document
 - Success metrics
 - Risk register
@@ -296,18 +328,21 @@ by Q2 2025 through implementing the top 3 feature requests"
 ### Phase 4: Validation & Handoff
 
 **Objectives:**
+
 - Validate completeness
 - Get stakeholder alignment
 - Prepare for handoff
 - Set next steps
 
 **Key Activities:**
+
 1. Stakeholder review
 2. Documentation review
 3. Gap analysis
 4. Handoff preparation
 
 **Deliverables:**
+
 - Approved product brief
 - Stakeholder sign-off
 - Handoff package
@@ -318,12 +353,14 @@ by Q2 2025 through implementing the top 3 feature requests"
 ### Writing Clear Requirements
 
 **Good Requirements Are:**
+
 - **Specific:** "Users can filter search results by date range (last 7, 30, 90 days, or custom)"
 - **Measurable:** "Page load time must be under 2 seconds for 95% of requests"
 - **Testable:** "Users can export data in CSV, JSON, or PDF format"
 - **Prioritized:** "Must-have: Authentication; Should-have: SSO; Nice-to-have: Biometric login"
 
 **Poor Requirements Are:**
+
 - Vague: "The system should be fast"
 - Unmeasurable: "Users will like the interface"
 - Untestable: "The app should be intuitive"
@@ -332,12 +369,14 @@ by Q2 2025 through implementing the top 3 feature requests"
 ### Documenting Assumptions
 
 **Always Document:**
+
 - Technical assumptions (platform, scale, integrations)
 - User assumptions (behavior, skills, access)
 - Business assumptions (market, competition, resources)
 - Timeline assumptions (dependencies, blockers)
 
 **Format:**
+
 ```
 Assumption: Users have reliable internet connectivity
 Impact if False: Offline mode required, adds 3-4 weeks
@@ -348,6 +387,7 @@ Status: Validated
 ### Capturing Risks
 
 **Risk Documentation:**
+
 ```
 Risk: Third-party API may have rate limits
 Probability: High
@@ -372,6 +412,7 @@ Status: Identified
 **Problem:** Starting with "we need a mobile app" instead of understanding the problem
 
 **Solution:** Always start with problem discovery
+
 - What problem are we solving?
 - Why is this a problem?
 - Who experiences it?
@@ -382,6 +423,7 @@ Status: Identified
 **Problem:** User says "it's frustrating" without specifics
 
 **Solution:** Probe for details
+
 - "What specifically is frustrating?"
 - "Can you give me an example?"
 - "How does that impact your work?"
@@ -391,6 +433,7 @@ Status: Identified
 **Problem:** Documenting what users want without understanding why
 
 **Solution:** Always ask why
+
 - "Why is that important to you?"
 - "What are you trying to accomplish?"
 - Use 5 Whys and JTBD frameworks
@@ -400,6 +443,7 @@ Status: Identified
 **Problem:** Only seeking information that confirms existing beliefs
 
 **Solution:** Actively seek disconfirming evidence
+
 - Interview diverse user segments
 - Look for edge cases
 - Ask "what could go wrong?"
@@ -410,6 +454,7 @@ Status: Identified
 **Problem:** Endless research without moving to action
 
 **Solution:** Set clear stopping criteria
+
 - Define "good enough" for Phase 1
 - Time-box research activities
 - Focus on high-impact questions
@@ -420,6 +465,7 @@ Status: Identified
 **Problem:** Relying on memory instead of writing things down
 
 **Solution:** Document as you go
+
 - Take notes during interviews
 - Summarize findings immediately
 - Use templates for consistency
@@ -430,6 +476,7 @@ Status: Identified
 **Problem:** Assuming your interpretation is correct
 
 **Solution:** Validate understanding
+
 - Summarize and confirm with stakeholders
 - Share drafts for feedback
 - Test assumptions when possible
@@ -438,6 +485,7 @@ Status: Identified
 ## Quick Reference Checklist
 
 ### Before the Interview
+
 - [ ] Review existing documentation
 - [ ] Prepare core questions
 - [ ] Identify knowledge gaps
@@ -445,6 +493,7 @@ Status: Identified
 - [ ] Schedule appropriate time
 
 ### During the Interview
+
 - [ ] Start with context and objectives
 - [ ] Use open-ended questions
 - [ ] Listen more than talk (80/20 rule)
@@ -455,6 +504,7 @@ Status: Identified
 - [ ] Capture quotes verbatim
 
 ### After the Interview
+
 - [ ] Summarize key findings immediately
 - [ ] Identify follow-up questions
 - [ ] Document assumptions
@@ -463,6 +513,7 @@ Status: Identified
 - [ ] Track open items
 
 ### Product Brief Completeness
+
 - [ ] Problem clearly defined
 - [ ] Target users identified
 - [ ] Solution described

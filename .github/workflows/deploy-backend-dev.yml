@@ -19,19 +19,20 @@ jobs:
         env:
           ENDPOINT: "frontend/o2switch/o2switch-ssh-whitelist/index.live.php"
           BASE_URL: "https://${{ secrets.O2SWITCH_SSH_USERNAME }}:${{ secrets.CPANEL_PASSWORD_ENCODED }}@${{ secrets.O2SWITCH_SSH_HOST }}:2083"
+          CURL_OPTS: "--max-time 30 --connect-timeout 10 --retry 3 --retry-delay 5 -s"
         run: |
           echo "==> Suppression des anciennes IPs GitHub whitelistées..."
-          UNIQUE_IPS=$(curl -sX GET "$BASE_URL/$ENDPOINT?r=list" | jq -r '.data.list[] | .address' | sort -u)
+          UNIQUE_IPS=$(curl $CURL_OPTS -X GET "$BASE_URL/$ENDPOINT?r=list" | jq -r '.data.list[] | .address' | sort -u)
           for address in $UNIQUE_IPS; do
             echo "Suppression: $address"
-            curl -sX GET "$BASE_URL/$ENDPOINT?r=remove&address=$address&direction=in&port=22"
+            curl $CURL_OPTS -X GET "$BASE_URL/$ENDPOINT?r=remove&address=$address&direction=in&port=22"
             sleep 3
-            curl -sX GET "$BASE_URL/$ENDPOINT?r=remove&address=$address&direction=out&port=22"
+            curl $CURL_OPTS -X GET "$BASE_URL/$ENDPOINT?r=remove&address=$address&direction=out&port=22"
             sleep 3
           done
 
           echo "==> Ajout de l'IP du runner: ${{ steps.ip.outputs.ipv4 }}"
-          curl -sX POST \
+          curl $CURL_OPTS -X POST \
             -d "whitelist[address]=${{ steps.ip.outputs.ipv4 }}" \
             -d "whitelist[port]=22" \
             "$BASE_URL/$ENDPOINT?r=add"
@@ -47,6 +48,7 @@ jobs:
           key: ${{ secrets.O2SWITCH_SSH_PRIVATE_KEY }}
           port: ${{ secrets.O2SWITCH_SSH_PORT || 22 }}
           passphrase: ${{ secrets.O2SWITCH_SSH_PASSPHRASE || '' }}
+          debug: true
           script: |
             set -e
 
@@ -57,6 +59,9 @@ jobs:
             git fetch origin dev
             git checkout dev
             git pull origin dev
+
+            echo "==> Aller dans le dossier backend"
+            cd backend
 
             echo "==> Installation des dépendances PHP (sans dev)"
             php $(which composer) install \

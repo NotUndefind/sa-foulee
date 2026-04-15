@@ -38,12 +38,15 @@ Approach: **Pragmatic and efficient** for smaller scope.
 ### Section 1: Problem & Solution
 
 If product brief exists, extract:
+
 - Problem statement
 - Proposed solution
 
 If NO brief:
 **Ask:**
+
 > "In 2-3 sentences:
+>
 > 1. What problem are you solving?
 > 2. What's your solution?"
 
@@ -54,11 +57,13 @@ If NO brief:
 ### Section 2: Requirements List
 
 **Explain:**
+
 > "For small projects, we'll keep requirements simple and actionable."
 
 **Ask:** "What needs to be built? List the key features or capabilities."
 
 **Format as bulleted list:**
+
 ```
 - Feature 1: Description with acceptance criteria
 - Feature 2: Description with acceptance criteria
@@ -77,12 +82,14 @@ If NO brief:
 
 **Technology Stack:**
 **Ask:** "What technologies will you use?"
+
 - Language/framework
 - Database
 - Hosting/deployment
 - Key libraries
 
 **Format:**
+
 ```
 - **Language/Framework:** Python 3.11 + FastAPI
 - **Database:** PostgreSQL 15
@@ -96,6 +103,7 @@ If NO brief:
 **Ask:** "At a high level, how does the system work?"
 
 **Encourage:** Simple description or diagram text
+
 - Main components
 - Data flow
 - Key interactions
@@ -115,6 +123,7 @@ If API project:
 **Ask:** "What are the key API endpoints?"
 
 Format:
+
 ```
 - GET /api/users - List users
 - POST /api/users - Create user
@@ -131,13 +140,16 @@ Format:
 **Ask:** "Let's break this into implementable pieces. What are the 1-10 stories?"
 
 For Level 0 (single story):
+
 - Just one story that encompasses everything
 
 For Level 1 (1-10 stories):
+
 - Break into logical chunks
 - Each story should be 1-3 days of work
 
 **Format:**
+
 ```
 1. **Story Name** - What it delivers
 2. **Story Name** - What it delivers
@@ -148,6 +160,7 @@ For Level 1 (1-10 stories):
 
 **Development Phases** (optional for Level 1):
 If multiple stories, ask about order:
+
 > "What's the logical implementation order?"
 
 **Store as:** `{{development_phases}}`
@@ -159,6 +172,7 @@ If multiple stories, ask about order:
 **Ask:** "How will you know it's complete? What must work?"
 
 **Format as checklist:**
+
 ```
 - [ ] Feature X works as described
 - [ ] All tests pass
@@ -175,12 +189,15 @@ If multiple stories, ask about order:
 **Ask concisely:**
 
 **Performance:**
+
 > "Any performance requirements? (e.g., response time, load handling)"
 
 **Security:**
+
 > "Any security requirements? (e.g., authentication, data protection)"
 
 **Other:**
+
 > "Anything else? (accessibility, browser support, etc.)"
 
 **Store as:** `{{performance_requirements}}`, `{{security_requirements}}`, `{{other_nfr}}`
@@ -196,10 +213,12 @@ If multiple stories, ask about order:
 **Risks:**
 **Ask:** "What could go wrong? How to mitigate?"
 **Format:**
+
 ```
 - **Risk:** Description
   - **Mitigation:** Strategy
 ```
+
 **Store as:** `{{risks}}`
 
 **Timeline:**
@@ -216,6 +235,7 @@ If multiple stories, ask about order:
 3. **Determine output path:** `{output_folder}/tech-spec-{project-name}-{date}.md`
 4. **Write document** using Write tool
 5. **Display summary:**
+
    ```
    ✓ Tech Spec Created!
 
@@ -247,6 +267,7 @@ If multiple stories, ask about order:
 ## Update Status
 
 Per `helpers.md#Update-Workflow-Status`:
+
 1. Update `tech-spec` status to file path
 2. Save
 
@@ -255,6 +276,7 @@ Per `helpers.md#Update-Workflow-Status`:
 ## Recommend Next Steps
 
 **Level 0:**
+
 ```
 ✓ Tech Spec complete!
 
@@ -265,6 +287,7 @@ Then: /dev-story to implement it.
 ```
 
 **Level 1:**
+
 ```
 ✓ Tech Spec complete!
 
@@ -291,16 +314,19 @@ Note: Level 1 projects can skip architecture and go straight to implementation.
 ## Tips for Tech Specs
 
 **Keep it lightweight:**
+
 - Don't over-plan for small projects
 - Focus on what's essential
 - Get to implementation faster
 
 **But be clear:**
+
 - Requirements should still be testable
 - Tech decisions should be documented
 - Success criteria should be explicit
 
 **Right-size:**
+
 - Level 0: 1 page is fine
 - Level 1: 2-3 pages maximum
 - If you need more, consider using /prd instead

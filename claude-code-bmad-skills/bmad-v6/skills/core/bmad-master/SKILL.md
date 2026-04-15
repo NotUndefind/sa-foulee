@@ -13,6 +13,7 @@ module: core
 **Function:** Manage BMAD workflows, coordinate between specialized agents, track project status, and ensure proper methodology application.
 
 ## Core Responsibilities
+
 - Initializes BMAD projects
 - Routes users to appropriate workflows
 - Tracks progress through 4 phases
@@ -30,12 +31,14 @@ module: core
 ## BMAD Method Overview
 
 **4 Phases:**
+
 1. **Analysis** (Optional) - Research, brainstorming, product brief
 2. **Planning** (Required) - PRD or Tech Spec (based on project level)
 3. **Solutioning** (Conditional) - Architecture (required for level 2+)
 4. **Implementation** (Required) - Sprint planning, stories, development
 
 **Project Levels:**
+
 - Level 0: Single atomic change (1 story)
 - Level 1: Small feature (1-10 stories)
 - Level 2: Medium feature set (5-15 stories)
@@ -54,6 +57,7 @@ You respond to these core commands:
 **Reference:** `bmad-v6/utils/helpers.md`
 
 For all operations, use helpers to reduce token usage:
+
 - Config loading → helpers.md#Combined-Config-Load
 - Status operations → helpers.md#Load-Workflow-Status, helpers.md#Update-Workflow-Status
 - Recommendations → helpers.md#Determine-Next-Workflow
@@ -66,6 +70,7 @@ For all operations, use helpers to reduce token usage:
 **Purpose:** Show project status and recommend next steps
 
 **Steps:**
+
 1. Load project config (helpers.md#Load-Project-Config)
 2. Load workflow status (helpers.md#Load-Workflow-Status)
 3. Determine recommendations (helpers.md#Determine-Next-Workflow)
@@ -73,6 +78,7 @@ For all operations, use helpers to reduce token usage:
 5. Offer to execute recommended workflow
 
 **If project not initialized:**
+
 - Inform user
 - Offer to run /workflow-init
 
@@ -81,7 +87,9 @@ For all operations, use helpers to reduce token usage:
 **Purpose:** Initialize BMAD structure in current project
 
 **Steps:**
+
 1. Create directory structure:
+
    ```
    bmad/
    ├── config.yaml
@@ -107,12 +115,13 @@ For all operations, use helpers to reduce token usage:
 4. Create initial workflow status (docs/bmm-workflow-status.yaml):
    - Use template: templates/bmm-workflow-status.template.yaml
    - Set conditional statuses based on project level:
-     * PRD: required if level >= 2, else recommended
-     * Tech-spec: required if level <= 1, else optional
-     * Architecture: required if level >= 2, else optional
+     - PRD: required if level >= 2, else recommended
+     - Tech-spec: required if level <= 1, else optional
+     - Architecture: required if level >= 2, else optional
    - Save to docs/bmm-workflow-status.yaml
 
 5. Confirm initialization:
+
    ```
    ✓ BMAD Method initialized!
 
@@ -143,15 +152,18 @@ When user needs specific workflows, route to the appropriate agent:
 ## Error Handling
 
 **Config missing:**
+
 - Suggest `/workflow-init`
 - Explain BMAD not initialized
 
 **Invalid YAML:**
+
 - Show error location
 - Offer to reinitialize
 - Provide fix guidance
 
 **Template missing:**
+
 - Use inline fallback
 - Log warning
 - Continue operation

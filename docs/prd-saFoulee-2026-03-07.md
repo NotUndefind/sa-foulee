@@ -14,6 +14,7 @@
 This Product Requirements Document (PRD) defines the functional and non-functional requirements for saFoulee. It serves as the source of truth for what will be built and provides traceability from requirements through implementation.
 
 **Related Documents:**
+
 - Product Brief: `docs/product-brief-saFoulee-2026-03-07.md`
 
 ---
@@ -58,6 +59,7 @@ Functional Requirements (FRs) define **what** the system does — specific featu
 Le système doit permettre l'inscription, la connexion et la gestion du profil des membres.
 
 **Acceptance Criteria:**
+
 - [ ] Un visiteur peut s'inscrire avec email + mot de passe
 - [ ] Un membre peut se connecter et se déconnecter
 - [ ] Un membre peut réinitialiser son mot de passe par email
@@ -76,6 +78,7 @@ Le système doit permettre l'inscription, la connexion et la gestion du profil d
 Le système doit permettre aux membres d'uploader leurs documents obligatoires et aux admins de suivre la complétude des dossiers.
 
 **Acceptance Criteria:**
+
 - [ ] Un membre peut uploader sa licence sportive (PDF, JPG, PNG, max 10 MB)
 - [ ] Un membre peut uploader sa fiche d'adhésion
 - [ ] Un membre peut uploader son certificat médical
@@ -96,6 +99,7 @@ Le système doit permettre aux membres d'uploader leurs documents obligatoires e
 Le système doit gérer 5 rôles avec des permissions différenciées pour contrôler l'accès aux fonctionnalités.
 
 **Acceptance Criteria:**
+
 - [ ] Les 5 rôles existent : Admin, Fondateur, Entraîneur, Membre du bureau, Membre
 - [ ] Un Admin peut assigner et modifier le rôle d'un membre
 - [ ] Les permissions sont respectées : seuls les rôles autorisés peuvent créer des événements/sessions/posts
@@ -124,6 +128,7 @@ Le système doit gérer 5 rôles avec des permissions différenciées pour contr
 Le système doit fournir une interface guidée pour créer des sessions d'entraînement structurées.
 
 **Acceptance Criteria:**
+
 - [ ] Un Entraîneur/rôle autorisé peut créer une session via un formulaire guidé
 - [ ] Les champs disponibles : type (course, interval, fartlek, récupération, etc.), distance, durée estimée, intensité (faible/moyenne/élevée), exercices complémentaires, description libre
 - [ ] Des templates de sessions réutilisables sont disponibles et créables
@@ -142,6 +147,7 @@ Le système doit fournir une interface guidée pour créer des sessions d'entra�
 Le système doit permettre la création, publication et gestion d'événements associatifs.
 
 **Acceptance Criteria:**
+
 - [ ] Un rôle autorisé peut créer un événement (nom, description, date, lieu, type : course/sortie/compétition)
 - [ ] L'événement est visible dans un calendrier partagé
 - [ ] Un membre peut s'inscrire à un événement
@@ -161,6 +167,7 @@ Le système doit permettre la création, publication et gestion d'événements a
 Le système doit fournir un fil d'actualité communautaire avec aide à la création de posts.
 
 **Acceptance Criteria:**
+
 - [ ] Un rôle autorisé peut créer un post (titre, contenu riche, image optionnelle)
 - [ ] Des templates de posts sont disponibles (compte-rendu de course, annonce, résultats)
 - [ ] Les posts sont affichés en ordre chronologique inversé
@@ -180,6 +187,7 @@ Le système doit fournir un fil d'actualité communautaire avec aide à la créa
 Le système doit afficher un classement des membres basé sur leurs performances.
 
 **Acceptance Criteria:**
+
 - [ ] Un leaderboard affiche les membres classés par distance totale ou nombre de sessions
 - [ ] Chaque membre peut consulter ses propres performances (historique, distance, sessions)
 - [ ] Le leaderboard est filtrable par période (semaine, mois, saison)
@@ -197,6 +205,7 @@ Le système doit afficher un classement des membres basé sur leurs performances
 Le système doit permettre la connexion avec Strava pour importer automatiquement les activités sportives. Cette fonctionnalité est conditionnelle à la gratuité de l'API.
 
 **Acceptance Criteria:**
+
 - [ ] Un membre peut connecter son compte Strava via OAuth
 - [ ] Les activités Strava sont automatiquement synchronisées et alimentent les performances
 - [ ] Le membre peut déconnecter son compte Strava à tout moment
@@ -214,6 +223,7 @@ Le système doit permettre la connexion avec Strava pour importer automatiquemen
 L'application doit disposer d'une navigation cohérente, moderne et identitaire sur toutes les pages du dashboard, avec une charte graphique unifiée utilisant la palette de marque sa Foulée.
 
 **Acceptance Criteria:**
+
 - [ ] Sidebar desktop avec icônes SVG cohérentes, active state visible, section utilisateur en bas
 - [ ] Navigation mobile bottom avec indicateurs visuels clairs
 - [ ] Font Baloo 2 utilisée sur tous les composants de navigation
@@ -234,6 +244,7 @@ L'application doit disposer d'une navigation cohérente, moderne et identitaire 
 Chaque page du dashboard doit être redesignée pour offrir une expérience utilisateur riche, vivante et cohérente avec la charte graphique du club.
 
 **Acceptance Criteria:**
+
 - [ ] Page Accueil : hero greeting personnalisé, quick actions colorées, cards vivantes, skeleton loaders
 - [ ] Page Événements : header impactant, filter pills par type, EventCard avec date badge coloré
 - [ ] Page Sessions : filter pills type, header contextuel, form intégré élégant
@@ -254,6 +265,7 @@ Chaque page du dashboard doit être redesignée pour offrir une expérience util
 Le système doit fournir une messagerie en temps réel entre les membres de l'association.
 
 **Acceptance Criteria:**
+
 - [ ] Un canal général est disponible pour tous les membres
 - [ ] Des canaux dédiés peuvent être créés par événement ou session
 - [ ] Les messages s'affichent en temps réel (WebSocket ou équivalent)
@@ -272,6 +284,7 @@ Le système doit fournir une messagerie en temps réel entre les membres de l'as
 Le système doit exposer une page publique de l'association sans données personnelles.
 
 **Acceptance Criteria:**
+
 - [ ] Une page publique présente l'association (nom, description, logo, couleurs)
 - [ ] Le blog/fil d'actualité est visible publiquement
 - [ ] Le calendrier des événements est visible publiquement
@@ -290,6 +303,7 @@ Le système doit exposer une page publique de l'association sans données person
 Le système doit fournir un tableau de bord de gestion pour les Admins.
 
 **Acceptance Criteria:**
+
 - [ ] Un Admin voit la liste complète des membres avec leur statut de dossier
 - [ ] Un Admin peut modifier, suspendre ou supprimer un compte membre
 - [ ] Un Admin peut assigner/modifier les rôles
@@ -308,6 +322,7 @@ Le système doit fournir un tableau de bord de gestion pour les Admins.
 Le système doit envoyer des notifications in-app et par email pour les événements importants.
 
 **Acceptance Criteria:**
+
 - [ ] Notifications in-app : nouvel événement, nouveau post, nouveau message chat, modification/annulation d'un événement inscrit
 - [ ] Email automatique si un document est manquant ou expiré dans le dossier
 - [ ] Un membre peut configurer ses préférences de notification
@@ -329,6 +344,7 @@ Le système doit envoyer des notifications in-app et par email pour les événem
 L'application doit être réactive, en particulier sur mobile.
 
 **Acceptance Criteria:**
+
 - [ ] Temps de chargement initial des pages < 2 secondes sur mobile 4G
 - [ ] Réponse de l'API Laravel < 500ms pour 95% des requêtes
 - [ ] Score Lighthouse Mobile ≥ 80 (Performance)
@@ -345,6 +361,7 @@ L'application doit être réactive, en particulier sur mobile.
 Les données personnelles et documents des adhérents doivent être protégés.
 
 **Acceptance Criteria:**
+
 - [ ] Authentification via JWT avec refresh tokens (expiration 15min access, 7j refresh)
 - [ ] Toutes les communications en HTTPS/TLS
 - [ ] Documents personnels chiffrés au repos (AES-256 ou équivalent)
@@ -364,6 +381,7 @@ Les données personnelles et documents des adhérents doivent être protégés.
 L'application doit respecter le Règlement Général sur la Protection des Données.
 
 **Acceptance Criteria:**
+
 - [ ] Consentement explicite lors de l'inscription
 - [ ] Un membre peut demander la suppression de ses données
 - [ ] Politique de confidentialité accessible depuis toutes les pages
@@ -382,6 +400,7 @@ L'application doit respecter le Règlement Général sur la Protection des Donn�
 Les documents des adhérents ne doivent jamais être perdus.
 
 **Acceptance Criteria:**
+
 - [ ] Sauvegardes automatiques quotidiennes des documents
 - [ ] Aucune suppression de document sans confirmation explicite (double confirmation)
 - [ ] Uptime cible : 99% (compatible Vercel free tier)
@@ -399,6 +418,7 @@ Les documents des adhérents ne doivent jamais être perdus.
 L'interface doit être conçue prioritairement pour mobile.
 
 **Acceptance Criteria:**
+
 - [ ] Interface optimisée pour iOS Safari et Android Chrome
 - [ ] Responsive de 320px (mobile S) à 1440px (desktop)
 - [ ] Toutes les fonctionnalités accessibles sur mobile sans perte de fonctionnalité
@@ -416,6 +436,7 @@ L'interface doit être conçue prioritairement pour mobile.
 L'architecture doit supporter la croissance de l'association sans refactoring majeur.
 
 **Acceptance Criteria:**
+
 - [ ] Architecture API stateless (Laravel REST) découplée du frontend (Next.js)
 - [ ] Passage de 10 à 200 membres sans modification d'architecture
 - [ ] Stockage de documents dimensionnable (S3 ou compatible)
@@ -432,6 +453,7 @@ L'architecture doit supporter la croissance de l'association sans refactoring ma
 Le code doit être structuré pour accueillir de nouveaux développeurs.
 
 **Acceptance Criteria:**
+
 - [ ] README complet (setup, architecture, conventions)
 - [ ] Conventions de code appliquées (ESLint + Prettier pour Next.js, PHP-CS-Fixer pour Laravel)
 - [ ] Tests unitaires sur les fonctions critiques (permissions, upload, authentification)
@@ -450,6 +472,7 @@ Le code doit être structuré pour accueillir de nouveaux développeurs.
 L'infrastructure doit rester à coût nul ou minimal au lancement.
 
 **Acceptance Criteria:**
+
 - [ ] Frontend déployé sur Vercel (free tier)
 - [ ] Backend Laravel sur hébergement économique (VPS < 10€/mois ou shared hosting)
 - [ ] Stockage documents sur service S3-compatible abordable (ex: Cloudflare R2 free tier)
@@ -469,6 +492,7 @@ L'infrastructure doit rester à coût nul ou minimal au lancement.
 Tout ce qui concerne l'inscription des membres, la gestion de leurs profils et documents, le système de rôles, et le tableau de bord administratif.
 
 **Functional Requirements:**
+
 - FR-001 (Authentification & Profil)
 - FR-002 (Gestion des documents)
 - FR-003 (Système de rôles & permissions)
@@ -489,6 +513,7 @@ Fondation de l'association — sans cet epic, aucune gestion d'adhérents n'est 
 Création assistée de sessions d'entraînement et d'événements associatifs, avec calendrier et gestion des inscriptions.
 
 **Functional Requirements:**
+
 - FR-004 (Création assistée de sessions)
 - FR-005 (Gestion des événements)
 
@@ -507,6 +532,7 @@ Cœur de l'activité sportive — structure les entraînements et events de l'as
 Blog/fil d'actualité, chat entre membres, notifications, et page d'accueil publique de l'association.
 
 **Functional Requirements:**
+
 - FR-006 (Blog / fil d'actualité)
 - FR-009 (Chat entre membres)
 - FR-010 (Accès public)
@@ -527,6 +553,7 @@ Cohésion communautaire et visibilité publique de l'association.
 Refonte complète de l'interface utilisateur du dashboard — navigation, charte graphique, animations, et cohérence visuelle sur toutes les pages membres. L'objectif est d'aligner l'expérience utilisateur sur le niveau de qualité attendu pour un club sportif moderne, en utilisant la palette de marque (brand #FF383E, accent #7EAA99, police Baloo 2).
 
 **Functional Requirements:**
+
 - FR-013 (Navigation & Design System cohérent)
 - FR-014 (Redesign des pages dashboard)
 
@@ -545,6 +572,7 @@ L'adoption de l'app dépend directement de la qualité de l'expérience utilisat
 Leaderboard des coureurs, suivi individuel des performances, et intégration Strava (conditionnelle).
 
 **Functional Requirements:**
+
 - FR-007 (Leaderboard & suivi des performances)
 - FR-008 (Intégration Strava)
 
@@ -587,22 +615,26 @@ Motivation des membres par la gamification et la connexion avec leurs outils spo
 ## User Personas
 
 ### Persona 1 — Le Membre Coureur (utilisateur primaire)
+
 - **Âge :** 20-40 ans, habitant La Neuville
 - **Tech savviness :** Faible à moyen (smartphone, WhatsApp, Facebook)
 - **Besoin principal :** S'inscrire facilement, voir les événements, partager ses performances
 - **Frustration actuelle :** Informations dispersées (WhatsApp, bouche-à-oreille)
 
 ### Persona 2 — L'Entraîneur / Membre du bureau (utilisateur avancé)
+
 - **Rôle :** Crée les sessions, organise les événements, anime la communauté
 - **Besoin principal :** Outils simples pour créer du contenu sans compétences techniques
 - **Frustration actuelle :** Pas d'outil dédié, organisation manuelle
 
 ### Persona 3 — L'Admin / Fondateur (gestionnaire)
+
 - **Rôle :** Gère les adhérents, les documents, les rôles
 - **Besoin principal :** Vue d'ensemble claire, aucun dossier perdu
 - **Frustration actuelle :** Gestion papier ou Excel difficile à maintenir
 
 ### Persona 4 — Le Visiteur public
+
 - **Rôle :** Habitant du village ou coureur intéressé
 - **Besoin principal :** Découvrir l'association, voir les événements
 - **Action souhaitée :** Rejoindre l'association
@@ -612,6 +644,7 @@ Motivation des membres par la gamification et la connexion avec leurs outils spo
 ## User Flows
 
 ### Flow 1 — Onboarding nouveau membre (< 5 min)
+
 1. Visite la page publique → clique "Rejoindre"
 2. Inscription (email, mot de passe, nom, prénom)
 3. Complétion du profil (photo optionnelle)
@@ -619,6 +652,7 @@ Motivation des membres par la gamification et la connexion avec leurs outils spo
 5. Confirmation → accès au tableau de bord membre
 
 ### Flow 2 — Création d'une session d'entraînement
+
 1. Entraîneur connecté → "Créer une session"
 2. Choix du type (course, interval, etc.)
 3. Renseignement des paramètres (distance, durée, intensité, exercices)
@@ -626,6 +660,7 @@ Motivation des membres par la gamification et la connexion avec leurs outils spo
 5. Notification envoyée aux membres
 
 ### Flow 3 — Consultation du fil d'actualité (public et membre)
+
 1. Visiteur/Membre ouvre l'app
 2. Fil d'actualité affiché (posts chronologiques)
 3. Clic sur un post → lecture complète
@@ -702,10 +737,10 @@ Motivation des membres par la gamification et la connexion avec leurs outils spo
 
 ## Revision History
 
-| Version | Date | Author | Changes |
-|---------|------|--------|---------|
-| 1.0 | 2026-03-07 | julesbourin | Initial PRD |
-| 1.1 | 2026-03-08 | julesbourin | Added EPIC-005 UX Refactor, FR-013, FR-014 (Sprint 5) |
+| Version | Date       | Author      | Changes                                               |
+| ------- | ---------- | ----------- | ----------------------------------------------------- |
+| 1.0     | 2026-03-07 | julesbourin | Initial PRD                                           |
+| 1.1     | 2026-03-08 | julesbourin | Added EPIC-005 UX Refactor, FR-013, FR-014 (Sprint 5) |
 
 ---
 
@@ -716,6 +751,7 @@ Motivation des membres par la gamification et la connexion avec leurs outils spo
 Run `/architecture` to create system architecture based on these requirements.
 
 The architecture will address:
+
 - All functional requirements (FRs)
 - All non-functional requirements (NFRs)
 - Technical stack decisions (Next.js + Laravel + Tailwind + Motion.dev)
@@ -725,6 +761,7 @@ The architecture will address:
 ### Phase 4: Sprint Planning
 
 After architecture is complete, run `/sprint-planning` to:
+
 - Break epics into detailed user stories
 - Estimate story complexity
 - Plan sprint iterations
@@ -734,18 +771,18 @@ After architecture is complete, run `/sprint-planning` to:
 
 **This document was created using BMAD Method v6 - Phase 2 (Planning)**
 
-*To continue: Run `/workflow-status` to see your progress and next recommended workflow.*
+_To continue: Run `/workflow-status` to see your progress and next recommended workflow._
 
 ---
 
 ## Appendix A: Requirements Traceability Matrix
 
-| Epic ID | Epic Name | Functional Requirements | Story Count (Est.) |
-|---------|-----------|-------------------------|-------------------|
-| EPIC-001 | Gestion des membres & administration | FR-001, FR-002, FR-003, FR-011 | 5-8 |
-| EPIC-002 | Événements & sessions d'entraînement | FR-004, FR-005 | 4-6 |
-| EPIC-003 | Communauté & communication | FR-006, FR-009, FR-010, FR-012 | 4-6 |
-| EPIC-004 | Performances & intégrations | FR-007, FR-008 | 3-5 |
+| Epic ID  | Epic Name                            | Functional Requirements        | Story Count (Est.) |
+| -------- | ------------------------------------ | ------------------------------ | ------------------ |
+| EPIC-001 | Gestion des membres & administration | FR-001, FR-002, FR-003, FR-011 | 5-8                |
+| EPIC-002 | Événements & sessions d'entraînement | FR-004, FR-005                 | 4-6                |
+| EPIC-003 | Communauté & communication           | FR-006, FR-009, FR-010, FR-012 | 4-6                |
+| EPIC-004 | Performances & intégrations          | FR-007, FR-008                 | 3-5                |
 
 **Total estimé : 16-25 stories**
 
@@ -755,15 +792,15 @@ After architecture is complete, run `/sprint-planning` to:
 
 ### Functional Requirements
 
-| Priorité | Count | FRs |
-|----------|-------|-----|
-| Must Have | 7 | FR-001, FR-002, FR-003, FR-004, FR-005, FR-006, FR-010, FR-011 |
-| Should Have | 3 | FR-007, FR-009, FR-012 |
-| Could Have | 1 | FR-008 |
+| Priorité    | Count | FRs                                                            |
+| ----------- | ----- | -------------------------------------------------------------- |
+| Must Have   | 7     | FR-001, FR-002, FR-003, FR-004, FR-005, FR-006, FR-010, FR-011 |
+| Should Have | 3     | FR-007, FR-009, FR-012                                         |
+| Could Have  | 1     | FR-008                                                         |
 
 ### Non-Functional Requirements
 
-| Priorité | Count | NFRs |
-|----------|-------|------|
-| Must Have | 6 | NFR-001, NFR-002, NFR-003, NFR-004, NFR-005, NFR-007, NFR-008 |
-| Should Have | 1 | NFR-006 |
+| Priorité    | Count | NFRs                                                          |
+| ----------- | ----- | ------------------------------------------------------------- |
+| Must Have   | 6     | NFR-001, NFR-002, NFR-003, NFR-004, NFR-005, NFR-007, NFR-008 |
+| Should Have | 1     | NFR-006                                                       |

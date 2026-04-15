@@ -1,0 +1,20 @@
+---
+deployment:
+  tasks:
+    # Répertoire Laravel (le repo est cloné ici par cPanel Git Version Control)
+    # Document root du sous-domaine à configurer sur : $APPPATH/public
+    - export APPPATH=/home/bube0019/dev.back.laneuvilletafsafoulee.fr/backend
+
+    # Dépendances Composer
+    - /usr/local/bin/php /usr/local/bin/composer install --no-dev --optimize-autoloader --no-interaction --working-dir=$APPPATH
+
+    # Permissions
+    - chmod -R 775 $APPPATH/storage $APPPATH/bootstrap/cache
+
+    # Migrations
+    - /usr/local/bin/php $APPPATH/artisan migrate --force
+
+    # Cache Laravel (production)
+    - /usr/local/bin/php $APPPATH/artisan config:cache
+    - /usr/local/bin/php $APPPATH/artisan route:cache
+    - /usr/local/bin/php $APPPATH/artisan view:cache
