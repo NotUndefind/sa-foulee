@@ -58,7 +58,7 @@ input[type='radio'] {
   width: 100%;
   border-radius: 0.5rem;
   border: 1px solid rgba(192, 48, 46, 0.2);
-  padding: 0.5rem 0.75rem;
+  padding: 0.75rem;
   font-size: 0.875rem;
   color: #c0302e;
   outline: none;

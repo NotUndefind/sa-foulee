@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation'
 import { register } from '@/lib/auth'
 import { useAuthStore } from '@/store/auth.store'
 import { ApiError } from '@/lib/api'
+import { passwordSchema } from '@/lib/password-policy'
 
 // ---- Schéma de validation ----
 
@@ -20,7 +21,7 @@ const schema = z
       .string()
       .min(1, "L'adresse e-mail est obligatoire.")
       .email("L'adresse e-mail n'est pas valide."),
-    password: z.string().min(8, 'Le mot de passe doit contenir au moins 8 caractères.'),
+    password: passwordSchema,
     password_confirmation: z.string().min(1, 'Veuillez confirmer votre mot de passe.'),
     consent: z.boolean().refine((v) => v === true, {
       message: "Vous devez accepter les conditions d'utilisation.",
@@ -140,7 +141,7 @@ export default function RegisterForm() {
       )}
 
       {/* Prénom & Nom */}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <label htmlFor="first_name" className="mb-1 block text-sm font-medium" style={labelStyle}>
             Prénom
@@ -211,7 +212,7 @@ export default function RegisterForm() {
             autoComplete="new-password"
             {...field('password')}
             className="auth-input pr-10"
-            placeholder="8 caractères minimum"
+            placeholder="10 caractères minimum"
           />
           <button
             type="button"
@@ -298,7 +299,7 @@ export default function RegisterForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
+        className="w-full rounded-lg px-4 py-3 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
         style={{
           background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)',
           boxShadow: '0 2px 8px rgba(251,57,54,0.25)',

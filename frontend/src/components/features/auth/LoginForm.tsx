@@ -9,13 +9,14 @@ import { useRouter } from 'next/navigation'
 import { login } from '@/lib/auth'
 import { useAuthStore } from '@/store/auth.store'
 import { ApiError } from '@/lib/api'
+import { passwordSchema } from '@/lib/password-policy'
 
 const schema = z.object({
   email: z
     .string()
     .min(1, "L'adresse e-mail est obligatoire.")
     .email("L'adresse e-mail n'est pas valide."),
-  password: z.string().min(1, 'Le mot de passe est obligatoire.'),
+  password: passwordSchema,
 })
 
 type FormValues = z.infer<typeof schema>
@@ -80,6 +81,8 @@ export default function LoginForm() {
     } catch (err) {
       if (err instanceof ApiError && err.status === 422) {
         setGlobalError("L'adresse e-mail ou le mot de passe est incorrect.")
+      } else if (err instanceof ApiError && err.status === 429) {
+        setGlobalError(err.message ?? 'Trop de tentatives de connexion. Veuillez réessayer dans quelques minutes.')
       } else {
         setGlobalError('Une erreur inattendue est survenue. Veuillez réessayer.')
       }
@@ -165,16 +168,24 @@ export default function LoginForm() {
           </button>
         </div>
         {errors.password && (
-          <p className="mt-1 text-xs" style={{ color: '#FB3936' }}>
-            {errors.password.message}
-          </p>
+          <div className="mt-1">
+            <p className="text-xs" style={{ color: '#FB3936' }}>
+              {errors.password.message}
+            </p>
+            <p className="mt-0.5 text-xs" style={{ color: '#7F7F7F' }}>
+              Ancien mot de passe ?{' '}
+              <Link href="/mot-de-passe-oublie" className="underline" style={{ color: '#FB3936' }}>
+                Réinitialisez-le ici
+              </Link>
+            </p>
+          </div>
         )}
       </div>
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
+        className="w-full rounded-lg px-4 py-3 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
         style={{
           background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)',
           boxShadow: '0 2px 8px rgba(251,57,54,0.25)',
