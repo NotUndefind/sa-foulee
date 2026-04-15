@@ -1036,31 +1036,46 @@ post_sprint:
     end_date: "2026-04-20"
     capacity_points: 10
     committed_points: 9
-    completed_points: 0
-    status: "not_started"
+    completed_points: 9
+    status: "in_progress"
     goal: "Navigation publique mobile fonctionnelle + Landing allégée"
     stories:
       - story_id: "STORY-RES-01"
         title: "Navbar publique hamburger menu mobile"
         points: 5
-        status: "not_started"
+        status: "completed"
+        completed_date: "2026-04-15"
         epic: "EPIC-R01"
         priority: "must_have"
-        assigned_to: null
+        assigned_to: "julesbourin"
+        files_modified:
+          - "frontend/src/app/(public)/layout.tsx"
+          - "frontend/src/components/features/public/MobileNavMenu.tsx"
       - story_id: "STORY-RES-03"
         title: "Landing — masquer section valeurs + CTA secondaire mobile"
         points: 2
-        status: "not_started"
+        status: "completed"
+        completed_date: "2026-04-15"
         epic: "EPIC-R02"
         priority: "must_have"
-        assigned_to: null
+        assigned_to: "julesbourin"
+        files_modified:
+          - "frontend/src/app/(public)/page.tsx"
       - story_id: "STORY-RES-11"
         title: "Pages connexion/inscription responsive"
         points: 2
-        status: "not_started"
+        status: "completed"
         epic: "EPIC-R05"
         priority: "must_have"
-        assigned_to: null
+        assigned_to: "julesbourin"
+        completed_date: "2026-04-14"
+        files_modified:
+          - "frontend/src/app/globals.css"
+          - "frontend/src/app/(auth)/layout.tsx"
+          - "frontend/src/components/features/auth/LoginForm.tsx"
+          - "frontend/src/components/features/auth/RegisterForm.tsx"
+          - "frontend/src/components/features/auth/ForgotPasswordForm.tsx"
+          - "frontend/src/components/features/auth/ResetPasswordForm.tsx"
 
   - sprint_number: 22
     start_date: "2026-04-21"
@@ -1164,7 +1179,7 @@ post_sprint:
     end_date: "2026-04-21"
     capacity_points: 14
     committed_points: 14
-    completed_points: 2
+    completed_points: 12
     status: "in_progress"
     goal: "Sécurité backend : politique de mot de passe, verrouillage de compte, rate limiting, HTTPS"
     stories:
@@ -1195,28 +1210,32 @@ post_sprint:
       - story_id: "STORY-SEC-04"
         title: "Account lockout après N tentatives échouées"
         points: 3
-        status: "not_started"
+        status: "completed"
         epic: "EPIC-SEC-04"
         priority: "must_have"
-        assigned_to: null
+        assigned_to: "julesbourin"
+        completed_date: "2026-04-15"
       - story_id: "STORY-SEC-05"
-        title: "Rate limiting API sur les endpoints d'auth"
+        title: "Module Zod password-policy.ts + config env frontend"
         points: 2
-        status: "not_started"
-        epic: "EPIC-SEC-05"
+        status: "completed"
+        epic: "EPIC-SEC-01"
         priority: "must_have"
-        assigned_to: null
+        assigned_to: "julesbourin"
+        completed_date: "2026-04-15"
       - story_id: "STORY-SEC-06"
-        title: "Forçage HTTPS et headers de sécurité"
-        points: 2
-        status: "not_started"
-        epic: "EPIC-SEC-06"
+        title: "Mise à jour LoginForm — schéma centralisé + gestion 429"
+        points: 3
+        status: "completed"
+        epic: "EPIC-SEC-02"
         priority: "must_have"
-        assigned_to: null
+        assigned_to: "julesbourin"
+        completed_date: "2026-04-15"
       - story_id: "STORY-SEC-07"
-        title: "Audit et tests de sécurité"
+        title: "Mise à jour RegisterForm et ResetPasswordForm — schéma centralisé"
         points: 2
-        status: "not_started"
-        epic: "EPIC-SEC-07"
+        status: "completed"
+        epic: "EPIC-SEC-02"
         priority: "must_have"
-        assigned_to: null
+        assigned_to: "julesbourin"
+        completed_date: "2026-04-15"
