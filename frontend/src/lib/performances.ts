@@ -44,3 +44,7 @@ export async function getUserPerformances(
 export async function addPerformance(payload: PerformancePayload): Promise<Performance> {
   return api.post<Performance>('/performances', payload)
 }
+
+export async function deletePerformance(id: number): Promise<void> {
+  return api.delete(`/performances/${id}`)
+}

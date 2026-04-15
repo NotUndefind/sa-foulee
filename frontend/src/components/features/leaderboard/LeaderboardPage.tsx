@@ -366,6 +366,7 @@ const PERIOD_LABELS: Record<LeaderboardPeriod, string> = {
 
 export default function LeaderboardPage() {
   const user = useAuthStore((s) => s.user)
+  const { toast } = useToast()
 
   const [period, setPeriod] = useState<LeaderboardPeriod>('month')
   const [entries, setEntries] = useState<LeaderboardEntry[]>([])
@@ -484,6 +485,8 @@ export default function LeaderboardPage() {
           background: white; border-radius: 16px; padding: 20px; text-align: center;
           border: 1px solid rgba(192,48,46,0.07); box-shadow: 0 1px 4px rgba(192,48,46,0.05);
         }
+        .lb-trash { color: rgba(192,48,46,0.3); background: transparent; }
+        .lb-trash:hover { color: #FB3936; background: rgba(251,57,54,0.06); }
       `}</style>
 
       <div className="lb-page min-h-screen pb-24 lg:pb-8" style={{ background: '#F8F8F8' }}>
@@ -882,6 +885,7 @@ export default function LeaderboardPage() {
                         border: '1px solid rgba(192,48,46,0.07)',
                       }}
                     >
+                      {/* En-tête table */}
                       <div
                         className="grid grid-cols-12 border-b px-5 py-3"
                         style={{ borderColor: 'rgba(192,48,46,0.06)', background: '#F8F8F8' }}
@@ -910,8 +914,11 @@ export default function LeaderboardPage() {
                         >
                           Allure
                         </div>
+                        {/* Colonne action (vide dans l'en-tête) */}
                         <div className="col-span-3 sm:col-span-1" />
                       </div>
+
+                      {/* Lignes de performances */}
                       {performances.map((p, i) => {
                         const pace =
                           p.duration_sec > 0 && p.distance_km > 0
@@ -958,6 +965,7 @@ export default function LeaderboardPage() {
                                 '—'
                               )}
                             </div>
+                            {/* Colonne action */}
                             <div className="col-span-3 flex justify-end sm:col-span-1">
                               {isConfirming ? (
                                 <div className="flex items-center gap-1">
@@ -982,16 +990,7 @@ export default function LeaderboardPage() {
                               ) : (
                                 <button
                                   onClick={() => setDeletingId(p.id)}
-                                  className="flex items-center justify-center rounded-lg p-1.5 transition"
-                                  style={{ color: 'rgba(192,48,46,0.3)' }}
-                                  onMouseEnter={(e) => {
-                                    e.currentTarget.style.color = '#FB3936'
-                                    e.currentTarget.style.background = 'rgba(251,57,54,0.06)'
-                                  }}
-                                  onMouseLeave={(e) => {
-                                    e.currentTarget.style.color = 'rgba(192,48,46,0.3)'
-                                    e.currentTarget.style.background = 'transparent'
-                                  }}
+                                  className="lb-trash flex items-center justify-center rounded-lg p-1.5 transition"
                                   title="Supprimer cette performance"
                                 >
                                   <IconTrash />

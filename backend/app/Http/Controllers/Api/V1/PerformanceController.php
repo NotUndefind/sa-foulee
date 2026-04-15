@@ -43,6 +43,27 @@ class PerformanceController extends Controller
     }
 
     /**
+     * Suppression d'une performance.
+     * Seul le membre lui-même ou un admin/founder peut supprimer.
+     */
+    public function destroy(Request $request, Performance $performance): JsonResponse
+    {
+        $currentUser = $request->user();
+
+        if ($currentUser->id !== $performance->user_id && ! $currentUser->hasAnyRole(['admin', 'founder'])) {
+            abort(403);
+        }
+
+        $performance->delete();
+
+        foreach (['week', 'month', 'season'] as $period) {
+            \Illuminate\Support\Facades\Cache::forget("leaderboard:{$period}");
+        }
+
+        return response()->json(null, 204);
+    }
+
+    /**
      * Saisie manuelle d'une performance.
      */
     public function store(StorePerformanceRequest $request): JsonResponse

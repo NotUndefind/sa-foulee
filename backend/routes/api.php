@@ -203,6 +203,7 @@ Route::prefix('v1')->group(function () {
         Route::get('leaderboard', [LeaderboardController::class, 'index']);
         Route::get('users/{user}/performances', [PerformanceController::class, 'index']);
         Route::post('performances', [PerformanceController::class, 'store']);
+        Route::delete('performances/{performance}', [PerformanceController::class, 'destroy']);
 
         // ---- Strava ----
         Route::get('strava/connect', [StravaController::class, 'connect']);
