@@ -1081,42 +1081,49 @@ post_sprint:
     start_date: "2026-04-21"
     end_date: "2026-04-27"
     capacity_points: 10
-    committed_points: 10
-    completed_points: 0
-    status: "not_started"
-    goal: "Dashboard entièrement accessible sur mobile (tous les liens disponibles)"
+    committed_points: 2
+    completed_points: 2
+    status: "completed"
+    goal: "Dashboard mobile — bottom nav conservée, layout page principale vérifié"
     stories:
       - story_id: "STORY-RES-02"
         title: "Dashboard sidebar collapsible drawer mobile"
         points: 8
-        status: "not_started"
+        status: "cancelled"
         epic: "EPIC-R01"
         priority: "must_have"
         assigned_to: null
+        cancellation_reason: "Décision de conserver la bottom nav existante (sf-mobile-nav, lg:hidden) déjà implémentée dans layout.tsx. Le drawer latéral n'est plus nécessaire."
       - story_id: "STORY-RES-09"
         title: "Dashboard page principale layout mobile"
         points: 2
-        status: "not_started"
+        status: "completed"
+        completed_date: "2026-04-15"
         epic: "EPIC-R04"
         priority: "must_have"
-        assigned_to: null
+        assigned_to: "julesbourin"
+        files_modified:
+          - "frontend/src/app/(dashboard)/tableau-de-bord/page.tsx"
 
   - sprint_number: 23
     start_date: "2026-04-28"
     end_date: "2026-05-04"
     capacity_points: 10
     committed_points: 11
-    completed_points: 0
-    status: "not_started"
+    completed_points: 3
+    status: "in_progress"
     goal: "Landing page complètement responsive + Dashboard intérieur fonctionnel"
     stories:
       - story_id: "STORY-RES-04"
         title: "Landing hero section responsive"
         points: 3
-        status: "not_started"
+        status: "completed"
+        completed_date: "2026-04-15"
         epic: "EPIC-R02"
         priority: "must_have"
-        assigned_to: null
+        assigned_to: "julesbourin"
+        files_modified:
+          - "frontend/src/app/(public)/page.tsx"
       - story_id: "STORY-RES-05"
         title: "Landing stats 2x2 + overflow global"
         points: 3
