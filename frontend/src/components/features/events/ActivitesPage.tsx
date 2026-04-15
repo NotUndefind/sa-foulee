@@ -523,6 +523,9 @@ export default function ActivitesPage() {
   const [galleryPhotos, setGalleryPhotos] = useState<EventPhoto[]>([])
   const [galleryLoading, setGalleryLoading] = useState(false)
 
+  // Lazy past events (mobile)
+  const [showAllPast, setShowAllPast] = useState(false)
+
   const fetchEvents = useCallback(async (page: number, type: EventType | '') => {
     setLoading(true)
     try {
@@ -719,166 +722,220 @@ export default function ActivitesPage() {
             </p>
           </div>
         ) : (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.875rem' }}>
-            {events.map((event) => {
-              const date = new Date(event.event_date)
-              const badge = TYPE_BADGE[event.type]
-              const isRegistering = registeringId === event.id
-
-              return (
-                <div
-                  key={event.id}
-                  style={{
-                    display: 'flex',
-                    gap: '1.25rem',
-                    alignItems: 'center',
-                    borderRadius: '16px',
-                    background: '#fff',
-                    border: '1px solid rgba(192,48,46,0.07)',
-                    boxShadow: '0 2px 8px rgba(192,48,46,0.06)',
-                    padding: '1.25rem 1.5rem',
-                  }}
-                >
-                  {/* Date badge */}
-                  <div
-                    style={{
-                      flexShrink: 0,
-                      width: '56px',
-                      height: '64px',
-                      borderRadius: '12px',
-                      background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: '#fff',
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontSize: '0.6875rem',
-                        fontWeight: 700,
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.05em',
-                        opacity: 0.9,
-                      }}
-                    >
-                      {MONTHS_FR[date.getMonth()]}
-                    </span>
-                    <span style={{ fontSize: '1.5rem', fontWeight: 800, lineHeight: 1 }}>
-                      {date.getDate()}
-                    </span>
-                  </div>
-
-                  {/* Event info */}
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ marginBottom: '0.375rem' }}>
-                      <span
-                        style={{
-                          display: 'inline-block',
-                          padding: '0.175rem 0.625rem',
-                          borderRadius: '999px',
-                          fontSize: '0.75rem',
-                          fontWeight: 700,
-                          background: badge.bg,
-                          color: badge.color,
-                        }}
-                      >
-                        {TYPE_LABELS[event.type]}
-                      </span>
-                    </div>
-                    <p
-                      style={{
-                        fontWeight: 700,
-                        color: '#C0302E',
-                        margin: '0 0 0.375rem',
-                        fontSize: '1rem',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis',
-                        whiteSpace: 'nowrap',
-                      }}
-                    >
-                      {event.title}
-                    </p>
+          <>
+            {/* ── Mobile : hero card + carousel (< md) ─────────────────── */}
+            {events.length >= 2 && (
+              <div className="md:hidden">
+                {/* Hero card — premier événement */}
+                {events.slice(0, 1).map((event) => {
+                  const date = new Date(event.event_date)
+                  const isRegistering = registeringId === event.id
+                  return (
                     <div
-                      style={{
-                        display: 'flex',
-                        gap: '1rem',
-                        fontSize: '0.8125rem',
-                        color: '#2C2C2C',
-                        opacity: 0.75,
-                        flexWrap: 'wrap',
-                      }}
+                      key={event.id}
+                      className="flex flex-col justify-between rounded-[20px] bg-[linear-gradient(135deg,#FB3936_0%,#C0302E_100%)] p-6 min-h-[280px] mb-5 shadow-[0_8px_32px_rgba(251,57,54,0.3)]"
                     >
-                      {event.location && (
-                        <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                          <IconMapPin /> {event.location}
+                      {/* Haut : badge date + type */}
+                      <div className="flex justify-between items-start">
+                        <div className="bg-white/20 backdrop-blur rounded-xl px-3 py-2 text-center min-w-[52px]">
+                          <div className="text-[11px] font-bold text-white/85 uppercase tracking-wider">
+                            {MONTHS_FR[date.getMonth()]}
+                          </div>
+                          <div className="text-[28px] font-black text-white leading-none">
+                            {date.getDate()}
+                          </div>
+                        </div>
+                        <span className="bg-white/20 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full">
+                          {TYPE_LABELS[event.type]}
                         </span>
-                      )}
-                      <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                        <IconUsers /> {event.registrations_count} inscrit
-                        {event.registrations_count !== 1 ? 's' : ''}
+                      </div>
+
+                      {/* Bas : titre + meta + bouton */}
+                      <div>
+                        <p className="text-xl font-extrabold text-white mb-2 tracking-tight">
+                          {event.title}
+                        </p>
+                        <div className="flex gap-3.5 text-[13px] text-white/80 mb-5 flex-wrap">
+                          {event.location && (
+                            <span className="flex items-center gap-1">
+                              <IconMapPin /> {event.location}
+                            </span>
+                          )}
+                          <span className="flex items-center gap-1">
+                            <IconUsers /> {event.registrations_count} inscrit
+                            {event.registrations_count !== 1 ? 's' : ''}
+                          </span>
+                        </div>
+                        {!user ? (
+                          <Link
+                            href="/connexion"
+                            className="flex items-center justify-center w-full px-6 py-3.5 rounded-[14px] bg-white text-primary-dark text-base font-bold no-underline min-h-[48px]"
+                          >
+                            S&apos;inscrire
+                          </Link>
+                        ) : event.is_registered ? (
+                          <div className="flex items-center justify-center px-6 py-3.5 rounded-[14px] bg-white/20 text-white text-base font-bold min-h-[48px]">
+                            Inscrit
+                          </div>
+                        ) : (
+                          <button
+                            onClick={() => handleRegister(event.id)}
+                            disabled={isRegistering}
+                            className={`flex items-center justify-center w-full px-6 py-3.5 rounded-[14px] text-primary-dark text-base font-bold border-none min-h-[48px] transition-opacity ${isRegistering ? 'bg-white/60 cursor-not-allowed' : 'bg-white cursor-pointer'}`}
+                          >
+                            {isRegistering ? 'En cours…' : "S'inscrire"}
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  )
+                })}
+
+                {/* Carousel — événements suivants */}
+                <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-3 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+                  {events.slice(1).map((event) => {
+                    const date = new Date(event.event_date)
+                    const badge = TYPE_BADGE[event.type]
+                    const isRegistering = registeringId === event.id
+                    return (
+                      <div
+                        key={event.id}
+                        className="shrink-0 w-[85vw] snap-start rounded-2xl bg-white border border-[rgba(192,48,46,0.07)] shadow-[0_2px_8px_rgba(192,48,46,0.06)] p-5 flex flex-col gap-3 min-h-[180px]"
+                      >
+                        <div className="flex gap-3.5 items-start">
+                          {/* Badge date */}
+                          <div className="shrink-0 w-12 h-14 rounded-[10px] bg-[linear-gradient(135deg,#FB3936_0%,#D42F2D_100%)] flex flex-col items-center justify-center text-white">
+                            <span className="text-[10px] font-bold uppercase tracking-wider opacity-90">
+                              {MONTHS_FR[date.getMonth()]}
+                            </span>
+                            <span className="text-[22px] font-extrabold leading-none">
+                              {date.getDate()}
+                            </span>
+                          </div>
+                          {/* Infos */}
+                          <div className="flex-1 min-w-0">
+                            <span
+                              className="inline-block px-2 py-0.5 rounded-full text-[11px] font-bold mb-1"
+                              style={{ background: badge.bg, color: badge.color }}
+                            >
+                              {TYPE_LABELS[event.type]}
+                            </span>
+                            <p className="font-bold text-primary-dark m-0 mb-1 text-[15px] truncate">
+                              {event.title}
+                            </p>
+                            {event.location && (
+                              <span className="flex items-center gap-1 text-xs text-[#7F7F7F]">
+                                <IconMapPin /> {event.location}
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                        {/* Bouton inscription */}
+                        <div className="mt-auto">
+                          {!user ? (
+                            <Link
+                              href="/connexion"
+                              className="flex items-center justify-center px-4 py-2.5 rounded-[10px] bg-sidebar text-white text-sm font-semibold no-underline min-h-[44px]"
+                            >
+                              S&apos;inscrire
+                            </Link>
+                          ) : event.is_registered ? (
+                            <div className="flex items-center justify-center px-4 py-2.5 rounded-[10px] bg-[rgba(192,48,46,0.08)] text-primary-dark text-sm font-semibold min-h-[44px]">
+                              Inscrit
+                            </div>
+                          ) : (
+                            <button
+                              onClick={() => handleRegister(event.id)}
+                              disabled={isRegistering}
+                              className={`flex items-center justify-center w-full px-4 py-2.5 rounded-[10px] text-white text-sm font-semibold border-none min-h-[44px] transition-opacity ${isRegistering ? 'bg-primary/55 cursor-not-allowed' : 'bg-primary cursor-pointer'}`}
+                            >
+                              {isRegistering ? 'En cours…' : "S'inscrire"}
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* ── Desktop : liste verticale (≥ md) + mobile si 0-1 événement ── */}
+            <div className={`flex-col gap-3.5 ${events.length < 2 ? 'flex' : 'hidden md:flex'}`}>
+              {events.map((event) => {
+                const date = new Date(event.event_date)
+                const badge = TYPE_BADGE[event.type]
+                const isRegistering = registeringId === event.id
+
+                return (
+                  <div
+                    key={event.id}
+                    className="flex gap-5 items-center rounded-2xl bg-white border border-[rgba(192,48,46,0.07)] shadow-[0_2px_8px_rgba(192,48,46,0.06)] px-6 py-5"
+                  >
+                    {/* Badge date */}
+                    <div className="shrink-0 w-14 h-16 rounded-xl bg-[linear-gradient(135deg,#FB3936_0%,#D42F2D_100%)] flex flex-col items-center justify-center text-white">
+                      <span className="text-[11px] font-bold uppercase tracking-wider opacity-90">
+                        {MONTHS_FR[date.getMonth()]}
+                      </span>
+                      <span className="text-2xl font-extrabold leading-none">
+                        {date.getDate()}
                       </span>
                     </div>
-                  </div>
 
-                  {/* Join button — auth-aware */}
-                  <div style={{ flexShrink: 0 }}>
-                    {!user ? (
-                      <Link
-                        href="/connexion"
-                        style={{
-                          display: 'inline-block',
-                          padding: '0.5rem 1.25rem',
-                          borderRadius: '10px',
-                          background: '#C0302E',
-                          color: '#fff',
-                          fontSize: '0.875rem',
-                          fontWeight: 600,
-                          textDecoration: 'none',
-                        }}
-                      >
-                        Rejoindre
-                      </Link>
-                    ) : event.is_registered ? (
-                      <span
-                        style={{
-                          display: 'inline-block',
-                          padding: '0.5rem 1.25rem',
-                          borderRadius: '10px',
-                          background: 'rgba(192,48,46,0.08)',
-                          color: '#D42F2D',
-                          fontSize: '0.875rem',
-                          fontWeight: 600,
-                        }}
-                      >
-                        Inscrit
-                      </span>
-                    ) : (
-                      <button
-                        onClick={() => handleRegister(event.id)}
-                        disabled={isRegistering}
-                        style={{
-                          padding: '0.5rem 1.25rem',
-                          borderRadius: '10px',
-                          background: isRegistering ? 'rgba(251,57,54,0.55)' : '#FB3936',
-                          color: '#fff',
-                          fontSize: '0.875rem',
-                          fontWeight: 600,
-                          border: 'none',
-                          cursor: isRegistering ? 'not-allowed' : 'pointer',
-                          boxShadow: '0 2px 8px rgba(251,57,54,0.25)',
-                          transition: 'all 0.15s ease',
-                        }}
-                      >
-                        {isRegistering ? 'En cours…' : 'Rejoindre'}
-                      </button>
-                    )}
+                    {/* Infos événement */}
+                    <div className="flex-1 min-w-0">
+                      <div className="mb-1.5">
+                        <span
+                          className="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold"
+                          style={{ background: badge.bg, color: badge.color }}
+                        >
+                          {TYPE_LABELS[event.type]}
+                        </span>
+                      </div>
+                      <p className="font-bold text-primary-dark m-0 mb-1.5 text-base truncate">
+                        {event.title}
+                      </p>
+                      <div className="flex gap-4 text-[13px] text-[#2C2C2C]/75 flex-wrap">
+                        {event.location && (
+                          <span className="flex items-center gap-1">
+                            <IconMapPin /> {event.location}
+                          </span>
+                        )}
+                        <span className="flex items-center gap-1">
+                          <IconUsers /> {event.registrations_count} inscrit
+                          {event.registrations_count !== 1 ? 's' : ''}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Bouton — auth-aware */}
+                    <div className="shrink-0">
+                      {!user ? (
+                        <Link
+                          href="/connexion"
+                          className="inline-block px-5 py-2 rounded-[10px] bg-sidebar text-white text-sm font-semibold no-underline"
+                        >
+                          Rejoindre
+                        </Link>
+                      ) : event.is_registered ? (
+                        <span className="inline-block px-5 py-2 rounded-[10px] bg-[rgba(192,48,46,0.08)] text-primary-dark text-sm font-semibold">
+                          Inscrit
+                        </span>
+                      ) : (
+                        <button
+                          onClick={() => handleRegister(event.id)}
+                          disabled={isRegistering}
+                          className={`px-5 py-2 rounded-[10px] text-white text-sm font-semibold border-none shadow-[0_2px_8px_rgba(251,57,54,0.25)] transition-all ${isRegistering ? 'bg-primary/55 cursor-not-allowed' : 'bg-primary cursor-pointer'}`}
+                        >
+                          {isRegistering ? 'En cours…' : 'Rejoindre'}
+                        </button>
+                      )}
+                    </div>
                   </div>
-                </div>
-              )
-            })}
-          </div>
+                )
+              })}
+            </div>
+          </>
         )}
 
         {/* ── Pagination ────────────────────────────────────────── */}
@@ -985,6 +1042,7 @@ export default function ActivitesPage() {
             </div>
 
             <div
+              className="past-grid"
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(3, 1fr)',
@@ -992,12 +1050,11 @@ export default function ActivitesPage() {
               }}
             >
               <style>{`
-                @media (max-width: 700px) { .past-grid { grid-template-columns: repeat(2, 1fr) !important; } }
-                @media (max-width: 480px) { .past-grid { grid-template-columns: 1fr !important; } }
+                @media (max-width: 767px) { .past-grid { grid-template-columns: repeat(2, 1fr) !important; } }
                 .past-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(192,48,46,0.14) !important; }
                 .past-card:hover .past-card-overlay { opacity: 0.55 !important; }
               `}</style>
-              {pastEvents.map((event) => {
+              {pastEvents.map((event, index) => {
                 const date = new Date(event.event_date)
                 const dateStr = date.toLocaleDateString('fr-FR', {
                   day: 'numeric',
@@ -1009,7 +1066,7 @@ export default function ActivitesPage() {
                 return (
                   <button
                     key={event.id}
-                    className="past-card"
+                    className={`past-card${index >= 4 && !showAllPast ? ' hidden md:block' : ''}`}
                     onClick={() => openGallery(event)}
                     style={{
                       borderRadius: '16px',
@@ -1121,6 +1178,16 @@ export default function ActivitesPage() {
                 )
               })}
             </div>
+
+            {/* Bouton "Voir plus" — mobile uniquement, si > 4 sorties */}
+            {!showAllPast && pastEvents.length > 4 && (
+              <button
+                onClick={() => setShowAllPast(true)}
+                className="md:hidden mt-4 w-full px-6 py-3 rounded-xl border border-[rgba(192,48,46,0.2)] bg-transparent text-primary-dark text-sm font-semibold cursor-pointer min-h-[44px]"
+              >
+                Voir plus ({pastEvents.length - 4} restant{pastEvents.length - 4 > 1 ? 's' : ''})
+              </button>
+            )}
           </div>
         )}
       </div>
