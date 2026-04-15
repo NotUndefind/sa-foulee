@@ -493,7 +493,7 @@ export default async function PublicHomePage() {
       </section>
 
       {/* ─────────────────────────────────────────── VALEURS ── */}
-      <section id="decouvrir" style={{ padding: '7rem 1.5rem', background: '#FAFAFA' }}>
+      <section id="decouvrir" className="hidden md:block" style={{ padding: '7rem 1.5rem', background: '#FAFAFA' }}>
         <div style={{ maxWidth: '1040px', margin: '0 auto' }}>
           {/* Header */}
           <div className="sF-reveal" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
@@ -1622,7 +1622,7 @@ export default async function PublicHomePage() {
       </section>
 
       {/* ─────────────────────────────────────────── CTA FINAL ── */}
-      <section style={{ padding: '7rem 1.5rem', background: '#FAFAFA' }}>
+      <section className="hidden md:block" style={{ padding: '7rem 1.5rem', background: '#FAFAFA' }}>
         <div
           className="sF-reveal"
           style={{ maxWidth: '640px', margin: '0 auto', textAlign: 'center' }}
