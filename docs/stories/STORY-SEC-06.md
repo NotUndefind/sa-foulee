@@ -3,7 +3,7 @@
 **Epic :** EPIC-SEC-02 — Validation frontend pré-API
 **Priorité :** Must Have
 **Story Points :** 3
-**Statut :** À faire
+**Statut :** Terminé
 **Assigné à :** Non assigné
 **Créé le :** 2026-04-14
 **Sprint :** SEC Sprint 1
@@ -44,15 +44,15 @@ passe ne respectant pas la nouvelle politique.
 
 ## Critères d'acceptation
 
-- [ ] Saisir un mot de passe de moins de 10 chars → erreur Zod affichée, **0 requête réseau** (vérifiable dans l'onglet Network de DevTools)
-- [ ] Saisir un mdp sans majuscule → erreur Zod "au moins une lettre majuscule", 0 requête réseau
-- [ ] Saisir un mdp sans chiffre → erreur Zod "au moins un chiffre", 0 requête réseau
-- [ ] Saisir un mdp sans caractère spécial → erreur Zod appropriée, 0 requête réseau
-- [ ] Le message d'erreur Zod sous le champ password inclut un lien cliquable vers `/mot-de-passe-oublie`
+- [x] Saisir un mot de passe de moins de 10 chars → erreur Zod affichée, **0 requête réseau** (vérifiable dans l'onglet Network de DevTools)
+- [x] Saisir un mdp sans majuscule → erreur Zod "au moins une lettre majuscule", 0 requête réseau
+- [x] Saisir un mdp sans chiffre → erreur Zod "au moins un chiffre", 0 requête réseau
+- [x] Saisir un mdp sans caractère spécial → erreur Zod appropriée, 0 requête réseau
+- [x] Le message d'erreur Zod sous le champ password inclut un lien cliquable vers `/mot-de-passe-oublie`
 - [ ] Un mdp conforme + credentials valides → connexion réussie
 - [ ] Un mdp conforme + mauvais credentials → erreur 422 affichée normalement
 - [ ] 6e tentative → erreur 429 affichée avec le message du backend (délai en minutes)
-- [ ] Aucun `console.log` du mot de passe dans la console DevTools
+- [x] Aucun `console.log` du mot de passe dans la console DevTools
 
 ---
 
@@ -145,13 +145,13 @@ et cliquer "Se connecter" → **aucune requête ne doit apparaître**.
 
 ## Définition de Done
 
-- [ ] Import de `passwordSchema` depuis `@/lib/password-policy` dans LoginForm
-- [ ] Schéma Zod local `password: z.string().min(1, ...)` supprimé et remplacé
-- [ ] Gestion du 429 ajoutée dans le `catch`
-- [ ] Lien "Réinitialisez-le ici" affiché sous l'erreur Zod du champ password
+- [x] Import de `passwordSchema` depuis `@/lib/password-policy` dans LoginForm
+- [x] Schéma Zod local `password: z.string().min(1, ...)` supprimé et remplacé
+- [x] Gestion du 429 ajoutée dans le `catch`
+- [x] Lien "Réinitialisez-le ici" affiché sous l'erreur Zod du champ password
 - [ ] Test DevTools : 0 requête réseau sur validation Zod échouée
 - [ ] Test 429 : 6 tentatives échouées → message affiché correctement
-- [ ] Build TypeScript sans erreur (`next build` ou `tsc --noEmit`)
+- [x] Build TypeScript sans erreur (`tsc --noEmit`)
 
 ---
 

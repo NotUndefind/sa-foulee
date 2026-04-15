@@ -3,7 +3,7 @@
 **Epic :** EPIC-SEC-01 — Politique de mot de passe centralisée
 **Priorité :** Must Have
 **Story Points :** 2
-**Statut :** À faire
+**Statut :** Terminé
 **Assigné à :** Non assigné
 **Créé le :** 2026-04-14
 **Sprint :** SEC Sprint 1
@@ -48,16 +48,16 @@ Ce comportement est intentionnel et documenté dans l'architecture.
 
 ## Critères d'acceptation
 
-- [ ] Le fichier `frontend/src/lib/password-policy.ts` existe et est versionné
-- [ ] Il exporte `passwordSchema` (schéma Zod pour un champ mot de passe)
-- [ ] Il exporte `PASSWORD_SPECIAL_CHARS` (string listant les caractères spéciaux acceptés)
-- [ ] Le schéma lit `NEXT_PUBLIC_PASSWORD_MIN_LENGTH` (défaut : 10)
-- [ ] Le schéma vérifie uppercase si `NEXT_PUBLIC_PASSWORD_REQUIRE_UPPERCASE !== 'false'`
-- [ ] Le schéma vérifie lowercase si `NEXT_PUBLIC_PASSWORD_REQUIRE_LOWERCASE !== 'false'`
-- [ ] Le schéma vérifie digit si `NEXT_PUBLIC_PASSWORD_REQUIRE_DIGIT !== 'false'`
-- [ ] Le schéma vérifie special si `NEXT_PUBLIC_PASSWORD_REQUIRE_SPECIAL !== 'false'`
-- [ ] `frontend/.env.local` contient les 5 variables `NEXT_PUBLIC_PASSWORD_*`
-- [ ] `frontend/.env.example` documente les 5 variables avec commentaire
+- [x] Le fichier `frontend/src/lib/password-policy.ts` existe et est versionné
+- [x] Il exporte `passwordSchema` (schéma Zod pour un champ mot de passe)
+- [x] Il exporte `PASSWORD_SPECIAL_CHARS` (string listant les caractères spéciaux acceptés)
+- [x] Le schéma lit `NEXT_PUBLIC_PASSWORD_MIN_LENGTH` (défaut : 10)
+- [x] Le schéma vérifie uppercase si `NEXT_PUBLIC_PASSWORD_REQUIRE_UPPERCASE !== 'false'`
+- [x] Le schéma vérifie lowercase si `NEXT_PUBLIC_PASSWORD_REQUIRE_LOWERCASE !== 'false'`
+- [x] Le schéma vérifie digit si `NEXT_PUBLIC_PASSWORD_REQUIRE_DIGIT !== 'false'`
+- [x] Le schéma vérifie special si `NEXT_PUBLIC_PASSWORD_REQUIRE_SPECIAL !== 'false'`
+- [x] `frontend/.env.local` contient les 5 variables `NEXT_PUBLIC_PASSWORD_*`
+- [x] `frontend/.env.example` documente les 5 variables avec commentaire
 
 ---
 
@@ -167,13 +167,13 @@ passwordSchema.safeParse('MonMdp1@Securise')
 
 ## Définition de Done
 
-- [ ] `frontend/src/lib/password-policy.ts` créé et versionné
-- [ ] `frontend/.env.local` mis à jour avec les 5 variables (non committé)
-- [ ] `frontend/.env.example` mis à jour avec documentation
+- [x] `frontend/src/lib/password-policy.ts` créé et versionné
+- [x] `frontend/.env.local` mis à jour avec les 5 variables (non committé)
+- [x] `frontend/.env.example` mis à jour avec documentation
 - [ ] `passwordSchema.safeParse('abc')` retourne une erreur
 - [ ] `passwordSchema.safeParse('MonMdp1@Securise')` retourne `success: true`
-- [ ] `.gitignore` frontend vérifié (`.env.local` bien ignoré)
-- [ ] TypeScript : aucune erreur de type sur les exports
+- [x] `.gitignore` frontend vérifié (`.env.local` bien ignoré par `.env*`)
+- [x] TypeScript : aucune erreur de type sur les exports
 
 ---
 

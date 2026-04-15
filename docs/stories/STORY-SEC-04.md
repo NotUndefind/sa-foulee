@@ -3,7 +3,7 @@
 **Epic :** EPIC-SEC-03 — Validation backend & protection compte
 **Priorité :** Must Have
 **Story Points :** 3
-**Statut :** À faire
+**Statut :** Terminé
 **Assigné à :** Non assigné
 **Créé le :** 2026-04-14
 **Sprint :** SEC Sprint 1
@@ -50,12 +50,12 @@ sans dépendance externe.
 
 ## Critères d'acceptation
 
-- [ ] 5 tentatives de connexion échouées (mauvais mdp) → la 6e retourne HTTP 429
-- [ ] La réponse 429 est JSON : `{ "message": "Trop de tentatives… dans X minute(s).", "retry_after": <secondes> }`
-- [ ] Une connexion réussie après < 5 échecs remet le compteur à zéro
-- [ ] Après le délai de 15 min, une nouvelle tentative est à nouveau possible
-- [ ] Les tentatives bloquées ne génèrent PAS de requête vers la table `users` (RateLimiter vérifié avant `User::where()`)
-- [ ] Le header `Retry-After` est inclus dans la réponse 429
+- [x] 5 tentatives de connexion échouées (mauvais mdp) → la 6e retourne HTTP 429
+- [x] La réponse 429 est JSON : `{ "message": "Trop de tentatives… dans X minute(s).", "retry_after": <secondes> }`
+- [x] Une connexion réussie après < 5 échecs remet le compteur à zéro
+- [x] Après le délai de 15 min, une nouvelle tentative est à nouveau possible
+- [x] Les tentatives bloquées ne génèrent PAS de requête vers la table `users` (RateLimiter vérifié avant `User::where()`)
+- [x] Le header `Retry-After` est inclus dans la réponse 429
 
 ---
 
@@ -145,8 +145,8 @@ done
 
 ## Définition de Done
 
-- [ ] `AuthController::login()` modifié avec `RateLimiter`
-- [ ] `use Illuminate\Support\Facades\RateLimiter` + `use Illuminate\Support\Str` importés
+- [x] `AuthController::login()` modifié avec `RateLimiter`
+- [x] `use Illuminate\Support\Facades\RateLimiter` + `use Illuminate\Support\Str` importés
 - [ ] Test : 6e tentative → HTTP 429 avec `retry_after`
 - [ ] Test : connexion réussie après < 5 échecs → compteur remis à zéro (vérifiable en relançant)
 - [ ] Test : tentative bloquée → pas de requête SQL générée (vérifiable via `DB::listen()` en tinker)

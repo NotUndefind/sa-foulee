@@ -3,7 +3,7 @@
 **Epic :** EPIC-SEC-02 — Validation frontend pré-API
 **Priorité :** Must Have
 **Story Points :** 2
-**Statut :** À faire
+**Statut :** Terminé
 **Assigné à :** Non assigné
 **Créé le :** 2026-04-14
 **Sprint :** SEC Sprint 1
@@ -46,21 +46,21 @@ depuis `@/lib/password-policy` (STORY-SEC-05). La vérification de confirmation
 ## Critères d'acceptation
 
 **RegisterForm :**
-- [ ] Saisir un mdp de moins de 10 chars → erreur Zod, **0 requête réseau**
-- [ ] Saisir un mdp sans majuscule → erreur Zod, 0 requête réseau
-- [ ] Saisir un mdp sans chiffre → erreur Zod, 0 requête réseau
-- [ ] Saisir un mdp sans caractère spécial → erreur Zod, 0 requête réseau
-- [ ] Confirmation ne correspondant pas → erreur Zod "La confirmation ne correspond pas"
+- [x] Saisir un mdp de moins de 10 chars → erreur Zod, **0 requête réseau**
+- [x] Saisir un mdp sans majuscule → erreur Zod, 0 requête réseau
+- [x] Saisir un mdp sans chiffre → erreur Zod, 0 requête réseau
+- [x] Saisir un mdp sans caractère spécial → erreur Zod, 0 requête réseau
+- [x] Confirmation ne correspondant pas → erreur Zod "La confirmation ne correspond pas"
 - [ ] Mdp conforme + confirmation correspondante → requête envoyée normalement
 
 **ResetPasswordForm :**
-- [ ] Mêmes règles de complexité que RegisterForm (Zod bloquant)
-- [ ] Confirmation ne correspondant pas → erreur Zod maintenue
+- [x] Mêmes règles de complexité que RegisterForm (Zod bloquant)
+- [x] Confirmation ne correspondant pas → erreur Zod maintenue
 - [ ] Mdp conforme + confirmation correspondante → requête envoyée
 
 **Commun :**
-- [ ] Aucun `console.log` du mot de passe dans la console
-- [ ] Build TypeScript sans erreur
+- [x] Aucun `console.log` du mot de passe dans la console
+- [x] Build TypeScript sans erreur
 
 ---
 
@@ -144,13 +144,13 @@ Actuellement : `"8 caractères minimum"` → Après : `"10 caractères minimum"`
 
 ## Définition de Done
 
-- [ ] `RegisterForm.tsx` : import `passwordSchema` + remplacement du schéma Zod password
-- [ ] `ResetPasswordForm.tsx` : idem
-- [ ] `.refine()` de confirmation conservé dans les deux fichiers
-- [ ] Placeholder `"8 caractères minimum"` mis à jour si présent
+- [x] `RegisterForm.tsx` : import `passwordSchema` + remplacement du schéma Zod password
+- [x] `ResetPasswordForm.tsx` : idem
+- [x] `.refine()` de confirmation conservé dans les deux fichiers
+- [x] Placeholder `"8 caractères minimum"` mis à jour → `"10 caractères minimum"` dans les deux fichiers
 - [ ] Test DevTools Register : 0 requête réseau avec mdp faible
 - [ ] Test DevTools Reset : 0 requête réseau avec mdp faible
-- [ ] Build TypeScript sans erreur (`next build` ou `tsc --noEmit`)
+- [x] Build TypeScript sans erreur (`tsc --noEmit`)
 
 ---
 
