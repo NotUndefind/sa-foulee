@@ -1,10 +1,10 @@
 'use client'
 
+import { api } from '@/lib/api'
+import { useAuthStore } from '@/store/auth.store'
+import type { Event, Post, TrainingSession } from '@/types'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { useAuthStore } from '@/store/auth.store'
-import { api } from '@/lib/api'
-import type { Event, TrainingSession, Post } from '@/types'
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
