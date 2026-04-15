@@ -141,117 +141,121 @@ input[type='radio'] {
 .sF-d3 { transition-delay: 0.25s; }
 .sF-d4 { transition-delay: 0.35s; }
 
-/* ── Cards ── */
-.sF-card {
-  background: white;
-  border-radius: 20px;
-  padding: 2rem 1.75rem;
-  border: 1.5px solid rgba(192, 48, 46, 0.08);
-  transition:
-    transform 0.35s cubic-bezier(.22,1,.36,1),
-    box-shadow 0.35s ease,
-    border-color 0.3s ease;
-}
-.sF-card:hover {
-  transform: translateY(-7px);
-  box-shadow: 0 24px 56px rgba(192, 48, 46, 0.11);
-  border-color: rgba(192, 48, 46, 0.18);
-}
+/* ── Composants visuels — dans @layer components pour s'intégrer
+   correctement avec les utilities Tailwind v4 (hidden, md:block, etc.) ── */
+@layer components {
+  /* ── Cards ── */
+  .sF-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem 1.75rem;
+    border: 1.5px solid rgba(192, 48, 46, 0.08);
+    transition:
+      transform 0.35s cubic-bezier(.22,1,.36,1),
+      box-shadow 0.35s ease,
+      border-color 0.3s ease;
+  }
+  .sF-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 24px 56px rgba(192, 48, 46, 0.11);
+    border-color: rgba(192, 48, 46, 0.18);
+  }
 
-/* ── Activity blocks ── */
-.sF-act {
-  padding: 1.75rem;
-  border-radius: 18px;
-  background: rgba(192, 48, 46, 0.04);
-  border: 1.5px solid rgba(192, 48, 46, 0.09);
-  transition:
-    background 0.3s ease,
-    border-color 0.3s ease,
-    transform 0.3s ease;
-}
-.sF-act:hover {
-  background: rgba(192, 48, 46, 0.07);
-  border-color: rgba(192, 48, 46, 0.18);
-  transform: translateY(-3px);
-}
+  /* ── Activity blocks ── */
+  .sF-act {
+    padding: 1.75rem;
+    border-radius: 18px;
+    background: rgba(192, 48, 46, 0.04);
+    border: 1.5px solid rgba(192, 48, 46, 0.09);
+    transition:
+      background 0.3s ease,
+      border-color 0.3s ease,
+      transform 0.3s ease;
+  }
+  .sF-act:hover {
+    background: rgba(192, 48, 46, 0.07);
+    border-color: rgba(192, 48, 46, 0.18);
+    transform: translateY(-3px);
+  }
 
-/* ── Buttons ── */
-.sF-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: #fb3936;
-  color: #fff;
-  padding: 0.9rem 2rem;
-  border-radius: 100px;
-  font-weight: 700;
-  font-size: 1rem;
-  text-decoration: none;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background 0.2s ease;
-  box-shadow: 0 4px 22px rgba(251, 57, 54, 0.38);
-}
-.sF-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 36px rgba(251, 57, 54, 0.46);
-  background: #d42f2d;
-}
-.sF-btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #c0302e;
-  padding: 0.9rem 2rem;
-  border-radius: 100px;
-  font-weight: 600;
-  font-size: 1rem;
-  text-decoration: none;
-  border: 2px solid rgba(192, 48, 46, 0.22);
-  transition:
-    border-color 0.2s ease,
-    background 0.2s ease,
-    transform 0.2s ease;
-}
-.sF-btn-ghost:hover {
-  border-color: #c0302e;
-  background: rgba(192, 48, 46, 0.05);
-  transform: translateY(-2px);
-}
+  /* ── Buttons ── */
+  .sF-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fb3936;
+    color: #fff;
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      background 0.2s ease;
+    box-shadow: 0 4px 22px rgba(251, 57, 54, 0.38);
+  }
+  .sF-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 36px rgba(251, 57, 54, 0.46);
+    background: #d42f2d;
+  }
+  .sF-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #c0302e;
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 2px solid rgba(192, 48, 46, 0.22);
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease,
+      transform 0.2s ease;
+  }
+  .sF-btn-ghost:hover {
+    border-color: #c0302e;
+    background: rgba(192, 48, 46, 0.05);
+    transform: translateY(-2px);
+  }
 
-/* ── Footer links ── */
-.sF-flink {
-  color: rgba(255, 255, 255, 0.45);
-  text-decoration: none;
-  font-size: 0.875rem;
-  transition: color 0.2s;
-  position: relative;
-}
-.sF-flink::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1.5px;
-  background: #fb3936;
-  transition: width 0.25s ease;
-}
-.sF-flink:hover { color: rgba(255, 255, 255, 0.9); }
-.sF-flink:hover::after { width: 100%; }
+  /* ── Footer links ── */
+  .sF-flink {
+    color: rgba(255, 255, 255, 0.45);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .sF-flink::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: #fb3936;
+    transition: width 0.25s ease;
+  }
+  .sF-flink:hover { color: rgba(255, 255, 255, 0.9); }
+  .sF-flink:hover::after { width: 100%; }
 
-/* ── Section label ── */
-.sF-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  color: #fb3936;
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  margin-bottom: 0.875rem;
+  /* ── Section label ── */
+  .sF-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #fb3936;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    margin-bottom: 0.875rem;
+  }
 }
 
 /* ── Hero responsive ── */
