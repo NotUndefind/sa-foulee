@@ -722,7 +722,7 @@ export default function DashboardHomePage() {
             <SectionHeader title="Articles récents" href="/tableau-de-bord/blog" accent="#7F7F7F" />
 
             {loading ? (
-              <div className="grid gap-4 sm:grid-cols-3">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                 {[1, 2, 3].map((i) => (
                   <div key={i} className="sf-card space-y-3 p-5">
                     <Skeleton className="h-4 w-full" />
@@ -736,7 +736,7 @@ export default function DashboardHomePage() {
                 <EmptyState icon={<IconEmptyPost />} label="Aucun article publié" />
               </div>
             ) : (
-              <div className="grid gap-4 sm:grid-cols-3">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                 {posts.map((post, i) => (
                   <Link
                     key={post.id}
