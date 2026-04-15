@@ -1110,7 +1110,7 @@ post_sprint:
     end_date: "2026-05-04"
     capacity_points: 10
     committed_points: 11
-    completed_points: 3
+    completed_points: 6
     status: "in_progress"
     goal: "Landing page complètement responsive + Dashboard intérieur fonctionnel"
     stories:
@@ -1127,10 +1127,14 @@ post_sprint:
       - story_id: "STORY-RES-05"
         title: "Landing stats 2x2 + overflow global"
         points: 3
-        status: "not_started"
+        status: "completed"
+        completed_date: "2026-04-15"
         epic: "EPIC-R02"
         priority: "should_have"
-        assigned_to: null
+        assigned_to: "julesbourin"
+        files_modified:
+          - "frontend/src/app/(public)/page.tsx"
+          - "frontend/src/app/globals.css"
       - story_id: "STORY-RES-10"
         title: "Dashboard pages intérieures overflow + formulaires mobile"
         points: 5

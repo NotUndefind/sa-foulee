@@ -233,6 +233,7 @@ export default async function PublicHomePage() {
         /* ── Hero responsive ── */
         @media (max-width: 767px) {
           .sF-hero-section { padding: 3rem 1.25rem 5rem !important; min-height: auto !important; }
+          .sF-stat-item { padding: 1.5rem 0.75rem !important; }
         }
       `}</style>
 
@@ -804,13 +805,7 @@ export default async function PublicHomePage() {
           </div>
 
           {/* Stat grid */}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-              gap: '0.5rem',
-            }}
-          >
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-3">
             {[
               { num: '1', label: 'sortie / mois', sub: 'minimum garanti', d: 'sF-d1' },
               {
@@ -828,7 +823,7 @@ export default async function PublicHomePage() {
             ].map((s) => (
               <div
                 key={s.label}
-                className={`sF-reveal ${s.d}`}
+                className={`sF-reveal sF-stat-item ${s.d}`}
                 style={{
                   textAlign: 'center',
                   padding: '2.5rem 1.5rem',
