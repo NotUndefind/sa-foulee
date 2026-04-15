@@ -282,7 +282,7 @@ export default function ProfilePage() {
                 </div>
               )}
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
                   <label
                     className="mb-1.5 block text-xs font-bold tracking-wider uppercase"
@@ -337,7 +337,7 @@ export default function ProfilePage() {
                 <button
                   type="submit"
                   disabled={isSubmitting || (!isDirty && !avatarFile)}
-                  className="rounded-xl px-6 py-2.5 text-sm font-bold text-white transition disabled:opacity-40"
+                  className="min-h-[44px] rounded-xl px-6 py-3 text-sm font-bold text-white transition disabled:opacity-40"
                   style={{
                     background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)',
                     boxShadow: '0 2px 8px rgba(251,57,54,0.3)',

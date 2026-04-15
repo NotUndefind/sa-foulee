@@ -614,11 +614,13 @@ export default function LeaderboardPage() {
                     <>
                       {entries.length >= 3 && <Podium entries={entries} />}
 
+                      <div className="overflow-x-auto">
                       <div
                         className="overflow-hidden rounded-2xl bg-white"
                         style={{
                           boxShadow: '0 2px 12px rgba(192,48,46,0.07)',
                           border: '1px solid rgba(192,48,46,0.07)',
+                          minWidth: '360px',
                         }}
                       >
                         <div
@@ -739,6 +741,7 @@ export default function LeaderboardPage() {
                             </div>
                           )
                         })}
+                      </div>
                       </div>
                     </>
                   )}
