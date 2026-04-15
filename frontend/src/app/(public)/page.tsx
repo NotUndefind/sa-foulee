@@ -41,7 +41,7 @@ export default async function PublicHomePage() {
     // Silently fail — section is hidden if no events
   }
 
-  let homepageStats = { member_count: 7, total_km: 50 }
+  let homepageStats = { member_count: 7, total_km: 0 }
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000/api/v1'
     const res = await fetch(`${apiUrl}/stats/homepage`, {
