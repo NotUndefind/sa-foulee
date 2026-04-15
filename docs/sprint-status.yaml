@@ -1,9 +1,9 @@
 version: "6.0.0"
 project_name: "La Neuville TAF sa Foulée"
 project_level: 2
-current_sprint: 16
-sprint_plan_path: "docs/sprint-plan-saFoulee-2026-03-30-v3.md"
-previous_sprint_plan_path: "docs/sprint-plan-saFoulee-2026-03-29-v2.md"
+current_sprint: 21
+sprint_plan_path: "docs/sprint-plan-saFoulee-responsive-2026-04-14.md"
+previous_sprint_plan_path: "docs/sprint-plan-saFoulee-2026-03-30-v3.md"
 
 team:
   size: 1
@@ -1028,3 +1028,195 @@ post_sprint:
         epic: "EPIC-H"
         priority: "should_have"
         assigned_to: "julesbourin"
+
+# --- v4 sprints — Responsive Design (sprints 21-25) ---
+
+  - sprint_number: 21
+    start_date: "2026-04-14"
+    end_date: "2026-04-20"
+    capacity_points: 10
+    committed_points: 9
+    completed_points: 0
+    status: "not_started"
+    goal: "Navigation publique mobile fonctionnelle + Landing allégée"
+    stories:
+      - story_id: "STORY-RES-01"
+        title: "Navbar publique hamburger menu mobile"
+        points: 5
+        status: "not_started"
+        epic: "EPIC-R01"
+        priority: "must_have"
+        assigned_to: null
+      - story_id: "STORY-RES-03"
+        title: "Landing — masquer section valeurs + CTA secondaire mobile"
+        points: 2
+        status: "not_started"
+        epic: "EPIC-R02"
+        priority: "must_have"
+        assigned_to: null
+      - story_id: "STORY-RES-11"
+        title: "Pages connexion/inscription responsive"
+        points: 2
+        status: "not_started"
+        epic: "EPIC-R05"
+        priority: "must_have"
+        assigned_to: null
+
+  - sprint_number: 22
+    start_date: "2026-04-21"
+    end_date: "2026-04-27"
+    capacity_points: 10
+    committed_points: 10
+    completed_points: 0
+    status: "not_started"
+    goal: "Dashboard entièrement accessible sur mobile (tous les liens disponibles)"
+    stories:
+      - story_id: "STORY-RES-02"
+        title: "Dashboard sidebar collapsible drawer mobile"
+        points: 8
+        status: "not_started"
+        epic: "EPIC-R01"
+        priority: "must_have"
+        assigned_to: null
+      - story_id: "STORY-RES-09"
+        title: "Dashboard page principale layout mobile"
+        points: 2
+        status: "not_started"
+        epic: "EPIC-R04"
+        priority: "must_have"
+        assigned_to: null
+
+  - sprint_number: 23
+    start_date: "2026-04-28"
+    end_date: "2026-05-04"
+    capacity_points: 10
+    committed_points: 11
+    completed_points: 0
+    status: "not_started"
+    goal: "Landing page complètement responsive + Dashboard intérieur fonctionnel"
+    stories:
+      - story_id: "STORY-RES-04"
+        title: "Landing hero section responsive"
+        points: 3
+        status: "not_started"
+        epic: "EPIC-R02"
+        priority: "must_have"
+        assigned_to: null
+      - story_id: "STORY-RES-05"
+        title: "Landing stats 2x2 + overflow global"
+        points: 3
+        status: "not_started"
+        epic: "EPIC-R02"
+        priority: "should_have"
+        assigned_to: null
+      - story_id: "STORY-RES-10"
+        title: "Dashboard pages intérieures overflow + formulaires mobile"
+        points: 5
+        status: "not_started"
+        epic: "EPIC-R04"
+        priority: "should_have"
+        assigned_to: null
+
+  - sprint_number: 24
+    start_date: "2026-05-05"
+    end_date: "2026-05-11"
+    capacity_points: 10
+    committed_points: 10
+    completed_points: 0
+    status: "not_started"
+    goal: "Page Activités avec design éditorial mobile (hero + carousel)"
+    stories:
+      - story_id: "STORY-RES-06"
+        title: "Activités hero card + carousel horizontal mobile"
+        points: 8
+        status: "not_started"
+        epic: "EPIC-R03"
+        priority: "must_have"
+        assigned_to: null
+      - story_id: "STORY-RES-07"
+        title: "Grille dernières sorties 2 cols + lazy mobile"
+        points: 2
+        status: "not_started"
+        epic: "EPIC-R03"
+        priority: "must_have"
+        assigned_to: null
+
+  - sprint_number: 25
+    start_date: "2026-05-12"
+    end_date: "2026-05-17"
+    capacity_points: 10
+    committed_points: 3
+    completed_points: 0
+    status: "not_started"
+    goal: "Blog responsive + révision finale et QA cross-pages"
+    stories:
+      - story_id: "STORY-RES-08"
+        title: "Blog 1 colonne mobile + 2 colonnes tablette"
+        points: 3
+        status: "not_started"
+        epic: "EPIC-R03"
+        priority: "must_have"
+        assigned_to: null
+
+  # --- SEC Sprint 1 (sécurité — track parallèle, 2026-04-14) ---
+  - sprint_number: "SEC-1"
+    start_date: "2026-04-14"
+    end_date: "2026-04-21"
+    capacity_points: 14
+    committed_points: 14
+    completed_points: 2
+    status: "in_progress"
+    goal: "Sécurité backend : politique de mot de passe, verrouillage de compte, rate limiting, HTTPS"
+    stories:
+      - story_id: "STORY-SEC-01"
+        title: "Config centralisée de la politique de mot de passe"
+        points: 1
+        status: "completed"
+        epic: "EPIC-SEC-03"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-04-14"
+      - story_id: "STORY-SEC-02"
+        title: "Règle PasswordPolicy Laravel"
+        points: 2
+        status: "completed"
+        epic: "EPIC-SEC-03"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-04-14"
+      - story_id: "STORY-SEC-03"
+        title: "Mise à jour des Form Requests avec PasswordPolicy"
+        points: 2
+        status: "completed"
+        epic: "EPIC-SEC-03"
+        priority: "must_have"
+        assigned_to: "julesbourin"
+        completed_date: "2026-04-15"
+      - story_id: "STORY-SEC-04"
+        title: "Account lockout après N tentatives échouées"
+        points: 3
+        status: "not_started"
+        epic: "EPIC-SEC-04"
+        priority: "must_have"
+        assigned_to: null
+      - story_id: "STORY-SEC-05"
+        title: "Rate limiting API sur les endpoints d'auth"
+        points: 2
+        status: "not_started"
+        epic: "EPIC-SEC-05"
+        priority: "must_have"
+        assigned_to: null
+      - story_id: "STORY-SEC-06"
+        title: "Forçage HTTPS et headers de sécurité"
+        points: 2
+        status: "not_started"
+        epic: "EPIC-SEC-06"
+        priority: "must_have"
+        assigned_to: null
+      - story_id: "STORY-SEC-07"
+        title: "Audit et tests de sécurité"
+        points: 2
+        status: "not_started"
+        epic: "EPIC-SEC-07"
+        priority: "must_have"
+        assigned_to: null
