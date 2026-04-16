@@ -1,10 +1,10 @@
 'use client'
 
 import {
-  createSession,
-  updateSession,
-  getLocations,
   createLocation,
+  createSession,
+  getLocations,
+  updateSession,
   type SessionPayload,
 } from '@/lib/sessions'
 import type { Exercise, Intensity, Location, SessionType, TrainingSession } from '@/types'
@@ -154,7 +154,7 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
       exercises: exercises.filter((e) => e.name.trim() !== ''),
       description: data.description ?? '',
       is_template: data.is_template,
-      location_id: data.is_template ? null : data.location_id ?? null,
+      location_id: data.is_template ? null : (data.location_id ?? null),
       session_date: data.is_template ? null : data.session_date || null,
     }
 

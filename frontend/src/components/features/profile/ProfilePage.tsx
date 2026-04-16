@@ -1,16 +1,16 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
-import { useAuthStore } from '@/store/auth.store'
-import { useRole } from '@/hooks/useRole'
-import { updateProfile, getDocuments } from '@/lib/profile'
-import type { UserDocument } from '@/types'
 import DocumentCard from '@/components/features/documents/DocumentCard'
 import DocumentUploadModal from '@/components/features/documents/DocumentUploadModal'
 import NewsletterToggle from '@/components/features/newsletter/NewsletterToggle'
+import { useRole } from '@/hooks/useRole'
+import { getDocuments, updateProfile } from '@/lib/profile'
+import { useAuthStore } from '@/store/auth.store'
+import type { UserDocument } from '@/types'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect, useRef, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 
 const schema = z.object({
   first_name: z.string().min(1, 'Le prénom est obligatoire.').max(50),
@@ -371,7 +371,7 @@ export default function ProfilePage() {
                 <button
                   type="submit"
                   disabled={isSubmitting || (!isDirty && !avatarFile) || !!avatarError}
-                  className="min-h-[44px] rounded-xl px-6 py-2.5 text-sm font-bold text-white transition disabled:opacity-40"
+                  className="min-h-11 rounded-xl px-6 py-2.5 text-sm font-bold text-white transition disabled:opacity-40"
                   style={{
                     background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)',
                     boxShadow: '0 2px 8px rgba(251,57,54,0.3)',
