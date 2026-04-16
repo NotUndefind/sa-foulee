@@ -8,6 +8,7 @@ use App\Models\Performance;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class PerformanceController extends Controller
 {
@@ -57,7 +58,7 @@ class PerformanceController extends Controller
         $performance->delete();
 
         foreach (['week', 'month', 'season'] as $period) {
-            \Illuminate\Support\Facades\Cache::forget("leaderboard:{$period}");
+            Cache::forget("leaderboard:{$period}");
         }
 
         return response()->json(null, 204);

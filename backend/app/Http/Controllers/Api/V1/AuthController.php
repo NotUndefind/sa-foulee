@@ -56,14 +56,14 @@ class AuthController extends Controller
     public function login(LoginRequest $request): JsonResponse
     {
         // ---- Account Lockout ----
-        $throttleKey = 'login.' . Str::lower($request->email);
+        $throttleKey = 'login.'.Str::lower($request->email);
 
         if (RateLimiter::tooManyAttempts($throttleKey, 7)) {
             $seconds = RateLimiter::availableIn($throttleKey);
             $minutes = (int) ceil($seconds / 60);
 
             return response()->json([
-                'message'     => "Trop de tentatives de connexion. Veuillez réessayer dans {$minutes} minute(s).",
+                'message' => "Trop de tentatives de connexion. Veuillez réessayer dans {$minutes} minute(s).",
                 'retry_after' => $seconds,
             ], 429)->withHeaders([
                 'Retry-After' => $seconds,
