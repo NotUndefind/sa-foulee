@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\AvatarController;
 use App\Http\Controllers\Api\V1\BudgetEntryController;
 use App\Http\Controllers\Api\V1\CampaignController;
 use App\Http\Controllers\Api\V1\ChatController;
@@ -44,6 +45,11 @@ Route::prefix("v1")->group(function () {
             "handle",
         ])->middleware("helloasso.signature");
     });
+
+    // ---- Avatars (public) ----
+    Route::get('avatars/{userId}/{filename}', [AvatarController::class, 'serve'])
+        ->name('avatars.serve')
+        ->where(['userId' => '[0-9]+', 'filename' => '[^/]+']);
 
     // ---- Auth (public) ----
     Route::prefix("auth")->group(function () {

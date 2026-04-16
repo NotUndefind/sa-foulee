@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Concerns\GeneratesAvatarUrl;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UpdateRoleRequest;
 use App\Models\User;
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    use GeneratesAvatarUrl;
     /**
      * GET /users — Liste paginée des membres (admin uniquement).
      * Paramètres : ?search=&role=&page=&per_page=
@@ -124,7 +126,7 @@ class UserController extends Controller
             'first_name' => $user->first_name,
             'last_name' => $user->last_name,
             'email' => $user->email,
-            'avatar' => $user->avatar,
+            'avatar' => $user->avatar ? $this->avatarUrl($user->avatar) : null,
             'roles' => $user->getRoleNames(),
             'has_complete_documents' => $user->hasCompleteDocuments(),
             'document_completion' => $user->documentCompletion(),
