@@ -18,10 +18,9 @@ class SessionController extends Controller
     {
         $query = TrainingSession::query()
             ->where('is_template', false)
-            ->whereNotNull('published_at')
-            ->where('published_at', '<=', now())
+            ->with('location:id,name')
             ->withCount('participants')
-            ->orderByDesc('published_at');
+            ->orderByDesc('session_date');
 
         if ($request->filled('type')) {
             $query->where('type', $request->type);
@@ -53,6 +52,7 @@ class SessionController extends Controller
     {
         $user = $request->user();
         $query = TrainingSession::where('is_template', true)
+            ->withCount('participants')
             ->orderByDesc('created_at');
 
         // Filtre par type optionnel
@@ -77,7 +77,7 @@ class SessionController extends Controller
      */
     public function show(Request $request, TrainingSession $session): JsonResponse
     {
-        $session->loadCount('participants');
+        $session->load('location:id,name')->loadCount('participants');
 
         return response()->json($this->formatSession($session, $request->user()->id));
     }
@@ -90,12 +90,10 @@ class SessionController extends Controller
         $data = $request->validated();
         $data['created_by'] = $request->user()->id;
 
-        // is_template et is_published depuis request
         $data['is_template'] = $request->boolean('is_template', false);
-        $data['published_at'] = $request->input('published_at');
 
         $session = TrainingSession::create($data);
-        $session->loadCount('participants');
+        $session->load('location:id,name')->loadCount('participants');
 
         return response()->json($this->formatSession($session, $request->user()->id), 201);
     }
@@ -106,7 +104,7 @@ class SessionController extends Controller
     public function update(UpdateSessionRequest $request, TrainingSession $session): JsonResponse
     {
         $session->update($request->validated());
-        $session->loadCount('participants');
+        $session->load('location:id,name')->loadCount('participants');
 
         return response()->json($this->formatSession($session, $request->user()->id));
     }
@@ -170,7 +168,8 @@ class SessionController extends Controller
             'description' => $session->description,
             'is_template' => $session->is_template,
             'created_by' => $session->created_by,
-            'published_at' => $session->published_at?->toIso8601String(),
+            'location' => $session->location ? ['id' => $session->location->id, 'name' => $session->location->name] : null,
+            'session_date' => $session->session_date?->toIso8601String(),
             'created_at' => $session->created_at->toIso8601String(),
             'participants_count' => $session->participants_count ?? 0,
             'has_participated' => $session->participants()

@@ -376,12 +376,6 @@ parameters:
 			message: '#^Cannot call method isPast\(\) on string\.$#'
 			identifier: method.nonObject
 			count: 1
-			path: app/Models/TrainingSession.php
-
-		-
-			message: '#^Cannot call method isPast\(\) on string\.$#'
-			identifier: method.nonObject
-			count: 1
 			path: app/Models/UserDocument.php
 
 		-

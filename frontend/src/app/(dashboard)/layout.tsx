@@ -5,6 +5,7 @@ import { useRole } from '@/hooks/useRole'
 import { logout } from '@/lib/auth'
 import { getPublicSettings } from '@/lib/settings'
 import { useAuthStore } from '@/store/auth.store'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -46,26 +47,6 @@ function IconCalendar({ active }: { active?: boolean }) {
       <circle cx="8" cy="15" r="1" fill="currentColor" />
       <circle cx="12" cy="15" r="1" fill="currentColor" />
       <circle cx="16" cy="15" r="1" fill="currentColor" />
-    </svg>
-  )
-}
-
-function IconRun({ active }: { active?: boolean }) {
-  return (
-    <svg
-      width="17"
-      height="17"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={active ? 2.2 : 1.6}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="15" cy="4" r="2" />
-      <path d="M10.5 8.5L8 17l4-2 3 4 2-8" />
-      <path d="M16 8l-2.5.5-3 5" />
-      <path d="M5 12l3.5 1" />
     </svg>
   )
 }
@@ -245,7 +226,7 @@ function IconLogout() {
 type NavItem = {
   href: string
   label: string
-  Icon: React.ComponentType<{ active?: boolean }>
+  Icon: React.ComponentType
 }
 
 const NAV_LINKS: NavItem[] = [
@@ -415,9 +396,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 justifyContent: 'center',
               }}
             >
-              <img
+              <Image
                 src="/logo-removebg-preview.png"
                 alt="La Neville TAF Sa Foulée"
+                width={200}
+                height={64}
                 style={{
                   height: '64px',
                   width: '100%',

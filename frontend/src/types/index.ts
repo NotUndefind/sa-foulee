@@ -70,6 +70,11 @@ export interface EventPhoto {
 
 // ---- Training Sessions ----
 
+export interface Location {
+  id: number
+  name: string
+}
+
 export interface Exercise {
   name: string
   sets?: number
@@ -89,7 +94,8 @@ export interface TrainingSession {
   description: string | null
   is_template: boolean
   created_by: number
-  published_at: string | null
+  location: Location | null
+  session_date: string | null
   created_at: string
   participants_count?: number
   has_participated?: boolean

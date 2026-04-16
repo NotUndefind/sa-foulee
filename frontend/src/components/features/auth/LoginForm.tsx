@@ -1,21 +1,26 @@
 'use client'
 
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { ApiError } from '@/lib/api'
+import { login } from '@/lib/auth'
+import { passwordSchema } from '@/lib/password-policy'
+import { useAuthStore } from '@/store/auth.store'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { login } from '@/lib/auth'
-import { useAuthStore } from '@/store/auth.store'
-import { ApiError } from '@/lib/api'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+
+// LEGACY PASSWORD HINT — supprimer ce bloc et les JSX associés après 2026-05-15
+const PASSWORD_POLICY_LIVE_DATE = '15 avril 2026'
+const OLD_PASSWORD_HINT_SUNSET = new Date('2026-05-15')
 
 const schema = z.object({
   email: z
     .string()
     .min(1, "L'adresse e-mail est obligatoire.")
     .email("L'adresse e-mail n'est pas valide."),
-  password: z.string().min(1, 'Le mot de passe est obligatoire.'),
+  password: passwordSchema,
 })
 
 type FormValues = z.infer<typeof schema>
@@ -63,6 +68,8 @@ export default function LoginForm() {
   const setUser = useAuthStore((s) => s.setUser)
   const [globalError, setGlobalError] = useState<string | null>(null)
   const [showPassword, setShowPassword] = useState(false)
+  // LEGACY PASSWORD HINT — supprimer après 2026-05-15
+  const [wrongPassword, setWrongPassword] = useState(false)
 
   const {
     register,
@@ -72,6 +79,7 @@ export default function LoginForm() {
 
   const onSubmit = async (values: FormValues) => {
     setGlobalError(null)
+    setWrongPassword(false)
     try {
       const { user, token } = await login(values)
       localStorage.setItem('auth_token', token)
@@ -80,6 +88,12 @@ export default function LoginForm() {
     } catch (err) {
       if (err instanceof ApiError && err.status === 422) {
         setGlobalError("L'adresse e-mail ou le mot de passe est incorrect.")
+        setWrongPassword(true) // LEGACY PASSWORD HINT — supprimer après 2026-05-15
+      } else if (err instanceof ApiError && err.status === 429) {
+        setGlobalError(
+          err.message ??
+            'Trop de tentatives de connexion. Veuillez réessayer dans quelques minutes.'
+        )
       } else {
         setGlobalError('Une erreur inattendue est survenue. Veuillez réessayer.')
       }
@@ -107,6 +121,26 @@ export default function LoginForm() {
           }}
         >
           {globalError}
+        </div>
+      )}
+
+      {/* LEGACY PASSWORD HINT — supprimer ce bloc après 2026-05-15 */}
+      {wrongPassword && new Date() < OLD_PASSWORD_HINT_SUNSET && (
+        <div
+          className="rounded-lg px-4 py-3 text-sm"
+          style={{
+            background: 'rgba(251,57,54,0.04)',
+            border: '1px solid rgba(251,57,54,0.15)',
+            color: '#7F7F7F',
+          }}
+        >
+          Les comptes créés avant le{' '}
+          <span style={{ color: '#2C2C2C', fontWeight: 500 }}>{PASSWORD_POLICY_LIVE_DATE}</span>{' '}
+          doivent{' '}
+          <Link href="/mot-de-passe-oublie" className="underline" style={{ color: '#FB3936' }}>
+            réinitialiser leur mot de passe
+          </Link>
+          .
         </div>
       )}
 
@@ -174,7 +208,7 @@ export default function LoginForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
+        className="w-full rounded-lg px-4 py-3 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
         style={{
           background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)',
           boxShadow: '0 2px 8px rgba(251,57,54,0.25)',

@@ -16,10 +16,10 @@ class UserSeeder extends Seeder
             [
                 'first_name' => 'Admin',
                 'last_name' => 'saFoulée',
-                'password' => Hash::make('password'),
+                'password' => Hash::make('passworD1#'),
                 'email_verified_at' => now(),
                 'consent_given_at' => now(),
-            ]
+            ],
         );
         $admin->assignRole('admin');
 
@@ -29,11 +29,11 @@ class UserSeeder extends Seeder
             [
                 'first_name' => 'Jean',
                 'last_name' => 'Dupont',
-                'password' => Hash::make('password'),
+                'password' => Hash::make('passworD1#'),
                 'email_verified_at' => now(),
                 'consent_given_at' => now(),
                 'bio' => 'Fondateur de sa Foulée, passionné de course à pied depuis 10 ans.',
-            ]
+            ],
         );
         $founder->assignRole('founder');
 
@@ -43,18 +43,30 @@ class UserSeeder extends Seeder
             [
                 'first_name' => 'Marie',
                 'last_name' => 'Martin',
-                'password' => Hash::make('password'),
+                'password' => Hash::make('passworD1#'),
                 'email_verified_at' => now(),
                 'consent_given_at' => now(),
-            ]
+            ],
         );
         $coach->assignRole('coach');
 
         // Membres simples (x3)
         $members = [
-            ['email' => 'pierre@safoulee.fr', 'first_name' => 'Pierre', 'last_name' => 'Bernard'],
-            ['email' => 'sophie@safoulee.fr', 'first_name' => 'Sophie', 'last_name' => 'Leroy'],
-            ['email' => 'lucas@safoulee.fr', 'first_name' => 'Lucas', 'last_name' => 'Petit'],
+            [
+                'email' => 'pierre@safoulee.fr',
+                'first_name' => 'Pierre',
+                'last_name' => 'Bernard',
+            ],
+            [
+                'email' => 'sophie@safoulee.fr',
+                'first_name' => 'Sophie',
+                'last_name' => 'Leroy',
+            ],
+            [
+                'email' => 'lucas@safoulee.fr',
+                'first_name' => 'Lucas',
+                'last_name' => 'Petit',
+            ],
         ];
 
         foreach ($members as $data) {
@@ -64,12 +76,14 @@ class UserSeeder extends Seeder
                     'password' => Hash::make('password'),
                     'email_verified_at' => now(),
                     'consent_given_at' => now(),
-                ])
+                ]),
             );
             $user->assignRole('member');
         }
 
-        $this->command->info('✓ Utilisateurs créés : 1 admin, 1 fondateur, 1 entraîneur, 3 membres');
+        $this->command->info(
+            '✓ Utilisateurs créés : 1 admin, 1 fondateur, 1 entraîneur, 3 membres',
+        );
         $this->command->info('  Mot de passe : password (dev uniquement)');
     }
 }

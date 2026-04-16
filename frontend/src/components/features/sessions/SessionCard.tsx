@@ -6,6 +6,7 @@ import { toggleParticipation, deleteSession } from '@/lib/sessions'
 import { useRole } from '@/hooks/useRole'
 import { useToast } from '@/components/ui/Toast'
 
+// prettier-ignore
 const TYPE_LABELS: Record<SessionType, string> = {
   running: 'Course',
   interval: 'Interval',
@@ -15,6 +16,7 @@ const TYPE_LABELS: Record<SessionType, string> = {
   other: 'Autre',
 }
 
+// prettier-ignore
 const TYPE_ICONS: Record<SessionType, string> = {
   running: '🏃',
   interval: '⚡',
@@ -24,12 +26,14 @@ const TYPE_ICONS: Record<SessionType, string> = {
   other: '📋',
 }
 
+// prettier-ignore
 const INTENSITY_LABELS: Record<Intensity, string> = {
   low: 'Faible',
   medium: 'Moyenne',
   high: 'Élevée',
 }
 
+// prettier-ignore
 const INTENSITY_COLORS: Record<Intensity, string> = {
   low: 'bg-green-100 text-green-700',
   medium: 'bg-amber-100 text-amber-700',
@@ -41,9 +45,16 @@ interface Props {
   onUpdate: (updated: TrainingSession) => void
   onDelete: (id: number) => void
   onEdit?: (session: TrainingSession) => void
+  isTemplate?: boolean
 }
 
-export default function SessionCard({ session, onUpdate, onDelete, onEdit }: Props) {
+export default function SessionCard({
+  session,
+  onUpdate,
+  onDelete,
+  onEdit,
+  isTemplate = false,
+}: Props) {
   const { canManageSessions } = useRole()
   const { toast } = useToast()
   const [loading, setLoading] = useState(false)
@@ -129,6 +140,34 @@ export default function SessionCard({ session, onUpdate, onDelete, onEdit }: Pro
         </div>
       </div>
 
+      {/* Date et lieu */}
+      {(session.session_date || session.location) && (
+        <div className="flex flex-wrap gap-x-4 gap-y-1 border-b border-zinc-100 px-5 py-2.5">
+          {session.session_date && (
+            <p className="text-xs text-zinc-500">
+              <span className="font-medium text-zinc-700">
+                {new Date(session.session_date).toLocaleDateString('fr-FR', {
+                  weekday: 'short',
+                  day: 'numeric',
+                  month: 'short',
+                  year: 'numeric',
+                })}
+              </span>
+              {' à '}
+              {new Date(session.session_date).toLocaleTimeString('fr-FR', {
+                hour: '2-digit',
+                minute: '2-digit',
+              })}
+            </p>
+          )}
+          {session.location && (
+            <p className="text-xs text-zinc-500">
+              <span className="font-medium text-zinc-700">{session.location.name}</span>
+            </p>
+          )}
+        </div>
+      )}
+
       {/* Description */}
       {session.description && (
         <div className="px-5 py-3">
@@ -166,7 +205,7 @@ export default function SessionCard({ session, onUpdate, onDelete, onEdit }: Pro
       {/* Actions */}
       <div className="mt-auto flex items-center justify-between gap-2 border-t border-zinc-100 px-5 py-3">
         <div className="flex gap-1">
-          {canManageSessions && onEdit && (
+          {canManageSessions && !isTemplate && onEdit && (
             <button
               onClick={() => onEdit(session)}
               className="rounded-lg px-2 py-1 text-xs text-zinc-500 transition hover:bg-zinc-100"
@@ -184,17 +223,19 @@ export default function SessionCard({ session, onUpdate, onDelete, onEdit }: Pro
           )}
         </div>
 
-        <button
-          onClick={handleParticipation}
-          disabled={loading}
-          className={`rounded-lg px-4 py-1.5 text-sm font-medium transition disabled:opacity-50 ${
-            session.has_participated
-              ? 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200'
-              : 'bg-brand hover:bg-brand-dark text-white'
-          }`}
-        >
-          {loading ? '…' : session.has_participated ? '✓ Participé' : 'Je participe'}
-        </button>
+        {!isTemplate && (
+          <button
+            onClick={handleParticipation}
+            disabled={loading}
+            className={`rounded-lg px-4 py-1.5 text-sm font-medium transition disabled:opacity-50 ${
+              session.has_participated
+                ? 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200'
+                : 'bg-brand hover:bg-brand-dark text-white'
+            }`}
+          >
+            {loading ? '…' : session.has_participated ? '✓ Participé' : 'Je participe'}
+          </button>
+        )}
       </div>
     </div>
   )

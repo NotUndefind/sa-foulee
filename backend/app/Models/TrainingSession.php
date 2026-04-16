@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+/**
+ * @property-read Location|null $location
+ */
 class TrainingSession extends Model
 {
     protected $fillable = [
@@ -18,7 +21,8 @@ class TrainingSession extends Model
         'description',
         'is_template',
         'created_by',
-        'published_at',
+        'location_id',
+        'session_date',
     ];
 
     protected function casts(): array
@@ -26,7 +30,7 @@ class TrainingSession extends Model
         return [
             'exercises' => 'array',
             'is_template' => 'boolean',
-            'published_at' => 'datetime',
+            'session_date' => 'datetime',
             'distance_km' => 'decimal:2',
         ];
     }
@@ -36,15 +40,15 @@ class TrainingSession extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    public function participants(): BelongsToMany
+    public function location(): BelongsTo
     {
-        return $this->belongsToMany(User::class, 'session_participations')
-            ->withTimestamps()
-            ->withPivot('participated_at');
+        return $this->belongsTo(Location::class);
     }
 
-    public function isPublished(): bool
+    public function participants(): BelongsToMany
     {
-        return $this->published_at !== null && $this->published_at->isPast();
+        return $this->belongsToMany(User::class, 'session_participations', 'session_id', 'user_id')
+            ->withTimestamps()
+            ->withPivot('participated_at');
     }
 }

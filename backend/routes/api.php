@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\V1\EventController;
 use App\Http\Controllers\Api\V1\EventPhotoController;
 use App\Http\Controllers\Api\V1\HelloAssoWebhookController;
 use App\Http\Controllers\Api\V1\LeaderboardController;
+use App\Http\Controllers\Api\V1\LocationController;
 use App\Http\Controllers\Api\V1\MediaUploadController;
 use App\Http\Controllers\Api\V1\NewsletterController;
 use App\Http\Controllers\Api\V1\NotificationController;
@@ -171,6 +172,13 @@ Route::prefix('v1')->group(function () {
             Route::delete('events/{event}', [EventController::class, 'destroy']);
         });
 
+        // ---- Lieux favoris ----
+        Route::get('locations', [LocationController::class, 'index']);
+        Route::middleware('role:admin|founder|coach')->group(function () {
+            Route::post('locations', [LocationController::class, 'store']);
+            Route::delete('locations/{location}', [LocationController::class, 'destroy']);
+        });
+
         // ---- Sessions d'entraînement ----
         // Lecture : tous les membres
         Route::get('sessions', [SessionController::class, 'index']);
@@ -203,6 +211,7 @@ Route::prefix('v1')->group(function () {
         Route::get('leaderboard', [LeaderboardController::class, 'index']);
         Route::get('users/{user}/performances', [PerformanceController::class, 'index']);
         Route::post('performances', [PerformanceController::class, 'store']);
+        Route::delete('performances/{performance}', [PerformanceController::class, 'destroy']);
 
         // ---- Strava ----
         Route::get('strava/connect', [StravaController::class, 'connect']);

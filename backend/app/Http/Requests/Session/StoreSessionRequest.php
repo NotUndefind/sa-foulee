@@ -27,7 +27,8 @@ class StoreSessionRequest extends FormRequest
             'exercises.*.rest' => ['nullable', 'integer', 'min:0'],
             'description' => ['nullable', 'string', 'max:10000'],
             'is_template' => ['boolean'],
-            'published_at' => ['nullable', 'date'],
+            'location_id' => ['nullable', 'integer', 'exists:locations,id'],
+            'session_date' => ['nullable', 'date', 'required_unless:is_template,true'],
         ];
     }
 
@@ -40,6 +41,8 @@ class StoreSessionRequest extends FormRequest
             'intensity.required' => 'L\'intensité est obligatoire.',
             'intensity.in' => 'Intensité invalide (faible, moyenne, élevée).',
             'exercises.*.name.required_with' => 'Chaque exercice doit avoir un nom.',
+            'session_date.required_unless' => 'La date de séance est obligatoire pour une session concrète.',
+            'location_id.exists' => 'Le lieu sélectionné n\'existe pas.',
         ];
     }
 }

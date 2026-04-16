@@ -1,5 +1,5 @@
 import { api } from '@/lib/api'
-import type { TrainingSession, SessionType, Intensity, Exercise } from '@/types'
+import type { TrainingSession, SessionType, Intensity, Exercise, Location } from '@/types'
 
 export interface PaginatedSessions {
   data: TrainingSession[]
@@ -25,7 +25,8 @@ export interface SessionPayload {
   exercises?: Exercise[]
   description?: string
   is_template?: boolean
-  published_at?: string | null
+  location_id?: number | null
+  session_date?: string | null
 }
 
 export async function getSessions(filters: SessionFilters = {}): Promise<PaginatedSessions> {
@@ -64,4 +65,18 @@ export async function toggleParticipation(
   id: number
 ): Promise<{ has_participated: boolean; participants_count: number }> {
   return api.post(`/sessions/${id}/participate`, {})
+}
+
+// ---- Lieux favoris ----
+
+export async function getLocations(): Promise<{ data: Location[] }> {
+  return api.get<{ data: Location[] }>('/locations')
+}
+
+export async function createLocation(name: string): Promise<Location> {
+  return api.post<Location>('/locations', { name })
+}
+
+export async function deleteLocation(id: number): Promise<void> {
+  await api.delete(`/locations/${id}`)
 }

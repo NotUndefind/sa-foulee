@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Rules\PasswordPolicy;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ResetPasswordRequest extends FormRequest
@@ -16,7 +17,7 @@ class ResetPasswordRequest extends FormRequest
         return [
             'token' => ['required', 'string'],
             'email' => ['required', 'email'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', new PasswordPolicy, 'confirmed'],
         ];
     }
 
@@ -27,7 +28,6 @@ class ResetPasswordRequest extends FormRequest
             'email.required' => "L'adresse e-mail est obligatoire.",
             'email.email' => "L'adresse e-mail n'est pas valide.",
             'password.required' => 'Le nouveau mot de passe est obligatoire.',
-            'password.min' => 'Le mot de passe doit contenir au moins 8 caractères.',
             'password.confirmed' => 'La confirmation du mot de passe ne correspond pas.',
         ];
     }
