@@ -39,7 +39,13 @@ export async function updateProfile(data: {
 
   if (!res.ok) {
     const err = await res.json().catch(() => ({}))
-    throw Object.assign(new Error(err.message ?? 'Erreur'), {
+    // Pour les erreurs 422, ne pas exposer le message backend (l'utilisateur
+    // a peut-être contourné la validation front via les devtools).
+    const message =
+      res.status === 422
+        ? 'Une erreur est survenue. Veuillez réessayer.'
+        : (err.message ?? 'Erreur lors de la sauvegarde.')
+    throw Object.assign(new Error(message), {
       status: res.status,
       errors: err.errors,
     })
