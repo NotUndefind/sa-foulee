@@ -41,9 +41,10 @@ interface Props {
   onUpdate: (updated: TrainingSession) => void
   onDelete: (id: number) => void
   onEdit?: (session: TrainingSession) => void
+  isTemplate?: boolean
 }
 
-export default function SessionCard({ session, onUpdate, onDelete, onEdit }: Props) {
+export default function SessionCard({ session, onUpdate, onDelete, onEdit, isTemplate = false }: Props) {
   const { canManageSessions } = useRole()
   const { toast } = useToast()
   const [loading, setLoading] = useState(false)
@@ -194,7 +195,7 @@ export default function SessionCard({ session, onUpdate, onDelete, onEdit }: Pro
       {/* Actions */}
       <div className="mt-auto flex items-center justify-between gap-2 border-t border-zinc-100 px-5 py-3">
         <div className="flex gap-1">
-          {canManageSessions && onEdit && (
+          {canManageSessions && !isTemplate && onEdit && (
             <button
               onClick={() => onEdit(session)}
               className="rounded-lg px-2 py-1 text-xs text-zinc-500 transition hover:bg-zinc-100"
@@ -212,17 +213,19 @@ export default function SessionCard({ session, onUpdate, onDelete, onEdit }: Pro
           )}
         </div>
 
-        <button
-          onClick={handleParticipation}
-          disabled={loading}
-          className={`rounded-lg px-4 py-1.5 text-sm font-medium transition disabled:opacity-50 ${
-            session.has_participated
-              ? 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200'
-              : 'bg-brand hover:bg-brand-dark text-white'
-          }`}
-        >
-          {loading ? '…' : session.has_participated ? '✓ Participé' : 'Je participe'}
-        </button>
+        {!isTemplate && (
+          <button
+            onClick={handleParticipation}
+            disabled={loading}
+            className={`rounded-lg px-4 py-1.5 text-sm font-medium transition disabled:opacity-50 ${
+              session.has_participated
+                ? 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200'
+                : 'bg-brand hover:bg-brand-dark text-white'
+            }`}
+          >
+            {loading ? '…' : session.has_participated ? '✓ Participé' : 'Je participe'}
+          </button>
+        )}
       </div>
     </div>
   )

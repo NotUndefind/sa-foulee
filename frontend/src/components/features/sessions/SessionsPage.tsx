@@ -394,7 +394,7 @@ export default function SessionsPage() {
                       session={session}
                       onUpdate={handleUpdate}
                       onDelete={handleDelete}
-                      onEdit={canManageSessions ? handleEdit : undefined}
+                      isTemplate
                     />
                     <div className="mt-auto px-4 pb-4">
                       <button
