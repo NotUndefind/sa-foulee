@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { getAdminSettings, updateSetting, type AdminSetting } from '@/lib/settings'
 import { useToast } from '@/components/ui/Toast'
+import { getAdminSettings, updateSetting, type AdminSetting } from '@/lib/settings'
+import { useEffect, useState } from 'react'
 
 export default function AdminSettingsPage() {
   const { toast } = useToast()
@@ -99,7 +99,7 @@ export default function AdminSettingsPage() {
                       aria-checked={isOn}
                       disabled={isSaving}
                       onClick={() => handleToggle(setting.key, setting.value)}
-                      className="relative flex-shrink-0 rounded-full transition disabled:opacity-50"
+                      className="relative shrink-0 rounded-full transition disabled:opacity-50"
                       style={{
                         width: 48,
                         height: 26,

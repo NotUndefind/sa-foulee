@@ -6,12 +6,12 @@ Instructions projet pour Claude Code. Ces règles s'appliquent à **tout le code
 
 ## Stack
 
-| Couche | Technologie |
-|--------|-------------|
-| Frontend | Next.js 14, TypeScript, App Router |
-| Styles | Tailwind CSS v4 + styles inline (règles ci-dessous) |
-| Backend | Laravel 11, PHP 8.2+ |
-| BDD | MySQL 8.0 |
+| Couche   | Technologie                                         |
+| -------- | --------------------------------------------------- |
+| Frontend | Next.js 14, TypeScript, App Router                  |
+| Styles   | Tailwind CSS v4 + styles inline (règles ci-dessous) |
+| Backend  | Laravel 11, PHP 8.2+                                |
+| BDD      | MySQL 8.0                                           |
 
 ---
 
@@ -19,11 +19,11 @@ Instructions projet pour Claude Code. Ces règles s'appliquent à **tout le code
 
 ### Principe général
 
-| Cas | Approche |
-|-----|----------|
-| Valeur **statique** | Classe Tailwind (arbitraire `[...]` si hors échelle) |
-| Valeur **dynamique** (prop, variable, donnée API) | `style={{}}` |
-| Propriété CSS **non couverte** par Tailwind | `style={{}}` |
+| Cas                                               | Approche                                             |
+| ------------------------------------------------- | ---------------------------------------------------- |
+| Valeur **statique**                               | Classe Tailwind (arbitraire `[...]` si hors échelle) |
+| Valeur **dynamique** (prop, variable, donnée API) | `style={{}}`                                         |
+| Propriété CSS **non couverte** par Tailwind       | `style={{}}`                                         |
 
 ### Règle critique — jamais de `display` / visibilité en inline
 

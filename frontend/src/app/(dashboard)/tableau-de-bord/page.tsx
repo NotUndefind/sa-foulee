@@ -421,7 +421,7 @@ export default function DashboardHomePage() {
           {/* ── Hero Header ────────────────────────────────────────────── */}
           <div className="sf-fade mb-8" style={{ animationDelay: '0ms' }}>
             <p
-              className="mb-1 text-xs font-semibold tracking-widest capitalize uppercase"
+              className="mb-1 text-xs font-semibold tracking-widest capitalize"
               style={{ color: 'rgba(192,48,46,0.4)' }}
             >
               {today}

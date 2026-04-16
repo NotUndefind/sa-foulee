@@ -1,16 +1,16 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
-import { useAuthStore } from '@/store/auth.store'
-import { useRole } from '@/hooks/useRole'
-import { updateProfile, getDocuments } from '@/lib/profile'
-import type { UserDocument } from '@/types'
 import DocumentCard from '@/components/features/documents/DocumentCard'
 import DocumentUploadModal from '@/components/features/documents/DocumentUploadModal'
 import NewsletterToggle from '@/components/features/newsletter/NewsletterToggle'
+import { useRole } from '@/hooks/useRole'
+import { getDocuments, updateProfile } from '@/lib/profile'
+import { useAuthStore } from '@/store/auth.store'
+import type { UserDocument } from '@/types'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect, useRef, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 
 const schema = z.object({
   first_name: z.string().min(1, 'Le prénom est obligatoire.').max(50),
@@ -74,6 +74,7 @@ export default function ProfilePage() {
   const avatarRef = useRef<HTMLInputElement>(null)
   const [avatarPreview, setAvatarPreview] = useState<string | null>(null)
   const [avatarFile, setAvatarFile] = useState<File | null>(null)
+  const [avatarError, setAvatarError] = useState<string | null>(null)
 
   const {
     register,
@@ -115,9 +116,30 @@ export default function ProfilePage() {
     }
   }
 
+  const AVATAR_ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/bmp']
+  const AVATAR_MAX_SIZE = 2 * 1024 * 1024 // 2 Mo
+
   const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
+    // Réinitialiser l'input pour permettre la re-sélection du même fichier
+    e.target.value = ''
     if (!file) return
+
+    if (!AVATAR_ALLOWED_TYPES.includes(file.type)) {
+      setAvatarError('Format non supporté. Utilisez un fichier JPG, PNG, GIF ou WEBP.')
+      setAvatarFile(null)
+      setAvatarPreview(null)
+      return
+    }
+
+    if (file.size > AVATAR_MAX_SIZE) {
+      setAvatarError("L'image est trop volumineuse. La taille maximale est de 2 Mo.")
+      setAvatarFile(null)
+      setAvatarPreview(null)
+      return
+    }
+
+    setAvatarError(null)
     setAvatarFile(file)
     setAvatarPreview(URL.createObjectURL(file))
   }
@@ -225,7 +247,7 @@ export default function ProfilePage() {
               <input
                 ref={avatarRef}
                 type="file"
-                accept="image/*"
+                accept="image/jpeg,image/png,image/gif,image/webp,image/bmp"
                 className="hidden"
                 onChange={handleAvatarChange}
               />
@@ -257,6 +279,18 @@ export default function ProfilePage() {
 
             {/* Form */}
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 px-6 py-5">
+              {avatarError && (
+                <div
+                  className="rounded-xl px-4 py-3 text-sm font-medium"
+                  style={{
+                    background: 'rgba(251,57,54,0.06)',
+                    border: '1px solid rgba(251,57,54,0.2)',
+                    color: '#D42F2D',
+                  }}
+                >
+                  {avatarError}
+                </div>
+              )}
               {globalError && (
                 <div
                   className="rounded-xl px-4 py-3 text-sm font-medium"
@@ -336,8 +370,8 @@ export default function ProfilePage() {
               <div className="flex justify-end pt-1">
                 <button
                   type="submit"
-                  disabled={isSubmitting || (!isDirty && !avatarFile)}
-                  className="min-h-[44px] rounded-xl px-6 py-2.5 text-sm font-bold text-white transition disabled:opacity-40"
+                  disabled={isSubmitting || (!isDirty && !avatarFile) || !!avatarError}
+                  className="min-h-11 rounded-xl px-6 py-2.5 text-sm font-bold text-white transition disabled:opacity-40"
                   style={{
                     background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)',
                     boxShadow: '0 2px 8px rgba(251,57,54,0.3)',
