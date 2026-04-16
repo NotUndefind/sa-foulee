@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Concerns\GeneratesAvatarUrl;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Profile\UpdateProfileRequest;
 use Illuminate\Http\JsonResponse;
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
+    use GeneratesAvatarUrl;
+
     /**
      * GET /me — Retourne l'utilisateur connecté avec ses rôles.
      */
@@ -66,17 +69,6 @@ class ProfileController extends Controller
     }
 
     // ---- Helpers ----
-
-    private function avatarUrl(string $path): string
-    {
-        $disk = Storage::disk(config('filesystems.default'));
-
-        try {
-            return $disk->temporaryUrl($path, now()->addHour());
-        } catch (\RuntimeException) {
-            return $disk->url($path);
-        }
-    }
 
     private function formatUser($user): array
     {

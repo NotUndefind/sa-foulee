@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Concerns\GeneratesAvatarUrl;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Event\StoreEventRequest;
 use App\Http\Requests\Event\UpdateEventRequest;
@@ -11,6 +12,8 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
+    use GeneratesAvatarUrl;
+
     /**
      * Liste des événements avec filtres optionnels.
      */
@@ -133,7 +136,7 @@ class EventController extends Controller
                 'id' => $u->id,
                 'first_name' => $u->first_name,
                 'last_name' => $u->last_name,
-                'avatar' => $u->avatar,
+                'avatar' => $u->avatar ? $this->avatarUrl($u->avatar) : null,
             ]);
 
         return response()->json(['data' => $participants]);
