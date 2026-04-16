@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\V1\NotificationController;
 use App\Http\Controllers\Api\V1\PerformanceController;
 use App\Http\Controllers\Api\V1\PostController;
 use App\Http\Controllers\Api\V1\ProfileController;
+use App\Http\Controllers\Api\V1\LocationController;
 use App\Http\Controllers\Api\V1\SessionController;
 use App\Http\Controllers\Api\V1\SettingsController;
 use App\Http\Controllers\Api\V1\StatsController;
@@ -169,6 +170,13 @@ Route::prefix('v1')->group(function () {
             Route::post('events', [EventController::class, 'store']);
             Route::patch('events/{event}', [EventController::class, 'update']);
             Route::delete('events/{event}', [EventController::class, 'destroy']);
+        });
+
+        // ---- Lieux favoris ----
+        Route::get('locations', [LocationController::class, 'index']);
+        Route::middleware('role:admin|founder|coach')->group(function () {
+            Route::post('locations', [LocationController::class, 'store']);
+            Route::delete('locations/{location}', [LocationController::class, 'destroy']);
         });
 
         // ---- Sessions d'entraînement ----
