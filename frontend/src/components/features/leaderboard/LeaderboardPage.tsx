@@ -358,7 +358,7 @@ function Podium({ entries }: { entries: LeaderboardEntry[] }) {
 
 // ── Main Page ──────────────────────────────────────────────────────────────────
 
-const PERIOD_LABELS: Record<LeaderboardPeriod, string> = {
+const PERIOD_LABELS: Record = {
   week: 'Cette semaine',
   month: 'Ce mois',
   season: 'Cette saison',
@@ -663,133 +663,133 @@ export default function LeaderboardPage() {
                       {entries.length >= 3 && <Podium entries={entries} />}
 
                       <div style={{ overflowX: 'auto' }}>
-                      <div
-                        className="overflow-hidden rounded-2xl bg-white"
-                        style={{
-                          boxShadow: '0 2px 12px rgba(192,48,46,0.07)',
-                          border: '1px solid rgba(192,48,46,0.07)',
-                          minWidth: '360px',
-                        }}
-                      >
                         <div
-                          className="grid grid-cols-12 border-b px-5 py-3"
-                          style={{ borderColor: 'rgba(192,48,46,0.06)', background: '#F8F8F8' }}
+                          className="overflow-hidden rounded-2xl bg-white"
+                          style={{
+                            boxShadow: '0 2px 12px rgba(192,48,46,0.07)',
+                            border: '1px solid rgba(192,48,46,0.07)',
+                            minWidth: '360px',
+                          }}
                         >
                           <div
-                            className="col-span-1 text-[11px] font-bold tracking-wider uppercase"
-                            style={{ color: '#7F7F7F' }}
+                            className="grid grid-cols-12 border-b px-5 py-3"
+                            style={{ borderColor: 'rgba(192,48,46,0.06)', background: '#F8F8F8' }}
                           >
-                            #
-                          </div>
-                          <div
-                            className="col-span-6 text-[11px] font-bold tracking-wider uppercase"
-                            style={{ color: '#7F7F7F' }}
-                          >
-                            Coureur
-                          </div>
-                          <div
-                            className="col-span-3 text-right text-[11px] font-bold tracking-wider uppercase"
-                            style={{ color: '#7F7F7F' }}
-                          >
-                            Distance
-                          </div>
-                          <div
-                            className="col-span-2 hidden text-right text-[11px] font-bold tracking-wider uppercase sm:block"
-                            style={{ color: '#7F7F7F' }}
-                          >
-                            Sorties
-                          </div>
-                        </div>
-                        {entries.map((entry, i) => {
-                          const isMe = user?.id === entry.user.id
-                          return (
                             <div
-                              key={entry.user.id}
-                              className="lb-row grid grid-cols-12 items-center px-5 py-3.5"
-                              style={{
-                                borderBottom:
-                                  i < entries.length - 1
-                                    ? '1px solid rgba(192,48,46,0.04)'
-                                    : 'none',
-                                background: isMe ? 'rgba(251,57,54,0.04)' : 'transparent',
-                              }}
+                              className="col-span-1 text-[11px] font-bold tracking-wider uppercase"
+                              style={{ color: '#7F7F7F' }}
                             >
-                              <div className="col-span-1">
-                                {entry.rank <= 3 ? (
-                                  <span
-                                    className="flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold"
-                                    style={{
-                                      background:
-                                        entry.rank === 1
-                                          ? 'rgba(251,57,54,0.15)'
-                                          : entry.rank === 2
-                                            ? 'rgba(148,163,184,0.2)'
-                                            : 'rgba(180,110,50,0.15)',
-                                      color:
-                                        entry.rank === 1
-                                          ? '#FB3936'
-                                          : entry.rank === 2
-                                            ? '#64748b'
-                                            : '#9a5a1e',
-                                      border: `1px solid ${entry.rank === 1 ? 'rgba(251,57,54,0.3)' : entry.rank === 2 ? '#94a3b8' : 'rgba(180,110,50,0.3)'}`,
-                                    }}
-                                  >
-                                    {entry.rank}
-                                  </span>
-                                ) : (
-                                  <span
-                                    className="text-sm font-bold"
-                                    style={{ color: 'rgba(192,48,46,0.2)' }}
-                                  >
-                                    {entry.rank}
-                                  </span>
-                                )}
-                              </div>
-                              <div className="col-span-6 flex items-center gap-2.5">
-                                <div
-                                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold"
-                                  style={{
-                                    background: isMe
-                                      ? 'rgba(251,57,54,0.12)'
-                                      : 'rgba(192,48,46,0.06)',
-                                    color: isMe ? '#FB3936' : '#7F7F7F',
-                                  }}
-                                >
-                                  {entry.user.name.charAt(0).toUpperCase()}
-                                </div>
-                                <span
-                                  className="text-sm font-semibold"
-                                  style={{ color: isMe ? '#FB3936' : '#C0302E' }}
-                                >
-                                  {entry.user.name}
-                                  {isMe && (
+                              #
+                            </div>
+                            <div
+                              className="col-span-6 text-[11px] font-bold tracking-wider uppercase"
+                              style={{ color: '#7F7F7F' }}
+                            >
+                              Coureur
+                            </div>
+                            <div
+                              className="col-span-3 text-right text-[11px] font-bold tracking-wider uppercase"
+                              style={{ color: '#7F7F7F' }}
+                            >
+                              Distance
+                            </div>
+                            <div
+                              className="col-span-2 hidden text-right text-[11px] font-bold tracking-wider uppercase sm:block"
+                              style={{ color: '#7F7F7F' }}
+                            >
+                              Sorties
+                            </div>
+                          </div>
+                          {entries.map((entry, i) => {
+                            const isMe = user?.id === entry.user.id
+                            return (
+                              <div
+                                key={entry.user.id}
+                                className="lb-row grid grid-cols-12 items-center px-5 py-3.5"
+                                style={{
+                                  borderBottom:
+                                    i < entries.length - 1
+                                      ? '1px solid rgba(192,48,46,0.04)'
+                                      : 'none',
+                                  background: isMe ? 'rgba(251,57,54,0.04)' : 'transparent',
+                                }}
+                              >
+                                <div className="col-span-1">
+                                  {entry.rank <= 3 ? (
                                     <span
-                                      className="ml-1 text-[10px] font-normal"
-                                      style={{ color: '#7F7F7F' }}
+                                      className="flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold"
+                                      style={{
+                                        background:
+                                          entry.rank === 1
+                                            ? 'rgba(251,57,54,0.15)'
+                                            : entry.rank === 2
+                                              ? 'rgba(148,163,184,0.2)'
+                                              : 'rgba(180,110,50,0.15)',
+                                        color:
+                                          entry.rank === 1
+                                            ? '#FB3936'
+                                            : entry.rank === 2
+                                              ? '#64748b'
+                                              : '#9a5a1e',
+                                        border: `1px solid ${entry.rank === 1 ? 'rgba(251,57,54,0.3)' : entry.rank === 2 ? '#94a3b8' : 'rgba(180,110,50,0.3)'}`,
+                                      }}
                                     >
-                                      (vous)
+                                      {entry.rank}
+                                    </span>
+                                  ) : (
+                                    <span
+                                      className="text-sm font-bold"
+                                      style={{ color: 'rgba(192,48,46,0.2)' }}
+                                    >
+                                      {entry.rank}
                                     </span>
                                   )}
-                                </span>
+                                </div>
+                                <div className="col-span-6 flex items-center gap-2.5">
+                                  <div
+                                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold"
+                                    style={{
+                                      background: isMe
+                                        ? 'rgba(251,57,54,0.12)'
+                                        : 'rgba(192,48,46,0.06)',
+                                      color: isMe ? '#FB3936' : '#7F7F7F',
+                                    }}
+                                  >
+                                    {entry.user.name.charAt(0).toUpperCase()}
+                                  </div>
+                                  <span
+                                    className="text-sm font-semibold"
+                                    style={{ color: isMe ? '#FB3936' : '#C0302E' }}
+                                  >
+                                    {entry.user.name}
+                                    {isMe && (
+                                      <span
+                                        className="ml-1 text-[10px] font-normal"
+                                        style={{ color: '#7F7F7F' }}
+                                      >
+                                        (vous)
+                                      </span>
+                                    )}
+                                  </span>
+                                </div>
+                                <div className="col-span-3 text-right">
+                                  <span className="text-sm font-bold" style={{ color: '#C0302E' }}>
+                                    {entry.total_distance_km.toFixed(2)}
+                                  </span>
+                                  <span className="ml-1 text-xs" style={{ color: '#7F7F7F' }}>
+                                    km
+                                  </span>
+                                </div>
+                                <div
+                                  className="col-span-2 hidden text-right text-sm sm:block"
+                                  style={{ color: '#7F7F7F' }}
+                                >
+                                  {entry.total_sessions}
+                                </div>
                               </div>
-                              <div className="col-span-3 text-right">
-                                <span className="text-sm font-bold" style={{ color: '#C0302E' }}>
-                                  {entry.total_distance_km.toFixed(2)}
-                                </span>
-                                <span className="ml-1 text-xs" style={{ color: '#7F7F7F' }}>
-                                  km
-                                </span>
-                              </div>
-                              <div
-                                className="col-span-2 hidden text-right text-sm sm:block"
-                                style={{ color: '#7F7F7F' }}
-                              >
-                                {entry.total_sessions}
-                              </div>
-                            </div>
-                          )
-                        })}
-                      </div>
+                            )
+                          })}
+                        </div>
                       </div>
                     </>
                   )}

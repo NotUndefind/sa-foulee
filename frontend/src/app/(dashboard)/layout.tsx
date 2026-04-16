@@ -51,7 +51,6 @@ function IconCalendar({ active }: { active?: boolean }) {
   )
 }
 
-
 function IconStopwatch({ active }: { active?: boolean }) {
   return (
     <svg
@@ -227,7 +226,7 @@ function IconLogout() {
 type NavItem = {
   href: string
   label: string
-  Icon: React.ComponentType<{ active?: boolean }>
+  Icon: React.ComponentType
 }
 
 const NAV_LINKS: NavItem[] = [

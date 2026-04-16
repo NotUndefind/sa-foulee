@@ -1,6 +1,12 @@
 'use client'
 
-import { createSession, updateSession, getLocations, createLocation, type SessionPayload } from '@/lib/sessions'
+import {
+  createSession,
+  updateSession,
+  getLocations,
+  createLocation,
+  type SessionPayload,
+} from '@/lib/sessions'
 import type { Exercise, Intensity, Location, SessionType, TrainingSession } from '@/types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect, useState } from 'react'
@@ -9,8 +15,7 @@ import { z } from 'zod'
 import ExerciseBuilder from './ExerciseBuilder'
 
 // ---- Schéma de validation ----
-const nanToNull = (v: unknown) =>
-  v === '' || (typeof v === 'number' && isNaN(v)) ? null : v
+const nanToNull = (v: unknown) => (v === '' || (typeof v === 'number' && isNaN(v)) ? null : v)
 
 const schema = z
   .object({
@@ -34,6 +39,7 @@ const schema = z
     }
   })
 
+// prettier-ignore
 type FormData = z.infer<typeof schema>
 
 // ---- Options ----
@@ -88,6 +94,7 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
     setValue,
     formState: { errors, isSubmitting },
   } = useForm<FormData>({
+    // prettier-ignore
     resolver: zodResolver(schema) as Resolver<FormData>,
     defaultValues: {
       title: source?.title ?? '',
@@ -123,6 +130,7 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
     }
   }
 
+  // prettier-ignore
   const onFormError = (validationErrors: FieldErrors<FormData>) => {
     const step0Fields = new Set(['title', 'type', 'distance_km', 'duration_min', 'intensity'])
     const keys = Object.keys(validationErrors)
@@ -146,8 +154,8 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
       exercises: exercises.filter((e) => e.name.trim() !== ''),
       description: data.description ?? '',
       is_template: data.is_template,
-      location_id: data.is_template ? null : (data.location_id ?? null),
-      session_date: data.is_template ? null : (data.session_date || null),
+      location_id: data.is_template ? null : data.location_id ?? null,
+      session_date: data.is_template ? null : data.session_date || null,
     }
 
     try {
@@ -156,6 +164,7 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
         : await createSession(payload)
       onSuccess(saved)
     } catch (err: unknown) {
+      // prettier-ignore
       const apiErr = err as { errors?: Record<string, string[]>; message?: string }
       if (apiErr.errors) {
         const step2Fields = new Set(['session_date', 'location_id', 'description', 'is_template'])
@@ -358,14 +367,8 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
                 <label className={labelCls}>
                   Date de la séance <span className="text-red-500">*</span>
                 </label>
-                <input
-                  {...register('session_date')}
-                  type="datetime-local"
-                  className={inputCls}
-                />
-                {errors.session_date && (
-                  <p className={errCls}>{errors.session_date.message}</p>
-                )}
+                <input {...register('session_date')} type="datetime-local" className={inputCls} />
+                {errors.session_date && <p className={errCls}>{errors.session_date.message}</p>}
               </div>
 
               {/* Lieu */}
@@ -399,7 +402,7 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
                   <button
                     type="button"
                     onClick={() => setShowNewLocation(true)}
-                    className="mt-1.5 text-xs text-brand hover:underline"
+                    className="text-brand mt-1.5 text-xs hover:underline"
                   >
                     + Nouveau lieu
                   </button>
@@ -423,7 +426,7 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
                       type="button"
                       onClick={handleCreateLocation}
                       disabled={locationLoading || !newLocationName.trim()}
-                      className="rounded-lg bg-brand px-3 py-2 text-sm font-medium text-white hover:bg-brand-dark disabled:opacity-50"
+                      className="bg-brand hover:bg-brand-dark rounded-lg px-3 py-2 text-sm font-medium text-white disabled:opacity-50"
                     >
                       {locationLoading ? '…' : 'Créer'}
                     </button>

@@ -6,6 +6,7 @@ import { toggleParticipation, deleteSession } from '@/lib/sessions'
 import { useRole } from '@/hooks/useRole'
 import { useToast } from '@/components/ui/Toast'
 
+// prettier-ignore
 const TYPE_LABELS: Record<SessionType, string> = {
   running: 'Course',
   interval: 'Interval',
@@ -15,6 +16,7 @@ const TYPE_LABELS: Record<SessionType, string> = {
   other: 'Autre',
 }
 
+// prettier-ignore
 const TYPE_ICONS: Record<SessionType, string> = {
   running: '🏃',
   interval: '⚡',
@@ -24,12 +26,14 @@ const TYPE_ICONS: Record<SessionType, string> = {
   other: '📋',
 }
 
+// prettier-ignore
 const INTENSITY_LABELS: Record<Intensity, string> = {
   low: 'Faible',
   medium: 'Moyenne',
   high: 'Élevée',
 }
 
+// prettier-ignore
 const INTENSITY_COLORS: Record<Intensity, string> = {
   low: 'bg-green-100 text-green-700',
   medium: 'bg-amber-100 text-amber-700',
@@ -44,7 +48,13 @@ interface Props {
   isTemplate?: boolean
 }
 
-export default function SessionCard({ session, onUpdate, onDelete, onEdit, isTemplate = false }: Props) {
+export default function SessionCard({
+  session,
+  onUpdate,
+  onDelete,
+  onEdit,
+  isTemplate = false,
+}: Props) {
   const { canManageSessions } = useRole()
   const { toast } = useToast()
   const [loading, setLoading] = useState(false)

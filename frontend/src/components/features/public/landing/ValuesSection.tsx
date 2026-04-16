@@ -8,7 +8,16 @@ const VALUES = [
     desc: 'Une communauté soudée où chaque coureur, du débutant au compétiteur, trouve sa place et son rythme.',
     d: 'sF-d1',
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FB3936" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#FB3936"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
         <circle cx="9" cy="7" r="4" />
         <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
@@ -23,7 +32,16 @@ const VALUES = [
     desc: 'Forêts, prairies et chemins de campagne — nos parcours invitent à sortir des sentiers battus.',
     d: 'sF-d2',
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C0302E" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#C0302E"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <path d="M12 2L8 7H3l3.5 3-1.5 5L12 12l7 3-1.5-5L21 7h-5L12 2z" />
         <line x1="12" y1="12" x2="12" y2="22" />
       </svg>
@@ -36,7 +54,16 @@ const VALUES = [
     desc: 'Se fixer des objectifs, les atteindre, et célébrer chaque progrès dans la bonne humeur.',
     d: 'sF-d3',
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D42F2D" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#D42F2D"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
         <polyline points="16 7 22 7 22 13" />
       </svg>

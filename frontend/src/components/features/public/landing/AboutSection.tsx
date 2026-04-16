@@ -85,8 +85,8 @@ export default function AboutSection() {
             >
               La Neuville TAF sa Foulée est une association à but non lucratif fondée par des
               coureurs du village. Notre bureau, composé de bénévoles engagés, œuvre chaque année
-              pour organiser des événements, accueillir de nouveaux membres et promouvoir la course à
-              pied pour tous.
+              pour organiser des événements, accueillir de nouveaux membres et promouvoir la course
+              à pied pour tous.
             </p>
             <p
               style={{

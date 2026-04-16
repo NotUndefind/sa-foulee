@@ -17,7 +17,7 @@ export default function MobileNavMenu() {
 
   if (user) {
     return (
-      <div className="md:hidden flex items-center" style={{ gap: '0.5rem' }}>
+      <div className="flex items-center md:hidden" style={{ gap: '0.5rem' }}>
         <Link
           href="/tableau-de-bord"
           style={{
@@ -75,7 +75,7 @@ export default function MobileNavMenu() {
   return (
     <Link
       href="/connexion"
-      className="md:hidden flex items-center"
+      className="flex items-center md:hidden"
       style={{
         fontSize: '0.875rem',
         fontWeight: 700,

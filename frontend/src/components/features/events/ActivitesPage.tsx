@@ -9,7 +9,7 @@ import { useAuthStore } from '@/store/auth.store'
 
 // ── Labels & styles ────────────────────────────────────────────────────────
 
-const TYPE_LABELS: Record<EventType | 'all', string> = {
+const TYPE_LABELS: Record = {
   all: 'Tous',
   race: 'Course',
   outing: 'Sortie',
@@ -17,7 +17,7 @@ const TYPE_LABELS: Record<EventType | 'all', string> = {
   other: 'Autre',
 }
 
-const TYPE_BADGE: Record<EventType, { bg: string; color: string }> = {
+const TYPE_BADGE: Record = {
   race: { bg: 'rgba(251,57,54,0.12)', color: '#D42F2D' },
   outing: { bg: 'rgba(192,48,46,0.08)', color: '#C0302E' },
   competition: { bg: 'rgba(176,137,138,0.2)', color: '#D42F2D' },
@@ -25,7 +25,7 @@ const TYPE_BADGE: Record<EventType, { bg: string; color: string }> = {
 }
 
 // Gradient backgrounds for past event cards (no cover photo)
-const PAST_CARD_GRADIENTS: Record<EventType, string> = {
+const PAST_CARD_GRADIENTS: Record = {
   race: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)',
   outing: 'linear-gradient(135deg, #C0302E 0%, #D42F2D 100%)',
   competition: 'linear-gradient(135deg, #7F7F7F 0%, #D42F2D 100%)',
@@ -733,29 +733,29 @@ export default function ActivitesPage() {
                   return (
                     <div
                       key={event.id}
-                      className="flex flex-col justify-between rounded-[20px] bg-[linear-gradient(135deg,#FB3936_0%,#C0302E_100%)] p-6 min-h-[280px] mb-5 shadow-[0_8px_32px_rgba(251,57,54,0.3)]"
+                      className="mb-5 flex min-h-[280px] flex-col justify-between rounded-[20px] bg-[linear-gradient(135deg,#FB3936_0%,#C0302E_100%)] p-6 shadow-[0_8px_32px_rgba(251,57,54,0.3)]"
                     >
                       {/* Haut : badge date + type */}
-                      <div className="flex justify-between items-start">
-                        <div className="bg-white/20 backdrop-blur rounded-xl px-3 py-2 text-center min-w-[52px]">
-                          <div className="text-[11px] font-bold text-white/85 uppercase tracking-wider">
+                      <div className="flex items-start justify-between">
+                        <div className="min-w-[52px] rounded-xl bg-white/20 px-3 py-2 text-center backdrop-blur">
+                          <div className="text-[11px] font-bold tracking-wider text-white/85 uppercase">
                             {MONTHS_FR[date.getMonth()]}
                           </div>
-                          <div className="text-[28px] font-black text-white leading-none">
+                          <div className="text-[28px] leading-none font-black text-white">
                             {date.getDate()}
                           </div>
                         </div>
-                        <span className="bg-white/20 backdrop-blur text-white text-xs font-bold px-3 py-1 rounded-full">
+                        <span className="rounded-full bg-white/20 px-3 py-1 text-xs font-bold text-white backdrop-blur">
                           {TYPE_LABELS[event.type]}
                         </span>
                       </div>
 
                       {/* Bas : titre + meta + bouton */}
                       <div>
-                        <p className="text-xl font-extrabold text-white mb-2 tracking-tight">
+                        <p className="mb-2 text-xl font-extrabold tracking-tight text-white">
                           {event.title}
                         </p>
-                        <div className="flex gap-3.5 text-[13px] text-white/80 mb-5 flex-wrap">
+                        <div className="mb-5 flex flex-wrap gap-3.5 text-[13px] text-white/80">
                           {event.location && (
                             <span className="flex items-center gap-1">
                               <IconMapPin /> {event.location}
@@ -769,19 +769,19 @@ export default function ActivitesPage() {
                         {!user ? (
                           <Link
                             href="/connexion"
-                            className="flex items-center justify-center w-full px-6 py-3.5 rounded-[14px] bg-white text-primary-dark text-base font-bold no-underline min-h-[48px]"
+                            className="text-primary-dark flex min-h-[48px] w-full items-center justify-center rounded-[14px] bg-white px-6 py-3.5 text-base font-bold no-underline"
                           >
                             S&apos;inscrire
                           </Link>
                         ) : event.is_registered ? (
-                          <div className="flex items-center justify-center px-6 py-3.5 rounded-[14px] bg-white/20 text-white text-base font-bold min-h-[48px]">
+                          <div className="flex min-h-[48px] items-center justify-center rounded-[14px] bg-white/20 px-6 py-3.5 text-base font-bold text-white">
                             Inscrit
                           </div>
                         ) : (
                           <button
                             onClick={() => handleRegister(event.id)}
                             disabled={isRegistering}
-                            className={`flex items-center justify-center w-full px-6 py-3.5 rounded-[14px] text-primary-dark text-base font-bold border-none min-h-[48px] transition-opacity ${isRegistering ? 'bg-white/60 cursor-not-allowed' : 'bg-white cursor-pointer'}`}
+                            className={`text-primary-dark flex min-h-[48px] w-full items-center justify-center rounded-[14px] border-none px-6 py-3.5 text-base font-bold transition-opacity ${isRegistering ? 'cursor-not-allowed bg-white/60' : 'cursor-pointer bg-white'}`}
                           >
                             {isRegistering ? 'En cours…' : "S'inscrire"}
                           </button>
@@ -792,7 +792,7 @@ export default function ActivitesPage() {
                 })}
 
                 {/* Carousel — événements suivants */}
-                <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-3 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+                <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                   {events.slice(1).map((event) => {
                     const date = new Date(event.event_date)
                     const badge = TYPE_BADGE[event.type]
@@ -800,27 +800,27 @@ export default function ActivitesPage() {
                     return (
                       <div
                         key={event.id}
-                        className="shrink-0 w-[85vw] snap-start rounded-2xl bg-white border border-[rgba(192,48,46,0.07)] shadow-[0_2px_8px_rgba(192,48,46,0.06)] p-5 flex flex-col gap-3 min-h-[180px]"
+                        className="flex min-h-[180px] w-[85vw] shrink-0 snap-start flex-col gap-3 rounded-2xl border border-[rgba(192,48,46,0.07)] bg-white p-5 shadow-[0_2px_8px_rgba(192,48,46,0.06)]"
                       >
-                        <div className="flex gap-3.5 items-start">
+                        <div className="flex items-start gap-3.5">
                           {/* Badge date */}
-                          <div className="shrink-0 w-12 h-14 rounded-[10px] bg-[linear-gradient(135deg,#FB3936_0%,#D42F2D_100%)] flex flex-col items-center justify-center text-white">
-                            <span className="text-[10px] font-bold uppercase tracking-wider opacity-90">
+                          <div className="flex h-14 w-12 shrink-0 flex-col items-center justify-center rounded-[10px] bg-[linear-gradient(135deg,#FB3936_0%,#D42F2D_100%)] text-white">
+                            <span className="text-[10px] font-bold tracking-wider uppercase opacity-90">
                               {MONTHS_FR[date.getMonth()]}
                             </span>
-                            <span className="text-[22px] font-extrabold leading-none">
+                            <span className="text-[22px] leading-none font-extrabold">
                               {date.getDate()}
                             </span>
                           </div>
                           {/* Infos */}
-                          <div className="flex-1 min-w-0">
+                          <div className="min-w-0 flex-1">
                             <span
-                              className="inline-block px-2 py-0.5 rounded-full text-[11px] font-bold mb-1"
+                              className="mb-1 inline-block rounded-full px-2 py-0.5 text-[11px] font-bold"
                               style={{ background: badge.bg, color: badge.color }}
                             >
                               {TYPE_LABELS[event.type]}
                             </span>
-                            <p className="font-bold text-primary-dark m-0 mb-1 text-[15px] truncate">
+                            <p className="text-primary-dark m-0 mb-1 truncate text-[15px] font-bold">
                               {event.title}
                             </p>
                             {event.location && (
@@ -835,19 +835,19 @@ export default function ActivitesPage() {
                           {!user ? (
                             <Link
                               href="/connexion"
-                              className="flex items-center justify-center px-4 py-2.5 rounded-[10px] bg-sidebar text-white text-sm font-semibold no-underline min-h-[44px]"
+                              className="bg-sidebar flex min-h-[44px] items-center justify-center rounded-[10px] px-4 py-2.5 text-sm font-semibold text-white no-underline"
                             >
                               S&apos;inscrire
                             </Link>
                           ) : event.is_registered ? (
-                            <div className="flex items-center justify-center px-4 py-2.5 rounded-[10px] bg-[rgba(192,48,46,0.08)] text-primary-dark text-sm font-semibold min-h-[44px]">
+                            <div className="text-primary-dark flex min-h-[44px] items-center justify-center rounded-[10px] bg-[rgba(192,48,46,0.08)] px-4 py-2.5 text-sm font-semibold">
                               Inscrit
                             </div>
                           ) : (
                             <button
                               onClick={() => handleRegister(event.id)}
                               disabled={isRegistering}
-                              className={`flex items-center justify-center w-full px-4 py-2.5 rounded-[10px] text-white text-sm font-semibold border-none min-h-[44px] transition-opacity ${isRegistering ? 'bg-primary/55 cursor-not-allowed' : 'bg-primary cursor-pointer'}`}
+                              className={`flex min-h-[44px] w-full items-center justify-center rounded-[10px] border-none px-4 py-2.5 text-sm font-semibold text-white transition-opacity ${isRegistering ? 'bg-primary/55 cursor-not-allowed' : 'bg-primary cursor-pointer'}`}
                             >
                               {isRegistering ? 'En cours…' : "S'inscrire"}
                             </button>
@@ -870,32 +870,30 @@ export default function ActivitesPage() {
                 return (
                   <div
                     key={event.id}
-                    className="flex gap-5 items-center rounded-2xl bg-white border border-[rgba(192,48,46,0.07)] shadow-[0_2px_8px_rgba(192,48,46,0.06)] px-6 py-5"
+                    className="flex items-center gap-5 rounded-2xl border border-[rgba(192,48,46,0.07)] bg-white px-6 py-5 shadow-[0_2px_8px_rgba(192,48,46,0.06)]"
                   >
                     {/* Badge date */}
-                    <div className="shrink-0 w-14 h-16 rounded-xl bg-[linear-gradient(135deg,#FB3936_0%,#D42F2D_100%)] flex flex-col items-center justify-center text-white">
-                      <span className="text-[11px] font-bold uppercase tracking-wider opacity-90">
+                    <div className="flex h-16 w-14 shrink-0 flex-col items-center justify-center rounded-xl bg-[linear-gradient(135deg,#FB3936_0%,#D42F2D_100%)] text-white">
+                      <span className="text-[11px] font-bold tracking-wider uppercase opacity-90">
                         {MONTHS_FR[date.getMonth()]}
                       </span>
-                      <span className="text-2xl font-extrabold leading-none">
-                        {date.getDate()}
-                      </span>
+                      <span className="text-2xl leading-none font-extrabold">{date.getDate()}</span>
                     </div>
 
                     {/* Infos événement */}
-                    <div className="flex-1 min-w-0">
+                    <div className="min-w-0 flex-1">
                       <div className="mb-1.5">
                         <span
-                          className="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold"
+                          className="inline-block rounded-full px-2.5 py-0.5 text-xs font-bold"
                           style={{ background: badge.bg, color: badge.color }}
                         >
                           {TYPE_LABELS[event.type]}
                         </span>
                       </div>
-                      <p className="font-bold text-primary-dark m-0 mb-1.5 text-base truncate">
+                      <p className="text-primary-dark m-0 mb-1.5 truncate text-base font-bold">
                         {event.title}
                       </p>
-                      <div className="flex gap-4 text-[13px] text-[#2C2C2C]/75 flex-wrap">
+                      <div className="flex flex-wrap gap-4 text-[13px] text-[#2C2C2C]/75">
                         {event.location && (
                           <span className="flex items-center gap-1">
                             <IconMapPin /> {event.location}
@@ -913,19 +911,19 @@ export default function ActivitesPage() {
                       {!user ? (
                         <Link
                           href="/connexion"
-                          className="inline-block px-5 py-2 rounded-[10px] bg-sidebar text-white text-sm font-semibold no-underline"
+                          className="bg-sidebar inline-block rounded-[10px] px-5 py-2 text-sm font-semibold text-white no-underline"
                         >
                           Rejoindre
                         </Link>
                       ) : event.is_registered ? (
-                        <span className="inline-block px-5 py-2 rounded-[10px] bg-[rgba(192,48,46,0.08)] text-primary-dark text-sm font-semibold">
+                        <span className="text-primary-dark inline-block rounded-[10px] bg-[rgba(192,48,46,0.08)] px-5 py-2 text-sm font-semibold">
                           Inscrit
                         </span>
                       ) : (
                         <button
                           onClick={() => handleRegister(event.id)}
                           disabled={isRegistering}
-                          className={`px-5 py-2 rounded-[10px] text-white text-sm font-semibold border-none shadow-[0_2px_8px_rgba(251,57,54,0.25)] transition-all ${isRegistering ? 'bg-primary/55 cursor-not-allowed' : 'bg-primary cursor-pointer'}`}
+                          className={`rounded-[10px] border-none px-5 py-2 text-sm font-semibold text-white shadow-[0_2px_8px_rgba(251,57,54,0.25)] transition-all ${isRegistering ? 'bg-primary/55 cursor-not-allowed' : 'bg-primary cursor-pointer'}`}
                         >
                           {isRegistering ? 'En cours…' : 'Rejoindre'}
                         </button>
@@ -1066,7 +1064,7 @@ export default function ActivitesPage() {
                 return (
                   <button
                     key={event.id}
-                    className={`past-card${index >= 4 && !showAllPast ? ' hidden md:block' : ''}`}
+                    className={`past-card${index >= 4 && !showAllPast ? 'hidden md:block' : ''}`}
                     onClick={() => openGallery(event)}
                     style={{
                       borderRadius: '16px',
@@ -1183,7 +1181,7 @@ export default function ActivitesPage() {
             {!showAllPast && pastEvents.length > 4 && (
               <button
                 onClick={() => setShowAllPast(true)}
-                className="md:hidden mt-4 w-full px-6 py-3 rounded-xl border border-[rgba(192,48,46,0.2)] bg-transparent text-primary-dark text-sm font-semibold cursor-pointer min-h-[44px]"
+                className="text-primary-dark mt-4 min-h-[44px] w-full cursor-pointer rounded-xl border border-[rgba(192,48,46,0.2)] bg-transparent px-6 py-3 text-sm font-semibold md:hidden"
               >
                 Voir plus ({pastEvents.length - 4} restant{pastEvents.length - 4 > 1 ? 's' : ''})
               </button>

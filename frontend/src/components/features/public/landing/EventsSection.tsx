@@ -13,14 +13,14 @@ interface EventsSectionProps {
   events: UpcomingEvent[]
 }
 
-const TYPE_LABEL: Record<string, string> = {
+const TYPE_LABEL: Record = {
   race: 'Course',
   outing: 'Sortie',
   competition: 'Compétition',
   other: 'Événement',
 }
 
-const TYPE_COLOR: Record<string, string> = {
+const TYPE_COLOR: Record = {
   race: '#FB3936',
   outing: '#D42F2D',
   competition: '#C0302E',
@@ -73,8 +73,19 @@ export default function EventsSection({ events }: EventsSectionProps) {
             const stagger = i === 0 ? 'sF-d1' : i === 1 ? 'sF-d2' : 'sF-d3'
 
             return (
-              <div key={ev.id} className={`sF-card sF-reveal ${stagger}`} style={{ overflow: 'hidden' }}>
-                <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', marginBottom: '1.25rem' }}>
+              <div
+                key={ev.id}
+                className={`sF-card sF-reveal ${stagger}`}
+                style={{ overflow: 'hidden' }}
+              >
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '1rem',
+                    marginBottom: '1.25rem',
+                  }}
+                >
                   <div
                     style={{
                       flexShrink: 0,
@@ -86,7 +97,14 @@ export default function EventsSection({ events }: EventsSectionProps) {
                       border: '1.5px solid rgba(251,57,54,0.14)',
                     }}
                   >
-                    <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#FB3936', lineHeight: 1 }}>
+                    <div
+                      style={{
+                        fontSize: '1.6rem',
+                        fontWeight: 800,
+                        color: '#FB3936',
+                        lineHeight: 1,
+                      }}
+                    >
                       {day}
                     </div>
                     <div
@@ -118,26 +136,65 @@ export default function EventsSection({ events }: EventsSectionProps) {
                     >
                       {TYPE_LABEL[ev.type] ?? 'Événement'}
                     </span>
-                    <h3 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#1A1A1A', lineHeight: 1.3 }}>
+                    <h3
+                      style={{
+                        fontSize: '1.05rem',
+                        fontWeight: 800,
+                        color: '#1A1A1A',
+                        lineHeight: 1.3,
+                      }}
+                    >
                       {ev.title}
                     </h3>
                   </div>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
                   <div
-                    style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#7F7F7F', fontSize: '0.82rem' }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.5rem',
+                      color: '#7F7F7F',
+                      fontSize: '0.82rem',
+                    }}
                   >
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7F7F7F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg
+                      width="13"
+                      height="13"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#7F7F7F"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
                       <circle cx="12" cy="12" r="10" />
                       <polyline points="12 6 12 12 16 14" />
                     </svg>
-                    <span style={{ textTransform: 'capitalize' }}>{weekday} à {time}</span>
+                    <span style={{ textTransform: 'capitalize' }}>
+                      {weekday} à {time}
+                    </span>
                   </div>
                   {ev.location && (
                     <div
-                      style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#7F7F7F', fontSize: '0.82rem' }}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem',
+                        color: '#7F7F7F',
+                        fontSize: '0.82rem',
+                      }}
                     >
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#7F7F7F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <svg
+                        width="13"
+                        height="13"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#7F7F7F"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                         <circle cx="12" cy="10" r="3" />
                       </svg>
@@ -184,8 +241,19 @@ export default function EventsSection({ events }: EventsSectionProps) {
                     border: '1px solid rgba(251,57,54,0.14)',
                   }}
                 >
-                  <div style={{ fontSize: '1.3rem', fontWeight: 800, color: '#FB3936', lineHeight: 1 }}>{day}</div>
-                  <div style={{ fontSize: '0.6rem', fontWeight: 700, color: '#FB3936', textTransform: 'uppercase' }}>
+                  <div
+                    style={{ fontSize: '1.3rem', fontWeight: 800, color: '#FB3936', lineHeight: 1 }}
+                  >
+                    {day}
+                  </div>
+                  <div
+                    style={{
+                      fontSize: '0.6rem',
+                      fontWeight: 700,
+                      color: '#FB3936',
+                      textTransform: 'uppercase',
+                    }}
+                  >
                     {month}
                   </div>
                 </div>
@@ -208,7 +276,15 @@ export default function EventsSection({ events }: EventsSectionProps) {
                   >
                     {TYPE_LABEL[ev.type] ?? 'Événement'}
                   </span>
-                  <p style={{ fontSize: '0.95rem', fontWeight: 700, color: '#1A1A1A', lineHeight: 1.3, marginBottom: '0.2rem' }}>
+                  <p
+                    style={{
+                      fontSize: '0.95rem',
+                      fontWeight: 700,
+                      color: '#1A1A1A',
+                      lineHeight: 1.3,
+                      marginBottom: '0.2rem',
+                    }}
+                  >
                     {ev.title}
                   </p>
                   <p style={{ fontSize: '0.78rem', color: '#7F7F7F' }}>
@@ -239,7 +315,16 @@ export default function EventsSection({ events }: EventsSectionProps) {
             }}
           >
             Voir toutes les activités
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
               <line x1="5" y1="12" x2="19" y2="12" />
               <polyline points="12 5 19 12 12 19" />
             </svg>

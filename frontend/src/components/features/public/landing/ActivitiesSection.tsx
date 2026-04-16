@@ -40,7 +40,15 @@ export default function ActivitiesSection() {
           <div>
             <p className="sF-label">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <rect x="1" y="1" width="10" height="10" rx="3" stroke="#FB3936" strokeWidth="1.5" />
+                <rect
+                  x="1"
+                  y="1"
+                  width="10"
+                  height="10"
+                  rx="3"
+                  stroke="#FB3936"
+                  strokeWidth="1.5"
+                />
                 <path d="M4 6h4M6 4v4" stroke="#FB3936" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
               Nos activités

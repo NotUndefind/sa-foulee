@@ -102,7 +102,9 @@ export default function TestimonialsSection() {
                   {t.initial}
                 </div>
                 <div>
-                  <p style={{ fontWeight: 700, color: '#1A1A1A', fontSize: '0.875rem' }}>{t.name}</p>
+                  <p style={{ fontWeight: 700, color: '#1A1A1A', fontSize: '0.875rem' }}>
+                    {t.name}
+                  </p>
                   <p style={{ fontSize: '0.75rem', color: '#7F7F7F' }}>{t.role}</p>
                 </div>
               </div>

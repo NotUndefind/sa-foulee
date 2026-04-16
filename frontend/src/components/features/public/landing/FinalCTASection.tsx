@@ -69,8 +69,8 @@ export default function FinalCTASection() {
             margin: '0 auto 2.75rem',
           }}
         >
-          Rejoignez La Neuville TAF sa Foulée et découvrez la joie de courir en groupe, sur les
-          plus beaux chemins de la région.
+          Rejoignez La Neuville TAF sa Foulée et découvrez la joie de courir en groupe, sur les plus
+          beaux chemins de la région.
         </p>
 
         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>

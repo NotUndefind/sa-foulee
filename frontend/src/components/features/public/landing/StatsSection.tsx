@@ -10,7 +10,12 @@ interface StatsSectionProps {
 export default function StatsSection({ stats }: StatsSectionProps) {
   const items = [
     { num: '1', label: 'sortie / mois', sub: 'minimum garanti', d: 'sF-d1' },
-    { num: String(stats.member_count), label: 'coureurs actifs', sub: 'membres du club', d: 'sF-d2' },
+    {
+      num: String(stats.member_count),
+      label: 'coureurs actifs',
+      sub: 'membres du club',
+      d: 'sF-d2',
+    },
     {
       num: `${stats.total_km} km`,
       label: 'parcourus',
@@ -62,7 +67,10 @@ export default function StatsSection({ stats }: StatsSectionProps) {
 
       <div style={{ maxWidth: '1040px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
         {/* Header — desktop uniquement */}
-        <div className="sF-reveal hidden md:block" style={{ textAlign: 'center', marginBottom: '4rem' }}>
+        <div
+          className="sF-reveal hidden md:block"
+          style={{ textAlign: 'center', marginBottom: '4rem' }}
+        >
           <p className="sF-label" style={{ color: '#C0302E' }}>
             En chiffres
           </p>
@@ -120,7 +128,9 @@ export default function StatsSection({ stats }: StatsSectionProps) {
               >
                 {s.label}
               </div>
-              <div style={{ color: '#7F7F7F', fontSize: 'clamp(0.65rem, 1.5vw, 0.85rem)' }}>{s.sub}</div>
+              <div style={{ color: '#7F7F7F', fontSize: 'clamp(0.65rem, 1.5vw, 0.85rem)' }}>
+                {s.sub}
+              </div>
             </div>
           ))}
         </div>

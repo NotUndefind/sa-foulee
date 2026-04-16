@@ -1,11 +1,11 @@
 import { z } from 'zod'
 
 // Valeurs lues au module-load — inlinées par Next.js au build time
-const MIN_LENGTH    = Number(process.env.NEXT_PUBLIC_PASSWORD_MIN_LENGTH    ?? 10)
-const REQ_UPPERCASE = process.env.NEXT_PUBLIC_PASSWORD_REQUIRE_UPPERCASE    !== 'false'
-const REQ_LOWERCASE = process.env.NEXT_PUBLIC_PASSWORD_REQUIRE_LOWERCASE    !== 'false'
-const REQ_DIGIT     = process.env.NEXT_PUBLIC_PASSWORD_REQUIRE_DIGIT        !== 'false'
-const REQ_SPECIAL   = process.env.NEXT_PUBLIC_PASSWORD_REQUIRE_SPECIAL      !== 'false'
+const MIN_LENGTH = Number(process.env.NEXT_PUBLIC_PASSWORD_MIN_LENGTH ?? 10)
+const REQ_UPPERCASE = process.env.NEXT_PUBLIC_PASSWORD_REQUIRE_UPPERCASE !== 'false'
+const REQ_LOWERCASE = process.env.NEXT_PUBLIC_PASSWORD_REQUIRE_LOWERCASE !== 'false'
+const REQ_DIGIT = process.env.NEXT_PUBLIC_PASSWORD_REQUIRE_DIGIT !== 'false'
+const REQ_SPECIAL = process.env.NEXT_PUBLIC_PASSWORD_REQUIRE_SPECIAL !== 'false'
 
 export const PASSWORD_SPECIAL_CHARS = '!@#$%^&*()_+-=[]{}|;\':",./<>?'
 
