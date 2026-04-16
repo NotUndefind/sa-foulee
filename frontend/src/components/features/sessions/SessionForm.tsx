@@ -1,24 +1,38 @@
 'use client'
 
-import { createSession, updateSession, type SessionPayload } from '@/lib/sessions'
-import type { Exercise, Intensity, SessionType, TrainingSession } from '@/types'
+import { createSession, updateSession, getLocations, createLocation, type SessionPayload } from '@/lib/sessions'
+import type { Exercise, Intensity, Location, SessionType, TrainingSession } from '@/types'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from 'react'
-import { Controller, useForm, useWatch } from 'react-hook-form'
+import { useEffect, useState } from 'react'
+import { Controller, useForm, useWatch, type FieldErrors } from 'react-hook-form'
 import { z } from 'zod'
 import ExerciseBuilder from './ExerciseBuilder'
 
 // ---- Schéma de validation ----
-const schema = z.object({
-  title: z.string().min(3, 'Titre trop court').max(255),
-  type: z.enum(['running', 'interval', 'fartlek', 'recovery', 'strength', 'other'] as const),
-  distance_km: z.number().positive().nullable().optional(),
-  duration_min: z.number().int().positive().nullable().optional(),
-  intensity: z.enum(['low', 'medium', 'high'] as const),
-  description: z.string().max(10000).optional(),
-  is_template: z.boolean(),
-  published_at: z.string().nullable().optional(),
-})
+const nanToNull = (v: unknown) =>
+  v === '' || (typeof v === 'number' && isNaN(v)) ? null : v
+
+const schema = z
+  .object({
+    title: z.string().min(3, 'Titre trop court').max(255),
+    type: z.enum(['running', 'interval', 'fartlek', 'recovery', 'strength', 'other'] as const),
+    distance_km: z.preprocess(nanToNull, z.number().positive().nullable().optional()),
+    duration_min: z.preprocess(nanToNull, z.number().int().positive().nullable().optional()),
+    intensity: z.enum(['low', 'medium', 'high'] as const),
+    description: z.string().max(10000).optional(),
+    is_template: z.boolean(),
+    session_date: z.string().nullable().optional(),
+    location_id: z.preprocess(nanToNull, z.number().int().positive().nullable().optional()),
+  })
+  .superRefine((data, ctx) => {
+    if (!data.is_template && !data.session_date) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'La date de séance est obligatoire.',
+        path: ['session_date'],
+      })
+    }
+  })
 
 type FormData = z.infer<typeof schema>
 
@@ -52,12 +66,26 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
   const source = session ?? templateSource
   const [step, setStep] = useState(0)
   const [exercises, setExercises] = useState<Exercise[]>(source?.exercises ?? [])
+  const [submitError, setSubmitError] = useState<string | null>(null)
+
+  // Lieux favoris
+  const [locations, setLocations] = useState<Location[]>([])
+  const [newLocationName, setNewLocationName] = useState('')
+  const [showNewLocation, setShowNewLocation] = useState(false)
+  const [locationLoading, setLocationLoading] = useState(false)
+
+  useEffect(() => {
+    getLocations()
+      .then((res) => setLocations(res.data))
+      .catch(() => setSubmitError('Impossible de charger les lieux. Veuillez recharger la page.'))
+  }, [])
 
   const {
     register,
     control,
     handleSubmit,
     setError,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -69,15 +97,46 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
       intensity: source?.intensity ?? 'medium',
       description: source?.description ?? '',
       is_template: session?.is_template ?? false,
-      published_at: session?.published_at
-        ? new Date(session.published_at).toISOString().slice(0, 16)
-        : new Date().toISOString().slice(0, 16),
+      session_date: session?.session_date
+        ? new Date(session.session_date).toISOString().slice(0, 16)
+        : '',
+      location_id: session?.location?.id ?? null,
     },
   })
 
   const isTemplate = useWatch({ control, name: 'is_template' })
 
+  const handleCreateLocation = async () => {
+    const name = newLocationName.trim()
+    if (!name) return
+    setLocationLoading(true)
+    try {
+      const created = await createLocation(name)
+      setLocations((prev) => [...prev, created].sort((a, b) => a.name.localeCompare(b.name)))
+      setValue('location_id', created.id)
+      setNewLocationName('')
+      setShowNewLocation(false)
+    } catch {
+      setSubmitError('Impossible de créer le lieu. Vérifiez votre connexion.')
+    } finally {
+      setLocationLoading(false)
+    }
+  }
+
+  const onFormError = (validationErrors: FieldErrors<FormData>) => {
+    const step0Fields = new Set(['title', 'type', 'distance_km', 'duration_min', 'intensity'])
+    const keys = Object.keys(validationErrors)
+    if (keys.some((k) => step0Fields.has(k))) {
+      setStep(0)
+    } else {
+      setStep(2)
+    }
+    const firstMsg = Object.values(validationErrors)[0]?.message
+    setSubmitError(firstMsg ?? 'Certains champs obligatoires ne sont pas remplis.')
+  }
+
   const onSubmit = async (data: FormData) => {
+    setSubmitError(null)
     const payload: SessionPayload = {
       title: data.title,
       type: data.type,
@@ -87,7 +146,8 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
       exercises: exercises.filter((e) => e.name.trim() !== ''),
       description: data.description ?? '',
       is_template: data.is_template,
-      published_at: data.is_template ? null : data.published_at || new Date().toISOString(),
+      location_id: data.is_template ? null : (data.location_id ?? null),
+      session_date: data.is_template ? null : (data.session_date || null),
     }
 
     try {
@@ -96,12 +156,17 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
         : await createSession(payload)
       onSuccess(saved)
     } catch (err: unknown) {
-      const apiErr = err as { errors?: Record<string, string[]> }
+      const apiErr = err as { errors?: Record<string, string[]>; message?: string }
       if (apiErr.errors) {
+        const step2Fields = new Set(['session_date', 'location_id', 'description', 'is_template'])
+        let targetStep = 0
         Object.entries(apiErr.errors).forEach(([field, msgs]) => {
           setError(field as keyof FormData, { message: msgs[0] })
+          if (step2Fields.has(field)) targetStep = 2
         })
-        setStep(0) // revenir au début si erreur
+        setStep(targetStep)
+      } else {
+        setSubmitError(apiErr.message ?? 'Une erreur est survenue. Veuillez réessayer.')
       }
     }
   }
@@ -112,7 +177,14 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
   const errCls = 'mt-1 text-xs text-red-600'
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit(onSubmit, onFormError)} className="space-y-6">
+      {/* Erreur globale — affichée en haut pour être immédiatement visible */}
+      {submitError && (
+        <p className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">
+          {submitError}
+        </p>
+      )}
+
       {/* Stepper */}
       <div className="flex items-center gap-0">
         {STEPS.map((label, idx) => (
@@ -278,15 +350,97 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
             </div>
           </label>
 
-          {/* Date de publication (masquée si template) */}
+          {/* Date et lieu (masqués si template) */}
           {!isTemplate && (
-            <div>
-              <label className={labelCls}>Publier le</label>
-              <input {...register('published_at')} type="datetime-local" className={inputCls} />
-              <p className="mt-1 text-xs text-zinc-400">
-                La session sera visible par les membres à partir de cette date.
-              </p>
-            </div>
+            <>
+              {/* Date de séance */}
+              <div>
+                <label className={labelCls}>
+                  Date de la séance <span className="text-red-500">*</span>
+                </label>
+                <input
+                  {...register('session_date')}
+                  type="datetime-local"
+                  className={inputCls}
+                />
+                {errors.session_date && (
+                  <p className={errCls}>{errors.session_date.message}</p>
+                )}
+              </div>
+
+              {/* Lieu */}
+              <div>
+                <label className={labelCls}>
+                  Lieu <span className="text-zinc-400">optionnel</span>
+                </label>
+                <Controller
+                  name="location_id"
+                  control={control}
+                  render={({ field }) => (
+                    <select
+                      value={field.value ?? ''}
+                      onChange={(e) =>
+                        field.onChange(e.target.value === '' ? null : Number(e.target.value))
+                      }
+                      className={inputCls}
+                    >
+                      <option value="">— Aucun lieu —</option>
+                      {locations.map((loc) => (
+                        <option key={loc.id} value={loc.id}>
+                          {loc.name}
+                        </option>
+                      ))}
+                    </select>
+                  )}
+                />
+
+                {/* Ajout d'un lieu à la volée */}
+                {!showNewLocation ? (
+                  <button
+                    type="button"
+                    onClick={() => setShowNewLocation(true)}
+                    className="mt-1.5 text-xs text-brand hover:underline"
+                  >
+                    + Nouveau lieu
+                  </button>
+                ) : (
+                  <div className="mt-2 flex gap-2">
+                    <input
+                      type="text"
+                      value={newLocationName}
+                      onChange={(e) => setNewLocationName(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault()
+                          handleCreateLocation()
+                        }
+                      }}
+                      placeholder="Nom du lieu (ex : Stade du Parc)"
+                      className={`${inputCls} flex-1`}
+                      autoFocus
+                    />
+                    <button
+                      type="button"
+                      onClick={handleCreateLocation}
+                      disabled={locationLoading || !newLocationName.trim()}
+                      className="rounded-lg bg-brand px-3 py-2 text-sm font-medium text-white hover:bg-brand-dark disabled:opacity-50"
+                    >
+                      {locationLoading ? '…' : 'Créer'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setShowNewLocation(false)
+                        setNewLocationName('')
+                      }}
+                      className="rounded-lg border border-zinc-300 px-3 py-2 text-sm text-zinc-500 hover:bg-zinc-50"
+                    >
+                      Annuler
+                    </button>
+                  </div>
+                )}
+              </div>
+            </>
           )}
         </div>
       )}

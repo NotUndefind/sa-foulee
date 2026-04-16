@@ -129,6 +129,34 @@ export default function SessionCard({ session, onUpdate, onDelete, onEdit }: Pro
         </div>
       </div>
 
+      {/* Date et lieu */}
+      {(session.session_date || session.location) && (
+        <div className="flex flex-wrap gap-x-4 gap-y-1 border-b border-zinc-100 px-5 py-2.5">
+          {session.session_date && (
+            <p className="text-xs text-zinc-500">
+              <span className="font-medium text-zinc-700">
+                {new Date(session.session_date).toLocaleDateString('fr-FR', {
+                  weekday: 'short',
+                  day: 'numeric',
+                  month: 'short',
+                  year: 'numeric',
+                })}
+              </span>
+              {' à '}
+              {new Date(session.session_date).toLocaleTimeString('fr-FR', {
+                hour: '2-digit',
+                minute: '2-digit',
+              })}
+            </p>
+          )}
+          {session.location && (
+            <p className="text-xs text-zinc-500">
+              <span className="font-medium text-zinc-700">{session.location.name}</span>
+            </p>
+          )}
+        </div>
+      )}
+
       {/* Description */}
       {session.description && (
         <div className="px-5 py-3">
