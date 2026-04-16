@@ -4,7 +4,7 @@ import { createSession, updateSession, getLocations, createLocation, type Sessio
 import type { Exercise, Intensity, Location, SessionType, TrainingSession } from '@/types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect, useState } from 'react'
-import { Controller, useForm, useWatch, type FieldErrors } from 'react-hook-form'
+import { Controller, useForm, useWatch, type FieldErrors, type Resolver } from 'react-hook-form'
 import { z } from 'zod'
 import ExerciseBuilder from './ExerciseBuilder'
 
@@ -88,7 +88,7 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
     setValue,
     formState: { errors, isSubmitting },
   } = useForm<FormData>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(schema) as Resolver<FormData>,
     defaultValues: {
       title: source?.title ?? '',
       type: source?.type ?? 'running',
