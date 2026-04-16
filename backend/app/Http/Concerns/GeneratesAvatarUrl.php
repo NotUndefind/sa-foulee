@@ -19,7 +19,7 @@ trait GeneratesAvatarUrl
             $parts = explode('/', $path);
             if (count($parts) === 3) {
                 return route('avatars.serve', [
-                    'userId'   => $parts[1],
+                    'userId' => $parts[1],
                     'filename' => $parts[2],
                 ]);
             }

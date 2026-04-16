@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 class EventController extends Controller
 {
     use GeneratesAvatarUrl;
+
     /**
      * Liste des événements avec filtres optionnels.
      */

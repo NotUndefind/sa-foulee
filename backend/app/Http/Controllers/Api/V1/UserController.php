@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     use GeneratesAvatarUrl;
+
     /**
      * GET /users — Liste paginée des membres (admin uniquement).
      * Paramètres : ?search=&role=&page=&per_page=
