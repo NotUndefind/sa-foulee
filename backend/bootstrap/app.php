@@ -36,28 +36,50 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions) {
         // Retourner du JSON pour toutes les erreurs API
-        $exceptions->render(function (AuthenticationException $e, Request $request) {
+        $exceptions->render(function (
+            AuthenticationException $e,
+            Request $request,
+        ) {
             return response()->json(['message' => 'Non authentifié.'], 401);
         });
 
-        $exceptions->render(function (NotFoundHttpException $e, Request $request) {
+        $exceptions->render(function (
+            NotFoundHttpException $e,
+            Request $request,
+        ) {
             if ($request->is('api/*')) {
-                return response()->json(['message' => 'Ressource introuvable.'], 404);
+                return response()->json(
+                    ['message' => 'Ressource introuvable.'],
+                    404,
+                );
             }
         });
 
-        $exceptions->render(function (ValidationException $e, Request $request) {
+        $exceptions->render(function (
+            ValidationException $e,
+            Request $request,
+        ) {
             if ($request->is('api/*')) {
-                return response()->json([
-                    'message' => 'Les données soumises sont invalides.',
-                    'errors' => $e->errors(),
-                ], 422);
+                return response()->json(
+                    [
+                        'message' => 'Les données soumises sont invalides.',
+                        'errors' => $e->errors(),
+                    ],
+                    422,
+                );
             }
         });
 
-        $exceptions->render(function (UnauthorizedException $e, Request $request) {
+        $exceptions->render(function (
+            UnauthorizedException $e,
+            Request $request,
+        ) {
             if ($request->is('api/*')) {
-                return response()->json(['message' => 'Accès refusé. Rôle insuffisant.'], 403);
+                return response()->json(
+                    ['message' => 'Accès refusé. Rôle insuffisant.'],
+                    403,
+                );
             }
         });
-    })->create();
+    })
+    ->create();
