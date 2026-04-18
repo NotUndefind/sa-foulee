@@ -1,3 +1,18 @@
+<IfModule mod_headers.c>
+    # CORS — appliqué à toutes les réponses Apache, y compris les redirections 301/307
+    # Sans cela, le navigateur bloque les requêtes cross-origin redirigées avant que
+    # Laravel ne puisse ajouter ses propres headers CORS.
+    SetEnvIf Origin "^https://(www\.)?laneuvilletafsafoulee\.fr$" CORS_ALLOWED=1
+    SetEnvIf Origin "^https://safoulee(-[a-z0-9]+)?\.vercel\.app$" CORS_ALLOWED=1
+    SetEnvIf Origin "^http://localhost(:[0-9]+)?$" CORS_ALLOWED=1
+
+    Header always set Access-Control-Allow-Origin "%{Origin}i" env=CORS_ALLOWED
+    Header always set Access-Control-Allow-Credentials "true" env=CORS_ALLOWED
+    Header always set Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS" env=CORS_ALLOWED
+    Header always set Access-Control-Allow-Headers "Authorization, Content-Type, Accept, X-Requested-With" env=CORS_ALLOWED
+    Header always set Access-Control-Max-Age "86400" env=CORS_ALLOWED
+</IfModule>
+
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
@@ -8,6 +23,10 @@
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Preflight OPTIONS — répondre 204 avant toute redirection
+    RewriteCond %{REQUEST_METHOD} OPTIONS
+    RewriteRule ^ - [R=204,L]
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
