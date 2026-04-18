@@ -9,11 +9,11 @@ import {
 } from '@/lib/sessions'
 import type { Exercise, Intensity, Location, SessionType, TrainingSession } from '@/types'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect, useState } from 'react'
+import { Check, ClipboardList, Dumbbell, HeartPulse, Timer, Wind, Zap } from 'lucide-react'
 import type { ComponentType } from 'react'
+import { useEffect, useState } from 'react'
 import { Controller, useForm, useWatch, type FieldErrors, type Resolver } from 'react-hook-form'
 import { z } from 'zod'
-import { Timer, Zap, Wind, HeartPulse, Dumbbell, ClipboardList, Check } from 'lucide-react'
 import ExerciseBuilder from './ExerciseBuilder'
 
 // ---- Schéma de validation ----
@@ -151,10 +151,10 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
       distance_km: data.distance_km ?? null,
       duration_min: data.duration_min ?? null,
       intensity: data.intensity,
-      exercises: exercises.filter((e) => e.name.trim() !== '').map(({ _key, ...rest }) => rest),
+      exercises: exercises.filter((e) => e.name.trim() !== '').map(({ ...rest }) => rest),
       description: data.description ?? '',
       is_template: data.is_template,
-      location_id: data.is_template ? null : data.location_id ?? null,
+      location_id: data.is_template ? null : (data.location_id ?? null),
       session_date: data.is_template ? null : data.session_date || null,
     }
 

@@ -44,7 +44,7 @@ export async function updateProfile(data: {
     const message =
       res.status === 422
         ? 'Une erreur est survenue. Veuillez réessayer.'
-        : err.message ?? 'Erreur lors de la sauvegarde.'
+        : (err.message ?? 'Erreur lors de la sauvegarde.')
     throw Object.assign(new Error(message), {
       status: res.status,
       errors: err.errors,

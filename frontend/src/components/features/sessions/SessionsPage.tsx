@@ -113,7 +113,7 @@ export default function SessionsPage() {
     : templates
   const displayed = tab === 'sessions' ? sessions : filteredTemplates
 
-  const activeType = tab === 'sessions' ? filters.type ?? '' : templateType
+  const activeType = tab === 'sessions' ? (filters.type ?? '') : templateType
   const hasActiveFilter = tab === 'sessions' ? !!filters.type : !!templateType
 
   return (
