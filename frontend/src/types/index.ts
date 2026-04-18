@@ -76,6 +76,7 @@ export interface Location {
 }
 
 export interface Exercise {
+  _key?: string
   name: string
   sets?: number
   reps?: number

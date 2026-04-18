@@ -1,12 +1,13 @@
 'use client'
 
 import { useState } from 'react'
+import type { ComponentType } from 'react'
 import type { TrainingSession, SessionType, Intensity } from '@/types'
 import { toggleParticipation, deleteSession } from '@/lib/sessions'
 import { useRole } from '@/hooks/useRole'
 import { useToast } from '@/components/ui/Toast'
+import { Timer, Zap, Wind, HeartPulse, Dumbbell, ClipboardList, Check } from 'lucide-react'
 
-// prettier-ignore
 const TYPE_LABELS: Record<SessionType, string> = {
   running: 'Course',
   interval: 'Interval',
@@ -16,24 +17,21 @@ const TYPE_LABELS: Record<SessionType, string> = {
   other: 'Autre',
 }
 
-// prettier-ignore
-const TYPE_ICONS: Record<SessionType, string> = {
-  running: '🏃',
-  interval: '⚡',
-  fartlek: '🌀',
-  recovery: '🧘',
-  strength: '💪',
-  other: '📋',
+const TYPE_ICONS: Record<SessionType, ComponentType<{ size?: number; className?: string }>> = {
+  running: Timer,
+  interval: Zap,
+  fartlek: Wind,
+  recovery: HeartPulse,
+  strength: Dumbbell,
+  other: ClipboardList,
 }
 
-// prettier-ignore
 const INTENSITY_LABELS: Record<Intensity, string> = {
   low: 'Faible',
   medium: 'Moyenne',
   high: 'Élevée',
 }
 
-// prettier-ignore
 const INTENSITY_COLORS: Record<Intensity, string> = {
   low: 'bg-green-100 text-green-700',
   medium: 'bg-amber-100 text-amber-700',
@@ -91,12 +89,13 @@ export default function SessionCard({
   }
 
   const exerciseCount = session.exercises?.length ?? 0
+  const TypeIcon = TYPE_ICONS[session.type]
 
   return (
     <div className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-zinc-200">
       {/* Header */}
       <div className="flex items-start gap-3 border-b border-zinc-100 bg-zinc-50 px-5 py-4">
-        <span className="mt-0.5 text-2xl">{TYPE_ICONS[session.type]}</span>
+        <TypeIcon size={24} className="mt-0.5 shrink-0 text-sf-bark-red" />
         <div className="min-w-0 flex-1">
           <div className="mb-1 flex flex-wrap gap-1.5">
             <span className="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-medium text-zinc-600">
@@ -227,13 +226,21 @@ export default function SessionCard({
           <button
             onClick={handleParticipation}
             disabled={loading}
-            className={`rounded-lg px-4 py-1.5 text-sm font-medium transition disabled:opacity-50 ${
+            className={`flex items-center gap-1.5 rounded-lg px-4 py-1.5 text-sm font-medium transition disabled:opacity-50 ${
               session.has_participated
                 ? 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200'
-                : 'bg-brand hover:bg-brand-dark text-white'
+                : 'bg-primary hover:bg-primary-dark text-white'
             }`}
           >
-            {loading ? '…' : session.has_participated ? '✓ Participé' : 'Je participe'}
+            {loading ? (
+              '…'
+            ) : session.has_participated ? (
+              <>
+                <Check size={14} /> Participé
+              </>
+            ) : (
+              'Je participe'
+            )}
           </button>
         )}
       </div>
