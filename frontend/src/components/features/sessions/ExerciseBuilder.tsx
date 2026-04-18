@@ -1,6 +1,7 @@
 'use client'
 
 import type { Exercise } from '@/types'
+import { X, Plus } from 'lucide-react'
 
 interface Props {
   exercises: Exercise[]
@@ -16,7 +17,7 @@ const EMPTY_EXERCISE: Exercise = {
 }
 
 export default function ExerciseBuilder({ exercises, onChange }: Props) {
-  const add = () => onChange([...exercises, { ...EMPTY_EXERCISE }])
+  const add = () => onChange([...exercises, { ...EMPTY_EXERCISE, _key: crypto.randomUUID() }])
 
   const remove = (idx: number) => onChange(exercises.filter((_, i) => i !== idx))
 
@@ -30,7 +31,7 @@ export default function ExerciseBuilder({ exercises, onChange }: Props) {
   }
 
   const inputCls =
-    'rounded-lg border border-zinc-200 px-2 py-1 text-sm focus:border-brand focus:outline-none focus:ring-1 focus:ring-brand/20 w-full'
+    'rounded-lg border border-zinc-200 px-2 py-1 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/20 w-full'
   const numCls = `${inputCls} text-center`
 
   return (
@@ -51,7 +52,7 @@ export default function ExerciseBuilder({ exercises, onChange }: Props) {
 
           {exercises.map((ex, idx) => (
             <div
-              key={idx}
+              key={ex._key ?? idx}
               className="grid grid-cols-[1fr_60px_60px_70px_60px_32px] items-center gap-1.5"
             >
               <input
@@ -95,10 +96,10 @@ export default function ExerciseBuilder({ exercises, onChange }: Props) {
               <button
                 type="button"
                 onClick={() => remove(idx)}
+                aria-label="Supprimer l'exercice"
                 className="flex h-7 w-7 items-center justify-center rounded-lg text-zinc-400 transition hover:bg-red-50 hover:text-red-500"
-                title="Supprimer"
               >
-                ✕
+                <X size={14} />
               </button>
             </div>
           ))}
@@ -108,9 +109,9 @@ export default function ExerciseBuilder({ exercises, onChange }: Props) {
       <button
         type="button"
         onClick={add}
-        className="hover:border-brand hover:text-brand flex w-full items-center justify-center gap-1.5 rounded-lg border border-dashed border-zinc-300 px-3 py-2 text-sm text-zinc-500 transition"
+        className="hover:border-primary hover:text-primary flex w-full items-center justify-center gap-1.5 rounded-lg border border-dashed border-zinc-300 px-3 py-2 text-sm text-zinc-500 transition"
       >
-        + Ajouter un exercice
+        <Plus size={14} /> Ajouter un exercice
       </button>
     </div>
   )

@@ -22,14 +22,17 @@
 ## Techniques Used
 
 ### Primary Technique: [Technique Name]
+
 **Rationale:** [Why this technique was selected]
 **Duration:** [Time spent]
 
 ### Secondary Technique: [Technique Name]
+
 **Rationale:** [Why this technique was selected]
 **Duration:** [Time spent]
 
 ### Additional Technique: [Technique Name] (if applicable)
+
 **Rationale:** [Why this technique was selected]
 **Duration:** [Time spent]
 
@@ -80,6 +83,7 @@
 **Description:** [What is the key insight?]
 
 **Supporting Ideas:**
+
 - [Idea that supports this insight]
 - [Idea that supports this insight]
 - [Idea that supports this insight]
@@ -93,6 +97,7 @@
 **Description:** [What is the key insight?]
 
 **Supporting Ideas:**
+
 - [Idea that supports this insight]
 - [Idea that supports this insight]
 
@@ -105,6 +110,7 @@
 **Description:** [What is the key insight?]
 
 **Supporting Ideas:**
+
 - [Idea that supports this insight]
 - [Idea that supports this insight]
 
@@ -201,7 +207,7 @@
 
 1. [Idea name] - Category: [Category] - Impact: [H/M/L] - Feasibility: [H/M/L]
 2. [Idea name] - Category: [Category] - Impact: [H/M/L] - Feasibility: [H/M/L]
-[Continue...]
+   [Continue...]
 
 ### Resources Referenced
 

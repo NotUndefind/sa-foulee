@@ -3,6 +3,7 @@
 import { useToast } from '@/components/ui/Toast'
 import {
   addPerformance,
+  deletePerformance,
   getLeaderboard,
   getUserPerformances,
   type LeaderboardPeriod,
@@ -119,6 +120,26 @@ function IconEmptyFlag() {
     >
       <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
       <line x1="4" y1="22" x2="4" y2="15" />
+    </svg>
+  )
+}
+
+function IconTrash() {
+  return (
+    <svg
+      width={15}
+      height={15}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <polyline points="3 6 5 6 21 6" />
+      <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+      <path d="M10 11v6M14 11v6" />
+      <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" />
     </svg>
   )
 }
@@ -337,7 +358,7 @@ function Podium({ entries }: { entries: LeaderboardEntry[] }) {
 
 // ── Main Page ──────────────────────────────────────────────────────────────────
 
-const PERIOD_LABELS: Record<LeaderboardPeriod, string> = {
+const PERIOD_LABELS: Record = {
   week: 'Cette semaine',
   month: 'Ce mois',
   season: 'Cette saison',
@@ -345,6 +366,7 @@ const PERIOD_LABELS: Record<LeaderboardPeriod, string> = {
 
 export default function LeaderboardPage() {
   const user = useAuthStore((s) => s.user)
+  const { toast } = useToast()
 
   const [period, setPeriod] = useState<LeaderboardPeriod>('month')
   const [entries, setEntries] = useState<LeaderboardEntry[]>([])
@@ -358,6 +380,7 @@ export default function LeaderboardPage() {
   const [isDisabled] = useState(false)
   const [showForm, setShowForm] = useState(false)
   const [tab, setTab] = useState<'leaderboard' | 'my-perfs'>('leaderboard')
+  const [deletingId, setDeletingId] = useState<number | null>(null)
 
   const fetchLeaderboard = useCallback(async () => {
     setLbLoading(true)
@@ -408,6 +431,29 @@ export default function LeaderboardPage() {
     setTab('my-perfs')
   }
 
+  const handleDelete = async (perf: Performance) => {
+    try {
+      await deletePerformance(perf.id)
+      setPerformances((prev) => prev.filter((p) => p.id !== perf.id))
+      setPerfMeta((m) =>
+        m
+          ? {
+              ...m,
+              total: m.total - 1,
+              total_sessions: m.total_sessions - 1,
+              total_distance: m.total_distance - perf.distance_km,
+            }
+          : m
+      )
+      fetchLeaderboard()
+      toast('Performance supprimée.', 'success')
+    } catch {
+      toast('Erreur lors de la suppression.', 'error')
+    } finally {
+      setDeletingId(null)
+    }
+  }
+
   const myRank = user ? entries.find((e) => e.user.id === user.id) : null
 
   return (
@@ -439,6 +485,8 @@ export default function LeaderboardPage() {
           background: white; border-radius: 16px; padding: 20px; text-align: center;
           border: 1px solid rgba(192,48,46,0.07); box-shadow: 0 1px 4px rgba(192,48,46,0.05);
         }
+        .lb-trash { color: rgba(192,48,46,0.3); background: transparent; }
+        .lb-trash:hover { color: #FB3936; background: rgba(251,57,54,0.06); }
       `}</style>
 
       <div className="lb-page min-h-screen pb-24 lg:pb-8" style={{ background: '#F8F8F8' }}>
@@ -614,131 +662,134 @@ export default function LeaderboardPage() {
                     <>
                       {entries.length >= 3 && <Podium entries={entries} />}
 
-                      <div
-                        className="overflow-hidden rounded-2xl bg-white"
-                        style={{
-                          boxShadow: '0 2px 12px rgba(192,48,46,0.07)',
-                          border: '1px solid rgba(192,48,46,0.07)',
-                        }}
-                      >
+                      <div style={{ overflowX: 'auto' }}>
                         <div
-                          className="grid grid-cols-12 border-b px-5 py-3"
-                          style={{ borderColor: 'rgba(192,48,46,0.06)', background: '#F8F8F8' }}
+                          className="overflow-hidden rounded-2xl bg-white"
+                          style={{
+                            boxShadow: '0 2px 12px rgba(192,48,46,0.07)',
+                            border: '1px solid rgba(192,48,46,0.07)',
+                            minWidth: '360px',
+                          }}
                         >
                           <div
-                            className="col-span-1 text-[11px] font-bold tracking-wider uppercase"
-                            style={{ color: '#7F7F7F' }}
+                            className="grid grid-cols-12 border-b px-5 py-3"
+                            style={{ borderColor: 'rgba(192,48,46,0.06)', background: '#F8F8F8' }}
                           >
-                            #
-                          </div>
-                          <div
-                            className="col-span-6 text-[11px] font-bold tracking-wider uppercase"
-                            style={{ color: '#7F7F7F' }}
-                          >
-                            Coureur
-                          </div>
-                          <div
-                            className="col-span-3 text-right text-[11px] font-bold tracking-wider uppercase"
-                            style={{ color: '#7F7F7F' }}
-                          >
-                            Distance
-                          </div>
-                          <div
-                            className="col-span-2 hidden text-right text-[11px] font-bold tracking-wider uppercase sm:block"
-                            style={{ color: '#7F7F7F' }}
-                          >
-                            Sorties
-                          </div>
-                        </div>
-                        {entries.map((entry, i) => {
-                          const isMe = user?.id === entry.user.id
-                          return (
                             <div
-                              key={entry.user.id}
-                              className="lb-row grid grid-cols-12 items-center px-5 py-3.5"
-                              style={{
-                                borderBottom:
-                                  i < entries.length - 1
-                                    ? '1px solid rgba(192,48,46,0.04)'
-                                    : 'none',
-                                background: isMe ? 'rgba(251,57,54,0.04)' : 'transparent',
-                              }}
+                              className="col-span-1 text-[11px] font-bold tracking-wider uppercase"
+                              style={{ color: '#7F7F7F' }}
                             >
-                              <div className="col-span-1">
-                                {entry.rank <= 3 ? (
-                                  <span
-                                    className="flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold"
-                                    style={{
-                                      background:
-                                        entry.rank === 1
-                                          ? 'rgba(251,57,54,0.15)'
-                                          : entry.rank === 2
-                                            ? 'rgba(148,163,184,0.2)'
-                                            : 'rgba(180,110,50,0.15)',
-                                      color:
-                                        entry.rank === 1
-                                          ? '#FB3936'
-                                          : entry.rank === 2
-                                            ? '#64748b'
-                                            : '#9a5a1e',
-                                      border: `1px solid ${entry.rank === 1 ? 'rgba(251,57,54,0.3)' : entry.rank === 2 ? '#94a3b8' : 'rgba(180,110,50,0.3)'}`,
-                                    }}
-                                  >
-                                    {entry.rank}
-                                  </span>
-                                ) : (
-                                  <span
-                                    className="text-sm font-bold"
-                                    style={{ color: 'rgba(192,48,46,0.2)' }}
-                                  >
-                                    {entry.rank}
-                                  </span>
-                                )}
-                              </div>
-                              <div className="col-span-6 flex items-center gap-2.5">
-                                <div
-                                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold"
-                                  style={{
-                                    background: isMe
-                                      ? 'rgba(251,57,54,0.12)'
-                                      : 'rgba(192,48,46,0.06)',
-                                    color: isMe ? '#FB3936' : '#7F7F7F',
-                                  }}
-                                >
-                                  {entry.user.name.charAt(0).toUpperCase()}
-                                </div>
-                                <span
-                                  className="text-sm font-semibold"
-                                  style={{ color: isMe ? '#FB3936' : '#C0302E' }}
-                                >
-                                  {entry.user.name}
-                                  {isMe && (
+                              #
+                            </div>
+                            <div
+                              className="col-span-6 text-[11px] font-bold tracking-wider uppercase"
+                              style={{ color: '#7F7F7F' }}
+                            >
+                              Coureur
+                            </div>
+                            <div
+                              className="col-span-3 text-right text-[11px] font-bold tracking-wider uppercase"
+                              style={{ color: '#7F7F7F' }}
+                            >
+                              Distance
+                            </div>
+                            <div
+                              className="col-span-2 hidden text-right text-[11px] font-bold tracking-wider uppercase sm:block"
+                              style={{ color: '#7F7F7F' }}
+                            >
+                              Sorties
+                            </div>
+                          </div>
+                          {entries.map((entry, i) => {
+                            const isMe = user?.id === entry.user.id
+                            return (
+                              <div
+                                key={entry.user.id}
+                                className="lb-row grid grid-cols-12 items-center px-5 py-3.5"
+                                style={{
+                                  borderBottom:
+                                    i < entries.length - 1
+                                      ? '1px solid rgba(192,48,46,0.04)'
+                                      : 'none',
+                                  background: isMe ? 'rgba(251,57,54,0.04)' : 'transparent',
+                                }}
+                              >
+                                <div className="col-span-1">
+                                  {entry.rank <= 3 ? (
                                     <span
-                                      className="ml-1 text-[10px] font-normal"
-                                      style={{ color: '#7F7F7F' }}
+                                      className="flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold"
+                                      style={{
+                                        background:
+                                          entry.rank === 1
+                                            ? 'rgba(251,57,54,0.15)'
+                                            : entry.rank === 2
+                                              ? 'rgba(148,163,184,0.2)'
+                                              : 'rgba(180,110,50,0.15)',
+                                        color:
+                                          entry.rank === 1
+                                            ? '#FB3936'
+                                            : entry.rank === 2
+                                              ? '#64748b'
+                                              : '#9a5a1e',
+                                        border: `1px solid ${entry.rank === 1 ? 'rgba(251,57,54,0.3)' : entry.rank === 2 ? '#94a3b8' : 'rgba(180,110,50,0.3)'}`,
+                                      }}
                                     >
-                                      (vous)
+                                      {entry.rank}
+                                    </span>
+                                  ) : (
+                                    <span
+                                      className="text-sm font-bold"
+                                      style={{ color: 'rgba(192,48,46,0.2)' }}
+                                    >
+                                      {entry.rank}
                                     </span>
                                   )}
-                                </span>
+                                </div>
+                                <div className="col-span-6 flex items-center gap-2.5">
+                                  <div
+                                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-xs font-bold"
+                                    style={{
+                                      background: isMe
+                                        ? 'rgba(251,57,54,0.12)'
+                                        : 'rgba(192,48,46,0.06)',
+                                      color: isMe ? '#FB3936' : '#7F7F7F',
+                                    }}
+                                  >
+                                    {entry.user.name.charAt(0).toUpperCase()}
+                                  </div>
+                                  <span
+                                    className="text-sm font-semibold"
+                                    style={{ color: isMe ? '#FB3936' : '#C0302E' }}
+                                  >
+                                    {entry.user.name}
+                                    {isMe && (
+                                      <span
+                                        className="ml-1 text-[10px] font-normal"
+                                        style={{ color: '#7F7F7F' }}
+                                      >
+                                        (vous)
+                                      </span>
+                                    )}
+                                  </span>
+                                </div>
+                                <div className="col-span-3 text-right">
+                                  <span className="text-sm font-bold" style={{ color: '#C0302E' }}>
+                                    {entry.total_distance_km.toFixed(2)}
+                                  </span>
+                                  <span className="ml-1 text-xs" style={{ color: '#7F7F7F' }}>
+                                    km
+                                  </span>
+                                </div>
+                                <div
+                                  className="col-span-2 hidden text-right text-sm sm:block"
+                                  style={{ color: '#7F7F7F' }}
+                                >
+                                  {entry.total_sessions}
+                                </div>
                               </div>
-                              <div className="col-span-3 text-right">
-                                <span className="text-sm font-bold" style={{ color: '#C0302E' }}>
-                                  {entry.total_distance_km.toFixed(2)}
-                                </span>
-                                <span className="ml-1 text-xs" style={{ color: '#7F7F7F' }}>
-                                  km
-                                </span>
-                              </div>
-                              <div
-                                className="col-span-2 hidden text-right text-sm sm:block"
-                                style={{ color: '#7F7F7F' }}
-                              >
-                                {entry.total_sessions}
-                              </div>
-                            </div>
-                          )
-                        })}
+                            )
+                          })}
+                        </div>
                       </div>
                     </>
                   )}
@@ -834,6 +885,7 @@ export default function LeaderboardPage() {
                         border: '1px solid rgba(192,48,46,0.07)',
                       }}
                     >
+                      {/* En-tête table */}
                       <div
                         className="grid grid-cols-12 border-b px-5 py-3"
                         style={{ borderColor: 'rgba(192,48,46,0.06)', background: '#F8F8F8' }}
@@ -857,17 +909,22 @@ export default function LeaderboardPage() {
                           Durée
                         </div>
                         <div
-                          className="col-span-3 hidden text-right text-[11px] font-bold tracking-wider uppercase sm:block"
+                          className="col-span-2 hidden text-right text-[11px] font-bold tracking-wider uppercase sm:block"
                           style={{ color: '#7F7F7F' }}
                         >
                           Allure
                         </div>
+                        {/* Colonne action (vide dans l'en-tête) */}
+                        <div className="col-span-3 sm:col-span-1" />
                       </div>
+
+                      {/* Lignes de performances */}
                       {performances.map((p, i) => {
                         const pace =
                           p.duration_sec > 0 && p.distance_km > 0
                             ? Math.round(p.duration_sec / p.distance_km)
                             : null
+                        const isConfirming = deletingId === p.id
                         return (
                           <div
                             key={p.id}
@@ -896,7 +953,7 @@ export default function LeaderboardPage() {
                             >
                               {formatDuration(p.duration_sec)}
                             </div>
-                            <div className="col-span-3 hidden text-right sm:block">
+                            <div className="col-span-2 hidden text-right sm:block">
                               {pace ? (
                                 <span
                                   className="rounded-full px-2 py-0.5 text-[11px] font-semibold"
@@ -906,6 +963,38 @@ export default function LeaderboardPage() {
                                 </span>
                               ) : (
                                 '—'
+                              )}
+                            </div>
+                            {/* Colonne action */}
+                            <div className="col-span-3 flex justify-end sm:col-span-1">
+                              {isConfirming ? (
+                                <div className="flex items-center gap-1">
+                                  <button
+                                    onClick={() => handleDelete(p)}
+                                    className="rounded-lg px-2 py-1 text-[10px] font-bold text-white transition"
+                                    style={{ background: '#FB3936' }}
+                                  >
+                                    Oui
+                                  </button>
+                                  <button
+                                    onClick={() => setDeletingId(null)}
+                                    className="rounded-lg px-2 py-1 text-[10px] font-medium transition"
+                                    style={{
+                                      color: '#7F7F7F',
+                                      border: '1px solid rgba(192,48,46,0.15)',
+                                    }}
+                                  >
+                                    Non
+                                  </button>
+                                </div>
+                              ) : (
+                                <button
+                                  onClick={() => setDeletingId(p.id)}
+                                  className="lb-trash flex items-center justify-center rounded-lg p-1.5 transition"
+                                  title="Supprimer cette performance"
+                                >
+                                  <IconTrash />
+                                </button>
                               )}
                             </div>
                           </div>

@@ -9,6 +9,7 @@ Complete design system tokens for consistent, scalable UI design.
 Design tokens are named variables that store visual design attributes. They ensure consistency across your design system and make updates easy - change one token, update everywhere.
 
 **Benefits:**
+
 - Consistency across all screens
 - Easy theme switching
 - Scalable design system
@@ -51,6 +52,7 @@ primary-900:  #001429   (darkest - high contrast text)
 ```
 
 **Contrast Ratios (on white #FFFFFF):**
+
 - primary-500: 7.56:1 ✓ (WCAG AA text, AAA large text)
 - primary-600: 9.67:1 ✓ (WCAG AA text, AAA)
 - primary-700: 12.07:1 ✓ (WCAG AAA all text)
@@ -96,6 +98,7 @@ success-900:  #14532D
 ```
 
 **Usage:**
+
 - Success messages
 - Confirmation indicators
 - Positive status badges
@@ -121,6 +124,7 @@ warning-900:  #78350F
 ```
 
 **Usage:**
+
 - Warning messages
 - Caution indicators
 - Pending status
@@ -146,6 +150,7 @@ error-900:  #7F1D1D
 ```
 
 **Usage:**
+
 - Error messages
 - Form validation errors
 - Delete/destructive actions
@@ -171,6 +176,7 @@ info-900:  #1E3A8A
 ```
 
 **Usage:**
+
 - Info messages
 - Neutral notifications
 - Help text
@@ -197,12 +203,14 @@ neutral-950:  #0A0A0A   (darkest, maximum contrast)
 ```
 
 **Contrast Ratios (on white #FFFFFF):**
+
 - neutral-500: 4.54:1 ✓ (WCAG AA text)
 - neutral-600: 6.98:1 ✓ (WCAG AA text, AAA large text)
 - neutral-700: 9.73:1 ✓ (WCAG AAA all text)
 - neutral-900: 15.30:1 ✓ (WCAG AAA all text)
 
 **Usage:**
+
 - neutral-50/100: Backgrounds, subtle highlights
 - neutral-200/300: Borders, dividers, input borders
 - neutral-400/500: Secondary text, placeholders, disabled states
@@ -285,6 +293,7 @@ font-black:       900
 ```
 
 **Common usage:**
+
 - Body text: 400 (normal)
 - UI labels: 500 (medium)
 - Buttons: 500-600 (medium/semibold)
@@ -304,6 +313,7 @@ leading-loose:     2.0    (very spacious)
 ```
 
 **Recommended:**
+
 - Headings: 1.2 - 1.3
 - Body text: 1.5 - 1.6
 - Small text: 1.4 - 1.5
@@ -322,6 +332,7 @@ tracking-widest:   0.1em
 ```
 
 **Usage:**
+
 - Headings: -0.025em (tight)
 - Body: 0em (normal)
 - All caps: 0.05em (wider)
@@ -415,21 +426,25 @@ space-24:  96px    (6rem)     - page sections
 ### Common Spacing Patterns
 
 **Component padding:**
+
 - Tight: 8px (space-2)
 - Normal: 16px (space-4)
 - Comfortable: 24px (space-6)
 
 **Component gaps:**
+
 - Tight: 8px (space-2)
 - Normal: 16px (space-4)
 - Wide: 24px (space-6)
 
 **Section margins:**
+
 - Small: 32px (space-8)
 - Medium: 48px (space-12)
 - Large: 64px (space-16)
 
 **Container padding:**
+
 - Mobile: 16px (space-4)
 - Tablet: 24px (space-6)
 - Desktop: 32px (space-8)
@@ -525,6 +540,7 @@ rounded-full:   9999px   (pill shape, circular)
 ```
 
 **Common usage:**
+
 - Buttons: 8px (rounded-lg)
 - Cards: 8px (rounded-lg)
 - Inputs: 4px (rounded)
@@ -553,6 +569,7 @@ z-100:     100    (maximum, dev tools)
 ```
 
 **Common usage:**
+
 - Tooltips: z-10
 - Sticky header: z-20
 - Dropdown menus: z-10
@@ -589,6 +606,7 @@ ease-in-out:      cubic-bezier(0.4, 0, 0.2, 1)
 ```
 
 **Recommended:**
+
 - Hover effects: 200ms ease-out
 - Modal open/close: 300ms ease-out
 - Dropdown: 200ms ease-out
@@ -623,16 +641,16 @@ Accordion expand:
 ```css
 :root {
   /* Colors */
-  --color-primary: #0066CC;
-  --color-primary-hover: #0052A3;
-  --color-primary-active: #003D7A;
+  --color-primary: #0066cc;
+  --color-primary-hover: #0052a3;
+  --color-primary-active: #003d7a;
 
-  --color-success: #22C55E;
-  --color-warning: #F59E0B;
-  --color-error: #EF4444;
-  --color-info: #3B82F6;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
 
-  --color-neutral-50: #FAFAFA;
+  --color-neutral-50: #fafafa;
   --color-neutral-900: #171717;
 
   /* Typography */
@@ -772,16 +790,19 @@ Examples:
 ## Resources
 
 **Verify color contrast:**
+
 ```bash
 python scripts/contrast-check.py #0066CC #FFFFFF
 ```
 
 **View responsive breakpoints:**
+
 ```bash
 bash scripts/responsive-breakpoints.sh
 ```
 
 **More details:**
+
 - design-patterns.md - UI patterns using these tokens
 - accessibility-guide.md - Accessibility requirements
 - REFERENCE.md - Complete design reference

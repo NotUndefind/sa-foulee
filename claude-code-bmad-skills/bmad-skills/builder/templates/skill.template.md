@@ -31,6 +31,7 @@ allowed-tools: {{allowed_tools}}
 **Purpose:** {{workflow_1_purpose}}
 
 **Process:**
+
 1. {{workflow_1_step_1}}
 2. {{workflow_1_step_2}}
 3. {{workflow_1_step_3}}
@@ -43,6 +44,7 @@ allowed-tools: {{allowed_tools}}
 **Purpose:** {{workflow_2_purpose}}
 
 **Process:**
+
 1. {{workflow_2_step_1}}
 2. {{workflow_2_step_2}}
 3. {{workflow_2_step_3}}
@@ -56,6 +58,7 @@ allowed-tools: {{allowed_tools}}
 **Purpose:** {{workflow_3_purpose}}
 
 **Process:**
+
 1. {{workflow_3_step_1}}
 2. {{workflow_3_step_2}}
 3. {{workflow_3_step_3}}
@@ -67,6 +70,7 @@ allowed-tools: {{allowed_tools}}
 {{script_descriptions}}
 
 **Usage:**
+
 ```bash
 ./scripts/{{script_name}}.sh
 ```
@@ -92,6 +96,7 @@ After creating or modifying this skill:
 ## Integration Points
 
 **Works with:**
+
 - {{integration_point_1}}
 - {{integration_point_2}}
 - {{integration_point_3}}
@@ -111,16 +116,19 @@ After creating or modifying this skill:
 ## Example Use Cases
 
 **{{use_case_1_name}}:**
+
 - {{use_case_1_workflow_1}}
 - {{use_case_1_workflow_2}}
 - {{use_case_1_template}}
 
 **{{use_case_2_name}}:**
+
 - {{use_case_2_workflow_1}}
 - {{use_case_2_workflow_2}}
 - {{use_case_2_template}}
 
 **{{use_case_3_name}}:**
+
 - {{use_case_3_workflow_1}}
 - {{use_case_3_workflow_2}}
 - {{use_case_3_template}}

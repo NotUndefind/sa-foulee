@@ -24,6 +24,7 @@ Complete UI pattern reference for consistent, accessible user interfaces.
 **Use when:** Primary navigation needs to be always visible and accessible.
 
 **Desktop Layout:**
+
 ```
 ┌────────────────────────────────────────────────────────────┐
 │  [Logo]    Home  Products  About  Contact    [Search] [User]│
@@ -31,6 +32,7 @@ Complete UI pattern reference for consistent, accessible user interfaces.
 ```
 
 **Specifications:**
+
 - **Height:** 64px (mobile), 80px (desktop)
 - **Position:** Fixed or sticky top
 - **Logo:** Left-aligned, 40px height, clickable to home
@@ -39,18 +41,21 @@ Complete UI pattern reference for consistent, accessible user interfaces.
 - **Z-index:** 100 (above most content)
 
 **States:**
+
 - Default: Transparent or colored
 - Scrolled: White with shadow (0 2px 4px rgba(0,0,0,0.1))
 - Hover: Underline or color change
 - Active: Bold or different color
 
 **Accessibility:**
+
 - `<nav aria-label="Main navigation">`
 - Current page: `aria-current="page"`
 - Keyboard navigable
 - Focus indicators visible
 
 **Responsive:**
+
 - Mobile: Collapse to hamburger menu
 - Tablet: Show all or collapse some items
 - Desktop: Full horizontal menu
@@ -62,6 +67,7 @@ Complete UI pattern reference for consistent, accessible user interfaces.
 **Use when:** Space is limited (mobile/tablet).
 
 **Closed State:**
+
 ```
 ┌─────────────────┐
 │  [≡]  Logo  [⚙] │
@@ -69,6 +75,7 @@ Complete UI pattern reference for consistent, accessible user interfaces.
 ```
 
 **Open State:**
+
 ```
 ┌─────────────────┐
 │  [×]  Menu      │
@@ -85,6 +92,7 @@ Complete UI pattern reference for consistent, accessible user interfaces.
 ```
 
 **Specifications:**
+
 - **Icon:** 24px × 24px, top-left or top-right
 - **Menu:** Slide from left, right, or top
 - **Backdrop:** rgba(0,0,0,0.5), click to close
@@ -92,12 +100,14 @@ Complete UI pattern reference for consistent, accessible user interfaces.
 - **Close:** X button, backdrop click, or Escape key
 
 **Behavior:**
+
 - Trap focus within menu when open
 - Return focus to hamburger icon when closed
 - Prevent body scroll when open
 - Close on navigation
 
 **Accessibility:**
+
 - `<button aria-label="Open menu" aria-expanded="false">`
 - Toggle aria-expanded on open/close
 - Focus trap within menu
@@ -110,6 +120,7 @@ Complete UI pattern reference for consistent, accessible user interfaces.
 **Use when:** Content is organized into distinct sections.
 
 **Layout:**
+
 ```
 ┌────────────────────────────────────────┐
 │  [Tab 1*]  [Tab 2]  [Tab 3]  [Tab 4]  │
@@ -121,6 +132,7 @@ Complete UI pattern reference for consistent, accessible user interfaces.
 ```
 
 **Specifications:**
+
 - **Active tab:** Border-bottom 2px, bold text
 - **Inactive tabs:** Muted color (#737373)
 - **Hover:** Background color change
@@ -128,11 +140,13 @@ Complete UI pattern reference for consistent, accessible user interfaces.
 - **Padding:** 12px 24px
 
 **Behavior:**
+
 - Click to switch tabs
 - Arrow keys to switch (Left/Right)
 - Tab content fades in (200ms)
 
 **Accessibility:**
+
 - `<div role="tablist">`
 - `<button role="tab" aria-selected="true">`
 - `<div role="tabpanel">`
@@ -140,34 +154,20 @@ Complete UI pattern reference for consistent, accessible user interfaces.
 - Home/End keys to first/last tab
 
 **Code Example:**
+
 ```html
 <div role="tablist" aria-label="Content sections">
-  <button role="tab"
-          aria-selected="true"
-          aria-controls="panel1"
-          id="tab1">
+  <button role="tab" aria-selected="true" aria-controls="panel1" id="tab1">
     Tab 1
   </button>
-  <button role="tab"
-          aria-selected="false"
-          aria-controls="panel2"
-          id="tab2">
+  <button role="tab" aria-selected="false" aria-controls="panel2" id="tab2">
     Tab 2
   </button>
 </div>
 
-<div role="tabpanel"
-     id="panel1"
-     aria-labelledby="tab1">
-  Content 1
-</div>
+<div role="tabpanel" id="panel1" aria-labelledby="tab1">Content 1</div>
 
-<div role="tabpanel"
-     id="panel2"
-     aria-labelledby="tab2"
-     hidden>
-  Content 2
-</div>
+<div role="tabpanel" id="panel2" aria-labelledby="tab2" hidden>Content 2</div>
 ```
 
 ---
@@ -177,11 +177,13 @@ Complete UI pattern reference for consistent, accessible user interfaces.
 **Use when:** Users need to understand their location in site hierarchy.
 
 **Layout:**
+
 ```
 Home > Products > Electronics > Laptops > MacBook Pro
 ```
 
 **Specifications:**
+
 - **Font size:** 14px
 - **Separator:** > or / or →
 - **Current page:** Not a link, bold
@@ -189,11 +191,13 @@ Home > Products > Electronics > Laptops > MacBook Pro
 - **Color:** Muted (#737373), links primary color
 
 **Accessibility:**
+
 - `<nav aria-label="Breadcrumb">`
 - `<ol>` list for semantic structure
 - Current page: `aria-current="page"`
 
 **Code Example:**
+
 ```html
 <nav aria-label="Breadcrumb">
   <ol>
@@ -213,6 +217,7 @@ Home > Products > Electronics > Laptops > MacBook Pro
 **Use when:** Many navigation items or hierarchical structure.
 
 **Layout:**
+
 ```
 ┌──────────────┬────────────────────────┐
 │              │                        │
@@ -231,6 +236,7 @@ Home > Products > Electronics > Laptops > MacBook Pro
 ```
 
 **Specifications:**
+
 - **Width:** 240px (desktop), 280px (wide)
 - **Position:** Fixed or sticky
 - **Active item:** Background color, bold
@@ -238,11 +244,13 @@ Home > Products > Electronics > Laptops > MacBook Pro
 - **Collapsible:** Groups with expand/collapse
 
 **Responsive:**
+
 - Mobile: Hidden, accessible via hamburger
 - Tablet: Collapsible or narrower (200px)
 - Desktop: Always visible
 
 **Accessibility:**
+
 - `<nav aria-label="Sidebar navigation">`
 - Current page: `aria-current="page"`
 - Expandable groups: `aria-expanded` attribute
@@ -256,6 +264,7 @@ Home > Products > Electronics > Laptops > MacBook Pro
 **Use when:** Most forms (mobile-first, accessible).
 
 **Layout:**
+
 ```
 ┌────────────────────────────┐
 │  Form Title                │
@@ -282,20 +291,23 @@ Home > Products > Electronics > Laptops > MacBook Pro
 ```
 
 **Specifications:**
+
 - **Input height:** 48px
 - **Input width:** 100% (mobile), max 400px (desktop)
 - **Font size:** 16px minimum (prevents iOS zoom)
 - **Label position:** Above input
 - **Spacing:** 16px between fields
-- **Required indicator:** Asterisk (*)
+- **Required indicator:** Asterisk (\*)
 
 **Validation:**
+
 - On blur (not on every keystroke)
 - Inline error messages
 - Success indicators (green checkmark)
 - Error indicators (red border + message)
 
 **Accessibility:**
+
 - Every input has a label
 - Error messages: `role="alert"`
 - Error fields: `aria-invalid="true"`
@@ -306,6 +318,7 @@ Home > Products > Electronics > Laptops > MacBook Pro
 ### Input Field States
 
 **Default:**
+
 ```
 ┌────────────────────────────┐
 │  Email Address *           │
@@ -314,6 +327,7 @@ Home > Products > Electronics > Laptops > MacBook Pro
 ```
 
 **Focus:**
+
 ```
 ┌────────────────────────────┐
 │  Email Address *           │
@@ -322,6 +336,7 @@ Home > Products > Electronics > Laptops > MacBook Pro
 ```
 
 **Valid:**
+
 ```
 ┌────────────────────────────┐
 │  Email Address *           │
@@ -330,6 +345,7 @@ Home > Products > Electronics > Laptops > MacBook Pro
 ```
 
 **Error:**
+
 ```
 ┌────────────────────────────┐
 │  Email Address *           │
@@ -339,6 +355,7 @@ Home > Products > Electronics > Laptops > MacBook Pro
 ```
 
 **Specifications:**
+
 - **Border:** 1px solid
   - Default: #D4D4D4 (Neutral-300)
   - Focus: #0066CC (Primary-500) + shadow
@@ -352,40 +369,45 @@ Home > Products > Electronics > Laptops > MacBook Pro
 ### Checkbox & Radio
 
 **Checkbox:**
+
 ```
 [ ] Unchecked option
 [✓] Checked option
 ```
 
 **Radio:**
+
 ```
 ( ) Unselected option
 (•) Selected option
 ```
 
 **Specifications:**
+
 - **Size:** 20px × 20px (desktop), 24px × 24px (mobile)
 - **Spacing:** 8px between input and label
 - **Touch target:** Entire label area clickable
 - **Focus:** Outline on focus
 
 **Accessibility:**
+
 - Group with `<fieldset>` and `<legend>`
 - Each option: `<input>` + `<label>`
 - Label includes input in clickable area
 
 **Code Example:**
+
 ```html
 <fieldset>
   <legend>Select your preferences</legend>
 
   <div>
-    <input type="checkbox" id="option1" name="preferences">
+    <input type="checkbox" id="option1" name="preferences" />
     <label for="option1">Option 1</label>
   </div>
 
   <div>
-    <input type="checkbox" id="option2" name="preferences">
+    <input type="checkbox" id="option2" name="preferences" />
     <label for="option2">Option 2</label>
   </div>
 </fieldset>
@@ -396,6 +418,7 @@ Home > Products > Electronics > Laptops > MacBook Pro
 ### Select Dropdown
 
 **Closed:**
+
 ```
 ┌────────────────────────────┐
 │  Country                   │
@@ -404,6 +427,7 @@ Home > Products > Electronics > Laptops > MacBook Pro
 ```
 
 **Open:**
+
 ```
 ┌────────────────────────────┐
 │  Country                   │
@@ -418,12 +442,14 @@ Home > Products > Electronics > Laptops > MacBook Pro
 ```
 
 **Specifications:**
+
 - **Height:** 48px
 - **Arrow icon:** Right-aligned
 - **Dropdown:** Max height 300px, scrollable
 - **Options:** Hover background color
 
 **Accessibility:**
+
 - Native `<select>` is best (built-in accessibility)
 - Custom select: ARIA combobox pattern
 - Keyboard: Arrow keys, type to search
@@ -433,6 +459,7 @@ Home > Products > Electronics > Laptops > MacBook Pro
 ### Search Input
 
 **Layout:**
+
 ```
 ┌────────────────────────────┐
 │  [🔍]  Search...           │
@@ -440,6 +467,7 @@ Home > Products > Electronics > Laptops > MacBook Pro
 ```
 
 **With Autocomplete:**
+
 ```
 ┌────────────────────────────┐
 │  [🔍]  java                │
@@ -451,6 +479,7 @@ Home > Products > Electronics > Laptops > MacBook Pro
 ```
 
 **Specifications:**
+
 - **Icon:** Left side, 20px × 20px
 - **Padding:** 12px 16px 12px 48px
 - **Clear button:** X icon on right when filled
@@ -458,6 +487,7 @@ Home > Products > Electronics > Laptops > MacBook Pro
 - **Debounce:** 300ms delay before search
 
 **Accessibility:**
+
 - `<input type="search">`
 - `<label>` or `aria-label="Search"`
 - Clear button: `aria-label="Clear search"`
@@ -470,6 +500,7 @@ Home > Products > Electronics > Laptops > MacBook Pro
 ### Basic Card
 
 **Layout:**
+
 ```
 ┌────────────────────┐
 │  [Image 16:9]      │
@@ -483,6 +514,7 @@ Home > Products > Electronics > Laptops > MacBook Pro
 ```
 
 **Specifications:**
+
 - **Border-radius:** 8px
 - **Padding:** 16px (mobile), 24px (desktop)
 - **Shadow:** 0 2px 8px rgba(0,0,0,0.1)
@@ -491,12 +523,14 @@ Home > Products > Electronics > Laptops > MacBook Pro
 - **Description:** 16px, line-height 1.5
 
 **States:**
+
 - **Default:** Subtle shadow
 - **Hover:** Shadow 0 4px 16px rgba(0,0,0,0.15), scale 1.02
 - **Focus:** 2px outline (keyboard navigation)
 - **Transition:** 200ms ease
 
 **Accessibility:**
+
 - Entire card clickable (wrap in `<a>` if link)
 - Title as main link
 - Image: Descriptive alt text or decorative
@@ -506,6 +540,7 @@ Home > Products > Electronics > Laptops > MacBook Pro
 ### Card Grid
 
 **Layout:**
+
 ```
 Desktop (3 columns):
 ┌─────┐ ┌─────┐ ┌─────┐
@@ -520,12 +555,14 @@ Desktop (3 columns):
 ```
 
 **Specifications:**
+
 - **Desktop:** 3 columns, gap 24px
 - **Tablet:** 2 columns, gap 16px
 - **Mobile:** 1 column, gap 16px
 - **Equal height:** Within rows
 
 **Code Example:**
+
 ```css
 .card-grid {
   display: grid;
@@ -553,6 +590,7 @@ Desktop (3 columns):
 ### Product Card
 
 **Layout:**
+
 ```
 ┌────────────────────┐
 │  [Product Image]   │
@@ -566,6 +604,7 @@ Desktop (3 columns):
 ```
 
 **Specifications:**
+
 - **Image:** 1:1 aspect ratio, 300px × 300px
 - **Wishlist:** Top-right overlay button
 - **Rating:** Stars + count
@@ -573,6 +612,7 @@ Desktop (3 columns):
 - **Button:** Full width or centered
 
 **States:**
+
 - Hover: Image zoom 1.1×
 - Quick view: Hover shows additional info
 - Out of stock: Disabled button, gray overlay
@@ -584,6 +624,7 @@ Desktop (3 columns):
 ### Modal Dialog
 
 **Layout:**
+
 ```
 ┌─────────────────────────────────────┐
 │  [Backdrop - rgba(0,0,0,0.5)]       │
@@ -604,6 +645,7 @@ Desktop (3 columns):
 ```
 
 **Specifications:**
+
 - **Modal:** Max-width 600px, centered
 - **Padding:** 24px
 - **Close button:** Top-right, 24px × 24px
@@ -612,6 +654,7 @@ Desktop (3 columns):
 - **Border-radius:** 8px
 
 **Behavior:**
+
 - **Open:** Fade in (200ms)
 - **Close:** Fade out (200ms)
 - **Focus:** Move to modal on open
@@ -621,17 +664,17 @@ Desktop (3 columns):
 - **Backdrop click:** Closes modal (optional)
 
 **Accessibility:**
-```html
-<div role="dialog"
-     aria-modal="true"
-     aria-labelledby="dialog-title"
-     aria-describedby="dialog-description">
 
+```html
+<div
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="dialog-title"
+  aria-describedby="dialog-description"
+>
   <h2 id="dialog-title">Dialog Title</h2>
 
-  <p id="dialog-description">
-    Dialog content...
-  </p>
+  <p id="dialog-description">Dialog content...</p>
 
   <button onclick="closeDialog()">Cancel</button>
   <button onclick="confirmDialog()">Confirm</button>
@@ -639,12 +682,15 @@ Desktop (3 columns):
 ```
 
 **Focus Management:**
+
 ```javascript
 // Save last focused element
 const lastFocus = document.activeElement;
 
 // Move focus to first focusable element in modal
-const firstFocusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+const firstFocusable = modal.querySelector(
+  'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+);
 firstFocusable.focus();
 
 // Trap focus (Tab key)
@@ -659,6 +705,7 @@ lastFocus.focus();
 ### Confirmation Modal
 
 **Layout:**
+
 ```
 ┌───────────────────────────┐
 │  [⚠] Confirm Action   [×] │
@@ -675,6 +722,7 @@ lastFocus.focus();
 ```
 
 **Specifications:**
+
 - Smaller than regular modal (max-width 400px)
 - Warning icon (if destructive action)
 - Clear explanation of consequence
@@ -686,6 +734,7 @@ lastFocus.focus();
 ### Drawer (Side Panel)
 
 **Layout:**
+
 ```
 ┌─────────┬───────────────────────┐
 │         │ ┌───────────────────┐ │
@@ -700,6 +749,7 @@ lastFocus.focus();
 ```
 
 **Specifications:**
+
 - **Width:** 320px (mobile), 400px (desktop)
 - **Position:** Fixed right or left
 - **Slide in:** From right or left (300ms)
@@ -707,6 +757,7 @@ lastFocus.focus();
 - **Content:** Scrollable if overflow
 
 **Use when:**
+
 - Filters/settings panel
 - Shopping cart
 - Notifications
@@ -719,33 +770,40 @@ lastFocus.focus();
 ### Button Hierarchy
 
 **Primary Button:**
+
 ```
 [  Primary Action  ]
 ```
+
 - Solid background (Primary-500)
 - White text
 - Most important action
 - One per screen section
 
 **Secondary Button:**
+
 ```
 [  Secondary Action  ]
 ```
+
 - Outlined (Primary-500 border)
 - Primary-500 text
 - White background
 - Medium importance
 
 **Tertiary Button:**
+
 ```
 [  Tertiary Action  ]
 ```
+
 - No background or border
 - Primary-500 text
 - Underline on hover
 - Lowest importance
 
 **Specifications:**
+
 - **Height:** 48px (mobile), 40px (desktop)
 - **Min width:** 120px
 - **Padding:** 16px 32px
@@ -757,39 +815,46 @@ lastFocus.focus();
 ### Button States
 
 **Default:**
+
 ```
 [ Button ]
 ```
 
 **Hover:**
+
 ```
 [ Button ] ← Darken 10%
 ```
 
 **Focus:**
+
 ```
 [ Button ] ← 2px outline
 ```
 
 **Active (pressed):**
+
 ```
 [ Button ] ← Darken 20%
 ```
 
 **Disabled:**
+
 ```
 [ Button ] ← 50% opacity
 ```
 
 **Loading:**
+
 ```
 [ ⟳ Loading... ]
 ```
 
 **CSS Example:**
+
 ```css
 .button {
-  background: #0066CC;
+  background: #0066cc;
   color: white;
   padding: 12px 32px;
   border-radius: 8px;
@@ -797,16 +862,16 @@ lastFocus.focus();
 }
 
 .button:hover {
-  background: #0052A3;
+  background: #0052a3;
 }
 
 .button:focus {
-  outline: 2px solid #0066CC;
+  outline: 2px solid #0066cc;
   outline-offset: 2px;
 }
 
 .button:active {
-  background: #003D7A;
+  background: #003d7a;
 }
 
 .button:disabled {
@@ -820,17 +885,20 @@ lastFocus.focus();
 ### Icon Buttons
 
 **Layout:**
+
 ```
 [×]  [♡]  [⋮]  [⚙]
 ```
 
 **Specifications:**
+
 - **Size:** 40px × 40px (desktop), 44px × 44px (mobile)
 - **Icon:** 20px × 20px (centered)
 - **Border-radius:** 50% (circular) or 8px (rounded)
 - **Background:** Transparent, colored on hover
 
 **Accessibility:**
+
 ```html
 <button aria-label="Close dialog">
   <svg aria-hidden="true"><!-- X icon --></svg>
@@ -846,11 +914,13 @@ lastFocus.focus();
 ### Button Groups
 
 **Layout:**
+
 ```
 [ Option 1 ][ Option 2 ][ Option 3 ]
 ```
 
 **Segmented Control:**
+
 ```
 ┌─────────┬─────────┬─────────┐
 │ Left    │ Center  │ Right   │
@@ -858,6 +928,7 @@ lastFocus.focus();
 ```
 
 **Specifications:**
+
 - Buttons connected (no gap)
 - Active button: Filled background
 - Inactive buttons: Outlined
@@ -871,17 +942,20 @@ lastFocus.focus();
 ### Spinner
 
 **Layout:**
+
 ```
     ⟳
 Loading...
 ```
 
 **Specifications:**
+
 - **Size:** 24px (inline), 48px (page center)
 - **Animation:** Rotate 360deg, 1s linear infinite
 - **Color:** Primary-500 or current text color
 
 **Accessibility:**
+
 ```html
 <div role="status" aria-live="polite">
   <svg aria-hidden="true"><!-- Spinner --></svg>
@@ -894,6 +968,7 @@ Loading...
 ### Skeleton Screen
 
 **Layout:**
+
 ```
 ┌────────────────────────────┐
 │  ▓▓▓▓▓▓▓▓▓▓▓▓              │
@@ -907,6 +982,7 @@ Loading...
 **Use when:** Loading content with known structure.
 
 **Specifications:**
+
 - Gray blocks (#E5E5E5)
 - Animated shimmer (optional)
 - Match layout of real content
@@ -917,12 +993,14 @@ Loading...
 ### Progress Bar
 
 **Layout:**
+
 ```
 Uploading file... 45%
 ████████████▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 ```
 
 **Specifications:**
+
 - **Height:** 8px (slim), 16px (chunky)
 - **Border-radius:** 4px
 - **Fill:** Primary-500
@@ -930,12 +1008,15 @@ Uploading file... 45%
 - **Label:** Above or below
 
 **Accessibility:**
+
 ```html
-<div role="progressbar"
-     aria-valuenow="45"
-     aria-valuemin="0"
-     aria-valuemax="100"
-     aria-label="Upload progress">
+<div
+  role="progressbar"
+  aria-valuenow="45"
+  aria-valuemin="0"
+  aria-valuemax="100"
+  aria-label="Upload progress"
+>
   <div class="progress-fill" style="width: 45%"></div>
 </div>
 ```
@@ -947,6 +1028,7 @@ Uploading file... 45%
 ### Toast Notification
 
 **Layout:**
+
 ```
 ┌────────────────────────────┐
 │  ✓ Success message here    │
@@ -955,6 +1037,7 @@ Uploading file... 45%
 ```
 
 **Specifications:**
+
 - **Position:** Top-right, bottom-right, or top-center
 - **Width:** 320px (desktop), 90% (mobile)
 - **Padding:** 16px
@@ -962,21 +1045,19 @@ Uploading file... 45%
 - **Animation:** Slide in + fade in, slide out + fade out
 
 **Types:**
+
 - Success: Green (#22C55E)
 - Error: Red (#EF4444)
 - Warning: Yellow (#F59E0B)
 - Info: Blue (#3B82F6)
 
 **Accessibility:**
+
 ```html
-<div role="status" aria-live="polite">
-  Success message here
-</div>
+<div role="status" aria-live="polite">Success message here</div>
 
 <!-- For errors -->
-<div role="alert" aria-live="assertive">
-  Error message here
-</div>
+<div role="alert" aria-live="assertive">Error message here</div>
 ```
 
 ---
@@ -984,6 +1065,7 @@ Uploading file... 45%
 ### Banner Notification
 
 **Layout:**
+
 ```
 ┌─────────────────────────────────────────────────┐
 │  ⓘ  This is an important message      [×]       │
@@ -991,6 +1073,7 @@ Uploading file... 45%
 ```
 
 **Specifications:**
+
 - **Position:** Top of page (below header)
 - **Width:** 100%
 - **Padding:** 12px 16px
@@ -998,6 +1081,7 @@ Uploading file... 45%
 - **Sticky:** Can be fixed to top
 
 **Use when:**
+
 - System-wide messages
 - Cookie notices
 - Feature announcements
@@ -1008,6 +1092,7 @@ Uploading file... 45%
 ### Inline Alert
 
 **Layout:**
+
 ```
 ┌────────────────────────────┐
 │  ⚠  Warning message        │
@@ -1016,6 +1101,7 @@ Uploading file... 45%
 ```
 
 **Specifications:**
+
 - **Border-left:** 4px solid (colored)
 - **Background:** Tinted (colored at 10% opacity)
 - **Padding:** 16px
@@ -1023,6 +1109,7 @@ Uploading file... 45%
 - **Icon:** Left-aligned
 
 **Use when:**
+
 - Contextual messages
 - Form validation summary
 - Section-specific alerts
@@ -1034,6 +1121,7 @@ Uploading file... 45%
 ### Table
 
 **Layout:**
+
 ```
 ┌──────────┬──────────┬──────────┐
 │  Name    │  Email   │  Role    │
@@ -1045,6 +1133,7 @@ Uploading file... 45%
 ```
 
 **Specifications:**
+
 - **Header:** Bold, background color
 - **Rows:** Alternating colors (zebra striping)
 - **Hover:** Row highlight
@@ -1052,14 +1141,18 @@ Uploading file... 45%
 - **Borders:** 1px solid Neutral-200
 
 **Responsive:**
+
 - Mobile: Card view or horizontal scroll
 - Tablet: Visible columns, scroll if needed
 - Desktop: Full table
 
 **Accessibility:**
+
 ```html
 <table>
-  <caption>User list</caption>
+  <caption>
+    User list
+  </caption>
   <thead>
     <tr>
       <th scope="col">Name</th>
@@ -1082,6 +1175,7 @@ Uploading file... 45%
 ### List
 
 **Unordered List:**
+
 ```
 • Item 1
 • Item 2
@@ -1089,6 +1183,7 @@ Uploading file... 45%
 ```
 
 **Ordered List:**
+
 ```
 1. First step
 2. Second step
@@ -1096,6 +1191,7 @@ Uploading file... 45%
 ```
 
 **Description List:**
+
 ```
 Name:     John Doe
 Email:    john@example.com
@@ -1103,6 +1199,7 @@ Role:     Administrator
 ```
 
 **Specifications:**
+
 - **Spacing:** 8px between items
 - **Bullet/number:** Aligned left
 - **Indent:** 24px for nested lists
@@ -1112,6 +1209,7 @@ Role:     Administrator
 ### Accordion
 
 **Closed:**
+
 ```
 ┌────────────────────────────┐
 │  ▶ Section Title 1         │
@@ -1123,6 +1221,7 @@ Role:     Administrator
 ```
 
 **Open:**
+
 ```
 ┌────────────────────────────┐
 │  ▼ Section Title 2         │
@@ -1134,21 +1233,18 @@ Role:     Administrator
 ```
 
 **Specifications:**
+
 - **Header:** 48px height, clickable
 - **Icon:** Arrow right (closed), arrow down (open)
 - **Animation:** Expand/collapse 300ms ease
 - **Multiple:** Allow multiple open or single
 
 **Accessibility:**
+
 ```html
 <div>
-  <button aria-expanded="false"
-          aria-controls="panel1">
-    Section Title
-  </button>
-  <div id="panel1" hidden>
-    Content...
-  </div>
+  <button aria-expanded="false" aria-controls="panel1">Section Title</button>
+  <div id="panel1" hidden>Content...</div>
 </div>
 ```
 
@@ -1175,6 +1271,7 @@ Role:     Administrator
 - Notifications: Toast (temporary), banner (persistent), inline (contextual)
 
 **For more details:**
+
 - REFERENCE.md - Complete pattern implementations
 - accessibility-guide.md - WCAG compliance details
 - design-tokens.md - Colors, spacing, typography

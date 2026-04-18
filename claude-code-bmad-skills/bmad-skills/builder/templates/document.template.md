@@ -12,6 +12,7 @@
 {{executive_summary}}
 
 **Key Points:**
+
 - {{key_point_1}}
 - {{key_point_2}}
 - {{key_point_3}}
@@ -34,6 +35,7 @@
 {{subsection_1_1_content}}
 
 **Key Details:**
+
 - {{subsection_1_1_detail_1}}
 - {{subsection_1_1_detail_2}}
 - {{subsection_1_1_detail_3}}
@@ -43,6 +45,7 @@
 {{subsection_1_2_content}}
 
 **Key Details:**
+
 - {{subsection_1_2_detail_1}}
 - {{subsection_1_2_detail_2}}
 - {{subsection_1_2_detail_3}}
@@ -62,6 +65,7 @@
 {{subsection_2_1_content}}
 
 **Key Details:**
+
 - {{subsection_2_1_detail_1}}
 - {{subsection_2_1_detail_2}}
 - {{subsection_2_1_detail_3}}
@@ -71,6 +75,7 @@
 {{subsection_2_2_content}}
 
 **Key Details:**
+
 - {{subsection_2_2_detail_1}}
 - {{subsection_2_2_detail_2}}
 - {{subsection_2_2_detail_3}}
@@ -125,11 +130,13 @@ Based on the analysis in this document:
 ## Next Steps
 
 **Immediate actions:**
+
 1. {{next_step_1}}
 2. {{next_step_2}}
 3. {{next_step_3}}
 
 **Follow-up actions:**
+
 1. {{follow_up_1}}
 2. {{follow_up_2}}
 3. {{follow_up_3}}
@@ -153,6 +160,7 @@ Based on the analysis in this document:
 ## Document Control
 
 **Template Information:**
+
 - **Template Name:** {{template_name}}
 - **Template Version:** {{template_version}}
 - **Last Template Update:** {{template_last_update}}
@@ -163,11 +171,13 @@ Based on the analysis in this document:
 | {{version}} | {{date}} | {{author_name}} | {{change_description}} |
 
 **Review Cycle:**
+
 - **Next Review Date:** {{next_review_date}}
 - **Review Frequency:** {{review_frequency}}
 - **Reviewer:** {{reviewer_name}}
 
 **Distribution:**
+
 - {{distribution_1}}
 - {{distribution_2}}
 - {{distribution_3}}
@@ -177,4 +187,4 @@ Based on the analysis in this document:
 **Document Classification:** {{classification}}
 **Confidentiality:** {{confidentiality_level}}
 
-*End of Document*
+_End of Document_

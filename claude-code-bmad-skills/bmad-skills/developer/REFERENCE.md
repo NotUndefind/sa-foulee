@@ -15,6 +15,7 @@ This document provides detailed standards, patterns, and best practices for code
 ### Naming Conventions
 
 **Variables and Functions:**
+
 ```javascript
 // Good
 const userProfile = getUserProfile(userId);
@@ -26,6 +27,7 @@ function calc(i, t) { ... }
 ```
 
 **Classes and Components:**
+
 ```javascript
 // Good
 class UserAuthenticationService { ... }
@@ -37,14 +39,15 @@ const Form1 = () => { ... }
 ```
 
 **Constants:**
+
 ```javascript
 // Good
 const MAX_RETRY_ATTEMPTS = 3;
-const API_BASE_URL = 'https://api.example.com';
+const API_BASE_URL = "https://api.example.com";
 
 // Bad
 const max = 3;
-const url = 'https://api.example.com';
+const url = "https://api.example.com";
 ```
 
 ### Function Design
@@ -67,7 +70,7 @@ function saveUser(user) {
 function validateAndSaveUser(email, userData) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
-    throw new Error('Invalid email');
+    throw new Error("Invalid email");
   }
   return database.users.insert({ email, ...userData });
 }
@@ -109,9 +112,9 @@ Extract common logic into reusable functions.
 ```javascript
 // Good - DRY
 function formatCurrency(amount) {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD'
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
   }).format(amount);
 }
 
@@ -119,20 +122,21 @@ const price = formatCurrency(19.99);
 const total = formatCurrency(59.97);
 
 // Bad - Repetition
-const price = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD'
+const price = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
 }).format(19.99);
 
-const total = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD'
+const total = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
 }).format(59.97);
 ```
 
 ### Error Handling
 
 **Explicit Error Handling:**
+
 ```javascript
 // Good - Explicit handling
 async function fetchUser(userId) {
@@ -143,7 +147,7 @@ async function fetchUser(userId) {
     if (error.response?.status === 404) {
       throw new UserNotFoundError(userId);
     }
-    throw new APIError('Failed to fetch user', error);
+    throw new APIError("Failed to fetch user", error);
   }
 }
 
@@ -159,14 +163,19 @@ async function fetchUser(userId) {
 ```
 
 **Validation:**
+
 ```javascript
 // Good - Early validation with clear errors
 function calculateDiscount(price, discountPercent) {
-  if (typeof price !== 'number' || price < 0) {
-    throw new Error('Price must be a non-negative number');
+  if (typeof price !== "number" || price < 0) {
+    throw new Error("Price must be a non-negative number");
   }
-  if (typeof discountPercent !== 'number' || discountPercent < 0 || discountPercent > 100) {
-    throw new Error('Discount percent must be between 0 and 100');
+  if (
+    typeof discountPercent !== "number" ||
+    discountPercent < 0 ||
+    discountPercent > 100
+  ) {
+    throw new Error("Discount percent must be between 0 and 100");
   }
   return price * (discountPercent / 100);
 }
@@ -187,13 +196,13 @@ const retryDelay = Math.pow(2, attemptNumber) * 1000;
 
 // Good - Documents complex business logic
 // Accounts created before 2023 use legacy pricing (grandfathered)
-if (account.createdAt < new Date('2023-01-01')) {
+if (account.createdAt < new Date("2023-01-01")) {
   return LEGACY_PRICING_TIER;
 }
 
 // Bad - Redundant comment
 // Check if account created before 2023
-if (account.createdAt < new Date('2023-01-01')) {
+if (account.createdAt < new Date("2023-01-01")) {
   return LEGACY_PRICING_TIER;
 }
 ```
@@ -201,6 +210,7 @@ if (account.createdAt < new Date('2023-01-01')) {
 ### Code Organization
 
 **File Structure:**
+
 ```
 src/
 ├── components/        # UI components
@@ -215,6 +225,7 @@ src/
 ```
 
 **Module Exports:**
+
 ```javascript
 // Good - Clear exports
 export function formatDate(date) { ... }
@@ -237,23 +248,23 @@ Test individual functions and components in isolation.
 
 ```javascript
 // Good unit test
-describe('calculateDiscount', () => {
-  it('should calculate correct discount amount', () => {
+describe("calculateDiscount", () => {
+  it("should calculate correct discount amount", () => {
     expect(calculateDiscount(100, 10)).toBe(10);
     expect(calculateDiscount(50, 20)).toBe(10);
   });
 
-  it('should handle zero discount', () => {
+  it("should handle zero discount", () => {
     expect(calculateDiscount(100, 0)).toBe(0);
   });
 
-  it('should throw error for negative price', () => {
-    expect(() => calculateDiscount(-10, 10)).toThrow('non-negative');
+  it("should throw error for negative price", () => {
+    expect(() => calculateDiscount(-10, 10)).toThrow("non-negative");
   });
 
-  it('should throw error for invalid discount percent', () => {
-    expect(() => calculateDiscount(100, -5)).toThrow('between 0 and 100');
-    expect(() => calculateDiscount(100, 150)).toThrow('between 0 and 100');
+  it("should throw error for invalid discount percent", () => {
+    expect(() => calculateDiscount(100, -5)).toThrow("between 0 and 100");
+    expect(() => calculateDiscount(100, 150)).toThrow("between 0 and 100");
   });
 });
 ```
@@ -264,9 +275,9 @@ Test component interactions and workflows.
 
 ```javascript
 // Good integration test
-describe('User Authentication Flow', () => {
-  it('should authenticate user with valid credentials', async () => {
-    const mockUser = { email: 'test@example.com', password: 'password123' };
+describe("User Authentication Flow", () => {
+  it("should authenticate user with valid credentials", async () => {
+    const mockUser = { email: "test@example.com", password: "password123" };
 
     // Test service layer integration
     const token = await authService.login(mockUser.email, mockUser.password);
@@ -277,10 +288,10 @@ describe('User Authentication Flow', () => {
     expect(session.user.email).toBe(mockUser.email);
   });
 
-  it('should reject invalid credentials', async () => {
+  it("should reject invalid credentials", async () => {
     await expect(
-      authService.login('test@example.com', 'wrongpassword')
-    ).rejects.toThrow('Invalid credentials');
+      authService.login("test@example.com", "wrongpassword"),
+    ).rejects.toThrow("Invalid credentials");
   });
 });
 ```
@@ -291,29 +302,31 @@ Test complete user flows from UI to backend.
 
 ```javascript
 // Good E2E test (using Playwright/Cypress syntax)
-describe('User Login Journey', () => {
-  it('should allow user to login and see dashboard', async () => {
-    await page.goto('/login');
+describe("User Login Journey", () => {
+  it("should allow user to login and see dashboard", async () => {
+    await page.goto("/login");
 
-    await page.fill('[data-testid="email-input"]', 'user@example.com');
-    await page.fill('[data-testid="password-input"]', 'password123');
+    await page.fill('[data-testid="email-input"]', "user@example.com");
+    await page.fill('[data-testid="password-input"]', "password123");
     await page.click('[data-testid="login-button"]');
 
     // Should redirect to dashboard
-    await expect(page).toHaveURL('/dashboard');
-    await expect(page.locator('[data-testid="user-name"]'))
-      .toContainText('John Doe');
+    await expect(page).toHaveURL("/dashboard");
+    await expect(page.locator('[data-testid="user-name"]')).toContainText(
+      "John Doe",
+    );
   });
 
-  it('should show error for invalid credentials', async () => {
-    await page.goto('/login');
+  it("should show error for invalid credentials", async () => {
+    await page.goto("/login");
 
-    await page.fill('[data-testid="email-input"]', 'user@example.com');
-    await page.fill('[data-testid="password-input"]', 'wrongpassword');
+    await page.fill('[data-testid="email-input"]', "user@example.com");
+    await page.fill('[data-testid="password-input"]', "wrongpassword");
     await page.click('[data-testid="login-button"]');
 
-    await expect(page.locator('[data-testid="error-message"]'))
-      .toContainText('Invalid credentials');
+    await expect(page.locator('[data-testid="error-message"]')).toContainText(
+      "Invalid credentials",
+    );
   });
 });
 ```
@@ -321,17 +334,20 @@ describe('User Login Journey', () => {
 ### Test Coverage
 
 **Coverage Targets:**
+
 - Overall: 80% minimum
 - Critical paths: 90%+ (authentication, payments, data mutations)
 - Utility functions: 95%+ (should be easy to fully test)
 
 **What to Test:**
+
 1. Happy path (expected usage)
 2. Edge cases (boundary values, empty inputs)
 3. Error conditions (invalid inputs, network failures)
 4. Security scenarios (unauthorized access, injection)
 
 **What Not to Test:**
+
 - Third-party library internals
 - Trivial getters/setters
 - Generated code
@@ -341,7 +357,7 @@ describe('User Login Journey', () => {
 
 ```javascript
 // Good - Mock external dependencies
-describe('UserService', () => {
+describe("UserService", () => {
   let mockDatabase;
 
   beforeEach(() => {
@@ -349,13 +365,13 @@ describe('UserService', () => {
       users: {
         findById: jest.fn(),
         insert: jest.fn(),
-        update: jest.fn()
-      }
+        update: jest.fn(),
+      },
     };
   });
 
-  it('should fetch user by id', async () => {
-    const mockUser = { id: 1, name: 'John' };
+  it("should fetch user by id", async () => {
+    const mockUser = { id: 1, name: "John" };
     mockDatabase.users.findById.mockResolvedValue(mockUser);
 
     const userService = new UserService(mockDatabase);
@@ -372,6 +388,7 @@ describe('UserService', () => {
 See [templates/code-review.template.md](templates/code-review.template.md) for full checklist.
 
 **Key Review Points:**
+
 1. Does code meet acceptance criteria?
 2. Are all edge cases handled?
 3. Is error handling explicit and appropriate?
@@ -400,6 +417,7 @@ Follow Conventional Commits format:
 ```
 
 **Types:**
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `refactor`: Code refactoring
@@ -409,6 +427,7 @@ Follow Conventional Commits format:
 - `perf`: Performance improvements
 
 **Examples:**
+
 ```
 feat(auth): add password reset functionality
 
@@ -439,6 +458,7 @@ main (or master)          # Production-ready code
 ```
 
 **Branch Naming:**
+
 - Features: `feature/STORY-ID-short-description` or `feature/short-description`
 - Fixes: `fix/bug-description` or `fix/ISSUE-ID`
 - Hotfixes: `hotfix/critical-issue`
@@ -451,6 +471,7 @@ main (or master)          # Production-ready code
 - Push at least daily (or more for collaboration)
 
 **Good Commit Sequence:**
+
 ```
 feat(auth): add User model and schema
 feat(auth): add login endpoint
@@ -473,8 +494,8 @@ async function fetchAndProcessData(id) {
     const processed = await processData(data);
     return processed;
   } catch (error) {
-    logger.error('Failed to fetch and process data', { id, error });
-    throw new DataProcessingError('Unable to process data', error);
+    logger.error("Failed to fetch and process data", { id, error });
+    throw new DataProcessingError("Unable to process data", error);
   }
 }
 ```
@@ -483,11 +504,11 @@ async function fetchAndProcessData(id) {
 
 ```javascript
 // Good - Consistent response format
-function successResponse(data, message = 'Success') {
+function successResponse(data, message = "Success") {
   return {
     success: true,
     message,
-    data
+    data,
   };
 }
 
@@ -495,17 +516,17 @@ function errorResponse(message, statusCode = 400) {
   return {
     success: false,
     message,
-    statusCode
+    statusCode,
   };
 }
 
 // Usage
-app.get('/users/:id', async (req, res) => {
+app.get("/users/:id", async (req, res) => {
   try {
     const user = await userService.getUser(req.params.id);
     res.json(successResponse(user));
   } catch (error) {
-    res.status(404).json(errorResponse('User not found', 404));
+    res.status(404).json(errorResponse("User not found", 404));
   }
 });
 ```
@@ -548,15 +569,16 @@ function useAuth() {
 // Good - Reusable validation with clear errors
 const userSchema = {
   email: (value) => {
-    if (!value) return 'Email is required';
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return 'Invalid email format';
+    if (!value) return "Email is required";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))
+      return "Invalid email format";
     return null;
   },
   password: (value) => {
-    if (!value) return 'Password is required';
-    if (value.length < 8) return 'Password must be at least 8 characters';
+    if (!value) return "Password is required";
+    if (value.length < 8) return "Password must be at least 8 characters";
     return null;
-  }
+  },
 };
 
 function validate(data, schema) {
@@ -571,7 +593,7 @@ function validate(data, schema) {
 // Usage
 const errors = validate(userData, userSchema);
 if (errors) {
-  return res.status(400).json(errorResponse('Validation failed', 400, errors));
+  return res.status(400).json(errorResponse("Validation failed", 400, errors));
 }
 ```
 
@@ -588,6 +610,7 @@ if (errors) {
 - Refactor as you go - leave code better than you found it
 
 For more resources, see:
+
 - [resources/clean-code-checklist.md](resources/clean-code-checklist.md)
 - [resources/testing-standards.md](resources/testing-standards.md)
 - [templates/code-review.template.md](templates/code-review.template.md)

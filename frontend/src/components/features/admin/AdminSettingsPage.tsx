@@ -1,8 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { getAdminSettings, updateSetting, type AdminSetting } from '@/lib/settings'
 import { useToast } from '@/components/ui/Toast'
+import { getAdminSettings, updateSetting, type AdminSetting } from '@/lib/settings'
+import { useEffect, useState } from 'react'
 
 export default function AdminSettingsPage() {
   const { toast } = useToast()
@@ -33,7 +33,7 @@ export default function AdminSettingsPage() {
     }
   }
 
-  const SETTING_LABELS: Record<string, { label: string; desc: string }> = {
+  const SETTING_LABELS: Record = {
     leaderboard_enabled: {
       label: 'Classement actif',
       desc: 'Afficher le classement des membres. Si désactivé, le lien est masqué dans la sidebar et la page affiche un message.',
@@ -99,7 +99,7 @@ export default function AdminSettingsPage() {
                       aria-checked={isOn}
                       disabled={isSaving}
                       onClick={() => handleToggle(setting.key, setting.value)}
-                      className="relative flex-shrink-0 rounded-full transition disabled:opacity-50"
+                      className="relative shrink-0 rounded-full transition disabled:opacity-50"
                       style={{
                         width: 48,
                         height: 26,

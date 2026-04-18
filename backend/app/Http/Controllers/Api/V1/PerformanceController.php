@@ -8,6 +8,7 @@ use App\Models\Performance;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class PerformanceController extends Controller
 {
@@ -40,6 +41,27 @@ class PerformanceController extends Controller
                 'total_sessions' => $totalSessions,
             ],
         ]);
+    }
+
+    /**
+     * Suppression d'une performance.
+     * Seul le membre lui-même ou un admin/founder peut supprimer.
+     */
+    public function destroy(Request $request, Performance $performance): JsonResponse
+    {
+        $currentUser = $request->user();
+
+        if ($currentUser->id !== $performance->user_id && ! $currentUser->hasAnyRole(['admin', 'founder'])) {
+            abort(403);
+        }
+
+        $performance->delete();
+
+        foreach (['week', 'month', 'season'] as $period) {
+            Cache::forget("leaderboard:{$period}");
+        }
+
+        return response()->json(null, 204);
     }
 
     /**

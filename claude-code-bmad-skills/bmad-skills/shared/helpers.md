@@ -5,6 +5,7 @@ Reusable patterns for all BMAD skills. Reference specific sections to avoid repe
 ## Config Operations
 
 ### Load-Project-Config
+
 ```
 Path: bmad/config.yaml
 Purpose: Load project-specific BMAD configuration
@@ -21,6 +22,7 @@ Steps:
 ```
 
 ### Load-Workflow-Status
+
 ```
 Path: {output_folder}/bmm-workflow-status.yaml
 Purpose: Get current workflow progress
@@ -36,6 +38,7 @@ Steps:
 ```
 
 ### Update-Workflow-Status
+
 ```
 Purpose: Mark workflow as complete
 
@@ -54,6 +57,7 @@ Steps:
 ## Subagent Operations
 
 ### Launch-Parallel-Agents
+
 ```
 Purpose: Launch multiple subagents for parallel work
 
@@ -71,6 +75,7 @@ Pattern:
 ```
 
 ### Collect-Agent-Results
+
 ```
 Purpose: Gather results from parallel agents
 
@@ -86,6 +91,7 @@ Pattern:
 ```
 
 ### Synthesize-Results
+
 ```
 Purpose: Combine outputs from multiple agents
 
@@ -100,6 +106,7 @@ Pattern:
 ## Document Operations
 
 ### Load-Template
+
 ```
 Purpose: Load document template for workflow
 
@@ -113,6 +120,7 @@ Steps:
 ```
 
 ### Apply-Variables
+
 ```
 Purpose: Substitute {{variables}} with values
 
@@ -132,6 +140,7 @@ Steps:
 ```
 
 ### Save-Document
+
 ```
 Purpose: Save generated document
 
@@ -145,6 +154,7 @@ Steps:
 ## Phase Logic
 
 ### Determine-Requirements
+
 ```
 Purpose: Set workflow requirements based on level
 
@@ -168,6 +178,7 @@ Level 2+ (5+ stories):
 ```
 
 ### Determine-Next-Workflow
+
 ```
 Purpose: Recommend next workflow based on status
 
@@ -186,6 +197,7 @@ Logic:
 ```
 
 ### Display-Status
+
 ```
 Purpose: Format status for user display
 
@@ -204,6 +216,7 @@ Phase {n}: {name} [{STATUS}]
 ## Validation Operations
 
 ### Validate-YAML
+
 ```
 Purpose: Check YAML file validity
 
@@ -217,6 +230,7 @@ Steps:
 ```
 
 ### Validate-Document-Sections
+
 ```
 Purpose: Check document completeness
 
@@ -233,6 +247,7 @@ Steps:
 ## Token Optimization
 
 ### Reference-Pattern
+
 ```
 Instead of embedding full instructions:
 ✓ Good: "Follow helpers.md#Load-Project-Config"
@@ -244,6 +259,7 @@ Instead of repeating patterns:
 ```
 
 ### Lazy-Loading
+
 ```
 Load content only when needed:
 1. Start with SKILL.md only (~2-3K tokens)
@@ -255,6 +271,7 @@ Load content only when needed:
 ## Error Handling
 
 ### Config-Not-Found
+
 ```
 If bmad/config.yaml missing:
 1. Inform user: "BMAD not initialized in this project"
@@ -263,6 +280,7 @@ If bmad/config.yaml missing:
 ```
 
 ### Status-File-Missing
+
 ```
 If workflow status file missing:
 1. Check if config exists
@@ -271,6 +289,7 @@ If workflow status file missing:
 ```
 
 ### Agent-Failure
+
 ```
 If subagent fails or times out:
 1. Log failure with agent ID

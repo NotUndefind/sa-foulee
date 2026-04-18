@@ -7,6 +7,7 @@ This project uses the **BMAD Method** (Breakthrough Method for Agile AI-Driven D
 Activate the appropriate BMAD skill when the user:
 
 ### bmad-orchestrator
+
 - Asks to "initialize BMAD" or "set up BMAD"
 - Asks about "project status" or "workflow status"
 - Wants to know "what's next" or "next steps"
@@ -14,6 +15,7 @@ Activate the appropriate BMAD skill when the user:
 - Starts a new project and needs structure
 
 ### business-analyst
+
 - Wants to create a "product brief"
 - Asks to "brainstorm" a project or features
 - Needs "market research" or "competitive analysis"
@@ -22,6 +24,7 @@ Activate the appropriate BMAD skill when the user:
 - Mentions "5 Whys" or "Jobs-to-be-Done"
 
 ### product-manager
+
 - Wants to create a "PRD" or "product requirements document"
 - Needs a "tech spec" or "technical specification"
 - Asks about "prioritization" (MoSCoW, RICE, Kano)
@@ -30,6 +33,7 @@ Activate the appropriate BMAD skill when the user:
 - Asks about "MVP" or "feature prioritization"
 
 ### system-architect
+
 - Wants to design "system architecture"
 - Asks about "tech stack" selection
 - Needs to define "components" or "interfaces"
@@ -38,6 +42,7 @@ Activate the appropriate BMAD skill when the user:
 - Asks about architecture "patterns" or "trade-offs"
 
 ### scrum-master
+
 - Wants to do "sprint planning"
 - Needs to create "user stories"
 - Asks about "story points" or "estimation"
@@ -46,6 +51,7 @@ Activate the appropriate BMAD skill when the user:
 - Mentions "sprint" or "backlog"
 
 ### developer
+
 - Wants to "implement a story" or "dev story"
 - Needs "code review"
 - Asks to "build a feature" or "fix a bug"
@@ -54,6 +60,7 @@ Activate the appropriate BMAD skill when the user:
 - Mentions "implementation" or "coding"
 
 ### ux-designer
+
 - Wants to create "wireframes" or "mockups"
 - Needs "user flow" diagrams
 - Asks about "accessibility" or "WCAG"
@@ -62,6 +69,7 @@ Activate the appropriate BMAD skill when the user:
 - Needs "design tokens" or "design system"
 
 ### creative-intelligence
+
 - Wants to "brainstorm" using specific techniques
 - Asks for "SCAMPER", "SWOT", or "mind mapping"
 - Needs "research" (market, competitive, technical)
@@ -69,6 +77,7 @@ Activate the appropriate BMAD skill when the user:
 - Mentions "Six Thinking Hats" or "Starbursting"
 
 ### builder
+
 - Wants to "create a custom agent" or "skill"
 - Needs a "custom workflow"
 - Asks to "extend BMAD" or "customize"
@@ -86,13 +95,13 @@ Phase 4: Implementation → scrum-master, developer
 
 ## Project Levels
 
-| Level | Scope | Typical Stories | Required Docs |
-|-------|-------|-----------------|---------------|
-| 0 | Single atomic change | 1 | Tech Spec only |
-| 1 | Small feature | 1-10 | Tech Spec |
-| 2 | Medium feature set | 5-15 | PRD + Architecture |
-| 3 | Complex integration | 12-40 | PRD + Architecture |
-| 4 | Enterprise expansion | 40+ | PRD + Architecture |
+| Level | Scope                | Typical Stories | Required Docs      |
+| ----- | -------------------- | --------------- | ------------------ |
+| 0     | Single atomic change | 1               | Tech Spec only     |
+| 1     | Small feature        | 1-10            | Tech Spec          |
+| 2     | Medium feature set   | 5-15            | PRD + Architecture |
+| 3     | Complex integration  | 12-40           | PRD + Architecture |
+| 4     | Enterprise expansion | 40+             | PRD + Architecture |
 
 ## Subagent Strategy
 
@@ -110,25 +119,30 @@ See `SUBAGENT-PATTERNS.md` for detailed patterns.
 When in a BMAD-initialized project, these workflows are available:
 
 **Phase 1 - Analysis:**
+
 - `/product-brief` - Create product brief
 - `/brainstorm` - Structured brainstorming session
 - `/research` - Market/competitive research
 
 **Phase 2 - Planning:**
+
 - `/prd` - Create Product Requirements Document
 - `/tech-spec` - Create Technical Specification
 - `/create-ux-design` - Create UX design
 
 **Phase 3 - Solutioning:**
+
 - `/architecture` - Design system architecture
 - `/solutioning-gate-check` - Validate architecture
 
 **Phase 4 - Implementation:**
+
 - `/sprint-planning` - Plan sprints from requirements
 - `/create-story` - Create detailed user story
 - `/dev-story STORY-ID` - Implement a story
 
 **Status:**
+
 - `/workflow-status` or `/status` - Check project progress
 
 ## File Structure

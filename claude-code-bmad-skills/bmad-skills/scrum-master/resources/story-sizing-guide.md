@@ -17,11 +17,13 @@ A comprehensive guide to estimating user stories using Fibonacci story points.
 ### What Are Story Points?
 
 Story points are a **relative** measure of:
+
 - **Complexity:** How difficult is the work?
 - **Effort:** How much work is required?
 - **Uncertainty:** How well do we understand the requirements?
 
 Story points are **NOT**:
+
 - Exact time estimates
 - Comparable across teams
 - A commitment or deadline
@@ -29,6 +31,7 @@ Story points are **NOT**:
 ### Why Story Points?
 
 **Benefits:**
+
 - Account for complexity, not just time
 - Reduce estimation debates (coarse-grained scale)
 - Velocity becomes predictable metric
@@ -36,6 +39,7 @@ Story points are **NOT**:
 - Team-specific (one team's 5 points may differ from another's)
 
 **Drawbacks:**
+
 - Can be misused as deadlines
 - Require calibration period
 - Abstract concept, harder to explain to stakeholders
@@ -45,6 +49,7 @@ Story points are **NOT**:
 ### The Numbers: 1, 2, 3, 5, 8, 13
 
 We use Fibonacci because:
+
 1. **Increasing gaps** reflect increasing uncertainty at larger sizes
 2. **Prevents false precision** (no 4, 6, 7, 9, 10, 11, 12)
 3. **Natural breakpoint at 8** encourages story decomposition
@@ -52,20 +57,21 @@ We use Fibonacci because:
 
 ### Point Ranges
 
-| Points | Relative Size | Description |
-|--------|---------------|-------------|
-| 1 | Extra Small | Trivial change, barely worth tracking |
-| 2 | Small | Quick implementation, clear approach |
-| 3 | Medium-Small | Standard story, some complexity |
-| 5 | Medium | Typical feature story, multiple files |
-| 8 | Large | Maximum recommended, full-stack work |
-| 13 | Extra Large | **Too big - break it down!** |
+| Points | Relative Size | Description                           |
+| ------ | ------------- | ------------------------------------- |
+| 1      | Extra Small   | Trivial change, barely worth tracking |
+| 2      | Small         | Quick implementation, clear approach  |
+| 3      | Medium-Small  | Standard story, some complexity       |
+| 5      | Medium        | Typical feature story, multiple files |
+| 8      | Large         | Maximum recommended, full-stack work  |
+| 13     | Extra Large   | **Too big - break it down!**          |
 
 ## Sizing by Complexity
 
 ### 1 Point - Trivial
 
 **Complexity Indicators:**
+
 - Single file change
 - No new logic or algorithms
 - Copy/paste or config change
@@ -74,6 +80,7 @@ We use Fibonacci because:
 - Could be done while pair programming
 
 **Examples:**
+
 - Update text content on a page
 - Change CSS color or spacing
 - Update a configuration value
@@ -82,6 +89,7 @@ We use Fibonacci because:
 - Update an API endpoint URL
 
 **Anti-patterns:**
+
 - If it requires understanding business logic → 2 points
 - If it touches multiple files → 2+ points
 - If it needs testing → 2+ points
@@ -89,6 +97,7 @@ We use Fibonacci because:
 ### 2 Points - Simple
 
 **Complexity Indicators:**
+
 - 1-2 file changes
 - Reuse existing patterns/components
 - Simple CRUD operations
@@ -97,6 +106,7 @@ We use Fibonacci because:
 - Clear implementation path
 
 **Examples:**
+
 - Add a new field to existing form
 - Create simple GET endpoint that returns data
 - Add basic input validation
@@ -105,6 +115,7 @@ We use Fibonacci because:
 - Add logging to existing function
 
 **Technical Examples:**
+
 - Add `lastName` field to user registration form
 - Create `/api/users/count` endpoint
 - Add email format validation
@@ -114,6 +125,7 @@ We use Fibonacci because:
 ### 3 Points - Moderate
 
 **Complexity Indicators:**
+
 - 2-4 file changes
 - Some new logic required
 - State management needed
@@ -122,6 +134,7 @@ We use Fibonacci because:
 - Some unknowns, but approachable
 
 **Examples:**
+
 - Component with conditional rendering
 - Search functionality on existing data
 - Form with multiple validation rules
@@ -130,6 +143,7 @@ We use Fibonacci because:
 - User preferences storage
 
 **Technical Examples:**
+
 - Search bar that filters product list
 - User settings page with 3-5 options
 - API endpoint with pagination
@@ -139,6 +153,7 @@ We use Fibonacci because:
 ### 5 Points - Complex
 
 **Complexity Indicators:**
+
 - 4-8 file changes
 - New patterns or approaches needed
 - Multiple component integration
@@ -147,6 +162,7 @@ We use Fibonacci because:
 - Some architecture decisions
 
 **Examples:**
+
 - Multi-step form wizard
 - File upload with preview
 - Authentication flow (login only)
@@ -155,6 +171,7 @@ We use Fibonacci because:
 - Third-party API integration
 
 **Technical Examples:**
+
 - User registration flow (form → validation → API → email)
 - Image upload with resize and S3 storage
 - OAuth login with Google
@@ -165,6 +182,7 @@ We use Fibonacci because:
 ### 8 Points - Very Complex
 
 **Complexity Indicators:**
+
 - 8-12 file changes
 - Complex business logic
 - Multiple system integration
@@ -174,6 +192,7 @@ We use Fibonacci because:
 - Performance considerations
 
 **Examples:**
+
 - Complete checkout flow
 - Advanced search with filters and facets
 - Real-time collaborative editing (basic)
@@ -182,6 +201,7 @@ We use Fibonacci because:
 - Permission/role management system
 
 **Technical Examples:**
+
 - Shopping cart → checkout → payment → confirmation
 - Elasticsearch integration with advanced queries
 - Operational transform for collaborative docs
@@ -194,6 +214,7 @@ We use Fibonacci because:
 ### 13 Points - Epic-Sized
 
 **Indicators:**
+
 - Too large for single story
 - Spans multiple subsystems
 - 3-5+ days of work
@@ -205,11 +226,13 @@ We use Fibonacci because:
 **Example Breakdown:**
 
 Original (13 points):
+
 ```
 "User can purchase products through checkout flow"
 ```
 
 Broken down:
+
 - "User can add items to shopping cart" (3 points)
 - "User can view and update cart" (2 points)
 - "User can enter shipping information" (3 points)
@@ -222,16 +245,17 @@ Total: 15 points (slightly more than original due to better understanding)
 
 ### Time Mapping (Approximate)
 
-| Points | Duration | Dev Hours | Working Days |
-|--------|----------|-----------|--------------|
-| 1 | 1-2 hours | 1-2 | 0.125-0.25 |
-| 2 | 2-4 hours | 2-4 | 0.25-0.5 |
-| 3 | 4-8 hours | 4-8 | 0.5-1 |
-| 5 | 1-2 days | 8-16 | 1-2 |
-| 8 | 2-3 days | 16-24 | 2-3 |
-| 13 | 3-5 days | 24-40 | 3-5 |
+| Points | Duration  | Dev Hours | Working Days |
+| ------ | --------- | --------- | ------------ |
+| 1      | 1-2 hours | 1-2       | 0.125-0.25   |
+| 2      | 2-4 hours | 2-4       | 0.25-0.5     |
+| 3      | 4-8 hours | 4-8       | 0.5-1        |
+| 5      | 1-2 days  | 8-16      | 1-2          |
+| 8      | 2-3 days  | 16-24     | 2-3          |
+| 13     | 3-5 days  | 24-40     | 3-5          |
 
 **Important:** These are guidelines, not commitments. Actual time varies by:
+
 - Developer experience
 - Code familiarity
 - Technical debt
@@ -243,47 +267,48 @@ Total: 15 points (slightly more than original due to better understanding)
 
 ### Frontend Patterns
 
-| Pattern | Typical Points | Notes |
-|---------|---------------|-------|
-| New simple component | 2-3 | Presentational, no state |
-| Component with state | 3-5 | Local state, some logic |
-| Complex component | 5-8 | Multiple states, side effects |
-| New page/route | 3-5 | Layout + components + routing |
-| Form with validation | 3-5 | Depends on field count |
-| Modal/dialog | 2-3 | Reusable component |
-| Chart/visualization | 5-8 | Depends on complexity |
-| Responsive layout | 3-5 | Breakpoints, testing |
+| Pattern              | Typical Points | Notes                         |
+| -------------------- | -------------- | ----------------------------- |
+| New simple component | 2-3            | Presentational, no state      |
+| Component with state | 3-5            | Local state, some logic       |
+| Complex component    | 5-8            | Multiple states, side effects |
+| New page/route       | 3-5            | Layout + components + routing |
+| Form with validation | 3-5            | Depends on field count        |
+| Modal/dialog         | 2-3            | Reusable component            |
+| Chart/visualization  | 5-8            | Depends on complexity         |
+| Responsive layout    | 3-5            | Breakpoints, testing          |
 
 ### Backend Patterns
 
-| Pattern | Typical Points | Notes |
-|---------|---------------|-------|
-| Simple GET endpoint | 2 | Return data, no logic |
-| GET with filtering | 3 | Query params, pagination |
-| POST endpoint | 3-5 | Validation, business logic |
-| Complex endpoint | 5-8 | Multiple operations, transactions |
-| Database migration | 2-3 | Schema changes only |
-| New database table | 3-5 | Schema + model + basic queries |
-| Authentication endpoint | 5 | Login or registration |
-| Third-party integration | 5-8 | API calls, error handling |
-| Background job | 5-8 | Queue, processing, retries |
+| Pattern                 | Typical Points | Notes                             |
+| ----------------------- | -------------- | --------------------------------- |
+| Simple GET endpoint     | 2              | Return data, no logic             |
+| GET with filtering      | 3              | Query params, pagination          |
+| POST endpoint           | 3-5            | Validation, business logic        |
+| Complex endpoint        | 5-8            | Multiple operations, transactions |
+| Database migration      | 2-3            | Schema changes only               |
+| New database table      | 3-5            | Schema + model + basic queries    |
+| Authentication endpoint | 5              | Login or registration             |
+| Third-party integration | 5-8            | API calls, error handling         |
+| Background job          | 5-8            | Queue, processing, retries        |
 
 ### Full-Stack Patterns
 
-| Pattern | Typical Points | Notes |
-|---------|---------------|-------|
-| Simple CRUD | 5-8 | Create, Read, Update, Delete |
-| User authentication | 8 | Login, registration, JWT |
-| File upload | 5-8 | Frontend + backend + storage |
-| Search functionality | 5-8 | UI + API + search logic |
-| Real-time feature | 8 | WebSocket, frontend, backend |
-| Report generation | 8 | Query + processing + format |
+| Pattern              | Typical Points | Notes                        |
+| -------------------- | -------------- | ---------------------------- |
+| Simple CRUD          | 5-8            | Create, Read, Update, Delete |
+| User authentication  | 8              | Login, registration, JWT     |
+| File upload          | 5-8            | Frontend + backend + storage |
+| Search functionality | 5-8            | UI + API + search logic      |
+| Real-time feature    | 8              | WebSocket, frontend, backend |
+| Report generation    | 8              | Query + processing + format  |
 
 ## Breaking Down Large Stories
 
 ### When to Break Down
 
 Break down if:
+
 1. **Size:** Story is 13+ points
 2. **Time:** Story takes more than 3 days
 3. **Acceptance criteria:** More than 7 criteria
@@ -296,6 +321,7 @@ Break down if:
 **Original:** "User can manage their profile" (13 points)
 
 **Broken down:**
+
 - "User can view their profile" (2 points)
 - "User can edit basic information" (3 points)
 - "User can upload profile picture" (5 points)
@@ -308,6 +334,7 @@ Break down if:
 **Original:** "Product search functionality" (13 points)
 
 **Broken down:**
+
 - "Backend: Search API endpoint" (5 points)
 - "Frontend: Search input and results" (5 points)
 - "Frontend: Search filters and sorting" (3 points)
@@ -319,6 +346,7 @@ Break down if:
 **Original:** "Comprehensive analytics dashboard" (13 points)
 
 **Broken down:**
+
 - "Basic analytics dashboard (MVP)" (5 points) ← Deliver this first
 - "Add date range filtering" (2 points)
 - "Add user segmentation" (3 points)
@@ -331,6 +359,7 @@ Break down if:
 **Original:** "Product management" (13 points)
 
 **Broken down:**
+
 - "Create product (form + API)" (3 points)
 - "View product details" (2 points)
 - "Edit product" (3 points)
@@ -344,6 +373,7 @@ Break down if:
 **Original:** "User and admin dashboards" (13 points)
 
 **Broken down:**
+
 - "User dashboard with basic stats" (5 points)
 - "Admin dashboard with user management" (8 points)
 
@@ -354,6 +384,7 @@ Break down if:
 ### Planning Poker
 
 **Process:**
+
 1. Product owner reads user story
 2. Team asks clarifying questions
 3. Each member selects estimate privately
@@ -362,6 +393,7 @@ Break down if:
 6. Re-estimate until consensus
 
 **Benefits:**
+
 - Engages whole team
 - Surfaces different perspectives
 - Quick consensus building
@@ -369,6 +401,7 @@ Break down if:
 ### T-Shirt Sizing (Then Convert)
 
 **Process:**
+
 1. Estimate as XS, S, M, L, XL
 2. Convert to Fibonacci:
    - XS → 1
@@ -378,6 +411,7 @@ Break down if:
    - XL → 13 (break it down!)
 
 **Benefits:**
+
 - Easier for non-technical stakeholders
 - Less intimidating than numbers
 - Good for initial rough estimates
@@ -385,11 +419,13 @@ Break down if:
 ### Reference Story Method
 
 **Process:**
+
 1. Find a previously completed 3-point story
 2. Use as reference: "Is this bigger or smaller?"
 3. Assign points relative to reference
 
 **Benefits:**
+
 - Calibrates team's point scale
 - Consistent estimates over time
 - Easy to explain: "Like STORY-005, but more complex"
@@ -397,17 +433,20 @@ Break down if:
 ### Three-Point Estimation
 
 **Process:**
+
 1. Estimate best case (optimistic)
 2. Estimate worst case (pessimistic)
 3. Estimate most likely
 4. Average: (optimistic + 4×likely + pessimistic) / 6
 
 **Benefits:**
+
 - Accounts for uncertainty
 - Surfaces risk
 - More accurate for complex stories
 
 **Example:**
+
 - Optimistic: 3 points
 - Likely: 5 points
 - Pessimistic: 8 points
@@ -450,6 +489,7 @@ Break down if:
 Use these to calibrate your team's estimation:
 
 ### 1 Point Examples
+
 - Update copyright year in footer
 - Change button color in CSS
 - Update environment variable
@@ -457,6 +497,7 @@ Use these to calibrate your team's estimation:
 - Add console.log for debugging
 
 ### 2 Point Examples
+
 - Add "remember me" checkbox to login
 - Create `/health` endpoint that returns `{status: 'ok'}`
 - Add tooltip to existing button
@@ -464,6 +505,7 @@ Use these to calibrate your team's estimation:
 - Add loading spinner to button
 
 ### 3 Point Examples
+
 - Add email validation to signup form
 - Create user profile display page
 - Add sorting to existing data table
@@ -471,6 +513,7 @@ Use these to calibrate your team's estimation:
 - Add search filter to list view
 
 ### 5 Point Examples
+
 - User registration with validation
 - File upload with preview
 - Password reset email flow
@@ -478,6 +521,7 @@ Use these to calibrate your team's estimation:
 - Basic user settings page
 
 ### 8 Point Examples
+
 - Complete login/logout flow with JWT
 - Shopping cart with add/remove/update
 - Admin user management page

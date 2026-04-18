@@ -15,10 +15,10 @@ const schema = z.object({
   amount: z.number({ error: 'Montant invalide.' }).positive('Le montant doit être supérieur à 0.'),
   description: z.string().min(1, 'La description est requise.').max(2000),
   entry_date: z.string().min(1, 'La date est requise.'),
-  receipt_url: z.string().url('URL invalide.').or(z.literal('')).optional(),
+  receipt_url: z.url('URL invalide.').or(z.literal('')).optional(),
 })
 
-type FormValues = z.infer<typeof schema>
+type FormValues = z.infer
 
 // ─── Category suggestions ─────────────────────────────────────────────────────
 

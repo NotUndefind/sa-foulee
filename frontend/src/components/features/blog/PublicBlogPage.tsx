@@ -91,7 +91,7 @@ export default function PublicBlogPage() {
                   </span>
                   <Link
                     href="/connexion"
-                    className="text-brand text-xs font-medium hover:underline"
+                    className="text-primary text-xs font-medium hover:underline"
                   >
                     Connectez-vous pour commenter →
                   </Link>
@@ -130,7 +130,7 @@ export default function PublicBlogPage() {
       <div className="pt-4 text-center">
         <Link
           href="/inscription"
-          className="bg-brand hover:bg-brand-dark inline-block rounded-xl px-6 py-2.5 text-sm font-medium text-white transition"
+          className="bg-primary hover:bg-primary-dark inline-block rounded-xl px-6 py-2.5 text-sm font-medium text-white transition"
         >
           Rejoindre l&apos;association pour commenter
         </Link>

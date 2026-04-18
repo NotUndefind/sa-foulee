@@ -9,13 +9,10 @@ import { forgotPassword } from '@/lib/auth'
 import { ApiError } from '@/lib/api'
 
 const schema = z.object({
-  email: z
-    .string()
-    .min(1, "L'adresse e-mail est obligatoire.")
-    .email("L'adresse e-mail n'est pas valide."),
+  email: z.email("L'adresse e-mail n'est pas valide.").min(1, "L'adresse e-mail est obligatoire."),
 })
 
-type FormValues = z.infer<typeof schema>
+type FormValues = z.infer
 
 export default function ForgotPasswordForm() {
   const [success, setSuccess] = useState(false)
@@ -131,7 +128,7 @@ export default function ForgotPasswordForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full rounded-lg px-4 py-2.5 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
+        className="w-full rounded-lg px-4 py-3 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
         style={{
           background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)',
           boxShadow: '0 2px 8px rgba(251,57,54,0.25)',

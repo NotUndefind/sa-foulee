@@ -1,10 +1,10 @@
 'use client'
 
+import { api } from '@/lib/api'
+import { useAuthStore } from '@/store/auth.store'
+import type { Event, Post, TrainingSession } from '@/types'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { useAuthStore } from '@/store/auth.store'
-import { api } from '@/lib/api'
-import type { Event, TrainingSession, Post } from '@/types'
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
@@ -39,20 +39,20 @@ function formatDateShort(dateStr: string) {
   }
 }
 
-const EVENT_TYPE_LABEL: Record<string, string> = {
+const EVENT_TYPE_LABEL: Record = {
   race: 'Course',
   outing: 'Sortie',
   competition: 'Compétition',
   other: 'Autre',
 }
-const EVENT_TYPE_COLOR: Record<string, string> = {
+const EVENT_TYPE_COLOR: Record = {
   race: '#FB3936',
   outing: '#7F7F7F',
   competition: '#f59e0b',
   other: '#D42F2D',
 }
 
-const SESSION_TYPE_LABEL: Record<string, string> = {
+const SESSION_TYPE_LABEL: Record = {
   running: 'Footing',
   interval: 'Fractionné',
   fartlek: 'Fartlek',
@@ -61,7 +61,7 @@ const SESSION_TYPE_LABEL: Record<string, string> = {
   other: 'Autre',
 }
 
-const INTENSITY_CONFIG: Record<string, { label: string; bg: string; color: string }> = {
+const INTENSITY_CONFIG: Record = {
   low: { label: 'Facile', bg: 'rgba(176,137,138,0.15)', color: '#D42F2D' },
   medium: { label: 'Modéré', bg: 'rgba(245,158,11,0.12)', color: '#d97706' },
   high: { label: 'Intense', bg: 'rgba(251,57,54,0.12)', color: '#FB3936' },
@@ -421,7 +421,7 @@ export default function DashboardHomePage() {
           {/* ── Hero Header ────────────────────────────────────────────── */}
           <div className="sf-fade mb-8" style={{ animationDelay: '0ms' }}>
             <p
-              className="mb-1 text-xs font-semibold tracking-widest capitalize uppercase"
+              className="mb-1 text-xs font-semibold tracking-widest capitalize"
               style={{ color: 'rgba(192,48,46,0.4)' }}
             >
               {today}
@@ -722,7 +722,7 @@ export default function DashboardHomePage() {
             <SectionHeader title="Articles récents" href="/tableau-de-bord/blog" accent="#7F7F7F" />
 
             {loading ? (
-              <div className="grid gap-4 sm:grid-cols-3">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                 {[1, 2, 3].map((i) => (
                   <div key={i} className="sf-card space-y-3 p-5">
                     <Skeleton className="h-4 w-full" />
@@ -736,7 +736,7 @@ export default function DashboardHomePage() {
                 <EmptyState icon={<IconEmptyPost />} label="Aucun article publié" />
               </div>
             ) : (
-              <div className="grid gap-4 sm:grid-cols-3">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                 {posts.map((post, i) => (
                   <Link
                     key={post.id}

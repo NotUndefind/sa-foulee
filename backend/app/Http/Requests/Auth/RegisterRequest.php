@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Rules\PasswordPolicy;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterRequest extends FormRequest
@@ -17,7 +18,12 @@ class RegisterRequest extends FormRequest
             'first_name' => ['required', 'string', 'max:50'],
             'last_name' => ['required', 'string', 'max:50'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => [
+                'required',
+                'string',
+                new PasswordPolicy,
+                'confirmed',
+            ],
             'consent' => ['required', 'accepted'],
         ];
     }
@@ -33,7 +39,6 @@ class RegisterRequest extends FormRequest
             'email.email' => "L'adresse e-mail n'est pas valide.",
             'email.unique' => 'Cette adresse e-mail est déjà utilisée.',
             'password.required' => 'Le mot de passe est obligatoire.',
-            'password.min' => 'Le mot de passe doit contenir au moins 8 caractères.',
             'password.confirmed' => 'La confirmation du mot de passe ne correspond pas.',
             'consent.required' => "Vous devez accepter les conditions d'utilisation.",
             'consent.accepted' => "Vous devez accepter les conditions d'utilisation.",

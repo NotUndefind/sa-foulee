@@ -31,7 +31,8 @@ class UpdateSessionRequest extends FormRequest
             'exercises.*.rest' => ['nullable', 'integer', 'min:0'],
             'description' => ['nullable', 'string', 'max:10000'],
             'is_template' => ['sometimes', 'boolean'],
-            'published_at' => ['nullable', 'date'],
+            'location_id' => ['nullable', 'integer', 'exists:locations,id'],
+            'session_date' => ['nullable', 'date'],
         ];
     }
 }

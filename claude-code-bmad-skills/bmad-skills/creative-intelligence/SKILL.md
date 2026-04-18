@@ -52,35 +52,40 @@ For detailed descriptions, see [resources/brainstorming-techniques.md](resources
 
 ### Technique Quick Reference
 
-| Technique | Best For | Time | Output |
-|-----------|----------|------|--------|
-| **5 Whys** | Root cause analysis | 10-15 min | Cause chain |
-| **SCAMPER** | Feature ideation | 20-30 min | Creative variations |
-| **Mind Mapping** | Idea organization | 15-20 min | Visual hierarchy |
-| **Reverse Brainstorming** | Risk identification | 15-20 min | Failure scenarios |
-| **Six Thinking Hats** | Multi-perspective analysis | 30-45 min | Balanced view |
-| **Starbursting** | Question exploration | 20-30 min | Question tree |
-| **SWOT Analysis** | Strategic planning | 30-45 min | SWOT matrix |
+| Technique                 | Best For                   | Time      | Output              |
+| ------------------------- | -------------------------- | --------- | ------------------- |
+| **5 Whys**                | Root cause analysis        | 10-15 min | Cause chain         |
+| **SCAMPER**               | Feature ideation           | 20-30 min | Creative variations |
+| **Mind Mapping**          | Idea organization          | 15-20 min | Visual hierarchy    |
+| **Reverse Brainstorming** | Risk identification        | 15-20 min | Failure scenarios   |
+| **Six Thinking Hats**     | Multi-perspective analysis | 30-45 min | Balanced view       |
+| **Starbursting**          | Question exploration       | 20-30 min | Question tree       |
+| **SWOT Analysis**         | Strategic planning         | 30-45 min | SWOT matrix         |
 
 ### Technique Selection Guide
 
 **Problem exploration:**
+
 - Use **5 Whys** to uncover root causes
 - Use **Starbursting** to explore all angles with questions
 
 **Solution generation:**
+
 - Use **SCAMPER** for creative feature variations
 - Use **Mind Mapping** to organize and connect ideas
 
 **Risk and validation:**
+
 - Use **Reverse Brainstorming** to identify failure modes
 - Use **Six Thinking Hats** (Black Hat) for critical analysis
 
 **Strategic planning:**
+
 - Use **SWOT Analysis** for competitive positioning
 - Use **Six Thinking Hats** (full cycle) for comprehensive evaluation
 
 **Feature ideation:**
+
 - Use **SCAMPER** for creative modifications
 - Use **Mind Mapping** to organize feature hierarchies
 
@@ -146,24 +151,28 @@ For detailed methodology, see [resources/research-methods.md](resources/research
 ## Cross-Phase Applicability
 
 ### Phase 1: Analysis
+
 - Market research for product discovery
 - Competitive landscape analysis
 - Problem exploration using 5 Whys
 - User research and needs analysis
 
 ### Phase 2: Planning
+
 - Feature brainstorming with SCAMPER
 - SWOT analysis for strategic planning
 - Risk identification with Reverse Brainstorming
 - Prioritization insights from research
 
 ### Phase 3: Solutioning
+
 - Architecture alternatives exploration
 - Design pattern research
 - Mind Mapping for system organization
 - Technical research for implementation approaches
 
 ### Phase 4: Implementation
+
 - Technical solution research
 - Best practices investigation
 - Problem-solving with structured techniques
@@ -174,6 +183,7 @@ For detailed methodology, see [resources/research-methods.md](resources/research
 ### Brainstorming Session Output
 
 Use `templates/brainstorm-session.template.md` which includes:
+
 - Session objective and context
 - Techniques used and rationale
 - All ideas generated (categorized)
@@ -184,6 +194,7 @@ Use `templates/brainstorm-session.template.md` which includes:
 ### Research Report Output
 
 Use `templates/research-report.template.md` which includes:
+
 - Research objective and scope
 - Methodology and sources
 - Key findings (organized by theme)
@@ -194,21 +205,25 @@ Use `templates/research-report.template.md` which includes:
 ## Integration with Other Skills
 
 **Business Analysis:**
+
 - Provide market research for product discovery
 - Generate feature ideas through brainstorming
 - Support requirements validation with research
 
 **Product Management:**
+
 - Brainstorm feature sets and product variations
 - Research competitive positioning
 - Support prioritization with data-driven insights
 
 **System Architecture:**
+
 - Explore architectural alternatives
 - Research design patterns and best practices
 - Identify technical risks and solutions
 
 **Development:**
+
 - Research technical implementation approaches
 - Brainstorm solutions to complex problems
 - Document findings for team knowledge sharing
@@ -310,19 +325,21 @@ Next: Use insights for product positioning and feature prioritization
 This skill leverages parallel subagents to maximize context utilization (each agent has up to 1M tokens on Claude Sonnet 4.6 / Opus 4.6).
 
 ### Multi-Technique Brainstorming Workflow
+
 **Pattern:** Fan-Out Research
 **Agents:** 3-6 parallel agents (one per brainstorming technique)
 
-| Agent | Task | Output |
-|-------|------|--------|
-| Agent 1 | Apply SCAMPER technique to generate feature variations | bmad/outputs/brainstorm-scamper.md |
-| Agent 2 | Create Mind Map to organize ideas hierarchically | bmad/outputs/brainstorm-mindmap.md |
-| Agent 3 | Use Reverse Brainstorming to identify risks | bmad/outputs/brainstorm-risks.md |
-| Agent 4 | Apply Six Thinking Hats for multi-perspective analysis | bmad/outputs/brainstorm-hats.md |
-| Agent 5 | Use Starbursting to explore with questions | bmad/outputs/brainstorm-questions.md |
-| Agent 6 | Conduct SWOT Analysis for strategic positioning | bmad/outputs/brainstorm-swot.md |
+| Agent   | Task                                                   | Output                               |
+| ------- | ------------------------------------------------------ | ------------------------------------ |
+| Agent 1 | Apply SCAMPER technique to generate feature variations | bmad/outputs/brainstorm-scamper.md   |
+| Agent 2 | Create Mind Map to organize ideas hierarchically       | bmad/outputs/brainstorm-mindmap.md   |
+| Agent 3 | Use Reverse Brainstorming to identify risks            | bmad/outputs/brainstorm-risks.md     |
+| Agent 4 | Apply Six Thinking Hats for multi-perspective analysis | bmad/outputs/brainstorm-hats.md      |
+| Agent 5 | Use Starbursting to explore with questions             | bmad/outputs/brainstorm-questions.md |
+| Agent 6 | Conduct SWOT Analysis for strategic positioning        | bmad/outputs/brainstorm-swot.md      |
 
 **Coordination:**
+
 1. Define brainstorming objective and write to bmad/context/brainstorm-objective.md
 2. Select 3-6 complementary techniques based on objective
 3. Launch parallel agents, each applying one technique
@@ -333,17 +350,19 @@ This skill leverages parallel subagents to maximize context utilization (each ag
 **Best for:** Feature ideation, problem exploration, strategic planning
 
 ### Comprehensive Research Workflow
+
 **Pattern:** Fan-Out Research
 **Agents:** 4 parallel agents (one per research type)
 
-| Agent | Task | Output |
-|-------|------|--------|
-| Agent 1 | Market research - size, trends, opportunities | bmad/outputs/research-market.md |
-| Agent 2 | Competitive analysis - competitors, features, gaps | bmad/outputs/research-competitive.md |
-| Agent 3 | Technical research - technologies, patterns, approaches | bmad/outputs/research-technical.md |
-| Agent 4 | User research - needs, pain points, workflows | bmad/outputs/research-user.md |
+| Agent   | Task                                                    | Output                               |
+| ------- | ------------------------------------------------------- | ------------------------------------ |
+| Agent 1 | Market research - size, trends, opportunities           | bmad/outputs/research-market.md      |
+| Agent 2 | Competitive analysis - competitors, features, gaps      | bmad/outputs/research-competitive.md |
+| Agent 3 | Technical research - technologies, patterns, approaches | bmad/outputs/research-technical.md   |
+| Agent 4 | User research - needs, pain points, workflows           | bmad/outputs/research-user.md        |
 
 **Coordination:**
+
 1. Define research scope and questions in bmad/context/research-scope.md
 2. Launch all 4 research agents in parallel
 3. Each agent uses WebSearch/WebFetch for their research domain
@@ -354,16 +373,18 @@ This skill leverages parallel subagents to maximize context utilization (each ag
 **Best for:** Product discovery, market analysis, competitive intelligence
 
 ### Problem Exploration Workflow
+
 **Pattern:** Parallel Section Generation
 **Agents:** 3 parallel agents
 
-| Agent | Task | Output |
-|-------|------|--------|
-| Agent 1 | Apply 5 Whys to uncover root causes | bmad/outputs/exploration-5whys.md |
-| Agent 2 | Use Starbursting to generate comprehensive questions | bmad/outputs/exploration-questions.md |
-| Agent 3 | Conduct stakeholder perspective analysis | bmad/outputs/exploration-perspectives.md |
+| Agent   | Task                                                 | Output                                   |
+| ------- | ---------------------------------------------------- | ---------------------------------------- |
+| Agent 1 | Apply 5 Whys to uncover root causes                  | bmad/outputs/exploration-5whys.md        |
+| Agent 2 | Use Starbursting to generate comprehensive questions | bmad/outputs/exploration-questions.md    |
+| Agent 3 | Conduct stakeholder perspective analysis             | bmad/outputs/exploration-perspectives.md |
 
 **Coordination:**
+
 1. Write problem statement to bmad/context/problem-statement.md
 2. Launch parallel agents for deep problem exploration
 3. Each agent explores problem from different analytical angle
@@ -373,17 +394,19 @@ This skill leverages parallel subagents to maximize context utilization (each ag
 **Best for:** Problem discovery, requirements analysis, project kickoff
 
 ### Solution Generation Workflow
+
 **Pattern:** Parallel Section Generation
 **Agents:** 4 parallel agents
 
-| Agent | Task | Output |
-|-------|------|--------|
-| Agent 1 | Generate solution variations using SCAMPER | bmad/outputs/solutions-scamper.md |
-| Agent 2 | Research existing solutions and best practices | bmad/outputs/solutions-research.md |
+| Agent   | Task                                                | Output                                |
+| ------- | --------------------------------------------------- | ------------------------------------- |
+| Agent 1 | Generate solution variations using SCAMPER          | bmad/outputs/solutions-scamper.md     |
+| Agent 2 | Research existing solutions and best practices      | bmad/outputs/solutions-research.md    |
 | Agent 3 | Identify constraints and feasibility considerations | bmad/outputs/solutions-constraints.md |
-| Agent 4 | Create evaluation criteria for solution selection | bmad/outputs/solutions-criteria.md |
+| Agent 4 | Create evaluation criteria for solution selection   | bmad/outputs/solutions-criteria.md    |
 
 **Coordination:**
+
 1. Load problem definition from bmad/context/problem-statement.md
 2. Launch parallel agents for solution exploration
 3. Collect diverse solution approaches and variations
@@ -393,6 +416,7 @@ This skill leverages parallel subagents to maximize context utilization (each ag
 **Best for:** Solution design, architecture alternatives, implementation approaches
 
 ### Example Subagent Prompt
+
 ```
 Task: Apply SCAMPER technique to mobile payment feature ideas
 Context: Read bmad/context/brainstorm-objective.md for product context

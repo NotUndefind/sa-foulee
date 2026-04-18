@@ -70,7 +70,13 @@ export interface EventPhoto {
 
 // ---- Training Sessions ----
 
+export interface Location {
+  id: number
+  name: string
+}
+
 export interface Exercise {
+  _key?: string
   name: string
   sets?: number
   reps?: number
@@ -89,7 +95,8 @@ export interface TrainingSession {
   description: string | null
   is_template: boolean
   created_by: number
-  published_at: string | null
+  location: Location | null
+  session_date: string | null
   created_at: string
   participants_count?: number
   has_participated?: boolean
@@ -228,7 +235,7 @@ export interface ChatMessage {
   id: number
   channel: string
   userId: number
-  user?: Pick<User, 'id' | 'first_name' | 'last_name' | 'avatar'>
+  user?: Pick
   content: string
   createdAt: string
 }
@@ -238,7 +245,7 @@ export interface ChatMessage {
 export interface Notification {
   id: string
   type: string
-  data: Record<string, unknown>
+  data: Record
   readAt: string | null
   createdAt: string
 }
@@ -258,5 +265,5 @@ export interface PaginatedResponse<T> {
 
 export interface ApiError {
   message: string
-  errors?: Record<string, string[]>
+  errors?: Record
 }

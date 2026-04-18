@@ -16,7 +16,7 @@ const schema = z.object({
   is_public: z.boolean(),
 })
 
-type FormData = z.infer<typeof schema>
+type FormData = z.infer
 
 const TYPE_OPTIONS: { value: EventType; label: string }[] = [
   { value: 'race', label: 'Course' },
@@ -74,7 +74,7 @@ export default function EventForm({ event, onSuccess, onCancel }: Props) {
       const saved = isEdit ? await updateEvent(event!.id, payload) : await createEvent(payload)
       onSuccess(saved)
     } catch (err: unknown) {
-      const apiErr = err as { errors?: Record<string, string[]> }
+      const apiErr = err as { errors?: Record }
       if (apiErr.errors) {
         Object.entries(apiErr.errors).forEach(([field, msgs]) => {
           setError(field as keyof FormData, { message: msgs[0] })
@@ -84,7 +84,7 @@ export default function EventForm({ event, onSuccess, onCancel }: Props) {
   }
 
   const inputClass =
-    'w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20'
+    'w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20'
   const errorClass = 'mt-1 text-xs text-red-600'
   const labelClass = 'block text-sm font-medium text-zinc-700 mb-1'
 
@@ -145,7 +145,7 @@ export default function EventForm({ event, onSuccess, onCancel }: Props) {
         <input
           {...register('is_public')}
           type="checkbox"
-          className="accent-brand h-4 w-4 rounded"
+          className="accent-primary h-4 w-4 rounded"
         />
         <span className="text-sm text-zinc-700">
           Événement public (visible par tous les membres)
@@ -164,7 +164,7 @@ export default function EventForm({ event, onSuccess, onCancel }: Props) {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="bg-brand hover:bg-brand-dark rounded-lg px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
+          className="bg-primary hover:bg-primary-dark rounded-lg px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
         >
           {isSubmitting ? 'Enregistrement…' : isEdit ? 'Modifier' : 'Créer'}
         </button>

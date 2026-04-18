@@ -17,6 +17,7 @@
   --color-primary-light: #fd6563; /* accents légers */
   --color-bg: #fafafa; /* fond pages principales */
   --color-sidebar: #c0302e; /* sidebar dashboard */
+  --color-accent: #d42f2d; /* stepper étapes complétées (bg-accent) */
 
   /* ── Palette sa Foulée — charte rouge & blanc ── */
 
@@ -45,6 +46,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 /* ── Checkboxes & radios — accent rouge ── */
@@ -58,7 +60,7 @@ input[type='radio'] {
   width: 100%;
   border-radius: 0.5rem;
   border: 1px solid rgba(192, 48, 46, 0.2);
-  padding: 0.5rem 0.75rem;
+  padding: 0.75rem;
   font-size: 0.875rem;
   color: #c0302e;
   outline: none;
@@ -73,4 +75,271 @@ input[type='radio'] {
 .auth-input:focus {
   border-color: #fb3936;
   box-shadow: 0 0 0 3px rgba(251, 57, 54, 0.15);
+}
+
+/* ── Bouton visibilité mot de passe ── */
+.password-toggle {
+  color: #9f9f9f;
+  transition:
+    color 0.15s,
+    background 0.15s;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+.password-toggle:hover {
+  color: #fb3936;
+  background: rgba(251, 57, 54, 0.07);
+}
+
+/* ══════════════════════════════════════════════
+   saFoulée — Landing page shared styles
+   ══════════════════════════════════════════════ */
+
+/* ── Keyframes ── */
+@keyframes sF-fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(36px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes sF-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes sF-drawPath {
+  from {
+    stroke-dashoffset: 900;
+    opacity: 0;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+@keyframes sF-float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(2deg);
+  }
+}
+@keyframes sF-blob {
+  0%,
+  100% {
+    transform: scale(1) translate(0px, 0px);
+  }
+  33% {
+    transform: scale(1.06) translate(10px, -14px);
+  }
+  66% {
+    transform: scale(0.96) translate(-8px, 10px);
+  }
+}
+
+/* ── Hero entrance animations ── */
+.sF-tag {
+  animation: sF-fadeUp 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.05s;
+}
+.sF-h1 {
+  animation: sF-fadeUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.2s;
+}
+.sF-sub {
+  animation: sF-fadeUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.38s;
+}
+.sF-cta {
+  animation: sF-fadeUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.52s;
+}
+.sF-deco {
+  animation: sF-float 7s ease-in-out infinite;
+  animation-delay: 1s;
+}
+.sF-line {
+  stroke-dasharray: 900;
+  animation: sF-drawPath 2.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.7s;
+}
+
+/* ── Scroll reveal ── */
+.sF-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.sF-reveal.on {
+  opacity: 1;
+  transform: translateY(0);
+}
+.sF-d1 {
+  transition-delay: 0.05s;
+}
+.sF-d2 {
+  transition-delay: 0.15s;
+}
+.sF-d3 {
+  transition-delay: 0.25s;
+}
+.sF-d4 {
+  transition-delay: 0.35s;
+}
+
+/* ── Composants visuels — dans @layer components pour s'intégrer
+   correctement avec les utilities Tailwind v4 (hidden, md:block, etc.) ── */
+@layer components {
+  /* ── Cards ── */
+  .sF-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem 1.75rem;
+    border: 1.5px solid rgba(192, 48, 46, 0.08);
+    transition:
+      transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.35s ease,
+      border-color 0.3s ease;
+  }
+  .sF-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 24px 56px rgba(192, 48, 46, 0.11);
+    border-color: rgba(192, 48, 46, 0.18);
+  }
+
+  /* ── Activity blocks ── */
+  .sF-act {
+    padding: 1.75rem;
+    border-radius: 18px;
+    background: rgba(192, 48, 46, 0.04);
+    border: 1.5px solid rgba(192, 48, 46, 0.09);
+    transition:
+      background 0.3s ease,
+      border-color 0.3s ease,
+      transform 0.3s ease;
+  }
+  .sF-act:hover {
+    background: rgba(192, 48, 46, 0.07);
+    border-color: rgba(192, 48, 46, 0.18);
+    transform: translateY(-3px);
+  }
+
+  /* ── Buttons ── */
+  .sF-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fb3936;
+    color: #fff;
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      background 0.2s ease;
+    box-shadow: 0 4px 22px rgba(251, 57, 54, 0.38);
+  }
+  .sF-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 36px rgba(251, 57, 54, 0.46);
+    background: #d42f2d;
+  }
+  .sF-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #c0302e;
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border: 2px solid rgba(192, 48, 46, 0.22);
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease,
+      transform 0.2s ease;
+  }
+  .sF-btn-ghost:hover {
+    border-color: #c0302e;
+    background: rgba(192, 48, 46, 0.05);
+    transform: translateY(-2px);
+  }
+
+  /* ── Footer links ── */
+  .sF-flink {
+    color: rgba(255, 255, 255, 0.45);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .sF-flink::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: #fb3936;
+    transition: width 0.25s ease;
+  }
+  .sF-flink:hover {
+    color: rgba(255, 255, 255, 0.9);
+  }
+  .sF-flink:hover::after {
+    width: 100%;
+  }
+
+  /* ── Section label ── */
+  .sF-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #fb3936;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    margin-bottom: 0.875rem;
+  }
+}
+
+/* ── Sessions dashboard ── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.ss-fade {
+  animation: fadeUp 0.4s ease both;
+}
+
+/* ── Hero responsive ── */
+@media (max-width: 767px) {
+  .sF-hero-section {
+    padding: 3rem 1.25rem 5rem !important;
+    min-height: auto !important;
+  }
+  .sF-stat-item {
+    padding: 1.5rem 0.75rem !important;
+  }
 }

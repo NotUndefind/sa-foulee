@@ -3,7 +3,7 @@ import type { User, UserDocument } from '@/types'
 
 // ---- Profil ----
 
-export async function getMe(): Promise<User> {
+export async function getMe(): Promise {
   return api.get<User>('/me')
 }
 
@@ -13,9 +13,12 @@ export async function updateProfile(data: {
   bio?: string
   email?: string
   avatar?: File
-}): Promise<User> {
+}): Promise {
   // Utiliser FormData pour l'upload d'avatar
   const formData = new FormData()
+  // Laravel ne parse pas $_POST/$_FILES pour les requêtes PATCH multipart/form-data (limite PHP).
+  // On utilise le method spoofing : POST + _method=PATCH.
+  formData.append('_method', 'PATCH')
   Object.entries(data).forEach(([key, value]) => {
     if (value !== undefined && value !== null) {
       formData.append(key, value as string | Blob)
@@ -26,7 +29,7 @@ export async function updateProfile(data: {
   const token = typeof window !== 'undefined' ? localStorage.getItem('auth_token') : null
 
   const res = await fetch(`${apiBase}/me`, {
-    method: 'PATCH',
+    method: 'POST',
     headers: {
       Accept: 'application/json',
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
@@ -36,7 +39,13 @@ export async function updateProfile(data: {
 
   if (!res.ok) {
     const err = await res.json().catch(() => ({}))
-    throw Object.assign(new Error(err.message ?? 'Erreur'), {
+    // Pour les erreurs 422, ne pas exposer le message backend (l'utilisateur
+    // a peut-être contourné la validation front via les devtools).
+    const message =
+      res.status === 422
+        ? 'Une erreur est survenue. Veuillez réessayer.'
+        : (err.message ?? 'Erreur lors de la sauvegarde.')
+    throw Object.assign(new Error(message), {
       status: res.status,
       errors: err.errors,
     })
@@ -45,14 +54,14 @@ export async function updateProfile(data: {
   return res.json()
 }
 
-export async function deleteAccount(): Promise<void> {
+export async function deleteAccount(): Promise {
   await api.delete('/me')
   localStorage.removeItem('auth_token')
 }
 
 // ---- Documents ----
 
-export async function getDocuments(userId: number): Promise<UserDocument[]> {
+export async function getDocuments(userId: number): Promise {
   return api.get<UserDocument[]>(`/users/${userId}/documents`)
 }
 
@@ -61,7 +70,7 @@ export async function uploadDocument(
   type: string,
   file: File,
   expiresAt?: string
-): Promise<UserDocument> {
+): Promise {
   const formData = new FormData()
   formData.append('type', type)
   formData.append('file', file)
@@ -90,12 +99,10 @@ export async function uploadDocument(
   return res.json()
 }
 
-export async function getDocumentDownloadUrl(
-  documentId: number
-): Promise<{ url: string; expires_at: string }> {
+export async function getDocumentDownloadUrl(documentId: number): Promise {
   return api.get(`/documents/${documentId}/download`)
 }
 
-export async function deleteDocument(documentId: number): Promise<void> {
+export async function deleteDocument(documentId: number): Promise {
   await api.delete(`/documents/${documentId}`)
 }

@@ -1,13 +1,14 @@
 'use client'
 
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import { usePathname, useRouter } from 'next/navigation'
-import { useAuthStore } from '@/store/auth.store'
+import { ToastProvider } from '@/components/ui/Toast'
 import { useRole } from '@/hooks/useRole'
 import { logout } from '@/lib/auth'
-import { ToastProvider } from '@/components/ui/Toast'
 import { getPublicSettings } from '@/lib/settings'
+import { useAuthStore } from '@/store/auth.store'
+import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 // ─── SVG Icons ────────────────────────────────────────────────────────────────
 
@@ -46,26 +47,6 @@ function IconCalendar({ active }: { active?: boolean }) {
       <circle cx="8" cy="15" r="1" fill="currentColor" />
       <circle cx="12" cy="15" r="1" fill="currentColor" />
       <circle cx="16" cy="15" r="1" fill="currentColor" />
-    </svg>
-  )
-}
-
-function IconRun({ active }: { active?: boolean }) {
-  return (
-    <svg
-      width="17"
-      height="17"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={active ? 2.2 : 1.6}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="15" cy="4" r="2" />
-      <path d="M10.5 8.5L8 17l4-2 3 4 2-8" />
-      <path d="M16 8l-2.5.5-3 5" />
-      <path d="M5 12l3.5 1" />
     </svg>
   )
 }
@@ -245,7 +226,7 @@ function IconLogout() {
 type NavItem = {
   href: string
   label: string
-  Icon: React.ComponentType<{ active?: boolean }>
+  Icon: React.ComponentType
 }
 
 const NAV_LINKS: NavItem[] = [
@@ -322,20 +303,16 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           color: rgba(255,255,255,0.9);
         }
         .sf-nav-link.active {
-          background: rgba(251,57,54,0.25);
+          background: rgba(255,255,255,0.15);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          border: 1px solid rgba(255,255,255,0.22);
           color: #ffffff;
-          font-weight: 600;
+          font-weight: 700;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         .sf-nav-link.active::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 3px;
-          height: 55%;
-          background: #FB3936;
-          border-radius: 0 3px 3px 0;
+          display: none;
         }
 
         /* Mobile bottom nav */
@@ -400,32 +377,47 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             href="/"
             style={{
               display: 'flex',
-              alignItems: 'baseline',
-              gap: '0.1em',
-              padding: '20px 18px 18px',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '14px 12px 12px',
               textDecoration: 'none',
               borderBottom: '1px solid rgba(255,255,255,0.07)',
             }}
           >
+            <div
+              style={{
+                background: 'rgba(255,255,255,0.92)',
+                borderRadius: '10px',
+                padding: '8px 10px',
+                width: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Image
+                src="/logo-removebg-preview.png"
+                alt="La Neville TAF Sa Foulée"
+                width={200}
+                height={64}
+                style={{
+                  height: '64px',
+                  width: '100%',
+                  objectFit: 'contain',
+                }}
+              />
+            </div>
             <span
               style={{
-                fontSize: '1rem',
-                fontWeight: 400,
-                color: 'rgba(255,255,255,0.5)',
+                fontSize: '11px',
+                fontWeight: 600,
+                color: 'rgba(255,255,255,0.6)',
                 letterSpacing: '0.04em',
+                lineHeight: 1,
               }}
             >
-              sa{' '}
-            </span>
-            <span
-              style={{
-                fontSize: '1.15rem',
-                fontWeight: 800,
-                color: '#F4C4C0',
-                letterSpacing: '-0.01em',
-              }}
-            >
-              Foulée
+              La Neville TAF Sa Foulée
             </span>
           </Link>
 
@@ -470,7 +462,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   href === '/tableau-de-bord/leaderboard' && !leaderboardEnabled
                 return (
                   <li key={href}>
-                    <Link href={href} className={`sf-nav-link${active ? 'active' : ''}`}>
+                    <Link href={href} className={active ? 'sf-nav-link active' : 'sf-nav-link'}>
                       <span style={{ opacity: active ? 1 : 0.7, flexShrink: 0 }}>
                         <Icon active={active} />
                       </span>
@@ -518,7 +510,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                       <li>
                         <Link
                           href="/tableau-de-bord/inventaire"
-                          className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/inventaire') ? 'active' : ''}`}
+                          className={
+                            pathname.startsWith('/tableau-de-bord/inventaire')
+                              ? 'sf-nav-link active'
+                              : 'sf-nav-link'
+                          }
                         >
                           <span
                             style={{
@@ -534,7 +530,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                       <li>
                         <Link
                           href="/tableau-de-bord/budget"
-                          className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/budget') ? 'active' : ''}`}
+                          className={
+                            pathname.startsWith('/tableau-de-bord/budget')
+                              ? 'sf-nav-link active'
+                              : 'sf-nav-link'
+                          }
                         >
                           <span
                             style={{
@@ -552,7 +552,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   <li>
                     <Link
                       href="/tableau-de-bord/admin"
-                      className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/admin') ? 'active' : ''}`}
+                      className={
+                        pathname.startsWith('/tableau-de-bord/admin')
+                          ? 'sf-nav-link active'
+                          : 'sf-nav-link'
+                      }
                     >
                       <span
                         style={{
@@ -568,7 +572,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   <li>
                     <Link
                       href="/tableau-de-bord/newsletter"
-                      className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/newsletter') ? 'active' : ''}`}
+                      className={
+                        pathname.startsWith('/tableau-de-bord/newsletter')
+                          ? 'sf-nav-link active'
+                          : 'sf-nav-link'
+                      }
                     >
                       <span
                         style={{
@@ -584,7 +592,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   <li>
                     <Link
                       href="/tableau-de-bord/admin/parametres"
-                      className={`sf-nav-link${pathname.startsWith('/tableau-de-bord/admin/parametres') ? 'active' : ''}`}
+                      className={
+                        pathname.startsWith('/tableau-de-bord/admin/parametres')
+                          ? 'sf-nav-link active'
+                          : 'sf-nav-link'
+                      }
                     >
                       <span
                         style={{
@@ -641,9 +653,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 <p
                   style={{
                     fontSize: '10px',
-                    color: 'rgba(255,255,255,0.35)',
+                    color: 'rgba(255,255,255,0.55)',
                     margin: 0,
                     marginTop: '1px',
+                    letterSpacing: '0.02em',
                   }}
                 >
                   {getRoleLabel(user?.roles)}
@@ -701,7 +714,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               const active =
                 pathname === href || (href !== '/tableau-de-bord' && pathname.startsWith(href))
               return (
-                <Link key={href} href={href} className={`sf-mobile-link${active ? 'active' : ''}`}>
+                <Link
+                  key={href}
+                  href={href}
+                  className={active ? 'sf-mobile-link active' : 'sf-mobile-link'}
+                >
                   {active && <span className="sf-mobile-dot" />}
                   <span style={{ marginTop: active ? '4px' : '0' }}>
                     <Icon active={active} />

@@ -33,6 +33,7 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 **Purpose:** Create domain-specific agent skills (e.g., QA Engineer, DevOps Engineer)
 
 **Process:**
+
 1. Identify role and responsibilities
 2. Define workflows the agent executes
 3. Specify allowed-tools
@@ -46,6 +47,7 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 **Purpose:** Create domain-specific workflows (e.g., /deploy, /security-audit)
 
 **Process:**
+
 1. Identify workflow purpose and inputs/outputs
 2. Break into tracked steps with TodoWrite
 3. Define helper usage
@@ -58,6 +60,7 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 **Purpose:** Create domain-specific document templates
 
 **Process:**
+
 1. Identify document type
 2. Define sections needed
 3. List variables for {{placeholder}} substitution
@@ -70,11 +73,13 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ### validate-skill.sh
 
 Validates SKILL.md files have required YAML frontmatter:
+
 - `name` field (required)
 - `description` field (required)
 - `allowed-tools` field (optional but recommended)
 
 **Usage:**
+
 ```bash
 ./scripts/validate-skill.sh path/to/SKILL.md
 ```
@@ -82,11 +87,13 @@ Validates SKILL.md files have required YAML frontmatter:
 ### scaffold-skill.sh
 
 Creates skill directory structure with subdirectories:
+
 - `scripts/` - Validation and utility scripts
 - `templates/` - Reusable templates
 - `resources/` - Reference documentation
 
 **Usage:**
+
 ```bash
 ./scripts/scaffold-skill.sh skill-name
 ```
@@ -127,16 +134,19 @@ allowed-tools: Read, Write, Edit, Bash, Glob, Grep, TodoWrite
 ```
 
 **Required fields:**
+
 - `name` - Skill identifier (lowercase, hyphenated)
 - `description` - Clear description including trigger keywords
 
 **Optional fields:**
+
 - `allowed-tools` - List of tools the skill can use
 - Other custom metadata as needed
 
 ## Token Optimization
 
 Keep SKILL.md under 5k tokens:
+
 - Use references to [REFERENCE.md](REFERENCE.md) for detailed patterns
 - Link to skill-patterns.md for design guidance
 - Avoid embedding large code blocks
@@ -147,17 +157,19 @@ Keep SKILL.md under 5k tokens:
 This skill leverages parallel subagents to maximize context utilization (each agent has up to 1M tokens on Claude Sonnet 4.6 / Opus 4.6).
 
 ### Skill Creation Workflow
+
 **Pattern:** Parallel Component Creation
 **Agents:** 4 parallel agents
 
-| Agent | Task | Output |
-|-------|------|--------|
-| Agent 1 | Create SKILL.md with YAML frontmatter and core content | bmad-skills/{skill-name}/SKILL.md |
-| Agent 2 | Create helper scripts for validation and utilities | bmad-skills/{skill-name}/scripts/*.sh |
-| Agent 3 | Create document templates | bmad-skills/{skill-name}/templates/*.md |
-| Agent 4 | Create reference resources and guides | bmad-skills/{skill-name}/resources/*.md |
+| Agent   | Task                                                   | Output                                   |
+| ------- | ------------------------------------------------------ | ---------------------------------------- |
+| Agent 1 | Create SKILL.md with YAML frontmatter and core content | bmad-skills/{skill-name}/SKILL.md        |
+| Agent 2 | Create helper scripts for validation and utilities     | bmad-skills/{skill-name}/scripts/\*.sh   |
+| Agent 3 | Create document templates                              | bmad-skills/{skill-name}/templates/\*.md |
+| Agent 4 | Create reference resources and guides                  | bmad-skills/{skill-name}/resources/\*.md |
 
 **Coordination:**
+
 1. Gather requirements for new skill from user (sequential)
 2. Write skill specification to bmad/context/skill-spec.md
 3. Run scaffold-skill.sh to create directory structure
@@ -169,16 +181,18 @@ This skill leverages parallel subagents to maximize context utilization (each ag
 **Best for:** Creating comprehensive custom skills with full structure
 
 ### Multi-Skill Creation Workflow
+
 **Pattern:** Parallel Component Creation
 **Agents:** N parallel agents (one per skill)
 
-| Agent | Task | Output |
-|-------|------|--------|
-| Agent 1 | Create complete Skill 1 (QA Engineer) | bmad-skills/qa-engineer/ |
-| Agent 2 | Create complete Skill 2 (DevOps Engineer) | bmad-skills/devops-engineer/ |
+| Agent   | Task                                        | Output                         |
+| ------- | ------------------------------------------- | ------------------------------ |
+| Agent 1 | Create complete Skill 1 (QA Engineer)       | bmad-skills/qa-engineer/       |
+| Agent 2 | Create complete Skill 2 (DevOps Engineer)   | bmad-skills/devops-engineer/   |
 | Agent N | Create complete Skill N (Security Engineer) | bmad-skills/security-engineer/ |
 
 **Coordination:**
+
 1. Identify suite of related skills to create
 2. Define common patterns and shared resources
 3. Launch parallel agents, each creating one complete skill
@@ -189,17 +203,19 @@ This skill leverages parallel subagents to maximize context utilization (each ag
 **Best for:** Creating a family of related skills for a domain
 
 ### Template Creation Workflow
+
 **Pattern:** Parallel Section Generation
 **Agents:** N parallel agents (one per template)
 
-| Agent | Task | Output |
-|-------|------|--------|
-| Agent 1 | Create test plan template | templates/test-plan.template.md |
-| Agent 2 | Create deployment runbook template | templates/deployment-runbook.template.md |
+| Agent   | Task                                | Output                                    |
+| ------- | ----------------------------------- | ----------------------------------------- |
+| Agent 1 | Create test plan template           | templates/test-plan.template.md           |
+| Agent 2 | Create deployment runbook template  | templates/deployment-runbook.template.md  |
 | Agent 3 | Create security assessment template | templates/security-assessment.template.md |
-| Agent N | Create additional domain templates | templates/*.template.md |
+| Agent N | Create additional domain templates  | templates/\*.template.md                  |
 
 **Coordination:**
+
 1. Identify document types needed for skill
 2. Launch parallel agents for each template
 3. Each agent defines sections, variables, example content
@@ -208,17 +224,19 @@ This skill leverages parallel subagents to maximize context utilization (each ag
 **Best for:** Creating multiple templates for a skill quickly
 
 ### Skill Validation Workflow
+
 **Pattern:** Fan-Out Research
 **Agents:** 4 parallel agents (validation domains)
 
-| Agent | Task | Output |
-|-------|------|--------|
+| Agent   | Task                                          | Output                               |
+| ------- | --------------------------------------------- | ------------------------------------ |
 | Agent 1 | Validate YAML frontmatter and skill structure | bmad/outputs/validation-structure.md |
-| Agent 2 | Validate token count and optimization | bmad/outputs/validation-tokens.md |
-| Agent 3 | Validate script functionality and permissions | bmad/outputs/validation-scripts.md |
-| Agent 4 | Validate templates and resources completeness | bmad/outputs/validation-content.md |
+| Agent 2 | Validate token count and optimization         | bmad/outputs/validation-tokens.md    |
+| Agent 3 | Validate script functionality and permissions | bmad/outputs/validation-scripts.md   |
+| Agent 4 | Validate templates and resources completeness | bmad/outputs/validation-content.md   |
 
 **Coordination:**
+
 1. Load created skill files
 2. Launch parallel validation agents for different aspects
 3. Each agent runs validation checks and reports issues
@@ -228,6 +246,7 @@ This skill leverages parallel subagents to maximize context utilization (each ag
 **Best for:** Comprehensive quality check of new skills
 
 ### Example Subagent Prompt
+
 ```
 Task: Create SKILL.md for QA Engineer skill
 Context: Read bmad/context/skill-spec.md for requirements
@@ -271,23 +290,27 @@ Constraints:
 ## Example Domain Customizations
 
 **QA Engineering:**
+
 - QA Engineer agent skill
 - /create-test-plan workflow
 - /execute-tests workflow
 - Test plan template
 
 **DevOps:**
+
 - DevOps Engineer agent skill
 - /deploy workflow
 - /rollback workflow
 - Deployment runbook template
 
 **Security:**
+
 - Security Engineer agent skill
 - /security-audit workflow
 - Security assessment template
 
 **Data Science:**
+
 - Data Scientist agent skill
 - /data-analysis workflow
 - Analysis report template

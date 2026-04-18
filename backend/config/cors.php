@@ -29,7 +29,7 @@ return [
      */
     'allowed_origins_patterns' => [
         '#^https://safoulee(-[a-z0-9]+)?\.vercel\.app$#',
-        '#^https://(www\.)?laneuvilletafsafoulee\.fr$#',
+        '#^https://([a-z0-9-]+\.)?laneuvilletafsafoulee\.fr$#',
         '#^http://localhost(:\d+)?$#',
     ],
 

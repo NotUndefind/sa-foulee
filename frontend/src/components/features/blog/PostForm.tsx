@@ -96,7 +96,7 @@ export default function PostForm({ post, onSuccess, onCancel }: Props) {
     editor?.commands.setContent(tpl.content)
   }
 
-  const handleImagePick = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImagePick = (e: React.ChangeEvent) => {
     const file = e.target.files?.[0]
     if (!file) return
     if (file.size > MAX_IMAGE_SIZE) {
@@ -111,7 +111,7 @@ export default function PostForm({ post, onSuccess, onCancel }: Props) {
     setImageUrl('')
   }
 
-  const handleVideoPick = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleVideoPick = (e: React.ChangeEvent) => {
     const file = e.target.files?.[0]
     if (!file) return
     if (file.size > MAX_VIDEO_SIZE) {
@@ -215,7 +215,7 @@ export default function PostForm({ post, onSuccess, onCancel }: Props) {
           onChange={(e) => setTitle(e.target.value)}
           required
           placeholder="Titre de l'article"
-          className="focus:border-brand focus:ring-brand/20 w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:ring-2 focus:outline-none"
+          className="focus:border-primary focus:ring-primary/20 w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:ring-2 focus:outline-none"
         />
       </div>
 
@@ -308,7 +308,7 @@ export default function PostForm({ post, onSuccess, onCancel }: Props) {
         </div>
 
         {/* Zone de contenu */}
-        <div className="focus-within:border-brand focus-within:ring-brand/20 rounded-b-lg border border-zinc-300 bg-white focus-within:ring-2">
+        <div className="focus-within:border-primary focus-within:ring-primary/20 rounded-b-lg border border-zinc-300 bg-white focus-within:ring-2">
           <EditorContent editor={editor} />
         </div>
       </div>
@@ -447,7 +447,7 @@ export default function PostForm({ post, onSuccess, onCancel }: Props) {
                 clearMedia()
               }}
               placeholder="https://..."
-              className="focus:border-brand focus:ring-brand/20 w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:ring-2 focus:outline-none"
+              className="focus:border-primary focus:ring-primary/20 w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:ring-2 focus:outline-none"
             />
           </div>
         )}

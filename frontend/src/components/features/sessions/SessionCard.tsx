@@ -1,12 +1,14 @@
 'use client'
 
 import { useState } from 'react'
+import type { ComponentType } from 'react'
 import type { TrainingSession, SessionType, Intensity } from '@/types'
 import { toggleParticipation, deleteSession } from '@/lib/sessions'
 import { useRole } from '@/hooks/useRole'
 import { useToast } from '@/components/ui/Toast'
+import { Timer, Zap, Wind, HeartPulse, Dumbbell, ClipboardList, Check } from 'lucide-react'
 
-const TYPE_LABELS: Record<SessionType, string> = {
+const TYPE_LABELS: Record = {
   running: 'Course',
   interval: 'Interval',
   fartlek: 'Fartlek',
@@ -15,22 +17,22 @@ const TYPE_LABELS: Record<SessionType, string> = {
   other: 'Autre',
 }
 
-const TYPE_ICONS: Record<SessionType, string> = {
-  running: '🏃',
-  interval: '⚡',
-  fartlek: '🌀',
-  recovery: '🧘',
-  strength: '💪',
-  other: '📋',
+const TYPE_ICONS: Record = {
+  running: Timer,
+  interval: Zap,
+  fartlek: Wind,
+  recovery: HeartPulse,
+  strength: Dumbbell,
+  other: ClipboardList,
 }
 
-const INTENSITY_LABELS: Record<Intensity, string> = {
+const INTENSITY_LABELS: Record = {
   low: 'Faible',
   medium: 'Moyenne',
   high: 'Élevée',
 }
 
-const INTENSITY_COLORS: Record<Intensity, string> = {
+const INTENSITY_COLORS: Record = {
   low: 'bg-green-100 text-green-700',
   medium: 'bg-amber-100 text-amber-700',
   high: 'bg-red-100 text-red-700',
@@ -41,9 +43,16 @@ interface Props {
   onUpdate: (updated: TrainingSession) => void
   onDelete: (id: number) => void
   onEdit?: (session: TrainingSession) => void
+  isTemplate?: boolean
 }
 
-export default function SessionCard({ session, onUpdate, onDelete, onEdit }: Props) {
+export default function SessionCard({
+  session,
+  onUpdate,
+  onDelete,
+  onEdit,
+  isTemplate = false,
+}: Props) {
   const { canManageSessions } = useRole()
   const { toast } = useToast()
   const [loading, setLoading] = useState(false)
@@ -80,12 +89,13 @@ export default function SessionCard({ session, onUpdate, onDelete, onEdit }: Pro
   }
 
   const exerciseCount = session.exercises?.length ?? 0
+  const TypeIcon = TYPE_ICONS[session.type]
 
   return (
     <div className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-zinc-200">
       {/* Header */}
       <div className="flex items-start gap-3 border-b border-zinc-100 bg-zinc-50 px-5 py-4">
-        <span className="mt-0.5 text-2xl">{TYPE_ICONS[session.type]}</span>
+        <TypeIcon size={24} className="text-sf-bark-red mt-0.5 shrink-0" />
         <div className="min-w-0 flex-1">
           <div className="mb-1 flex flex-wrap gap-1.5">
             <span className="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-medium text-zinc-600">
@@ -129,6 +139,34 @@ export default function SessionCard({ session, onUpdate, onDelete, onEdit }: Pro
         </div>
       </div>
 
+      {/* Date et lieu */}
+      {(session.session_date || session.location) && (
+        <div className="flex flex-wrap gap-x-4 gap-y-1 border-b border-zinc-100 px-5 py-2.5">
+          {session.session_date && (
+            <p className="text-xs text-zinc-500">
+              <span className="font-medium text-zinc-700">
+                {new Date(session.session_date).toLocaleDateString('fr-FR', {
+                  weekday: 'short',
+                  day: 'numeric',
+                  month: 'short',
+                  year: 'numeric',
+                })}
+              </span>
+              {' à '}
+              {new Date(session.session_date).toLocaleTimeString('fr-FR', {
+                hour: '2-digit',
+                minute: '2-digit',
+              })}
+            </p>
+          )}
+          {session.location && (
+            <p className="text-xs text-zinc-500">
+              <span className="font-medium text-zinc-700">{session.location.name}</span>
+            </p>
+          )}
+        </div>
+      )}
+
       {/* Description */}
       {session.description && (
         <div className="px-5 py-3">
@@ -166,7 +204,7 @@ export default function SessionCard({ session, onUpdate, onDelete, onEdit }: Pro
       {/* Actions */}
       <div className="mt-auto flex items-center justify-between gap-2 border-t border-zinc-100 px-5 py-3">
         <div className="flex gap-1">
-          {canManageSessions && onEdit && (
+          {canManageSessions && !isTemplate && onEdit && (
             <button
               onClick={() => onEdit(session)}
               className="rounded-lg px-2 py-1 text-xs text-zinc-500 transition hover:bg-zinc-100"
@@ -184,17 +222,27 @@ export default function SessionCard({ session, onUpdate, onDelete, onEdit }: Pro
           )}
         </div>
 
-        <button
-          onClick={handleParticipation}
-          disabled={loading}
-          className={`rounded-lg px-4 py-1.5 text-sm font-medium transition disabled:opacity-50 ${
-            session.has_participated
-              ? 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200'
-              : 'bg-brand hover:bg-brand-dark text-white'
-          }`}
-        >
-          {loading ? '…' : session.has_participated ? '✓ Participé' : 'Je participe'}
-        </button>
+        {!isTemplate && (
+          <button
+            onClick={handleParticipation}
+            disabled={loading}
+            className={`flex items-center gap-1.5 rounded-lg px-4 py-1.5 text-sm font-medium transition disabled:opacity-50 ${
+              session.has_participated
+                ? 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200'
+                : 'bg-primary hover:bg-primary-dark text-white'
+            }`}
+          >
+            {loading ? (
+              '…'
+            ) : session.has_participated ? (
+              <>
+                <Check size={14} /> Participé
+              </>
+            ) : (
+              'Je participe'
+            )}
+          </button>
+        )}
       </div>
     </div>
   )
