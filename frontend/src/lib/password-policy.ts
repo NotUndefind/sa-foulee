@@ -21,25 +21,25 @@ export const passwordSchema = z
   .superRefine((val, ctx) => {
     if (REQ_UPPERCASE && !/[A-Z]/.test(val)) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: 'Le mot de passe doit contenir au moins une lettre majuscule.',
       })
     }
     if (REQ_LOWERCASE && !/[a-z]/.test(val)) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: 'Le mot de passe doit contenir au moins une lettre minuscule.',
       })
     }
     if (REQ_DIGIT && !/[0-9]/.test(val)) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: 'Le mot de passe doit contenir au moins un chiffre.',
       })
     }
     if (REQ_SPECIAL && !/[!@#$%^&*()\-_=+\[\]{}|;':",.\\/<>?]/.test(val)) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: `Le mot de passe doit contenir au moins un caractère spécial (${PASSWORD_SPECIAL_CHARS}).`,
       })
     }

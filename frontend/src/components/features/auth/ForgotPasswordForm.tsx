@@ -9,10 +9,8 @@ import { forgotPassword } from '@/lib/auth'
 import { ApiError } from '@/lib/api'
 
 const schema = z.object({
-  email: z
-    .string()
-    .min(1, "L'adresse e-mail est obligatoire.")
-    .email("L'adresse e-mail n'est pas valide."),
+  email: z.email("L'adresse e-mail n'est pas valide.")
+        .min(1, "L'adresse e-mail est obligatoire."),
 })
 
 type FormValues = z.infer

@@ -24,17 +24,17 @@ const schema = z
     title: z.string().min(3, 'Titre trop court').max(255),
     type: z.enum(['running', 'interval', 'fartlek', 'recovery', 'strength', 'other'] as const),
     distance_km: z.preprocess(nanToNull, z.number().positive().nullable().optional()),
-    duration_min: z.preprocess(nanToNull, z.number().int().positive().nullable().optional()),
+    duration_min: z.preprocess(nanToNull, z.int().positive().nullable().optional()),
     intensity: z.enum(['low', 'medium', 'high'] as const),
     description: z.string().max(10000).optional(),
     is_template: z.boolean(),
     session_date: z.string().nullable().optional(),
-    location_id: z.preprocess(nanToNull, z.number().int().positive().nullable().optional()),
+    location_id: z.preprocess(nanToNull, z.int().positive().nullable().optional()),
   })
   .superRefine((data, ctx) => {
     if (!data.is_template && !data.session_date) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: "custom",
         message: 'La date de séance est obligatoire.',
         path: ['session_date'],
       })

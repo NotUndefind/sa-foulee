@@ -17,8 +17,8 @@ const schema = z
   })
   .refine((d) => d.password === d.password_confirmation, {
     path: ['password_confirmation'],
-    message: 'La confirmation du mot de passe ne correspond pas.',
-  })
+      error: 'La confirmation du mot de passe ne correspond pas.'
+})
 
 type FormValues = z.infer
 
