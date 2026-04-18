@@ -19,10 +19,10 @@ class AuthController extends Controller
     public function register(RegisterRequest $request): JsonResponse
     {
         $user = User::create([
-            'first_name'      => $request->first_name,
-            'last_name'       => $request->last_name,
-            'email'           => $request->email,
-            'password'        => Hash::make($request->password),
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
             'consent_given_at' => now(),
         ]);
 
@@ -30,10 +30,10 @@ class AuthController extends Controller
 
         $token = $user->createToken('api')->plainTextToken;
 
-        $user->notify(new WelcomeNotification());
+        $user->notify(new WelcomeNotification);
 
         return response()->json([
-            'user'  => $this->formatUser($user),
+            'user' => $this->formatUser($user),
             'token' => $token,
         ], 201);
     }
@@ -52,7 +52,7 @@ class AuthController extends Controller
         $token = $user->createToken('api')->plainTextToken;
 
         return response()->json([
-            'user'  => $this->formatUser($user),
+            'user' => $this->formatUser($user),
             'token' => $token,
         ]);
     }
@@ -71,7 +71,7 @@ class AuthController extends Controller
 
         // Toujours renvoyer 200 pour ne pas révéler si l'email existe
         return response()->json([
-            'message' => "Si un compte existe pour cette adresse, un e-mail de réinitialisation a été envoyé.",
+            'message' => 'Si un compte existe pour cette adresse, un e-mail de réinitialisation a été envoyé.',
         ]);
     }
 
@@ -100,11 +100,11 @@ class AuthController extends Controller
     private function formatUser(User $user): array
     {
         return [
-            'id'         => $user->id,
+            'id' => $user->id,
             'first_name' => $user->first_name,
-            'last_name'  => $user->last_name,
-            'email'      => $user->email,
-            'roles'      => $user->getRoleNames(),
+            'last_name' => $user->last_name,
+            'email' => $user->email,
+            'roles' => $user->getRoleNames(),
         ];
     }
 }

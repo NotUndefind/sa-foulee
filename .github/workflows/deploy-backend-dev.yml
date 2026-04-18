@@ -1,21 +1,14 @@
-name: Deploy Backend — O2switch
+name: Deploy Backend — O2switch (DEV)
 
-# Déclenché manuellement ou après CI sur main
+# Déclenchement uniquement manuel
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Backend CI/CD"]
-    branches: [main]
-    types: [completed]
 
 jobs:
-  deploy:
-    name: Deploy to O2switch
+  deploy-dev:
+    name: Deploy to O2switch (dev)
     runs-on: ubuntu-latest
-    # Ne déploie que si le CI a réussi (ou si déclenché manuellement)
-    if: >
-      github.event_name == 'workflow_dispatch' ||
-      github.event.workflow_run.conclusion == 'success'
+    environment: dev
 
     steps:
       - name: Get runner public IP
@@ -53,26 +46,24 @@ jobs:
           username: ${{ secrets.O2SWITCH_SSH_USERNAME }}
           key: ${{ secrets.O2SWITCH_SSH_PRIVATE_KEY }}
           port: ${{ secrets.O2SWITCH_SSH_PORT || 22 }}
+          passphrase: ${{ secrets.O2SWITCH_SSH_PASSPHRASE || '' }}
           script: |
             set -e
 
-            echo "==> Déploiement backend saFoulee sur O2switch"
-            cd ${{ secrets.O2SWITCH_DEPLOY_PATH }}
+            echo "==> Déploiement backend saFoulee (DEV) sur O2switch"
+            cd ${{ secrets.O2SWITCH_DEV_DEPLOY_PATH }}
 
-            echo "==> Récupération du code (branche main)"
-            git fetch origin main
-            git checkout main
-            git pull origin main
+            echo "==> Récupération du code (branche dev)"
+            git fetch origin dev
+            git checkout dev
+            git pull origin dev
 
-            echo "==> Installation des dépendances PHP (production)"
+            echo "==> Installation des dépendances PHP (sans dev)"
             php $(which composer) install \
               --no-dev \
               --optimize-autoloader \
               --no-interaction \
               --no-ansi
-
-            echo "==> Mise en maintenance"
-            php artisan down --retry=60 --render="errors::503" || true
 
             echo "==> Migrations base de données"
             php artisan migrate --force
@@ -86,25 +77,4 @@ jobs:
             echo "==> Redémarrage de la queue"
             php artisan queue:restart
 
-            echo "==> Retour en ligne"
-            php artisan up
-
-            echo "==> Déploiement terminé avec succès"
-
-      - name: Verify deployment
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.O2SWITCH_SSH_HOST }}
-          username: ${{ secrets.O2SWITCH_SSH_USERNAME }}
-          key: ${{ secrets.O2SWITCH_SSH_PRIVATE_KEY }}
-          port: ${{ secrets.O2SWITCH_SSH_PORT || 22 }}
-          script: |
-            # Vérification que l'API répond
-            HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
-              "https://${{ secrets.API_DOMAIN }}/up" \
-              --max-time 10)
-            if [ "$HTTP_CODE" != "200" ]; then
-              echo "ERREUR : /up a répondu HTTP $HTTP_CODE"
-              exit 1
-            fi
-            echo "==> Health check OK (HTTP $HTTP_CODE)"
+            echo "==> Déploiement DEV terminé avec succès"

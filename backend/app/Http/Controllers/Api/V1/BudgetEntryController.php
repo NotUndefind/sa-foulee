@@ -17,10 +17,10 @@ class BudgetEntryController extends Controller
     public function index(Request $request): JsonResponse
     {
         $request->validate([
-            'type'     => ['nullable', 'string', 'in:recette,depense'],
+            'type' => ['nullable', 'string', 'in:recette,depense'],
             'category' => ['nullable', 'string', 'max:100'],
-            'from'     => ['nullable', 'date'],
-            'to'       => ['nullable', 'date', 'after_or_equal:from'],
+            'from' => ['nullable', 'date'],
+            'to' => ['nullable', 'date', 'after_or_equal:from'],
             'per_page' => ['nullable', 'integer', 'min:1', 'max:200'],
         ]);
 
@@ -48,12 +48,12 @@ class BudgetEntryController extends Controller
         $entries = $query->paginate($perPage);
 
         return response()->json([
-            'data'  => $entries->map(fn ($e) => $this->format($e)),
-            'meta'  => [
-                'total'        => $entries->total(),
-                'per_page'     => $entries->perPage(),
+            'data' => $entries->map(fn ($e) => $this->format($e)),
+            'meta' => [
+                'total' => $entries->total(),
+                'per_page' => $entries->perPage(),
                 'current_page' => $entries->currentPage(),
-                'last_page'    => $entries->lastPage(),
+                'last_page' => $entries->lastPage(),
             ],
         ]);
     }
@@ -64,17 +64,17 @@ class BudgetEntryController extends Controller
     public function store(Request $request): JsonResponse
     {
         $data = $request->validate([
-            'type'        => ['required', 'string', 'in:recette,depense'],
-            'category'    => ['required', 'string', 'max:100'],
-            'amount'      => ['required', 'numeric', 'min:0.01'],
+            'type' => ['required', 'string', 'in:recette,depense'],
+            'category' => ['required', 'string', 'max:100'],
+            'amount' => ['required', 'numeric', 'min:0.01'],
             'description' => ['nullable', 'string', 'max:2000'],
-            'entry_date'  => ['required', 'date'],
+            'entry_date' => ['required', 'date'],
             'receipt_url' => ['nullable', 'url', 'max:500'],
         ]);
 
         $entry = BudgetEntry::create([
             ...$data,
-            'source'     => 'manual',
+            'source' => 'manual',
             'created_by' => $request->user()->id,
         ]);
 
@@ -89,11 +89,11 @@ class BudgetEntryController extends Controller
     public function update(Request $request, BudgetEntry $entry): JsonResponse
     {
         $data = $request->validate([
-            'type'        => ['sometimes', 'string', 'in:recette,depense'],
-            'category'    => ['sometimes', 'string', 'max:100'],
-            'amount'      => ['sometimes', 'numeric', 'min:0.01'],
+            'type' => ['sometimes', 'string', 'in:recette,depense'],
+            'category' => ['sometimes', 'string', 'max:100'],
+            'amount' => ['sometimes', 'numeric', 'min:0.01'],
             'description' => ['nullable', 'string', 'max:2000'],
-            'entry_date'  => ['sometimes', 'date'],
+            'entry_date' => ['sometimes', 'date'],
             'receipt_url' => ['nullable', 'url', 'max:500'],
         ]);
 
@@ -125,8 +125,8 @@ class BudgetEntryController extends Controller
 
         // Aggrégats mensuels sur 12 mois glissants
         $monthly = BudgetEntry::selectRaw(
-                "DATE_FORMAT(entry_date, '%Y-%m') as month, type, SUM(amount) as total"
-            )
+            "DATE_FORMAT(entry_date, '%Y-%m') as month, type, SUM(amount) as total"
+        )
             ->where('entry_date', '>=', now()->subMonths(11)->startOfMonth())
             ->groupBy('month', 'type')
             ->orderBy('month')
@@ -136,7 +136,7 @@ class BudgetEntryController extends Controller
         $months = [];
         foreach ($monthly as $row) {
             $m = $row->month;
-            if (!isset($months[$m])) {
+            if (! isset($months[$m])) {
                 $months[$m] = ['month' => $m, 'recettes' => 0.0, 'depenses' => 0.0];
             }
             $months[$m][$row->type === 'recette' ? 'recettes' : 'depenses'] = (float) $row->total;
@@ -144,6 +144,7 @@ class BudgetEntryController extends Controller
 
         $monthlyFormatted = array_values(array_map(function ($m) {
             $m['solde'] = round($m['recettes'] - $m['depenses'], 2);
+
             return $m;
         }, $months));
 
@@ -157,10 +158,10 @@ class BudgetEntryController extends Controller
             ->map(fn ($r) => ['category' => $r->category, 'total' => (float) $r->total]);
 
         return response()->json([
-            'solde'          => round((float) $totalRecettes - (float) $totalDepenses, 2),
+            'solde' => round((float) $totalRecettes - (float) $totalDepenses, 2),
             'total_recettes' => (float) $totalRecettes,
             'total_depenses' => (float) $totalDepenses,
-            'monthly'        => $monthlyFormatted,
+            'monthly' => $monthlyFormatted,
             'top_categories' => $topCategories,
         ]);
     }
@@ -172,35 +173,43 @@ class BudgetEntryController extends Controller
     public function export(Request $request): Response
     {
         $request->validate([
-            'type'     => ['nullable', 'string', 'in:recette,depense'],
+            'type' => ['nullable', 'string', 'in:recette,depense'],
             'category' => ['nullable', 'string', 'max:100'],
-            'from'     => ['nullable', 'date'],
-            'to'       => ['nullable', 'date'],
+            'from' => ['nullable', 'date'],
+            'to' => ['nullable', 'date'],
         ]);
 
         $query = BudgetEntry::with('creator:id,first_name,last_name')
             ->orderBy('entry_date', 'desc');
 
-        if ($request->filled('type'))     { $query->where('type', $request->input('type')); }
-        if ($request->filled('category')) { $query->where('category', $request->input('category')); }
-        if ($request->filled('from'))     { $query->whereDate('entry_date', '>=', $request->input('from')); }
-        if ($request->filled('to'))       { $query->whereDate('entry_date', '<=', $request->input('to')); }
+        if ($request->filled('type')) {
+            $query->where('type', $request->input('type'));
+        }
+        if ($request->filled('category')) {
+            $query->where('category', $request->input('category'));
+        }
+        if ($request->filled('from')) {
+            $query->whereDate('entry_date', '>=', $request->input('from'));
+        }
+        if ($request->filled('to')) {
+            $query->whereDate('entry_date', '<=', $request->input('to'));
+        }
 
-        $entries  = $query->get();
+        $entries = $query->get();
 
         // Nom du fichier avec les dates de la période
         $fromLabel = $request->filled('from') ? $request->input('from') : 'debut';
-        $toLabel   = $request->filled('to')   ? $request->input('to')   : now()->format('Y-m-d');
-        $filename  = "budget-safoulee-{$fromLabel}-{$toLabel}.csv";
+        $toLabel = $request->filled('to') ? $request->input('to') : now()->format('Y-m-d');
+        $filename = "budget-safoulee-{$fromLabel}-{$toLabel}.csv";
 
-        $bom   = "\xEF\xBB\xBF";
-        $lines = [$bom . 'Date,Type,Catégorie,Description,Recette (€),Dépense (€),Justificatif,Saisi par'];
+        $bom = "\xEF\xBB\xBF";
+        $lines = [$bom.'Date,Type,Catégorie,Description,Recette (€),Dépense (€),Justificatif,Saisi par'];
 
         $totalRecettes = 0.0;
         $totalDepenses = 0.0;
 
         foreach ($entries as $e) {
-            $amount    = (float) $e->amount;
+            $amount = (float) $e->amount;
             $isRecette = $e->type === 'recette';
 
             if ($isRecette) {
@@ -210,14 +219,14 @@ class BudgetEntryController extends Controller
             }
 
             $lines[] = implode(',', [
-                '"' . $e->entry_date->format('d/m/Y') . '"',
-                '"' . $e->type . '"',
-                '"' . str_replace('"', '""', $e->category) . '"',
-                '"' . str_replace('"', '""', $e->description ?? '') . '"',
+                '"'.$e->entry_date->format('d/m/Y').'"',
+                '"'.$e->type.'"',
+                '"'.str_replace('"', '""', $e->category).'"',
+                '"'.str_replace('"', '""', $e->description ?? '').'"',
                 $isRecette ? number_format($amount, 2, ',', ' ') : '',
                 $isRecette ? '' : number_format($amount, 2, ',', ' '),
-                '"' . str_replace('"', '""', $e->receipt_url ?? '') . '"',
-                '"' . ($e->creator ? "{$e->creator->first_name} {$e->creator->last_name}" : '') . '"',
+                '"'.str_replace('"', '""', $e->receipt_url ?? '').'"',
+                '"'.($e->creator ? "{$e->creator->first_name} {$e->creator->last_name}" : '').'"',
             ]);
         }
 
@@ -240,13 +249,13 @@ class BudgetEntryController extends Controller
             '""',
             '""',
             $solde >= 0 ? number_format($solde, 2, ',', ' ') : '',
-            $solde <  0 ? number_format(abs($solde), 2, ',', ' ') : '',
+            $solde < 0 ? number_format(abs($solde), 2, ',', ' ') : '',
             '""',
             '""',
         ]);
 
         return response(implode("\n", $lines), 200, [
-            'Content-Type'        => 'text/csv; charset=UTF-8',
+            'Content-Type' => 'text/csv; charset=UTF-8',
             'Content-Disposition' => "attachment; filename=\"{$filename}\"",
         ]);
     }
@@ -256,20 +265,20 @@ class BudgetEntryController extends Controller
     private function format(BudgetEntry $e): array
     {
         return [
-            'id'          => $e->id,
-            'type'        => $e->type,
-            'category'    => $e->category,
-            'amount'      => (float) $e->amount,
+            'id' => $e->id,
+            'type' => $e->type,
+            'category' => $e->category,
+            'amount' => (float) $e->amount,
             'description' => $e->description,
-            'entry_date'  => $e->entry_date?->format('Y-m-d'),
+            'entry_date' => $e->entry_date?->format('Y-m-d'),
             'receipt_url' => $e->receipt_url,
-            'source'      => $e->source,
-            'created_by'  => $e->creator ? [
-                'id'         => $e->creator->id,
+            'source' => $e->source,
+            'created_by' => $e->creator ? [
+                'id' => $e->creator->id,
                 'first_name' => $e->creator->first_name,
-                'last_name'  => $e->creator->last_name,
+                'last_name' => $e->creator->last_name,
             ] : null,
-            'created_at'  => $e->created_at,
+            'created_at' => $e->created_at,
         ];
     }
 }

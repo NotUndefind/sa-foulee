@@ -25,11 +25,11 @@ class CommentController extends Controller
             ->paginate(20);
 
         return response()->json([
-            'data' => $comments->map(fn(Comment $c) => $this->formatComment($c)),
+            'data' => $comments->map(fn (Comment $c) => $this->formatComment($c)),
             'meta' => [
                 'current_page' => $comments->currentPage(),
-                'last_page'    => $comments->lastPage(),
-                'total'        => $comments->total(),
+                'last_page' => $comments->lastPage(),
+                'total' => $comments->total(),
             ],
         ]);
     }
@@ -79,11 +79,11 @@ class CommentController extends Controller
     private function formatComment(Comment $comment): array
     {
         return [
-            'id'         => $comment->id,
-            'content'    => $comment->content,
+            'id' => $comment->id,
+            'content' => $comment->content,
             'created_at' => $comment->created_at->toIso8601String(),
-            'user'       => $comment->user ? [
-                'id'   => $comment->user->id,
+            'user' => $comment->user ? [
+                'id' => $comment->user->id,
                 'name' => "{$comment->user->first_name} {$comment->user->last_name}",
             ] : null,
         ];

@@ -31,13 +31,13 @@ class PerformanceController extends Controller
         $totalSessions = $user->performances()->count();
 
         return response()->json([
-            'data' => $performances->map(fn(Performance $p) => $this->formatPerformance($p)),
+            'data' => $performances->map(fn (Performance $p) => $this->formatPerformance($p)),
             'meta' => [
-                'current_page'    => $performances->currentPage(),
-                'last_page'       => $performances->lastPage(),
-                'total'           => $performances->total(),
-                'total_distance'  => round((float) $totalDistance, 2),
-                'total_sessions'  => $totalSessions,
+                'current_page' => $performances->currentPage(),
+                'last_page' => $performances->lastPage(),
+                'total' => $performances->total(),
+                'total_distance' => round((float) $totalDistance, 2),
+                'total_sessions' => $totalSessions,
             ],
         ]);
     }
@@ -47,9 +47,9 @@ class PerformanceController extends Controller
      */
     public function store(StorePerformanceRequest $request): JsonResponse
     {
-        $data             = $request->validated();
-        $data['user_id']  = $request->user()->id;
-        $data['source']   = 'manual';
+        $data = $request->validated();
+        $data['user_id'] = $request->user()->id;
+        $data['source'] = 'manual';
 
         $performance = Performance::create($data);
 
@@ -61,14 +61,14 @@ class PerformanceController extends Controller
     private function formatPerformance(Performance $p): array
     {
         return [
-            'id'           => $p->id,
-            'user_id'      => $p->user_id,
-            'distance_km'  => (float) $p->distance_km,
+            'id' => $p->id,
+            'user_id' => $p->user_id,
+            'distance_km' => (float) $p->distance_km,
             'duration_sec' => $p->duration_sec,
-            'elevation_m'  => $p->elevation_m,
-            'date'         => $p->date->toDateString(),
-            'source'       => $p->source,
-            'created_at'   => $p->created_at->toIso8601String(),
+            'elevation_m' => $p->elevation_m,
+            'date' => $p->date->toDateString(),
+            'source' => $p->source,
+            'created_at' => $p->created_at->toIso8601String(),
         ];
     }
 }

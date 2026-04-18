@@ -41,7 +41,7 @@ export default async function PublicHomePage() {
     // Silently fail — section is hidden if no events
   }
 
-  let homepageStats = { member_count: 7, total_km: 50 }
+  let homepageStats = { member_count: 7, total_km: 0 }
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000/api/v1'
     const res = await fetch(`${apiUrl}/stats/homepage`, {
@@ -1220,12 +1220,11 @@ export default async function PublicHomePage() {
                   marginBottom: '0.6rem',
                 }}
               >
-                Formulaire & documents
+                Inscription sur le site
               </h3>
               <p style={{ color: '#7F7F7F', fontSize: '0.875rem', lineHeight: 1.75 }}>
-                Remplissez le formulaire d&apos;inscription en ligne, déposez les documents requis
-                (certificat médical, justificatif) et réglez la cotisation annuelle directement sur
-                la plateforme.
+                Inscrivez-vous sur notre site internet en cliquant sur le bouton ci-dessous et
+                renseignez les informations demandées.
               </p>
             </div>
 
@@ -1288,12 +1287,11 @@ export default async function PublicHomePage() {
                   marginBottom: '0.6rem',
                 }}
               >
-                Validation par le bureau
+                Validation des informations
               </h3>
               <p style={{ color: '#7F7F7F', fontSize: '0.875rem', lineHeight: 1.75 }}>
-                Un administrateur ou un fondateur de l&apos;association examine votre dossier. La
-                validation est rapide — comptez généralement 24 à 48 heures. Vous recevez une
-                confirmation par email.
+                Un formulaire d&apos;inscription va vous être envoyé par e-mail. Veuillez le
+                compléter pour finaliser votre dossier.
               </p>
             </div>
 
@@ -1356,11 +1354,11 @@ export default async function PublicHomePage() {
                   marginBottom: '0.6rem',
                 }}
               >
-                Accès à toutes les activités
+                Envoi du dossier
               </h3>
               <p style={{ color: '#7F7F7F', fontSize: '0.875rem', lineHeight: 1.75 }}>
-                Dossier validé — vous pouvez dès à présent vous inscrire à n&apos;importe quelle
-                sortie ou événement de l&apos;association depuis votre tableau de bord.
+                Une fois complété, retournez-nous votre dossier par e-mail pour finaliser votre
+                demande.
               </p>
             </div>
           </div>
@@ -1388,17 +1386,6 @@ export default async function PublicHomePage() {
         <div style={{ maxWidth: '1040px', margin: '0 auto' }}>
           {/* Header */}
           <div className="sF-reveal" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-            <p className="sF-label">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <circle cx="6" cy="6" r="5" stroke="#FB3936" strokeWidth="1.5" />
-                <path
-                  d="M4 5c0-.55.45-1 1-1h2c.55 0 1 .45 1 1v1.5c0 .55-.45 1-1 1H6l-1 1.5V7.5H5c-.55 0-1-.45-1-1V5z"
-                  fill="#FB3936"
-                  opacity=".7"
-                />
-              </svg>
-              Ils courent avec nous
-            </p>
             <h2
               style={{
                 fontSize: 'clamp(2rem, 5vw, 3.25rem)',
@@ -1407,7 +1394,7 @@ export default async function PublicHomePage() {
                 lineHeight: 1.1,
               }}
             >
-              Ce qu&apos;ils en disent
+              Pourquoi ?
             </h2>
           </div>
 
@@ -1422,25 +1409,25 @@ export default async function PublicHomePage() {
             {[
               {
                 quote:
-                  "J'ai rejoint La Neuville TAF sa Foulée sans vraiment courir. Aujourd'hui je fais 15 km le dimanche matin et je ne raterais ça pour rien au monde.",
-                name: 'Camille B.',
-                role: 'Membre depuis 2 ans',
-                initial: 'C',
+                  'Passionné de course à pied et profondément attaché à notre beau village de La Neuville, j’ai créé cette association avec une idée simple : rassembler les gens. Mon but était de transformer une pratique souvent solitaire en un moment de partage local.',
+                name: 'Albans D.',
+                role: 'Président',
+                initial: 'A',
                 d: 'sF-d1',
               },
               {
                 quote:
-                  "Ce que j'aime ici, c'est qu'on ne se prend pas la tête. Il y a des groupes pour tous les niveaux, et l'ambiance après les sorties est vraiment sympa.",
-                name: 'Thomas L.',
-                role: 'Membre depuis 1 an',
-                initial: 'T',
+                  "On m'a parlé de l'association un peu par hasard et j'ai décidé de rejoindre l'aventure. Je n'avais jamais vraiment couru avant, mais j'ai tout de suite adhéré au projet. C’est pour moi une manière idéale de découvrir la course à pied !",
+                name: 'Jules B.',
+                role: 'Informatique',
+                initial: 'J',
                 d: 'sF-d2',
               },
               {
                 quote:
-                  "Je cherchais une association accessible. Le processus d'inscription était simple, et dès la première sortie j'ai su que j'avais trouvé ma place.",
-                name: 'Marie-Claire D.',
-                role: 'Membre depuis 3 ans',
+                  "Je ne suis pas originaire de La Neuville, mais en tant que passionné de course à pieds, j'ai tout de suite suivi mes amis dans l'aventure lors de la création de l'association. C'est le projet parfait pour s'impliquer dans la vie locale tout en pratiquant sa passion.",
+                name: 'Matthieu Z.',
+                role: 'Démarchage',
                 initial: 'M',
                 d: 'sF-d3',
               },

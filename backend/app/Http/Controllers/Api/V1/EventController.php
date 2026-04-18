@@ -16,7 +16,7 @@ class EventController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
-        $user  = $request->user(); // null si non authentifié (route publique)
+        $user = $request->user(); // null si non authentifié (route publique)
         $query = Event::query()
             ->withCount('participants');
 
@@ -29,11 +29,11 @@ class EventController extends Controller
         if ($request->boolean('past')) {
             // Événements passés, du plus récent au plus ancien
             $query->where('event_date', '<', now())
-                  ->orderByDesc('event_date');
+                ->orderByDesc('event_date');
         } elseif ($request->boolean('upcoming', true)) {
             // Événements à venir, du plus proche au plus lointain
             $query->where('event_date', '>=', now())
-                  ->orderBy('event_date');
+                ->orderBy('event_date');
         } else {
             // Tous les événements (ex: vue calendrier)
             $query->orderBy('event_date');
@@ -41,21 +41,21 @@ class EventController extends Controller
 
         // Sans auth ou membre simple : uniquement événements publics
         $canSeePrivate = $user && $user->hasAnyRole(['admin', 'founder', 'bureau']);
-        if (!$canSeePrivate) {
+        if (! $canSeePrivate) {
             $query->where('is_public', true);
         }
 
         $events = $query->paginate(12);
 
-        $data = $events->map(fn(Event $event) => $this->formatEvent($event, $user?->id));
+        $data = $events->map(fn (Event $event) => $this->formatEvent($event, $user?->id));
 
         return response()->json([
             'data' => $data,
             'meta' => [
                 'current_page' => $events->currentPage(),
-                'last_page'    => $events->lastPage(),
-                'total'        => $events->total(),
-                'per_page'     => $events->perPage(),
+                'last_page' => $events->lastPage(),
+                'total' => $events->total(),
+                'per_page' => $events->perPage(),
             ],
         ]);
     }
@@ -68,7 +68,7 @@ class EventController extends Controller
         $user = $request->user(); // null si non authentifié
 
         $canSeePrivate = $user && $user->hasAnyRole(['admin', 'founder', 'bureau']);
-        if (!$event->is_public && !$canSeePrivate) {
+        if (! $event->is_public && ! $canSeePrivate) {
             abort(403, 'Cet événement est privé.');
         }
 
@@ -84,7 +84,7 @@ class EventController extends Controller
     {
         $event = Event::create([
             ...$request->validated(),
-            'is_public'  => $request->boolean('is_public', true),
+            'is_public' => $request->boolean('is_public', true),
             'created_by' => $request->user()->id,
         ]);
 
@@ -111,8 +111,8 @@ class EventController extends Controller
     {
         $user = $request->user();
 
-        if (!$user->hasAnyRole(['admin', 'founder'])
-            && !($user->hasRole('bureau') && $event->created_by === $user->id)) {
+        if (! $user->hasAnyRole(['admin', 'founder'])
+            && ! ($user->hasRole('bureau') && $event->created_by === $user->id)) {
             abort(403);
         }
 
@@ -129,11 +129,11 @@ class EventController extends Controller
         $participants = $event->participants()
             ->select('users.id', 'first_name', 'last_name', 'avatar')
             ->get()
-            ->map(fn($u) => [
-                'id'         => $u->id,
+            ->map(fn ($u) => [
+                'id' => $u->id,
                 'first_name' => $u->first_name,
-                'last_name'  => $u->last_name,
-                'avatar'     => $u->avatar,
+                'last_name' => $u->last_name,
+                'avatar' => $u->avatar,
             ]);
 
         return response()->json(['data' => $participants]);
@@ -154,7 +154,7 @@ class EventController extends Controller
         $event->loadCount('participants');
 
         return response()->json([
-            'message'             => 'Inscription confirmée.',
+            'message' => 'Inscription confirmée.',
             'registrations_count' => $event->participants_count,
         ]);
     }
@@ -164,17 +164,17 @@ class EventController extends Controller
      */
     public function unregister(Request $request, Event $event): JsonResponse
     {
-        $user    = $request->user();
+        $user = $request->user();
         $detached = $event->participants()->detach($user->id);
 
-        if (!$detached) {
+        if (! $detached) {
             return response()->json(['message' => 'Vous n\'étiez pas inscrit.'], 404);
         }
 
         $event->loadCount('participants');
 
         return response()->json([
-            'message'             => 'Désinscription effectuée.',
+            'message' => 'Désinscription effectuée.',
             'registrations_count' => $event->participants_count,
         ]);
     }
@@ -184,19 +184,19 @@ class EventController extends Controller
     private function formatEvent(Event $event, ?int $currentUserId): array
     {
         return [
-            'id'                 => $event->id,
-            'title'              => $event->title,
-            'description'        => $event->description,
-            'type'               => $event->type,
-            'event_date'         => $event->event_date->toIso8601String(),
-            'location'           => $event->location,
-            'created_by'         => $event->created_by,
-            'is_public'          => $event->is_public,
-            'registrations_count'=> $event->participants_count ?? 0,
-            'is_registered'      => $currentUserId
+            'id' => $event->id,
+            'title' => $event->title,
+            'description' => $event->description,
+            'type' => $event->type,
+            'event_date' => $event->event_date->toIso8601String(),
+            'location' => $event->location,
+            'created_by' => $event->created_by,
+            'is_public' => $event->is_public,
+            'registrations_count' => $event->participants_count ?? 0,
+            'is_registered' => $currentUserId
                 ? $event->participants()->where('user_id', $currentUserId)->exists()
                 : false,
-            'created_at'         => $event->created_at->toIso8601String(),
+            'created_at' => $event->created_at->toIso8601String(),
         ];
     }
 }

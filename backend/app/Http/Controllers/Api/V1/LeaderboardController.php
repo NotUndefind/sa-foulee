@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Models\Performance;
 use App\Models\Setting;
-use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -31,11 +29,11 @@ class LeaderboardController extends Controller
 
         $entries = Cache::remember($cacheKey, 300, function () use ($period) {
             $startDate = match ($period) {
-                'week'   => now()->startOfWeek(),
+                'week' => now()->startOfWeek(),
                 'season' => now()->month >= 9
                     ? now()->startOfYear()->setMonth(9)->startOfDay()  // Septembre de l'année courante
                     : now()->subYear()->setMonth(9)->startOfDay(),     // Septembre de l'année précédente
-                default  => now()->startOfMonth(), // month
+                default => now()->startOfMonth(), // month
             };
 
             return DB::table('performances')
@@ -55,13 +53,13 @@ class LeaderboardController extends Controller
                 ->get()
                 ->map(function ($row, int $index) {
                     return [
-                        'rank'              => $index + 1,
-                        'user'              => [
-                            'id'   => $row->id,
+                        'rank' => $index + 1,
+                        'user' => [
+                            'id' => $row->id,
                             'name' => "{$row->first_name} {$row->last_name}",
                         ],
                         'total_distance_km' => round((float) $row->total_distance_km, 2),
-                        'total_sessions'    => (int) $row->total_sessions,
+                        'total_sessions' => (int) $row->total_sessions,
                     ];
                 })
                 ->values()
@@ -69,7 +67,7 @@ class LeaderboardController extends Controller
         });
 
         return response()->json([
-            'data'   => $entries,
+            'data' => $entries,
             'period' => $period,
         ]);
     }

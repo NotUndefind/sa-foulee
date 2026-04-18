@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\PasswordResetNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -36,12 +37,12 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at'      => 'datetime',
-            'consent_given_at'       => 'datetime',
-            'membership_paid_at'          => 'datetime',
-            'membership_paid_amount'      => 'decimal:2',
-            'newsletter_subscribed_at'    => 'datetime',
-            'strava_token'           => 'encrypted', // Chiffrement AES-256 via APP_KEY
+            'email_verified_at' => 'datetime',
+            'consent_given_at' => 'datetime',
+            'membership_paid_at' => 'datetime',
+            'membership_paid_amount' => 'decimal:2',
+            'newsletter_subscribed_at' => 'datetime',
+            'strava_token' => 'encrypted', // Chiffrement AES-256 via APP_KEY
         ];
     }
 
@@ -71,7 +72,7 @@ class User extends Authenticatable
 
     public function sendPasswordResetNotification($token): void
     {
-        $this->notify(new \App\Notifications\PasswordResetNotification($token));
+        $this->notify(new PasswordResetNotification($token));
     }
 
     // ---- Helpers ----

@@ -8,7 +8,6 @@ use App\Models\User;
 use App\Models\UserDocument;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -24,7 +23,7 @@ class DocumentController extends Controller
 
         $documents = $user->documents()->orderBy('created_at', 'desc')->get();
 
-        return response()->json($documents->map(fn($doc) => $this->formatDocument($doc)));
+        return response()->json($documents->map(fn ($doc) => $this->formatDocument($doc)));
     }
 
     /**
@@ -37,8 +36,8 @@ class DocumentController extends Controller
 
         $file = $request->file('file');
         $extension = $file->getClientOriginalExtension();
-        $filename  = $request->type . '_' . Str::uuid() . '.' . $extension;
-        $path      = "documents/{$user->id}/{$filename}";
+        $filename = $request->type.'_'.Str::uuid().'.'.$extension;
+        $path = "documents/{$user->id}/{$filename}";
 
         // Upload vers le disque configuré (R2 en prod, local/public en dev)
         Storage::disk(config('filesystems.default'))->putFileAs(
@@ -48,10 +47,10 @@ class DocumentController extends Controller
         );
 
         $document = $user->documents()->create([
-            'type'       => $request->type,
-            'filename'   => $file->getClientOriginalName(),
-            'r2_path'    => $path,
-            'status'     => 'pending',
+            'type' => $request->type,
+            'filename' => $file->getClientOriginalName(),
+            'r2_path' => $path,
+            'status' => 'pending',
             'expires_at' => $request->expires_at,
         ]);
 
@@ -67,7 +66,7 @@ class DocumentController extends Controller
         $this->authorizeAccess($request, $document->user);
 
         return response()->json([
-            'url'        => $document->getSignedUrl(),
+            'url' => $document->getSignedUrl(),
             'expires_at' => now()->addMinutes(15)->toIso8601String(),
         ]);
     }
@@ -83,19 +82,19 @@ class DocumentController extends Controller
             abort(403, 'Accès refusé.');
         }
 
-        $documents = \App\Models\UserDocument::with('user')
+        $documents = UserDocument::with('user')
             ->where('status', 'pending')
             ->orderBy('created_at', 'asc') // les plus anciens d'abord
             ->get();
 
-        return response()->json($documents->map(fn($doc) => array_merge(
+        return response()->json($documents->map(fn ($doc) => array_merge(
             $this->formatDocument($doc),
             [
                 'user' => [
-                    'id'         => $doc->user->id,
+                    'id' => $doc->user->id,
                     'first_name' => $doc->user->first_name,
-                    'last_name'  => $doc->user->last_name,
-                    'email'      => $doc->user->email,
+                    'last_name' => $doc->user->last_name,
+                    'email' => $doc->user->email,
                 ],
             ]
         )));
@@ -152,10 +151,10 @@ class DocumentController extends Controller
     private function formatDocument(UserDocument $doc): array
     {
         return [
-            'id'         => $doc->id,
-            'type'       => $doc->type,
-            'filename'   => $doc->filename,
-            'status'     => $doc->isExpired() ? 'expired' : $doc->status,
+            'id' => $doc->id,
+            'type' => $doc->type,
+            'filename' => $doc->filename,
+            'status' => $doc->isExpired() ? 'expired' : $doc->status,
             'expires_at' => $doc->expires_at?->toDateString(),
             'created_at' => $doc->created_at,
         ];
