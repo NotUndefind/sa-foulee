@@ -8,7 +8,7 @@ import { useRole } from '@/hooks/useRole'
 import { useToast } from '@/components/ui/Toast'
 import { Timer, Zap, Wind, HeartPulse, Dumbbell, ClipboardList, Check } from 'lucide-react'
 
-const TYPE_LABELS: Record<SessionType, string> = {
+const TYPE_LABELS: Record = {
   running: 'Course',
   interval: 'Interval',
   fartlek: 'Fartlek',
@@ -17,7 +17,7 @@ const TYPE_LABELS: Record<SessionType, string> = {
   other: 'Autre',
 }
 
-const TYPE_ICONS: Record<SessionType, ComponentType<{ size?: number; className?: string }>> = {
+const TYPE_ICONS: Record = {
   running: Timer,
   interval: Zap,
   fartlek: Wind,
@@ -26,13 +26,13 @@ const TYPE_ICONS: Record<SessionType, ComponentType<{ size?: number; className?:
   other: ClipboardList,
 }
 
-const INTENSITY_LABELS: Record<Intensity, string> = {
+const INTENSITY_LABELS: Record = {
   low: 'Faible',
   medium: 'Moyenne',
   high: 'Élevée',
 }
 
-const INTENSITY_COLORS: Record<Intensity, string> = {
+const INTENSITY_COLORS: Record = {
   low: 'bg-green-100 text-green-700',
   medium: 'bg-amber-100 text-amber-700',
   high: 'bg-red-100 text-red-700',
@@ -95,7 +95,7 @@ export default function SessionCard({
     <div className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-zinc-200">
       {/* Header */}
       <div className="flex items-start gap-3 border-b border-zinc-100 bg-zinc-50 px-5 py-4">
-        <TypeIcon size={24} className="mt-0.5 shrink-0 text-sf-bark-red" />
+        <TypeIcon size={24} className="text-sf-bark-red mt-0.5 shrink-0" />
         <div className="min-w-0 flex-1">
           <div className="mb-1 flex flex-wrap gap-1.5">
             <span className="rounded-full bg-zinc-200 px-2 py-0.5 text-xs font-medium text-zinc-600">

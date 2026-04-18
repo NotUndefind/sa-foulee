@@ -16,7 +16,7 @@ const schema = z.object({
   is_public: z.boolean(),
 })
 
-type FormData = z.infer<typeof schema>
+type FormData = z.infer
 
 const TYPE_OPTIONS: { value: EventType; label: string }[] = [
   { value: 'race', label: 'Course' },
@@ -74,7 +74,7 @@ export default function EventForm({ event, onSuccess, onCancel }: Props) {
       const saved = isEdit ? await updateEvent(event!.id, payload) : await createEvent(payload)
       onSuccess(saved)
     } catch (err: unknown) {
-      const apiErr = err as { errors?: Record<string, string[]> }
+      const apiErr = err as { errors?: Record }
       if (apiErr.errors) {
         Object.entries(apiErr.errors).forEach(([field, msgs]) => {
           setError(field as keyof FormData, { message: msgs[0] })

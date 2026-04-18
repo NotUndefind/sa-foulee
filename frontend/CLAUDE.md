@@ -42,21 +42,21 @@ La couleur rouge officielle `#FB3936` s'utilise **toujours** via le token `prima
 
 ### Tokens existants et leur usage
 
-| Token Tailwind        | Valeur hex | Usage principal                        |
-| --------------------- | ---------- | -------------------------------------- |
-| `bg-primary`          | `#FB3936`  | CTA, boutons primaires, active states  |
-| `bg-primary-dark`     | `#D42F2D`  | Hover boutons, états actifs            |
-| `bg-primary-light`    | `#FD6563`  | Accents légers                         |
-| `bg-accent`           | `#D42F2D`  | Stepper étapes complétées              |
-| `bg-sidebar`          | `#C0302E`  | Fond sidebar dashboard                 |
-| `bg-sf-cream`         | `#FAFAFA`  | Fond pages principales                 |
-| `bg-sf-cream-soft`    | `#F8F8F8`  | Fond dashboard                         |
-| `bg-sf-parchment`     | `#E5E0E0`  | Bordures, séparateurs                  |
-| `bg-sf-terra`         | `#FB3936`  | Alias landing page (préférer primary)  |
-| `bg-sf-bark-red`      | `#C0302E`  | Sidebar, titres forts                  |
-| `text-sf-bark`        | `#1A1A1A`  | Texte très foncé                       |
-| `text-sf-text`        | `#2C2C2C`  | Texte principal                        |
-| `text-sf-muted`       | `#7F7F7F`  | Texte secondaire                       |
+| Token Tailwind     | Valeur hex | Usage principal                       |
+| ------------------ | ---------- | ------------------------------------- |
+| `bg-primary`       | `#FB3936`  | CTA, boutons primaires, active states |
+| `bg-primary-dark`  | `#D42F2D`  | Hover boutons, états actifs           |
+| `bg-primary-light` | `#FD6563`  | Accents légers                        |
+| `bg-accent`        | `#D42F2D`  | Stepper étapes complétées             |
+| `bg-sidebar`       | `#C0302E`  | Fond sidebar dashboard                |
+| `bg-sf-cream`      | `#FAFAFA`  | Fond pages principales                |
+| `bg-sf-cream-soft` | `#F8F8F8`  | Fond dashboard                        |
+| `bg-sf-parchment`  | `#E5E0E0`  | Bordures, séparateurs                 |
+| `bg-sf-terra`      | `#FB3936`  | Alias landing page (préférer primary) |
+| `bg-sf-bark-red`   | `#C0302E`  | Sidebar, titres forts                 |
+| `text-sf-bark`     | `#1A1A1A`  | Texte très foncé                      |
+| `text-sf-text`     | `#2C2C2C`  | Texte principal                       |
+| `text-sf-muted`    | `#7F7F7F`  | Texte secondaire                      |
 
 ---
 
@@ -77,17 +77,17 @@ peut diverger ou disparaître. **Un seul token par rôle sémantique.**
 ```css
 /* ❌ NE PAS AJOUTER dans globals.css */
 @theme inline {
-  --color-brand: #fb3936;       /* doublon de primary */
-  --color-brand-dark: #d42f2d;  /* doublon de primary-dark */
-  --color-cta: #fb3936;         /* autre alias inutile */
+  --color-brand: #fb3936; /* doublon de primary */
+  --color-brand-dark: #d42f2d; /* doublon de primary-dark */
+  --color-cta: #fb3936; /* autre alias inutile */
 }
 ```
 
 ```tsx
 // ❌ NE PAS UTILISER en TSX — ces classes n'existent pas
-className="bg-brand hover:bg-brand-dark"
-className="text-brand border-brand"
-className="focus:border-brand focus:ring-brand/20"
+className = 'bg-brand hover:bg-brand-dark'
+className = 'text-brand border-brand'
+className = 'focus:border-brand focus:ring-brand/20'
 ```
 
 ---
@@ -111,30 +111,39 @@ Si un bouton avec `text-white` semble invisible (fond transparent) :
 ## Boutons primaires — pattern standard
 
 ```tsx
-{/* Bouton primaire plein */}
-<button className="bg-primary hover:bg-primary-dark rounded-lg px-4 py-2 text-sm font-medium text-white disabled:opacity-50">
+{
+  /* Bouton primaire plein */
+}
+;<button className="bg-primary hover:bg-primary-dark rounded-lg px-4 py-2 text-sm font-medium text-white disabled:opacity-50">
   Action
 </button>
 
-{/* Bouton avec gradient (landing / header) */}
-<button
+{
+  /* Bouton avec gradient (landing / header) */
+}
+;<button
   className="rounded-xl px-4 py-2.5 text-sm font-bold text-white transition"
   style={{ background: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)' }}
 >
   Action
 </button>
 
-{/* Bouton ghost */}
-<button className="sF-btn-ghost">Action</button>
+{
+  /* Bouton ghost */
+}
+;<button className="sF-btn-ghost">Action</button>
 
-{/* Lien texte rouge */}
-<span className="text-primary hover:underline">Lien</span>
+{
+  /* Lien texte rouge */
+}
+;<span className="text-primary hover:underline">Lien</span>
 ```
 
 ## Inputs avec focus rouge — pattern standard
 
 ```tsx
-const inputCls = 'w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20'
+const inputCls =
+  'w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20'
 ```
 
 ---
@@ -143,13 +152,13 @@ const inputCls = 'w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm foc
 
 Ne pas recréer ces classes, elles existent déjà :
 
-| Classe       | Usage                                    |
-| ------------ | ---------------------------------------- |
-| `.sF-btn`    | Bouton primaire landing (rouge, rounded) |
-| `.sF-btn-ghost` | Bouton ghost (bordure rouge)          |
-| `.sF-card`   | Card avec hover rouge subtil             |
-| `.sF-reveal` | Animation scroll reveal                  |
-| `.sF-tag`    | Tag/badge hero                           |
+| Classe          | Usage                                    |
+| --------------- | ---------------------------------------- |
+| `.sF-btn`       | Bouton primaire landing (rouge, rounded) |
+| `.sF-btn-ghost` | Bouton ghost (bordure rouge)             |
+| `.sF-card`      | Card avec hover rouge subtil             |
+| `.sF-reveal`    | Animation scroll reveal                  |
+| `.sF-tag`       | Tag/badge hero                           |
 
 ---
 

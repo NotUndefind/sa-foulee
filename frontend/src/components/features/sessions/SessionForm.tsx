@@ -9,11 +9,11 @@ import {
 } from '@/lib/sessions'
 import type { Exercise, Intensity, Location, SessionType, TrainingSession } from '@/types'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect, useState } from 'react'
+import { Check, ClipboardList, Dumbbell, HeartPulse, Timer, Wind, Zap } from 'lucide-react'
 import type { ComponentType } from 'react'
+import { useEffect, useState } from 'react'
 import { Controller, useForm, useWatch, type FieldErrors, type Resolver } from 'react-hook-form'
 import { z } from 'zod'
-import { Timer, Zap, Wind, HeartPulse, Dumbbell, ClipboardList, Check } from 'lucide-react'
 import ExerciseBuilder from './ExerciseBuilder'
 
 // ---- Schéma de validation ----
@@ -24,27 +24,27 @@ const schema = z
     title: z.string().min(3, 'Titre trop court').max(255),
     type: z.enum(['running', 'interval', 'fartlek', 'recovery', 'strength', 'other'] as const),
     distance_km: z.preprocess(nanToNull, z.number().positive().nullable().optional()),
-    duration_min: z.preprocess(nanToNull, z.number().int().positive().nullable().optional()),
+    duration_min: z.preprocess(nanToNull, z.int().positive().nullable().optional()),
     intensity: z.enum(['low', 'medium', 'high'] as const),
     description: z.string().max(10000).optional(),
     is_template: z.boolean(),
     session_date: z.string().nullable().optional(),
-    location_id: z.preprocess(nanToNull, z.number().int().positive().nullable().optional()),
+    location_id: z.preprocess(nanToNull, z.int().positive().nullable().optional()),
   })
   .superRefine((data, ctx) => {
     if (!data.is_template && !data.session_date) {
       ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+        code: 'custom',
         message: 'La date de séance est obligatoire.',
         path: ['session_date'],
       })
     }
   })
 
-type FormData = z.infer<typeof schema>
+type FormData = z.infer
 
 // ---- Options ----
-const TYPE_OPTIONS: { value: SessionType; label: string; icon: ComponentType<{ size?: number }> }[] = [
+const TYPE_OPTIONS: { value: SessionType; label: string; icon: ComponentType }[] = [
   { value: 'running', label: 'Course', icon: Timer },
   { value: 'interval', label: 'Interval', icon: Zap },
   { value: 'fartlek', label: 'Fartlek', icon: Wind },
@@ -96,7 +96,7 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
     setValue,
     formState: { errors, isSubmitting },
   } = useForm<FormData>({
-    resolver: zodResolver(schema) as Resolver<FormData>,
+    resolver: zodResolver(schema) as Resolver,
     defaultValues: {
       title: source?.title ?? '',
       type: source?.type ?? 'running',
@@ -131,7 +131,7 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
     }
   }
 
-  const onFormError = (validationErrors: FieldErrors<FormData>) => {
+  const onFormError = (validationErrors: FieldErrors) => {
     const step0Fields = new Set(['title', 'type', 'distance_km', 'duration_min', 'intensity'])
     const keys = Object.keys(validationErrors)
     if (keys.some((k) => step0Fields.has(k))) {
@@ -151,9 +151,7 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
       distance_km: data.distance_km ?? null,
       duration_min: data.duration_min ?? null,
       intensity: data.intensity,
-      exercises: exercises
-        .filter((e) => e.name.trim() !== '')
-        .map(({ _key, ...rest }) => rest),
+      exercises: exercises.filter((e) => e.name.trim() !== '').map(({ ...rest }) => rest),
       description: data.description ?? '',
       is_template: data.is_template,
       location_id: data.is_template ? null : (data.location_id ?? null),
@@ -166,7 +164,7 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
         : await createSession(payload)
       onSuccess(saved)
     } catch (err: unknown) {
-      const apiErr = err as { errors?: Record<string, string[]>; message?: string }
+      const apiErr = err as { errors?: Record; message?: string }
       if (apiErr.errors) {
         const step2Fields = new Set(['session_date', 'location_id', 'description', 'is_template'])
         let targetStep = 0
@@ -227,7 +225,9 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
       {step === 0 && (
         <div className="space-y-4">
           <div>
-            <label htmlFor="field-title" className={labelCls}>Titre de la session</label>
+            <label htmlFor="field-title" className={labelCls}>
+              Titre de la session
+            </label>
             <input
               id="field-title"
               {...register('title')}
@@ -340,7 +340,9 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
       {step === 2 && (
         <div className="space-y-4">
           <div>
-            <label htmlFor="field-description" className={labelCls}>Description</label>
+            <label htmlFor="field-description" className={labelCls}>
+              Description
+            </label>
             <textarea
               id="field-description"
               {...register('description')}

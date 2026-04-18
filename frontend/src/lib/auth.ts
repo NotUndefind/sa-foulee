@@ -24,20 +24,20 @@ export type AuthResponse = {
 
 // ---- API calls ----
 
-export async function register(payload: RegisterPayload): Promise<AuthResponse> {
+export async function register(payload: RegisterPayload): Promise {
   return api.post<AuthResponse>('/auth/register', payload)
 }
 
-export async function login(payload: LoginPayload): Promise<AuthResponse> {
+export async function login(payload: LoginPayload): Promise {
   return api.post<AuthResponse>('/auth/login', payload)
 }
 
-export async function logout(): Promise<void> {
+export async function logout(): Promise {
   await api.post('/auth/logout')
   localStorage.removeItem('auth_token')
 }
 
-export async function forgotPassword(email: string): Promise<{ message: string }> {
+export async function forgotPassword(email: string): Promise {
   return api.post('/auth/forgot-password', { email })
 }
 
@@ -46,6 +46,6 @@ export async function resetPassword(payload: {
   email: string
   password: string
   password_confirmation: string
-}): Promise<{ message: string }> {
+}): Promise {
   return api.post('/auth/reset-password', payload)
 }

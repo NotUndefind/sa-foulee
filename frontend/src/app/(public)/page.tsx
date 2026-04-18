@@ -29,13 +29,7 @@ const baloo = Baloo_2({
 
 export default async function PublicHomePage() {
   // Fetch 3 upcoming public events (server-side, no auth needed)
-  let upcomingEvents: Array<{
-    id: number
-    title: string
-    type: string
-    event_date: string
-    location: string | null
-  }> = []
+  let upcomingEvents: Array = []
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000/api/v1'
     const res = await fetch(`${apiUrl}/events?upcoming=1&per_page=3&is_public=1`, {

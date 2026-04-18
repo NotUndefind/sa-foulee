@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 type Status = 'loading' | 'success' | 'invalid' | 'error'
 
-async function postUnsubscribe(token: string): Promise<void> {
+async function postUnsubscribe(token: string): Promise {
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000/api/v1'}/newsletter/unsubscribe`,
     {

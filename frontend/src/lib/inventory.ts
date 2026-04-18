@@ -9,10 +9,7 @@ export interface EquipmentPayload {
   notes?: string | null
 }
 
-export function getInventory(params?: {
-  category?: string
-  status?: string
-}): Promise<Equipment[]> {
+export function getInventory(params?: { category?: string; status?: string }): Promise {
   const qs = new URLSearchParams()
   if (params?.category) qs.set('category', params.category)
   if (params?.status) qs.set('status', params.status)
@@ -20,34 +17,31 @@ export function getInventory(params?: {
   return api.get<Equipment[]>(`/inventory${query}`)
 }
 
-export function createEquipment(data: EquipmentPayload): Promise<Equipment> {
+export function createEquipment(data: EquipmentPayload): Promise {
   return api.post<Equipment>('/inventory', data)
 }
 
-export function updateEquipment(id: number, data: Partial<EquipmentPayload>): Promise<Equipment> {
+export function updateEquipment(id: number, data: Partial): Promise {
   return api.patch<Equipment>(`/inventory/${id}`, data)
 }
 
-export function deleteEquipment(id: number): Promise<void> {
+export function deleteEquipment(id: number): Promise {
   return api.delete<void>(`/inventory/${id}`)
 }
 
-export function getEquipmentDetail(id: number): Promise<EquipmentDetail> {
+export function getEquipmentDetail(id: number): Promise {
   return api.get<EquipmentDetail>(`/inventory/${id}`)
 }
 
-export function assignEquipment(
-  id: number,
-  data: { user_id: number; notes?: string }
-): Promise<unknown> {
+export function assignEquipment(id: number, data: { user_id: number; notes?: string }): Promise {
   return api.post(`/inventory/${id}/assign`, data)
 }
 
-export function returnEquipment(assignmentId: number): Promise<unknown> {
+export function returnEquipment(assignmentId: number): Promise {
   return api.patch(`/inventory/assignments/${assignmentId}/return`)
 }
 
-export async function exportInventoryCSV(): Promise<void> {
+export async function exportInventoryCSV(): Promise {
   const token = typeof window !== 'undefined' ? localStorage.getItem('auth_token') : null
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000/api/v1'}/inventory/export`,

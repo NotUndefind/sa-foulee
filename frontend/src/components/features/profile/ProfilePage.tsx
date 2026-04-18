@@ -17,9 +17,9 @@ const schema = z.object({
   last_name: z.string().min(1, 'Le nom est obligatoire.').max(50),
   bio: z.string().max(500, 'La bio ne peut pas dépasser 500 caractères.').optional(),
 })
-type FormValues = z.infer<typeof schema>
+type FormValues = z.infer
 
-const ROLE_CONFIG: Record<string, { label: string; bg: string; color: string }> = {
+const ROLE_CONFIG: Record = {
   admin: { label: 'Administrateur', bg: 'rgba(251,57,54,0.12)', color: '#FB3936' },
   founder: { label: 'Fondateur', bg: 'rgba(146,43,33,0.12)', color: '#D42F2D' },
   coach: { label: 'Entraîneur', bg: 'rgba(169,50,38,0.12)', color: '#D42F2D' },
@@ -119,7 +119,7 @@ export default function ProfilePage() {
   const AVATAR_ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/bmp']
   const AVATAR_MAX_SIZE = 2 * 1024 * 1024 // 2 Mo
 
-  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAvatarChange = (e: React.ChangeEvent) => {
     const file = e.target.files?.[0]
     // Réinitialiser l'input pour permettre la re-sélection du même fichier
     e.target.value = ''

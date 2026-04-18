@@ -7,25 +7,25 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000/a
 type RequestOptions = {
   method?: string
   body?: unknown
-  headers?: Record<string, string>
+  headers?: Record
 }
 
 class ApiError extends Error {
   constructor(
     public status: number,
     public message: string,
-    public errors?: Record<string, string[]>
+    public errors?: Record
   ) {
     super(message)
     this.name = 'ApiError'
   }
 }
 
-async function request<T>(endpoint: string, options: RequestOptions = {}): Promise<T> {
+async function request<T>(endpoint: string, options: RequestOptions = {}): Promise {
   const { method = 'GET', body, headers = {} } = options
 
   // Injecter le token Bearer depuis localStorage (côté client uniquement)
-  const authHeader: Record<string, string> = {}
+  const authHeader: Record = {}
   if (typeof window !== 'undefined') {
     const token = localStorage.getItem('auth_token')
     if (token) authHeader['Authorization'] = `Bearer ${token}`

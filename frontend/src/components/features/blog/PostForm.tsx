@@ -96,7 +96,7 @@ export default function PostForm({ post, onSuccess, onCancel }: Props) {
     editor?.commands.setContent(tpl.content)
   }
 
-  const handleImagePick = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImagePick = (e: React.ChangeEvent) => {
     const file = e.target.files?.[0]
     if (!file) return
     if (file.size > MAX_IMAGE_SIZE) {
@@ -111,7 +111,7 @@ export default function PostForm({ post, onSuccess, onCancel }: Props) {
     setImageUrl('')
   }
 
-  const handleVideoPick = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleVideoPick = (e: React.ChangeEvent) => {
     const file = e.target.files?.[0]
     if (!file) return
     if (file.size > MAX_VIDEO_SIZE) {

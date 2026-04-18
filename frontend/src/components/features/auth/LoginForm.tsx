@@ -16,14 +16,11 @@ const PASSWORD_POLICY_LIVE_DATE = '15 avril 2026'
 const OLD_PASSWORD_HINT_SUNSET = new Date('2026-05-15')
 
 const schema = z.object({
-  email: z
-    .string()
-    .min(1, "L'adresse e-mail est obligatoire.")
-    .email("L'adresse e-mail n'est pas valide."),
+  email: z.email("L'adresse e-mail n'est pas valide.").min(1, "L'adresse e-mail est obligatoire."),
   password: passwordSchema,
 })
 
-type FormValues = z.infer<typeof schema>
+type FormValues = z.infer
 
 function EyeIcon({ open }: { open: boolean }) {
   if (open) {

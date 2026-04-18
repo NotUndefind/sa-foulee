@@ -15,25 +15,25 @@ export interface Campaign {
   creator?: { id: number; first_name: string; last_name: string }
 }
 
-export function toggleNewsletter(subscribed: boolean): Promise<NewsletterToggleResponse> {
+export function toggleNewsletter(subscribed: boolean): Promise {
   return api.patch<NewsletterToggleResponse>('/me/newsletter', { subscribed })
 }
 
-export function getCampaigns(): Promise<Campaign[]> {
+export function getCampaigns(): Promise {
   return api.get<Campaign[]>('/admin/newsletter/campaigns')
 }
 
-export function createCampaign(data: { subject: string; body_html: string }): Promise<Campaign> {
+export function createCampaign(data: { subject: string; body_html: string }): Promise {
   return api.post<Campaign>('/admin/newsletter/campaigns', data)
 }
 
 export function updateCampaign(
   id: number,
   data: { subject?: string; body_html?: string }
-): Promise<Campaign> {
+): Promise {
   return api.patch<Campaign>(`/admin/newsletter/campaigns/${id}`, data)
 }
 
-export function sendCampaign(id: number): Promise<{ message: string; recipient_count: number }> {
+export function sendCampaign(id: number): Promise {
   return api.post(`/admin/newsletter/campaigns/${id}/send`)
 }
