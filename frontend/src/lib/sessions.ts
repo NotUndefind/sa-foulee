@@ -29,7 +29,7 @@ export interface SessionPayload {
   session_date?: string | null
 }
 
-export async function getSessions(filters: SessionFilters = {}): Promise<PaginatedSessions> {
+export async function getSessions(filters: SessionFilters = {}): Promise {
   const params = new URLSearchParams()
   if (filters.type) params.set('type', filters.type)
   if (filters.page) params.set('page', String(filters.page))
@@ -38,45 +38,40 @@ export async function getSessions(filters: SessionFilters = {}): Promise<Paginat
   return api.get<PaginatedSessions>(`/sessions${qs ? `?${qs}` : ''}`)
 }
 
-export async function getSessionTemplates(): Promise<{ data: TrainingSession[] }> {
+export async function getSessionTemplates(): Promise {
   return api.get<{ data: TrainingSession[] }>('/sessions/templates')
 }
 
-export async function getSession(id: number): Promise<TrainingSession> {
+export async function getSession(id: number): Promise {
   return api.get<TrainingSession>(`/sessions/${id}`)
 }
 
-export async function createSession(payload: SessionPayload): Promise<TrainingSession> {
+export async function createSession(payload: SessionPayload): Promise {
   return api.post<TrainingSession>('/sessions', payload)
 }
 
-export async function updateSession(
-  id: number,
-  payload: Partial<SessionPayload>
-): Promise<TrainingSession> {
+export async function updateSession(id: number, payload: Partial): Promise {
   return api.patch<TrainingSession>(`/sessions/${id}`, payload)
 }
 
-export async function deleteSession(id: number): Promise<void> {
+export async function deleteSession(id: number): Promise {
   await api.delete(`/sessions/${id}`)
 }
 
-export async function toggleParticipation(
-  id: number
-): Promise<{ has_participated: boolean; participants_count: number }> {
+export async function toggleParticipation(id: number): Promise {
   return api.post(`/sessions/${id}/participate`, {})
 }
 
 // ---- Lieux favoris ----
 
-export async function getLocations(): Promise<{ data: Location[] }> {
+export async function getLocations(): Promise {
   return api.get<{ data: Location[] }>('/locations')
 }
 
-export async function createLocation(name: string): Promise<Location> {
+export async function createLocation(name: string): Promise {
   return api.post<Location>('/locations', { name })
 }
 
-export async function deleteLocation(id: number): Promise<void> {
+export async function deleteLocation(id: number): Promise {
   await api.delete(`/locations/${id}`)
 }

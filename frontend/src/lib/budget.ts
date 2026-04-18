@@ -10,7 +10,7 @@ export interface BudgetFilters {
   page?: number
 }
 
-export function getBudgetEntries(filters?: BudgetFilters): Promise<BudgetListResponse> {
+export function getBudgetEntries(filters?: BudgetFilters): Promise {
   const params = new URLSearchParams()
   if (filters?.type) params.set('type', filters.type)
   if (filters?.category) params.set('category', filters.category)
@@ -22,7 +22,7 @@ export function getBudgetEntries(filters?: BudgetFilters): Promise<BudgetListRes
   return api.get<BudgetListResponse>(`/budget${qs ? `?${qs}` : ''}`)
 }
 
-export function getBudgetSummary(): Promise<BudgetSummary> {
+export function getBudgetSummary(): Promise {
   return api.get<BudgetSummary>('/budget/summary')
 }
 
@@ -33,29 +33,19 @@ export function createBudgetEntry(data: {
   description?: string
   entry_date: string
   receipt_url?: string
-}): Promise<BudgetEntry> {
+}): Promise {
   return api.post<BudgetEntry>('/budget', data)
 }
 
-export function updateBudgetEntry(
-  id: number,
-  data: Partial<{
-    type: 'recette' | 'depense'
-    category: string
-    amount: number
-    description: string
-    entry_date: string
-    receipt_url: string
-  }>
-): Promise<BudgetEntry> {
+export function updateBudgetEntry(id: number, data: Partial): Promise {
   return api.patch<BudgetEntry>(`/budget/${id}`, data)
 }
 
-export function deleteBudgetEntry(id: number): Promise<void> {
+export function deleteBudgetEntry(id: number): Promise {
   return api.delete(`/budget/${id}`)
 }
 
-export async function exportBudgetCSV(from?: string, to?: string): Promise<void> {
+export async function exportBudgetCSV(from?: string, to?: string): Promise {
   const token = typeof window !== 'undefined' ? localStorage.getItem('auth_token') : null
   const params = new URLSearchParams()
   if (from) params.set('from', from)

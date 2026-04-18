@@ -31,41 +31,41 @@ export interface PostPayload {
   is_pinned?: boolean
 }
 
-export async function getPosts(filters: PostFilters = {}): Promise<PaginatedPosts> {
+export async function getPosts(filters: PostFilters = {}): Promise {
   const params = new URLSearchParams()
   if (filters.page) params.set('page', String(filters.page))
   const qs = params.toString()
   return api.get<PaginatedPosts>(`/posts${qs ? `?${qs}` : ''}`)
 }
 
-export async function getPost(id: number): Promise<Post> {
+export async function getPost(id: number): Promise {
   return api.get<Post>(`/posts/${id}`)
 }
 
-export async function createPost(payload: PostPayload): Promise<Post> {
+export async function createPost(payload: PostPayload): Promise {
   return api.post<Post>('/posts', payload)
 }
 
-export async function updatePost(id: number, payload: Partial<PostPayload>): Promise<Post> {
+export async function updatePost(id: number, payload: Partial): Promise {
   return api.patch<Post>(`/posts/${id}`, payload)
 }
 
-export async function deletePost(id: number): Promise<void> {
+export async function deletePost(id: number): Promise {
   return api.delete<void>(`/posts/${id}`)
 }
 
-export async function togglePinPost(id: number): Promise<{ is_pinned: boolean }> {
+export async function togglePinPost(id: number): Promise {
   return api.patch<{ is_pinned: boolean }>(`/posts/${id}/pin`, {})
 }
 
-export async function getComments(postId: number, page = 1): Promise<PaginatedComments> {
+export async function getComments(postId: number, page = 1): Promise {
   return api.get<PaginatedComments>(`/posts/${postId}/comments?page=${page}`)
 }
 
-export async function addComment(postId: number, content: string): Promise<Comment> {
+export async function addComment(postId: number, content: string): Promise {
   return api.post<Comment>(`/posts/${postId}/comments`, { content })
 }
 
-export async function deleteComment(commentId: number): Promise<void> {
+export async function deleteComment(commentId: number): Promise {
   return api.delete<void>(`/comments/${commentId}`)
 }

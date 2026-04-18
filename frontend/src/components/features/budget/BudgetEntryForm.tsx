@@ -18,7 +18,7 @@ const schema = z.object({
   receipt_url: z.string().url('URL invalide.').or(z.literal('')).optional(),
 })
 
-type FormValues = z.infer<typeof schema>
+type FormValues = z.infer
 
 // ─── Category suggestions ─────────────────────────────────────────────────────
 

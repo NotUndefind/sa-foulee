@@ -23,7 +23,7 @@ const schema = z.object({
   password: passwordSchema,
 })
 
-type FormValues = z.infer<typeof schema>
+type FormValues = z.infer
 
 function EyeIcon({ open }: { open: boolean }) {
   if (open) {

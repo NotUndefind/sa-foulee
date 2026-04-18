@@ -4,7 +4,14 @@ import { useRole } from '@/hooks/useRole'
 import { getSessions, getSessionTemplates, type SessionFilters } from '@/lib/sessions'
 import type { SessionType, TrainingSession } from '@/types'
 import { useCallback, useEffect, useState } from 'react'
-import { Activity, ArrowUpRight, ChevronLeft, ChevronRight, LayoutTemplate, Plus } from 'lucide-react'
+import {
+  Activity,
+  ArrowUpRight,
+  ChevronLeft,
+  ChevronRight,
+  LayoutTemplate,
+  Plus,
+} from 'lucide-react'
 import SessionCard from './SessionCard'
 import SessionForm from './SessionForm'
 
@@ -106,23 +113,22 @@ export default function SessionsPage() {
     : templates
   const displayed = tab === 'sessions' ? sessions : filteredTemplates
 
-  const activeType = tab === 'sessions' ? (filters.type ?? '') : templateType
+  const activeType = tab === 'sessions' ? filters.type ?? '' : templateType
   const hasActiveFilter = tab === 'sessions' ? !!filters.type : !!templateType
 
   return (
-    <div className="ss-page min-h-screen pb-24 bg-sf-cream-soft lg:pb-8">
+    <div className="ss-page bg-sf-cream-soft min-h-screen pb-24 lg:pb-8">
       <div className="mx-auto max-w-5xl px-5 py-8">
-
         {/* ── Header ─────────────────────────────────────────────────── */}
         <div className="ss-fade mb-8 flex items-start justify-between">
           <div>
-            <div className="mb-1 flex items-center gap-2 text-sf-terra-dark">
+            <div className="text-sf-terra-dark mb-1 flex items-center gap-2">
               <Activity size={26} />
-              <h1 className="text-3xl font-extrabold tracking-[-0.02em] text-sf-bark-red">
+              <h1 className="text-sf-bark-red text-3xl font-extrabold tracking-[-0.02em]">
                 Entraînements
               </h1>
             </div>
-            <p className="text-sm text-sf-muted">
+            <p className="text-sf-muted text-sm">
               {meta.total} session{meta.total > 1 ? 's' : ''} d&apos;entraînement planifiée
               {meta.total > 1 ? 's' : ''}
             </p>
@@ -148,7 +154,7 @@ export default function SessionsPage() {
         {/* ── Form ───────────────────────────────────────────────────── */}
         {showForm && (
           <div
-            className="ss-fade [animation-delay:40ms] mb-6 overflow-hidden rounded-2xl bg-white"
+            className="ss-fade mb-6 overflow-hidden rounded-2xl bg-white [animation-delay:40ms]"
             style={{
               boxShadow: '0 4px 20px rgba(192,48,46,0.08)',
               border: '1px solid rgba(192,48,46,0.08)',
@@ -162,7 +168,7 @@ export default function SessionsPage() {
                 borderBottom: '1px solid rgba(192,48,46,0.06)',
               }}
             >
-              <h2 className="font-bold text-sf-bark-red">
+              <h2 className="text-sf-bark-red font-bold">
                 {editSession
                   ? 'Modifier la session'
                   : templateSrc
@@ -186,15 +192,11 @@ export default function SessionsPage() {
         )}
 
         {/* ── Tabs ───────────────────────────────────────────────────── */}
-        <div
-          className="ss-fade [animation-delay:80ms] mb-5 flex w-fit gap-1 rounded-xl p-1 bg-[rgba(192,48,46,0.05)]"
-        >
+        <div className="ss-fade mb-5 flex w-fit gap-1 rounded-xl bg-[rgba(192,48,46,0.05)] p-1 [animation-delay:80ms]">
           <button
             onClick={() => setTab('sessions')}
             data-active={tab === 'sessions'}
-            className="px-[18px] py-[7px] rounded-[10px] text-[13px] font-semibold transition-all cursor-pointer
-                       data-[active=true]:bg-white data-[active=true]:text-sf-bark-red data-[active=true]:shadow-sm
-                       data-[active=false]:text-sf-muted"
+            className="data-[active=true]:text-sf-bark-red data-[active=false]:text-sf-muted cursor-pointer rounded-[10px] px-[18px] py-[7px] text-[13px] font-semibold transition-all data-[active=true]:bg-white data-[active=true]:shadow-sm"
           >
             Sessions publiées
           </button>
@@ -202,9 +204,7 @@ export default function SessionsPage() {
             <button
               onClick={() => setTab('templates')}
               data-active={tab === 'templates'}
-              className="px-[18px] py-[7px] rounded-[10px] text-[13px] font-semibold transition-all cursor-pointer
-                         data-[active=true]:bg-white data-[active=true]:text-sf-bark-red data-[active=true]:shadow-sm
-                         data-[active=false]:text-sf-muted"
+              className="data-[active=true]:text-sf-bark-red data-[active=false]:text-sf-muted cursor-pointer rounded-[10px] px-[18px] py-[7px] text-[13px] font-semibold transition-all data-[active=true]:bg-white data-[active=true]:shadow-sm"
             >
               Templates
               {templates.length > 0 && (
@@ -220,7 +220,7 @@ export default function SessionsPage() {
         </div>
 
         {/* ── Type filter pills ───────────────────────────────────────── */}
-        <div className="ss-fade [animation-delay:100ms] mb-6 flex flex-wrap gap-2">
+        <div className="ss-fade mb-6 flex flex-wrap gap-2 [animation-delay:100ms]">
           {TYPE_OPTIONS.map((o) => (
             <button
               key={o.value}
@@ -232,10 +232,7 @@ export default function SessionsPage() {
                 }
               }}
               data-active={activeType === o.value}
-              className="px-[14px] py-[5px] rounded-[20px] text-xs font-semibold transition-all whitespace-nowrap
-                         data-[active=true]:bg-sf-terra data-[active=true]:text-white data-[active=true]:shadow-[0_2px_8px_rgba(251,57,54,0.3)] data-[active=true]:border-transparent
-                         data-[active=false]:bg-white data-[active=false]:text-sf-muted data-[active=false]:border data-[active=false]:border-[rgba(192,48,46,0.1)]
-                         hover:data-[active=false]:bg-sf-cream hover:data-[active=false]:text-sf-bark-red"
+              className="data-[active=true]:bg-sf-terra data-[active=false]:text-sf-muted hover:data-[active=false]:bg-sf-cream hover:data-[active=false]:text-sf-bark-red rounded-[20px] px-[14px] py-[5px] text-xs font-semibold whitespace-nowrap transition-all data-[active=false]:border data-[active=false]:border-[rgba(192,48,46,0.1)] data-[active=false]:bg-white data-[active=true]:border-transparent data-[active=true]:text-white data-[active=true]:shadow-[0_2px_8px_rgba(251,57,54,0.3)]"
             >
               {o.label}
             </button>
@@ -264,7 +261,7 @@ export default function SessionsPage() {
                 className="h-8 w-8 animate-spin rounded-full border-2"
                 style={{ borderColor: 'rgba(192,48,46,0.1)', borderTopColor: '#FB3936' }}
               />
-              <p className="text-sm text-sf-muted">Chargement des sessions…</p>
+              <p className="text-sf-muted text-sm">Chargement des sessions…</p>
             </div>
           </div>
         ) : displayed.length === 0 ? (
@@ -275,19 +272,17 @@ export default function SessionsPage() {
               boxShadow: '0 1px 4px rgba(192,48,46,0.04)',
             }}
           >
-            <div className="opacity-30 text-sf-terra-dark">
+            <div className="text-sf-terra-dark opacity-30">
               {tab === 'templates' ? <LayoutTemplate size={40} /> : <Activity size={40} />}
             </div>
             {!hasActiveFilter &&
             (tab === 'sessions' ? meta.total === 0 : templates.length === 0) ? (
               <>
                 <div>
-                  <p className="mb-1 text-sm font-semibold text-sf-bark-red">
-                    {tab === 'templates'
-                      ? 'Aucun template sauvegardé.'
-                      : 'Aucune session publiée.'}
+                  <p className="text-sf-bark-red mb-1 text-sm font-semibold">
+                    {tab === 'templates' ? 'Aucun template sauvegardé.' : 'Aucune session publiée.'}
                   </p>
-                  <p className="text-xs text-sf-muted">
+                  <p className="text-sf-muted text-xs">
                     {tab === 'templates'
                       ? 'Créez une session et sauvegardez-la comme template pour la réutiliser.'
                       : "Soyez le premier à partager une séance d'entraînement !"}
@@ -296,20 +291,20 @@ export default function SessionsPage() {
                 {canManageSessions && (
                   <button
                     onClick={() => setShowForm(true)}
-                    className="text-xs font-semibold text-sf-terra hover:underline"
+                    className="text-sf-terra text-xs font-semibold hover:underline"
                   >
                     {tab === 'templates' ? 'Créer un template →' : 'Publier une session →'}
                   </button>
                 )}
               </>
             ) : (
-              <p className="text-sm font-semibold text-sf-bark-red">
+              <p className="text-sf-bark-red text-sm font-semibold">
                 Aucun résultat pour ce filtre.
               </p>
             )}
           </div>
         ) : (
-          <div className="ss-fade [animation-delay:120ms] grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="ss-fade grid gap-4 [animation-delay:120ms] sm:grid-cols-2 lg:grid-cols-3">
             {displayed.map((session) =>
               tab === 'templates' ? (
                 <div
@@ -356,7 +351,7 @@ export default function SessionsPage() {
         {/* ── Pagination ─────────────────────────────────────────────── */}
         {tab === 'sessions' && meta.last_page > 1 && (
           <div className="mt-6 flex items-center justify-between">
-            <p className="text-xs text-sf-muted">
+            <p className="text-sf-muted text-xs">
               Page {meta.current_page} sur {meta.last_page}
             </p>
             <div className="flex gap-2">

@@ -39,20 +39,20 @@ function formatDateShort(dateStr: string) {
   }
 }
 
-const EVENT_TYPE_LABEL: Record<string, string> = {
+const EVENT_TYPE_LABEL: Record = {
   race: 'Course',
   outing: 'Sortie',
   competition: 'Compétition',
   other: 'Autre',
 }
-const EVENT_TYPE_COLOR: Record<string, string> = {
+const EVENT_TYPE_COLOR: Record = {
   race: '#FB3936',
   outing: '#7F7F7F',
   competition: '#f59e0b',
   other: '#D42F2D',
 }
 
-const SESSION_TYPE_LABEL: Record<string, string> = {
+const SESSION_TYPE_LABEL: Record = {
   running: 'Footing',
   interval: 'Fractionné',
   fartlek: 'Fartlek',
@@ -61,7 +61,7 @@ const SESSION_TYPE_LABEL: Record<string, string> = {
   other: 'Autre',
 }
 
-const INTENSITY_CONFIG: Record<string, { label: string; bg: string; color: string }> = {
+const INTENSITY_CONFIG: Record = {
   low: { label: 'Facile', bg: 'rgba(176,137,138,0.15)', color: '#D42F2D' },
   medium: { label: 'Modéré', bg: 'rgba(245,158,11,0.12)', color: '#d97706' },
   high: { label: 'Intense', bg: 'rgba(251,57,54,0.12)', color: '#FB3936' },

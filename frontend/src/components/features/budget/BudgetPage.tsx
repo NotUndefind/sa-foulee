@@ -120,7 +120,7 @@ function fmtDate(d: string) {
   })
 }
 
-const TYPE_LABEL: Record<string, string> = { recette: 'Recette', depense: 'Dépense' }
+const TYPE_LABEL: Record = { recette: 'Recette', depense: 'Dépense' }
 
 // ─── Component ────────────────────────────────────────────────────────────────
 

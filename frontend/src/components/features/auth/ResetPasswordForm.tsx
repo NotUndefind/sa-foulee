@@ -20,7 +20,7 @@ const schema = z
     message: 'La confirmation du mot de passe ne correspond pas.',
   })
 
-type FormValues = z.infer<typeof schema>
+type FormValues = z.infer
 
 export default function ResetPasswordForm() {
   const router = useRouter()

@@ -7,17 +7,14 @@ import { registerToEvent, unregisterFromEvent, deleteEvent } from '@/lib/events'
 import { useRole } from '@/hooks/useRole'
 import { useToast } from '@/components/ui/Toast'
 
-const TYPE_LABELS: Record<EventType, string> = {
+const TYPE_LABELS: Record = {
   race: 'Course',
   outing: 'Sortie',
   competition: 'Compétition',
   other: 'Autre',
 }
 
-const TYPE_CONFIG: Record<
-  EventType,
-  { bg: string; border: string; color: string; headerBg: string }
-> = {
+const TYPE_CONFIG: Record = {
   race: {
     bg: 'rgba(251,57,54,0.08)',
     border: 'rgba(251,57,54,0.2)',
