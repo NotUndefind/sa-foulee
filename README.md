@@ -4,17 +4,17 @@ Application web mobile-first pour l'association de running **La Neuville TAF sa 
 
 ## Stack technique
 
-| Couche | Technologie |
-|--------|-------------|
-| Frontend | Next.js 14 (TypeScript, App Router) |
-| Styles | Tailwind CSS + Motion.dev |
-| Backend | Laravel 11 (PHP 8.2+) |
-| Base de données | MySQL 8.0 |
-| Stockage documents | Cloudflare R2 |
-| Chat temps réel | Pusher |
-| Emails | Resend |
-| Hébergement frontend | Vercel |
-| Hébergement backend | Shared hosting (O2switch) |
+| Couche               | Technologie                         |
+| -------------------- | ----------------------------------- |
+| Frontend             | Next.js 14 (TypeScript, App Router) |
+| Styles               | Tailwind CSS + Motion.dev           |
+| Backend              | Laravel 11 (PHP 8.2+)               |
+| Base de données      | MySQL 8.0                           |
+| Stockage documents   | Cloudflare R2                       |
+| Chat temps réel      | Pusher                              |
+| Emails               | Resend                              |
+| Hébergement frontend | Vercel                              |
+| Hébergement backend  | Shared hosting (O2switch)           |
 
 ## Structure du projet
 
@@ -116,12 +116,15 @@ Couverture cible : 70% sur le code critique (auth, permissions, upload).
 ## Déploiement
 
 ### Frontend (automatique)
+
 Push sur `main` → Vercel déploie automatiquement.
 
 ### Backend (GitHub Actions)
+
 Push sur `main` → lint + tests → rsync via SSH vers O2switch.
 
 **Secrets GitHub requis :**
+
 - `SSH_HOST` — IP ou domaine du serveur
 - `SSH_USERNAME` — Utilisateur SSH
 - `SSH_PRIVATE_KEY` — Clé privée SSH
@@ -141,14 +144,14 @@ Voir le dossier `docs/` pour la documentation complète :
 
 ## Charte graphique
 
-| Élément | Valeur |
-|---------|--------|
-| Couleur principale | `#FB3936` (rouge officiel) |
-| Couleur d'accent | `#FD6563` (rouge clair) |
-| Fond | `#FFFFFF` (blanc) |
-| Police | Inter (Google Fonts) |
-| Style | Mobile-first, ludique et dynamique |
+| Élément            | Valeur                             |
+| ------------------ | ---------------------------------- |
+| Couleur principale | `#FB3936` (rouge officiel)         |
+| Couleur d'accent   | `#FD6563` (rouge clair)            |
+| Fond               | `#FFFFFF` (blanc)                  |
+| Police             | Inter (Google Fonts)               |
+| Style              | Mobile-first, ludique et dynamique |
 
 ---
 
-*Créé avec [BMAD Method v6](https://github.com/bmadcode/bmad-method)*
+_Créé avec [BMAD Method v6](https://github.com/bmadcode/bmad-method)_
