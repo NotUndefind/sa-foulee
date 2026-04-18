@@ -1,8 +1,9 @@
-import ScrollReveal from '@/components/ui/ScrollReveal'
 import type { Metadata } from 'next'
 import { Baloo_2 } from 'next/font/google'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import ScrollReveal from '@/components/ui/ScrollReveal'
 
 export const metadata: Metadata = {
   title: 'La Neuville TAF sa Foulée — Association de course à pied',
@@ -19,7 +20,6 @@ const baloo = Baloo_2({
 })
 
 export default async function PublicHomePage() {
-  // Fetch 3 upcoming public events (server-side, no auth needed)
   let upcomingEvents: Array<{
     id: number
     title: string
@@ -56,269 +56,76 @@ export default async function PublicHomePage() {
   }
 
   return (
-    <div className={baloo.className} style={{ background: '#FAFAFA', minHeight: '100vh' }}>
-      {/* ─────────────────────────────────────────── STYLES ── */}
-      <style>{`
-        /* ── Variables ── */
-        :root {
-          --cream:         #FAFAFA;
-          --parchm:        #F0EDED;
-          --primary:       #FB3936;
-          --primary-dark:  #D42F2D;
-          --primary-light: #FD6563;
-          --sidebar:       #C0302E;
-          --muted:         #7F7F7F;
-          --bark:          #1A1A1A;
-        }
-
-        /* ── Keyframes ── */
-        @keyframes sF-fadeUp {
-          from { opacity: 0; transform: translateY(36px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes sF-fadeIn {
-          from { opacity: 0; }
-          to   { opacity: 1; }
-        }
-        @keyframes sF-drawPath {
-          from { stroke-dashoffset: 900; opacity: 0; }
-          to   { stroke-dashoffset: 0;   opacity: 1; }
-        }
-        @keyframes sF-float {
-          0%,100% { transform: translateY(0px) rotate(0deg); }
-          50%     { transform: translateY(-14px) rotate(2deg); }
-        }
-        @keyframes sF-shimmer {
-          from { background-position: -200% center; }
-          to   { background-position: 200% center; }
-        }
-        @keyframes sF-pulse-ring {
-          0%   { transform: scale(1);   opacity: 0.4; }
-          100% { transform: scale(1.6); opacity: 0; }
-        }
-        @keyframes sF-blob {
-          0%,100% { transform: scale(1)    translate(0px, 0px); }
-          33%     { transform: scale(1.06) translate(10px, -14px); }
-          66%     { transform: scale(0.96) translate(-8px, 10px); }
-        }
-
-        /* ── Hero entrance ── */
-        .sF-tag   { animation: sF-fadeUp 0.65s cubic-bezier(.22,1,.36,1) both; animation-delay: 0.05s; }
-        .sF-h1    { animation: sF-fadeUp 0.75s cubic-bezier(.22,1,.36,1) both; animation-delay: 0.2s; }
-        .sF-sub   { animation: sF-fadeUp 0.75s cubic-bezier(.22,1,.36,1) both; animation-delay: 0.38s; }
-        .sF-cta   { animation: sF-fadeUp 0.75s cubic-bezier(.22,1,.36,1) both; animation-delay: 0.52s; }
-        .sF-deco  { animation: sF-float  7s   ease-in-out infinite; animation-delay: 1s; }
-        .sF-line  {
-          stroke-dasharray: 900;
-          animation: sF-drawPath 2.2s cubic-bezier(.22,1,.36,1) both;
-          animation-delay: 0.7s;
-        }
-
-        /* ── Scroll reveal ── */
-        .sF-reveal {
-          opacity: 0;
-          transform: translateY(28px);
-          transition: opacity 0.75s cubic-bezier(.22,1,.36,1),
-                      transform 0.75s cubic-bezier(.22,1,.36,1);
-        }
-        .sF-reveal.on { opacity: 1; transform: translateY(0); }
-        .sF-d1 { transition-delay: 0.05s; }
-        .sF-d2 { transition-delay: 0.15s; }
-        .sF-d3 { transition-delay: 0.25s; }
-        .sF-d4 { transition-delay: 0.35s; }
-
-        /* ── Cards ── */
-        .sF-card {
-          background: white;
-          border-radius: 20px;
-          padding: 2rem 1.75rem;
-          border: 1.5px solid rgba(192,48,46,0.08);
-          transition: transform 0.35s cubic-bezier(.22,1,.36,1),
-                      box-shadow 0.35s ease,
-                      border-color 0.3s ease;
-        }
-        .sF-card:hover {
-          transform: translateY(-7px);
-          box-shadow: 0 24px 56px rgba(192,48,46,0.11);
-          border-color: rgba(192,48,46,0.18);
-        }
-
-        /* ── Activity blocks ── */
-        .sF-act {
-          padding: 1.75rem;
-          border-radius: 18px;
-          background: rgba(192,48,46,0.04);
-          border: 1.5px solid rgba(192,48,46,0.09);
-          transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
-        }
-        .sF-act:hover {
-          background: rgba(192,48,46,0.07);
-          border-color: rgba(192,48,46,0.18);
-          transform: translateY(-3px);
-        }
-
-        /* ── Buttons ── */
-        .sF-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          background: #FB3936;
-          color: #fff;
-          padding: 0.9rem 2rem;
-          border-radius: 100px;
-          font-weight: 700;
-          font-size: 1rem;
-          text-decoration: none;
-          transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-          box-shadow: 0 4px 22px rgba(251,57,54,0.38);
-        }
-        .sF-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 10px 36px rgba(251,57,54,0.46);
-          background: #D42F2D;
-        }
-        .sF-btn-ghost {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          color: #C0302E;
-          padding: 0.9rem 2rem;
-          border-radius: 100px;
-          font-weight: 600;
-          font-size: 1rem;
-          text-decoration: none;
-          border: 2px solid rgba(192,48,46,0.22);
-          transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
-        }
-        .sF-btn-ghost:hover {
-          border-color: #C0302E;
-          background: rgba(192,48,46,0.05);
-          transform: translateY(-2px);
-        }
-
-        /* ── Footer links ── */
-        .sF-flink {
-          color: rgba(255,255,255,0.45);
-          text-decoration: none;
-          font-size: 0.875rem;
-          transition: color 0.2s;
-          position: relative;
-        }
-        .sF-flink::after {
-          content: '';
-          position: absolute;
-          bottom: -2px;
-          left: 0;
-          width: 0;
-          height: 1.5px;
-          background: #FB3936;
-          transition: width 0.25s ease;
-        }
-        .sF-flink:hover { color: rgba(255,255,255,0.9); }
-        .sF-flink:hover::after { width: 100%; }
-
-        /* ── Section label ── */
-        .sF-label {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.4rem;
-          color: #FB3936;
-          font-weight: 700;
-          font-size: 0.8rem;
-          letter-spacing: 0.13em;
-          text-transform: uppercase;
-          margin-bottom: 0.875rem;
-        }
-      `}</style>
-
+    <div className={`${baloo.className} bg-sf-cream min-h-screen`}>
       {/* ─────────────────────────────────────────── HERO ── */}
       <section
+        className="relative flex flex-col justify-center overflow-hidden px-6 pt-20 pb-32"
         style={{
           minHeight: 'calc(100vh - 68px)',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          position: 'relative',
-          overflow: 'hidden',
-          padding: '5rem 1.5rem 8rem',
           background: 'linear-gradient(150deg, #FAFAFA 0%, #F5F0EB 60%, #FAF0EE 100%)',
         }}
       >
         {/* Formes décoratives animées */}
         <div
+          className="absolute pointer-events-none rounded-full"
           style={{
-            position: 'absolute',
             right: '-10%',
             top: '5%',
             width: '55vw',
             height: '55vw',
             maxWidth: '680px',
             maxHeight: '680px',
-            borderRadius: '50%',
             background: 'radial-gradient(circle, rgba(251,57,54,0.06) 0%, transparent 70%)',
             animation: 'sF-blob 9s ease-in-out infinite',
-            pointerEvents: 'none',
           }}
         />
         <div
+          className="absolute pointer-events-none rounded-full"
           style={{
-            position: 'absolute',
             left: '-8%',
             bottom: '5%',
             width: '38vw',
             height: '38vw',
             maxWidth: '440px',
             maxHeight: '440px',
-            borderRadius: '50%',
             background: 'radial-gradient(circle, rgba(251,57,54,0.05) 0%, transparent 70%)',
             animation: 'sF-blob 12s ease-in-out infinite reverse',
             animationDelay: '2s',
-            pointerEvents: 'none',
           }}
         />
         <div
+          className="absolute pointer-events-none rounded-full"
           style={{
-            position: 'absolute',
             left: '30%',
             top: '-12%',
             width: '28vw',
             height: '28vw',
             maxWidth: '320px',
             maxHeight: '320px',
-            borderRadius: '50%',
             background: 'radial-gradient(circle, rgba(192,48,46,0.04) 0%, transparent 70%)',
             animation: 'sF-blob 15s ease-in-out infinite',
             animationDelay: '4s',
-            pointerEvents: 'none',
           }}
         />
         <div
+          className="absolute pointer-events-none rounded-full"
           style={{
-            position: 'absolute',
             right: '25%',
             bottom: '-8%',
             width: '20vw',
             height: '20vw',
             maxWidth: '240px',
             maxHeight: '240px',
-            borderRadius: '50%',
             background: 'radial-gradient(circle, rgba(251,57,54,0.05) 0%, transparent 70%)',
             animation: 'sF-blob 10s ease-in-out infinite reverse',
             animationDelay: '1s',
-            pointerEvents: 'none',
           }}
         />
 
         {/* Mascotte flottante */}
         <div
-          className="sF-deco"
-          style={{
-            position: 'absolute',
-            right: '4%',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            pointerEvents: 'none',
-          }}
+          className="sF-deco absolute pointer-events-none"
+          style={{ right: '4%', top: '50%', transform: 'translateY(-50%)' }}
         >
           <Image
             src="/mascotte-removebg-preview.png"
@@ -332,7 +139,7 @@ export default async function PublicHomePage() {
 
         {/* Animated wavy line */}
         <svg
-          style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', opacity: 0.18 }}
+          className="absolute bottom-0 left-0 w-full opacity-[0.18]"
           viewBox="0 0 1440 90"
           preserveAspectRatio="none"
         >
@@ -347,13 +154,8 @@ export default async function PublicHomePage() {
 
         {/* Dot grid decoration */}
         <svg
-          style={{
-            position: 'absolute',
-            left: '3%',
-            top: '12%',
-            opacity: 0.12,
-            pointerEvents: 'none',
-          }}
+          className="absolute pointer-events-none opacity-[0.12]"
+          style={{ left: '3%', top: '12%' }}
           width="120"
           height="120"
           viewBox="0 0 120 120"
@@ -372,29 +174,16 @@ export default async function PublicHomePage() {
         </svg>
 
         {/* Content */}
-        <div
-          style={{
-            maxWidth: '780px',
-            margin: '0 auto',
-            textAlign: 'center',
-            position: 'relative',
-            zIndex: 2,
-          }}
-        >
+        <div className="relative z-[2] max-w-[780px] mx-auto text-center">
           {/* Badge */}
           <div
-            className="sF-tag"
+            className="sF-tag inline-flex items-center gap-2 mb-8 rounded-[100px]"
             style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
               background: 'rgba(251,57,54,0.07)',
               color: '#C0302E',
               padding: '0.4rem 1.1rem',
-              borderRadius: '100px',
               fontSize: '0.85rem',
               fontWeight: 700,
-              marginBottom: '2rem',
               border: '1px solid rgba(192,48,46,0.1)',
             }}
           >
@@ -452,7 +241,6 @@ export default async function PublicHomePage() {
               maxWidth: '500px',
               margin: '0 auto 3rem',
               lineHeight: 1.7,
-              fontWeight: 400,
             }}
           >
             L&apos;association de course à pied de votre village — ouverte à tous, portée par la
@@ -460,10 +248,7 @@ export default async function PublicHomePage() {
           </p>
 
           {/* CTAs */}
-          <div
-            className="sF-cta"
-            style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}
-          >
+          <div className="sF-cta flex gap-4 justify-center flex-wrap">
             <Link href="/inscription" className="sF-btn">
               Rejoindre l&apos;association
               <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
@@ -493,10 +278,9 @@ export default async function PublicHomePage() {
       </section>
 
       {/* ─────────────────────────────────────────── VALEURS ── */}
-      <section id="decouvrir" style={{ padding: '7rem 1.5rem', background: '#FAFAFA' }}>
-        <div style={{ maxWidth: '1040px', margin: '0 auto' }}>
-          {/* Header */}
-          <div className="sF-reveal" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+      <section id="decouvrir" className="px-6 py-28 bg-sf-cream">
+        <div className="max-w-[1040px] mx-auto">
+          <div className="sF-reveal text-center mb-14">
             <p className="sF-label">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <circle cx="6" cy="6" r="5" stroke="#FB3936" strokeWidth="1.5" />
@@ -516,13 +300,9 @@ export default async function PublicHomePage() {
             </h2>
           </div>
 
-          {/* Cards */}
           <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))',
-              gap: '1.5rem',
-            }}
+            className="grid gap-6"
+            style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))' }}
           >
             {[
               {
@@ -551,46 +331,33 @@ export default async function PublicHomePage() {
               },
             ].map((v) => (
               <div key={v.title} className={`sF-card sF-reveal ${v.d}`}>
-                {/* Icon badge */}
                 <div
+                  className="flex items-center justify-center mb-[1.4rem] rounded-[14px]"
                   style={{
                     width: '52px',
                     height: '52px',
-                    borderRadius: '14px',
                     background: `${v.accent}12`,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
                     fontSize: '1.6rem',
-                    marginBottom: '1.4rem',
                     border: `1.5px solid ${v.accent}18`,
                   }}
                 >
                   {v.emoji}
                 </div>
-
                 <h3
-                  style={{
-                    fontSize: '1.25rem',
-                    fontWeight: 800,
-                    color: '#1A1A1A',
-                    marginBottom: '0.4rem',
-                  }}
+                  className="font-extrabold mb-[0.4rem]"
+                  style={{ fontSize: '1.25rem', color: '#1A1A1A' }}
                 >
                   {v.title}
                 </h3>
                 <p
-                  style={{
-                    color: v.accent,
-                    fontWeight: 700,
-                    fontSize: '0.9rem',
-                    marginBottom: '0.85rem',
-                    lineHeight: 1.4,
-                  }}
+                  className="font-bold mb-[0.85rem]"
+                  style={{ color: v.accent, fontSize: '0.9rem', lineHeight: 1.4 }}
                 >
                   {v.punch}
                 </p>
-                <p style={{ color: '#7F7F7F', fontSize: '0.875rem', lineHeight: 1.75 }}>{v.desc}</p>
+                <p style={{ color: '#7F7F7F', fontSize: '0.875rem', lineHeight: 1.75 }}>
+                  {v.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -598,20 +365,9 @@ export default async function PublicHomePage() {
       </section>
 
       {/* ─────────────────────────────────────────── ACTIVITÉS ── */}
-      <section style={{ padding: '6rem 1.5rem', background: '#E9E2D3' }}>
-        <div style={{ maxWidth: '1040px', margin: '0 auto' }}>
-          {/* Header */}
-          <div
-            className="sF-reveal"
-            style={{
-              display: 'flex',
-              alignItems: 'flex-end',
-              justifyContent: 'space-between',
-              flexWrap: 'wrap',
-              gap: '1.5rem',
-              marginBottom: '3rem',
-            }}
-          >
+      <section className="px-6 py-24 bg-[#E9E2D3]">
+        <div className="max-w-[1040px] mx-auto">
+          <div className="sF-reveal flex items-end justify-between flex-wrap gap-6 mb-12">
             <div>
               <p className="sF-label">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -624,7 +380,12 @@ export default async function PublicHomePage() {
                     stroke="#FB3936"
                     strokeWidth="1.5"
                   />
-                  <path d="M4 6h4M6 4v4" stroke="#FB3936" strokeWidth="1.5" strokeLinecap="round" />
+                  <path
+                    d="M4 6h4M6 4v4"
+                    stroke="#FB3936"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
                 </svg>
                 Nos activités
               </p>
@@ -641,14 +402,10 @@ export default async function PublicHomePage() {
             </div>
             <Link
               href="/evenements"
+              className="inline-flex items-center gap-[0.4rem] font-semibold no-underline"
               style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.4rem',
                 color: '#C0302E',
-                fontWeight: 600,
                 fontSize: '0.9rem',
-                textDecoration: 'none',
                 borderBottom: '1.5px solid rgba(192,48,46,0.25)',
                 paddingBottom: '2px',
                 transition: 'border-color 0.2s ease, color 0.2s ease',
@@ -667,13 +424,9 @@ export default async function PublicHomePage() {
             </Link>
           </div>
 
-          {/* Activity blocks */}
           <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(285px, 1fr))',
-              gap: '1.25rem',
-            }}
+            className="grid gap-5"
+            style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(285px, 1fr))' }}
           >
             {[
               {
@@ -699,38 +452,25 @@ export default async function PublicHomePage() {
               },
             ].map((a) => (
               <div key={a.num} className={`sF-act sF-reveal ${a.d}`}>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.75rem',
-                    marginBottom: '1.25rem',
-                  }}
-                >
+                <div className="flex items-center gap-3 mb-5">
                   <span
-                    style={{
-                      fontWeight: 800,
-                      fontSize: '0.75rem',
-                      color: '#FB3936',
-                      letterSpacing: '0.08em',
-                    }}
+                    className="font-extrabold uppercase"
+                    style={{ fontSize: '0.75rem', color: '#FB3936', letterSpacing: '0.08em' }}
                   >
                     {a.num}
                   </span>
-                  <div style={{ height: '1px', flex: 1, background: 'rgba(192,48,46,0.15)' }} />
+                  <div className="h-px flex-1" style={{ background: 'rgba(192,48,46,0.15)' }} />
                   <span style={{ fontSize: '1.25rem' }}>{a.emoji}</span>
                 </div>
                 <h3
-                  style={{
-                    fontSize: '1.1rem',
-                    fontWeight: 800,
-                    color: '#1A1A1A',
-                    marginBottom: '0.7rem',
-                  }}
+                  className="font-extrabold mb-[0.7rem]"
+                  style={{ fontSize: '1.1rem', color: '#1A1A1A' }}
                 >
                   {a.title}
                 </h3>
-                <p style={{ color: '#7F7F7F', fontSize: '0.875rem', lineHeight: 1.75 }}>{a.desc}</p>
+                <p style={{ color: '#7F7F7F', fontSize: '0.875rem', lineHeight: 1.75 }}>
+                  {a.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -738,47 +478,32 @@ export default async function PublicHomePage() {
       </section>
 
       {/* ─────────────────────────────────────────── STATS ── */}
-      <section
-        style={{
-          padding: '6rem 1.5rem',
-          background: '#F5F0EB',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-      >
-        {/* Decorative circles */}
+      <section className="relative overflow-hidden px-6 py-24 bg-[#F5F0EB]">
         <div
+          className="absolute pointer-events-none rounded-full border border-[rgba(192,48,46,0.06)]"
           style={{
-            position: 'absolute',
             right: '-5%',
             top: '-20%',
             width: '45vw',
             height: '45vw',
             maxWidth: '500px',
             maxHeight: '500px',
-            borderRadius: '50%',
-            border: '1px solid rgba(192,48,46,0.06)',
-            pointerEvents: 'none',
           }}
         />
         <div
+          className="absolute pointer-events-none rounded-full border border-[rgba(192,48,46,0.04)]"
           style={{
-            position: 'absolute',
             right: '5%',
             top: '-10%',
             width: '30vw',
             height: '30vw',
             maxWidth: '340px',
             maxHeight: '340px',
-            borderRadius: '50%',
-            border: '1px solid rgba(192,48,46,0.04)',
-            pointerEvents: 'none',
           }}
         />
 
-        <div style={{ maxWidth: '1040px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
-          {/* Header */}
-          <div className="sF-reveal" style={{ textAlign: 'center', marginBottom: '4rem' }}>
+        <div className="relative z-[2] max-w-[1040px] mx-auto">
+          <div className="sF-reveal text-center mb-16">
             <p className="sF-label" style={{ color: '#C0302E' }}>
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <path
@@ -800,13 +525,9 @@ export default async function PublicHomePage() {
             </h2>
           </div>
 
-          {/* Stat grid */}
           <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-              gap: '0.5rem',
-            }}
+            className="grid gap-2"
+            style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}
           >
             {[
               { num: '1', label: 'sortie / mois', sub: 'minimum garanti', d: 'sF-d1' },
@@ -817,7 +538,7 @@ export default async function PublicHomePage() {
                 d: 'sF-d2',
               },
               {
-                num: String(homepageStats.total_km) + ' km',
+                num: `${String(homepageStats.total_km)} km`,
                 label: 'parcourus',
                 sub: 'performances totales',
                 d: 'sF-d3',
@@ -825,33 +546,22 @@ export default async function PublicHomePage() {
             ].map((s) => (
               <div
                 key={s.label}
-                className={`sF-reveal ${s.d}`}
+                className={`sF-reveal ${s.d} text-center rounded-[18px]`}
                 style={{
-                  textAlign: 'center',
                   padding: '2.5rem 1.5rem',
-                  borderRadius: '18px',
                   background: 'rgba(255,255,255,0.7)',
                   border: '1px solid rgba(192,48,46,0.08)',
                 }}
               >
                 <div
-                  style={{
-                    fontSize: 'clamp(3.5rem, 9vw, 5.5rem)',
-                    fontWeight: 800,
-                    color: '#C0302E',
-                    lineHeight: 1,
-                    marginBottom: '0.6rem',
-                  }}
+                  className="font-extrabold leading-none mb-[0.6rem]"
+                  style={{ fontSize: 'clamp(3.5rem, 9vw, 5.5rem)', color: '#C0302E' }}
                 >
                   {s.num}
                 </div>
                 <div
-                  style={{
-                    color: '#1A1A1A',
-                    fontWeight: 700,
-                    fontSize: '1.05rem',
-                    marginBottom: '0.3rem',
-                  }}
+                  className="font-bold mb-[0.3rem]"
+                  style={{ color: '#1A1A1A', fontSize: '1.05rem' }}
                 >
                   {s.label}
                 </div>
@@ -864,10 +574,9 @@ export default async function PublicHomePage() {
 
       {/* ──────────────────────────────────── NOS PROCHAINES SORTIES ── */}
       {upcomingEvents.length > 0 && (
-        <section style={{ padding: '7rem 1.5rem', background: '#FAFAFA' }}>
-          <div style={{ maxWidth: '1040px', margin: '0 auto' }}>
-            {/* Header */}
-            <div className="sF-reveal" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+        <section className="px-6 py-28 bg-sf-cream">
+          <div className="max-w-[1040px] mx-auto">
+            <div className="sF-reveal text-center mb-14">
               <p className="sF-label">
                 <svg
                   width="12"
@@ -895,28 +604,17 @@ export default async function PublicHomePage() {
                 Nos prochaines sorties
               </h2>
               <p
-                style={{
-                  marginTop: '0.875rem',
-                  color: '#7F7F7F',
-                  fontSize: '1rem',
-                  maxWidth: '480px',
-                  margin: '0.875rem auto 0',
-                  lineHeight: 1.7,
-                }}
+                className="mt-[0.875rem] mx-auto"
+                style={{ color: '#7F7F7F', fontSize: '1rem', maxWidth: '480px', lineHeight: 1.7 }}
               >
                 Rejoignez-nous sur les prochains événements et partagez la route avec
                 l&apos;association.
               </p>
             </div>
 
-            {/* Event cards */}
             <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                gap: '1.5rem',
-                marginBottom: '2.5rem',
-              }}
+              className="grid gap-6 mb-10"
+              style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}
             >
               {upcomingEvents.map((ev, i) => {
                 const d = new Date(ev.event_date)
@@ -939,93 +637,60 @@ export default async function PublicHomePage() {
                 const color = typeColor[ev.type] ?? '#7F7F7F'
                 const stagger = i === 0 ? 'sF-d1' : i === 1 ? 'sF-d2' : 'sF-d3'
                 return (
-                  <div
-                    key={ev.id}
-                    className={`sF-card sF-reveal ${stagger}`}
-                    style={{ overflow: 'hidden' }}
-                  >
-                    {/* Date badge */}
-                    <div
-                      style={{
-                        display: 'flex',
-                        alignItems: 'flex-start',
-                        gap: '1rem',
-                        marginBottom: '1.25rem',
-                      }}
-                    >
+                  <div key={ev.id} className={`sF-card sF-reveal ${stagger} overflow-hidden`}>
+                    <div className="flex items-start gap-4 mb-5">
                       <div
+                        className="shrink-0 text-center rounded-[12px]"
                         style={{
-                          flexShrink: 0,
                           width: '52px',
-                          textAlign: 'center',
                           background: 'rgba(251,57,54,0.07)',
-                          borderRadius: '12px',
                           padding: '0.5rem 0.25rem',
                           border: '1.5px solid rgba(251,57,54,0.14)',
                         }}
                       >
                         <div
-                          style={{
-                            fontSize: '1.6rem',
-                            fontWeight: 800,
-                            color: '#FB3936',
-                            lineHeight: 1,
-                          }}
+                          className="font-extrabold leading-none"
+                          style={{ fontSize: '1.6rem', color: '#FB3936' }}
                         >
                           {day}
                         </div>
                         <div
+                          className="font-bold uppercase"
                           style={{
                             fontSize: '0.65rem',
-                            fontWeight: 700,
                             color: '#FB3936',
-                            textTransform: 'uppercase',
                             letterSpacing: '0.06em',
                           }}
                         >
                           {month}
                         </div>
                       </div>
-                      <div style={{ flex: 1 }}>
+                      <div className="flex-1">
                         <span
+                          className="inline-block font-extrabold uppercase rounded-[999px] mb-[0.35rem]"
                           style={{
-                            display: 'inline-block',
                             fontSize: '0.65rem',
-                            fontWeight: 800,
                             color,
                             letterSpacing: '0.1em',
-                            textTransform: 'uppercase',
                             background: `${color}14`,
-                            borderRadius: '999px',
                             padding: '0.2rem 0.6rem',
-                            marginBottom: '0.35rem',
                           }}
                         >
                           {typeLabel[ev.type] ?? 'Événement'}
                         </span>
                         <h3
-                          style={{
-                            fontSize: '1.05rem',
-                            fontWeight: 800,
-                            color: '#1A1A1A',
-                            lineHeight: 1.3,
-                          }}
+                          className="font-extrabold"
+                          style={{ fontSize: '1.05rem', color: '#1A1A1A', lineHeight: 1.3 }}
                         >
                           {ev.title}
                         </h3>
                       </div>
                     </div>
 
-                    {/* Meta */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
+                    <div className="flex flex-col gap-[0.45rem]">
                       <div
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '0.5rem',
-                          color: '#7F7F7F',
-                          fontSize: '0.82rem',
-                        }}
+                        className="flex items-center gap-2"
+                        style={{ color: '#7F7F7F', fontSize: '0.82rem' }}
                       >
                         <svg
                           width="13"
@@ -1040,19 +705,14 @@ export default async function PublicHomePage() {
                           <circle cx="12" cy="12" r="10" />
                           <polyline points="12 6 12 12 16 14" />
                         </svg>
-                        <span style={{ textTransform: 'capitalize' }}>
+                        <span className="capitalize">
                           {weekday} à {time}
                         </span>
                       </div>
                       {ev.location && (
                         <div
-                          style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '0.5rem',
-                            color: '#7F7F7F',
-                            fontSize: '0.82rem',
-                          }}
+                          className="flex items-center gap-2"
+                          style={{ color: '#7F7F7F', fontSize: '0.82rem' }}
                         >
                           <svg
                             width="13"
@@ -1076,18 +736,13 @@ export default async function PublicHomePage() {
               })}
             </div>
 
-            {/* CTA */}
-            <div className="sF-reveal sF-d3" style={{ textAlign: 'center' }}>
+            <div className="sF-reveal sF-d3 text-center">
               <Link
                 href="/activites"
+                className="inline-flex items-center gap-2 font-bold no-underline"
                 style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
                   color: '#FB3936',
-                  fontWeight: 700,
                   fontSize: '0.95rem',
-                  textDecoration: 'none',
                   borderBottom: '2px solid rgba(251,57,54,0.3)',
                   paddingBottom: '2px',
                   transition: 'border-color 0.2s',
@@ -1114,10 +769,9 @@ export default async function PublicHomePage() {
       )}
 
       {/* ──────────────────────────────────────── COMMENT REJOINDRE ── */}
-      <section style={{ padding: '7rem 1.5rem', background: '#FAFAFA' }}>
-        <div style={{ maxWidth: '1040px', margin: '0 auto' }}>
-          {/* Header */}
-          <div className="sF-reveal" style={{ textAlign: 'center', marginBottom: '4rem' }}>
+      <section className="px-6 py-28 bg-sf-cream">
+        <div className="max-w-[1040px] mx-auto">
+          <div className="sF-reveal text-center mb-16">
             <p className="sF-label">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <path
@@ -1138,49 +792,28 @@ export default async function PublicHomePage() {
               Trois étapes, c&apos;est tout
             </h2>
             <p
-              style={{
-                marginTop: '0.875rem',
-                color: '#7F7F7F',
-                fontSize: '1rem',
-                maxWidth: '480px',
-                margin: '0.875rem auto 0',
-                lineHeight: 1.7,
-              }}
+              className="mt-[0.875rem] mx-auto"
+              style={{ color: '#7F7F7F', fontSize: '1rem', maxWidth: '480px', lineHeight: 1.7 }}
             >
               Rejoindre La Neuville TAF sa Foulée est simple et rapide. Du formulaire à votre
               première sortie, voici comment ça se passe.
             </p>
           </div>
 
-          {/* Steps */}
           <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: '1.5rem',
-            }}
+            className="grid gap-6"
+            style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}
           >
             {/* Step 1 */}
-            <div className="sF-card sF-reveal sF-d1" style={{ position: 'relative' }}>
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '1rem',
-                  marginBottom: '1.5rem',
-                }}
-              >
+            <div className="sF-card sF-reveal sF-d1 relative">
+              <div className="flex items-center gap-4 mb-6">
                 <div
+                  className="flex items-center justify-center shrink-0 rounded-[12px]"
                   style={{
                     width: '44px',
                     height: '44px',
-                    borderRadius: '12px',
-                    flexShrink: 0,
                     background: 'rgba(251,57,54,0.1)',
                     border: '1.5px solid rgba(251,57,54,0.18)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
                   }}
                 >
                   <svg
@@ -1201,24 +834,15 @@ export default async function PublicHomePage() {
                   </svg>
                 </div>
                 <span
-                  style={{
-                    fontSize: '0.7rem',
-                    fontWeight: 800,
-                    color: '#FB3936',
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase',
-                  }}
+                  className="font-extrabold uppercase"
+                  style={{ fontSize: '0.7rem', color: '#FB3936', letterSpacing: '0.1em' }}
                 >
                   Étape 01
                 </span>
               </div>
               <h3
-                style={{
-                  fontSize: '1.2rem',
-                  fontWeight: 800,
-                  color: '#1A1A1A',
-                  marginBottom: '0.6rem',
-                }}
+                className="font-extrabold mb-[0.6rem]"
+                style={{ fontSize: '1.2rem', color: '#1A1A1A' }}
               >
                 Inscription sur le site
               </h3>
@@ -1229,26 +853,15 @@ export default async function PublicHomePage() {
             </div>
 
             {/* Step 2 */}
-            <div className="sF-card sF-reveal sF-d2" style={{ position: 'relative' }}>
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '1rem',
-                  marginBottom: '1.5rem',
-                }}
-              >
+            <div className="sF-card sF-reveal sF-d2 relative">
+              <div className="flex items-center gap-4 mb-6">
                 <div
+                  className="flex items-center justify-center shrink-0 rounded-[12px]"
                   style={{
                     width: '44px',
                     height: '44px',
-                    borderRadius: '12px',
-                    flexShrink: 0,
                     background: 'rgba(192,48,46,0.07)',
                     border: '1.5px solid rgba(192,48,46,0.12)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
                   }}
                 >
                   <svg
@@ -1267,25 +880,15 @@ export default async function PublicHomePage() {
                   </svg>
                 </div>
                 <span
-                  style={{
-                    fontSize: '0.7rem',
-                    fontWeight: 800,
-                    color: '#C0302E',
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase',
-                    opacity: 0.65,
-                  }}
+                  className="font-extrabold uppercase opacity-65"
+                  style={{ fontSize: '0.7rem', color: '#C0302E', letterSpacing: '0.1em' }}
                 >
                   Étape 02
                 </span>
               </div>
               <h3
-                style={{
-                  fontSize: '1.2rem',
-                  fontWeight: 800,
-                  color: '#1A1A1A',
-                  marginBottom: '0.6rem',
-                }}
+                className="font-extrabold mb-[0.6rem]"
+                style={{ fontSize: '1.2rem', color: '#1A1A1A' }}
               >
                 Validation des informations
               </h3>
@@ -1296,26 +899,15 @@ export default async function PublicHomePage() {
             </div>
 
             {/* Step 3 */}
-            <div className="sF-card sF-reveal sF-d3" style={{ position: 'relative' }}>
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '1rem',
-                  marginBottom: '1.5rem',
-                }}
-              >
+            <div className="sF-card sF-reveal sF-d3 relative">
+              <div className="flex items-center gap-4 mb-6">
                 <div
+                  className="flex items-center justify-center shrink-0 rounded-[12px]"
                   style={{
                     width: '44px',
                     height: '44px',
-                    borderRadius: '12px',
-                    flexShrink: 0,
                     background: 'rgba(169,50,38,0.1)',
                     border: '1.5px solid rgba(169,50,38,0.15)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
                   }}
                 >
                   <svg
@@ -1335,24 +927,15 @@ export default async function PublicHomePage() {
                   </svg>
                 </div>
                 <span
-                  style={{
-                    fontSize: '0.7rem',
-                    fontWeight: 800,
-                    color: '#D42F2D',
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase',
-                  }}
+                  className="font-extrabold uppercase"
+                  style={{ fontSize: '0.7rem', color: '#D42F2D', letterSpacing: '0.1em' }}
                 >
                   Étape 03
                 </span>
               </div>
               <h3
-                style={{
-                  fontSize: '1.2rem',
-                  fontWeight: 800,
-                  color: '#1A1A1A',
-                  marginBottom: '0.6rem',
-                }}
+                className="font-extrabold mb-[0.6rem]"
+                style={{ fontSize: '1.2rem', color: '#1A1A1A' }}
               >
                 Envoi du dossier
               </h3>
@@ -1363,8 +946,7 @@ export default async function PublicHomePage() {
             </div>
           </div>
 
-          {/* CTA */}
-          <div className="sF-reveal" style={{ textAlign: 'center', marginTop: '3.5rem' }}>
+          <div className="sF-reveal text-center mt-14">
             <Link href="/inscription" className="sF-btn">
               Commencer l&apos;inscription
               <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
@@ -1382,10 +964,9 @@ export default async function PublicHomePage() {
       </section>
 
       {/* ──────────────────────────────────────── TÉMOIGNAGES ── */}
-      <section style={{ padding: '6rem 1.5rem', background: '#E9E2D3' }}>
-        <div style={{ maxWidth: '1040px', margin: '0 auto' }}>
-          {/* Header */}
-          <div className="sF-reveal" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+      <section className="px-6 py-24 bg-[#E9E2D3]">
+        <div className="max-w-[1040px] mx-auto">
+          <div className="sF-reveal text-center mb-14">
             <h2
               style={{
                 fontSize: 'clamp(2rem, 5vw, 3.25rem)',
@@ -1398,18 +979,14 @@ export default async function PublicHomePage() {
             </h2>
           </div>
 
-          {/* Testimonials */}
           <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: '1.5rem',
-            }}
+            className="grid gap-6"
+            style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}
           >
             {[
               {
                 quote:
-                  'Passionné de course à pied et profondément attaché à notre beau village de La Neuville, j’ai créé cette association avec une idée simple : rassembler les gens. Mon but était de transformer une pratique souvent solitaire en un moment de partage local.',
+                  'Passionné de course à pied et profondément attaché à notre beau village de La Neuville, j'ai créé cette association avec une idée simple : rassembler les gens. Mon but était de transformer une pratique souvent solitaire en un moment de partage local.',
                 name: 'Albans D.',
                 role: 'Président',
                 initial: 'A',
@@ -1417,7 +994,7 @@ export default async function PublicHomePage() {
               },
               {
                 quote:
-                  "On m'a parlé de l'association un peu par hasard et j'ai décidé de rejoindre l'aventure. Je n'avais jamais vraiment couru avant, mais j'ai tout de suite adhéré au projet. C’est pour moi une manière idéale de découvrir la course à pied !",
+                  "On m'a parlé de l'association un peu par hasard et j'ai décidé de rejoindre l'aventure. Je n'avais jamais vraiment couru avant, mais j'ai tout de suite adhéré au projet. C'est pour moi une manière idéale de découvrir la course à pied !",
                 name: 'Jules B.',
                 role: 'Informatique',
                 initial: 'J',
@@ -1433,8 +1010,7 @@ export default async function PublicHomePage() {
               },
             ].map((t) => (
               <div key={t.name} className={`sF-card sF-reveal ${t.d}`}>
-                {/* Quote mark */}
-                <div style={{ marginBottom: '1.25rem' }}>
+                <div className="mb-5">
                   <svg width="28" height="22" viewBox="0 0 28 22" fill="none">
                     <path
                       d="M0 22V13.2C0 5.73 4.2 1.4 12.6 0l1.4 2.52C9.8 3.36 7.56 5.18 6.86 8H12V22H0zm16 0V13.2C16 5.73 20.2 1.4 28.6 0L30 2.52C25.8 3.36 23.56 5.18 22.86 8H28V22H16z"
@@ -1444,44 +1020,29 @@ export default async function PublicHomePage() {
                   </svg>
                 </div>
                 <p
-                  style={{
-                    color: '#3A4A2E',
-                    fontSize: '0.925rem',
-                    lineHeight: 1.8,
-                    marginBottom: '1.5rem',
-                    fontStyle: 'italic',
-                  }}
+                  className="italic mb-6"
+                  style={{ color: '#3A4A2E', fontSize: '0.925rem', lineHeight: 1.8 }}
                 >
                   &ldquo;{t.quote}&rdquo;
                 </p>
                 <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.75rem',
-                    borderTop: '1px solid rgba(192,48,46,0.08)',
-                    paddingTop: '1rem',
-                  }}
+                  className="flex items-center gap-3 pt-4"
+                  style={{ borderTop: '1px solid rgba(192,48,46,0.08)' }}
                 >
                   <div
+                    className="flex items-center justify-center shrink-0 rounded-full font-bold"
                     style={{
                       width: '36px',
                       height: '36px',
-                      borderRadius: '50%',
-                      flexShrink: 0,
                       background: 'rgba(251,57,54,0.12)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
                       fontSize: '0.85rem',
-                      fontWeight: 700,
                       color: '#FB3936',
                     }}
                   >
                     {t.initial}
                   </div>
                   <div>
-                    <p style={{ fontWeight: 700, color: '#1A1A1A', fontSize: '0.875rem' }}>
+                    <p className="font-bold" style={{ color: '#1A1A1A', fontSize: '0.875rem' }}>
                       {t.name}
                     </p>
                     <p style={{ fontSize: '0.75rem', color: '#7F7F7F' }}>{t.role}</p>
@@ -1494,22 +1055,17 @@ export default async function PublicHomePage() {
       </section>
 
       {/* ─────────────────────────────────────────── NOTRE ASSOCIATION ── */}
-      <section style={{ padding: '7rem 1.5rem', background: '#FAFAFA' }}>
-        <div style={{ maxWidth: '1040px', margin: '0 auto' }}>
+      <section className="px-6 py-28 bg-sf-cream">
+        <div className="max-w-[1040px] mx-auto">
           <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '3.5rem',
-              alignItems: 'center',
-            }}
+            className="grid gap-14 items-center"
+            style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}
           >
             {/* Photo */}
-            <div className="sF-reveal" style={{ position: 'relative' }}>
+            <div className="sF-reveal relative">
               <div
+                className="rounded-[24px] overflow-hidden"
                 style={{
-                  borderRadius: '24px',
-                  overflow: 'hidden',
                   boxShadow: '0 24px 64px rgba(192,48,46,0.13)',
                   border: '1.5px solid rgba(192,48,46,0.08)',
                 }}
@@ -1519,21 +1075,16 @@ export default async function PublicHomePage() {
                   alt="Les membres du bureau de La Neuville TAF sa Foulée devant le panneau du village"
                   width={540}
                   height={380}
-                  style={{ width: '100%', height: 'auto', display: 'block' }}
+                  className="w-full h-auto block"
                 />
               </div>
-              {/* Badge flottant */}
               <div
+                className="absolute right-6 rounded-[14px] font-bold text-white"
                 style={{
-                  position: 'absolute',
                   bottom: '-1rem',
-                  right: '1.5rem',
                   background: '#FB3936',
-                  color: '#fff',
-                  borderRadius: '14px',
                   padding: '0.6rem 1.1rem',
                   fontSize: '0.78rem',
-                  fontWeight: 700,
                   boxShadow: '0 8px 24px rgba(251,57,54,0.35)',
                   letterSpacing: '0.03em',
                 }}
@@ -1554,44 +1105,30 @@ export default async function PublicHomePage() {
                 Notre association
               </p>
               <h2
+                className="mb-5"
                 style={{
                   fontSize: 'clamp(2rem, 5vw, 3rem)',
                   fontWeight: 800,
                   color: '#1A1A1A',
                   lineHeight: 1.1,
-                  marginBottom: '1.25rem',
                 }}
               >
                 Une équipe passionnée,
                 <br />
                 <span style={{ color: '#FB3936' }}>au cœur du village</span>
               </h2>
-              <p
-                style={{
-                  color: '#7F7F7F',
-                  fontSize: '0.95rem',
-                  lineHeight: 1.8,
-                  marginBottom: '1.25rem',
-                }}
-              >
+              <p className="mb-5" style={{ color: '#7F7F7F', fontSize: '0.95rem', lineHeight: 1.8 }}>
                 La Neuville TAF sa Foulée est une association à but non lucratif fondée par des
                 coureurs du village. Notre bureau, composé de bénévoles engagés, œuvre chaque année
                 pour organiser des événements, accueillir de nouveaux membres et promouvoir la
                 course à pied pour tous.
               </p>
-              <p
-                style={{
-                  color: '#7F7F7F',
-                  fontSize: '0.95rem',
-                  lineHeight: 1.8,
-                  marginBottom: '2rem',
-                }}
-              >
+              <p className="mb-8" style={{ color: '#7F7F7F', fontSize: '0.95rem', lineHeight: 1.8 }}>
                 Implantés à La Neuville, nous courons sur les chemins de notre territoire — forêts,
                 prairies et routes de campagne — avec le clocher et le panneau du village comme
                 points de repère fidèles.
               </p>
-              <Link href="/inscription" className="sF-btn" style={{ display: 'inline-flex' }}>
+              <Link href="/inscription" className="sF-btn">
                 Rejoindre l&apos;association
                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
                   <path
@@ -1609,78 +1146,59 @@ export default async function PublicHomePage() {
       </section>
 
       {/* ─────────────────────────────────────────── CTA FINAL ── */}
-      <section style={{ padding: '7rem 1.5rem', background: '#FAFAFA' }}>
-        <div
-          className="sF-reveal"
-          style={{ maxWidth: '640px', margin: '0 auto', textAlign: 'center' }}
-        >
-          {/* Decorative three dots */}
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              gap: '0.5rem',
-              marginBottom: '2.25rem',
-            }}
-          >
+      <section className="px-6 py-28 bg-sf-cream">
+        <div className="sF-reveal max-w-[640px] mx-auto text-center">
+          <div className="flex justify-center gap-2 mb-9">
             {[0, 1, 2].map((i) => (
               <div
                 key={i}
+                className="h-2 rounded-[100px] transition-all duration-300"
                 style={{
                   width: i === 1 ? '32px' : '8px',
-                  height: '8px',
-                  borderRadius: '100px',
                   background: i === 1 ? '#FB3936' : '#C0302E',
                   opacity: i === 1 ? 1 : 0.2,
-                  transition: 'all 0.3s ease',
                 }}
               />
             ))}
           </div>
 
-          {/* Mascotte CTA */}
-          <div style={{ marginBottom: '2rem' }}>
+          <div className="mb-8">
             <Image
               src="/mascotte-removebg-preview.png"
               alt="Mascotte de La Neuville TAF sa Foulée"
               width={120}
               height={120}
-              style={{
-                objectFit: 'contain',
-                margin: '0 auto',
-                display: 'block',
-                width: 'auto',
-                height: 'auto',
-              }}
+              className="mx-auto block w-auto h-auto"
+              style={{ objectFit: 'contain' }}
             />
           </div>
 
           <h2
+            className="mb-5"
             style={{
               fontSize: 'clamp(2.25rem, 6vw, 4rem)',
               fontWeight: 800,
               color: '#1A1A1A',
               lineHeight: 1.05,
-              marginBottom: '1.25rem',
             }}
           >
             Prêt à courir <span style={{ color: '#FB3936' }}>avec nous ?</span>
           </h2>
 
           <p
+            className="mx-auto mb-11"
             style={{
               color: '#7F7F7F',
               fontSize: '1.05rem',
               lineHeight: 1.75,
               maxWidth: '460px',
-              margin: '0 auto 2.75rem',
             }}
           >
             Rejoignez La Neuville TAF sa Foulée et découvrez la joie de courir en groupe, sur les
             plus beaux chemins de la région.
           </p>
 
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <div className="flex gap-4 justify-center flex-wrap">
             <Link href="/inscription" className="sF-btn">
               Rejoindre l&apos;association
               <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
@@ -1701,48 +1219,22 @@ export default async function PublicHomePage() {
       </section>
 
       {/* ─────────────────────────────────────────── FOOTER ── */}
-      <footer
-        style={{
-          background: '#1A1A1A',
-          padding: '3.5rem 1.5rem 2rem',
-          color: 'rgba(255,255,255,0.45)',
-        }}
-      >
-        <div style={{ maxWidth: '1040px', margin: '0 auto' }}>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              flexWrap: 'wrap',
-              gap: '2rem',
-              marginBottom: '2.5rem',
-            }}
-          >
-            {/* Brand */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+      <footer className="bg-sf-bark px-6 pt-14 pb-8" style={{ color: 'rgba(255,255,255,0.45)' }}>
+        <div className="max-w-[1040px] mx-auto">
+          <div className="flex items-center justify-between flex-wrap gap-8 mb-10">
+            <div className="flex items-center gap-3">
               <Image
                 src="/logo-removebg-preview.png"
                 alt="La Neuville TAF sa Foulée"
                 width={44}
                 height={44}
-                style={{
-                  objectFit: 'contain',
-                  filter: 'brightness(0) invert(1)',
-                  opacity: 0.9,
-                  width: 'auto',
-                  height: 'auto',
-                }}
+                className="w-auto h-auto opacity-90"
+                style={{ objectFit: 'contain', filter: 'brightness(0) invert(1)' }}
               />
               <div>
                 <div
-                  style={{
-                    fontSize: '1rem',
-                    fontWeight: 800,
-                    color: '#FAFAFA',
-                    marginBottom: '0.15rem',
-                    lineHeight: 1.2,
-                  }}
+                  className="font-extrabold leading-tight mb-[0.15rem]"
+                  style={{ fontSize: '1rem', color: '#FAFAFA' }}
                 >
                   La Neuville TAF sa Foulée
                 </div>
@@ -1750,8 +1242,7 @@ export default async function PublicHomePage() {
               </div>
             </div>
 
-            {/* Links */}
-            <nav style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
+            <nav className="flex gap-8 flex-wrap">
               {[
                 { href: '/evenements', label: 'Événements' },
                 { href: '/blog', label: 'Blog' },
@@ -1766,10 +1257,10 @@ export default async function PublicHomePage() {
           </div>
 
           <div
+            className="text-center"
             style={{
               borderTop: '1px solid rgba(255,255,255,0.07)',
               paddingTop: '1.75rem',
-              textAlign: 'center',
               fontSize: '0.78rem',
             }}
           >
@@ -1778,7 +1269,6 @@ export default async function PublicHomePage() {
         </div>
       </footer>
 
-      {/* ── Scroll-reveal observer ── */}
       <ScrollReveal />
     </div>
   )
