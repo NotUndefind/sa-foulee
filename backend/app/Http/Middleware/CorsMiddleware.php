@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Middleware;
 
 use Closure;
@@ -12,16 +13,16 @@ class CorsMiddleware
 
         // CORS sur TOUTES réponses, même 3xx
         $response->headers->set(
-            "Access-Control-Allow-Origin",
-            "https://dev.laneuvilletafsafoulee.fr",
+            'Access-Control-Allow-Origin',
+            'https://dev.laneuvilletafsafoulee.fr',
         );
         $response->headers->set(
-            "Access-Control-Allow-Methods",
-            "GET, POST, PUT, DELETE, OPTIONS",
+            'Access-Control-Allow-Methods',
+            'GET, POST, PUT, DELETE, OPTIONS',
         );
         $response->headers->set(
-            "Access-Control-Allow-Headers",
-            "Content-Type, Authorization",
+            'Access-Control-Allow-Headers',
+            'Content-Type, Authorization',
         );
 
         return $response;

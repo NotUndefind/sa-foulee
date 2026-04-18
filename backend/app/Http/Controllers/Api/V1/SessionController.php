@@ -31,7 +31,7 @@ class SessionController extends Controller
         $userId = $request->user()->id;
 
         $data = $sessions->map(
-            fn(TrainingSession $s) => $this->formatSession($s, $userId),
+            fn (TrainingSession $s) => $this->formatSession($s, $userId),
         );
 
         return response()->json([
@@ -71,7 +71,7 @@ class SessionController extends Controller
 
         return response()->json([
             "data" => $sessions->map(
-                fn(TrainingSession $s) => $this->formatSession($s, $user->id),
+                fn (TrainingSession $s) => $this->formatSession($s, $user->id),
             ),
         ]);
     }
