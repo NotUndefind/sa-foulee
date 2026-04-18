@@ -48,7 +48,6 @@ class TrainingSession extends Model
     public function participants(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'session_participations', 'session_id', 'user_id')
-            ->withTimestamps()
             ->withPivot('participated_at');
     }
 }
