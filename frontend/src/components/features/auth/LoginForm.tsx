@@ -16,8 +16,7 @@ const PASSWORD_POLICY_LIVE_DATE = '15 avril 2026'
 const OLD_PASSWORD_HINT_SUNSET = new Date('2026-05-15')
 
 const schema = z.object({
-  email: z.email("L'adresse e-mail n'est pas valide.")
-        .min(1, "L'adresse e-mail est obligatoire."),
+  email: z.email("L'adresse e-mail n'est pas valide.").min(1, "L'adresse e-mail est obligatoire."),
   password: passwordSchema,
 })
 

@@ -34,7 +34,7 @@ const schema = z
   .superRefine((data, ctx) => {
     if (!data.is_template && !data.session_date) {
       ctx.addIssue({
-        code: "custom",
+        code: 'custom',
         message: 'La date de séance est obligatoire.',
         path: ['session_date'],
       })

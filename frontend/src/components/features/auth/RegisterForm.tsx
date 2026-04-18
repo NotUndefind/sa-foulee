@@ -17,18 +17,19 @@ const schema = z
   .object({
     first_name: z.string().min(1, 'Le prénom est obligatoire.').max(50),
     last_name: z.string().min(1, 'Le nom est obligatoire.').max(50),
-    email: z.email("L'adresse e-mail n'est pas valide.")
-          .min(1, "L'adresse e-mail est obligatoire."),
+    email: z
+      .email("L'adresse e-mail n'est pas valide.")
+      .min(1, "L'adresse e-mail est obligatoire."),
     password: passwordSchema,
     password_confirmation: z.string().min(1, 'Veuillez confirmer votre mot de passe.'),
     consent: z.boolean().refine((v) => v === true, {
-        error: "Vous devez accepter les conditions d'utilisation."
+      error: "Vous devez accepter les conditions d'utilisation.",
     }),
   })
   .refine((data) => data.password === data.password_confirmation, {
     path: ['password_confirmation'],
-      error: 'La confirmation du mot de passe ne correspond pas.'
-})
+    error: 'La confirmation du mot de passe ne correspond pas.',
+  })
 
 type FormValues = z.infer
 
