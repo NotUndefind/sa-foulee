@@ -133,7 +133,7 @@ export default function CalendarView({ events, onEventClick }: Props) {
               {/* Numéro du jour */}
               <div
                 className={`mb-1 flex h-6 w-6 items-center justify-center rounded-full text-xs font-medium ${
-                  isToday ? 'bg-brand text-white' : 'text-zinc-500'
+                  isToday ? 'bg-primary text-white' : 'text-zinc-500'
                 }`}
               >
                 {day}

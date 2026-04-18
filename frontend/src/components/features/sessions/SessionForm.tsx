@@ -10,8 +10,10 @@ import {
 import type { Exercise, Intensity, Location, SessionType, TrainingSession } from '@/types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useEffect, useState } from 'react'
+import type { ComponentType } from 'react'
 import { Controller, useForm, useWatch, type FieldErrors, type Resolver } from 'react-hook-form'
 import { z } from 'zod'
+import { Timer, Zap, Wind, HeartPulse, Dumbbell, ClipboardList, Check } from 'lucide-react'
 import ExerciseBuilder from './ExerciseBuilder'
 
 // ---- Schéma de validation ----
@@ -39,17 +41,16 @@ const schema = z
     }
   })
 
-// prettier-ignore
 type FormData = z.infer<typeof schema>
 
 // ---- Options ----
-const TYPE_OPTIONS: { value: SessionType; label: string; icon: string }[] = [
-  { value: 'running', label: 'Course', icon: '🏃' },
-  { value: 'interval', label: 'Interval', icon: '⚡' },
-  { value: 'fartlek', label: 'Fartlek', icon: '🌀' },
-  { value: 'recovery', label: 'Récupération', icon: '🧘' },
-  { value: 'strength', label: 'Renforcement', icon: '💪' },
-  { value: 'other', label: 'Autre', icon: '📋' },
+const TYPE_OPTIONS: { value: SessionType; label: string; icon: ComponentType<{ size?: number }> }[] = [
+  { value: 'running', label: 'Course', icon: Timer },
+  { value: 'interval', label: 'Interval', icon: Zap },
+  { value: 'fartlek', label: 'Fartlek', icon: Wind },
+  { value: 'recovery', label: 'Récupération', icon: HeartPulse },
+  { value: 'strength', label: 'Renforcement', icon: Dumbbell },
+  { value: 'other', label: 'Autre', icon: ClipboardList },
 ]
 
 const INTENSITY_OPTIONS: { value: Intensity; label: string; color: string }[] = [
@@ -62,7 +63,7 @@ const STEPS = ['Infos', 'Exercices', 'Options']
 
 interface Props {
   session?: TrainingSession
-  templateSource?: TrainingSession // pré-remplit depuis un template
+  templateSource?: TrainingSession
   onSuccess: (session: TrainingSession) => void
   onCancel: () => void
 }
@@ -71,10 +72,11 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
   const isEdit = !!session
   const source = session ?? templateSource
   const [step, setStep] = useState(0)
-  const [exercises, setExercises] = useState<Exercise[]>(source?.exercises ?? [])
+  const [exercises, setExercises] = useState<Exercise[]>(
+    (source?.exercises ?? []).map((ex) => ({ ...ex, _key: crypto.randomUUID() }))
+  )
   const [submitError, setSubmitError] = useState<string | null>(null)
 
-  // Lieux favoris
   const [locations, setLocations] = useState<Location[]>([])
   const [newLocationName, setNewLocationName] = useState('')
   const [showNewLocation, setShowNewLocation] = useState(false)
@@ -94,7 +96,6 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
     setValue,
     formState: { errors, isSubmitting },
   } = useForm<FormData>({
-    // prettier-ignore
     resolver: zodResolver(schema) as Resolver<FormData>,
     defaultValues: {
       title: source?.title ?? '',
@@ -130,7 +131,6 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
     }
   }
 
-  // prettier-ignore
   const onFormError = (validationErrors: FieldErrors<FormData>) => {
     const step0Fields = new Set(['title', 'type', 'distance_km', 'duration_min', 'intensity'])
     const keys = Object.keys(validationErrors)
@@ -151,7 +151,9 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
       distance_km: data.distance_km ?? null,
       duration_min: data.duration_min ?? null,
       intensity: data.intensity,
-      exercises: exercises.filter((e) => e.name.trim() !== ''),
+      exercises: exercises
+        .filter((e) => e.name.trim() !== '')
+        .map(({ _key, ...rest }) => rest),
       description: data.description ?? '',
       is_template: data.is_template,
       location_id: data.is_template ? null : (data.location_id ?? null),
@@ -164,7 +166,6 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
         : await createSession(payload)
       onSuccess(saved)
     } catch (err: unknown) {
-      // prettier-ignore
       const apiErr = err as { errors?: Record<string, string[]>; message?: string }
       if (apiErr.errors) {
         const step2Fields = new Set(['session_date', 'location_id', 'description', 'is_template'])
@@ -181,13 +182,12 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
   }
 
   const inputCls =
-    'w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20'
+    'w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20'
   const labelCls = 'block text-sm font-medium text-zinc-700 mb-1'
   const errCls = 'mt-1 text-xs text-red-600'
 
   return (
     <form onSubmit={handleSubmit(onSubmit, onFormError)} className="space-y-6">
-      {/* Erreur globale — affichée en haut pour être immédiatement visible */}
       {submitError && (
         <p className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">
           {submitError}
@@ -203,13 +203,13 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
               onClick={() => setStep(idx)}
               className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold transition ${
                 step === idx
-                  ? 'bg-brand text-white'
+                  ? 'bg-primary text-white'
                   : idx < step
                     ? 'bg-accent text-white'
                     : 'bg-zinc-200 text-zinc-500'
               }`}
             >
-              {idx < step ? '✓' : idx + 1}
+              {idx < step ? <Check size={12} /> : idx + 1}
             </button>
             <span
               className={`ml-1.5 text-xs font-medium ${step === idx ? 'text-zinc-800' : 'text-zinc-400'}`}
@@ -226,14 +226,17 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
       {/* ---- Étape 1 : Infos de base ---- */}
       {step === 0 && (
         <div className="space-y-4">
-          {/* Titre */}
           <div>
-            <label className={labelCls}>Titre de la session</label>
-            <input {...register('title')} placeholder="Ex: Interval 5×400m" className={inputCls} />
+            <label htmlFor="field-title" className={labelCls}>Titre de la session</label>
+            <input
+              id="field-title"
+              {...register('title')}
+              placeholder="Ex: Interval 5×400m"
+              className={inputCls}
+            />
             {errors.title && <p className={errCls}>{errors.title.message}</p>}
           </div>
 
-          {/* Type — grille de boutons */}
           <div>
             <label className={labelCls}>Type de session</label>
             <Controller
@@ -241,33 +244,36 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
               control={control}
               render={({ field }) => (
                 <div className="grid grid-cols-3 gap-2">
-                  {TYPE_OPTIONS.map((opt) => (
-                    <button
-                      key={opt.value}
-                      type="button"
-                      onClick={() => field.onChange(opt.value)}
-                      className={`flex flex-col items-center gap-1 rounded-xl border-2 py-3 text-sm font-medium transition ${
-                        field.value === opt.value
-                          ? 'border-brand bg-brand/5 text-brand'
-                          : 'border-zinc-200 text-zinc-500 hover:border-zinc-300'
-                      }`}
-                    >
-                      <span className="text-xl">{opt.icon}</span>
-                      {opt.label}
-                    </button>
-                  ))}
+                  {TYPE_OPTIONS.map((opt) => {
+                    const OptIcon = opt.icon
+                    return (
+                      <button
+                        key={opt.value}
+                        type="button"
+                        onClick={() => field.onChange(opt.value)}
+                        className={`flex flex-col items-center gap-1 rounded-xl border-2 py-3 text-sm font-medium transition ${
+                          field.value === opt.value
+                            ? 'border-primary bg-primary/5 text-primary'
+                            : 'border-zinc-200 text-zinc-500 hover:border-zinc-300'
+                        }`}
+                      >
+                        <OptIcon size={20} />
+                        {opt.label}
+                      </button>
+                    )
+                  })}
                 </div>
               )}
             />
           </div>
 
-          {/* Distance + Durée */}
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className={labelCls}>
+              <label htmlFor="field-distance" className={labelCls}>
                 Distance (km) <span className="text-zinc-400">optionnel</span>
               </label>
               <input
+                id="field-distance"
                 type="number"
                 step="0.1"
                 min="0"
@@ -277,10 +283,11 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
               />
             </div>
             <div>
-              <label className={labelCls}>
+              <label htmlFor="field-duration" className={labelCls}>
                 Durée (min) <span className="text-zinc-400">optionnel</span>
               </label>
               <input
+                id="field-duration"
                 type="number"
                 min="1"
                 {...register('duration_min', { valueAsNumber: true })}
@@ -290,7 +297,6 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
             </div>
           </div>
 
-          {/* Intensité */}
           <div>
             <label className={labelCls}>Intensité</label>
             <Controller
@@ -333,10 +339,10 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
       {/* ---- Étape 3 : Options ---- */}
       {step === 2 && (
         <div className="space-y-4">
-          {/* Description */}
           <div>
-            <label className={labelCls}>Description</label>
+            <label htmlFor="field-description" className={labelCls}>Description</label>
             <textarea
+              id="field-description"
               {...register('description')}
               rows={4}
               placeholder="Consignes, objectifs, notes pour les membres…"
@@ -344,12 +350,11 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
             />
           </div>
 
-          {/* Option template */}
           <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-zinc-200 p-3 hover:bg-zinc-50">
             <input
               {...register('is_template')}
               type="checkbox"
-              className="accent-brand mt-0.5 h-4 w-4 rounded"
+              className="accent-primary mt-0.5 h-4 w-4 rounded"
             />
             <div>
               <p className="text-sm font-medium text-zinc-800">Sauvegarder comme template</p>
@@ -359,21 +364,23 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
             </div>
           </label>
 
-          {/* Date et lieu (masqués si template) */}
           {!isTemplate && (
             <>
-              {/* Date de séance */}
               <div>
-                <label className={labelCls}>
+                <label htmlFor="field-session-date" className={labelCls}>
                   Date de la séance <span className="text-red-500">*</span>
                 </label>
-                <input {...register('session_date')} type="datetime-local" className={inputCls} />
+                <input
+                  id="field-session-date"
+                  {...register('session_date')}
+                  type="datetime-local"
+                  className={inputCls}
+                />
                 {errors.session_date && <p className={errCls}>{errors.session_date.message}</p>}
               </div>
 
-              {/* Lieu */}
               <div>
-                <label className={labelCls}>
+                <label htmlFor="field-location" className={labelCls}>
                   Lieu <span className="text-zinc-400">optionnel</span>
                 </label>
                 <Controller
@@ -381,6 +388,7 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
                   control={control}
                   render={({ field }) => (
                     <select
+                      id="field-location"
                       value={field.value ?? ''}
                       onChange={(e) =>
                         field.onChange(e.target.value === '' ? null : Number(e.target.value))
@@ -397,12 +405,11 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
                   )}
                 />
 
-                {/* Ajout d'un lieu à la volée */}
                 {!showNewLocation ? (
                   <button
                     type="button"
                     onClick={() => setShowNewLocation(true)}
-                    className="text-brand mt-1.5 text-xs hover:underline"
+                    className="text-primary mt-1.5 text-xs hover:underline"
                   >
                     + Nouveau lieu
                   </button>
@@ -426,7 +433,7 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
                       type="button"
                       onClick={handleCreateLocation}
                       disabled={locationLoading || !newLocationName.trim()}
-                      className="bg-brand hover:bg-brand-dark rounded-lg px-3 py-2 text-sm font-medium text-white disabled:opacity-50"
+                      className="bg-primary hover:bg-primary-dark rounded-lg px-3 py-2 text-sm font-medium text-white disabled:opacity-50"
                     >
                       {locationLoading ? '…' : 'Créer'}
                     </button>
@@ -462,7 +469,7 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
           <button
             type="button"
             onClick={() => setStep((s) => s + 1)}
-            className="bg-brand hover:bg-brand-dark rounded-lg px-4 py-2 text-sm font-medium text-white"
+            className="bg-primary hover:bg-primary-dark rounded-lg px-4 py-2 text-sm font-medium text-white"
           >
             Suivant →
           </button>
@@ -470,7 +477,7 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
           <button
             type="submit"
             disabled={isSubmitting}
-            className="bg-brand hover:bg-brand-dark rounded-lg px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
+            className="bg-primary hover:bg-primary-dark rounded-lg px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
           >
             {isSubmitting
               ? 'Enregistrement…'

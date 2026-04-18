@@ -17,9 +17,6 @@
   --color-primary-light: #fd6563; /* accents légers */
   --color-bg: #fafafa; /* fond pages principales */
   --color-sidebar: #c0302e; /* sidebar dashboard */
-  /* Alias utilisés dans EventForm / SessionForm / ExerciseBuilder */
-  --color-brand: #fb3936; /* bg-brand, text-brand, border-brand, ring-brand */
-  --color-brand-dark: #d42f2d; /* hover:bg-brand-dark */
   --color-accent: #d42f2d; /* stepper étapes complétées (bg-accent) */
 
   /* ── Palette sa Foulée — charte rouge & blanc ── */
@@ -320,6 +317,13 @@ input[type='radio'] {
     margin-bottom: 0.875rem;
   }
 }
+
+/* ── Sessions dashboard ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.ss-fade { animation: fadeUp 0.4s ease both; }
 
 /* ── Hero responsive ── */
 @media (max-width: 767px) {

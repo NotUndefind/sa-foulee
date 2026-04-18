@@ -152,7 +152,7 @@ export default function EventDetailPage({ eventId }: Props) {
         </div>
         <Link
           href="/tableau-de-bord/evenements"
-          className="text-brand mt-4 inline-block text-sm hover:underline"
+          className="text-primary mt-4 inline-block text-sm hover:underline"
         >
           ← Retour aux événements
         </Link>
@@ -282,7 +282,7 @@ export default function EventDetailPage({ eventId }: Props) {
               className={`w-full rounded-xl py-2.5 text-sm font-medium transition disabled:opacity-50 ${
                 event.is_registered
                   ? 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200'
-                  : 'bg-brand hover:bg-brand-dark text-white'
+                  : 'bg-primary hover:bg-primary-dark text-white'
               }`}
             >
               {regLoading

@@ -69,7 +69,7 @@ export default function DocumentUploadModal({ userId, onUploaded, onClose }: Pro
             <select
               value={type}
               onChange={(e) => setType(e.target.value)}
-              className="focus:border-brand focus:ring-brand/20 w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm text-zinc-900 focus:ring-2 focus:outline-none"
+              className="focus:border-primary focus:ring-primary/20 w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm text-zinc-900 focus:ring-2 focus:outline-none"
             >
               {DOCUMENT_TYPES.map((t) => (
                 <option key={t.value} value={t.value}>
@@ -84,7 +84,7 @@ export default function DocumentUploadModal({ userId, onUploaded, onClose }: Pro
             <label className="mb-1 block text-sm font-medium text-zinc-700">Fichier</label>
             <div
               onClick={() => fileRef.current?.click()}
-              className="hover:border-brand flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-zinc-300 px-4 py-6 transition hover:bg-zinc-50"
+              className="hover:border-primary flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed border-zinc-300 px-4 py-6 transition hover:bg-zinc-50"
             >
               {file ? (
                 <p className="text-sm font-medium text-zinc-800">{file.name}</p>
@@ -115,7 +115,7 @@ export default function DocumentUploadModal({ userId, onUploaded, onClose }: Pro
               value={expiresAt}
               onChange={(e) => setExpiry(e.target.value)}
               min={new Date().toISOString().split('T')[0]}
-              className="focus:border-brand focus:ring-brand/20 w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm text-zinc-900 focus:ring-2 focus:outline-none"
+              className="focus:border-primary focus:ring-primary/20 w-full rounded-lg border border-zinc-300 px-3 py-2 text-sm text-zinc-900 focus:ring-2 focus:outline-none"
             />
           </div>
 
@@ -130,7 +130,7 @@ export default function DocumentUploadModal({ userId, onUploaded, onClose }: Pro
             <button
               type="submit"
               disabled={loading}
-              className="bg-brand hover:bg-brand-dark flex-1 rounded-lg px-4 py-2 text-sm font-semibold text-white transition disabled:opacity-60"
+              className="bg-primary hover:bg-primary-dark flex-1 rounded-lg px-4 py-2 text-sm font-semibold text-white transition disabled:opacity-60"
             >
               {loading ? 'Upload…' : 'Ajouter'}
             </button>

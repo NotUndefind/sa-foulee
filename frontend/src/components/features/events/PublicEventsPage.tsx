@@ -63,7 +63,7 @@ export default function PublicEventsPage() {
                 className="flex items-center gap-4 rounded-2xl bg-white px-5 py-4 shadow-sm ring-1 ring-zinc-200"
               >
                 {/* Date */}
-                <div className="bg-brand flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-xl text-white">
+                <div className="bg-primary flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-xl text-white">
                   <span className="text-xs font-semibold uppercase">
                     {date.toLocaleDateString('fr-FR', { month: 'short' })}
                   </span>
@@ -89,7 +89,7 @@ export default function PublicEventsPage() {
                 {/* CTA */}
                 <Link
                   href="/connexion"
-                  className="bg-brand hover:bg-brand-dark shrink-0 rounded-xl px-4 py-2 text-sm font-medium text-white transition"
+                  className="bg-primary hover:bg-primary-dark shrink-0 rounded-xl px-4 py-2 text-sm font-medium text-white transition"
                 >
                   S&apos;inscrire
                 </Link>
@@ -100,7 +100,7 @@ export default function PublicEventsPage() {
       )}
 
       <p className="text-center text-sm text-zinc-400">
-        <Link href="/connexion" className="text-brand hover:underline">
+        <Link href="/connexion" className="text-primary hover:underline">
           Connectez-vous
         </Link>{' '}
         pour vous inscrire aux événements.
