@@ -1,7 +1,7 @@
 'use client'
 
+import type { Event } from '@/types'
 import { useMemo, useState } from 'react'
-import type { Event, EventType } from '@/types'
 
 const TYPE_COLORS: Record = {
   race: 'bg-red-400',

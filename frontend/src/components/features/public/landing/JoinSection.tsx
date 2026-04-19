@@ -27,7 +27,7 @@ const STEPS = [
       </svg>
     ),
     title: 'Inscription sur le site',
-    desc: "Inscrivez-vous sur notre site internet en cliquant sur le bouton ci-dessous et renseignez les informations demandées.",
+    desc: 'Inscrivez-vous sur notre site internet en cliquant sur le bouton ci-dessous et renseignez les informations demandées.',
   },
   {
     d: 'sF-d2',
@@ -78,7 +78,7 @@ const STEPS = [
       </svg>
     ),
     title: 'Envoi du dossier',
-    desc: "Une fois complété, retournez-nous votre dossier par e-mail pour finaliser votre demande.",
+    desc: 'Une fois complété, retournez-nous votre dossier par e-mail pour finaliser votre demande.',
   },
 ]
 

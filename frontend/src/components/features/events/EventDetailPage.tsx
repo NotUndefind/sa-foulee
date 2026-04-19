@@ -1,22 +1,22 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
-import { useRouter } from 'next/navigation'
-import Image from 'next/image'
-import type { Event, EventPhoto, EventType } from '@/types'
+import { useToast } from '@/components/ui/Toast'
+import { useRole } from '@/hooks/useRole'
 import {
+  deleteEvent,
+  deleteEventPhoto,
   getEvent,
+  getEventPhotos,
   registerToEvent,
   unregisterFromEvent,
-  deleteEvent,
-  getEventPhotos,
   uploadEventPhoto,
-  deleteEventPhoto,
 } from '@/lib/events'
-import { useRole } from '@/hooks/useRole'
-import { useToast } from '@/components/ui/Toast'
 import { useAuthStore } from '@/store/auth.store'
+import type { Event, EventPhoto } from '@/types'
+import Image from 'next/image'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useEffect, useRef, useState } from 'react'
 
 const TYPE_LABELS: Record = {
   race: 'Course',
