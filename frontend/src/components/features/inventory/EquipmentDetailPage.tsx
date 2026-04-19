@@ -1,10 +1,10 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { useRole } from '@/hooks/useRole'
 import { getEquipmentDetail, returnEquipment } from '@/lib/inventory'
-import type { EquipmentDetail, EquipmentAssignment, EquipmentStatus } from '@/types'
+import type { EquipmentAssignment, EquipmentDetail } from '@/types'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import AssignmentModal from './AssignmentModal'
 
 const STATUS_CONFIG: Record = {

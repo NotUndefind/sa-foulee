@@ -1,12 +1,11 @@
 'use client'
 
-import { useState } from 'react'
-import type { ComponentType } from 'react'
-import type { TrainingSession, SessionType, Intensity } from '@/types'
-import { toggleParticipation, deleteSession } from '@/lib/sessions'
-import { useRole } from '@/hooks/useRole'
 import { useToast } from '@/components/ui/Toast'
-import { Timer, Zap, Wind, HeartPulse, Dumbbell, ClipboardList, Check } from 'lucide-react'
+import { useRole } from '@/hooks/useRole'
+import { deleteSession, toggleParticipation } from '@/lib/sessions'
+import type { TrainingSession } from '@/types'
+import { Check, ClipboardList, Dumbbell, HeartPulse, Timer, Wind, Zap } from 'lucide-react'
+import { useState } from 'react'
 
 const TYPE_LABELS: Record = {
   running: 'Course',

@@ -1,7 +1,7 @@
 'use client'
 
 import { getEvents } from '@/lib/events'
-import type { Event, EventType } from '@/types'
+import type { Event } from '@/types'
 import Link from 'next/link'
 import { useCallback, useEffect, useState } from 'react'
 

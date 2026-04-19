@@ -1,11 +1,11 @@
 'use client'
 
-import { useState } from 'react'
-import Link from 'next/link'
-import type { Event, EventType } from '@/types'
-import { registerToEvent, unregisterFromEvent, deleteEvent } from '@/lib/events'
-import { useRole } from '@/hooks/useRole'
 import { useToast } from '@/components/ui/Toast'
+import { useRole } from '@/hooks/useRole'
+import { deleteEvent, registerToEvent, unregisterFromEvent } from '@/lib/events'
+import type { Event } from '@/types'
+import Link from 'next/link'
+import { useState } from 'react'
 
 const TYPE_LABELS: Record = {
   race: 'Course',
