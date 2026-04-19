@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
     // Ces erreurs n'affectent pas le runtime — ignorées pour le déploiement Vercel
     ignoreBuildErrors: true,
   },
+  turbopack: {
+    root: process.cwd(),
+  },
 }
 
 export default nextConfig
