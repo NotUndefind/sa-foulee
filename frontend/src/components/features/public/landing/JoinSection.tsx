@@ -26,8 +26,8 @@ const STEPS = [
         <polyline points="10 9 9 9 8 9" />
       </svg>
     ),
-    title: 'Formulaire & documents',
-    desc: "Remplissez le formulaire d'inscription en ligne, déposez les documents requis (certificat médical, justificatif) et réglez la cotisation annuelle directement sur la plateforme.",
+    title: 'Inscription sur le site',
+    desc: "Inscrivez-vous sur notre site internet en cliquant sur le bouton ci-dessous et renseignez les informations demandées.",
   },
   {
     d: 'sF-d2',
@@ -51,8 +51,8 @@ const STEPS = [
         <path d="M16 3.13a4 4 0 0 1 0 7.75" />
       </svg>
     ),
-    title: 'Validation par le bureau',
-    desc: "Un administrateur ou un fondateur de l'association examine votre dossier. La validation est rapide — comptez généralement 24 à 48 heures. Vous recevez une confirmation par email.",
+    title: 'Validation des informations',
+    desc: "Un formulaire d'inscription va vous être envoyé par e-mail. Veuillez le compléter pour finaliser votre dossier.",
   },
   {
     d: 'sF-d3',
@@ -77,8 +77,8 @@ const STEPS = [
         <path d="M5 12l3.5 1" />
       </svg>
     ),
-    title: 'Accès à toutes les activités',
-    desc: "Dossier validé — vous pouvez dès à présent vous inscrire à n'importe quelle sortie ou événement de l'association depuis votre tableau de bord.",
+    title: 'Envoi du dossier',
+    desc: "Une fois complété, retournez-nous votre dossier par e-mail pour finaliser votre demande.",
   },
 ]
 
