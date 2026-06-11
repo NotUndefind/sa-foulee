@@ -13,6 +13,34 @@ export const revalidate = 300
 
 export default async function PublicEventsRoute() {
   const initialData = await serverFetch<PaginatedEvents>('/events?upcoming=1&page=1')
+  const events = initialData?.data ?? null
 
-  return <PublicEventsPage initialEvents={initialData?.data ?? null} />
+  // Rich results Google : schema.org Event pour chaque événement à venir.
+  const jsonLd = events?.length
+    ? {
+        '@context': 'https://schema.org',
+        '@graph': events.map((e) => ({
+          '@type': 'Event',
+          name: e.title,
+          startDate: e.event_date,
+          ...(e.location ? { location: { '@type': 'Place', name: e.location } } : {}),
+          organizer: {
+            '@type': 'SportsOrganization',
+            name: 'La Neuville TAF sa Foulée',
+          },
+        })),
+      }
+    : null
+
+  return (
+    <>
+      {jsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      )}
+      <PublicEventsPage initialEvents={events} />
+    </>
+  )
 }
