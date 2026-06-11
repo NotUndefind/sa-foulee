@@ -9,7 +9,7 @@ import { useAuthStore } from '@/store/auth.store'
 
 // ── Labels & styles ────────────────────────────────────────────────────────
 
-const TYPE_LABELS: Record = {
+const TYPE_LABELS: Record<string, string> = {
   all: 'Tous',
   race: 'Course',
   outing: 'Sortie',
@@ -17,7 +17,7 @@ const TYPE_LABELS: Record = {
   other: 'Autre',
 }
 
-const TYPE_BADGE: Record = {
+const TYPE_BADGE: Record<string, { bg: string; color: string }> = {
   race: { bg: 'rgba(251,57,54,0.12)', color: '#D42F2D' },
   outing: { bg: 'rgba(192,48,46,0.08)', color: '#C0302E' },
   competition: { bg: 'rgba(176,137,138,0.2)', color: '#D42F2D' },
@@ -25,7 +25,7 @@ const TYPE_BADGE: Record = {
 }
 
 // Gradient backgrounds for past event cards (no cover photo)
-const PAST_CARD_GRADIENTS: Record = {
+const PAST_CARD_GRADIENTS: Record<string, string> = {
   race: 'linear-gradient(135deg, #FB3936 0%, #D42F2D 100%)',
   outing: 'linear-gradient(135deg, #C0302E 0%, #D42F2D 100%)',
   competition: 'linear-gradient(135deg, #7F7F7F 0%, #D42F2D 100%)',

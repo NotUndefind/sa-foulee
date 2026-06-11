@@ -18,14 +18,14 @@ import { useToast } from '@/components/ui/Toast'
 import { useAuthStore } from '@/store/auth.store'
 import Link from 'next/link'
 
-const TYPE_LABELS: Record = {
+const TYPE_LABELS: Record<EventType, string> = {
   race: 'Course',
   outing: 'Sortie',
   competition: 'Compétition',
   other: 'Autre',
 }
 
-const TYPE_COLORS: Record = {
+const TYPE_COLORS: Record<EventType, string> = {
   race: 'bg-red-100 text-red-700',
   outing: 'bg-green-100 text-green-700',
   competition: 'bg-purple-100 text-purple-700',
@@ -104,7 +104,7 @@ export default function EventDetailPage({ eventId }: Props) {
     }
   }
 
-  const handlePhotoUpload = async (e: React.ChangeEvent) => {
+  const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!event) return
     const file = e.target.files?.[0]
     if (!file) return

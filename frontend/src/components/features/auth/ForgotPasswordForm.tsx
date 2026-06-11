@@ -12,7 +12,7 @@ const schema = z.object({
   email: z.email("L'adresse e-mail n'est pas valide.").min(1, "L'adresse e-mail est obligatoire."),
 })
 
-type FormValues = z.infer
+type FormValues = z.infer<typeof schema>
 
 export default function ForgotPasswordForm() {
   const [success, setSuccess] = useState(false)

@@ -18,7 +18,7 @@ export interface UserFilters {
   per_page?: number
 }
 
-export async function getUsers(filters: UserFilters = {}): Promise {
+export async function getUsers(filters: UserFilters = {}): Promise<PaginatedUsers> {
   const params = new URLSearchParams()
   if (filters.search) params.set('search', filters.search)
   if (filters.role) params.set('role', filters.role)
@@ -29,11 +29,11 @@ export async function getUsers(filters: UserFilters = {}): Promise {
   return api.get<PaginatedUsers>(`/users${qs ? `?${qs}` : ''}`)
 }
 
-export async function updateUserRole(userId: number, role: Role): Promise {
+export async function updateUserRole(userId: number, role: Role): Promise<User> {
   return api.patch<User>(`/users/${userId}/role`, { role })
 }
 
-export async function deleteUser(userId: number): Promise {
+export async function deleteUser(userId: number): Promise<void> {
   await api.delete(`/users/${userId}`)
 }
 
@@ -41,25 +41,25 @@ export interface PendingDocument extends UserDocument {
   user: { id: number; first_name: string; last_name: string; email: string }
 }
 
-export async function getPendingDocuments(): Promise {
+export async function getPendingDocuments(): Promise<PendingDocument[]> {
   return api.get<PendingDocument[]>('/documents/pending')
 }
 
-export async function getUserDocuments(userId: number): Promise {
+export async function getUserDocuments(userId: number): Promise<UserDocument[]> {
   return api.get<UserDocument[]>(`/users/${userId}/documents`)
 }
 
-export async function getDocumentDownloadUrl(documentId: number): Promise {
+export async function getDocumentDownloadUrl(documentId: number): Promise<{ url: string }> {
   return api.get<{ url: string }>(`/documents/${documentId}/download`)
 }
 
-export async function deleteDocument(documentId: number): Promise {
+export async function deleteDocument(documentId: number): Promise<void> {
   await api.delete(`/documents/${documentId}`)
 }
 
 export async function updateDocumentStatus(
   documentId: number,
   status: 'valid' | 'pending'
-): Promise {
+): Promise<UserDocument> {
   return api.patch<UserDocument>(`/documents/${documentId}/status`, { status })
 }

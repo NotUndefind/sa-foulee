@@ -358,7 +358,7 @@ function Podium({ entries }: { entries: LeaderboardEntry[] }) {
 
 // ── Main Page ──────────────────────────────────────────────────────────────────
 
-const PERIOD_LABELS: Record = {
+const PERIOD_LABELS: Record<string, string> = {
   week: 'Cette semaine',
   month: 'Ce mois',
   season: 'Cette saison',
