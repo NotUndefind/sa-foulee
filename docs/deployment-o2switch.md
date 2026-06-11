@@ -158,4 +158,4 @@ Après la configuration initiale, chaque push sur `main` déclenche automatiquem
 1. **backend.yml** — CI (tests + lint)
 2. **deploy-backend.yml** — déploiement sur O2switch (si CI vert)
 
-Le workflow exécute `backend/scripts/deploy.sh` sur le serveur : `git pull`, `composer install`, `migrate --force`, `config:cache`, `route:cache`, `queue:restart`.
+Le script de déploiement est défini **directement dans `deploy-backend.yml`** (source unique de vérité) : `git pull`, `composer install --no-dev`, sauvegarde BDD (`backup:run --only-db`), `migrate --force`, mise en cache (`config`/`route`/`view`/`event`), `queue:restart`, puis health check `/up`.
