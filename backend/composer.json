@@ -11,9 +11,10 @@
     "php": "^8.2",
     "laravel/framework": "^11.0",
     "laravel/sanctum": "^4.0",
-    "spatie/laravel-permission": "^6.0",
     "league/flysystem-aws-s3-v3": "^3.0",
-    "resend/resend-php": "^0.8"
+    "resend/resend-php": "^0.8",
+    "spatie/laravel-permission": "^6.0",
+    "stevebauman/purify": "^6.3"
   },
   "require-dev": {
     "fakerphp/faker": "^1.23",

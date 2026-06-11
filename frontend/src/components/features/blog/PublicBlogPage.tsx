@@ -2,6 +2,7 @@
 
 import { getPosts } from '@/lib/posts'
 import type { Post } from '@/types'
+import DOMPurify from 'isomorphic-dompurify'
 import Link from 'next/link'
 import { useCallback, useEffect, useState } from 'react'
 
@@ -83,7 +84,7 @@ export default function PublicBlogPage() {
                 <h2 className="text-lg font-bold text-zinc-900">{post.title}</h2>
                 <div
                   className="prose prose-sm mt-3 line-clamp-4 max-w-none text-zinc-700"
-                  dangerouslySetInnerHTML={{ __html: post.content }}
+                  dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }}
                 />
                 <div className="mt-4 flex items-center justify-between">
                   <span className="text-xs text-zinc-400">
