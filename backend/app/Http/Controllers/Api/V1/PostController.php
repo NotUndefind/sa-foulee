@@ -119,6 +119,7 @@ class PostController extends Controller
         return [
             'id' => $post->id,
             'title' => $post->title,
+            'slug' => $post->slug,
             'content' => $post->content,
             'image' => $post->image,
             'is_pinned' => $post->is_pinned,
