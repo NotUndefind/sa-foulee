@@ -13,6 +13,7 @@
     "laravel/sanctum": "^4.0",
     "league/flysystem-aws-s3-v3": "^3.0",
     "resend/resend-php": "^0.8",
+    "sentry/sentry-laravel": "^4.26",
     "spatie/laravel-backup": "^9.3",
     "spatie/laravel-permission": "^6.0",
     "stevebauman/purify": "^6.3"
