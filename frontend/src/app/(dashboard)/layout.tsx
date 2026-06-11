@@ -226,7 +226,7 @@ function IconLogout() {
 type NavItem = {
   href: string
   label: string
-  Icon: React.ComponentType
+  Icon: React.ComponentType<{ active?: boolean }>
 }
 
 const NAV_LINKS: NavItem[] = [

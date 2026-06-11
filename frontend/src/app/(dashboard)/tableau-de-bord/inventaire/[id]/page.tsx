@@ -1,7 +1,7 @@
 import EquipmentDetailPage from '@/components/features/inventory/EquipmentDetailPage'
 
 interface Props {
-  params: Promise
+  params: Promise<{ id: string }>
 }
 
 export default async function Page({ params }: Props) {

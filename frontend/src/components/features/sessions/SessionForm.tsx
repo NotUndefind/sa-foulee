@@ -41,10 +41,14 @@ const schema = z
     }
   })
 
-type FormData = z.infer
+type FormData = z.infer<typeof schema>
 
 // ---- Options ----
-const TYPE_OPTIONS: { value: SessionType; label: string; icon: ComponentType }[] = [
+const TYPE_OPTIONS: {
+  value: SessionType
+  label: string
+  icon: ComponentType<{ size?: number }>
+}[] = [
   { value: 'running', label: 'Course', icon: Timer },
   { value: 'interval', label: 'Interval', icon: Zap },
   { value: 'fartlek', label: 'Fartlek', icon: Wind },
@@ -96,7 +100,7 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
     setValue,
     formState: { errors, isSubmitting },
   } = useForm<FormData>({
-    resolver: zodResolver(schema) as Resolver,
+    resolver: zodResolver(schema) as unknown as Resolver<FormData>,
     defaultValues: {
       title: source?.title ?? '',
       type: source?.type ?? 'running',
@@ -139,7 +143,7 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
     } else {
       setStep(2)
     }
-    const firstMsg = Object.values(validationErrors)[0]?.message
+    const firstMsg = Object.values(validationErrors)[0]?.message as string | undefined
     setSubmitError(firstMsg ?? 'Certains champs obligatoires ne sont pas remplis.')
   }
 
@@ -164,7 +168,7 @@ export default function SessionForm({ session, templateSource, onSuccess, onCanc
         : await createSession(payload)
       onSuccess(saved)
     } catch (err: unknown) {
-      const apiErr = err as { errors?: Record; message?: string }
+      const apiErr = err as { errors?: Record<string, string[]>; message?: string }
       if (apiErr.errors) {
         const step2Fields = new Set(['session_date', 'location_id', 'description', 'is_template'])
         let targetStep = 0

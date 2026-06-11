@@ -13,14 +13,14 @@ export interface AdminSetting {
   updated_at: string | null
 }
 
-export function getPublicSettings(): Promise {
+export function getPublicSettings(): Promise<PublicSettings> {
   return api.get<PublicSettings>('/settings/public')
 }
 
-export function getAdminSettings(): Promise {
+export function getAdminSettings(): Promise<AdminSetting[]> {
   return api.get<AdminSetting[]>('/admin/settings')
 }
 
-export function updateSetting(key: string, value: string): Promise {
+export function updateSetting(key: string, value: string): Promise<{ key: string; value: string }> {
   return api.patch(`/admin/settings/${key}`, { value })
 }

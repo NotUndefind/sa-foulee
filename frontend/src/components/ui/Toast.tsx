@@ -27,7 +27,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     setTimeout(() => setToasts((prev) => prev.filter((t) => t.id !== id)), 3500)
   }, [])
 
-  const COLORS: Record = {
+  const COLORS: Record<ToastType, string> = {
     success: 'bg-accent text-white',
     error: 'bg-red-500 text-white',
     info: 'bg-zinc-700 text-white',

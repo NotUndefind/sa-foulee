@@ -5,14 +5,14 @@ import type { Event, EventType } from '@/types'
 import Link from 'next/link'
 import { useCallback, useEffect, useState } from 'react'
 
-const TYPE_LABELS: Record = {
+const TYPE_LABELS: Record<EventType, string> = {
   race: 'Course',
   outing: 'Sortie',
   competition: 'Compétition',
   other: 'Autre',
 }
 
-const TYPE_COLORS: Record = {
+const TYPE_COLORS: Record<EventType, string> = {
   race: 'bg-red-100 text-red-700',
   outing: 'bg-green-100 text-green-700',
   competition: 'bg-purple-100 text-purple-700',

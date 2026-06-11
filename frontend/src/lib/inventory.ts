@@ -9,7 +9,10 @@ export interface EquipmentPayload {
   notes?: string | null
 }
 
-export function getInventory(params?: { category?: string; status?: string }): Promise {
+export function getInventory(params?: {
+  category?: string
+  status?: string
+}): Promise<Equipment[]> {
   const qs = new URLSearchParams()
   if (params?.category) qs.set('category', params.category)
   if (params?.status) qs.set('status', params.status)
@@ -17,31 +20,34 @@ export function getInventory(params?: { category?: string; status?: string }): P
   return api.get<Equipment[]>(`/inventory${query}`)
 }
 
-export function createEquipment(data: EquipmentPayload): Promise {
+export function createEquipment(data: EquipmentPayload): Promise<Equipment> {
   return api.post<Equipment>('/inventory', data)
 }
 
-export function updateEquipment(id: number, data: Partial): Promise {
+export function updateEquipment(id: number, data: Partial<EquipmentPayload>): Promise<Equipment> {
   return api.patch<Equipment>(`/inventory/${id}`, data)
 }
 
-export function deleteEquipment(id: number): Promise {
+export function deleteEquipment(id: number): Promise<void> {
   return api.delete<void>(`/inventory/${id}`)
 }
 
-export function getEquipmentDetail(id: number): Promise {
+export function getEquipmentDetail(id: number): Promise<EquipmentDetail> {
   return api.get<EquipmentDetail>(`/inventory/${id}`)
 }
 
-export function assignEquipment(id: number, data: { user_id: number; notes?: string }): Promise {
+export function assignEquipment(
+  id: number,
+  data: { user_id: number; notes?: string }
+): Promise<unknown> {
   return api.post(`/inventory/${id}/assign`, data)
 }
 
-export function returnEquipment(assignmentId: number): Promise {
+export function returnEquipment(assignmentId: number): Promise<unknown> {
   return api.patch(`/inventory/assignments/${assignmentId}/return`)
 }
 
-export async function exportInventoryCSV(): Promise {
+export async function exportInventoryCSV(): Promise<void> {
   const token = typeof window !== 'undefined' ? localStorage.getItem('auth_token') : null
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000/api/v1'}/inventory/export`,

@@ -28,7 +28,7 @@ const ROLES_OPTIONS: { value: Role | ''; label: string }[] = [
   { value: 'member', label: 'Membre' },
 ]
 
-const ROLE_LABELS: Record = {
+const ROLE_LABELS: Record<string, string> = {
   admin: 'Admin',
   founder: 'Fondateur',
   coach: 'Entraîneur',
@@ -36,7 +36,7 @@ const ROLE_LABELS: Record = {
   member: 'Membre',
 }
 
-const ROLE_COLORS: Record = {
+const ROLE_COLORS: Record<string, { bg: string; color: string; border: string }> = {
   admin: { bg: 'rgba(251,57,54,0.12)', color: '#FB3936', border: 'rgba(251,57,54,0.25)' },
   founder: { bg: 'rgba(176,74,16,0.10)', color: '#D42F2D', border: 'rgba(176,74,16,0.2)' },
   coach: { bg: 'rgba(169,50,38,0.10)', color: '#D42F2D', border: 'rgba(169,50,38,0.2)' },
@@ -44,27 +44,27 @@ const ROLE_COLORS: Record = {
   member: { bg: 'rgba(176,137,138,0.12)', color: '#5a8050', border: 'rgba(176,137,138,0.2)' },
 }
 
-const DOC_TYPE_LABELS: Record = {
+const DOC_TYPE_LABELS: Record<string, string> = {
   license: 'Licence FFA',
   registration: 'Inscription',
   medical_certificate: 'Certificat médical',
   other: 'Autre',
 }
 
-const DOC_TYPE_BADGE: Record = {
+const DOC_TYPE_BADGE: Record<string, string> = {
   license: 'bg-violet-50 text-violet-700 ring-1 ring-violet-200',
   registration: 'bg-sky-50 text-sky-700 ring-1 ring-sky-200',
   medical_certificate: 'bg-teal-50 text-teal-700 ring-1 ring-teal-200',
   other: 'bg-zinc-100 text-zinc-600 ring-1 ring-zinc-200',
 }
 
-const DOC_STATUS_COLORS: Record = {
+const DOC_STATUS_COLORS: Record<string, string> = {
   valid: 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200',
   pending: 'bg-amber-50 text-amber-700 ring-1 ring-amber-200',
   expired: 'bg-red-50 text-red-600 ring-1 ring-red-200',
 }
 
-const DOC_STATUS_LABELS: Record = {
+const DOC_STATUS_LABELS: Record<string, string> = {
   valid: 'Valide',
   pending: 'En attente',
   expired: 'Expiré',
