@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\NewsletterCampaign;
 use App\Models\User;
+use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Mail;
 
 class SendNewsletterEmail implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Batchable, Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public int $tries = 3;
 
@@ -24,6 +25,11 @@ class SendNewsletterEmail implements ShouldQueue
 
     public function handle(): void
     {
+        // Le batch a été annulé : on n'envoie plus rien.
+        if ($this->batch()?->cancelled()) {
+            return;
+        }
+
         $unsubscribeToken = $this->recipient->newsletter_unsubscribe_token;
 
         if (! $unsubscribeToken || ! $this->recipient->newsletter_subscribed_at) {
