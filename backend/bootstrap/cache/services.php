@@ -30,6 +30,7 @@
     26 => 'Termwind\\Laravel\\TermwindServiceProvider',
     27 => 'Pest\\Laravel\\PestServiceProvider',
     28 => 'Spatie\\Permission\\PermissionServiceProvider',
+    29 => 'Stevebauman\\Purify\\PurifyServiceProvider',
   ),
   'eager' => 
   array (
@@ -49,6 +50,7 @@
     13 => 'Termwind\\Laravel\\TermwindServiceProvider',
     14 => 'Pest\\Laravel\\PestServiceProvider',
     15 => 'Spatie\\Permission\\PermissionServiceProvider',
+    16 => 'Stevebauman\\Purify\\PurifyServiceProvider',
   ),
   'deferred' => 
   array (

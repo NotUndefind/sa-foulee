@@ -10,6 +10,7 @@ use Illuminate\Bus\Batch;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Bus;
+use Stevebauman\Purify\Facades\Purify;
 
 class CampaignController extends Controller
 {
@@ -40,7 +41,8 @@ class CampaignController extends Controller
         $campaign = NewsletterCampaign::create([
             'created_by' => $request->user()->id,
             'subject' => $data['subject'],
-            'body_html' => $data['body_html'],
+            // Sanitisation du HTML riche avant stockage — défense anti-XSS.
+            'body_html' => Purify::clean($data['body_html']),
         ]);
 
         return response()->json($campaign, 201);
@@ -64,6 +66,10 @@ class CampaignController extends Controller
             'subject' => ['sometimes', 'string', 'max:255'],
             'body_html' => ['sometimes', 'string'],
         ]);
+
+        if (isset($data['body_html'])) {
+            $data['body_html'] = Purify::clean($data['body_html']);
+        }
 
         $campaign->update($data);
 

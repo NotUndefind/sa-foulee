@@ -8,6 +8,7 @@ use App\Http\Requests\Post\UpdatePostRequest;
 use App\Models\Post;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Stevebauman\Purify\Facades\Purify;
 
 class PostController extends Controller
 {
@@ -53,6 +54,8 @@ class PostController extends Controller
     public function store(StorePostRequest $request): JsonResponse
     {
         $data = $request->validated();
+        // Sanitisation du HTML riche (Tiptap) avant stockage — défense anti-XSS stocké.
+        $data['content'] = Purify::clean($data['content']);
         $data['author_id'] = $request->user()->id;
         $data['is_pinned'] = $request->boolean('is_pinned', false);
         $data['published_at'] = now();
@@ -68,7 +71,11 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post): JsonResponse
     {
-        $post->update($request->validated());
+        $data = $request->validated();
+        if (isset($data['content'])) {
+            $data['content'] = Purify::clean($data['content']);
+        }
+        $post->update($data);
         $post->loadCount('comments')->load('author:id,first_name,last_name');
 
         return response()->json($this->formatPost($post));
