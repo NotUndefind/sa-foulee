@@ -1,6 +1,6 @@
 'use client'
 
-import { getPosts } from '@/lib/posts'
+import { getPosts, type PaginatedPosts } from '@/lib/posts'
 import type { Post } from '@/types'
 import DOMPurify from 'isomorphic-dompurify'
 import Link from 'next/link'
@@ -14,11 +14,18 @@ function formatDate(iso: string): string {
   })
 }
 
-export default function PublicBlogPage() {
-  const [posts, setPosts] = useState<Post[]>([])
-  const [meta, setMeta] = useState({ current_page: 1, last_page: 1, total: 0, per_page: 10 })
+interface Props {
+  /** Page 1 pré-chargée côté serveur (SEO) — le client ne refetch qu'à la pagination. */
+  initialData?: PaginatedPosts | null
+}
+
+export default function PublicBlogPage({ initialData }: Props) {
+  const [posts, setPosts] = useState<Post[]>(initialData?.data ?? [])
+  const [meta, setMeta] = useState(
+    initialData?.meta ?? { current_page: 1, last_page: 1, total: 0, per_page: 10 }
+  )
   const [page, setPage] = useState(1)
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(!initialData)
 
   const fetchPosts = useCallback(async () => {
     setLoading(true)
@@ -34,8 +41,10 @@ export default function PublicBlogPage() {
   }, [page])
 
   useEffect(() => {
+    // Page 1 déjà rendue côté serveur : pas de refetch inutile à l'hydratation.
+    if (page === 1 && initialData) return
     fetchPosts()
-  }, [fetchPosts])
+  }, [fetchPosts, page, initialData])
 
   return (
     <div className="mx-auto max-w-3xl space-y-6 px-4 py-10">
@@ -81,7 +90,15 @@ export default function PublicBlogPage() {
                     <span className="text-xs text-zinc-400">par {post.author.name}</span>
                   )}
                 </div>
-                <h2 className="text-lg font-bold text-zinc-900">{post.title}</h2>
+                <h2 className="text-lg font-bold text-zinc-900">
+                  {post.slug ? (
+                    <Link href={`/blog/${post.slug}`} className="hover:underline">
+                      {post.title}
+                    </Link>
+                  ) : (
+                    post.title
+                  )}
+                </h2>
                 <div
                   className="prose prose-sm mt-3 line-clamp-4 max-w-none text-zinc-700"
                   dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }}
@@ -90,12 +107,21 @@ export default function PublicBlogPage() {
                   <span className="text-xs text-zinc-400">
                     💬 {post.comments_count} commentaire{post.comments_count !== 1 ? 's' : ''}
                   </span>
-                  <Link
-                    href="/connexion"
-                    className="text-primary text-xs font-medium hover:underline"
-                  >
-                    Connectez-vous pour commenter →
-                  </Link>
+                  {post.slug ? (
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="text-primary text-xs font-medium hover:underline"
+                    >
+                      Lire l&apos;article →
+                    </Link>
+                  ) : (
+                    <Link
+                      href="/connexion"
+                      className="text-primary text-xs font-medium hover:underline"
+                    >
+                      Connectez-vous pour commenter →
+                    </Link>
+                  )}
                 </div>
               </div>
             </article>

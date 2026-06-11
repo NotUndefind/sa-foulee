@@ -112,6 +112,7 @@ export interface PostAuthor {
 export interface Post {
   id: number
   title: string
+  slug: string | null
   content: string
   image: string | null
   author: PostAuthor | null

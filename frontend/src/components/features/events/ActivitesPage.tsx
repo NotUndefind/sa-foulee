@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Event, EventPhoto, EventType } from '@/types'
-import { getEvents, registerToEvent, getEventPhotos } from '@/lib/events'
+import { getEvents, registerToEvent, getEventPhotos, type PaginatedEvents } from '@/lib/events'
 import { useAuthStore } from '@/store/auth.store'
 
 // ── Labels & styles ────────────────────────────────────────────────────────
@@ -503,20 +503,26 @@ function GalleryModal({ event, photos, loading, onClose }: GalleryModalProps) {
 
 // ── Main Component ─────────────────────────────────────────────────────────
 
-export default function ActivitesPage() {
+interface ActivitesPageProps {
+  /** Page 1 pré-chargée côté serveur (SEO) — évite spinner et refetch initial. */
+  initialUpcoming?: PaginatedEvents | null
+  initialPast?: Event[] | null
+}
+
+export default function ActivitesPage({ initialUpcoming, initialPast }: ActivitesPageProps) {
   const { user } = useAuthStore()
 
   // Upcoming events state
-  const [events, setEvents] = useState<Event[]>([])
-  const [loading, setLoading] = useState(true)
+  const [events, setEvents] = useState<Event[]>(initialUpcoming?.data ?? [])
+  const [loading, setLoading] = useState(!initialUpcoming)
   const [currentPage, setCurrentPage] = useState(1)
-  const [lastPage, setLastPage] = useState(1)
+  const [lastPage, setLastPage] = useState(initialUpcoming?.meta.last_page ?? 1)
   const [activeFilter, setActiveFilter] = useState<EventType | ''>('')
   const [registeringId, setRegisteringId] = useState<number | null>(null)
 
   // Past events state
-  const [pastEvents, setPastEvents] = useState<Event[]>([])
-  const [pastLoading, setPastLoading] = useState(true)
+  const [pastEvents, setPastEvents] = useState<Event[]>(initialPast ?? [])
+  const [pastLoading, setPastLoading] = useState(!initialPast)
 
   // Gallery state
   const [galleryEvent, setGalleryEvent] = useState<Event | null>(null)
@@ -552,12 +558,17 @@ export default function ActivitesPage() {
   }, [])
 
   useEffect(() => {
+    // État initial déjà rendu côté serveur : refetch seulement à la pagination/
+    // filtre, ou si un membre est connecté (le HTML serveur est anonyme, il faut
+    // récupérer son statut is_registered).
+    if (currentPage === 1 && activeFilter === '' && initialUpcoming && !user) return
     fetchEvents(currentPage, activeFilter)
-  }, [fetchEvents, currentPage, activeFilter])
+  }, [fetchEvents, currentPage, activeFilter, initialUpcoming, user])
 
   useEffect(() => {
+    if (initialPast) return
     fetchPastEvents()
-  }, [fetchPastEvents])
+  }, [fetchPastEvents, initialPast])
 
   const handleFilterChange = (type: EventType | '') => {
     setActiveFilter(type)
