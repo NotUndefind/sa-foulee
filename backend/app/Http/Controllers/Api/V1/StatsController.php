@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Performance;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Cache;
 
 class StatsController extends Controller
 {
@@ -15,14 +16,19 @@ class StatsController extends Controller
      */
     public function homepage(): JsonResponse
     {
-        // SoftDeletes gère whereNull('deleted_at') — pas de colonne blocked_at dans ce schéma
-        $memberCount = User::count();
+        $stats = Cache::remember('stats:homepage', 300, function () {
+            // SoftDeletes gère whereNull('deleted_at') — pas de colonne blocked_at dans ce schéma
+            $memberCount = User::count();
 
-        $totalKm = (float) Performance::sum('distance_km');
+            $totalKm = (float) Performance::sum('distance_km');
 
-        return response()->json([
-            'member_count' => $memberCount,
-            'total_km' => $totalKm > 0 ? round($totalKm) : 50,
-        ])->header('Cache-Control', 'public, max-age=300');
+            return [
+                'member_count' => $memberCount,
+                'total_km' => $totalKm > 0 ? round($totalKm) : 50,
+            ];
+        });
+
+        return response()->json($stats)
+            ->header('Cache-Control', 'public, max-age=300');
     }
 }

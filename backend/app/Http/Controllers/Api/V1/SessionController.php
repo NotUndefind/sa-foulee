@@ -16,10 +16,16 @@ class SessionController extends Controller
      */
     public function index(Request $request): JsonResponse
     {
+        $userId = $request->user()->id;
+
         $query = TrainingSession::query()
             ->where('is_template', false)
             ->with('location:id,name')
             ->withCount('participants')
+            // has_participated en une seule requête (évite un EXISTS par item).
+            ->withExists([
+                'participants as has_participated' => fn ($q) => $q->where('user_id', $userId),
+            ])
             ->orderByDesc('session_date');
 
         if ($request->filled('type')) {
@@ -55,6 +61,9 @@ class SessionController extends Controller
         $user = $request->user();
         $query = TrainingSession::where('is_template', true)
             ->withCount('participants')
+            ->withExists([
+                'participants as has_participated' => fn ($q) => $q->where('user_id', $user->id),
+            ])
             ->orderByDesc('created_at');
 
         // Filtre par type optionnel
@@ -203,10 +212,10 @@ class SessionController extends Controller
             'session_date' => $session->session_date?->toIso8601String(),
             'created_at' => $session->created_at->toIso8601String(),
             'participants_count' => $session->participants_count ?? 0,
-            'has_participated' => $session
-                ->participants()
-                ->where('user_id', $userId)
-                ->exists(),
+            // Pré-chargé par withExists sur les listes ; fallback en requête
+            // unitaire pour les appels hors liste (show, store).
+            'has_participated' => (bool) ($session->getAttribute('has_participated')
+                ?? $session->participants()->where('user_id', $userId)->exists()),
         ];
     }
 }

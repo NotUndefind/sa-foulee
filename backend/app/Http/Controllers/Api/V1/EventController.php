@@ -23,6 +23,13 @@ class EventController extends Controller
         $query = Event::query()
             ->withCount('participants');
 
+        // is_registered en une seule requête (évite un EXISTS par événement).
+        if ($user) {
+            $query->withExists([
+                'participants as is_registered' => fn ($q) => $q->where('user_id', $user->id),
+            ]);
+        }
+
         // Filtre type
         if ($request->filled('type')) {
             $query->where('type', $request->type);
@@ -196,8 +203,11 @@ class EventController extends Controller
             'created_by' => $event->created_by,
             'is_public' => $event->is_public,
             'registrations_count' => $event->participants_count ?? 0,
+            // Pré-chargé par withExists sur les listes ; fallback en requête
+            // unitaire pour les appels hors liste (show, store).
             'is_registered' => $currentUserId
-                ? $event->participants()->where('user_id', $currentUserId)->exists()
+                ? (bool) ($event->getAttribute('is_registered')
+                    ?? $event->participants()->where('user_id', $currentUserId)->exists())
                 : false,
             'created_at' => $event->created_at->toIso8601String(),
         ];

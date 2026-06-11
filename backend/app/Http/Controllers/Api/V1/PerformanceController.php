@@ -75,6 +75,11 @@ class PerformanceController extends Controller
 
         $performance = Performance::create($data);
 
+        // Symétrie avec destroy() : le leaderboard doit refléter la nouvelle perf.
+        foreach (['week', 'month', 'season'] as $period) {
+            Cache::forget("leaderboard:{$period}");
+        }
+
         return response()->json($this->formatPerformance($performance), 201);
     }
 
