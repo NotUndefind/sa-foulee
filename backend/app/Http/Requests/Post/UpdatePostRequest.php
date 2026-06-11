@@ -8,16 +8,8 @@ class UpdatePostRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        $user = $this->user();
-        $post = $this->route('post');
-
-        // Admin/founder peuvent modifier tous les posts
-        if ($user->hasAnyRole(['admin', 'founder'])) {
-            return true;
-        }
-
-        // Coach/bureau uniquement leurs propres posts
-        return $user->hasAnyRole(['coach', 'bureau']) && $post->author_id === $user->id;
+        // Règle centralisée dans PostPolicy::update.
+        return $this->user()->can('update', $this->route('post'));
     }
 
     public function rules(): array

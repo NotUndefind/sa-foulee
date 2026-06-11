@@ -86,12 +86,7 @@ class PostController extends Controller
      */
     public function destroy(Request $request, Post $post): JsonResponse
     {
-        $user = $request->user();
-
-        if (! $user->hasAnyRole(['admin', 'founder'])
-            && $post->author_id !== $user->id) {
-            abort(403);
-        }
+        $request->user()->can('delete', $post) || abort(403);
 
         $post->delete();
 
@@ -103,9 +98,7 @@ class PostController extends Controller
      */
     public function pin(Request $request, Post $post): JsonResponse
     {
-        if (! $request->user()->hasAnyRole(['admin', 'founder'])) {
-            abort(403);
-        }
+        $request->user()->can('pin', $post) || abort(403);
 
         $post->update(['is_pinned' => ! $post->is_pinned]);
 
