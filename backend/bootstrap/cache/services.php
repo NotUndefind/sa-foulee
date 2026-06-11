@@ -29,8 +29,10 @@
     25 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     26 => 'Termwind\\Laravel\\TermwindServiceProvider',
     27 => 'Pest\\Laravel\\PestServiceProvider',
-    28 => 'Spatie\\Permission\\PermissionServiceProvider',
-    29 => 'Stevebauman\\Purify\\PurifyServiceProvider',
+    28 => 'Spatie\\Backup\\BackupServiceProvider',
+    29 => 'Spatie\\Permission\\PermissionServiceProvider',
+    30 => 'Spatie\\SignalAwareCommand\\SignalAwareCommandServiceProvider',
+    31 => 'Stevebauman\\Purify\\PurifyServiceProvider',
   ),
   'eager' => 
   array (
@@ -49,8 +51,10 @@
     12 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     13 => 'Termwind\\Laravel\\TermwindServiceProvider',
     14 => 'Pest\\Laravel\\PestServiceProvider',
-    15 => 'Spatie\\Permission\\PermissionServiceProvider',
-    16 => 'Stevebauman\\Purify\\PurifyServiceProvider',
+    15 => 'Spatie\\Backup\\BackupServiceProvider',
+    16 => 'Spatie\\Permission\\PermissionServiceProvider',
+    17 => 'Spatie\\SignalAwareCommand\\SignalAwareCommandServiceProvider',
+    18 => 'Stevebauman\\Purify\\PurifyServiceProvider',
   ),
   'deferred' => 
   array (

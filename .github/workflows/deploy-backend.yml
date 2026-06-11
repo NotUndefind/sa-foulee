@@ -75,6 +75,9 @@ jobs:
             echo "==> Mise en maintenance"
             php artisan down --retry=60 --render="errors::503" || true
 
+            echo "==> Sauvegarde BDD avant migration"
+            php artisan backup:run --only-db || echo "AVERTISSEMENT: backup pre-migration en echec (verifier config R2)"
+
             echo "==> Migrations base de données"
             php artisan migrate --force
 
