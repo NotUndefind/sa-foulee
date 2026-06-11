@@ -76,6 +76,8 @@ Route::prefix('v1')->group(function () {
     Route::get('events/{event}', [EventController::class, 'show']);
     Route::get('events/{event}/photos', [EventPhotoController::class, 'index']);
     Route::get('posts', [PostController::class, 'index']);
+    // Route slug AVANT la route id (sinon « slug » serait capturé par {post}).
+    Route::get('posts/slug/{post:slug}', [PostController::class, 'show']);
     Route::get('posts/{post}', [PostController::class, 'show']);
     Route::get('posts/{post}/comments', [CommentController::class, 'index']);
 
