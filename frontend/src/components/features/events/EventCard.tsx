@@ -3,7 +3,7 @@
 import { useToast } from '@/components/ui/Toast'
 import { useRole } from '@/hooks/useRole'
 import { deleteEvent, registerToEvent, unregisterFromEvent } from '@/lib/events'
-import type { Event } from '@/types'
+import type { Event, EventType } from '@/types'
 import Link from 'next/link'
 import { useState } from 'react'
 

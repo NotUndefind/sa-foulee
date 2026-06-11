@@ -2,7 +2,7 @@
 
 import { useRole } from '@/hooks/useRole'
 import { getEquipmentDetail, returnEquipment } from '@/lib/inventory'
-import type { EquipmentAssignment, EquipmentDetail } from '@/types'
+import type { EquipmentAssignment, EquipmentDetail, EquipmentStatus } from '@/types'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import AssignmentModal from './AssignmentModal'

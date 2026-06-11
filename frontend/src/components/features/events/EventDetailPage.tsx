@@ -12,7 +12,7 @@ import {
   uploadEventPhoto,
 } from '@/lib/events'
 import { useAuthStore } from '@/store/auth.store'
-import type { Event, EventPhoto } from '@/types'
+import type { Event, EventPhoto, EventType } from '@/types'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'

@@ -1,6 +1,6 @@
 'use client'
 
-import type { Event } from '@/types'
+import type { Event, EventType } from '@/types'
 import { useMemo, useState } from 'react'
 
 const TYPE_COLORS: Record<EventType, string> = {

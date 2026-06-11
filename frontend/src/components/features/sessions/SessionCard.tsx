@@ -3,8 +3,9 @@
 import { useToast } from '@/components/ui/Toast'
 import { useRole } from '@/hooks/useRole'
 import { deleteSession, toggleParticipation } from '@/lib/sessions'
-import type { TrainingSession } from '@/types'
+import type { Intensity, SessionType, TrainingSession } from '@/types'
 import { Check, ClipboardList, Dumbbell, HeartPulse, Timer, Wind, Zap } from 'lucide-react'
+import type { ComponentType } from 'react'
 import { useState } from 'react'
 
 const TYPE_LABELS: Record<SessionType, string> = {
