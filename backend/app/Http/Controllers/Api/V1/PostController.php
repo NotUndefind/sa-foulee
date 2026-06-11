@@ -8,6 +8,7 @@ use App\Http\Requests\Post\UpdatePostRequest;
 use App\Models\Post;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Stevebauman\Purify\Facades\Purify;
 
 class PostController extends Controller
 {
@@ -53,6 +54,8 @@ class PostController extends Controller
     public function store(StorePostRequest $request): JsonResponse
     {
         $data = $request->validated();
+        // Sanitisation du HTML riche (Tiptap) avant stockage — défense anti-XSS stocké.
+        $data['content'] = Purify::clean($data['content']);
         $data['author_id'] = $request->user()->id;
         $data['is_pinned'] = $request->boolean('is_pinned', false);
         $data['published_at'] = now();
@@ -68,7 +71,11 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post): JsonResponse
     {
-        $post->update($request->validated());
+        $data = $request->validated();
+        if (isset($data['content'])) {
+            $data['content'] = Purify::clean($data['content']);
+        }
+        $post->update($data);
         $post->loadCount('comments')->load('author:id,first_name,last_name');
 
         return response()->json($this->formatPost($post));
@@ -79,12 +86,7 @@ class PostController extends Controller
      */
     public function destroy(Request $request, Post $post): JsonResponse
     {
-        $user = $request->user();
-
-        if (! $user->hasAnyRole(['admin', 'founder'])
-            && $post->author_id !== $user->id) {
-            abort(403);
-        }
+        $request->user()->can('delete', $post) || abort(403);
 
         $post->delete();
 
@@ -96,9 +98,7 @@ class PostController extends Controller
      */
     public function pin(Request $request, Post $post): JsonResponse
     {
-        if (! $request->user()->hasAnyRole(['admin', 'founder'])) {
-            abort(403);
-        }
+        $request->user()->can('pin', $post) || abort(403);
 
         $post->update(['is_pinned' => ! $post->is_pinned]);
 
@@ -112,6 +112,7 @@ class PostController extends Controller
         return [
             'id' => $post->id,
             'title' => $post->title,
+            'slug' => $post->slug,
             'content' => $post->content,
             'image' => $post->image,
             'is_pinned' => $post->is_pinned,

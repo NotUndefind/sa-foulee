@@ -36,9 +36,13 @@ jobs:
       - name: Format check (Prettier)
         run: npm run format:check
 
+      - name: Type check (tsc)
+        run: npx tsc --noEmit
+
+      - name: Tests (Vitest)
+        run: npm run test
+
       - name: Build
         run: npm run build
         env:
           NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
-          NEXT_PUBLIC_PUSHER_KEY: ${{ secrets.NEXT_PUBLIC_PUSHER_KEY }}
-          NEXT_PUBLIC_PUSHER_CLUSTER: eu

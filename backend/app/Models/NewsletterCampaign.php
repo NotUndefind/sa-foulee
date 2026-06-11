@@ -11,6 +11,8 @@ class NewsletterCampaign extends Model
         'created_by',
         'subject',
         'body_html',
+        'queued_at',
+        'batch_id',
         'sent_at',
         'recipient_count',
     ];
@@ -18,6 +20,7 @@ class NewsletterCampaign extends Model
     protected function casts(): array
     {
         return [
+            'queued_at' => 'datetime',
             'sent_at' => 'datetime',
         ];
     }
@@ -30,5 +33,14 @@ class NewsletterCampaign extends Model
     public function isSent(): bool
     {
         return $this->sent_at !== null;
+    }
+
+    /**
+     * La campagne a été mise en file mais son envoi n'est pas encore confirmé
+     * terminé. Dans cet état, on bloque toute modification et tout réenvoi.
+     */
+    public function isQueued(): bool
+    {
+        return $this->queued_at !== null && $this->sent_at === null;
     }
 }

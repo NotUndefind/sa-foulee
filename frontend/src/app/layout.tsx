@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   description:
     "L'application de La Neuville TAF sa Foulée, l'association de running de La Neuville. Événements, sessions d'entraînement, performances et communauté.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'),
+  alternates: {
+    canonical: './',
+  },
   openGraph: {
     title: 'La Neuville TAF sa Foulée',
     description:
@@ -23,6 +26,13 @@ export const metadata: Metadata = {
     siteName: 'La Neuville TAF sa Foulée',
     locale: 'fr_FR',
     type: 'website',
+    images: [{ url: '/logo.png', width: 512, height: 512, alt: 'La Neuville TAF sa Foulée' }],
+  },
+  twitter: {
+    card: 'summary',
+    title: 'La Neuville TAF sa Foulée',
+    description: "L'association de running de La Neuville.",
+    images: ['/logo.png'],
   },
 }
 

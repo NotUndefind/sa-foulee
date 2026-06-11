@@ -2,23 +2,44 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'title',
+        'slug',
         'content',
         'image',
         'author_id',
         'is_pinned',
         'published_at',
     ];
+
+    protected static function booted(): void
+    {
+        // Slug généré depuis le titre, suffixé si collision (soft-deleted inclus
+        // pour respecter l'index unique).
+        static::creating(function (Post $post) {
+            if (empty($post->slug)) {
+                $base = Str::slug($post->title) ?: 'article';
+                $slug = $base;
+                $n = 2;
+                while (static::withTrashed()->where('slug', $slug)->exists()) {
+                    $slug = "{$base}-{$n}";
+                    $n++;
+                }
+                $post->slug = $slug;
+            }
+        });
+    }
 
     protected function casts(): array
     {

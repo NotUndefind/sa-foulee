@@ -64,8 +64,22 @@ export default async function PublicHomePage() {
     // Fallback: valeurs par défaut
   }
 
+  // Rich results Google : identité de l'association.
+  const orgJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SportsOrganization',
+    name: 'La Neuville TAF sa Foulée',
+    sport: 'Running',
+    url: process.env.NEXT_PUBLIC_APP_URL ?? 'https://www.laneuvilletafsafoulee.fr',
+    logo: `${process.env.NEXT_PUBLIC_APP_URL ?? 'https://www.laneuvilletafsafoulee.fr'}/logo.png`,
+  }
+
   return (
     <div className={baloo.className} style={{ background: '#FAFAFA', minHeight: '100vh' }}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+      />
       <HeroSection />
       <ValuesSection />
       <ActivitiesSection />

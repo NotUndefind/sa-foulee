@@ -52,6 +52,9 @@ jobs:
       - name: Static analysis (Larastan)
         run: ./vendor/bin/phpstan analyse --memory-limit=512M
 
+      - name: Vérifier les routes (détecte les controllers manquants)
+        run: php artisan route:list > /dev/null
+
       - name: Run migrations
         run: php artisan migrate --force
         env:

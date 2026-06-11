@@ -4,6 +4,7 @@ import { useToast } from '@/components/ui/Toast'
 import { useRole } from '@/hooks/useRole'
 import { addComment, deleteComment, deletePost, getComments, togglePinPost } from '@/lib/posts'
 import type { Comment, Post } from '@/types'
+import DOMPurify from 'isomorphic-dompurify'
 import { useState } from 'react'
 
 interface Props {
@@ -191,7 +192,7 @@ export default function PostCard({ post, onUpdate, onDelete, onEdit, canPin }: P
         <div
           className="prose prose-sm mt-3 max-w-none"
           style={{ color: '#D42F2D' }}
-          dangerouslySetInnerHTML={{ __html: post.content }}
+          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }}
         />
 
         {/* Actions */}

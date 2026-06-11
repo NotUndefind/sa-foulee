@@ -4,7 +4,6 @@ use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\AvatarController;
 use App\Http\Controllers\Api\V1\BudgetEntryController;
 use App\Http\Controllers\Api\V1\CampaignController;
-use App\Http\Controllers\Api\V1\ChatController;
 use App\Http\Controllers\Api\V1\CommentController;
 use App\Http\Controllers\Api\V1\DocumentController;
 use App\Http\Controllers\Api\V1\EquipmentAssignmentController;
@@ -16,14 +15,12 @@ use App\Http\Controllers\Api\V1\LeaderboardController;
 use App\Http\Controllers\Api\V1\LocationController;
 use App\Http\Controllers\Api\V1\MediaUploadController;
 use App\Http\Controllers\Api\V1\NewsletterController;
-use App\Http\Controllers\Api\V1\NotificationController;
 use App\Http\Controllers\Api\V1\PerformanceController;
 use App\Http\Controllers\Api\V1\PostController;
 use App\Http\Controllers\Api\V1\ProfileController;
 use App\Http\Controllers\Api\V1\SessionController;
 use App\Http\Controllers\Api\V1\SettingsController;
 use App\Http\Controllers\Api\V1\StatsController;
-use App\Http\Controllers\Api\V1\StravaController;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -52,14 +49,19 @@ Route::prefix('v1')->group(function () {
         ->where(['userId' => '[0-9]+', 'filename' => '[^/]+']);
 
     // ---- Auth (public) ----
+    // Rate limiting anti-bruteforce / anti-spam (par IP). Le login a aussi un
+    // lockout par email dans AuthController ; le throttle ci-dessous protège l'IP.
     Route::prefix('auth')->group(function () {
-        Route::post('register', [AuthController::class, 'register']);
-        Route::post('login', [AuthController::class, 'login']);
+        Route::post('register', [AuthController::class, 'register'])
+            ->middleware('throttle:6,1');
+        Route::post('login', [AuthController::class, 'login'])
+            ->middleware('throttle:10,1');
         Route::post('forgot-password', [
             AuthController::class,
             'forgotPassword',
-        ]);
-        Route::post('reset-password', [AuthController::class, 'resetPassword']);
+        ])->middleware('throttle:6,1');
+        Route::post('reset-password', [AuthController::class, 'resetPassword'])
+            ->middleware('throttle:6,1');
     });
 
     // ---- Routes publiques ----
@@ -74,6 +76,8 @@ Route::prefix('v1')->group(function () {
     Route::get('events/{event}', [EventController::class, 'show']);
     Route::get('events/{event}/photos', [EventPhotoController::class, 'index']);
     Route::get('posts', [PostController::class, 'index']);
+    // Route slug AVANT la route id (sinon « slug » serait capturé par {post}).
+    Route::get('posts/slug/{post:slug}', [PostController::class, 'show']);
     Route::get('posts/{post}', [PostController::class, 'show']);
     Route::get('posts/{post}/comments', [CommentController::class, 'index']);
 
@@ -355,41 +359,6 @@ Route::prefix('v1')->group(function () {
         Route::delete('performances/{performance}', [
             PerformanceController::class,
             'destroy',
-        ]);
-
-        // ---- Strava ----
-        Route::get('strava/connect', [StravaController::class, 'connect']);
-        Route::get('strava/callback', [StravaController::class, 'callback']);
-        Route::delete('strava/disconnect', [
-            StravaController::class,
-            'disconnect',
-        ]);
-
-        // ---- Chat ----
-        Route::get('chat/{channel}/messages', [ChatController::class, 'index']);
-        Route::post('chat/{channel}/messages', [
-            ChatController::class,
-            'store',
-        ]);
-        Route::post('chat/pusher/auth', [ChatController::class, 'pusherAuth']);
-
-        // ---- Notifications ----
-        Route::get('notifications', [NotificationController::class, 'index']);
-        Route::patch('notifications/{id}/read', [
-            NotificationController::class,
-            'markRead',
-        ]);
-        Route::patch('notifications/read-all', [
-            NotificationController::class,
-            'markAllRead',
-        ]);
-        Route::get('notifications/preferences', [
-            NotificationController::class,
-            'preferences',
-        ]);
-        Route::patch('notifications/preferences', [
-            NotificationController::class,
-            'updatePreferences',
         ]);
     });
 });

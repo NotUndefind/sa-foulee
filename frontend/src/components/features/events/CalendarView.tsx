@@ -1,9 +1,9 @@
 'use client'
 
-import type { Event } from '@/types'
+import type { Event, EventType } from '@/types'
 import { useMemo, useState } from 'react'
 
-const TYPE_COLORS: Record = {
+const TYPE_COLORS: Record<EventType, string> = {
   race: 'bg-red-400',
   outing: 'bg-accent',
   competition: 'bg-purple-400',
@@ -47,7 +47,7 @@ export default function CalendarView({ events, onEventClick }: Props) {
 
   // Map : "YYYY-MM-DD" → Event[]
   const eventsByDay = useMemo(() => {
-    const map: Record = {}
+    const map: Record<string, Event[]> = {}
     events.forEach((ev) => {
       const d = new Date(ev.event_date)
       if (d.getFullYear() === year && d.getMonth() === month) {

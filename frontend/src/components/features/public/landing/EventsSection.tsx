@@ -13,14 +13,14 @@ interface EventsSectionProps {
   events: UpcomingEvent[]
 }
 
-const TYPE_LABEL: Record = {
+const TYPE_LABEL: Record<string, string> = {
   race: 'Course',
   outing: 'Sortie',
   competition: 'Compétition',
   other: 'Événement',
 }
 
-const TYPE_COLOR: Record = {
+const TYPE_COLOR: Record<string, string> = {
   race: '#FB3936',
   outing: '#D42F2D',
   competition: '#C0302E',

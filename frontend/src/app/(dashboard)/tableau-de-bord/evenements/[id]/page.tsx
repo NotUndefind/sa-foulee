@@ -4,7 +4,7 @@ import EventDetailPage from '@/components/features/events/EventDetailPage'
 export const metadata: Metadata = { title: 'Événement — La Neuville TAF sa Foulée' }
 
 interface Props {
-  params: Promise
+  params: Promise<{ id: string }>
 }
 
 export default async function EventDetailRoute({ params }: Props) {

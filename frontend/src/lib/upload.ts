@@ -1,6 +1,6 @@
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000/api/v1'
 
-export async function uploadMedia(file: File): Promise {
+export async function uploadMedia(file: File): Promise<string> {
   const token = typeof window !== 'undefined' ? localStorage.getItem('auth_token') : null
 
   const formData = new FormData()

@@ -112,6 +112,7 @@ export interface PostAuthor {
 export interface Post {
   id: number
   title: string
+  slug: string | null
   content: string
   image: string | null
   author: PostAuthor | null
@@ -235,7 +236,7 @@ export interface ChatMessage {
   id: number
   channel: string
   userId: number
-  user?: Pick
+  user?: Pick<User, 'id' | 'first_name' | 'last_name' | 'avatar'>
   content: string
   createdAt: string
 }
@@ -245,7 +246,7 @@ export interface ChatMessage {
 export interface Notification {
   id: string
   type: string
-  data: Record
+  data: Record<string, unknown>
   readAt: string | null
   createdAt: string
 }
@@ -265,5 +266,5 @@ export interface PaginatedResponse<T> {
 
 export interface ApiError {
   message: string
-  errors?: Record
+  errors?: Record<string, string[]>
 }

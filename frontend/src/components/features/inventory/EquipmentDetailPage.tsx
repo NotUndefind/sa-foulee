@@ -2,12 +2,12 @@
 
 import { useRole } from '@/hooks/useRole'
 import { getEquipmentDetail, returnEquipment } from '@/lib/inventory'
-import type { EquipmentAssignment, EquipmentDetail } from '@/types'
+import type { EquipmentAssignment, EquipmentDetail, EquipmentStatus } from '@/types'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import AssignmentModal from './AssignmentModal'
 
-const STATUS_CONFIG: Record = {
+const STATUS_CONFIG: Record<EquipmentStatus, { label: string; bg: string; color: string }> = {
   good: { label: 'Bon état', bg: 'rgba(16,185,129,0.1)', color: '#059669' },
   worn: { label: 'Usé', bg: 'rgba(245,158,11,0.1)', color: '#d97706' },
   broken: { label: 'Hors service', bg: 'rgba(251,57,54,0.1)', color: '#D42F2D' },

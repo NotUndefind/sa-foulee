@@ -18,8 +18,16 @@ class VerifyHelloAssoSignature
     {
         $secret = config('services.helloasso.webhook_secret');
 
-        // En local sans secret configuré, on laisse passer (utile pour les tests Postman)
+        // Sans secret configuré : on ne laisse passer qu'en local/testing
+        // (utile pour Postman). En prod, refuser pour éviter d'accepter
+        // n'importe quel POST falsifiant cotisations et écritures budgétaires.
         if (empty($secret)) {
+            abort_unless(
+                app()->environment(['local', 'testing']),
+                401,
+                'Webhook non configuré.',
+            );
+
             return $next($request);
         }
 

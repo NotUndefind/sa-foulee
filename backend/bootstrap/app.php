@@ -8,6 +8,7 @@ use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Middleware\HandleCors;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use Sentry\Laravel\Integration;
 use Spatie\Permission\Exceptions\UnauthorizedException;
 use Spatie\Permission\Middleware\PermissionMiddleware;
 use Spatie\Permission\Middleware\RoleMiddleware;
@@ -17,6 +18,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         api: __DIR__.'/../routes/api.php',
+        commands: __DIR__.'/../routes/console.php',
         apiPrefix: 'api',
         health: '/up',
     )
@@ -35,6 +37,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->validateCsrfTokens(except: ['api/*']);
     })
     ->withExceptions(function (Exceptions $exceptions) {
+        // Remonte les exceptions non gérées à Sentry (no-op si SENTRY_LARAVEL_DSN absent)
+        Integration::handles($exceptions);
+
         // Retourner du JSON pour toutes les erreurs API
         $exceptions->render(function (
             AuthenticationException $e,

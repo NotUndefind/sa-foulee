@@ -3,11 +3,12 @@
 import { useToast } from '@/components/ui/Toast'
 import { useRole } from '@/hooks/useRole'
 import { deleteSession, toggleParticipation } from '@/lib/sessions'
-import type { TrainingSession } from '@/types'
+import type { Intensity, SessionType, TrainingSession } from '@/types'
 import { Check, ClipboardList, Dumbbell, HeartPulse, Timer, Wind, Zap } from 'lucide-react'
+import type { ComponentType } from 'react'
 import { useState } from 'react'
 
-const TYPE_LABELS: Record = {
+const TYPE_LABELS: Record<SessionType, string> = {
   running: 'Course',
   interval: 'Interval',
   fartlek: 'Fartlek',
@@ -16,7 +17,7 @@ const TYPE_LABELS: Record = {
   other: 'Autre',
 }
 
-const TYPE_ICONS: Record = {
+const TYPE_ICONS: Record<SessionType, ComponentType<{ size?: number; className?: string }>> = {
   running: Timer,
   interval: Zap,
   fartlek: Wind,
@@ -25,13 +26,13 @@ const TYPE_ICONS: Record = {
   other: ClipboardList,
 }
 
-const INTENSITY_LABELS: Record = {
+const INTENSITY_LABELS: Record<Intensity, string> = {
   low: 'Faible',
   medium: 'Moyenne',
   high: 'Élevée',
 }
 
-const INTENSITY_COLORS: Record = {
+const INTENSITY_COLORS: Record<Intensity, string> = {
   low: 'bg-green-100 text-green-700',
   medium: 'bg-amber-100 text-amber-700',
   high: 'bg-red-100 text-red-700',

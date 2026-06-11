@@ -111,30 +111,27 @@ R2_ENDPOINT=https://<account_id>.r2.cloudflarestorage.com
 
 ---
 
-## 4. Cron O2switch — Laravel Scheduler
+## 4. Cron O2switch — Laravel Scheduler (OBLIGATOIRE)
 
 1. cPanel → **Tâches Cron**
 2. Ajouter une tâche **chaque minute** :
 
 ```
-* * * * * cd /home/user/api.safoulee.fr/backend && php8.2 artisan schedule:run >> /dev/null 2>&1
+* * * * * cd /home/user/back.laneuvilletafsafoulee.fr/backend && php8.2 artisan schedule:run >> /dev/null 2>&1
 ```
 
-> Le scheduler gère ensuite les tâches internes (ex: queue monitor, nettoyage tokens expirés).
+> **Ce cron est indispensable, pas optionnel.** Le scheduler (`routes/console.php`)
+> draine la file d'attente chaque minute via `queue:work --stop-when-empty`.
+> Sans lui, **aucun email de newsletter ni de bienvenue n'est envoyé** : les jobs
+> s'accumulent dans la table `jobs`. Il gère aussi le nettoyage des tokens de
+> reset, des jobs échoués et des batchs terminés.
+
+> Vérifier que la file part bien : `php8.2 artisan queue:monitor database:default`
+> ou `SELECT COUNT(*) FROM jobs;` (doit retomber à 0 entre deux campagnes).
 
 ---
 
-## 5. Queue Workers (optionnel)
-
-O2switch (shared hosting) ne supporte pas les workers persistants. La queue `database` est traitée via le cron :
-
-```
-* * * * * cd /home/user/api.safoulee.fr/backend && php8.2 artisan queue:work --stop-when-empty --max-time=55 >> /dev/null 2>&1
-```
-
----
-
-## 6. Vérification post-déploiement
+## 5. Vérification post-déploiement
 
 ```bash
 # Health check Laravel
@@ -154,11 +151,11 @@ curl -H "Origin: https://safoulee.vercel.app" \
 
 ---
 
-## 7. Déploiements suivants (automatique)
+## 6. Déploiements suivants (automatique)
 
 Après la configuration initiale, chaque push sur `main` déclenche automatiquement :
 
 1. **backend.yml** — CI (tests + lint)
 2. **deploy-backend.yml** — déploiement sur O2switch (si CI vert)
 
-Le workflow exécute `backend/scripts/deploy.sh` sur le serveur : `git pull`, `composer install`, `migrate --force`, `config:cache`, `route:cache`, `queue:restart`.
+Le script de déploiement est défini **directement dans `deploy-backend.yml`** (source unique de vérité) : `git pull`, `composer install --no-dev`, sauvegarde BDD (`backup:run --only-db`), `migrate --force`, mise en cache (`config`/`route`/`view`/`event`), `queue:restart`, puis health check `/up`.

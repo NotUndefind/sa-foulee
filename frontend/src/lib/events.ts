@@ -30,7 +30,7 @@ export interface EventPayload {
   is_public: boolean
 }
 
-export async function getEvents(filters: EventFilters = {}): Promise {
+export async function getEvents(filters: EventFilters = {}): Promise<PaginatedEvents> {
   const params = new URLSearchParams()
   if (filters.type) params.set('type', filters.type)
   if (filters.upcoming !== undefined) params.set('upcoming', filters.upcoming ? '1' : '0')
@@ -42,37 +42,41 @@ export async function getEvents(filters: EventFilters = {}): Promise {
   return api.get<PaginatedEvents>(`/events${qs ? `?${qs}` : ''}`)
 }
 
-export async function getEvent(id: number): Promise {
+export async function getEvent(id: number): Promise<Event> {
   return api.get<Event>(`/events/${id}`)
 }
 
-export async function createEvent(payload: EventPayload): Promise {
+export async function createEvent(payload: EventPayload): Promise<Event> {
   return api.post<Event>('/events', payload)
 }
 
-export async function updateEvent(id: number, payload: Partial): Promise {
+export async function updateEvent(id: number, payload: Partial<EventPayload>): Promise<Event> {
   return api.patch<Event>(`/events/${id}`, payload)
 }
 
-export async function deleteEvent(id: number): Promise {
+export async function deleteEvent(id: number): Promise<void> {
   await api.delete(`/events/${id}`)
 }
 
-export async function registerToEvent(id: number): Promise {
+export async function registerToEvent(
+  id: number
+): Promise<{ message: string; registrations_count: number }> {
   return api.post(`/events/${id}/register`, {})
 }
 
-export async function unregisterFromEvent(id: number): Promise {
+export async function unregisterFromEvent(
+  id: number
+): Promise<{ message: string; registrations_count: number }> {
   return api.delete(`/events/${id}/register`)
 }
 
 // ---- Photos ----
 
-export async function getEventPhotos(eventId: number): Promise {
+export async function getEventPhotos(eventId: number): Promise<EventPhoto[]> {
   return api.get<EventPhoto[]>(`/events/${eventId}/photos`)
 }
 
-export async function uploadEventPhoto(eventId: number, file: File): Promise {
+export async function uploadEventPhoto(eventId: number, file: File): Promise<EventPhoto> {
   const formData = new FormData()
   formData.append('photo', file)
 
@@ -94,6 +98,6 @@ export async function uploadEventPhoto(eventId: number, file: File): Promise {
   return res.json()
 }
 
-export async function deleteEventPhoto(photoId: number): Promise {
+export async function deleteEventPhoto(photoId: number): Promise<void> {
   await api.delete(`/event-photos/${photoId}`)
 }

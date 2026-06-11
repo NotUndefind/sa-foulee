@@ -33,7 +33,7 @@ export default function AdminSettingsPage() {
     }
   }
 
-  const SETTING_LABELS: Record = {
+  const SETTING_LABELS: Record<string, { label: string; desc: string }> = {
     leaderboard_enabled: {
       label: 'Classement actif',
       desc: 'Afficher le classement des membres. Si désactivé, le lien est masqué dans la sidebar et la page affiche un message.',
