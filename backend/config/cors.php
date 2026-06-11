@@ -25,13 +25,13 @@ return [
 
     /*
      * Patterns regex pour les preview deployments Vercel (ex: safoulee-xxx.vercel.app),
-     * le domaine de production custom, et localhost en dev.
+     * le domaine de production custom, et localhost en dev uniquement.
      */
-    'allowed_origins_patterns' => [
+    'allowed_origins_patterns' => array_values(array_filter([
         '#^https://safoulee(-[a-z0-9]+)?\.vercel\.app$#',
         '#^https://([a-z0-9-]+\.)?laneuvilletafsafoulee\.fr$#',
-        '#^http://localhost(:\d+)?$#',
-    ],
+        env('APP_ENV') === 'local' ? '#^http://localhost(:\d+)?$#' : null,
+    ])),
 
     'allowed_headers' => ['*'],
 
