@@ -3,25 +3,25 @@ import SectionHeader from '@/components/ui/SectionHeader'
 const TESTIMONIALS = [
   {
     quote:
-      "J'ai rejoint La Neuville TAF sa Foulée sans vraiment courir. Aujourd'hui je fais 15 km le dimanche matin et je ne raterais ça pour rien au monde.",
-    name: 'Camille B.',
-    role: 'Membre depuis 2 ans',
-    initial: 'C',
+      "Passionné de course à pied et profondément attaché à notre beau village de La Neuville, j'ai créé cette association avec une idée simple : rassembler les gens. Mon but était de transformer une pratique souvent solitaire en un moment de partage local.",
+    name: 'Alban Dubois',
+    role: 'Président',
+    initial: 'A',
     d: 'sF-d1',
   },
   {
     quote:
-      "Ce que j'aime ici, c'est qu'on ne se prend pas la tête. Il y a des groupes pour tous les niveaux, et l'ambiance après les sorties est vraiment sympa.",
-    name: 'Thomas L.',
-    role: 'Membre depuis 1 an',
-    initial: 'T',
+      "On m'a parlé de l'association un peu par hasard et j'ai décidé de rejoindre l'aventure. Je n'avais jamais vraiment couru avant, mais j'ai tout de suite adhéré au projet. C'est pour moi une manière idéale de découvrir la course à pied !",
+    name: 'Jules Bourin',
+    role: 'Informatique',
+    initial: 'J',
     d: 'sF-d2',
   },
   {
     quote:
-      "Je cherchais une association accessible. Le processus d'inscription était simple, et dès la première sortie j'ai su que j'avais trouvé ma place.",
-    name: 'Marie-Claire D.',
-    role: 'Membre depuis 3 ans',
+      "Je ne suis pas originaire de La Neuville, mais en tant que passionné de course à pieds, j'ai tout de suite suivi mes amis dans l'aventure lors de la création de l'association. C'est le projet parfait pour s'impliquer dans la vie locale tout en pratiquant sa passion.",
+    name: 'Matthieu Zivré',
+    role: 'Commercial',
     initial: 'M',
     d: 'sF-d3',
   },
