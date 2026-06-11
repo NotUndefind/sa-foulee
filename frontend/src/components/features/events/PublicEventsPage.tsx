@@ -19,9 +19,14 @@ const TYPE_COLORS: Record<EventType, string> = {
   other: 'bg-zinc-100 text-zinc-600',
 }
 
-export default function PublicEventsPage() {
-  const [events, setEvents] = useState<Event[]>([])
-  const [loading, setLoading] = useState(true)
+interface Props {
+  /** Liste pré-chargée côté serveur (SEO) — évite le spinner et le refetch initial. */
+  initialEvents?: Event[] | null
+}
+
+export default function PublicEventsPage({ initialEvents }: Props) {
+  const [events, setEvents] = useState<Event[]>(initialEvents ?? [])
+  const [loading, setLoading] = useState(!initialEvents)
 
   const fetch = useCallback(async () => {
     try {
@@ -35,8 +40,9 @@ export default function PublicEventsPage() {
   }, [])
 
   useEffect(() => {
+    if (initialEvents) return
     fetch()
-  }, [fetch])
+  }, [fetch, initialEvents])
 
   return (
     <div className="mx-auto max-w-4xl space-y-8 px-4 py-10">
