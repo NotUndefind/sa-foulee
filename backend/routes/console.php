@@ -23,3 +23,9 @@ Schedule::command('auth:clear-resets')->daily();
 // Purge des jobs échoués (> 7 jours) et des batchs terminés (> 48 h).
 Schedule::command('queue:prune-failed --hours=168')->daily();
 Schedule::command('queue:prune-batches --hours=48')->daily();
+
+// Sauvegarde quotidienne de la BDD vers R2 (config/backup.php), puis rotation
+// et contrôle de santé. Mail envoyé uniquement en cas d'échec.
+Schedule::command('backup:run --only-db')->dailyAt('02:00');
+Schedule::command('backup:clean')->dailyAt('03:00');
+Schedule::command('backup:monitor')->dailyAt('03:30');
