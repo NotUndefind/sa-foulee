@@ -2,16 +2,20 @@
     # CORS — appliqué à toutes les réponses Apache, y compris les redirections 301/307
     # Sans cela, le navigateur bloque les requêtes cross-origin redirigées avant que
     # Laravel ne puisse ajouter ses propres headers CORS.
+    # L'origine autorisée est capturée dans CORS_ORIGIN puis renvoyée via %{...}e :
+    # mod_headers ne connaît pas %{Origin}i (syntaxe de mod_log_config), qu'il
+    # interprète comme %i et renvoie « i=NN ».
     # Domaine principal + tous ses sous-domaines (www, dev…), comme config/cors.php
-    SetEnvIf Origin "^https://([a-z0-9-]+\.)?laneuvilletafsafoulee\.fr$" CORS_ALLOWED=1
-    SetEnvIf Origin "^https://safoulee(-[a-z0-9]+)?\.vercel\.app$" CORS_ALLOWED=1
-    SetEnvIf Origin "^http://localhost(:[0-9]+)?$" CORS_ALLOWED=1
+    SetEnvIf Origin "^(https://([a-z0-9-]+\.)?laneuvilletafsafoulee\.fr)$" CORS_ORIGIN=$1
+    SetEnvIf Origin "^(https://safoulee(-[a-z0-9]+)?\.vercel\.app)$" CORS_ORIGIN=$1
+    SetEnvIf Origin "^(http://localhost(:[0-9]+)?)$" CORS_ORIGIN=$1
 
-    Header always set Access-Control-Allow-Origin "%{Origin}i" env=CORS_ALLOWED
-    Header always set Access-Control-Allow-Credentials "true" env=CORS_ALLOWED
-    Header always set Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS" env=CORS_ALLOWED
-    Header always set Access-Control-Allow-Headers "Authorization, Content-Type, Accept, X-Requested-With" env=CORS_ALLOWED
-    Header always set Access-Control-Max-Age "86400" env=CORS_ALLOWED
+    Header always set Access-Control-Allow-Origin "%{CORS_ORIGIN}e" env=CORS_ORIGIN
+    Header always set Access-Control-Allow-Credentials "true" env=CORS_ORIGIN
+    Header always set Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS" env=CORS_ORIGIN
+    Header always set Access-Control-Allow-Headers "Authorization, Content-Type, Accept, X-Requested-With" env=CORS_ORIGIN
+    Header always set Access-Control-Max-Age "86400" env=CORS_ORIGIN
+    Header always merge Vary "Origin"
 </IfModule>
 
 <IfModule mod_rewrite.c>
