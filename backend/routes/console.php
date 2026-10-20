@@ -1,6 +1,33 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schedule;
+
+/*
+|--------------------------------------------------------------------------
+| Diagnostic e-mail
+|--------------------------------------------------------------------------
+| `php artisan mail:test toi@exemple.fr` — vérifie la config SMTP sur le
+| serveur (tinker n'est pas installé en prod : composer --no-dev).
+*/
+
+Artisan::command('mail:test {email}', function (string $email) {
+    if (! filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $this->error("Adresse invalide : {$email}");
+
+        return 1;
+    }
+
+    Mail::raw(
+        'E-mail de test envoyé depuis '.config('app.url').'.',
+        fn ($message) => $message->to($email)->subject('Test d\'envoi — sa Foulée'),
+    );
+
+    $this->info("E-mail de test envoyé à {$email} (mailer : ".config('mail.default').').');
+
+    return 0;
+})->purpose('Envoie un e-mail de test pour vérifier la configuration mail');
 
 /*
 |--------------------------------------------------------------------------
