@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Auth;
 
-use App\Rules\PasswordPolicy;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LoginRequest extends FormRequest
@@ -16,7 +15,10 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => ['required', 'email'],
-            'password' => ['required', 'string', new PasswordPolicy],
+            // Pas de PasswordPolicy ici : elle s'applique à la création du mot de
+            // passe, pas à la connexion. Sinon un compte dont le mot de passe
+            // précède la politique actuelle ne peut plus se connecter.
+            'password' => ['required', 'string'],
         ];
     }
 
