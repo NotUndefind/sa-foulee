@@ -3,8 +3,9 @@
 import { getPosts, type PaginatedPosts } from '@/lib/posts'
 import type { Post } from '@/types'
 import DOMPurify from 'isomorphic-dompurify'
+import { MessageCircle, Pin } from 'lucide-react'
 import Link from 'next/link'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString('fr-FR', {
@@ -26,6 +27,9 @@ export default function PublicBlogPage({ initialData }: Props) {
   )
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(!initialData)
+  // Page 1 déjà rendue côté serveur : seul le tout premier passage de l'effet
+  // est sauté. Un retour ultérieur à la page 1 doit bien recharger.
+  const skipInitialFetch = useRef(Boolean(initialData))
 
   const fetchPosts = useCallback(async () => {
     setLoading(true)
@@ -41,10 +45,12 @@ export default function PublicBlogPage({ initialData }: Props) {
   }, [page])
 
   useEffect(() => {
-    // Page 1 déjà rendue côté serveur : pas de refetch inutile à l'hydratation.
-    if (page === 1 && initialData) return
+    if (skipInitialFetch.current) {
+      skipInitialFetch.current = false
+      return
+    }
     fetchPosts()
-  }, [fetchPosts, page, initialData])
+  }, [fetchPosts])
 
   return (
     <div className="mx-auto max-w-3xl space-y-6 px-4 py-10">
@@ -79,8 +85,9 @@ export default function PublicBlogPage({ initialData }: Props) {
               <div className="p-6">
                 <div className="mb-2 flex flex-wrap items-center gap-2">
                   {post.is_pinned && (
-                    <span className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700">
-                      📌 Épinglé
+                    <span className="inline-flex items-center gap-1 rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700">
+                      <Pin size={12} aria-hidden="true" />
+                      Épinglé
                     </span>
                   )}
                   {post.published_at && (
@@ -104,8 +111,9 @@ export default function PublicBlogPage({ initialData }: Props) {
                   dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content) }}
                 />
                 <div className="mt-4 flex items-center justify-between">
-                  <span className="text-xs text-zinc-400">
-                    💬 {post.comments_count} commentaire{post.comments_count !== 1 ? 's' : ''}
+                  <span className="inline-flex items-center gap-1 text-xs text-zinc-400">
+                    <MessageCircle size={12} aria-hidden="true" />
+                    {post.comments_count} commentaire{post.comments_count !== 1 ? 's' : ''}
                   </span>
                   {post.slug ? (
                     <Link

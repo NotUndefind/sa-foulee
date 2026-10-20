@@ -34,8 +34,6 @@ class SessionController extends Controller
 
         $sessions = $query->paginate(12);
 
-        $userId = $request->user()->id;
-
         $data = $sessions->map(
             fn (TrainingSession $s) => $this->formatSession($s, $userId),
         );

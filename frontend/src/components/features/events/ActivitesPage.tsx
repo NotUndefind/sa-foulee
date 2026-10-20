@@ -523,6 +523,8 @@ export default function ActivitesPage({ initialUpcoming, initialPast }: Activite
   // Past events state
   const [pastEvents, setPastEvents] = useState<Event[]>(initialPast ?? [])
   const [pastLoading, setPastLoading] = useState(!initialPast)
+  // Consommé au premier passage de l'effet de chargement des événements à venir.
+  const skipInitialFetch = useRef(Boolean(initialUpcoming))
 
   // Gallery state
   const [galleryEvent, setGalleryEvent] = useState<Event | null>(null)
@@ -558,12 +560,16 @@ export default function ActivitesPage({ initialUpcoming, initialPast }: Activite
   }, [])
 
   useEffect(() => {
-    // État initial déjà rendu côté serveur : refetch seulement à la pagination/
-    // filtre, ou si un membre est connecté (le HTML serveur est anonyme, il faut
-    // récupérer son statut is_registered).
-    if (currentPage === 1 && activeFilter === '' && initialUpcoming && !user) return
+    // État initial déjà rendu côté serveur : seul le tout premier passage est
+    // sauté, et uniquement pour un visiteur anonyme (le HTML serveur ne connaît
+    // pas is_registered). Tout changement ultérieur (page, filtre, connexion)
+    // recharge, y compris un retour à la page 1 / filtre « Tous ».
+    if (skipInitialFetch.current) {
+      skipInitialFetch.current = false
+      if (!user) return
+    }
     fetchEvents(currentPage, activeFilter)
-  }, [fetchEvents, currentPage, activeFilter, initialUpcoming, user])
+  }, [fetchEvents, currentPage, activeFilter, user])
 
   useEffect(() => {
     if (initialPast) return

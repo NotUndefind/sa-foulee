@@ -15,6 +15,7 @@ class NewsletterCampaign extends Model
         'batch_id',
         'sent_at',
         'recipient_count',
+        'failed_count',
     ];
 
     protected function casts(): array
@@ -22,6 +23,7 @@ class NewsletterCampaign extends Model
         return [
             'queued_at' => 'datetime',
             'sent_at' => 'datetime',
+            'failed_count' => 'integer',
         ];
     }
 

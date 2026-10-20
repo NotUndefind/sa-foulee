@@ -4,8 +4,19 @@ import { useEffect, useState } from 'react'
 import { useRole } from '@/hooks/useRole'
 import { useRouter } from 'next/navigation'
 import { api } from '@/lib/api'
-import { getCampaigns, type Campaign } from '@/lib/newsletter'
+import {
+  getCampaigns,
+  getCampaignStatus,
+  type Campaign,
+  type CampaignStatus,
+} from '@/lib/newsletter'
 import CampaignForm from './CampaignForm'
+
+const STATUS_BADGE: Record<CampaignStatus, { label: string; className: string }> = {
+  draft: { label: 'Brouillon', className: 'bg-[rgba(245,158,11,0.1)] text-[#d97706]' },
+  sending: { label: "En cours d'envoi", className: 'bg-[rgba(59,130,246,0.1)] text-[#2563eb]' },
+  sent: { label: 'Envoyée', className: 'bg-[rgba(251,57,54,0.1)] text-[#D42F2D]' },
+}
 
 interface Subscriber {
   id: number
@@ -481,18 +492,18 @@ export default function NewsletterAdminPage() {
                             <td className="nl-td font-semibold">{c.subject}</td>
                             <td className="nl-td">
                               <span
-                                className="rounded-full px-2.5 py-0.5 text-xs font-bold"
-                                style={
-                                  c.sent_at
-                                    ? { background: 'rgba(251,57,54,0.1)', color: '#D42F2D' }
-                                    : { background: 'rgba(245,158,11,0.1)', color: '#d97706' }
-                                }
+                                className={`rounded-full px-2.5 py-0.5 text-xs font-bold ${STATUS_BADGE[getCampaignStatus(c)].className}`}
                               >
-                                {c.sent_at ? 'Envoyée' : 'Brouillon'}
+                                {STATUS_BADGE[getCampaignStatus(c)].label}
                               </span>
+                              {c.failed_count ? (
+                                <span className="ml-2 text-xs text-[#d97706]">
+                                  {c.failed_count} échec{c.failed_count !== 1 ? 's' : ''}
+                                </span>
+                              ) : null}
                             </td>
                             <td className="nl-td" style={{ color: '#7F7F7F' }}>
-                              {c.sent_at
+                              {getCampaignStatus(c) !== 'draft'
                                 ? `${c.recipient_count} membre${c.recipient_count !== 1 ? 's' : ''}`
                                 : '—'}
                             </td>

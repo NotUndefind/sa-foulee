@@ -378,8 +378,3 @@ parameters:
 			count: 1
 			path: app/Models/UserDocument.php
 
-		-
-			message: '#^Called ''env'' outside of the config directory which returns null when the config is cached, use ''config''\.$#'
-			identifier: larastan.noEnvCallsOutsideOfConfig
-			count: 1
-			path: app/Notifications/WelcomeNotification.php

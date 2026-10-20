@@ -1,6 +1,10 @@
-import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { getPosts } from '@/lib/posts'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import PublicBlogPage from './PublicBlogPage'
+
+vi.mock('@/lib/posts', () => ({ getPosts: vi.fn() }))
+const getPostsMock = vi.mocked(getPosts)
 
 const post = {
   id: 1,
@@ -46,5 +50,43 @@ describe('PublicBlogPage (smoke)', () => {
     )
 
     expect(screen.getByText(/aucun article/i)).toBeInTheDocument()
+  })
+})
+
+describe('PublicBlogPage (pagination)', () => {
+  const pagedMeta = (current_page: number) => ({
+    current_page,
+    last_page: 2,
+    total: 2,
+    per_page: 10,
+  })
+
+  beforeEach(() => {
+    getPostsMock.mockReset()
+    getPostsMock.mockImplementation(async ({ page = 1 } = {}) => ({
+      data: [{ ...post, id: page, title: `Article page ${page}` }],
+      meta: pagedMeta(page),
+    }))
+  })
+
+  it('ne refetch pas la page 1 rendue côté serveur, mais recharge au retour sur la page 1', async () => {
+    render(
+      <PublicBlogPage
+        initialData={{ data: [{ ...post, title: 'Article page 1' }], meta: pagedMeta(1) }}
+      />
+    )
+
+    // Hydratation : aucune requête, contenu serveur affiché.
+    expect(getPostsMock).not.toHaveBeenCalled()
+    expect(screen.getByText('Article page 1')).toBeInTheDocument()
+
+    fireEvent.click(screen.getByRole('button', { name: /suivant/i }))
+    await screen.findByText('Article page 2')
+    expect(getPostsMock).toHaveBeenLastCalledWith({ page: 2 })
+
+    fireEvent.click(screen.getByRole('button', { name: /précédent/i }))
+    await waitFor(() => expect(getPostsMock).toHaveBeenLastCalledWith({ page: 1 }))
+    await screen.findByText('Article page 1')
+    expect(screen.queryByText('Article page 2')).not.toBeInTheDocument()
   })
 })
