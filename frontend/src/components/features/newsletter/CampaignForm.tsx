@@ -71,11 +71,13 @@ export default function CampaignForm({ subscriberCount, onSaved, onCancel }: Pro
     setShowConfirm(false)
     setError(null)
     try {
-      await sendCampaign(savedCampaign.id)
+      // L'envoi est traité en arrière-plan : la campagne passe « en cours
+      // d'envoi » (queued_at), sent_at ne sera posé par l'API qu'à la fin.
+      const res = await sendCampaign(savedCampaign.id)
       onSaved({
         ...savedCampaign,
-        sent_at: new Date().toISOString(),
-        recipient_count: subscriberCount,
+        queued_at: res.queued_at,
+        recipient_count: res.recipient_count,
       })
     } catch {
       setError("Erreur lors de l'envoi. Réessaie.")

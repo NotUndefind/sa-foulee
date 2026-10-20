@@ -9,8 +9,13 @@ export interface Campaign {
   id: number
   subject: string
   body_html: string
+  /** Mise en file (envoi en arrière-plan) — null tant que non envoyée. */
+  queued_at: string | null
+  /** Posé à la fin du traitement de tous les envois (succès ou échec). */
   sent_at: string | null
   recipient_count: number
+  /** Envois définitivement échoués, connu une fois sent_at posé. */
+  failed_count: number | null
   created_at: string
   creator?: { id: number; first_name: string; last_name: string }
 }
@@ -34,6 +39,22 @@ export function updateCampaign(
   return api.patch<Campaign>(`/admin/newsletter/campaigns/${id}`, data)
 }
 
-export function sendCampaign(id: number): Promise<{ message: string; recipient_count: number }> {
-  return api.post(`/admin/newsletter/campaigns/${id}/send`)
+export type CampaignStatus = 'draft' | 'sending' | 'sent'
+
+export function getCampaignStatus(
+  campaign: Pick<Campaign, 'queued_at' | 'sent_at'>
+): CampaignStatus {
+  if (campaign.sent_at) return 'sent'
+  if (campaign.queued_at) return 'sending'
+  return 'draft'
+}
+
+export interface SendCampaignResponse {
+  message: string
+  recipient_count: number
+  queued_at: string
+}
+
+export function sendCampaign(id: number): Promise<SendCampaignResponse> {
+  return api.post<SendCampaignResponse>(`/admin/newsletter/campaigns/${id}/send`)
 }
