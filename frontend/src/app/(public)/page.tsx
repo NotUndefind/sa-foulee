@@ -12,6 +12,7 @@ import StatsSection from '@/components/features/public/landing/StatsSection'
 import TestimonialsSection from '@/components/features/public/landing/TestimonialsSection'
 import ValuesSection from '@/components/features/public/landing/ValuesSection'
 import ScrollReveal from '@/components/ui/ScrollReveal'
+import { serializeJsonLd } from '@/lib/json-ld'
 
 export const metadata: Metadata = {
   title: 'La Neuville TAF sa Foulée — Association de course à pied',
@@ -78,7 +79,7 @@ export default async function PublicHomePage() {
     <div className={baloo.className} style={{ background: '#FAFAFA', minHeight: '100vh' }}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(orgJsonLd) }}
       />
       <HeroSection />
       <ValuesSection />

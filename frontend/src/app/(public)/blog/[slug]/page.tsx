@@ -1,4 +1,4 @@
-import { serverFetch } from '@/lib/server-api'
+import { serverFetchOrThrow } from '@/lib/server-api'
 import type { Post } from '@/types'
 import DOMPurify from 'isomorphic-dompurify'
 import type { Metadata } from 'next'
@@ -11,8 +11,10 @@ interface Props {
   params: Promise<{ slug: string }>
 }
 
+// null = article inexistant (404) ; toute autre erreur API est levée pour que
+// l'ISR conserve la version en cache plutôt que de servir un faux 404.
 function getPost(slug: string): Promise<Post | null> {
-  return serverFetch<Post>(`/posts/slug/${encodeURIComponent(slug)}`)
+  return serverFetchOrThrow<Post>(`/posts/slug/${encodeURIComponent(slug)}`)
 }
 
 /** Extrait ~160 caractères de texte brut du HTML pour la meta description. */

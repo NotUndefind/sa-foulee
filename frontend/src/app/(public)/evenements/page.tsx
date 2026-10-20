@@ -1,5 +1,6 @@
 import PublicEventsPage from '@/components/features/events/PublicEventsPage'
 import type { PaginatedEvents } from '@/lib/events'
+import { serializeJsonLd } from '@/lib/json-ld'
 import { serverFetch } from '@/lib/server-api'
 import type { Metadata } from 'next'
 
@@ -37,7 +38,7 @@ export default async function PublicEventsRoute() {
       {jsonLd && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
         />
       )}
       <PublicEventsPage initialEvents={events} />

@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Schedule;
 // la main au cron, --max-time pour ne jamais dépasser la minute suivante.
 Schedule::command('queue:work --stop-when-empty --max-time=50 --tries=3')
     ->everyMinute()
-    ->withoutOverlapping();
+    // Verrou de 5 min (défaut : 24 h). Si l'hébergeur tue le process, le
+    // mutex expire vite au lieu de bloquer la file toute une journée.
+    ->withoutOverlapping(5);
 
 // Nettoyage quotidien des jetons de réinitialisation de mot de passe expirés.
 Schedule::command('auth:clear-resets')->daily();
