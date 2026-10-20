@@ -45,3 +45,15 @@ it('refuse la connexion avec un mauvais mot de passe', function () {
         'password' => 'mauvais',
     ])->assertStatus(422);
 });
+
+it('connecte un compte dont le mot de passe précède la politique actuelle', function () {
+    User::factory()->create([
+        'email' => 'ancien@example.com',
+        'password' => bcrypt('password'),
+    ]);
+
+    $this->postJson('/api/v1/auth/login', [
+        'email' => 'ancien@example.com',
+        'password' => 'password',
+    ])->assertOk()->assertJsonStructure(['user', 'token']);
+});
