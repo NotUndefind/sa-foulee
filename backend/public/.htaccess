@@ -2,7 +2,8 @@
     # CORS — appliqué à toutes les réponses Apache, y compris les redirections 301/307
     # Sans cela, le navigateur bloque les requêtes cross-origin redirigées avant que
     # Laravel ne puisse ajouter ses propres headers CORS.
-    SetEnvIf Origin "^https://(www\.)?laneuvilletafsafoulee\.fr$" CORS_ALLOWED=1
+    # Domaine principal + tous ses sous-domaines (www, dev…), comme config/cors.php
+    SetEnvIf Origin "^https://([a-z0-9-]+\.)?laneuvilletafsafoulee\.fr$" CORS_ALLOWED=1
     SetEnvIf Origin "^https://safoulee(-[a-z0-9]+)?\.vercel\.app$" CORS_ALLOWED=1
     SetEnvIf Origin "^http://localhost(:[0-9]+)?$" CORS_ALLOWED=1
 
